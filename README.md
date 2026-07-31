@@ -1,12 +1,14 @@
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18.3-087ea4?logo=react)](https://react.dev/)
-[![Express](https://img.shields.io/badge/Express-4.21-000000?logo=express)](https://expressjs.com/)
-[![Docker](https://img.shields.io/badge/Docker-ready-2496ed?logo=docker&logoColor=white)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-MIT-217346)](LICENSE)
-
 # Excel-lenz
 
-Interaktives Excel-Lernportal — Praxisorientiertes Training mit direktem Feedback und adaptiven Lernpfaden.
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3-087ea4)](https://react.dev/)
+[![Express](https://img.shields.io/badge/Express-4.21-000000)](https://expressjs.com/)
+[![Docker](https://img.shields.io/badge/Docker-ready-2496ed)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/License-MIT-217346)](LICENSE)
+
+> Interaktives Excel-Lernportal — Praxisorientiertes Training mit direktem Feedback und adaptiven Lernpfaden.
+
+![Excel-lenz Plattform](docs/screen.jpg)
 
 ---
 
@@ -24,8 +26,6 @@ Traditionelles Excel-Lernen leidet unter drei Problemen: **kein direktes Feedbac
 | **Sofortiges Feedback** | Automatische Zell-für-Zell-Korrektur zeigt genau, was falsch ist — mit Hinweisen zur Verbesserung |
 | **Adaptive Lernpfade** | Spaced Repetition und Fähigkeitsanalyse passen die Übungsempfehlungen individuell an |
 | **Micro-Learning** | Übungen sind in 5-15 Minuten abschließbar — ideal für den Arbeitsalltag |
-
-![Excel-lenz Plattform](docs/screen.jpg)
 
 ### Für wen ist Excel-lenz?
 
