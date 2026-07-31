@@ -93,7 +93,11 @@ export default function App() {
           {dailyGoal && (
             <div className="navbar-progress" title={`Tägliches Ziel: ${dailyGoal.completed}/${dailyGoal.target}`}>
               <Target size={14} />
-              <div className="navbar-progress-bar">
+              <div className="navbar-progress-bar" role="progressbar"
+                   aria-valuenow={dailyGoal.completed}
+                   aria-valuemin={0}
+                   aria-valuemax={dailyGoal.target}
+                   aria-label="Tägliches Lernziel">
                 <div
                   className="navbar-progress-fill"
                   style={{ width: `${Math.min(100, (dailyGoal.completed / dailyGoal.target) * 100)}%` }}
@@ -151,6 +155,8 @@ export default function App() {
             className="hamburger-btn"
             onClick={() => setMobileOpen(true)}
             aria-label="Menü öffnen"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-drawer"
           >
             <Menu size={22} />
           </button>

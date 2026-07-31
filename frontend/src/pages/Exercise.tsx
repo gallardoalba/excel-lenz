@@ -98,6 +98,18 @@ export default function Exercise() {
     };
   }, []);
 
+  // Prevent accidental navigation away from exercise with unsaved changes
+  useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => {
+      if (exercise && !exercise.progress?.completed && spreadsheetData.length > 0) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [exercise, spreadsheetData]);
+
   const safeTimeout = useCallback((fn: () => void, ms: number) => {
     const id = setTimeout(fn, ms);
     timersRef.current.push(id);

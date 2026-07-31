@@ -12,6 +12,10 @@ export default class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
+  handleRetry = () => {
+    this.setState({ hasError: false, error: null });
+  };
+
   render() {
     if (this.state.hasError) {
       return (
@@ -22,7 +26,10 @@ export default class ErrorBoundary extends Component<Props, State> {
             Ein unerwarteter Fehler ist aufgetreten. Bitte laden Sie die Seite neu oder kehren Sie zur Startseite zurück.
           </p>
           <div className="flex gap-sm" style={{ justifyContent: 'center' }}>
-            <button className="btn btn-primary" onClick={() => window.location.reload()}>
+            <button className="btn btn-primary" onClick={this.handleRetry}>
+              Erneut versuchen
+            </button>
+            <button className="btn btn-outline" onClick={() => window.location.reload()}>
               Seite neu laden
             </button>
             <Link to="/" className="btn btn-outline">Zur Startseite</Link>

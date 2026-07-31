@@ -50,6 +50,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  // Cross-tab logout sync: detect token removal in another tab
+  useEffect(() => {
+    const syncLogout = (event: StorageEvent) => {
+      if (event.key === 'token' && !event.newValue) {
+        setToken(null);
+        setUser(null);
+      }
+    };
+    window.addEventListener('storage', syncLogout);
+    return () => window.removeEventListener('storage', syncLogout);
+  }, []);
+
   const login = async (email: string, password: string) => {
     const data = await apiFetch('/auth/login', {
       method: 'POST',

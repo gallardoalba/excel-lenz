@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, Play, Trophy, Target, TrendingUp, RefreshCw, Clock, ArrowRight, GraduationCap, AlertTriangle } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
@@ -69,10 +69,13 @@ export default function StudentPanel() {
     );
   }
 
-  const courseProgress = (courseId: string): number => {
-    const items = progress.filter(p => p.course_id === courseId && p.completed);
-    return items.length;
-  };
+  const progressMap = useMemo(() => {
+    const map = new Map<string, number>();
+    progress.filter(p => p.completed).forEach(p => {
+      map.set(p.course_id, (map.get(p.course_id) || 0) + 1);
+    });
+    return map;
+  }, [progress]);
 
   const visibleCourses = courses.filter(c =>
     c.title !== 'Datenanalyse & Statistik' && c.title !== 'Datenbank & Business Intelligence'
@@ -142,7 +145,7 @@ export default function StudentPanel() {
           <div className="student-course-list">
             {visibleCourses.map(course => {
               const theme = COURSE_THEME[course.title] || { accent: '#1a5276', bg: '#e8f0fe' };
-              const completed = courseProgress(course.id);
+              const completed = progressMap.get(course.id) || 0;
               const pct = course.exercise_count > 0 ? Math.round((completed / course.exercise_count) * 100) : 0;
 
               return (
