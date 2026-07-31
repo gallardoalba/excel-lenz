@@ -6518,9 +6518,9 @@
           ]
         ]
       },
-      "instructions": "1. UND-Prüfung: =UND(B2=$B$7;C2>$B$8).\n2. Qualifiziert wenn: Abteilung=IT UND Gehalt>50000.\n3. Zähle: =ZÄHLENWENN(D2:D6;\"✅\").",
+      "instructions": "1. UND-Prüfung: =UND(B2=$B$7;C2>50000).\n2. Qualifiziert wenn: Abteilung=IT UND Gehalt>50000.\n3. Zähle: =ZÄHLENWENN(D2:D6;\"✅\").",
       "order": 53,
-      "formulaHint": "=UND(B2=$B$7;C2>$B$8)",
+      "formulaHint": "=UND(B2=$B$7;C2>50000)",
       "hint1": "Spezialfilter prüft mehrere Bedingungen gleichzeitig",
       "hint2": "UND(Bedingung1; Bedingung2) = beide müssen WAHR sein",
       "learningObjectives": [
