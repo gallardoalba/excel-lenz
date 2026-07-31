@@ -68,6 +68,8 @@ Die Plattform umfasst vier aufeinander aufbauende Kurse, die vom absoluten Excel
 
 ## Kernfunktionen
 
+Die Plattform bietet einen vollständigen Excel-Simulator mit Werkzeugen für effizientes Lernen und Lehren.
+
 | Bereich | Details |
 |---------|---------|
 | **Excel-Simulator** | Handsontable 14 + HyperFormula 3 — Ribbon-Interface, Formelleiste mit Autovervollständigung, Zellformatierung, bedingte Formatierung, Zoom, Sortierung, Filter |
@@ -84,6 +86,8 @@ Die Plattform umfasst vier aufeinander aufbauende Kurse, die vom absoluten Excel
 ---
 
 ## Schnellstart
+
+In drei Befehlen zur lauffähigen Entwicklungsumgebung.
 
 ```bash
 # 1. Abhängigkeiten installieren
@@ -104,6 +108,8 @@ npm run dev
 ---
 
 ## Architektur
+
+Klassische Three-Tier-Architektur mit REST-API und JWT-Authentifizierung.
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -126,6 +132,8 @@ npm run dev
 
 ## Technologie-Stack
 
+Bewährte Open-Source-Technologien für Stabilität und Erweiterbarkeit.
+
 | Schicht | Technologie |
 |---------|-------------|
 | **Spreadsheet** | Handsontable 14.6 · HyperFormula 3.3 |
@@ -140,6 +148,8 @@ npm run dev
 ---
 
 ## Projektstruktur
+
+Monorepo mit klar getrennten Verantwortlichkeiten zwischen Frontend und Backend.
 
 ```
 excellenz/
@@ -170,6 +180,8 @@ excellenz/
 
 ## Entwicklung
 
+Lokale Entwicklungsumgebung mit Hot-Reload für schnelle Iterationen.
+
 ```bash
 # Einzelne Dienste starten
 cd backend  && npm run dev    # API auf :3001
@@ -188,6 +200,8 @@ cd frontend && npm run build
 ---
 
 ## Produktion
+
+Docker-basiertes Deployment mit Nginx Reverse Proxy und PostgreSQL.
 
 ```bash
 cp .env.example .env
