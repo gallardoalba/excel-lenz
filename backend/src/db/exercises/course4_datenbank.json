@@ -4087,17 +4087,17 @@
           ],
           [
             "Standardabweichung:",
-            79.37,
+            80,
             ""
           ],
           [
             "Varianz:",
-            6300,
+            6400,
             ""
           ]
         ]
       },
-      "instructions": "1. =STABW.S(B2:B7) = 79,37 T€.\n2. =VAR.S(B2:B7) = 6.300.\n3. Hohe Streuung = ungleichmäßige Performance der Filialen.",
+      "instructions": "1. =STABW.S(B2:B7) = 80 T€.\n2. =VAR.S(B2:B7) = 6.400.\n3. Hohe Streuung = ungleichmäßige Performance der Filialen.",
       "order": 33,
       "formulaHint": "=STABW.S(B2:B7), =VAR.S(B2:B7)",
       "hint1": "STABW.S = Stichproben-Standardabweichung",

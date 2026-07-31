@@ -1,0 +1,81 @@
+¡Continuamos con la revisión! En esta sexta entrega, vamos a destapar lo que probablemente sea **el bug técnico más grave de todos tus archivos JSON** (uno que romperá por completo tu simulador web en el frontend), además de abordar problemas de coincidencia de datos, respuestas basadas en errores de Excel y la transición pedagógica entre cursos.
+
+---
+
+### 1. El Bug Asesino del Simulador: `taskCols` Fuera de Límites (Out of Bounds)
+
+He descubierto un error sistémico y crítico en la definición de la propiedad `taskCols`. Parece que el creador del JSON confundió los índices de las **filas** con los índices de las **columnas**.
+
+En tu esquema, `taskCols` debería ser un array con los índices (basados en 0) de las columnas que el alumno debe rellenar. Sin embargo, en muchísimos ejercicios, los índices superan el número real de columnas definidas en `cols`.
+
+**Ejemplos críticos (Si no lo arreglas, React/Handsontable devolverá `undefined` o romperá el renderizado):**
+
+*   **Curso 1 - Ej 1 ("Was ist Excel?"):** Define `"cols": 3` (índices 0, 1, 2). Pero `taskCols` es `[7]`. El índice 7 no existe.
+*   **Curso 1 - Ej 2 ("Die Benutzeroberfläche"):** Define `"cols": 2` (índices 0, 1). Pero `taskCols` es `[7]`.
+*   **Curso 1 - Ej 5 ("Tipos de Datos"):** Define `"cols": 4` (índices 0, 1, 2, 3). Pero `taskCols` es `[7]`.
+*   **Curso 1 - Ej 6 ("Edición de Celdas"):** Define `"cols": 3`. `taskCols` es `[0]`. Pero la columna 0 ya está rellena ("Método de edición"). El alumno debe rellenar la columna 1 ("Tecla/Acción"). Debería ser `[1]`.
+*   **Curso 2 - Ej 28 ("Saisonindex"):** Define `"cols": 5` (índices 0 a 4). Pero `taskCols` es `[4, 5, 6, 7, 8, 9]`. ¡6 columnas de más!
+*   **Curso 3 - Ej 69 ("KORREL"):** Define `"cols": 3`. `taskCols` es `[8, 9]`.
+*   **Curso 4 - Ej 39 ("Dynamische Diagrammdaten"):** Define `"cols": 3`. `taskCols` es `[9]`.
+
+**Solución:** Debes hacer un script o revisar manualmente *cada* ejercicio. La regla es: `Math.max(...taskCols) < cols`. Si no se cumple, el JSON está roto. Donde veas un `7` o un `8`, suele referirse a la fila 8 o 9 (donde el alumno pone el recuento final), no a la columna.
+
+---
+
+### 2. Inconsistencias de Estructura: Plantilla vs. Solución
+
+Para que tu simulador pueda comparar la cuadrícula del alumno con la solución, ambas matrices deben tener las mismas dimensiones. Hay ejercicios donde la `solution.data` tiene menos filas o columnas que el `template.data`.
+
+*   **Curso 2 - Ej 9 ("Quartalsvergleich mit Prozent"):**
+    *   `template.data` tiene 6 filas (Nord, Süd, Ost, West, fila vacía, "Wachstum Q1→Q3").
+    *   `solution.data` solo tiene 5 filas. Falta la fila del crecimiento.
+*   **Curso 3 - Ej 5 ("INDEX & VERGLEICH: Flexiblere Suche"):**
+    *   `template.data` tiene 8 filas.
+    *   `solution.data` tiene 1 sola fila (`["Name", "Lisa", "", 48000]`). Esto es incorrecto. La solución debe tener la misma forma que la plantilla para que el simulador sepa en qué celdas validar el resultado.
+*   **Curso 3 - Ej 11 ("SVERWEIS über mehrere Kategorien"):**
+    *   La plantilla tiene 14 filas. La solución tiene 4. El simulador no sabrá qué hacer con las otras 10 filas.
+
+**Solución:** La `solution.data` debe ser un espejo exacto del `template.data` en cuanto a dimensiones (mismo número de filas y columnas), rellenando los `null` con las respuestas correctas.
+
+---
+
+### 3. Trampas de Simulación: Pidiendo Errores de Excel como Respuestas
+
+Hay ejercicios donde la respuesta esperada es un error nativo de Excel (`#NV`, `#DIV/0!`, `#ZAHL!`). Pedir a un alumno que escriba literalmente estos errores de texto en una simulación web es una mala experiencia de usuario (UX).
+
+*   **Curso 2 - Ej 10 ("MEDIAN & MODUS"):**
+    *   La solución para el MODUS es: `"#NV (kein Wert mehrfach)"`.
+    *   *El problema:* En Excel real, si escribes `=MODUS()` y no hay duplicados, la celda muestra `#NV`. Pero el alumno no *escribe* `#NV`, la celda lo genera. En tu simulador, si le pides al alumno que escriba en la celda, escribir `#NV` manualmente se siente raro y a menudo se confunde con texto.
+    *   *Solución:* Cambia la pregunta. En lugar de pedir el resultado de la fórmula, pide: *"Was zeigt Excel an, wenn es keinen Modus gibt? (Schreibe den Fehlercode)"* y acepta `"#NV"`.
+
+---
+
+### 4. Revisión de Nombres de Funciones en Alemán (Correcciones)
+
+Aunque la mayoría están bien, hay algunas funciones que necesitan corrección o modernización en los JSON:
+
+*   **Curso 3 - Ex 22 ("MIN & MAX mit Bedingungen"):**
+    *   En la teoría y las instrucciones, no mencionas que las funciones `MINWENNS` y `MAXWENNS` existen en Excel 2019/365. Pides al alumno que use una columna auxiliar con `WENN`. Esto está bien para enseñar lógica, pero deberías mencionar en la teoría: *"In modernen Excel-Versionen kannst du auch =MINWENNS() verwenden."*
+*   **Curso 3 - Ex 23 ("TEXT-Funktionen: Namen trennen"):**
+    *   En la teoría usas `FINDEN`. Es correcto, pero ten en cuenta que `FINDEN` distingue mayúsculas de minúsculas. Si el alumno busca un espacio, `SUCHEN` es más seguro. Asegúrate de que las instrucciones specifiquen cuándo usar cuál.
+*   **Curso 1 - Ex 11 ("Ajuste de Filas y Columnas") y Ex 12 ("MwSt"):**
+    *   Mezclas nombres de funciones en español e inglés en el texto. `CONTAR.SI` debe ser `ZÄHLENWENN`. `CONTARA` debe ser `ANZAHL2`.
+
+---
+
+### 5. Flujos Pedagógicos y Picos de Dificultad
+
+La progresión no es del todo suave. Hay saltos bruscos que pueden frustrar a los alumnos:
+
+*   **Curso 1 (Principiantes) - Módulo 7:** De repente, en el Ejercicio 27, pasas de contar celdas a usar `ZÄHLENWENN` (SUMAR.SI) y `SUMAR.SI.CONJUNTO`. No hay teoría intermedia que explique la sintaxis de los criterios (ej. `">100"`). El alumno se quedará atascado intentando adivinar cómo poner el símbolo `>`.
+    *   *Mejora:* Añade un ejercicio puente donde el alumno solo tenga que escribir el criterio (ej. "¿Cómo escribes 'mayor que 100' en una fórmula?").
+*   **Curso 2 (Análisis) - Ej 32 (ANOVA):** Pasas de calcular medias y medianas a hacer una descomposición de varianza (Suma de Cuadrados) sin explicar previamente qué es la varianza ni cómo se calcula manualmente. Esto es nivel universitario de estadística introducido de golpe.
+    *   *Mejora:* Si quieres mantener ANOVA, añade antes un ejercicio de "Varianza y Desviación Estándar" (que tienes en el Curso 4, Ej 33, pero está mal colocado).
+
+---
+
+### Resumen de la Fase 6:
+1. **Arregla `taskCols` YA:** Este es el error más crítico para tu frontend. Revisa cada JSON y asegúrate de que los índices no superen `cols - 1`.
+2. **Iguala las matrices:** La `solution.data` debe tener exactamente las mismas dimensiones que el `template.data`.
+3. **Cuidado con los errores de Excel:** No pidas al alumno que escriba `#NV` como si fuera texto normal en una celda de input.
+4. **Suaviza la curva de aprendizaje:** Añade teoría sobre los operadores (`>`, `<`) antes de lanzar `ZÄHLENWENN` a los principiantes.
