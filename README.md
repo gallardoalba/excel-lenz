@@ -8,17 +8,61 @@
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ed?logo=docker&logoColor=white)](https://www.docker.com/)
 [![License](https://img.shields.io/badge/License-MIT-217346)](LICENSE)
 
-<br>
-
 ![Excel-lenz Plattform](docs/screen.jpg)
 
-<br>
+---
 
 ## Über das Projekt
 
-Excel-lenz ist eine browserbasierte Lernplattform, die Excel-Übungen in einer realistischen Tabellenkalkulationsumgebung bereitstellt. Benutzer arbeiten mit einem vollständigen Excel-Simulator — inklusive Formel-Engine, Ribbon-Interface und automatischer Korrektur.
+Excel-lenz ist eine browserbasierte Lernplattform, die Excel-Übungen in einer realistischen Tabellenkalkulationsumgebung bereitstellt. Statt passiver Video-Tutorials oder statischer PDFs arbeitet der Lernende direkt in einem vollständigen Excel-Simulator — mit Ribbon-Interface, Formel-Engine und automatischer Korrektur in Echtzeit.
 
-Die Plattform umfasst vier aufeinander aufbauende Kurse mit Übungen zu Formeln, Funktionen, Formatierung, Datenanalyse und Diagrammen.
+### Warum Excel-lenz?
+
+Traditionelles Excel-Lernen leidet unter drei Problemen: **kein direktes Feedback** (man weiß nicht, ob die Lösung stimmt), **kein Praxisbezug** (Theorie ohne Anwendung), und **keine Personalisierung** (alle machen das Gleiche). Excel-lenz adressiert alle drei:
+
+| Prinzip | Umsetzung |
+|---------|-----------|
+| **Learning by Doing** | Jede Übung findet in einem echten Excel-Simulator statt — mit Formeln, Formatierung und Diagrammen |
+| **Sofortiges Feedback** | Automatische Zell-für-Zell-Korrektur zeigt genau, was falsch ist — mit Hinweisen zur Verbesserung |
+| **Adaptive Lernpfade** | Spaced Repetition und Fähigkeitsanalyse passen die Übungsempfehlungen individuell an |
+| **Micro-Learning** | Übungen sind in 5-15 Minuten abschließbar — ideal für den Arbeitsalltag |
+| **Gamification** | XP, Abzeichen, tägliche Ziele und Bestenlisten motivieren zum kontinuierlichen Üben |
+
+### Für wen ist Excel-lenz?
+
+- **Berufstätige**, die Excel-Kenntnisse für ihren Job benötigen
+- **Studierende** in wirtschafts- oder datenorientierten Studiengängen
+- **Quereinsteiger**, die eine strukturierte Excel-Ausbildung suchen
+- **Dozenten und Trainer**, die Übungen zuweisen und Fortschritte verfolgen möchten
+- **Unternehmen**, die eine skalierbare Excel-Schulung für Mitarbeiter benötigen
+
+### Wie funktioniert das Lernen?
+
+```
+Kurs wählen → Übung starten → Im Simulator arbeiten → Korrigieren lassen → Nächste Übung
+                    ↑                                                      │
+                    └────────── Spaced Repetition (gezielt wiederholen) ←──┘
+```
+
+Jede Übung folgt demselben didaktischen Aufbau:
+1. **Anleitung** — Schritt-für-Schritt-Instruktionen mit konkreten Aufgaben
+2. **Theorie** — Kompakte Erläuterung der relevanten Excel-Konzepte
+3. **Praxis** — Bearbeitung im integrierten Excel-Simulator
+4. **Feedback** — Automatische Korrektur mit zellscharfer Fehlermarkierung
+5. **Hinweise** — Vier Eskalationsstufen: allgemeiner Tipp → Funktionshinweis → Lösungsskizze → Volle Lösung
+
+---
+
+## Kursstruktur
+
+Die Plattform umfasst vier aufeinander aufbauende Kurse, die vom absoluten Excel-Anfänger bis zum fortgeschrittenen Datenanalysten führen:
+
+| Kurs | Niveau | Inhalte |
+|------|--------|---------|
+| **Excel für Anfänger** | Einsteiger | Zellen, Formeln, SUMME, MITTELWERT, Formatierung, einfache Diagramme |
+| **Datenanalyse & Statistik** | Mittel | WENN, SVERWEIS, XVERWEIS, Pivot-Tabellen, Filter, Sortieren |
+| **Fortgeschrittene Techniken** | Fortgeschritten | Bedingte Formatierung, Datenvalidierung, komplexe Formeln, Diagramme |
+| **Datenbank & Business Intelligence** | Experte | Power Query, Datenmodellierung, Business Intelligence mit Excel |
 
 ---
 
@@ -101,7 +145,7 @@ npm run dev
 excellenz/
 ├── frontend/                    # React SPA — Port 5173
 │   └── src/
-│       ├── pages/               # Exercise · Courses · CourseDetail · Dashboard · TeacherPanel
+│       ├── pages/               # Exercise · Courses · CourseDetail · Dashboard · TeacherPanel · StudentPanel
 │       ├── components/
 │       │   ├── spreadsheet/     # Handsontable · Ribbon · FormulaBar · Charts · Validation · Pivot
 │       │   ├── navigation/      # UserMenu · CommandPalette · Breadcrumbs · MobileDrawer
@@ -161,4 +205,5 @@ Dieses Projekt ist unter der MIT-Lizenz veröffentlicht. Siehe [LICENSE](LICENSE
 <p align="center">
   <sub>Excel-lenz — Lernen durch Praxis.</sub>
 </p>
+
 
