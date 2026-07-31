@@ -1,7 +1,7 @@
 // ── DataValidationDialog: Add validation rules to columns ─────────────────
 // Supports numeric range (min/max) and dropdown list validation
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
 interface ValidationRule {
@@ -28,9 +28,24 @@ export default function DataValidationDialog({ visible, headers, onApply, onClos
   const [list, setList] = useState('');
   const [errorMsg, setErrorMsg] = useState('Ungültiger Wert');
 
+  // Reset state when dialog opens, handle Escape key
+  useEffect(() => {
+    if (visible) {
+      setCol(0); setType('number'); setMin(''); setMax(''); setList(''); setErrorMsg('Ungültiger Wert');
+    }
+    if (!visible) return;
+    const handleKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [visible, onClose]);
+
   if (!visible) return null;
 
   const handleApply = () => {
+    if (type === 'number' && min && max && parseFloat(min) > parseFloat(max)) {
+      alert('Der Mindestwert darf nicht größer als der Höchstwert sein.');
+      return;
+    }
     onApply({
       col,
       type,

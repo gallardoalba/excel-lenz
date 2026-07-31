@@ -155,7 +155,7 @@ export function colToLetter(col: number): string {
 
 // Cell reference to position (A1 -> {row:0, col:0})
 export function refToPosition(ref: string): CellPosition | null {
-  const match = ref.match(/^([A-Z]+)(\d+)$/);
+  const match = ref.match(/^([A-Za-z]+)(\d+)$/);
   if (!match) return null;
   let col = 0;
   for (const ch of match[1]) {

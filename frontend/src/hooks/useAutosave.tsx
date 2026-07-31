@@ -10,17 +10,21 @@ export function useAutosave<T>(
   intervalMs: number = 30000
 ): { saved: boolean; restore: () => T | null; clear: () => void } {
   const savedRef = useRef(false);
+  const dataRef = useRef(data);
+
+  // Keep ref updated without resetting the interval
+  useEffect(() => { dataRef.current = data; }, [data]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (data !== undefined && data !== null) {
-        localStorage.setItem(key, JSON.stringify(data));
+      const current = dataRef.current;
+      if (current !== undefined && current !== null) {
+        localStorage.setItem(key, JSON.stringify(current));
         savedRef.current = true;
-        console.log(`[Autosave] ${key} saved`);
       }
     }, intervalMs);
     return () => clearInterval(timer);
-  }, [key, data, intervalMs]);
+  }, [key, intervalMs]);
 
   const restore = (): T | null => {
     try {
