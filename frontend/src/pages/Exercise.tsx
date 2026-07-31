@@ -98,10 +98,18 @@ export default function Exercise() {
     };
   }, []);
 
-  // Prevent accidental navigation away from exercise with unsaved changes
+  // Prevent accidental navigation only if user has modified data (dirty check)
+  const originalDataRef = useRef<string>('');
+  useEffect(() => {
+    if (exercise && !originalDataRef.current) {
+      originalDataRef.current = JSON.stringify(exercise.template_data.data);
+    }
+  }, [exercise]);
+
   useEffect(() => {
     const handler = (e: BeforeUnloadEvent) => {
-      if (exercise && !exercise.progress?.completed && spreadsheetData.length > 0) {
+      const current = JSON.stringify(spreadsheetData);
+      if (exercise && !exercise.progress?.completed && current !== originalDataRef.current) {
         e.preventDefault();
         e.returnValue = '';
       }

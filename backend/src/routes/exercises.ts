@@ -141,12 +141,21 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     ).run(uuid(), userId, req.params.id, JSON.stringify(data), score);
   }
 
-  // Award gamification XP — return actual XP gained
+  // Only award full XP if this is a new best score
   let xpGained = 0;
-  try { xpGained = awardXP(userId, score); } catch { xpGained = 50; }
+  try {
+    const prevScore = existing ? (db.prepare('SELECT score FROM progress WHERE user_id = ? AND exercise_id = ?').get(userId, req.params.id) as any)?.score : null;
+    if (prevScore === 100 && score === 100) {
+      xpGained = 10; // Small review bonus, no more farming
+    } else if (prevScore == null || score > (prevScore || 0)) {
+      xpGained = awardXP(userId, score);
+    } else {
+      xpGained = 0; // No improvement, no XP
+    }
+  } catch { xpGained = 0; }
 
-  // Update spaced repetition (SM-2 algorithm)
-  const quality = score >= 100 ? 5 : score >= 80 ? 4 : score >= 50 ? 3 : score >= 30 ? 2 : 1;
+  // Update spaced repetition (SM-2): 0% = quality 0 (complete failure)
+  const quality = score >= 100 ? 5 : score >= 80 ? 4 : score >= 50 ? 3 : score >= 30 ? 2 : score > 0 ? 1 : 0;
   const existingSr = db.prepare(
     'SELECT * FROM spaced_repetition WHERE user_id = ? AND exercise_id = ?'
   ).get(userId, req.params.id) as any;

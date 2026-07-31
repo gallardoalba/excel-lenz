@@ -371,7 +371,7 @@ export default function SpreadsheetHandsontable({
     const hot = hotRef.current;
     if (!hot || hot.isDestroyed || sheetId === activeSheetId) return;
     // Save current data and formats
-    allDataRef.current[activeSheetId] = (hot.getData() as (string | number | null)[][]).slice(1);
+    allDataRef.current[activeSheetId] = (hot.getSourceData() as (string | number | null)[][]).slice(1);
     allFormatsRef.current[activeSheetId] = { ...cellFormatsRef.current };
     // Load new sheet data
     const newData = allDataRef.current[sheetId] || [];
@@ -546,11 +546,16 @@ export default function SpreadsheetHandsontable({
   // Init Handsontable
   useEffect(() => {
     if (!containerRef.current) return;
+    // Properly destroy existing instance before re-initializing
+    if (hotRef.current && !hotRef.current.isDestroyed) {
+      hotRef.current.destroy();
+    }
     containerRef.current.innerHTML = '';
 
     // Create HyperFormula instance per component (prevents cross-instance leaks)
     if (!hfRef.current) {
       hfRef.current = createHF();
+      hfRef.current.renameSheet(0, 'Tabelle1');
     }
 
     const hot = new Handsontable(containerRef.current, {
@@ -1097,11 +1102,11 @@ export default function SpreadsheetHandsontable({
       else if (ctrl && e.key === 'b') { e.preventDefault(); applyFormat({ bold: !activeFormat.bold }); }
       else if (ctrl && e.key === 'i') { e.preventDefault(); applyFormat({ italic: !activeFormat.italic }); }
       else if (ctrl && e.key === 'u') { e.preventDefault(); applyFormat({ underline: !activeFormat.underline }); }
-      else if (ctrl && e.shiftKey && e.key === '1') { e.preventDefault(); applyFormat({ numberFormat: '#,##0.00' }); }
-      else if (ctrl && e.shiftKey && e.key === '5') { e.preventDefault(); applyFormat({ numberFormat: '0%' }); }
-      else if (ctrl && e.shiftKey && e.key === '4') { e.preventDefault(); applyFormat({ numberFormat: '#,##0.00 €' }); }
+      else if (ctrl && e.shiftKey && e.code === 'Digit1') { e.preventDefault(); applyFormat({ numberFormat: '#,##0.00' }); }
+      else if (ctrl && e.shiftKey && e.code === 'Digit5') { e.preventDefault(); applyFormat({ numberFormat: '0%' }); }
+      else if (ctrl && e.shiftKey && e.code === 'Digit4') { e.preventDefault(); applyFormat({ numberFormat: '#,##0.00 €' }); }
       // Ctrl+Shift+L: Toggle filters
-      else if (ctrl && e.shiftKey && e.key === 'L') { e.preventDefault(); const hot = hotRef.current; if (hot) { const f = hot.getPlugin('filters'); if (f) f.filter(); } }
+      else if (ctrl && e.shiftKey && e.code === 'KeyL') { e.preventDefault(); const hot = hotRef.current; if (hot) { const f = hot.getPlugin('filters'); if (f) f.filter(); } }
       // Ctrl+Space: Select entire column
       else if (ctrl && !e.shiftKey && e.key === ' ') { e.preventDefault(); const hot = hotRef.current; if (hot && activeCell) hot.selectColumns(activeCell.col); }
       // Shift+Space: Select entire row
