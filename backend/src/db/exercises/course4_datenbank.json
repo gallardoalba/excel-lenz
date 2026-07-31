@@ -638,7 +638,7 @@
       ],
       "estimated_minutes": 12,
       "theoryTitle": "Datenbankfunktionen & WENNS",
-      "theory": "Excel bietet WENNS-Funktionen für bedingte Berechnungen mit mehreren Kriterien:\n\n• =SUMMEWENNS(Summe; Ber1; Krit1; Ber2; Krit2)\n• =MITTELWERTWENNS(Mittel; Ber1; Krit1; ...)\n• =ZÄHLENWENNS(Ber1; Krit1; Ber2; Krit2)\n\nKlassische DB-Funktionen:\n• =BDSUMME(Datenbank; Feld; Kriterien)\n• =BDPROMEDIO(Datenbank; Feld; Kriterien)\n\nDie WENNS-Varianten sind einfacher und flexibler."
+      "theory": "Excel bietet WENNS-Funktionen für bedingte Berechnungen mit mehreren Kriterien:\n\n• =SUMMEWENNS(Summe; Ber1; Krit1; Ber2; Krit2)\n• =MITTELWERTWENNS(Mittel; Ber1; Krit1; ...)\n• =ZÄHLENWENNS(Ber1; Krit1; Ber2; Krit2)\n\nKlassische DB-Funktionen:\n• =BDSUMME(Datenbank; Feld; Kriterien)\n• =DBMITTELWERT(Datenbank; Feld; Kriterien)\n\nDie WENNS-Varianten sind einfacher und flexibler."
     },
     {
       "title": "SVERWEIS mit Mehrfachkriterien",

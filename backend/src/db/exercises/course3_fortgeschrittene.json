@@ -38,7 +38,7 @@
         {
           "id": "2.1",
           "title": "Funciones de Búsqueda y Referencia",
-          "desc": "BUSCARV, BUSCARH, ÍNDICE+COINCIDIR, DESREF, ELEGIR."
+          "desc": "SVERWEIS, WVERWEIS, INDEX+VERGLEICH, BEREICH.VERSCHIEBEN, ELEGIR."
         },
         {
           "id": "2.2",
@@ -48,7 +48,7 @@
         {
           "id": "2.3",
           "title": "Funciones Condicionales de Cálculo",
-          "desc": "SUMAR.SI, SUMAR.SI.CONJUNTO, CONTAR.SI, CONTAR.SI.CONJUNTO."
+          "desc": "SUMMEWENN, SUMMEWENNS, ZÄHLENWENN, ZÄHLENWENNS."
         },
         {
           "id": "2.4",
@@ -90,7 +90,7 @@
         {
           "id": "3.3",
           "title": "Referencias 3D",
-          "desc": "SUMA(Hoja1:Hoja5!B2), funciones compatibles."
+          "desc": "SUMME(Hoja1:Hoja5!B2), funciones compatibles."
         },
         {
           "id": "3.4",
@@ -137,7 +137,7 @@
         {
           "id": "4.6",
           "title": "Funciones de Base de Datos",
-          "desc": "BDSUMA, BDPROMEDIO, BDCONTAR, BDEXTRAER."
+          "desc": "DBSUMME, DBMITTELWERT, DBANZAHL, DBAUSZUG."
         }
       ]
     },
@@ -488,9 +488,9 @@
           ]
         ]
       },
-      "instructions": "1. Escribe el resultado que mostraría cada código de formato.\n2. Marca ✓ cuando coincida con lo esperado.\n3. Usa =CONTAR.SI(D2:D7;\"✓\") para verificar.",
+      "instructions": "1. Escribe el resultado que mostraría cada código de formato.\n2. Marca ✓ cuando coincida con lo esperado.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para verificar.",
       "order": 1,
-      "formulaHint": "=CONTAR.SI(D2:D7;\"✓\")",
+      "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\")",
       "learningObjectives": [
         "Códigos de formato personalizado",
         "Secciones positivo/negativo/cero",
@@ -640,7 +640,7 @@
           ]
         ]
       },
-      "instructions": "1. Calcula Diferencia: =B2-C2.\n2. Marca 'Sí' si Ventas >= Objetivo: =WENN(B2>=C2;\"Sí\";\"No\").\n3. Cuenta productos que alcanzaron: =ZÄHLENWENN(E2:E7;\"Sí\").\n4. En Excel: Formato Condicional > Nueva regla > 'Usar fórmula' > =$B2>=$C2 → verde.",
+      "instructions": "1. Calcula Diferencia: =B2-C2.\n2. Marca 'Sí' si Ventas >= Objetivo: =WENN(B2>=C2;\"Sí\";\"No\").\n3. Cuenta productos que alcanzaron: =ZÄHLENWENN(E2:E7;\"Sí\").\n4. En Excel: Formato Condicional > Nueva regla > 'Verwenden fórmula' > =$B2>=$C2 → verde.",
       "order": 2,
       "formulaHint": "=B2-C2, =WENN(B2>=C2;\"Sí\";\"No\"), =ZÄHLENWENN(E2:E7;\"Sí\")",
       "learningObjectives": [
@@ -651,7 +651,7 @@
       "estimated_minutes": 8,
       "prerequisites": [],
       "theoryTitle": "Formato condicional avanzado",
-      "theory": "🎨 **Reglas con fórmulas**:\n\n| Fórmula | Efecto |\n|---------|--------|\n| =$B2>1000 | Resalta fila si B2>1000 |\n| =Y($B2>HOY();$B2<=HOY()+30) | Próximos 30 días |\n| =$F5=\"TX\" | Fila basada en columna F |\n| =$B4<>$C4 | Diferencias entre columnas |\n\n💡 Usa $ para fijar columnas en la regla.",
+      "theory": "🎨 **Reglas con fórmulas**:\n\n| Fórmula | Efecto |\n|---------|--------|\n| =$B2>1000 | Resalta fila si B2>1000 |\n| =UND($B2>HOY();$B2<=HEUTE()+30) | Próximos 30 días |\n| =$F5=\"TX\" | Fila basada en columna F |\n| =$B4<>$C4 | Diferencias entre columnas |\n\n💡 Usa $ para fijar columnas en la regla.",
       "moduleId": "m1",
       "moduleSection": "1.2",
       "moduleTitle": "Módulo 1: Formatos Avanzados y Validación de Datos",
@@ -806,7 +806,7 @@
           ]
         ]
       },
-      "instructions": "1. Usa solo departamentos de la lista (Ventas, Marketing, IT, RRHH).\n2. Edad debe ser >= 18 (marca como error la edad de Juan).\n3. Email debe contener '@'.\n4. Cuenta errores: <18 años = 1 (Juan) y emails sin '@'.\n5. En Excel: Datos > Validación de datos > Personalizada: =Y(B2>=18;ESNUMERO(ENCONTRAR(\"@\";D2))).",
+      "instructions": "1. Usa solo departamentos de la lista (Ventas, Marketing, IT, RRHH).\n2. Edad debe ser >= 18 (marca como error la edad de Juan).\n3. Email debe contener '@'.\n4. Cuenta errores: <18 años = 1 (Juan) y emails sin '@'.\n5. En Excel: Datos > Validación de datos > Personalizada: =UND(B2>=18;ESNUMERO(ENCONTRAR(\"@\";D2))).",
       "order": 3,
       "formulaHint": "Cuenta: Juan tiene 17 (<18), emails sin @",
       "learningObjectives": [
@@ -817,7 +817,7 @@
       "estimated_minutes": 8,
       "prerequisites": [],
       "theoryTitle": "Validación de datos",
-      "theory": "✅ **Tipos de validación**:\n\n| Tipo | Ejemplo |\n|------|--------|\n| Lista | =$G$2:$G$5 |\n| Número entero | 18-65 |\n| Personalizada | =Y(edad>=18;LARGO(nombre)>0) |\n\n💡 Mensajes de entrada guían al usuario. Alertas de error bloquean datos inválidos.",
+      "theory": "✅ **Tipos de validación**:\n\n| Tipo | Ejemplo |\n|------|--------|\n| Lista | =$G$2:$G$5 |\n| Número entero | 18-65 |\n| Personalizada | =UND(edad>=18;LARGO(nombre)>0) |\n\n💡 Mensajes de entrada guían al usuario. Alertas de error bloquean datos inválidos.",
       "moduleId": "m1",
       "moduleSection": "1.3",
       "moduleTitle": "Módulo 1: Formatos Avanzados y Validación de Datos",
@@ -930,9 +930,9 @@
           ]
         ]
       },
-      "instructions": "1. Calcula Total con: =B2*C2 (arrastra para todas las filas).\n2. Total general: =SUMA(D2:D5).\n3. En Excel real: selecciona D2:D6 > Ctrl+1 > Proteger > Bloqueada. Luego: Revisar > Proteger hoja.\n4. Las celdas de precio/cantidad deben quedar desbloqueadas para edición.",
+      "instructions": "1. Calcula Total con: =B2*C2 (arrastra para todas las filas).\n2. Total general: =SUMME(D2:D5).\n3. En Excel real: selecciona D2:D6 > Ctrl+1 > Proteger > Bloqueada. Luego: Revisar > Proteger hoja.\n4. Las celdas de precio/cantidad deben quedar desbloqueadas para edición.",
       "order": 4,
-      "formulaHint": "=B2*C2, =SUMA(D2:D5)",
+      "formulaHint": "=B2*C2, =SUMME(D2:D5)",
       "learningObjectives": [
         "Bloqueo selectivo de celdas",
         "Protección de hoja",
@@ -7179,7 +7179,7 @@
       ],
       "estimated_minutes": 12,
       "theoryTitle": "Datenbankfunktionen & WENNS",
-      "theory": "Excel bietet WENNS-Funktionen für bedingte Berechnungen mit mehreren Kriterien:\n\n• =SUMMEWENNS(Summe; Ber1; Krit1; Ber2; Krit2)\n• =MITTELWERTWENNS(Mittel; Ber1; Krit1; ...)\n• =ZÄHLENWENNS(Ber1; Krit1; Ber2; Krit2)\n\nKlassische DB-Funktionen:\n• =BDSUMME(Datenbank; Feld; Kriterien)\n• =BDPROMEDIO(Datenbank; Feld; Kriterien)\n\nDie WENNS-Varianten sind einfacher und flexibler.",
+      "theory": "Excel bietet WENNS-Funktionen für bedingte Berechnungen mit mehreren Kriterien:\n\n• =SUMMEWENNS(Summe; Ber1; Krit1; Ber2; Krit2)\n• =MITTELWERTWENNS(Mittel; Ber1; Krit1; ...)\n• =ZÄHLENWENNS(Ber1; Krit1; Ber2; Krit2)\n\nKlassische DB-Funktionen:\n• =BDSUMME(Datenbank; Feld; Kriterien)\n• =DBMITTELWERT(Datenbank; Feld; Kriterien)\n\nDie WENNS-Varianten sind einfacher und flexibler.",
       "moduleId": "m4",
       "moduleSection": "4.6",
       "moduleTitle": "Módulo 4: Bases de Datos en Excel",
@@ -12461,9 +12461,9 @@
           ]
         ]
       },
-      "instructions": "1. Para cada escenario, escribe el tipo de gráfico más adecuado.\n2. Piensa en el mensaje que quieres comunicar.\n3. Usa =CONTARA(C2:C7) para verificar completitud.",
+      "instructions": "1. Para cada escenario, escribe el tipo de gráfico más adecuado.\n2. Piensa en el mensaje que quieres comunicar.\n3. Usa =ANZAHL2(C2:C7) para verificar completitud.",
       "order": 101,
-      "formulaHint": "=CONTARA(C2:C7)",
+      "formulaHint": "=ANZAHL2(C2:C7)",
       "learningObjectives": [
         "Seleccionar tipo de gráfico",
         "Emparejar datos con visualización",
@@ -12716,9 +12716,9 @@
           ]
         ]
       },
-      "instructions": "1. Completa la columna 'Ejemplo/Atajo' para cada concepto.\n2. Usa =CONTARA(C2:C7) para verificar.\n3. Reflexiona: ¿qué tareas repetitivas haces que podrías automatizar?",
+      "instructions": "1. Completa la columna 'Ejemplo/Atajo' para cada concepto.\n2. Usa =ANZAHL2(C2:C7) para verificar.\n3. Reflexiona: ¿qué tareas repetitivas haces que podrías automatizar?",
       "order": 103,
-      "formulaHint": "=CONTARA(C2:C7)",
+      "formulaHint": "=ANZAHL2(C2:C7)",
       "learningObjectives": [
         "Conceptos de macros",
         "Formatos de archivo",
@@ -12767,7 +12767,7 @@
           ],
           [
             "5",
-            "Insertar fórmula SUMA en C6",
+            "Insertar fórmula SUMME en C6",
             null
           ],
           [
@@ -12804,7 +12804,7 @@
           ],
           [
             "5",
-            "Insertar fórmula SUMA en C6",
+            "Insertar fórmula SUMME en C6",
             "Range(\"C6\").Formula = \"=SUM(C2:C5)\""
           ],
           [
@@ -12814,9 +12814,9 @@
           ]
         ]
       },
-      "instructions": "1. Traduce cada acción a su equivalente en código VBA.\n2. Usa =CONTARA(C2:C7) para verificar.\n3. En Excel real: pestaña Programador > Grabar macro > realiza las acciones > Detener grabación.",
+      "instructions": "1. Traduce cada acción a su equivalente en código VBA.\n2. Usa =ANZAHL2(C2:C7) para verificar.\n3. En Excel real: pestaña Programador > Grabar macro > realiza las acciones > Detener grabación.",
       "order": 104,
-      "formulaHint": "=CONTARA(C2:C7)",
+      "formulaHint": "=ANZAHL2(C2:C7)",
       "learningObjectives": [
         "Grabadora de macros",
         "Traducción acción→código",
@@ -12825,7 +12825,7 @@
       "estimated_minutes": 8,
       "prerequisites": [],
       "theoryTitle": "Grabadora de macros",
-      "theory": "📹 **Grabadora**: convierte tus acciones en código VBA.\n\n**Cómo usar**:\n1. Programador > Grabar macro\n2. Nombrar: FormatearReporte\n3. Realizar acciones\n4. Detener grabación\n\n⚡ Usar referencias relativas para que funcione en cualquier posición.",
+      "theory": "📹 **Grabadora**: convierte tus acciones en código VBA.\n\n**Cómo usar**:\n1. Programador > Grabar macro\n2. Nombrar: FormatearReporte\n3. Realizar acciones\n4. Detener grabación\n\n⚡ Verwenden referencias relativas para que funcione en cualquier posición.",
       "moduleId": "m8",
       "moduleSection": "8.2",
       "moduleTitle": "Módulo 8: Automatización con Macros (Introducción)",
@@ -12933,9 +12933,9 @@
           ]
         ]
       },
-      "instructions": "1. Escribe la sintaxis correcta para cada estructura de control en VBA.\n2. Usa =CONTARA(C2:C7) para verificar completitud.\n3. Recuerda: VBA usa 'Then', 'End If', 'Next', 'Loop' como palabras clave.",
+      "instructions": "1. Escribe la sintaxis correcta para cada estructura de control en VBA.\n2. Usa =ANZAHL2(C2:C7) para verificar completitud.\n3. Recuerda: VBA usa 'Then', 'End If', 'Next', 'Loop' como palabras clave.",
       "order": 105,
-      "formulaHint": "=CONTARA(C2:C7)",
+      "formulaHint": "=ANZAHL2(C2:C7)",
       "learningObjectives": [
         "If/Then/Else",
         "Select Case",
@@ -13057,9 +13057,9 @@
           ]
         ]
       },
-      "instructions": "1. Describe qué retorna cada UDF y escribe un ejemplo de uso.\n2. Usa =CONTARA(A2:A6) para verificar.\n3. En VBA: Function NombreUDF(param1 As Tipo) As TipoRetorno ... End Function.",
+      "instructions": "1. Describe qué retorna cada UDF y escribe un ejemplo de uso.\n2. Usa =ANZAHL2(A2:A6) para verificar.\n3. En VBA: Function NombreUDF(param1 As Tipo) As TipoRetorno ... End Function.",
       "order": 106,
-      "formulaHint": "=CONTARA(A2:A6)",
+      "formulaHint": "=ANZAHL2(A2:A6)",
       "learningObjectives": [
         "Crear UDFs",
         "Parámetros y retorno",
@@ -13193,9 +13193,9 @@
           ]
         ]
       },
-      "instructions": "1. Revisa los cambios propuestos y decide si aprobar o rechazar cada uno.\n2. Usa =CONTARA(B2:B5) para contar cambios propuestos.\n3. Cuenta aprobaciones: =ZÄHLENWENN(D2:D5;\"Aprobado*\").\n4. En Excel: Revisar > Control de cambios > Resaltar cambios.",
+      "instructions": "1. Revisa los cambios propuestos y decide si aprobar o rechazar cada uno.\n2. Usa =ANZAHL2(B2:B5) para contar cambios propuestos.\n3. Cuenta aprobaciones: =ZÄHLENWENN(D2:D5;\"Aprobado*\").\n4. En Excel: Revisar > Control de cambios > Resaltar cambios.",
       "order": 107,
-      "formulaHint": "=CONTARA(B2:B5), =ZÄHLENWENN(D2:D5;\"Aprobado*\")",
+      "formulaHint": "=ANZAHL2(B2:B5), =ZÄHLENWENN(D2:D5;\"Aprobado*\")",
       "learningObjectives": [
         "Control de cambios",
         "Aprobar/rechazar cambios",
@@ -13311,9 +13311,9 @@
           ]
         ]
       },
-      "instructions": "1. Escribe la acción que realiza cada atajo de teclado.\n2. Usa =CONTARA(B2:B9) para verificar.\n3. ¡Practica estos atajos diariamente! En una semana serán automáticos.",
+      "instructions": "1. Escribe la acción que realiza cada atajo de teclado.\n2. Usa =ANZAHL2(B2:B9) para verificar.\n3. ¡Practica estos atajos diariamente! En una semana serán automáticos.",
       "order": 108,
-      "formulaHint": "=CONTARA(B2:B9)",
+      "formulaHint": "=ANZAHL2(B2:B9)",
       "learningObjectives": [
         "Atajos de navegación",
         "Atajos de edición",

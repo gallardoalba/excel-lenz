@@ -1,0 +1,96 @@
+¡Por supuesto! Continuando con la revisión profunda, vamos a centrarnos en **correcciones específicas de datos**, **estructura de los JSON para tu simulador**, **la cadena de prerrequisitos** y un **plan de acción para refactorizar el Curso 4**.
+
+---
+
+### 1. Correcciones Específicas de Datos (Para aplicar directamente en tus JSON)
+
+Aquí tienes los errores exactos que debes buscar y reemplazar en tus archivos:
+
+**En `course2_datenanalyse.json.txt` y `course3_fortgeschrittene.json.txt`:**
+*   **Ejercicio ANOVA (Orden 32 en Curso 2, Orden 98 en Curso 3):**
+    *   *Busca en `solution.data`:* `["SS zwischen:", 714.5]` y `["SS innerhalb:", 80.5]`
+    *   *Cámbialo por:* `["SS zwischen:", 722]` y `["SS innerhalb:", 146.25]`
+    *   *Explicación para el profesor/teoría:* SS Entre = $4 \times [(85.75-83.25)^2 + (72.75-83.25)^2 + (91.25-83.25)^2] = 722$. SS Dentro = $104.75 (\text{G1}) + 14.75 (\text{G2}) + 26.75 (\text{G3}) = 146.25$. El valor anterior era matemáticamente imposible con los datos proporcionados.
+*   **Ejercicio t-Test (Orden 30 en Curso 2, Orden 94 en Curso 3):**
+    *   *Busca en `solution.data`:* `["Effektgröße:", 1.66]`
+    *   *Cámbialo por:* `["Effektgröße:", 2.91]`
+    *   *Explicación:* Diferencia de medias (13) / Desviación estándar agrupada (~4.46) = 2.91.
+
+**En `course1_principiantes.json.txt`:**
+*   **Estandarización de idioma (Ejercicios 1 al 11):**
+    *   Cambia todos los `"title"` y `"desc"` de las secciones del español al alemán. Por ejemplo, en el Ejercicio 1: `"title": "¿Qué es Excel y para qué sirve?"` debe ser `"title": "Was ist Excel und wozu dient es?"`.
+    *   En las `"instructions"`: Cambia `"Usa =CONTARA(C2:C6) para verificar"` por `"Verwende =ANZAHL2(C2:C6) zur Überprüfung"`.
+    *   *Nota crítica:* Hacer esto en todos los ejercicios del Curso 1 es vital para que el simulador web no se rompa si está programado para validar funciones en alemán (`SUMME`, `WENN`, `MITTELWERT`).
+
+---
+
+### 2. Problemas Estructurales en los JSON (Impacto en el Simulador)
+
+Revisando cómo están construidos los ejercicios, hay inconsistencias que afectarán cómo tu frontend (React/TS) renderiza la simulación:
+
+*   **Tamaños de Matriz Inconsistentes (`rows` y `cols`):**
+    *   En el Curso 2, Ejercicio 9 ("Quartalsvergleich mit Prozent"), la plantilla define `"cols": 5, "rows": 6`, pero el array `data` tiene 6 filas donde la primera tiene 5 elementos y la última tiene 5 elementos. Sin embargo, en la `solution.data`, la última fila tiene 5 elementos pero el último es `null`. Tu simulador debe manejar estos `nulls` de forma graceful para no pintar celdas rotas.
+*   **Columnas de Tarea (`taskCols`) mal indexadas:**
+    *   En el Curso 3, Ejercicio 7 ("INDEX+VERGLEICH: Zwei-Wege-Suche"), la plantilla tiene `"cols": 5`. Pero `taskCols` es `[7]`. El índice 7 no existe en una tabla de 5 columnas (los índices van del 0 al 4). *Solución:* Revisa todos los `taskCols`. En este caso, debería ser `[4]` (la quinta columna, "Gesucht").
+    *   Mismo error en Curso 3, Ejercicio 10 ("SVERWEIS mit SPALTE()"): `taskCols` es `[7, 8, 9]` para una tabla de 5 columnas. Debería ser `[1, 2, 3]` (Name, Abteilung, Gehalt a rellenar).
+*   **Uso de tipos de datos mixtos en soluciones:**
+    *   Evita mezclar números y texto en una misma columna de solución si tu simulador hace una comparación estricta (`===`). Por ejemplo, en el Curso 1, Ej 10 ("Zahlen formatieren"), la celda de solución para el negativo es `"(500.00)"` (texto) mientras que el resto son números o strings numéricos. El simulador debe parsear esto correctamente.
+
+---
+
+### 3. Cadena de Prerrequisitos y Ruta de Aprendizaje
+
+En tu archivo `seed_data.ts.txt`, veo que insertas los ejercicios secuencialmente, pero en los JSON la propiedad `prerequisites` casi siempre es un array vacío `[]` o muy vago.
+
+*   **Mejora pedagógica:** Deberías llenar los `prerequisites` usando los `id` o los `title` de los ejercicios anteriores.
+    *   *Ejemplo:* El Ejercicio 14 del Curso 3 ("WENNS: Mehrfachbedingungen elegant") debería tener `"prerequisites": ["WENN-Funktion: Noten berechnen", "UND/ODER: Bedingungen kombinieren"]`.
+    *   Esto te permite en el frontend bloquear ejercicios avanzados hasta que el alumno apruebe los básicos, creando una verdadera "ruta de aprendizaje".
+
+---
+
+### 4. Plan de Acción para el Curso 4 (Business Intelligence)
+
+El Curso 4 (`course4_datenbank.json`) es básicamente una copia del Curso 3 con 51 ejercicios. Para que sea un verdadero curso de "Datenbank & Business Intelligence", debes **eliminar los duplicados** y añadir estos temas modernos:
+
+**Ejercicios a ELIMINAR del Curso 4 (porque ya están en el C3):**
+1. BDSUMMA, DSUMME, DMITTELWERT, DMAX/DMIN, DZÄHLEN, DGET (6 ejercicios duplicados).
+2. Spezialfilter UND/ODER (2 ejercicios duplicados).
+3. Duplikate finden, Eindeutige Werte (2 ejercicios).
+4. Datentabelle 1 y 2 Variables, Szenario-Manager, Zielwertsuche (5 ejercicios).
+5. Kreuztabelle, Gruppierung, %-Analyse, Berechnetes Feld, GETPIVOTDATA (5 ejercicios).
+6. Konsolidierung, Teilergebnisse, 3D-Summe (3 ejercicios).
+7. KPI-Ampel, Abweichungsanalyse, Wasserfall, Monte-Carlo, t-Test, ANOVA (6 ejercicios).
+
+**Nuevos Ejercicios a CREAR para el Curso 4 (El verdadero BI):**
+1. **Power Query Intro:** Importar datos de un CSV y limpiar cabeceras.
+2. **Power Query Merge:** Hacer un "Left Join" entre dos tablas (sustituye al viejo SVERWEIS para Big Data).
+3. **Power Query Unpivot:** Transformar columnas (Ene, Feb, Mar) en filas (Fecha, Valor) para crear un modelo de datos correcto.
+4. **Power Pivot (DAX):** Crear una medida simple (`SUMX(Sales, Sales[Qty] * Sales[Price])`).
+5. **DAX Time Intelligence:** Calcular "Ventas Acumuladas del Año" (YTD) vs "Ventas Año Anterior" (PYTD).
+6. **Arrays Dinámicos 1:** Uso de `=EINDEUTIG()` (UNIQUE) para extraer listas dinámicas sin macros.
+7. **Arrays Dinámicos 2:** Uso de `=FILTERN()` (FILTER) para extraer subconjuntos de datos dinámicamente.
+8. **XVERWEIS (XLOOKUP):** Búsqueda avanzada con búsqueda de coincidencia aproximada y manejo de errores nativo (`=XVERWEIS(Suchwert; Sucharray; Rückgabearray; "Nicht gefunden")`).
+9. **Tipos de Gráficos BI:** Crear un gráfico de Dispersión (Scatter Plot) para análisis de correlación visual y un gráfico Combinado con dos ejes.
+
+---
+
+### 5. Ajustes en el código (`seed_data.ts.txt` y `course_theory.tsx`)
+
+*   **En `seed_data.ts.txt`:**
+    *   En la línea 87, el `console.log` dice: `console.log('   Badges: 9 insignias creadas');`. Cámbialo a alemán: `console.log('   Badges: 9 Abzeichen erstellt');` para mantener la coherencia del entorno.
+    *   En la línea 31 y 32: Tienes usuarios de prueba (`profesor@excel-lenz.edu` y `alumno@excel-lenz.edu`). Los nombres son en español (`Profesor García`, `María López`). Si la plataforma es para el mercado germano, cámbialos a `Lehrer Müller` y `Anna Schmidt` o similar, con emails como `dozent@excel-lenz.edu` y `student@excel-lenz.edu`.
+
+*   **En `course_theory.tsx`:**
+    *   En el objeto `DIFFICULTY_LABELS`:
+        ```typescript
+        intermediate: 'Fortgeschritten',
+        advanced: 'Fortgeschritten',
+        ```
+        Esto causa que el Curso 2 y el Curso 3 tengan la misma etiqueta en el frontend. Te sugiero diferenciarlos:
+        `intermediate: 'Mittelstufe'` (o 'Fortgeschritten') y `advanced: 'Experte'` (o 'Profi').
+
+### Resumen de prioridad de desarrollo:
+1. **Urgente:** Arregla los `taskCols` en el Curso 3 (ejercicios 7 y 10 mínimo). Si no, el simulador web fallará al intentar renderizar dónde el alumno debe escribir.
+2. **Alto:** Traduce todo el Curso 1 y elimina el español residual. Un alumno alemán se frustará al ver "Cinta de opciones" en lugar de "Menüband".
+3. **Medio:** Corrige los errores matemáticos de ANOVA y t-Test.
+4. **Bajo (pero impactante):** Refactoriza el Curso 4 para eliminar duplicados y meter Power Query/DAX, esto elevará enormemente la calidad percibida de tu plataforma frente a competencia.

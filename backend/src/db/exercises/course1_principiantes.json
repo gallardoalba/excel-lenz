@@ -102,7 +102,7 @@
         {
           "id": "4.3",
           "title": "Funciones Estadísticas y Matemáticas",
-          "desc": "SUMA, PROMEDIO, MIN, MAX, CONTAR, CONTARA."
+          "desc": "SUMME, MITTELWERT, MIN, MAX, ANZAHL, ANZAHL2."
         },
         {
           "id": "4.4",
@@ -173,17 +173,17 @@
         {
           "id": "7.1",
           "title": "Matemática Condicional",
-          "desc": "SUMAR.SI, SUMAR.SI.CONJUNTO, CONTAR.SI, CONTAR.SI.CONJUNTO."
+          "desc": "SUMMEWENN, SUMMEWENNS, ZÄHLENWENN, ZÄHLENWENNS."
         },
         {
           "id": "7.2",
           "title": "Funciones de Búsqueda",
-          "desc": "BUSCARV (VLOOKUP) y BUSCARH (HLOOKUP)."
+          "desc": "SVERWEIS (VLOOKUP) y WVERWEIS (HLOOKUP)."
         },
         {
           "id": "7.3",
           "title": "Búsqueda Avanzada",
-          "desc": "INDICE+COINCIDIR. Introducción a XLOOKUP."
+          "desc": "INDICE+VERGLEICH. Introducción a XLOOKUP."
         },
         {
           "id": "7.4",
@@ -295,9 +295,9 @@
           ]
         ]
       },
-      "instructions": "1. Completa la columna 'Ejemplo' para cada concepto.\n2. Usa =CONTARA(C2:C6) para contar cuántos ejemplos has completado.",
+      "instructions": "1. Completa la columna 'Ejemplo' para cada concepto.\n2. Usa =ANZAHL2(C2:C6) para contar cuántos ejemplos has completado.",
       "order": 1,
-      "formulaHint": "Usa =CONTARA(C2:C6) para verificar",
+      "formulaHint": "Usa =ANZAHL2(C2:C6) para verificar",
       "learningObjectives": [
         "Identificar los componentes de Excel",
         "Entender la nomenclatura de celdas",
@@ -396,13 +396,13 @@
           ]
         ]
       },
-      "instructions": "1. Escribe dónde se encuentra cada elemento en la ventana de Excel.\n2. Al final, usa =CONTARA(A2:A7) para contar los elementos de la lista.",
+      "instructions": "1. Escribe dónde se encuentra cada elemento en la ventana de Excel.\n2. Al final, usa =ANZAHL2(A2:A7) para contar los elementos de la lista.",
       "order": 2,
-      "formulaHint": "=CONTARA(A2:A7) para contar elementos",
+      "formulaHint": "=ANZAHL2(A2:A7) para contar elementos",
       "learningObjectives": [
         "Reconocer los elementos del interfaz",
         "Entender la ubicación de cada panel",
-        "Usar CONTARA para validar"
+        "Verwenden ANZAHL2 zur Validierung"
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
@@ -507,9 +507,9 @@
           ]
         ]
       },
-      "instructions": "1. Completa la columna 'Tecla/Combinación' con el atajo correcto.\n2. Marca '✓' en la columna '¿Correcto?' cuando completes cada fila.\n3. Usa =CONTAR.SI(D2:D7;\"✓\") para contar las correctas.",
+      "instructions": "1. Completa la columna 'Tecla/Combinación' con el atajo correcto.\n2. Marca '✓' en la columna '¿Correcto?' cuando completes cada fila.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para contar las correctas.",
       "order": 3,
-      "formulaHint": "=CONTAR.SI(D2:D7;\"✓\")",
+      "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\")",
       "learningObjectives": [
         "Atajos de navegación",
         "Selección de rangos",
@@ -615,9 +615,9 @@
           ]
         ]
       },
-      "instructions": "1. Completa los atajos de teclado para cada operación.\n2. Completa las extensiones de archivo correctas.\n3. Usa =CONTARA(B2:B5) para verificar los atajos completados.",
+      "instructions": "1. Completa los atajos de teclado para cada operación.\n2. Completa las extensiones de archivo correctas.\n3. Usa =ANZAHL2(B2:B5) para verificar los atajos completados.",
       "order": 4,
-      "formulaHint": "=CONTARA(B2:B5) para contar atajos",
+      "formulaHint": "=ANZAHL2(B2:B5) para contar atajos",
       "learningObjectives": [
         "Formatos de archivo",
         "Atajos para archivos",
@@ -750,9 +750,9 @@
           ]
         ]
       },
-      "instructions": "1. Identifica el tipo de dato de cada fila.\n2. Marca ✓ cuando el tipo coincida con la alineación.\n3. Usa =CONTAR.SI(D2:D7;\"✓\") para contar correctas.",
+      "instructions": "1. Identifica el tipo de dato de cada fila.\n2. Marca ✓ cuando el tipo coincida con la alineación.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para contar correctas.",
       "order": 5,
-      "formulaHint": "=CONTAR.SI(D2:D7;\"✓\") para verificar",
+      "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\") para verificar",
       "learningObjectives": [
         "Tipos de datos en Excel",
         "Alineación automática",
@@ -848,9 +848,9 @@
           ]
         ]
       },
-      "instructions": "1. Completa la columna 'Tecla/Acción' con el método correcto.\n2. Usa =CONTARA(B2:B7) para contar cuántos has completado.",
+      "instructions": "1. Completa la columna 'Tecla/Acción' con el método correcto.\n2. Usa =ANZAHL2(B2:B7) para contar cuántos has completado.",
       "order": 6,
-      "formulaHint": "=CONTARA(B2:B7)",
+      "formulaHint": "=ANZAHL2(B2:B7)",
       "learningObjectives": [
         "Modos de edición en Excel",
         "Atajos de edición",
@@ -983,9 +983,9 @@
           ]
         ]
       },
-      "instructions": "1. Escribe el segundo valor de cada serie.\n2. Escribe los siguientes 3 valores en la última columna.\n3. Usa =CONTARA(A2:A7) para verificar las series completadas.",
+      "instructions": "1. Escribe el segundo valor de cada serie.\n2. Escribe los siguientes 3 valores en la última columna.\n3. Usa =ANZAHL2(A2:A7) para verificar las series completadas.",
       "order": 7,
-      "formulaHint": "=CONTARA(A2:A7)",
+      "formulaHint": "=ANZAHL2(A2:A7)",
       "learningObjectives": [
         "Series automáticas",
         "Controlador de relleno",
@@ -1094,9 +1094,9 @@
           ]
         ]
       },
-      "instructions": "1. Calcula Total con fórmula =B2*C2 en D2.\n2. Copia la fórmula a D3:D5.\n3. En D6, usa =SUMA(D2:D5) para el total.\n4. ¡Atención! Si usas Pegado Especial > Valores, se pegará solo el resultado sin fórmula.",
+      "instructions": "1. Calcula Total con fórmula =B2*C2 en D2.\n2. Copia la fórmula a D3:D5.\n3. En D6, usa =SUMME(D2:D5) para el total.\n4. ¡Atención! Si usas Pegado Especial > Valores, se pegará solo el resultado sin fórmula.",
       "order": 8,
-      "formulaHint": "=B2*C2 para cada fila, =SUMA(D2:D5) para el total",
+      "formulaHint": "=B2*C2 para cada fila, =SUMME(D2:D5) para el total",
       "learningObjectives": [
         "Copiar fórmulas",
         "Referencias relativas al copiar",
@@ -1229,9 +1229,9 @@
           ]
         ]
       },
-      "instructions": "1. Marca ✓ en cada formato que reconozcas.\n2. En la columna 'Ejemplo', escribe un ejemplo visual.\n3. Usa =CONTAR.SI(D2:D7;\"✓\") para contar los aplicados.",
+      "instructions": "1. Marca ✓ en cada formato que reconozcas.\n2. En la columna 'Ejemplo', escribe un ejemplo visual.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para contar los aplicados.",
       "order": 9,
-      "formulaHint": "=CONTAR.SI(D2:D7;\"✓\")",
+      "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\")",
       "learningObjectives": [
         "Formatos de fuente",
         "Bordes y colores",
@@ -1357,9 +1357,9 @@
           ]
         ]
       },
-      "instructions": "1. Escribe cómo se vería cada valor después de aplicar el formato indicado.\n2. Usa =CONTARA(C2:C8) para contar los formatos escritos.\n3. ¡En Excel real usarías Ctrl+1 > Número para aplicar estos formatos!",
+      "instructions": "1. Escribe cómo se vería cada valor después de aplicar el formato indicado.\n2. Usa =ANZAHL2(C2:C8) para contar los formatos escritos.\n3. ¡En Excel real usarías Ctrl+1 > Número para aplicar estos formatos!",
       "order": 10,
-      "formulaHint": "=CONTARA(C2:C8)",
+      "formulaHint": "=ANZAHL2(C2:C8)",
       "learningObjectives": [
         "Formatos numéricos",
         "Moneda y contabilidad",
@@ -1492,9 +1492,9 @@
           ]
         ]
       },
-      "instructions": "1. Completa el método para cada acción.\n2. Marca ✓ cuando reconozcas el procedimiento.\n3. Usa =CONTAR.SI(D2:D7;\"✓\") para contar.",
+      "instructions": "1. Completa el método para cada acción.\n2. Marca ✓ cuando reconozcas el procedimiento.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para contar.",
       "order": 11,
-      "formulaHint": "=CONTAR.SI(D2:D7;\"✓\")",
+      "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\")",
       "learningObjectives": [
         "Autoajustar columnas",
         "Ocultar/mostrar filas y columnas",
@@ -1743,7 +1743,7 @@
     },
     {
       "title": "Suma y Promedio de Ventas",
-      "description": "Practica las funciones SUMA y PROMEDIO en una plantilla de ventas trimestrales.",
+      "description": "Practica las funciones SUMME y MITTELWERT en una plantilla de ventas trimestrales.",
       "template": {
         "cols": 5,
         "rows": 6,
@@ -1834,12 +1834,12 @@
           ]
         ]
       },
-      "instructions": "1. Calcula la columna \"Total\" sumando los valores de Enero, Febrero y Marzo.\n2. Al final, usa PROMEDIO para calcular el promedio de cada columna.",
+      "instructions": "1. Calcula la columna \"Total\" sumando los valores de Enero, Febrero y Marzo.\n2. Al final, usa MITTELWERT para calcular el promedio de cada columna.",
       "order": 14,
-      "formulaHint": "Usa =SUMA(B2:D2) para calcular el total de cada fila",
-      "hint1": "¿Qué función suma varios valores? Se escribe =SUMA(...)",
+      "formulaHint": "Usa =SUMME(B2:D2) para calcular el total de cada fila",
+      "hint1": "¿Qué función suma varios valores? Se escribe =SUMME(...)",
       "hint2": "El rango para la primera fila es de Enero a Marzo: B2:D2",
-      "hint3": "=SUMA(B2:D2) sumará 1200+1350+1100",
+      "hint3": "=SUMME(B2:D2) sumará 1200+1350+1100",
       "learningObjectives": [
         "Die SUMME-Funktion anwenden",
         "Zellbereiche korrekt referenzieren (B2:D2)",
@@ -2236,7 +2236,7 @@
       "sectionTitle": "Funciones Estadísticas y Matemáticas"
     },
     {
-      "title": "Zelltypen zählen: CONTAR & CO",
+      "title": "Zelltypen zählen: ANZAHL & CO",
       "description": "Lerne leere Zellen, Zahlen und Text separat zu zählen.",
       "template": {
         "cols": 3,
@@ -2789,9 +2789,9 @@
           ]
         ]
       },
-      "instructions": "1. Completa los departamentos usando solo: Ventas, Marketing o IT.\n2. Las edades deben estar entre 18 y 65.\n3. Los salarios deben ser mayores a 0.\n4. Usa =CONTARA(A2:A5) para contar empleados registrados.",
+      "instructions": "1. Completa los departamentos usando solo: Ventas, Marketing o IT.\n2. Las edades deben estar entre 18 y 65.\n3. Los salarios deben ser mayores a 0.\n4. Usa =ANZAHL2(A2:A5) para contar empleados registrados.",
       "order": 22,
-      "formulaHint": "=CONTARA(A2:A5)",
+      "formulaHint": "=ANZAHL2(A2:A5)",
       "learningObjectives": [
         "Listas desplegables",
         "Restricciones de entrada",
@@ -3219,13 +3219,13 @@
           ]
         ]
       },
-      "instructions": "1. Marca ✓ en los productos con ventas mayores a $10,000.\n2. Usa =CONTAR.SI(C2:C8;\">10000\") para contar productos > $10,000.\n3. En Excel usarías: Datos > Filtro > Filtros de número > Mayor que.",
+      "instructions": "1. Marca ✓ en los productos con ventas mayores a $10,000.\n2. Usa =ZÄHLENWENN(C2:C8;\">10000\") para contar productos > $10,000.\n3. En Excel usarías: Datos > Filtro > Filtros de número > Mayor que.",
       "order": 25,
-      "formulaHint": "=CONTAR.SI(C2:C8;\">10000\")",
+      "formulaHint": "=ZÄHLENWENN(C2:C8;\">10000\")",
       "learningObjectives": [
         "Aplicar autofiltros",
         "Filtrar por criterios numéricos",
-        "CONTAR.SI con condiciones"
+        "ZÄHLENWENN con condiciones"
       ],
       "estimated_minutes": 7,
       "prerequisites": [],
@@ -3355,9 +3355,9 @@
           ]
         ]
       },
-      "instructions": "1. Calcula Total = Precio × Cantidad para cada producto.\n2. En Total general, usa =SUMA(D2:D6).\n3. En Excel: selecciona A1:D6 y presiona Ctrl+T para convertir en Tabla. ¡Los totales se agregan automáticamente!",
+      "instructions": "1. Calcula Total = Precio × Cantidad para cada producto.\n2. En Total general, usa =SUMME(D2:D6).\n3. En Excel: selecciona A1:D6 y presiona Ctrl+T para convertir en Tabla. ¡Los totales se agregan automáticamente!",
       "order": 26,
-      "formulaHint": "=C2*B2, =SUMA(D2:D6)",
+      "formulaHint": "=C2*B2, =SUMME(D2:D6)",
       "learningObjectives": [
         "Crear Tablas (Ctrl+T)",
         "Fórmulas en tablas",

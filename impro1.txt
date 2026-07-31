@@ -1,0 +1,77 @@
+¡Hola! He revisado a fondo los archivos JSON y TypeScript que has compartido. Tienes una plataforma con un estructura excelente, un diseño técnico muy sólido (con simulaciones, pistas progresivas y teoría integrada) y una progresión pedagógica bien pensada. 
+
+Sin embargo, al analizar el contenido detalladamente, he encontrado varios errores matemáticos, inconsistencias de idioma y lagunas importantes. Aquí tienes el informe completo dividido por categorías:
+
+---
+
+### 1. Ejercicios/Teoría Errónea (Errores Críticos)
+
+*   **Error Matemático en ANOVA (Curso 2 - Ej 32 y Curso 3 - Ej 98):**
+    *   *El problema:* La solución calcula "SS zwischen" (Suma de Cuadrados entre grupos) como 714.5 y "SS innerhalb" (dentro de grupos) como 80.5. 
+    *   *La realidad:* Con los datos proporcionados (85, 92, 78, 88 | 72, 75, 70, 74 | 90, 95, 88, 92), la media total es 83.25. Las medias grupales son 85.75, 72.75 y 91.25.
+        *   SS Entre = $4 \times [(85.75-83.25)^2 + (72.75-83.25)^2 + (91.25-83.25)^2] = 4 \times [6.25 + 110.25 + 64] = 722$.
+        *   SS Dentro = $104.75 + 14.75 + 26.75 = 146.25$.
+    *   *Solución:* Los valores esperados en el JSON son matemáticamente incorrectos y llevarán a que el simulador marque las respuestas correctas como erróneas. Deben recalcularse.
+*   **Error en Cálculo de Tamaño de Efecto / t-Test (Curso 2 - Ej 30 y Curso 3 - Ej 94):**
+    *   *El problema:* La solución indica "Effektgröße: 1.66". 
+    *   *La realidad:* La diferencia de medias es 13 (85.75 - 72.75). La desviación estándar agrupada (pooled std dev) es aprox. 4.46. Por tanto, la d de Cohen es $13 / 4.46 = 2.91$. El valor 1.66 no se puede deducir de los datos.
+*   **Error de Concepto con `ANZAHLLEEREZELLEN` (Curso 1 - Ej 18):**
+    *   *El problema:* Se pide contar "Leere Abteilungen" (Departamentos vacíos) usando `=ANZAHLLEEREZELLEN(B2:B6)`. En los datos de la plantilla, Ben tiene `""` (cadena de texto vacía) y Eva tiene `null`. 
+    *   *La realidad:* En Excel real, `ANZAHLLEEREZELLEN` (COUNTBLANK) **sí** cuenta las celdas con `""` (fórmula vacía), pero en simulaciones web y exports JSON, `""` a menudo se evalúa como texto, no como vacío puro. Es más robusto y correcto usar `=ZÄHLENWENN(B2:B6;"")` para este caso.
+*   **Inconsistencia en Desviación Estándar (Curso 2 - Ej 17 vs Ex 19):**
+    *   *El problema:* En el Ej 17 (Z-Transformation), la "Std." se calcula usando la desviación de la **población** (`STABW.N`), dando 13.37. En el Ej 19 (Konfidenzintervall), la "Std.Abw." se calcula usando la **muestra** (`STABW.S`), dando 3.83. 
+    *   *Solución:* Hay que especificar en la teoría cuándo se usa `.N` (Población) y cuándo `.S` (Muestra) para no confundir al alumno, ya que ambas aparecen sin contexto claro.
+
+---
+
+### 2. Inconsistencias de Idioma (UX Problem)
+
+Esta es una de las mayores áreas de mejora. La plataforma está en alemán (`Excel-lenz`, interfaz en alemán en `home_content.json`), pero los cursos tienen un mezcla caótica de español y alemán:
+
+*   **Curso 1:** Los títulos de los módulos están en alemán ("Modul 1: Einführung..."), pero las secciones están en español ("¿Qué es Excel y para qué sirve?", "La Interfaz de Usuario"). Las instrucciones usan funciones en español (`=SUMA`, `=CONTARA`), mientras que otros ejercicios del mismo curso usan funciones en alemán (`=MITTELWERT`, `=WENN`).
+*   **Curso 3:** El título del módulo 1 dice "Módulo 1: Formatos Avanzados..." (en español), pero el ejercicio 5 está en alemán. Los ejercicios 1, 2 y 3 tienen teoría y títulos en español.
+*   **Solución:** Debes estandarizar todo el contenido al idioma de destino (Alemán). Si usas Excel en alemán, las funciones deben ser siempre `SUMME`, `WENN`, `SVERWEIS`, `MITTELWERT`, etc. Las funciones en español (`SUMAR.SI`, `BUSCARV`) confundirán a tu simulador web y a los alumnos.
+
+---
+
+### 3. Ejercicios Innecesarios / Redundancia
+
+*   **Duplicación masiva entre el Curso 3 y el Curso 4:** 
+    Hay una cantidad enorme de ejercicios copiados y pegados literalmente entre el curso avanzado y el de Base de Datos/BI. Por ejemplo:
+    *   "Duplikate mit ZÄHLENWENN finden" (C3 Ex 55 / C4 Ex 14)
+    *   "DMITTELWERT & DMAX/DMIN" (C3 Ex 60 / C4 Ex 8)
+    *   "Kreuztabelle: Umsatz nach Region+Produkt" (C3 Ex 64 / C4 Ex 22)
+    *   "Szenario-Manager: Best/Mid/Worst Case" (C3 Ex 90 / C4 Ex 19)
+    *   "Zielwertsuche: Benötigten Absatz finden" (C3 Ex 91 / C4 Ex 20)
+    *   "ANOVA: Streuungszerlegung" (C3 Ex 98 / C4 Ex 32 - *con el error matemático incluido*)
+    *   *Solución:* El Curso 4 debería enfocarse en Power Query, Power Pivot, ETL y Dashboards complejos, no en repetir estadística básica o funciones `WENN` que ya están en el Curso 3.
+*   **Duplicación interna en el Curso 2 y 3:**
+    *   "Z-Transformation" (C2 Ex 17 / C3 Ex 72) están duplicados.
+    *   "Normalverteilung: NORM.VERT" (C2 Ex 18 / C3 Ex 73) están duplicados.
+
+---
+
+### 4. Lagunas no Cubiertas (Contenido Faltante)
+
+Aunque tienes 236 ejercicios, faltan temas cruciales para un curso moderno de Excel:
+
+*   **XVERWEIS (XLOOKUP) y XFILTER:** En el Curso 1 se menciona como introducción, pero no hay ningún ejercicio práctico en los niveles avanzados. `XVERWEIS` es el estándar actual y reemplaza a `SVERWEIS` e `INDEX/VERGLEICH`.
+*   **Power Query (Get & Transform):** El Curso 4 habla de "Business Intelligence", pero no hay ni un solo ejercicio sobre cómo conectar datos, limpiar columnas con Power Query o hacer un Merge de tablas. El ejercicio 51 ("Merge-Simulation") usa `SVERWEIS`, lo cual es outdated para BI moderno.
+*   **Datenschnitt (Slicers) y Zeitachse (Timelines):** En el módulo 5 del Curso 3 se mencionan en la teoría (5.4), pero no hay absolutamente ningún ejercicio sobre cómo insertarlos o usarlos con Pivot-Tabellen.
+*   **Dynamische Arrays (Matrices Dinámicas):** No hay ejercicios usando las nuevas funciones de Excel 365 (`EINDEUTIG` / UNIQUE, `SORTIEREN` / SORT, `FILTERN` / FILTER). El ejercicio 57 y 60 usan trucos viejos con `ZÄHLENWENN` para extraer únicos, cuando hoy en día se usa `=EINDEUTIG(A2:A7)`.
+
+---
+
+### 5. Mejoras Adicionales Potenciales
+
+*   **Evaluación de Fórmulas en el Simulador:** En ejercicios donde el alumno debe escribir una fórmula (ej. `=B2*0,19`), asegúrate de que el simulador web acepte variantes (ej. `=B2*19%`, o `=B2 * 0.19`). Si el sistema hace un chequeo de string estricto (`===`), los alumnos fracasarán por usar espacios o puntos en lugar de comas.
+*   **Sistema de Pistas (Hints):** En el JSON tienes `hint1`, `hint2`, `hint3`. Te recomiendo implementar un sistema de "deducción de puntos" o "monedas" en el frontend. Si el alumno usa la `hint1`, pierde 10% de la puntuación del ejercicio.
+*   **Validación de Tipos de Datos:** En el Ejercicio 1 del Curso 1, la solución devuelve un número entero en `taskCols: [7]`, pero la celda contiene texto ("Celdas completadas"). Asegúrate de que la UI distinga entre conteos numéricos y texto.
+*   **Búsqueda y Filtrado de Ejercicios:** Con 108 ejercicios solo en el Curso 3, el alumno necesita una barra de búsqueda en el frontend para buscar "SVERWEIS" o "Pivot" y saltar directamente al tema, en lugar de hacer scroll infinito.
+*   **Power BI Integración:** Si el curso se llama "Datenbank & Business Intelligence" (Curso 4), deberías incluir al menos un módulo de introducción a Power BI Desktop, ya que Excel por sí solo ya no cubre todas las necesidades modernas de BI.
+
+### Resumen de Acción Inmediata
+1. **Traduce/Estandariza** todas las funciones y textos al alemán (elimina el español residual de los JSON).
+2. **Corrige las matemáticas** de los ejercicios de ANOVA y t-Test.
+3. **Elimina los duplicados** entre el Curso 3 y 4, y rellena el Curso 4 con Power Query y Arrays Dinámicos.
+4. **Añade ejercicios** de `XVERWEIS` y Slicers.
