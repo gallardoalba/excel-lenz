@@ -15,7 +15,7 @@ type ExerciseJson = {
   solution: Record<string, unknown>;
   instructions: string;
   order: number;
-  formulaHint?: string;
+  formulaHint?: string | null;
   hint1?: string;
   hint2?: string;
   hint3?: string;
