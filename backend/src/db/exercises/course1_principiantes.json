@@ -208,7 +208,7 @@
         "data": [
           [
             "Libro",
-            "Archivo que contiene hojas",
+            "Datei die enthält hojas",
             "Presupuesto2024.xlsx"
           ],
           [
@@ -218,17 +218,17 @@
           ],
           [
             "Celda",
-            "Intersección de columna y fila",
+            "Schnittpunkt von Spalte y fila",
             null
           ],
           [
             "Columna",
-            "Se identifica con letras",
+            "Wird identifiziert mit letras",
             null
           ],
           [
             "Fila",
-            "Se identifica con números",
+            "Wird identifiziert mit números",
             null
           ],
           [
@@ -255,7 +255,7 @@
         "data": [
           [
             "Libro",
-            "Archivo que contiene hojas",
+            "Datei die enthält hojas",
             "Presupuesto2024.xlsx"
           ],
           [
@@ -265,17 +265,17 @@
           ],
           [
             "Celda",
-            "Intersección de columna y fila",
+            "Schnittpunkt von Spalte y fila",
             "B3"
           ],
           [
             "Columna",
-            "Se identifica con letras",
+            "Wird identifiziert mit letras",
             "A, B, C..."
           ],
           [
             "Fila",
-            "Se identifica con números",
+            "Wird identifiziert mit números",
             "1, 2, 3..."
           ],
           [
@@ -305,8 +305,8 @@
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
-      "theoryTitle": "Componentes de Excel",
-      "theory": "Un **libro** es el archivo completo (.xlsx). Cada libro contiene **hojas** (pestañas).\n\nLas **celdas** son la intersección de:\n- **Columnas**: identificadas con letras (A, B, C...)\n- **Filas**: identificadas con números (1, 2, 3...)\n\nEjemplo: **B3** = columna B, fila 3\n\nUn **rango** es un grupo de celdas: A1:C5 (9 celdas).",
+      "theoryTitle": "Excel-Komponenten",
+      "theory": "Eine **Arbeitsmappe** ist die vollständige Datei (.xlsx). Jede Arbeitsmappe enthält **Tabellenblätter** (pestañas).\n\nDie **Zellen** sind die Schnittmenge de:\n- **Columnas**: identificadas con letras (A, B, C...)\n- **Filas**: identificadas con números (1, 2, 3...)\n\nEjemplo: **B3** = columna B, fila 3\n\nUn **rango** es un grupo de celdas: A1:C5 (9 celdas).",
       "moduleId": "m1",
       "moduleSection": "1.1",
       "moduleTitle": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
@@ -406,8 +406,8 @@
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
-      "theoryTitle": "La interfaz de Excel",
-      "theory": "⭐ **Elementos clave**:\n\n1. **Cinta de opciones (Ribbon)**: Pestañas con comandos agrupados\n2. **Barra de fórmulas**: Muestra y edita el contenido de la celda\n3. **Cuadro de nombres**: Muestra la referencia de la celda activa\n4. **Barra de acceso rápido**: Comandos frecuentes (Guardar, Deshacer)\n5. **Barra de estado**: Muestra modos y resultados rápidos\n6. **Pestañas de hojas**: Navegar entre hojas del libro",
+      "theoryTitle": "Die Excel-Oberfläche",
+      "theory": "⭐ **Wichtige Elemente**:\n\n1. **Cinta de opciones (Ribbon)**: Pestañas con comandos agrupados\n2. **Barra de fórmulas**: Muestra y edita el contenido de la celda\n3. **Cuadro de nombres**: Muestra la referencia de la celda activa\n4. **Barra de acceso rápido**: Comandos frecuentes (Guardar, Deshacer)\n5. **Barra de estado**: Muestra modos y resultados rápidos\n6. **Pestañas de hojas**: Navegar entre hojas del libro",
       "moduleId": "m1",
       "moduleSection": "1.2",
       "moduleTitle": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
@@ -625,7 +625,7 @@
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
-      "theoryTitle": "Formatos de Excel",
+      "theoryTitle": "Excel-Dateiformate",
       "theory": "📁 **Extensiones de Excel**:\n\n| Extensión | Descripción |\n|-----------|-------------|\n| .xlsx | Libro estándar (sin macros) |\n| .xlsm | Libro habilitado zur macros |\n| .xlsb | Libro binario (más rápido) |\n| .xltx | Plantilla |\n| .xlam | Complemento |\n\n💡 Ctrl+G = Guardar, F12 = Guardar como, Ctrl+A = Abrir",
       "moduleId": "m1",
       "moduleSection": "1.4",
@@ -760,7 +760,7 @@
       ],
       "estimated_minutes": 7,
       "prerequisites": [],
-      "theoryTitle": "Tipos de datos",
+      "theoryTitle": "Datentypen",
       "theory": "📊 **Tipos principales en Excel**:\n\n| Tipo | Alineación | Ejemplo |\n|------|-----------|--------|\n| Texto | Izquierda | \"Hola\" |\n| Número | Derecha | 1500 |\n| Fecha | Derecha | 15/07/2024 |\n| Moneda | Derecha | $1,500.00 |\n| Lógico | Centro | VERDADERO |\n\n💡 Los números se alinean a la derecha, el texto a la izquierda.",
       "moduleId": "m2",
       "moduleSection": "2.1",
@@ -858,7 +858,7 @@
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
-      "theoryTitle": "Edición de celdas",
+      "theoryTitle": "Zellen bearbeiten",
       "theory": "✏️ **Tres formas de editar**:\n\n1. **F2**: Entra en modo edición en la celda activa\n2. **Doble clic**: Igual que F2, entra a editar\n3. **Barra de fórmulas**: Clic en la barra fx\n\n⌨️ **Atajos clave**:\n- **Ctrl+Z**: Deshacer\n- **Ctrl+Y**: Rehacer\n- **Supr**: Borrar contenido\n- **Esc**: Cancelar edición",
       "moduleId": "m2",
       "moduleSection": "2.2",
@@ -993,7 +993,7 @@
       ],
       "estimated_minutes": 7,
       "prerequisites": [],
-      "theoryTitle": "Autorelleno (Autofill)",
+      "theoryTitle": "AutoAusfüllen",
       "theory": "🖱️ **Controlador de relleno**: El pequeño cuadro en la esquina inferior derecha de la celda seleccionada.\n\n**Cómo usarlo**:\n1. Selecciona la(s) celda(s) con el patrón\n2. Arrastra el controlador hacia abajo/derecha\n\n**Series inteligentes**:\n- Días: Lunes → Martes, Miércoles...\n- Meses: Enero → Febrero, Marzo...\n- Números: 2, 4 → 6, 8, 10...\n- Fechas: 01/01 → 02/01, 03/01...",
       "moduleId": "m2",
       "moduleSection": "2.3",
@@ -1104,7 +1104,7 @@
       ],
       "estimated_minutes": 6,
       "prerequisites": [],
-      "theoryTitle": "Copiar y Pegado Especial",
+      "theoryTitle": "Kopieren "theoryTitle": "Copiar y Pegado Especial" Inhalte einfügen",
       "theory": "📋 **Pegado Especial** (Ctrl+Alt+V):\n\n| Opción | Resultado |\n|--------|----------|\n| Todo | Fórmula + formato |\n| Fórmulas | Solo la fórmula |\n| Valores | Solo el resultado |\n| Formatos | Solo el estilo |\n| Transponer | Intercambia filas↔columnas |\n\n💡 Al copiar fórmulas, las referencias relativas se ajustan automáticamente.",
       "moduleId": "m2",
       "moduleSection": "2.4",
@@ -1239,7 +1239,7 @@
       ],
       "estimated_minutes": 6,
       "prerequisites": [],
-      "theoryTitle": "Formato de celdas",
+      "theoryTitle": "Zellen formatieren",
       "theory": "🎨 **Opciones de formato (Inicio > Fuente)**:\n\n| Elemento | Atajo |\n|----------|-------|\n| Negrita | Ctrl+N |\n| Cursiva | Ctrl+K |\n| Subrayado | Ctrl+S |\n| Bordes | Ctrl+Mayús+& |\n\n📐 **Alineación**: Izquierda, Centro, Derecha, Combinar y centrar, Ajustar texto.",
       "moduleId": "m3",
       "moduleSection": "3.1",
@@ -1502,7 +1502,7 @@
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
-      "theoryTitle": "Ajuste de filas y columnas",
+      "theoryTitle": "Zeilen "theoryTitle": "Ajuste de filas y columnas" Spalten anpassen",
       "theory": "📏 **Ajustes rápidos**:\n\n| Acción | Cómo hacerlo |\n|--------|-------------|\n| Autoajustar ancho | Doble clic entre letras de columna |\n| Autoajustar alto | Doble clic entre números de fila |\n| Ancho personalizado | Clic derecho columna > Ancho de columna |\n| Ocultar columna | Clic derecho > Ocultar (Ctrl+0) |\n| Mostrar columnas | Seleccionar adyacentes > Clic derecho > Mostrar |\n\n💡 Ctrl+9 oculta filas, Ctrl+Mayús+9 las muestra.",
       "moduleId": "m3",
       "moduleSection": "3.3",
@@ -2799,7 +2799,7 @@
       ],
       "estimated_minutes": 8,
       "prerequisites": [],
-      "theoryTitle": "Validación de datos",
+      "theoryTitle": "Datenvalidierung",
       "theory": "✅ **Validación de datos** (Datos > Validación de datos):\n\n| Tipo | Uso |\n|------|-----|\n| Lista | Seleccionar de opciones predefinidas |\n| Número entero | Restringir rango (ej. 18-65) |\n| Decimal | Restringir valores (ej. >0) |\n| Fecha | Restringir fechas |\n| Longitud texto | Limitar caracteres |\n\n💡 Puedes agregar mensajes de entrada y alertas de error personalizadas.",
       "moduleId": "m5",
       "moduleSection": "5.1",
@@ -2947,7 +2947,7 @@
       ],
       "estimated_minutes": 8,
       "prerequisites": [],
-      "theoryTitle": "Limpieza de datos",
+      "theoryTitle": "Datenbereinigung",
       "theory": "🧹 **Herramientas de limpieza**:\n\n1. **Quitar duplicados**: Datos > Quitar duplicados\n2. **Texto a columnas**: Datos > Texto a columnas\n   - Delimitado: separado por comas, espacios, etc.\n   - Ancho fijo: columnas de ancho específico\n3. **Relleno rápido**: Datos > Relleno rápido (Ctrl+E)\n   - Excel detecta patrones automáticamente",
       "moduleId": "m5",
       "moduleSection": "5.2",
@@ -3082,7 +3082,7 @@
       ],
       "estimated_minutes": 8,
       "prerequisites": [],
-      "theoryTitle": "Ordenamiento en Excel",
+      "theoryTitle": "Sortieren in Excel",
       "theory": "📊 **Ordenar datos** (Datos > Ordenar):\n\n| Opción | Descripción |\n|--------|-------------|\n| A-Z / Z-A | Orden alfabético |\n| Menor a mayor | Orden numérico |\n| Orden personalizado | Días, meses, listas propias |\n| Agregar nivel | Orden multinivel (varias columnas) |\n\n💡 Para orden multinivel: Datos > Ordenar > Agregar nivel",
       "moduleId": "m6",
       "moduleSection": "6.1",
@@ -3229,7 +3229,7 @@
       ],
       "estimated_minutes": 7,
       "prerequisites": [],
-      "theoryTitle": "Filtros en Excel",
+      "theoryTitle": "Filter in Excel",
       "theory": "🔍 **Autofiltro** (Ctrl+Mayús+L):\n\n| Tipo de filtro | Ejemplo |\n|----------------|--------|\n| Texto | Contiene \"Laptop\" |\n| Número | Mayor que 10000 |\n| Fecha | Este mes |\n| Color | Por color de celda |\n\n💡 Puedes combinar múltiples filtros en diferentes columnas simultáneamente.",
       "moduleId": "m6",
       "moduleSection": "6.2",
@@ -3365,7 +3365,7 @@
       ],
       "estimated_minutes": 7,
       "prerequisites": [],
-      "theoryTitle": "Tablas de Excel",
+      "theoryTitle": "Excel-Tabellen",
       "theory": "📋 **Tablas (Ctrl+T)** - Ventajas:\n\n✅ Estilo automático con filas alternas\n✅ Filtros integrados en encabezados\n✅ Fila de totales con un clic\n✅ Fórmulas que usan nombres de columna\n✅ Se expanden automáticamente al agregar datos\n✅ Referencias estructuradas: =[Precio]*[Cantidad]\n\n💡 Las tablas hacen que tus datos sean más fáciles de gestionar.",
       "moduleId": "m6",
       "moduleSection": "6.3",
