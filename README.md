@@ -6,7 +6,7 @@
 
 # Excel-lenz
 
-> Interaktives Excel-Lernportal — Praxisorientiertes Training mit direktem Feedback und adaptiven Lernpfaden.
+Interaktives Excel-Lernportal — Praxisorientiertes Training mit direktem Feedback und adaptiven Lernpfaden.
 
 ![Excel-lenz Plattform](docs/screen.jpg)
 
