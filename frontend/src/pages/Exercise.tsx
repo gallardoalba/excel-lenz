@@ -8,7 +8,7 @@ import { announce } from '../components/a11y/Accessibility';
 import { useTour, EXERCISE_TOUR } from '../components/tour/OnboardingTour';
 import Comments from '../components/community/Comments';
 import KeyboardHelp from '../components/help/KeyboardHelp';
-import { incrementGoalProgress } from '../components/gamification/DailyGoal';
+import { useDailyGoal } from '../context/DailyGoalContext';
 
 interface TemplateData {
   cols: number;
@@ -61,6 +61,7 @@ export default function Exercise() {
   const [cellFeedback, setCellFeedback] = useState<{ row: number; col: number; expected: any; got: any }[]>([]);
   const [focusMode, setFocusMode] = useState(false);
   const { startTour } = useTour();
+  const { increment: incrementGoal } = useDailyGoal();
   const scoreRef = useRef<HTMLDivElement>(null);
   const leftPanelRef = useRef<HTMLElement>(null);
   const [gridHeight, setGridHeight] = useState(320);
@@ -216,7 +217,7 @@ export default function Exercise() {
         }
       } catch { setXpGained(50); }
       // Track daily goal progress
-      incrementGoalProgress();
+      incrementGoal();
     } catch (err) {
       console.error(err);
     } finally {

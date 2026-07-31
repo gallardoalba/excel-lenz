@@ -29,8 +29,8 @@ async function apiFetch(path: string, options: RequestInit = {}) {
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
   const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Error de conexión');
+  const data = res.status === 204 ? null : await res.json();
+  if (!res.ok) throw new Error(data?.error || 'Verbindungsfehler');
   return data;
 }
 

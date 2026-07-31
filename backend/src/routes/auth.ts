@@ -8,16 +8,16 @@ import { registerSchema, loginSchema } from '../utils/validation';
 
 const router = Router();
 
-// ── Simple in-memory rate limiter for login ──
+// ── Simple in-memory rate limiter for login (by IP + email) ──
 const loginAttempts = new Map<string, { count: number; resetAt: number }>();
 const MAX_ATTEMPTS = 5;
 const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 
-function checkRateLimit(ip: string): boolean {
+function checkRateLimit(key: string): boolean {
   const now = Date.now();
-  const entry = loginAttempts.get(ip);
+  const entry = loginAttempts.get(key);
   if (!entry || now > entry.resetAt) {
-    loginAttempts.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    loginAttempts.set(key, { count: 1, resetAt: now + WINDOW_MS });
     return true;
   }
   if (entry.count >= MAX_ATTEMPTS) return false;
@@ -52,19 +52,19 @@ router.post('/register', async (req: Request, res: Response) => {
 });
 
 router.post('/login', async (req: Request, res: Response) => {
-  // Rate limiting
-  const ip = req.ip || req.socket.remoteAddress || 'unknown';
-  if (!checkRateLimit(ip)) {
-    res.status(429).json({ error: 'Zu viele Anmeldeversuche. Bitte warten Sie 15 Minuten.' });
-    return;
-  }
-
   const parsed = loginSchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: 'Ungültige Eingabe. E-Mail und Passwort sind erforderlich.' });
     return;
   }
   const { email, password } = parsed.data;
+
+  // Rate limiting by IP and email
+  const ip = req.ip || req.socket.remoteAddress || 'unknown';
+  if (!checkRateLimit(ip) || !checkRateLimit(`email:${email}`)) {
+    res.status(429).json({ error: 'Zu viele Anmeldeversuche. Bitte warten Sie 15 Minuten.' });
+    return;
+  }
 
   const db = getDb();
   const user = db.prepare(

@@ -3,6 +3,7 @@ import { lazy, Suspense, useState, useEffect, useCallback } from 'react';
 import { BarChart3, ClipboardList, Sun, Moon, Search, Play, Menu, Target } from 'lucide-react';
 import { useAuth, apiFetch } from './context/AuthContext';
 import { useTheme } from './context/ThemeContext';
+import { useDailyGoal } from './context/DailyGoalContext';
 import { SkipNav, LiveRegion } from './components/a11y/Accessibility';
 import { TourProvider } from './components/tour/OnboardingTour';
 import { NotificationCenter } from './components/gamification/Notifications';
@@ -28,16 +29,14 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 export default function App() {
   const { user, loading, logout } = useAuth();
   const { dark, toggle: toggleDark } = useTheme();
+  const { goal: dailyGoal, setGoal: setDailyGoal } = useDailyGoal();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [lastExercise, setLastExercise] = useState<{ id: string; title: string } | null>(null);
-  const [dailyGoal, setDailyGoal] = useState<{ target: number; completed: number } | null>(null);
 
-  // Load daily goal
+  // Load daily goal from localStorage on user change
   useEffect(() => {
     if (user) {
       setDailyGoal(getTodaysGoal());
-      const interval = setInterval(() => setDailyGoal(getTodaysGoal()), 30_000);
-      return () => clearInterval(interval);
     } else {
       setDailyGoal(null);
     }
@@ -163,7 +162,7 @@ export default function App() {
 
       <main className="main-content" id="main-content" role="main">
         <ErrorBoundary>
-        <Suspense fallback={<div style={{padding:80,textAlign:'center'}}><ExcelSpinner text="Wird geladen..." /></div>}>
+        <Suspense fallback={<div style={{padding:80,textAlign:'center',minHeight:'calc(100vh - 200px)'}}><ExcelSpinner text="Wird geladen..." /></div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={user ? <Navigate to="/student" /> : <Login />} />

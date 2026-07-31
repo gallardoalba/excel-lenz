@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BookOpen, Play, Trophy, Target, TrendingUp, RefreshCw, Clock, ArrowRight, GraduationCap } from 'lucide-react';
+import { BookOpen, Play, Trophy, Target, TrendingUp, RefreshCw, Clock, ArrowRight, GraduationCap, AlertTriangle } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
 import { ExcelSpinner } from '../components/animations/Celebrations';
 import { COURSE_ICONS, COURSE_THEME, DIFFICULTY_LABELS } from '../data/course-config';
@@ -32,8 +32,11 @@ export default function StudentPanel() {
   const [reviews, setReviews] = useState<ReviewCard[]>([]);
   const [progress, setProgress] = useState<ProgressItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const loadData = () => {
+    setLoading(true);
+    setError(null);
     Promise.all([
       apiFetch('/courses').catch(() => []),
       apiFetch('/gamification/stats').catch(() => null),
@@ -44,10 +47,27 @@ export default function StudentPanel() {
       setGami(g);
       setReviews((r as any).dueCards || []);
       setProgress(p);
+    }).catch(() => {
+      setError('Daten konnten nicht geladen werden. Bitte überprüfen Sie Ihre Internetverbindung.');
     }).finally(() => setLoading(false));
-  }, []);
+  };
+
+  useEffect(() => { loadData(); }, []);
 
   if (loading) return <ExcelSpinner text="Dashboard wird geladen..." />;
+
+  if (error) {
+    return (
+      <div className="student-panel">
+        <div className="card" style={{ textAlign: 'center', padding: '60px 24px', borderColor: 'var(--danger)' }}>
+          <AlertTriangle size={48} style={{ color: 'var(--danger)', marginBottom: 16 }} />
+          <h2 style={{ marginBottom: 8 }}>Ladefehler</h2>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: 20 }}>{error}</p>
+          <button className="btn btn-primary" onClick={loadData}>Erneut versuchen</button>
+        </div>
+      </div>
+    );
+  }
 
   const courseProgress = (courseId: string): number => {
     const items = progress.filter(p => p.course_id === courseId && p.completed);
@@ -59,7 +79,7 @@ export default function StudentPanel() {
   );
 
   const xp = gami?.xp;
-  const recentBadges = gami?.badges?.slice(-3) || [];
+  const recentBadges = gami?.badges?.slice(0, 3) || [];
   const completedCount = gami?.totalCompleted || progress.filter(p => p.completed).length;
 
   return (
