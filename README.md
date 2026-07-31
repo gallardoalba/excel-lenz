@@ -25,6 +25,8 @@ Traditionelles Excel-Lernen leidet unter drei Problemen: **kein direktes Feedbac
 | **Adaptive Lernpfade** | Spaced Repetition und Fähigkeitsanalyse passen die Übungsempfehlungen individuell an |
 | **Micro-Learning** | Übungen sind in 5-15 Minuten abschließbar — ideal für den Arbeitsalltag |
 
+<br>
+
 ![Excel-lenz Plattform](docs/screen.jpg)
 
 ### Für wen ist Excel-lenz?
