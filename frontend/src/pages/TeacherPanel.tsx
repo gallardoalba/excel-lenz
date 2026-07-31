@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, BookOpen, Plus, FileText, Edit, CheckCircle, AlertTriangle, BarChart3 } from 'lucide-react';
+import { Users, BookOpen, Plus, FileText, Edit, CheckCircle, AlertTriangle, BarChart3, Download, Eye } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
 import { Skeleton } from '../hooks/useAutosave';
 
@@ -21,6 +21,9 @@ export default function TeacherPanel() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [editExId, setEditExId] = useState('');
+  // Student detail modal
+  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+  const [studentDetail, setStudentDetail] = useState<any[] | null>(null);
   const [analytics, setAnalytics] = useState<{
     exerciseStats: { title: string; course: string; attempts: number; avgScore: number; failRate: number }[];
     totalStudents: number;
@@ -170,6 +173,29 @@ export default function TeacherPanel() {
     if (!confirm('Kurs wirklich löschen?')) return;
     await apiFetch(`/teacher/courses/${id}`, { method: 'DELETE' });
     loadData();
+  };
+
+  // CSV export utility
+  const exportToCSV = (data: any[], filename: string) => {
+    if (!data.length) return;
+    const headers = Object.keys(data[0]).join(';');
+    const rows = data.map(row => Object.values(row).map(v => String(v ?? '').replace(/;/g, ',')).join(';')).join('\n');
+    const csv = `\uFEFF${headers}\n${rows}`;
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+  };
+
+  // Student detail viewer
+  const viewStudentDetail = async (student: Student) => {
+    setSelectedStudent(student);
+    setStudentDetail(null);
+    try {
+      const data = await apiFetch(`/teacher/students/${student.id}`);
+      if (data?.progress) setStudentDetail(data.progress);
+    } catch { setStudentDetail([]); }
   };
 
   if (loading) return <Skeleton lines={5} />;
@@ -397,10 +423,15 @@ export default function TeacherPanel() {
       {/* STUDENTS TAB */}
       {tab === 'students' && (
         <div className="card" style={{ overflow: 'auto', padding: 0 }}>
+          <div style={{ padding: '16px 20px 0' }}>
+            <button className="btn btn-outline btn-sm" onClick={() => exportToCSV(students, 'alumnos_excel-lenz.csv')}>
+              <Download size={14} style={{marginRight:6}} />Export CSV
+            </button>
+          </div>
           <table className="data-table">
             <thead>
               <tr>
-                {['Name', 'Email', 'Versuche', 'Score', 'Abgeschlossen'].map(h => (
+                {['Name', 'Email', 'Versuche', 'Score', 'Abgeschlossen', ''].map(h => (
                   <th key={h}>{h}</th>
                 ))}
               </tr>
@@ -435,11 +466,16 @@ export default function TeacherPanel() {
                     </div>
                   </td>
                   <td>{s.exercises_completed}</td>
+                  <td>
+                    <button className="btn btn-outline btn-sm" onClick={() => viewStudentDetail(s)} style={{ fontSize: '0.75rem', padding: '3px 8px' }}>
+                      <Eye size={13} style={{marginRight:4}} />Details
+                    </button>
+                  </td>
                 </tr>
                 );
               })}
               {students.length === 0 && (
-                <tr><td colSpan={5} style={{ padding: 32, textAlign: 'center', color: 'var(--text-muted)' }}>Keine Schüler registriert</td></tr>
+                <tr><td colSpan={6} style={{ padding: 32, textAlign: 'center', color: 'var(--text-muted)' }}>Keine Schüler registriert</td></tr>
               )}
             </tbody>
           </table>
@@ -567,6 +603,35 @@ export default function TeacherPanel() {
       )}
         </div>{/* teacher-content */}
       </div>{/* teacher-layout */}
+
+      {/* STUDENT DETAIL MODAL */}
+      {selectedStudent && (
+        <div style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000}} onClick={() => setSelectedStudent(null)}>
+          <div className="card" style={{maxWidth:600,width:'90%',maxHeight:'80vh',overflow:'auto',padding:24}} onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between mb-3">
+              <h3>{selectedStudent.name}</h3>
+              <button className="btn btn-outline btn-sm" onClick={() => setSelectedStudent(null)}>✕</button>
+            </div>
+            <p className="text-muted mb-3">Email: {selectedStudent.email} | ⌀ {selectedStudent.avg_score}% | {selectedStudent.exercises_completed} abgeschlossen</p>
+            <h4 className="text-md mb-2">Übungen:</h4>
+            {studentDetail === null ? <p>Wird geladen...</p> : studentDetail.length === 0 ? (
+              <p className="text-muted">Noch keine Übungen absolviert.</p>
+            ) : (
+              <div className="flex-col gap-sm">
+                {studentDetail.map((p: any) => (
+                  <div key={p.id} className="card" style={{padding:'8px 12px',fontSize:'0.85rem'}}>
+                    <div className="flex justify-between">
+                      <span>{p.exercise_title || p.title}</span>
+                      <span style={{fontWeight:600,color:p.score>=80?'var(--success)':p.score>=50?'var(--warning)':'var(--danger)'}}>{p.score}%</span>
+                    </div>
+                    <div className="text-muted text-xs">{p.course_title}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

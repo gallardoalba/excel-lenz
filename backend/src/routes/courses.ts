@@ -19,17 +19,20 @@ router.get('/', optionalAuth, (req: Request, res: Response) => {
      END, c.created_at ASC`
   ).all() as any[];
 
-  // If user is logged in, add progress info
+  // If user is logged in, add progress with a single query
   if (userId) {
+    const progressStats = db.prepare(`
+      SELECT e.course_id,
+             COUNT(DISTINCT p.exercise_id) as completed,
+             COUNT(DISTINCT e.id) as total
+      FROM exercises e
+      LEFT JOIN progress p ON p.exercise_id = e.id AND p.user_id = ? AND p.completed = 1
+      GROUP BY e.course_id
+    `).all(userId) as any[];
+
+    const statsMap = new Map(progressStats.map((s: any) => [s.course_id, s]));
     for (const course of courses) {
-      const stats = db.prepare(`
-        SELECT COUNT(DISTINCT p.exercise_id) as completed,
-               COUNT(DISTINCT e.id) as total
-        FROM exercises e
-        LEFT JOIN progress p ON p.exercise_id = e.id AND p.user_id = ? AND p.completed = 1
-        WHERE e.course_id = ?
-      `).get(userId, course.id) as any;
-      course.user_progress = stats;
+      course.user_progress = statsMap.get(course.id) || { completed: 0, total: course.exercise_count };
     }
   }
 

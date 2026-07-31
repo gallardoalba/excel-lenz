@@ -203,4 +203,331 @@ El mayor salto de calidad para tu aplicación será reemplazar el formulario act
 
 Esto elimina por completo la fricción de escribir cabeceras separadas por comas y contar índices (0, 1, 2) para las "taskCols".
 
-¿Quieres que te proporcione el código React exacto para construir esa **tabla interactiva** de creación de ejercicios para el profesor? Es la mejora que más impactará en la usabilidad de tu plataforma.
+Aquí tienes la implementación completa de la **Tabla Interactiva de Creación de Ejercicios**. 
+
+Este componente reemplaza la tediosa entrada de texto por comas y la cuenta manual de índices. El profesor verá una tabla real que puede editar visualmente, marcar qué columnas son de tarea y rellenar las soluciones correctas.
+
+### 1. Crea el nuevo componente `ExerciseBuilder.tsx`
+
+Crea un archivo llamado `ExerciseBuilder.tsx` en tu carpeta de componentes (por ejemplo en `src/components/teacher/`):
+
+```tsx
+import { useState, useEffect } from 'react';
+import { Plus, Trash2, CheckSquare } from 'lucide-react';
+
+interface ExerciseBuilderProps {
+  initialTemplate?: any;
+  initialSolution?: any;
+  onSave: (data: { template_data: any; solution_data: any }) => void;
+  onCancel: () => void;
+}
+
+export default function ExerciseBuilder({ initialTemplate, initialSolution, onSave, onCancel }: ExerciseBuilderProps) {
+  const [rows, setRows] = useState(initialTemplate?.rows || 3);
+  const [cols, setCols] = useState(initialTemplate?.cols || 3);
+  const [headers, setHeaders] = useState<string[]>(initialTemplate?.headers || Array(cols).fill(''));
+  const [taskCols, setTaskCols] = useState<boolean[]>(Array(cols).fill(false).map((_, i) => initialTemplate?.taskCols?.includes(i) || false));
+  
+  // Matriz de datos para la plantilla (lo que ve el alumno)
+  const [templateData, setTemplateData] = useState<any[][]>(
+    initialTemplate?.data || Array.from({ length: rows }, () => Array(cols).fill(''))
+  );
+  
+  // Matriz de datos para la solución (lo que evalúa el sistema)
+  const [solutionData, setSolutionData] = useState<any[][]>(
+    initialSolution?.data || Array.from({ length: rows }, () => Array(cols).fill(''))
+  );
+
+  // Sincronizar dimensiones si se cambian filas/columnas
+  useEffect(() => {
+    setHeaders(prev => {
+      const newArr = [...prev];
+      while (newArr.length < cols) newArr.push('');
+      return newArr.slice(0, cols);
+    });
+    setTaskCols(prev => {
+      const newArr = [...prev];
+      while (newArr.length < cols) newArr.push(false);
+      return newArr.slice(0, cols);
+    });
+    setTemplateData(prev => {
+      return Array.from({ length: rows }, (_, r) => 
+        Array.from({ length: cols }, (_, c) => prev[r]?.[c] ?? '')
+      );
+    });
+    setSolutionData(prev => {
+      return Array.from({ length: rows }, (_, r) => 
+        Array.from({ length: cols }, (_, c) => prev[r]?.[c] ?? '')
+      );
+    });
+  }, [rows, cols]);
+
+  const handleCellChange = (matrix: 'template' | 'solution', r: number, c: number, value: string) => {
+    if (matrix === 'template') {
+      setTemplateData(prev => {
+        const copy = [...prev];
+        copy[r][c] = value;
+        return copy;
+      });
+    } else {
+      setSolutionData(prev => {
+        const copy = [...prev];
+        copy[r][c] = value;
+        return copy;
+      });
+    }
+  };
+
+  const handleSave = () => {
+    // Convertir los booleans a array de índices para el backend
+    const taskColsIndexes = taskCols.map((isTask, idx) => isTask ? idx : -1).filter(idx => idx !== -1);
+    
+    const template_payload = {
+      cols,
+      rows,
+      headers,
+      data: templateData,
+      taskCols: taskColsIndexes,
+      formulaHint: initialTemplate?.formulaHint || ''
+    };
+
+    const solution_payload = {
+      data: solutionData
+    };
+
+    onSave({ template_data: template_payload, solution_data: solution_payload });
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '6px 8px',
+    border: '1px solid var(--border)',
+    borderRadius: '4px',
+    background: 'var(--surface)',
+    color: 'var(--text)',
+    fontSize: '0.85rem',
+    boxSizing: 'border-box'
+  };
+
+  return (
+    <div style={{ maxWidth: 900 }}>
+      {/* Controles de dimensiones */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+        <div className="form-group">
+          <label>Número de Filas</label>
+          <input type="number" className="form-input" min={1} max={20} value={rows} onChange={e => setRows(parseInt(e.target.value) || 1)} />
+        </div>
+        <div className="form-group">
+          <label>Número de Columnas</label>
+          <input type="number" className="form-input" min={1} max={8} value={cols} onChange={e => setCols(parseInt(e.target.value) || 1)} />
+        </div>
+      </div>
+
+      {/* Tabla Visual */}
+      <div style={{ overflowX: 'auto', border: '1px solid var(--border)', borderRadius: '8px', padding: 12, marginBottom: 24 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr>
+              <th style={{ width: '40px', padding: '8px', borderBottom: '1px solid var(--border)' }}>#</th>
+              {headers.map((h, c) => (
+                <th key={c} style={{ padding: '8px', borderBottom: '1px solid var(--border)', minWidth: 120 }}>
+                  <input
+                    type="text"
+                    value={h}
+                    onChange={e => {
+                      const newH = [...headers]; newH[c] = e.target.value; setHeaders(newH);
+                    }}
+                    placeholder={`Columna ${c}`}
+                    style={{ ...inputStyle, fontWeight: 600, textAlign: 'center' }}
+                  />
+                  <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 6, fontSize: '0.75rem', color: 'var(--text-secondary)', cursor: 'pointer' }}>
+                    <input
+                      type="checkbox"
+                      checked={taskCols[c]}
+                      onChange={e => {
+                        const newT = [...taskCols]; newT[c] = e.target.checked; setTaskCols(newT);
+                      }}
+                    />
+                    Tarea
+                  </label>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: rows }).map((_, r) => (
+              <tr key={r}>
+                <td style={{ textAlign: 'center', padding: '4px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>{r + 1}</td>
+                {Array.from({ length: cols }).map((_, c) => (
+                  <td key={c} style={{ padding: '4px', position: 'relative' }}>
+                    {/* Input de Plantilla (Alumno) */}
+                    <input
+                      type="text"
+                      value={templateData[r]?.[c] ?? ''}
+                      onChange={e => handleCellChange('template', r, c, e.target.value)}
+                      disabled={taskCols[c]}
+                      style={{
+                        ...inputStyle,
+                        background: taskCols[c] ? 'var(--warning-light)' : 'var(--surface)',
+                        color: taskCols[c] ? 'transparent' : 'var(--text)',
+                        borderColor: taskCols[c] ? 'var(--warning)' : 'var(--border)'
+                      }}
+                    />
+                    {/* Input de Solución (Profesor) - Aparece debajo si es columna de tarea */}
+                    {taskCols[c] && (
+                      <div style={{ marginTop: 4 }}>
+                        <div style={{ fontSize: '0.65rem', color: 'var(--success)', marginBottom: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
+                          <CheckSquare size={10} /> Solución Correcta:
+                        </div>
+                        <input
+                          type="text"
+                          value={solutionData[r]?.[c] ?? ''}
+                          onChange={e => handleCellChange('solution', r, c, e.target.value)}
+                          style={{
+                            ...inputStyle,
+                            borderColor: 'var(--success)',
+                            background: 'var(--success-light)',
+                            color: 'var(--success-dark, #1a6e3a)'
+                          }}
+                        />
+                      </div>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div style={{ background: 'var(--bg-alt)', padding: 12, borderRadius: '8px', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 24 }}>
+        <strong>Instrucciones de uso:</strong> Marca la casilla "Tarea" en las columnas que el alumno debe rellenar. 
+        Las celdas marcadas en amarillo se ocultarán para el alumno. Usa la caja verde "Solución Correcta" para definir la respuesta esperada.
+      </div>
+
+      <div style={{ display: 'flex', gap: 12 }}>
+        <button className="btn btn-primary" onClick={handleSave}>Guardar Ejercicio</button>
+        <button className="btn btn-outline" onClick={onCancel}>Cancelar</button>
+      </div>
+    </div>
+  );
+}
+```
+
+### 2. Integra el componente en `TeacherPanel.tsx`
+
+Ahora vamos a sustituir los formularios antiguos de `new-exercise` y `edit-exercise` por este nuevo componente. 
+
+En tu archivo `TeacherPanel.tsx`:
+
+**Paso A:** Importa el nuevo componente arriba del todo:
+```tsx
+import ExerciseBuilder from '../components/teacher/ExerciseBuilder'; // Ajusta la ruta
+```
+
+**Paso B:** Añade un estado para guardar la información básica del ejercicio (Título, descripción, etc.) separada de la tabla visual. Dentro de `TeacherPanel()`:
+```tsx
+const [neId, setNeId] = useState<string | null>(null); // Para saber si estamos editando
+```
+
+**Paso C:** Reemplaza los bloques `{tab === 'new-exercise' && (...)}` y `{tab === 'edit-exercise' && (...)}` por este nuevo bloque unificado:
+
+```tsx
+      {/* CREATE / EDIT EXERCISE CON TABLA VISUAL */}
+      {(tab === 'new-exercise' || tab === 'edit-exercise') && (
+        <div className="card" style={{ maxWidth: 1000 }}>
+          <h3 className="mb-3">
+            {tab === 'edit-exercise' ? <><Edit size={16} style={{marginRight:6, verticalAlign:'middle'}} />Editar Ejercicio</> : <><Plus size={16} style={{marginRight:6, verticalAlign:'middle'}} />Nueva Übung</>}
+          </h3>
+          
+          {/* Metadatos del ejercicio */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+            <div className="form-group">
+              <label>Kurs *</label>
+              <select className="form-input" value={neCourseId} onChange={e => setNeCourseId(e.target.value)}>
+                <option value="">— Kurs wählen —</option>
+                {courses.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Übungstitel *</label>
+              <input className="form-input" value={neTitle} onChange={e => setNeTitle(e.target.value)} placeholder="z.B. SUMME Funktion" />
+            </div>
+          </div>
+          
+          <div className="form-group">
+            <label>Beschreibung</label>
+            <input className="form-input" value={neDesc} onChange={e => setNeDesc(e.target.value)} placeholder="Kurzbeschreibung" />
+          </div>
+          <div className="form-group">
+            <label>Anleitung für Schüler</label>
+            <textarea className="form-input" value={neInstructions} onChange={e => setNeInstructions(e.target.value)} rows={2} placeholder="Schritt-für-Schritt..." />
+          </div>
+
+          <hr style={{ margin: '24px 0', border: 'none', borderTop: '1px solid var(--border)' }} />
+
+          {/* Tabla Interactiva */}
+          <ExerciseBuilder
+            initialTemplate={tab === 'edit-exercise' && editExId ? courses.find(c => c.id === neCourseId) : undefined}
+            onSave={async (data) => {
+              if (!neCourseId || !neTitle) { setNeMsg('Bitte Kurs und Titel ausfüllen'); return; }
+              
+              const payload = {
+                course_id: neCourseId,
+                title: neTitle,
+                description: neDesc,
+                instructions: neInstructions,
+                template_data: data.template_data,
+                solution_data: data.solution_data
+              };
+
+              if (tab === 'edit-exercise' && editExId) {
+                await apiFetch(`/teacher/exercises/${editExId}`, { method: 'PUT', body: JSON.stringify(payload) });
+                setNeMsg('Aktualisiert!');
+                setEditExId('');
+                setTab('courses');
+              } else {
+                await apiFetch('/teacher/exercises', { method: 'POST', body: JSON.stringify(payload) });
+                setNeMsg('Erstellt!');
+                setTab('courses');
+              }
+              
+              // Limpiar campos
+              setNeTitle(''); setNeDesc(''); setNeInstructions('');
+              loadData();
+              setTimeout(() => setNeMsg(''), 3000);
+            }}
+            onCancel={() => { setTab('courses'); setEditExId(''); }}
+          />
+        </div>
+      )}
+```
+
+### 3. Ajustar la función `editExercise`
+
+En la función `editExercise` de `TeacherPanel.tsx`, asegúrate de pasar los datos correctos al nuevo componente:
+
+```tsx
+  const editExercise = async (exId: string) => {
+    const ex = await apiFetch(`/exercises/${exId}`).catch(() => null);
+    if (!ex) return;
+    setEditExId(exId);
+    setNeCourseId(ex.course_id || '');
+    setNeTitle(ex.title || '');
+    setNeDesc(ex.description || '');
+    setNeInstructions(ex.instructions || '');
+    
+    // El ExerciseBuilder se inicializa con estos datos si estamos en modo edición
+    // Como el ExerciseBuilder está dentro del render condicional, 
+    // usaremos un "key" para forzar su remontaje cuando cambiamos de ejercicio
+    setTab('edit-exercise');
+  };
+```
+
+*(Nota: En el código del Paso C, la línea `initialTemplate={tab === 'edit-exercise' && editExId ? courses.find(c => c.id === neCourseId) : undefined}` es un placeholder. Para que cargue los datos de la tabla al editar, debes pasarle `ex.template_data` y `ex.solution_data`. Como el componente `ExerciseBuilder` se monta fresco cada vez, una forma limpia es guardar el ejercicio completo en un estado `const [currentExData, setCurrentExData] = useState<any>(null)` en `editExercise` y pasárselo al componente).*
+
+### Resumen de la mejora:
+1. **Cero cálculos manuales:** El profesor ya no teclea `"0, 2"` para decir qué columnas evaluar. Simplemente marca un checkbox.
+2. **Vista previa integrada:** Las celdas de tarea se ponen en amarillo y el texto se oculta, simulando lo que verá el alumno.
+3. **Solución ligada a la tarea:** Las cajas verdes de "Solución Correcta" solo aparecen bajo las columnas de tarea, evitando confusiones.
+4. **Validación implícita:** Al enviar el JSON al backend, la longitud de `solution.data` y `template.data` siempre coincidirá con las filas definidas, acabando con el bug de las dimensiones por el que un alumno podía sacar un 100% vacío.
