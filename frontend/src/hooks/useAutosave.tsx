@@ -19,8 +19,12 @@ export function useAutosave<T>(
     const timer = setInterval(() => {
       const current = dataRef.current;
       if (current !== undefined && current !== null) {
-        localStorage.setItem(key, JSON.stringify(current));
-        savedRef.current = true;
+        try {
+          localStorage.setItem(key, JSON.stringify(current));
+          savedRef.current = true;
+        } catch (e) {
+          console.error(`[Autosave] Speicherfehler für ${key}:`, e);
+        }
       }
     }, intervalMs);
     return () => clearInterval(timer);

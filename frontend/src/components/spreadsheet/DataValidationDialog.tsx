@@ -42,15 +42,19 @@ export default function DataValidationDialog({ visible, headers, onApply, onClos
   if (!visible) return null;
 
   const handleApply = () => {
-    if (type === 'number' && min && max && parseFloat(min) > parseFloat(max)) {
+    const hasMin = min.trim() !== '';
+    const hasMax = max.trim() !== '';
+
+    if (type === 'number' && hasMin && hasMax && parseFloat(min) > parseFloat(max)) {
       alert('Der Mindestwert darf nicht größer als der Höchstwert sein.');
       return;
     }
+
     onApply({
       col,
       type,
-      min: min ? parseFloat(min) : undefined,
-      max: max ? parseFloat(max) : undefined,
+      min: hasMin ? parseFloat(min) : undefined,
+      max: hasMax ? parseFloat(max) : undefined,
       list: type === 'list' ? list : undefined,
       errorMessage: errorMsg || 'Ungültiger Wert',
     });

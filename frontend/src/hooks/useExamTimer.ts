@@ -5,6 +5,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 export function useExamTimer(durationInMinutes: number, onTimeUp: () => void) {
   const [secondsLeft, setSecondsLeft] = useState(durationInMinutes * 60);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const endTimeRef = useRef<number>(0);
   const onTimeUpRef = useRef(onTimeUp);
   onTimeUpRef.current = onTimeUp;
@@ -17,7 +18,7 @@ export function useExamTimer(durationInMinutes: number, onTimeUp: () => void) {
       if (remaining <= 0) {
         setSecondsLeft(0);
         clearInterval(intervalRef.current!);
-        setTimeout(() => onTimeUpRef.current(), 0);
+        timeoutRef.current = setTimeout(() => onTimeUpRef.current(), 0);
       } else {
         setSecondsLeft(remaining);
       }
@@ -37,7 +38,10 @@ export function useExamTimer(durationInMinutes: number, onTimeUp: () => void) {
   }, [stop, durationInMinutes]);
 
   useEffect(() => {
-    return stop;
+    return () => {
+      stop();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, [stop]);
 
   const hours = Math.floor(secondsLeft / 3600);

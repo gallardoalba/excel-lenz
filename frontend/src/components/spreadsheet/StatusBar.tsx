@@ -133,6 +133,6 @@ export default function StatusBar({
 }
 
 function formatNum(n: number): string {
-  if (Number.isInteger(n)) return n.toLocaleString('de-DE');
-  return n.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 2 });
+  if (!isFinite(n)) return '0';
+  return n.toLocaleString('de-DE', { minimumFractionDigits: Number.isInteger(n) ? 0 : 1, maximumFractionDigits: 2 });
 }

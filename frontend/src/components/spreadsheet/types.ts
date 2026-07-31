@@ -181,9 +181,10 @@ export function rangeToRef(range: CellRange): string {
 // "C3" → {startRow:2, startCol:2, endRow:2, endCol:2}
 export function refToRange(ref: string): CellRange | null {
   if (ref.includes(':')) {
-    const [s, e] = ref.split(':');
-    const start = refToPosition(s);
-    const end = refToPosition(e);
+    const parts = ref.split(':');
+    if (parts.length !== 2) return null;
+    const start = refToPosition(parts[0]);
+    const end = refToPosition(parts[1]);
     if (!start || !end) return null;
     return {
       startRow: Math.min(start.row, end.row),
