@@ -1,0 +1,92 @@
+¡Continuamos con la séptima entrega de la revisión! En esta fase, vamos a abordar el **problema de la evaluación de fórmulas vs. valores estáticos**, las **inconsistencias en las cabeceras de las tablas**, el **caos en los formatos de fecha** y la **redundancia de pistas**.
+
+---
+
+### 1. El Problema del Valor Hardcodeado (Lógica de Evaluación)
+
+Este es un problema de diseño pedagógico que afectará directamente a cómo construyes el motor de evaluación de tu simulador:
+
+*   **El problema:** En la gran mayoría de los ejercicios, las `instructions` le dicen al alumno exactamente qué fórmula escribir. Por ejemplo (Curso 1, Ex 12): *"MwSt berechnen: =B2*0,19."* o (Curso 1, Ex 14): *"Usa =SUMA(B2:D2) para calcular el total"*.
+*   **El impacto en el simulador:** Si el alumno es un tramposo (o simplemente perezoso), puede ignorar la fórmula y escribir el resultado final a mano en la celda (ej. `5.6981` en lugar de `=B2*0,19`).
+*   **La disyuntiva técnica:**
+    *   Si tu simulador solo comprueba el `value` final de la celda comparándolo con `solution.data`, el alumno pasará el ejercicio sin haber aprendido a usar fórmulas.
+    *   Si tu simulador comprueba la `formula` string (ej. que la celda contenga literalmente `=B2*0,19`), entonces el alumno fallará si escribe `=B2*19%` o `=0.19*B2`, lo cual es frustrante.
+*   **Solución (Nivel arquitectónico):**
+    1.  **No des la fórmula exacta en las instrucciones.** Cambia la instrucción a: *"Berechne die Mehrwertsteuer (19%) für jeden Artikel."*
+    2.  **Añade una propiedad `expectedFormula` en el JSON:** Aquí puedes definir una expresión regular o una pista para el backend. Ej: `"expectedFormula": "=B2*0.19"` o `"expectedFormulaPattern": "B2\\*0.19|0.19\\*B2|B2\\*19%"`.
+    3.  **Evalúa en dos fases:** El frontend comprueba si el valor numérico coincide (para dar feedback visual inmediato), pero el backend al guardar el progreso comprueba si la celda contiene una fórmula (empieza por `=`) para otorgar el 100% de la puntuación.
+
+---
+
+### 2. Inconsistencias en la Estructura de Cabeceras (Headers)
+
+Tu estructura JSON define las cabeceras de dos maneras diferentes, lo que complicará el renderizado en React:
+
+*   **Formato A (Correcto y limpio):** Usas un array `headers: ["Artikel", "Nettopreis", "MwSt (19%)", "Bruttopreis"]` y los datos empiezan directamente en la primera fila de cálculo.
+*   **Formato B (Incrustado en data):** No usas el array `headers` (o está vacío) y metes las cabeceras como la primera fila del array `data`. Ejemplo (Curso 3, Ex 9 - WVERWEIS):
+    ```json
+    "headers": ["", "", "", "", ""],
+    "data": [
+      ["Produkt", "Laptop", "Tablet", "Maus", "Tastatur"],
+      ["Preis (€)", 999, 599, 35, 89]
+    ]
+    ```
+*   **El impacto:** Si tu componente de React usa `headers.map(...)` para pintar la fila superior y luego `data.map(...)` para el cuerpo, en el "Formato B" tendrás una fila de cabeceras vacía y luego una fila de datos que en realidad son cabeceras.
+*   **Solución:** Estandariza todo al "Formato A". Extrae siempre la primera fila de `data` y muévela al array `headers`.
+
+---
+
+### 3. Caos en los Formatos de Fecha (Locale Issues)
+
+Excel en alemán usa el formato `DD.MM.AAAA` (ej. `31.12.2024`). Sin embargo, tus JSON mezclan múltiples formatos, lo que causará que las funciones de fecha (`=JAHR()`, `=MONAT()`, `=WOCHENTAG()`) fallen en el simulador o confundan al alumno:
+
+*   **Formato ISO (Año-Mes-Día):**
+    *   Curso 3, Ex 32 (DATUM & ZEIT): `"1990-05-15"`.
+    *   Curso 4, Ex 3 (DATUM): `"2024-01-15"`.
+*   **Formato Aleman (Día.Mes.Año):**
+    *   Curso 3, Ex 33 (MONATSENDE): `"15.01.2026"`.
+    *   Curso 3, Ex 34 (ARBEITSTAG): `"01.07.2026"`.
+*   **Formato de Texto Ambiguo:**
+    *   Curso 3, Ex 36 (KALENDERWOCHE): `"05.01.2026"`.
+    *   Curso 1, Ex 24 (Ordenamiento): `"15/03/2024"` (¡Usando barras en lugar de puntos!).
+
+**Solución:**
+1.  Estandariza **todos** los datos de entrada a un formato real de Excel. En los JSON, las fechas reales de Excel se representan como números de serie (ej. `45658` para el 1 de enero de 2025), pero para que sea legible, usa el formato alemán estricto: `"DD.MM.YYYY"`.
+2.  Asegúrate de que tu simulador trate estas cadenas como fechas, no como texto, de lo contrario `=JAHR("15.01.2026")` devolverá un error si el motor de fórmulas no lo parsea bien.
+
+---
+
+### 4. Redundancia: Instrucciones vs. Pistas (Hints)
+
+En varios ejercicios, las `instructions` y los `hints` son idénticos, lo que hace que el sistema de pistas sea inútil (el alumno ya recibió la pista en las instrucciones):
+
+*   **Ejemplo (Curso 2, Ex 8 - SUMMEWENN):**
+    *   `instructions`: *"Summiere Büro-Artikel: =SUMMEWENN(A2:A6;"Büro";C2:C6)."*
+    *   `hint1`: *"SUMMEWENN(Bereich; Kriterium; Summe_Bereich)"*
+    *   `hint2`: *"=SUMMEWENN(A2:A6;"Büro";C2:C6) summiert Büro-Artikel"*
+    *   *Problema:* Las instrucciones ya dan la respuesta exacta. `hint1` y `hint2` no aportan ningún valor progresivo.
+*   **Solución (Mejora Pedagógica):**
+    *   **Instructions:** Describen la *tarea*. ("Berechne die Summe aller Büro-Artikel").
+    *   **Hint 1:** Da una pista de *concepto*. ("Nutze die Funktion SUMMEWENN. Sie braucht einen Bereich, ein Kriterium und den Summenbereich").
+    *   **Hint 2:** Da una pista de *sintaxis*. ("Der Kriterienbereich ist A2:A6, suche nach 'Büro' und summiere C2:C6").
+    *   **Hint 3:** Da la *fórmula exacta*. ("=SUMMEWENN(A2:A6;"Büro";C2:C6)").
+    *   **FormulaHint:** Reservado para el botón de "Mostrar solución".
+
+---
+
+### 5. El Vacío de Excel Moderno (Funciones Dinámicas)
+
+Aunque mencioné en la Fase 1 que faltan arrays dinámicos, al revisar a fondo los cursos avanzados (3 y 4), me he dado cuenta de que **tu curso enseña Excel 2010**. No hay ni un solo ejercicio que use las funciones que cualquier analista de datos usa hoy en día:
+
+**Funciones críticas que faltan por completo:**
+1.  **XVERWEIS (XLOOKUP):** Sigue siendo ausente. Reemplaza completamente a SVERWEIS, WVERWEIS e INDEX/VERGLEICH. Debería haber al menos 3-4 ejercicios dedicados a ello en el Curso 3.
+2.  **EINDEUTIG (UNIQUE):** En el Curso 3 (Ex 57) y Curso 4 (Ex 15), obligas al alumno a usar el truco arcaico `=WENN(ZÄHLENWENN($A$2:A2;A2)=1;A2;"")` para extraer valores únicos. En Excel 365, esto se hace con `=EINDEUTIG(A2:A7)`. Deberías actualizar este ejercicio o añadir uno nuevo.
+3.  **FILTERN (FILTER):** Para el Curso 4 (BI), deberías enseñar a filtrar datos dinámicamente con `=FILTERN(A2:D10; B2:B10="IT")` en lugar de usar filtros manuales o AutoFilter.
+4.  **SORTIEREN (SORT):** En el Curso 3 (Ex 52), usas `=KGRÖSSTE()` para ordenar con fórmulas. Hoy en día se usa `=SORTIEREN(B2:B6; 1; -1)`.
+5.  **WENNFEHLER (IFERROR) vs. WENNS (IFS):** Ya usas `WENNS` (muy bien), pero sigues usando `WENNFEHLER` para tapar errores de `SVERWEIS`. Con `XVERWEIS`, el manejo de errores ya va integrado en el 4º parámetro de la función.
+
+### Resumen de la Fase 7:
+1.  **Desacopla las instrucciones de las soluciones:** No le des la fórmula exacta al alumno en el texto del ejercicio. Haz que piense.
+2.  **Unifica las cabeceras:** Usa siempre el array `headers`, no incrustes cabeceras en `data`.
+3.  **Estandariza fechas:** Usa `DD.MM.YYYY` en todo el JSON.
+4.  **Moderniza el temario:** Es imperativo añadir `XVERWEIS`, `EINDEUTIG`, `FILTERN` y `SORTIEREN` en los Cursos 3 y 4 para que la plataforma sea competitiva en 2024/2025.
