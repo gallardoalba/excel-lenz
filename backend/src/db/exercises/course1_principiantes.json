@@ -168,7 +168,7 @@
     {
       "id": "m7",
       "title": "Modul 7: Erweiterte Funktionen und bedingte Mathematik",
-      "description": "Ampliar el repertorio de fórmulas zur cálculos complejos.",
+      "description": "Ampliar el repertorio de fórmulas para cálculos complejos.",
       "sections": [
         {
           "id": "7.1",
@@ -208,7 +208,7 @@
         "data": [
           [
             "Libro",
-            "Datei die enthält hojas",
+            "Archivo que contiene hojas",
             "Presupuesto2024.xlsx"
           ],
           [
@@ -218,17 +218,17 @@
           ],
           [
             "Celda",
-            "Schnittpunkt von Spalte y fila",
+            "Intersección de columna y fila",
             null
           ],
           [
             "Columna",
-            "Wird identifiziert mit letras",
+            "Se identifica con letras",
             null
           ],
           [
             "Fila",
-            "Wird identifiziert mit números",
+            "Se identifica con números",
             null
           ],
           [
@@ -255,7 +255,7 @@
         "data": [
           [
             "Libro",
-            "Datei die enthält hojas",
+            "Archivo que contiene hojas",
             "Presupuesto2024.xlsx"
           ],
           [
@@ -265,17 +265,17 @@
           ],
           [
             "Celda",
-            "Schnittpunkt von Spalte y fila",
+            "Intersección de columna y fila",
             "B3"
           ],
           [
             "Columna",
-            "Wird identifiziert mit letras",
+            "Se identifica con letras",
             "A, B, C..."
           ],
           [
             "Fila",
-            "Wird identifiziert mit números",
+            "Se identifica con números",
             "1, 2, 3..."
           ],
           [
@@ -295,9 +295,9 @@
           ]
         ]
       },
-      "instructions": "1. Vervollständige die Spalte 'Ejemplo' für jedes Konzept.\n2. Verwende =ANZAHL2(C2:C6) zur contar cuántos ejemplos has completado.",
+      "instructions": "1. Vervollständige die Spalte 'Ejemplo' für jedes Konzept.\n2. Usa =ANZAHL2(C2:C6) para contar cuántos ejemplos has completado.",
       "order": 1,
-      "formulaHint": "Verwende =ANZAHL2(C2:C6) zur verificar",
+      "formulaHint": "Usa =ANZAHL2(C2:C6) para verificar",
       "learningObjectives": [
         "Identificar los componentes de Excel",
         "Entender la nomenclatura de celdas",
@@ -306,7 +306,7 @@
       "estimated_minutes": 5,
       "prerequisites": [],
       "theoryTitle": "Excel-Komponenten",
-      "theory": "Eine **Arbeitsmappe** ist die vollständige Datei (.xlsx). Jede Arbeitsmappe enthält **Tabellenblätter** (pestañas).\n\nDie **Zellen** sind die Schnittmenge de:\n- **Columnas**: identificadas con letras (A, B, C...)\n- **Filas**: identificadas con números (1, 2, 3...)\n\nEjemplo: **B3** = columna B, fila 3\n\nUn **rango** es un grupo de celdas: A1:C5 (9 celdas).",
+      "theory": "Un **libro** es el archivo completo (.xlsx). Cada libro contiene **hojas** (pestañas).\n\nLas **celdas** son la intersección de:\n- **Columnas**: identificadas con letras (A, B, C...)\n- **Filas**: identificadas con números (1, 2, 3...)\n\nEjemplo: **B3** = columna B, fila 3\n\nUn **rango** es un grupo de celdas: A1:C5 (9 celdas).",
       "moduleId": "m1",
       "moduleSection": "1.1",
       "moduleTitle": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
@@ -396,18 +396,18 @@
           ]
         ]
       },
-      "instructions": "1. Schreibe, wo sich jedes Element befindet im Excel-Fenster.\n2. Al final, usa =ANZAHL2(A2:A7) zur contar los Elemente de la lista.",
+      "instructions": "1. Schreibe, wo sich jedes Element befindet im Excel-Fenster.\n2. Al final, usa =ANZAHL2(A2:A7) para contar los elementos de la lista.",
       "order": 2,
-      "formulaHint": "=ANZAHL2(A2:A7) zur contar Elemente",
+      "formulaHint": "=ANZAHL2(A2:A7) para contar elementos",
       "learningObjectives": [
-        "Reconocer los Elemente del interfaz",
+        "Reconocer los elementos del interfaz",
         "Entender la ubicación de cada panel",
         "Verwenden ANZAHL2 zur Validierung"
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
       "theoryTitle": "Die Excel-Oberfläche",
-      "theory": "⭐ **Wichtige Elemente**:\n\n1. **Cinta de opciones (Ribbon)**: Pestañas con comandos agrupados\n2. **Barra de fórmulas**: Muestra y edita el contenido de la celda\n3. **Cuadro de nombres**: Muestra la referencia de la celda activa\n4. **Barra de acceso rápido**: Comandos frecuentes (Guardar, Deshacer)\n5. **Barra de estado**: Muestra modos y resultados rápidos\n6. **Pestañas de hojas**: Navegar entre hojas del libro",
+      "theory": "⭐ **Elementos clave**:\n\n1. **Cinta de opciones (Ribbon)**: Pestañas con comandos agrupados\n2. **Barra de fórmulas**: Muestra y edita el contenido de la celda\n3. **Cuadro de nombres**: Muestra la referencia de la celda activa\n4. **Barra de acceso rápido**: Comandos frecuentes (Guardar, Deshacer)\n5. **Barra de estado**: Muestra modos y resultados rápidos\n6. **Pestañas de hojas**: Navegar entre hojas del libro",
       "moduleId": "m1",
       "moduleSection": "1.2",
       "moduleTitle": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
@@ -507,7 +507,7 @@
           ]
         ]
       },
-      "instructions": "1. Vervollständige die Spalte 'Tecla/Combinación' con el atajo correcto.\n2. Marca '✓' en la columna '¿Correcto?' cuando completes cada fila.\n3. Verwende =ZÄHLENWENN(D2:D7;\"✓\") zur contar las correctas.",
+      "instructions": "1. Vervollständige die Spalte 'Tecla/Combinación' con el atajo correcto.\n2. Marca '✓' en la columna '¿Correcto?' cuando completes cada fila.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para contar las correctas.",
       "order": 3,
       "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\")",
       "learningObjectives": [
@@ -615,18 +615,18 @@
           ]
         ]
       },
-      "instructions": "1. Vervollständige die Tastenkombinationen für jeden Vorgang.\n2. Completa las korrekten Dateierweiterungen.\n3. Verwende =ANZAHL2(B2:B5) zur verificar los Tastenkombinationen completados.",
+      "instructions": "1. Vervollständige die Tastenkombinationen für jeden Vorgang.\n2. Completa las korrekten Dateierweiterungen.\n3. Usa =ANZAHL2(B2:B5) para verificar los atajos completados.",
       "order": 4,
-      "formulaHint": "=ANZAHL2(B2:B5) zur contar Tastenkombinationen",
+      "formulaHint": "=ANZAHL2(B2:B5) para contar atajos",
       "learningObjectives": [
         "Formatos de archivo",
-        "Atajos zur archivos",
+        "Atajos para archivos",
         "Diferencias entre extensiones"
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
       "theoryTitle": "Excel-Dateiformate",
-      "theory": "📁 **Extensiones de Excel**:\n\n| Extensión | Descripción |\n|-----------|-------------|\n| .xlsx | Libro estándar (sin macros) |\n| .xlsm | Libro habilitado zur macros |\n| .xlsb | Libro binario (más rápido) |\n| .xltx | Plantilla |\n| .xlam | Complemento |\n\n💡 Ctrl+G = Guardar, F12 = Guardar como, Ctrl+A = Abrir",
+      "theory": "📁 **Extensiones de Excel**:\n\n| Extensión | Descripción |\n|-----------|-------------|\n| .xlsx | Libro estándar (sin macros) |\n| .xlsm | Libro habilitado para macros |\n| .xlsb | Libro binario (más rápido) |\n| .xltx | Plantilla |\n| .xlam | Complemento |\n\n💡 Ctrl+G = Guardar, F12 = Guardar como, Ctrl+A = Abrir",
       "moduleId": "m1",
       "moduleSection": "1.4",
       "moduleTitle": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
@@ -750,9 +750,9 @@
           ]
         ]
       },
-      "instructions": "1. Identifiziere den Datentyp jeder Zeile.\n2. Marca ✓ cuando el tipo coincida con la alineación.\n3. Verwende =ZÄHLENWENN(D2:D7;\"✓\") zur contar correctas.",
+      "instructions": "1. Identifiziere den Datentyp jeder Zeile.\n2. Marca ✓ cuando el tipo coincida con la alineación.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para contar correctas.",
       "order": 5,
-      "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\") zur verificar",
+      "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\") para verificar",
       "learningObjectives": [
         "Tipos de datos en Excel",
         "Alineación automática",
@@ -848,7 +848,7 @@
           ]
         ]
       },
-      "instructions": "1. Vervollständige die Spalte 'Tecla/Acción' con el método correcto.\n2. Verwende =ANZAHL2(B2:B7) zur contar cuántos has completado.",
+      "instructions": "1. Vervollständige die Spalte 'Tecla/Acción' con el método correcto.\n2. Usa =ANZAHL2(B2:B7) para contar cuántos has completado.",
       "order": 6,
       "formulaHint": "=ANZAHL2(B2:B7)",
       "learningObjectives": [
@@ -983,7 +983,7 @@
           ]
         ]
       },
-      "instructions": "1. Escribe el segundo valor de cada serie.\n2. Escribe los siguientes 3 valores en la última columna.\n3. Verwende =ANZAHL2(A2:A7) zur verificar las series completadas.",
+      "instructions": "1. Escribe el segundo valor de cada serie.\n2. Escribe los siguientes 3 valores en la última columna.\n3. Usa =ANZAHL2(A2:A7) para verificar las series completadas.",
       "order": 7,
       "formulaHint": "=ANZAHL2(A2:A7)",
       "learningObjectives": [
@@ -1094,9 +1094,9 @@
           ]
         ]
       },
-      "instructions": "1. Calcula Total con fórmula =B2*C2 en D2.\n2. Copia la fórmula a D3:D5.\n3. En D6, usa =SUMME(D2:D5) zur el total.\n4. ¡Atención! Si usas Pegado Especial > Valores, se pegará solo el resultado sin fórmula.",
+      "instructions": "1. Calcula Total con fórmula =B2*C2 en D2.\n2. Copia la fórmula a D3:D5.\n3. En D6, usa =SUMME(D2:D5) para el total.\n4. ¡Atención! Si usas Pegado Especial > Valores, se pegará solo el resultado sin fórmula.",
       "order": 8,
-      "formulaHint": "=B2*C2 zur cada fila, =SUMME(D2:D5) zur el total",
+      "formulaHint": "=B2*C2 para cada fila, =SUMME(D2:D5) para el total",
       "learningObjectives": [
         "Copiar fórmulas",
         "Referencias relativas al copiar",
@@ -1104,7 +1104,7 @@
       ],
       "estimated_minutes": 6,
       "prerequisites": [],
-      "theoryTitle": "Kopieren "theoryTitle": "Copiar y Pegado Especial" Inhalte einfügen",
+      "theoryTitle": "Kopieren & Inhalte einfügen",
       "theory": "📋 **Pegado Especial** (Ctrl+Alt+V):\n\n| Opción | Resultado |\n|--------|----------|\n| Todo | Fórmula + formato |\n| Fórmulas | Solo la fórmula |\n| Valores | Solo el resultado |\n| Formatos | Solo el estilo |\n| Transponer | Intercambia filas↔columnas |\n\n💡 Al copiar fórmulas, las referencias relativas se ajustan automáticamente.",
       "moduleId": "m2",
       "moduleSection": "2.4",
@@ -1113,7 +1113,7 @@
     },
     {
       "title": "Formato Básico de Celdas",
-      "description": "Aplica formatos de fuente, color, bordes y alineación zur mejorar la presentación.",
+      "description": "Aplica formatos de fuente, color, bordes y alineación para mejorar la presentación.",
       "template": {
         "cols": 4,
         "rows": 8,
@@ -1229,7 +1229,7 @@
           ]
         ]
       },
-      "instructions": "1. Marca ✓ en cada formato que reconozcas.\n2. En la columna 'Ejemplo', escribe un ejemplo visual.\n3. Verwende =ZÄHLENWENN(D2:D7;\"✓\") zur contar los aplicados.",
+      "instructions": "1. Marca ✓ en cada formato que reconozcas.\n2. En la columna 'Ejemplo', escribe un ejemplo visual.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para contar los aplicados.",
       "order": 9,
       "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\")",
       "learningObjectives": [
@@ -1357,7 +1357,7 @@
           ]
         ]
       },
-      "instructions": "1. Escribe cómo se vería cada valor después de aplicar el formato indicado.\n2. Verwende =ANZAHL2(C2:C8) zur contar los formatos escritos.\n3. ¡En Excel real usarías Ctrl+1 > Número zur aplicar estos formatos!",
+      "instructions": "1. Escribe cómo se vería cada valor después de aplicar el formato indicado.\n2. Usa =ANZAHL2(C2:C8) para contar los formatos escritos.\n3. ¡En Excel real usarías Ctrl+1 > Número para aplicar estos formatos!",
       "order": 10,
       "formulaHint": "=ANZAHL2(C2:C8)",
       "learningObjectives": [
@@ -1376,7 +1376,7 @@
     },
     {
       "title": "Ajuste de Filas y Columnas",
-      "description": "Aprende a cambiar el tamaño de filas y columnas, y a ocultar/mostrar Elemente.",
+      "description": "Aprende a cambiar el tamaño de filas y columnas, y a ocultar/mostrar elementos.",
       "template": {
         "cols": 4,
         "rows": 8,
@@ -1492,7 +1492,7 @@
           ]
         ]
       },
-      "instructions": "1. Completa el método zur cada acción.\n2. Marca ✓ cuando reconozcas el procedimiento.\n3. Verwende =ZÄHLENWENN(D2:D7;\"✓\") zur contar.",
+      "instructions": "1. Completa el método para cada acción.\n2. Marca ✓ cuando reconozcas el procedimiento.\n3. Usa =ZÄHLENWENN(D2:D7;\"✓\") para contar.",
       "order": 11,
       "formulaHint": "=ZÄHLENWENN(D2:D7;\"✓\")",
       "learningObjectives": [
@@ -1502,7 +1502,7 @@
       ],
       "estimated_minutes": 5,
       "prerequisites": [],
-      "theoryTitle": "Zeilen "theoryTitle": "Ajuste de filas y columnas" Spalten anpassen",
+      "theoryTitle": "Zeilen & Spalten anpassen",
       "theory": "📏 **Ajustes rápidos**:\n\n| Acción | Cómo hacerlo |\n|--------|-------------|\n| Autoajustar ancho | Doble clic entre letras de columna |\n| Autoajustar alto | Doble clic entre números de fila |\n| Ancho personalizado | Clic derecho columna > Ancho de columna |\n| Ocultar columna | Clic derecho > Ocultar (Ctrl+0) |\n| Mostrar columnas | Seleccionar adyacentes > Clic derecho > Mostrar |\n\n💡 Ctrl+9 oculta filas, Ctrl+Mayús+9 las muestra.",
       "moduleId": "m3",
       "moduleSection": "3.3",
@@ -1834,11 +1834,11 @@
           ]
         ]
       },
-      "instructions": "1. Calcula la columna \"Total\" sumando los valores de Enero, Febrero y Marzo.\n2. Al final, usa MITTELWERT zur calcular el promedio de cada columna.",
+      "instructions": "1. Calcula la columna \"Total\" sumando los valores de Enero, Febrero y Marzo.\n2. Al final, usa MITTELWERT para calcular el promedio de cada columna.",
       "order": 14,
-      "formulaHint": "Verwende =SUMME(B2:D2) zur calcular el total de cada fila",
+      "formulaHint": "Usa =SUMME(B2:D2) para calcular el total de cada fila",
       "hint1": "¿Qué función suma varios valores? Se escribe =SUMME(...)",
-      "hint2": "El rango zur la primera fila es de Enero a Marzo: B2:D2",
+      "hint2": "El rango para la primera fila es de Enero a Marzo: B2:D2",
       "hint3": "=SUMME(B2:D2) sumará 1200+1350+1100",
       "learningObjectives": [
         "Die SUMME-Funktion anwenden",
@@ -1969,7 +1969,7 @@
       },
       "instructions": "1. Berechne die Gesamteinnahmen mit =SUMME(B2:B3).\n2. Berechne die Gesamtausgaben mit =SUMME(B4:B7).\n3. Berechne den Saldo: Einnahmen minus Ausgaben.",
       "order": 15,
-      "formulaHint": "Verwende =SUMME(B2:B3) zur Ingresos y =SUMME(B4:B7) zur Gastos",
+      "formulaHint": "Usa =SUMME(B2:B3) para Ingresos y =SUMME(B4:B7) para Gastos",
       "moduleId": "m4",
       "moduleSection": "4.3",
       "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
@@ -2789,7 +2789,7 @@
           ]
         ]
       },
-      "instructions": "1. Completa los departamentos usando solo: Ventas, Marketing o IT.\n2. Las edades deben estar entre 18 y 65.\n3. Los salarios deben ser mayores a 0.\n4. Verwende =ANZAHL2(A2:A5) zur contar empleados registrados.",
+      "instructions": "1. Completa los departamentos usando solo: Ventas, Marketing o IT.\n2. Las edades deben estar entre 18 y 65.\n3. Los salarios deben ser mayores a 0.\n4. Usa =ANZAHL2(A2:A5) para contar empleados registrados.",
       "order": 22,
       "formulaHint": "=ANZAHL2(A2:A5)",
       "learningObjectives": [
@@ -3072,13 +3072,13 @@
           ]
         ]
       },
-      "instructions": "1. Ordena los datos: primero por Categoría (A-Z), luego por Ventas (mayor a menor).\n2. Reescribe las filas en el orden correcto.\n3. En la fila de resumen, usa =MAX(C2:C7) zur encontrar la mayor venta.",
+      "instructions": "1. Ordena los datos: primero por Categoría (A-Z), luego por Ventas (mayor a menor).\n2. Reescribe las filas en el orden correcto.\n3. En la fila de resumen, usa =MAX(C2:C7) para encontrar la mayor venta.",
       "order": 24,
-      "formulaHint": "=MAX(C2:C7) zur la mayor venta",
+      "formulaHint": "=MAX(C2:C7) para la mayor venta",
       "learningObjectives": [
         "Ordenar por una columna",
         "Orden multinivel",
-        "MAX zur valores máximos"
+        "MAX para valores máximos"
       ],
       "estimated_minutes": 8,
       "prerequisites": [],
@@ -3091,7 +3091,7 @@
     },
     {
       "title": "Filtros y Autofiltros",
-      "description": "Aplica filtros zur mostrar solo los datos que cumplan ciertos criterios.",
+      "description": "Aplica filtros para mostrar solo los datos que cumplan ciertos criterios.",
       "template": {
         "cols": 4,
         "rows": 9,
@@ -3219,7 +3219,7 @@
           ]
         ]
       },
-      "instructions": "1. Marca ✓ en los productos con ventas mayores a $10,000.\n2. Verwende =ZÄHLENWENN(C2:C8;\">10000\") zur contar productos > $10,000.\n3. En Excel usarías: Datos > Filtro > Filtros de número > Mayor que.",
+      "instructions": "1. Marca ✓ en los productos con ventas mayores a $10,000.\n2. Usa =ZÄHLENWENN(C2:C8;\">10000\") para contar productos > $10,000.\n3. En Excel usarías: Datos > Filtro > Filtros de número > Mayor que.",
       "order": 25,
       "formulaHint": "=ZÄHLENWENN(C2:C8;\">10000\")",
       "learningObjectives": [
@@ -3355,7 +3355,7 @@
           ]
         ]
       },
-      "instructions": "1. Calcula Total = Precio × Cantidad zur cada producto.\n2. En Total general, usa =SUMME(D2:D6).\n3. En Excel: selecciona A1:D6 y presiona Ctrl+T zur convertir en Tabla. ¡Los totales se agregan automáticamente!",
+      "instructions": "1. Calcula Total = Precio × Cantidad para cada producto.\n2. En Total general, usa =SUMME(D2:D6).\n3. En Excel: selecciona A1:D6 y presiona Ctrl+T para convertir en Tabla. ¡Los totales se agregan automáticamente!",
       "order": 26,
       "formulaHint": "=C2*B2, =SUMME(D2:D6)",
       "learningObjectives": [
