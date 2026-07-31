@@ -8,8 +8,6 @@
 
 > Interaktives Excel-Lernportal — Praxisorientiertes Training mit direktem Feedback und adaptiven Lernpfaden.
 
-![Excel-lenz Plattform](docs/screen.jpg)
-
 ---
 
 ## Über das Projekt
@@ -26,6 +24,8 @@ Traditionelles Excel-Lernen leidet unter drei Problemen: **kein direktes Feedbac
 | **Sofortiges Feedback** | Automatische Zell-für-Zell-Korrektur zeigt genau, was falsch ist — mit Hinweisen zur Verbesserung |
 | **Adaptive Lernpfade** | Spaced Repetition und Fähigkeitsanalyse passen die Übungsempfehlungen individuell an |
 | **Micro-Learning** | Übungen sind in 5-15 Minuten abschließbar — ideal für den Arbeitsalltag |
+
+![Excel-lenz Plattform](docs/screen.jpg)
 
 ### Für wen ist Excel-lenz?
 
