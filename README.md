@@ -14,7 +14,7 @@
 
 ## Über das Projekt
 
-Excel-lenz ist eine browserbasierte Lernplattform, die Excel-Übungen in einer realistischen Tabellenkalkulationsumgebung bereitstellt. Statt passiver Video-Tutorials oder statischer PDFs arbeitet der Lernende direkt in einem vollständigen Excel-Simulator — mit Ribbon-Interface, Formel-Engine und automatischer Korrektur in Echtzeit.
+Excel-lenz ist eine browserbasierte Lernplattform, die Excel-Übungen in einer realistischen Tabellenkalkulationsumgebung bereitstellt. Statt passiver Video-Tutorials oder statischer PDFs arbeitet der Lernende direkt in einem vollständigen Excel-Simulator — mit Ribbon-Interface, Formel-Engine und automatischer Korrektur.
 
 ### Warum Excel-lenz?
 
@@ -61,7 +61,7 @@ Die Plattform umfasst vier aufeinander aufbauende Kurse, die vom absoluten Excel
 | **Excel für Anfänger** | Einsteiger | Zellen, Formeln, SUMME, MITTELWERT, Formatierung, einfache Diagramme |
 | **Datenanalyse & Statistik** | Mittel | WENN, SVERWEIS, XVERWEIS, Pivot-Tabellen, Filter, Sortieren |
 | **Fortgeschrittene Techniken** | Fortgeschritten | Bedingte Formatierung, Datenvalidierung, komplexe Formeln, Diagramme |
-| **Datenbank & Business Intelligence** | Experte | Power Query, Datenmodellierung, Business Intelligence mit Excel |
+| **Datenbank & Business Intelligence** | Experte | Gemischte Bezüge, DATUM, TEXT, SVERWEIS mit Mehrfachkriterien, Datenbankfunktionen (DSUMME, DMITTELWERT, BDSUMMA) |
 
 ---
 
