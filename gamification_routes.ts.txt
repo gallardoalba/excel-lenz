@@ -55,19 +55,19 @@ export function awardXP(userId: string, score: number): number {
   let xp = XP_PER_EXERCISE;
   if (score >= 100) xp += XP_BONUS_PERFECT;
 
-  // Update streak (use local date to avoid timezone issues)
-  const today = new Date().toLocaleDateString('sv-SE'); // YYYY-MM-DD in local timezone
+  // Update streak
+  const today = new Date().toISOString().split('T')[0];
   const ux = db.prepare('SELECT * FROM user_xp WHERE user_id = ?').get(userId) as any;
   let streak = ux?.streak_days || 0;
 
   if (ux?.last_activity_date) {
+    const lastDate = new Date(ux.last_activity_date);
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toLocaleDateString('sv-SE');
 
     if (ux.last_activity_date === today) {
       // Already active today, no streak change
-    } else if (ux.last_activity_date === yesterdayStr) {
+    } else if (ux.last_activity_date === yesterday.toISOString().split('T')[0]) {
       streak += 1;
     } else {
       streak = 1;

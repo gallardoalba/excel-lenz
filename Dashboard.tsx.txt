@@ -19,7 +19,7 @@ const BADGE_ICONS: Record<string, React.ReactNode> = {
 };
 
 function levelTitle(level: number): string {
-  if (level >= 20) return 'Meister-Analyst';
+  if (level >= 20) return 'Master-Analyst';
   if (level >= 15) return 'Senior Analyst';
   if (level >= 10) return 'Analyst';
   if (level >= 7) return 'Junior Analyst';

@@ -217,7 +217,7 @@ export default function Comments({ exerciseId }: CommentsProps) {
                           background: 'transparent', border: 'none', color: 'var(--text-muted)',
                           cursor: 'pointer', fontSize: '0.7rem',
                         }}>
-                        <Trash2 size={12} />
+                        🗑️
                       </button>
                     )}
                   </div>

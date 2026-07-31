@@ -144,23 +144,4 @@ router.get('/students/:id', (req: Request, res: Response) => {
   res.json({ ...student as object, progress });
 });
 
-// ── ANALYTICS ───────────────────────────────────────────────
-
-// Get aggregated analytics across all students
-router.get('/analytics', (_req: Request, res: Response) => {
-  const db = getDb();
-  const stats = db.prepare(`
-    SELECT e.id, e.title, c.title as course_title,
-           COUNT(p.id) as attempts,
-           ROUND(AVG(p.score), 1) as avg_score,
-           ROUND(SUM(CASE WHEN p.score < 50 THEN 1 ELSE 0 END) * 100.0 / MAX(COUNT(p.id), 1), 1) as fail_rate
-    FROM exercises e
-    JOIN courses c ON c.id = e.course_id
-    LEFT JOIN progress p ON p.exercise_id = e.id
-    GROUP BY e.id
-    ORDER BY c.title, e.order_index
-  `).all();
-  res.json(stats);
-});
-
 export default router;

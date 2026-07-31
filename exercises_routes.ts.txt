@@ -7,18 +7,6 @@ import { v4 as uuid } from 'uuid';
 
 const router = Router();
 
-// Shared answer comparison — used for both scoring and feedback
-function isCorrectAnswer(userVal: any, solVal: any): boolean {
-  const userNum = userVal !== null && userVal !== undefined && userVal !== '' ? Number(userVal) : null;
-  const solNum = solVal !== null && solVal !== undefined && solVal !== '' ? Number(solVal) : null;
-
-  if (userNum !== null && solNum !== null && !isNaN(userNum) && !isNaN(solNum)) {
-    return Math.abs(userNum - solNum) < 0.01;
-  }
-  // String comparison: trim + case-insensitive
-  return String(userVal ?? '').trim().toLowerCase() === String(solVal ?? '').trim().toLowerCase();
-}
-
 // ── Mastery check: can user access this exercise? ──────────
 
 router.get('/:id/mastery', authMiddleware, (req: Request, res: Response) => {
@@ -111,15 +99,28 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
 
   if (solution.data && data) {
     const taskCols = JSON.parse(exercise.template_data || '{}').taskCols || [];
-    const totalCells = solution.data.length * taskCols.length;
+    let totalCells = 0;
     let correctCells = 0;
 
     for (const taskCol of taskCols) {
-      for (let row = 0; row < solution.data.length; row++) {
+      const maxRow = Math.min(solution.data.length, data.length);
+      for (let row = 0; row < maxRow; row++) {
+        totalCells++;
         const userVal = data[row]?.[taskCol];
         const solVal = solution.data[row]?.[taskCol];
 
-        if (isCorrectAnswer(userVal, solVal)) correctCells++;
+        // Flexible comparison: numbers, strings, and null/undefined
+        const userNum = userVal !== null && userVal !== undefined && userVal !== '' ? Number(userVal) : null;
+        const solNum = solVal !== null && solVal !== undefined && solVal !== '' ? Number(solVal) : null;
+
+        if (userNum !== null && solNum !== null && !isNaN(userNum) && !isNaN(solNum)) {
+          // Compare as numbers with tolerance
+          if (Math.abs(userNum - solNum) < 0.01) correctCells++;
+        } else {
+          // Normalize text: trim whitespace, lowercase for case-insensitive comparison
+          const normalize = (val: any) => String(val ?? '').trim().toLowerCase();
+          if (normalize(userVal) === normalize(solVal)) correctCells++;
+        }
       }
     }
     score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
@@ -161,16 +162,20 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     VALUES (?, ?, ?, ?, ?, ?, ?)
   `).run(userId, req.params.id, srResult.ef, srResult.interval, srResult.repetitions, nextReview.toISOString(), score);
 
-  // Build cell-level feedback (use same comparison as scoring)
+  // Build cell-level feedback
   const details: { row: number; col: number; expected: any; got: any }[] = [];
   if (solution.data && data && score < 100) {
     const taskCols = JSON.parse(exercise.template_data || '{}').taskCols || [];
     for (const taskCol of taskCols) {
-      for (let row = 0; row < solution.data.length; row++) {
+      for (let row = 0; row < Math.min(solution.data.length, data.length); row++) {
         const userVal = data[row]?.[taskCol];
         const solVal = solution.data[row]?.[taskCol];
-        if (!isCorrectAnswer(userVal, solVal)) {
-          details.push({ row, col: taskCol, expected: solVal, got: userVal ?? null });
+        const userNum = userVal !== null && userVal !== undefined ? Number(userVal) : null;
+        const solNum = solVal !== null && solVal !== undefined ? Number(solVal) : null;
+        const isCorrect = (userNum !== null && solNum !== null && Math.abs(userNum - solNum) < 0.01) ||
+                          (String(userVal ?? '') === String(solVal ?? ''));
+        if (!isCorrect) {
+          details.push({ row, col: taskCol, expected: solVal, got: userVal });
         }
       }
     }
