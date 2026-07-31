@@ -42,7 +42,8 @@ export function seed(): void {
   // Only seed users if table is empty
   const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get() as { count: number };
   if (userCount.count === 0) {
-    const hash = bcrypt.hashSync('password123', 10);
+    const hash = bcrypt.hashSync(process.env.SEED_PASSWORD || 'devpassword', 10);
+    const seedPwd = process.env.SEED_PASSWORD || 'devpassword';
     const insertUser = db.prepare(
       'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
     );
@@ -97,8 +98,8 @@ export function seed(): void {
   }
 
   console.log(`✅ Database seeded (${ALL_COURSES.length} Kurse, ${total} Übungen)`);
-  console.log('   Teacher: dozent@excel-lenz.edu / password123');
-  console.log('   Student: student@excel-lenz.edu / password123');
+  console.log(`   Teacher: dozent@excel-lenz.edu / ${seedPwd}`);
+  console.log(`   Student: student@excel-lenz.edu / ${seedPwd}`);
 
   const badges = [
     ['ersteschritte', 'Fundament', 'Erste Übung gemeistert', 'Award', 'exercises', 1],
