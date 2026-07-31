@@ -110,22 +110,12 @@ npm run dev
 
 Klassische Three-Tier-Architektur mit REST-API und JWT-Authentifizierung.
 
-```
-┌─────────────────────────────────────────────┐
-│  Client (Browser)                           │
-│  React 18 · TypeScript · Vite               │
-│  Handsontable · HyperFormula · Lucide       │
-├─────────────────────────────────────────────┤
-│  HTTP REST · JWT Bearer Auth                │
-├─────────────────────────────────────────────┤
-│  Server (Node.js)                           │
-│  Express 4 · better-sqlite3 · tsx           │
-│  Auth · Courses · Exercises · Gamification  │
-├─────────────────────────────────────────────┤
-│  Datenbank                                  │
-│  SQLite (dev) / PostgreSQL (prod)           │
-└─────────────────────────────────────────────┘
-```
+| Schicht | Technologie |
+|---------|-------------|
+| **Client** | React 18 · TypeScript · Vite · Handsontable · HyperFormula |
+| **API** | HTTP REST · JWT Bearer Auth |
+| **Server** | Express 4 · better-sqlite3 · tsx · Auth · Courses · Exercises |
+| **Datenbank** | SQLite (Entwicklung) · PostgreSQL (Produktion) |
 
 ---
 
