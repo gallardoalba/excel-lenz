@@ -3532,7 +3532,7 @@
           ]
         ]
       },
-      "instructions": "1. Ø A = 85.75, Ø B = 72.75.\n2. Differenz = 13 Punkte.\n3. Effektgröße (Cohens d) = Diff/Std.Abw.(gepoolt) ≈ 1.66.\n4. d > 0.8 = großer Effekt → signifikanter Unterschied!",
+      "instructions": "1. Ø A = 85.75, Ø B = 72.75.\n2. Differenz = 13 Punkte.\n3. Effektgröße (Cohens d) = Diff/Std.Abw.(gepoolt) ≈ 2.91.\n4. d > 0.8 = großer Effekt → signifikanter Unterschied!",
       "order": 30,
       "formulaHint": "Ø A: =MITTELWERT(B2:B5), Ø B: =MITTELWERT(B6:B9)",
       "learningObjectives": [

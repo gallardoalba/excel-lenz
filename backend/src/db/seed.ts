@@ -46,8 +46,8 @@ export function seed(): void {
   const insertUser = db.prepare(
     'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
   );
-  insertUser.run(uuid(), 'profesor@excel-lenz.edu', hash, 'Profesor García', 'teacher');
-  insertUser.run(uuid(), 'alumno@excel-lenz.edu', hash, 'María López', 'student');
+  insertUser.run(uuid(), 'dozent@excel-lenz.edu', hash, 'Lehrer Müller', 'teacher');
+  insertUser.run(uuid(), 'student@excel-lenz.edu', hash, 'Anna Schmidt', 'student');
 
   const insertEx = db.prepare(
     'INSERT INTO exercises (id, course_id, title, description, template_data, solution_data, instructions, order_index) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
@@ -92,8 +92,8 @@ export function seed(): void {
   }
 
   console.log(`✅ Database seeded (${ALL_COURSES.length} Kurse, ${total} Übungen)`);
-  console.log('   Teacher: profesor@excel-lenz.edu / password123');
-  console.log('   Student: alumno@excel-lenz.edu / password123');
+  console.log('   Teacher: dozent@excel-lenz.edu / password123');
+  console.log('   Student: student@excel-lenz.edu / password123');
 
   const badges = [
     ['ersteschritte', 'Fundament', 'Erste Übung gemeistert', 'Award', 'exercises', 1],
@@ -112,7 +112,7 @@ export function seed(): void {
   for (const b of badges) {
     insertBadge.run(b[0], b[1], b[2], b[3], b[4], b[5]);
   }
-  console.log('   Badges: 9 insignias creadas');
+  console.log('   Badges: 9 Abzeichen erstellt');
 }
 
 seed();
