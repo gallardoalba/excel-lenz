@@ -71,7 +71,7 @@ export default function FunctionMap({ masteredSkills, inProgress }: Props) {
           const c = colors[status];
           return (
             <g key={node.name}>
-              <rect x={node.x} y={node.y} width={90} height={28} rx={6}
+              <rect x={node.x} y={node.y} width={110} height={28} rx={6}
                 fill={c.fill} stroke={c.stroke} strokeWidth={1.5}
               />
               <text x={node.x + 45} y={node.y + 18}

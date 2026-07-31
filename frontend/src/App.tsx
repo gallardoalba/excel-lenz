@@ -58,7 +58,7 @@ export default function App() {
   if (loading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <p style={{ color: 'var(--text-secondary)' }}>Wird geladen...</p>
+        <ExcelSpinner text="Wird geladen..." />
       </div>
     );
   }

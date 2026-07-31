@@ -36,7 +36,7 @@ export const COURSE_TRANSLATIONS: Record<string, { title: string; description: s
 export const DIFFICULTY_LABELS: Record<string, string> = {
   beginner: 'Anfänger',
   intermediate: 'Fortgeschritten',
-  advanced: 'Experte',
+  advanced: 'Fortgeschritten',
   expert: 'Experte',
 };
 

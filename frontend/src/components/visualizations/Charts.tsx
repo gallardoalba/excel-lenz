@@ -36,8 +36,11 @@ export function ScoreProgressChart() {
     return `${i === 0 ? 'M' : 'L'}${x},${y}`;
   }).join(' ');
 
-  // Y-axis labels
-  const yTicks = [0, 25, 50, 75, 100].filter(v => v >= minScore && v <= maxScore);
+  // Y-axis ticks — generate dynamically from score range
+  const tickCount = 4;
+  const yTicks = Array.from({ length: tickCount + 1 }, (_, i) =>
+    Math.round(minScore + (i / tickCount) * yRange)
+  );
 
   return (
     <div className="card" style={{ padding: '16px', overflow: 'hidden' }}>

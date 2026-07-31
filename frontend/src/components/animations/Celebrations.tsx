@@ -63,7 +63,7 @@ export function BadgeModal({
           {badge.icon}
         </div>
         <h2 style={{ color: 'var(--primary)', marginBottom: 4 }}>
-          <Award size={20} style={{marginRight:6, verticalAlign:'middle'}} />Badge erhalten!
+          <Award size={20} style={{marginRight:6, verticalAlign:'middle'}} />Neues Abzeichen
         </h2>
         <h3 style={{ marginBottom: 8 }}>{badge.name}</h3>
         <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>{badge.description}</p>
