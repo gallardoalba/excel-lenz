@@ -113,7 +113,11 @@ export function StreakCalendar() {
 
       // Calculate current streak
       let streak = 0;
-      for (let i = grid.length - 1; i >= 0; i--) {
+      // If today has no activity, start counting from yesterday
+    let startIndex = grid.length - 1;
+    if (grid[startIndex].count === 0) startIndex--;
+
+    for (let i = startIndex; i >= 0; i--) {
         if (grid[i].count > 0) streak++;
         else break;
       }

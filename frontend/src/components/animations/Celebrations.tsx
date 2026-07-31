@@ -109,7 +109,7 @@ export function XPFlying({
       fontSize: '1.1rem', fontWeight: 700, color: 'var(--primary)',
       pointerEvents: 'none', animation: 'xpFly 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
     }}>
-      <Trophy size={16} style={{marginRight:4, verticalAlign:'middle'}} />+{xp} KP
+      <Trophy size={16} style={{marginRight:4, verticalAlign:'middle'}} />+{xp} XP
       <style>{`
         @keyframes xpFly {
           0% { transform: translateY(0) scale(1); opacity: 1; }
@@ -127,7 +127,7 @@ export function ExcelSpinner({ text = 'Wird geladen...' }: { text?: string }) {
     <div style={{
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       justifyContent: 'center', padding: 60, gap: 20,
-    }}>
+    }} role="status" aria-live="polite" aria-label={text}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 20px)', gap: 4 }}>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
           <div key={i} style={{

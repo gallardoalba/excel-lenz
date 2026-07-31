@@ -115,7 +115,7 @@ export default function App() {
               title={`Weitermachen: ${lastExercise.title}`}
             >
               <Play size={13} />
-              <span className="navbar-continue-label">Weiter</span>
+              <span className="navbar-continue-label">Lernen fortsetzen</span>
             </Link>
           )}
 

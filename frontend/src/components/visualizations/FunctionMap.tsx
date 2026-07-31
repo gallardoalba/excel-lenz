@@ -58,8 +58,8 @@ export default function FunctionMap({ masteredSkills, inProgress }: Props) {
             if (!from) return null;
             return (
               <line key={`${dep}-${node.name}`}
-                x1={from.x + 45} y1={from.y + 14}
-                x2={node.x + 5} y2={node.y + 14}
+                  x1={from.x + 90} y1={from.y + 14}
+                  x2={node.x} y2={node.y + 14}
                 stroke="#ccc" strokeWidth={1.5} strokeDasharray="4,2"
               />
             );
