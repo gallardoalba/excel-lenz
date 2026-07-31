@@ -5,7 +5,7 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "cd backend && npx tsx src/server.ts",
     "dev:frontend": "cd frontend && npx vite",
-    "db:seed": "cd backend && rm -f src/excel-lenz.db && npx tsx src/db/seed.ts",
+    "db:seed": "cd backend && npx tsx src/db/seed.ts",
     "install:all": "cd backend && npm install && cd ../frontend && npm install"
   },
   "devDependencies": {

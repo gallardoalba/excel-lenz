@@ -61,6 +61,12 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Global error handler
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  console.error('Unhandled error:', err.message);
+  res.status(500).json({ error: 'Interner Serverfehler' });
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Excel-lenz backend running on http://localhost:${PORT}`);
 });

@@ -13,7 +13,7 @@ services:
     environment:
       POSTGRES_DB: excel-lenz
       POSTGRES_USER: excel-lenz
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-excel-lenz_secret}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
@@ -37,7 +37,7 @@ services:
       DB_TYPE: ${DB_TYPE:-sqlite}
       DB_PATH: /app/data/excel-lenz.db
       DATABASE_URL: ${DATABASE_URL:-}
-      JWT_SECRET: ${JWT_SECRET:-excel-lenz-jwt-secret-change-me}
+      JWT_SECRET: ${JWT_SECRET}
     volumes:
       - appdata:/app/data
     depends_on:

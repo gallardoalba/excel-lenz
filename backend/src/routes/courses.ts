@@ -98,7 +98,6 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
       moduleMap[modId] = {
         id: modId,
         title: modMeta?.title || modTitle,
-        description: modMeta?.description || '',
         sections: {},
       };
     }

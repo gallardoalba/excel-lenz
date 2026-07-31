@@ -23,7 +23,7 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-router.post('/register', (req: Request, res: Response) => {
+router.post('/register', async (req: Request, res: Response) => {
   const { email, password, name } = req.body;
   if (!email || !password || !name) {
     res.status(400).json({ error: 'Email, contraseña y nombre son obligatorios' });
@@ -43,13 +43,12 @@ router.post('/register', (req: Request, res: Response) => {
   const db = getDb();
   const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
   if (existing) {
-    // Generic message to prevent email enumeration
     res.status(409).json({ error: 'Registrierung fehlgeschlagen. Überprüfe deine Eingaben.' });
     return;
   }
 
   const id = uuid();
-  const hash = bcrypt.hashSync(password, 10);
+  const hash = await bcrypt.hash(password, 10);
   db.prepare(
     'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
   ).run(id, email, hash, name, 'student');
@@ -58,7 +57,7 @@ router.post('/register', (req: Request, res: Response) => {
   res.status(201).json({ token, user: { id, email, name, role: 'student' } });
 });
 
-router.post('/login', (req: Request, res: Response) => {
+router.post('/login', async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   // Rate limiting
@@ -78,7 +77,7 @@ router.post('/login', (req: Request, res: Response) => {
     'SELECT id, email, password_hash, name, role FROM users WHERE email = ?'
   ).get(email) as { id: string; email: string; password_hash: string; name: string; role: string } | undefined;
 
-  if (!user || !bcrypt.compareSync(password, user.password_hash)) {
+  if (!user || !(await bcrypt.compare(password, user.password_hash))) {
     res.status(401).json({ error: 'Credenciales inválidas' });
     return;
   }

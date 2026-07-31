@@ -1,14 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import crypto from 'crypto';
 
-// Generate a random secret on first import if not configured — survives restarts
-// but NOT process restarts. In production, ALWAYS set JWT_SECRET env var.
-const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString('hex');
+const JWT_SECRET = process.env.JWT_SECRET;
 
-if (!process.env.JWT_SECRET) {
-  console.warn('⚠️  JWT_SECRET not set — using randomly generated key. Tokens will be invalidated on restart.');
+if (!JWT_SECRET) {
+  throw new Error('FATAL: JWT_SECRET environment variable is required. Set it before starting the server.');
 }
+
+// TypeScript: after the throw, JWT_SECRET is narrowed but TS doesn't know that
+const SECRET: string = JWT_SECRET!;
 
 export interface AuthPayload {
   userId: string;
@@ -25,7 +25,7 @@ declare global {
 }
 
 export function generateToken(payload: AuthPayload): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '24h' });
+  return jwt.sign(payload, SECRET, { expiresIn: '24h' });
 }
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction): void {
@@ -37,7 +37,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
 
   const token = header.split(' ')[1];
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as AuthPayload;
+    const decoded = jwt.verify(token, SECRET) as AuthPayload;
     req.user = decoded;
     next();
   } catch {
@@ -49,7 +49,7 @@ export function optionalAuth(req: Request, _res: Response, next: NextFunction): 
   const header = req.headers.authorization;
   if (header && header.startsWith('Bearer ')) {
     try {
-      req.user = jwt.verify(header.split(' ')[1], JWT_SECRET) as AuthPayload;
+      req.user = jwt.verify(header.split(' ')[1], SECRET) as AuthPayload;
     } catch {
       // ignore invalid token for optional auth
     }
