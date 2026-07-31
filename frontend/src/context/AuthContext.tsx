@@ -28,7 +28,12 @@ async function apiFetch(path: string, options: RequestInit = {}) {
   };
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+  } catch {
+    throw new Error('Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung.');
+  }
   const data = res.status === 204 ? null : await res.json();
   if (!res.ok) throw new Error(data?.error || 'Verbindungsfehler');
   return data;

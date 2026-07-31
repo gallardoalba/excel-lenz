@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LogIn, AlertTriangle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -10,9 +10,18 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const errorRef = useRef<HTMLDivElement>(null);
+
+  // Focus error message for screen readers
+  useEffect(() => {
+    if (error && errorRef.current) {
+      errorRef.current.focus();
+    }
+  }, [error]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (loading) return; // Prevent double submission
     setError('');
     setLoading(true);
     try {
@@ -31,7 +40,7 @@ export default function Login() {
       <p className="subtitle">Melden Sie sich an, um weiterzulernen</p>
 
       {error && (
-        <div className="card" style={{ borderColor: 'var(--danger)', marginBottom: 20, background: 'var(--danger-light)' }}>
+        <div className="card" ref={errorRef} tabIndex={-1} style={{ borderColor: 'var(--danger)', marginBottom: 20, background: 'var(--danger-light)', outline: 'none' }}>
           <p style={{ color: 'var(--danger)', fontSize: '0.9rem' }}><AlertTriangle size={14} style={{marginRight:4, verticalAlign:'middle'}} />{error}</p>
         </div>
       )}

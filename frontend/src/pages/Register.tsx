@@ -28,6 +28,7 @@ export default function Register() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (loading) return; // Prevent double submission
     setError('');
 
     if (password !== confirmPassword) {

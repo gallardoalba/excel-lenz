@@ -217,7 +217,7 @@ export default function App() {
           </div>
         </div>
         <div className="footer-bottom">
-          © 2026 Excel-lenz. Alle Rechte vorbehalten.
+          © {new Date().getFullYear()} Excel-lenz. Alle Rechte vorbehalten.
         </div>
       </footer>
 
