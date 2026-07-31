@@ -54,7 +54,7 @@ export function ScoreProgressChart() {
           );
         })}
         {/* Line */}
-        <path d={pathD} fill="none" stroke="var(--tertiary, #2563EB)" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"/>
+        <path d={pathD} fill="none" stroke="var(--primary, #6366f1)" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"/>
         {/* Area fill */}
         <path d={`${pathD} L${pad.l + (points.length - 1) * xStep},${pad.t + ph} L${pad.l},${pad.t + ph} Z`}
           fill="url(#scoreGrad)" opacity={0.15}/>

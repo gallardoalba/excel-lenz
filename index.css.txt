@@ -1451,7 +1451,7 @@ body.dark .spreadsheet-toast {
 .ribbon-tab:hover { opacity: 1; background: rgba(255,255,255,0.08); }
 .ribbon-tab.active {
   opacity: 1;
-  color: var(--text);
+  color: #222;
   background: #f0f0f0;
   font-weight: 600;
 }

@@ -97,8 +97,7 @@ export function XPFlying({
     const rect = sourceRef.current.getBoundingClientRect();
     setPos({ x: rect.left + rect.width / 2 - 30, y: rect.top });
     setFlying(true);
-    const timer = setTimeout(() => setFlying(false), 1500);
-    return () => clearTimeout(timer);
+    setTimeout(() => setFlying(false), 1500);
   }, [trigger]);
 
   if (!flying || reducedMotion) return null;
@@ -149,3 +148,36 @@ export function ExcelSpinner({ text = 'Wird geladen...' }: { text?: string }) {
     </div>
   );
 }
+
+// CSS Transitions Mixin (to add to index.css)
+export const globalAnimations = `
+  /* Smooth transitions */
+  a, button, .card, .btn, input, select, textarea {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Card hover lift */
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Button pulse on hover */
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  /* Shimmer skeleton */
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, var(--border) 25%, var(--border-light) 50%, var(--border) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+`;
