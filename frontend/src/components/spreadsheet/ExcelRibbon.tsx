@@ -320,11 +320,9 @@ export default function ExcelRibbon({
                 <ToggleBtn icon={<AlignLeftIcon />} active={activeFormat.hAlign === 'left'} onClick={() => setAlign('left')} title="Linksbündig" />
                 <ToggleBtn icon={<AlignCenterIcon />} active={activeFormat.hAlign === 'center'} onClick={() => setAlign('center')} title="Zentriert" />
                 <ToggleBtn icon={<AlignRightIcon />} active={activeFormat.hAlign === 'right'} onClick={() => setAlign('right')} title="Rechtsbündig" />
-              </div>
-              <div className="ribbon-group-row" style={{ marginTop: 4 }}>
-                <ToggleBtn icon="⊤" active={activeFormat.vAlign === 'top'} onClick={() => onFormatChange({ vAlign: 'top' })} title="Oben ausrichten" />
-                <ToggleBtn icon="⊟" active={activeFormat.vAlign === 'middle' || !activeFormat.vAlign} onClick={() => onFormatChange({ vAlign: 'middle' })} title="Mittig ausrichten" />
-                <ToggleBtn icon="⊥" active={activeFormat.vAlign === 'bottom'} onClick={() => onFormatChange({ vAlign: 'bottom' })} title="Unten ausrichten" />
+                <ToggleBtn icon="⊤" active={activeFormat.vAlign === 'top'} onClick={() => onFormatChange({ vAlign: 'top' })} title="Oben" />
+                <ToggleBtn icon="⊟" active={activeFormat.vAlign === 'middle' || !activeFormat.vAlign} onClick={() => onFormatChange({ vAlign: 'middle' })} title="Mittig" />
+                <ToggleBtn icon="⊥" active={activeFormat.vAlign === 'bottom'} onClick={() => onFormatChange({ vAlign: 'bottom' })} title="Unten" />
               </div>
               <div className="ribbon-group-row" style={{ marginTop: 4 }}>
                 <ToggleBtn icon={<MergeIcon />} active={isMergeActive || false} onClick={() => onMerge?.()} title="Verbinden und zentrieren" />

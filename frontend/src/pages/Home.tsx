@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Trophy, Play, BookOpen, BarChart3, TrendingUp, GraduationCap, Zap, User, Clock, Award, Star, RefreshCw, HelpCircle } from 'lucide-react';
+import { Play, BookOpen, BarChart3, TrendingUp, GraduationCap, User, Clock, Award, Star, RefreshCw } from 'lucide-react';
 import { useAuth, apiFetch } from '../context/AuthContext';
 import { useTour, HOME_TOUR } from '../components/tour/OnboardingTour';
 import homeContent from '../data/home-content.json';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  Trophy: <Trophy size={24} />,
   User: <User size={24} />,
   Clock: <Clock size={24} />,
   Award: <Award size={24} />,
@@ -31,15 +30,19 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="hero">
-        <div className="hero-inner">
-          <span className="hero-badge"><Trophy size={14} style={{marginRight:4}} />Interaktives Lerninstitut für Excel</span>
-          <h1>
+      <section className="hero" style={{ padding: '120px 24px 80px' }}>
+        <div className="hero-inner" style={{ maxWidth: '900px' }}>
+          <span className="hero-badge">
+            Interaktives Lerninstitut für Excel
+          </span>
+          <h1 style={{ marginTop: '24px' }}>
             Excel lernen, das wirklich{' '}
-            <span className="highlight gradient-text">passt.</span>
+            <span style={{ color: 'var(--accent)' }}>passt.</span>
           </h1>
-          <p>Weil Bildung nur dann wirkt, wenn sie praxisnah ist. Unsere interaktiven Excel-Übungen passen sich Ihrem Niveau, Ihrem Tempo und Ihren Zielen an – für Studium, Beruf und persönliche Weiterentwicklung.</p>
-          <div className="hero-actions">
+          <p style={{ fontSize: '1.3rem', maxWidth: '680px', margin: '24px auto 0', color: 'var(--text-secondary)' }}>
+            Unsere interaktiven Excel-Übungen passen sich Ihrem Niveau, Ihrem Tempo und Ihren Zielen an.
+          </p>
+          <div className="hero-actions" style={{ marginTop: '40px' }}>
             <Link to="/courses" className="btn btn-primary btn-lg">
               Kurse entdecken
             </Link>
@@ -50,8 +53,8 @@ export default function Home() {
 
           {/* Continue where you left off */}
           {lastExercise && (
-            <div className="continue-learning">
-              <Link to={`/exercises/${lastExercise.id}`} className="continue-learning-card">
+            <div style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
+              <Link to={`/exercises/${lastExercise.id}`} className="continue-learning-card" style={{ boxShadow: 'var(--shadow-sm)', border: 'none' }}>
                 <span className="continue-icon"><Play size={20} /></span>
                 <div>
                   <div className="continue-label">Weitermachen</div>
@@ -61,41 +64,27 @@ export default function Home() {
               </Link>
             </div>
           )}
-          <div className="hero-illustration">
-            <div className="hero-card">
-              <div className="hero-card-icon hc-green"><BarChart3 size={20} /></div>
-              <span>Excel-Übungen live im Browser</span>
-            </div>
-            <div className="hero-card">
-              <div className="hero-card-icon hc-amber"><GraduationCap size={20} /></div>
-              <span>Mit Zertifikat</span>
-            </div>
-            <div className="hero-card">
-              <div className="hero-card-icon hc-green"><Zap size={20} /></div>
-              <span>Sofortiges Feedback</span>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* STATISTICS BAR */}
-      <section className="stats-bar">
-        <div className="stats-grid">
-          <div className="stat-item">
-            <div className="stat-number">10+</div>
-            <div className="stat-label">Jahre Bildungserfahrung</div>
+      {/* STATISTICS — Light section, big numbers, no dark box */}
+      <section className="section" style={{ padding: '80px 24px', borderTop: '1px solid var(--border-light)', borderBottom: '1px solid var(--border-light)' }}>
+        <div className="stats-grid" style={{ maxWidth: 'var(--content-max)', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px', textAlign: 'center' }}>
+          <div className="stat-item" style={{ padding: '8px' }}>
+            <div style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: '800', color: 'var(--text)', lineHeight: '1.1' }}>10+</div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>Jahre Bildungserfahrung</div>
           </div>
-          <div className="stat-item">
-            <div className="stat-number">200+</div>
-            <div className="stat-label">Interaktive Übungen</div>
+          <div className="stat-item" style={{ padding: '8px' }}>
+            <div style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: '800', color: 'var(--text)', lineHeight: '1.1' }}>200+</div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>Interaktive Übungen</div>
           </div>
-          <div className="stat-item">
-            <div className="stat-number">15.000+</div>
-            <div className="stat-label">Zufriedene Lernende</div>
+          <div className="stat-item" style={{ padding: '8px' }}>
+            <div style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: '800', color: 'var(--text)', lineHeight: '1.1' }}>15.000+</div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>Zufriedene Lernende</div>
           </div>
-          <div className="stat-item">
-            <div className="stat-number">98%</div>
-            <div className="stat-label">Weiterempfehlungsrate</div>
+          <div className="stat-item" style={{ padding: '8px' }}>
+            <div style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: '800', color: 'var(--text)', lineHeight: '1.1' }}>98%</div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>Weiterempfehlungsrate</div>
           </div>
         </div>
       </section>

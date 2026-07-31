@@ -1,0 +1,767 @@
+{
+  "title": "Excel für Anfänger",
+  "description": "Strukturierter Lehrgang: von der Excel-Oberfläche bis zu grundlegenden Formeln und Funktionen. 5 Module mit praktischen Übungen.",
+  "difficulty": "beginner",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
+      "description": "Vertrautwerden mit der Excel-Oberfläche, Grundkonzepten und Dateiverwaltung.",
+      "sections": [
+        { "id": "1.1", "title": "Was ist Excel und wozu dient es?", "desc": "Unterschied zwischen Arbeitsmappe und Tabellenblatt. Haupteinsatzgebiete." },
+        { "id": "1.2", "title": "Die Benutzeroberfläche", "desc": "Menüband, Symbolleiste für Schnellzugriff, Bearbeitungsleiste und Namensfeld." },
+        { "id": "1.3", "title": "Grundlegende Navigation", "desc": "Bewegung zwischen Zellen und Auswahl von Bereichen." },
+        { "id": "1.4", "title": "Dateiverwaltung", "desc": "Erstellen, Speichern und Öffnen von Arbeitsmappen. Dateiformate." }
+      ]
+    },
+    {
+      "id": "m2",
+      "title": "Modul 2: Dateneingabe und -bearbeitung",
+      "description": "Daten effizient eingeben, bearbeiten und organisieren.",
+      "sections": [
+        { "id": "2.1", "title": "Datentypen", "desc": "Eingabe von Text, Zahlen und Datumsangaben. Automatische Ausrichtung." },
+        { "id": "2.2", "title": "Bearbeitungswerkzeuge", "desc": "Inhalte ändern, Rückgängig (Strg+Z), Wiederholen (Strg+Y)." },
+        { "id": "2.3", "title": "AutoAusfüllen und Reihen", "desc": "Ausfüllkästchen. Reihen für Tage, Monate, Zahlenfolgen." },
+        { "id": "2.4", "title": "Kopieren, Ausschneiden und Einfügen", "desc": "Zwischenablage. Inhalte einfügen-Optionen." }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "Modul 3: Zellformatierung und -stil",
+      "description": "Ein professionelles und lesbares Erscheinungsbild für Tabellenblätter erstellen.",
+      "sections": [
+        { "id": "3.1", "title": "Grundlegende Formatierung", "desc": "Schriftarten, Rahmen, Hintergrundfarbe und Ausrichtung." },
+        { "id": "3.2", "title": "Zahlen formatieren", "desc": "Währung, Buchhaltung, Prozent, Datum, Dezimalstellen." },
+        { "id": "3.3", "title": "Zeilen und Spalten anpassen", "desc": "Breite/Höhe ändern. Ausblenden und Einblenden." },
+        { "id": "3.4", "title": "Grundlegende bedingte Formatierung", "desc": "Zellen hervorheben. Datenbalken und Farbskalen." }
+      ]
+    },
+    {
+      "id": "m4",
+      "title": "Modul 4: Grundlegende Formeln und Funktionen",
+      "description": "Automatisierte mathematische Berechnungen durchführen.",
+      "sections": [
+        { "id": "4.1", "title": "Grundlagen der Formeln", "desc": "Grundlegende Syntax (=). Mathematische Operatoren." },
+        { "id": "4.2", "title": "Bezüge", "desc": "Relative (A1) vs. Absolute ($A$1) und Gemischte ($A1, A$1)." },
+        { "id": "4.3", "title": "Statistische und mathematische Funktionen", "desc": "SUMME, MITTELWERT, MIN, MAX, ANZAHL, ANZAHL2." },
+        { "id": "4.4", "title": "Logische Funktionen", "desc": "WENN-Funktion. Fehlerprüfung und Korrektur." }
+      ]
+    },
+    {
+      "id": "m5",
+      "title": "Modul 5: Einfache Datenanalyse",
+      "description": "Daten mit bedingten Funktionen und grundlegenden Suchfunktionen analysieren.",
+      "sections": [
+        { "id": "5.1", "title": "Bedingte Mathematik", "desc": "ZÄHLENWENN, SUMMEWENN — Berechnungen mit Bedingungen." },
+        { "id": "5.2", "title": "Einfache Suchfunktionen", "desc": "SVERWEIS für grundlegende Datensuche." },
+        { "id": "5.3", "title": "Text- und Datumsfunktionen", "desc": "LINKS, RECHTS, TEIL, VERKETTEN. HEUTE, MONATSENDE." },
+        { "id": "5.4", "title": "Fehlerbehandlung", "desc": "WENNFEHLER für saubere Tabellen." }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "title": "Was ist Excel?",
+      "description": "Lernen Sie die Grundkomponenten von Excel kennen: Arbeitsmappen, Tabellenblätter und Zellen.",
+      "template": {
+        "cols": 3, "rows": 6,
+        "headers": ["Komponente", "Beschreibung", "Beispiel"],
+        "data": [
+          ["Arbeitsmappe", "Die gesamte Excel-Datei", ".xlsx-Datei"],
+          ["Tabellenblatt", null, "Tabelle1"],
+          ["Zelle", "Schnittpunkt von Zeile und Spalte", null],
+          ["Spalte", "Vertikale Anordnung, Buchstaben", "A, B, C"],
+          ["Zeile", "Horizontale Anordnung, Nummern", null],
+          [null, "Ort zur Eingabe von Formeln", "=SUMME(A1:A10)"]
+        ],
+        "taskCols": [1, 2]
+      },
+      "solution": { "data": [
+        ["Arbeitsmappe", "Die gesamte Excel-Datei", ".xlsx-Datei"],
+        ["Tabellenblatt", "Einzelnes Blatt in der Arbeitsmappe", "Tabelle1"],
+        ["Zelle", "Schnittpunkt von Zeile und Spalte", "B2"],
+        ["Spalte", "Vertikale Anordnung, Buchstaben", "A, B, C"],
+        ["Zeile", "Horizontale Anordnung, Nummern", "1, 2, 3"],
+        ["Bearbeitungsleiste", "Ort zur Eingabe von Formeln", "=SUMME(A1:A10)"]
+      ]},
+      "instructions": "1. Vervollständigen Sie die Tabelle, indem Sie die fehlenden Beschreibungen und Beispiele zu jeder Excel-Komponente eintragen.\n2. Überlegen Sie: Was ist eine Arbeitsmappe? Was ist ein Tabellenblatt?\n3. Tragen Sie für 'Bearbeitungsleiste' die passende Komponente ein.",
+      "order": 1, "formulaHint": null,
+      "hint1": "Eine Arbeitsmappe ist die gesamte Datei — ein Tabellenblatt ist nur ein Teil davon.",
+      "hint2": "Eine Zelle wird durch ihren Spaltenbuchstaben und ihre Zeilennummer benannt, z.B. B2.",
+      "hint3": "Die Komponente zur Eingabe von Formeln heißt Bearbeitungsleiste.",
+      "learningObjectives": ["Die grundlegenden Komponenten von Excel identifizieren", "Den Unterschied zwischen Arbeitsmappe und Tabellenblatt verstehen", "Zellen, Spalten und Zeilen korrekt benennen"],
+      "estimated_minutes": 5, "prerequisites": [],
+      "theoryTitle": "Excel-Grundlagen",
+      "theory": "Excel ist ein Tabellenkalkulationsprogramm von Microsoft. Die Hauptkomponenten sind:\n\n• **Arbeitsmappe** — Die gesamte Datei (Endung .xlsx). Sie enthält ein oder mehrere Tabellenblätter.\n\n• **Tabellenblatt** — Ein einzelnes Blatt innerhalb der Arbeitsmappe. Standardname: Tabelle1, Tabelle2 usw.\n\n• **Zelle** — Der Schnittpunkt einer Zeile (Zahlen: 1, 2, 3...) und einer Spalte (Buchstaben: A, B, C...). Jede Zelle hat eine eindeutige Adresse wie B2 oder D5.\n\n• **Bearbeitungsleiste** — Der Bereich oberhalb der Tabelle, in dem Sie den Inhalt der aktiven Zelle sehen und bearbeiten können.",
+      "moduleId": "m1", "moduleSection": "1.1",
+      "moduleTitle": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
+      "sectionTitle": "Was ist Excel und wozu dient es?"
+    },
+    {
+      "title": "Zellen und Bereiche benennen",
+      "description": "Üben Sie die korrekte Benennung von Zellen und Zellbereichen in Excel.",
+      "template": {
+        "cols": 3, "rows": 8,
+        "headers": ["Beschreibung", "Zellbezug", "Bereich"],
+        "data": [
+          ["Zelle in Spalte A, Zeile 1", null, null],
+          ["Zelle in Spalte C, Zeile 4", null, null],
+          ["Bereich von A1 bis A5", null, "A1:A5"],
+          ["Bereich von B2 bis D2", null, null],
+          ["Alle Zellen von A1 bis C3", null, null],
+          ["Ganze Spalte B", null, "B:B"],
+          ["Ganze Zeile 5", null, null],
+          ["Zelle in Spalte E, Zeile 10", null, null]
+        ],
+        "taskCols": [1, 2]
+      },
+      "solution": { "data": [
+        ["Zelle in Spalte A, Zeile 1", "A1", null],
+        ["Zelle in Spalte C, Zeile 4", "C4", null],
+        ["Bereich von A1 bis A5", null, "A1:A5"],
+        ["Bereich von B2 bis D2", null, "B2:D2"],
+        ["Alle Zellen von A1 bis C3", null, "A1:C3"],
+        ["Ganze Spalte B", null, "B:B"],
+        ["Ganze Zeile 5", null, "5:5"],
+        ["Zelle in Spalte E, Zeile 10", "E10", null]
+      ]},
+      "instructions": "1. Tragen Sie den korrekten Zellbezug für jede Beschreibung in Spalte B ein.\n2. Tragen Sie den korrekten Bereich in Spalte C ein.\n3. Denken Sie daran: Zellen werden als 'SpalteZeile' geschrieben (z.B. B2).\n4. Bereiche werden als 'Startzelle:Endzelle' geschrieben (z.B. A1:B5).",
+      "order": 2, "formulaHint": null,
+      "hint1": "Eine Zelle wird mit Spaltenbuchstabe + Zeilennummer benannt: A1, B2, C3...",
+      "hint2": "Ein Bereich von A1 bis A5 wird als A1:A5 geschrieben.",
+      "hint3": "Eine ganze Zeile 5 wird als 5:5 geschrieben.",
+      "learningObjectives": ["Zellen korrekt mit Spaltenbuchstabe und Zeilennummer benennen", "Zellbereiche mit der Syntax Start:Ende angeben", "Ganze Zeilen und Spalten referenzieren"],
+      "estimated_minutes": 8, "prerequisites": [],
+      "theoryTitle": "Zellbezüge und Bereiche",
+      "theory": "Jede Zelle wird durch Spalte (Buchstabe) und Zeile (Nummer) identifiziert:\n\n• Einzelne Zelle: A1, B2, C10\n• Zellbereich: A1:B5 (alle Zellen von A1 bis B5)\n• Ganze Spalte: A:A\n• Ganze Zeile: 3:3\n\nDiese Bezüge verwenden Sie in Formeln, z.B. =SUMME(A1:A10).",
+      "moduleId": "m1", "moduleSection": "1.3",
+      "moduleTitle": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
+      "sectionTitle": "Grundlegende Navigation"
+    },
+    {
+      "title": "Datentypen erkennen",
+      "description": "Identifizieren Sie, ob es sich bei den Werten um Text, Zahlen oder Datumsangaben handelt.",
+      "template": {
+        "cols": 3, "rows": 10,
+        "headers": ["Wert", "Datentyp", "Standardausrichtung"],
+        "data": [
+          ["Müller", null, null], ["42", null, null], ["01.01.2025", null, null],
+          ["Produkt A", null, null], ["3,14", null, null], ["15.03.2024", null, null],
+          ["Umsatz 2024", null, null], ["999", null, null], ["31.12.2025", null, null],
+          ["Abteilung 3", null, null]
+        ],
+        "taskCols": [1, 2]
+      },
+      "solution": { "data": [
+        ["Müller", "Text", "links"], ["42", "Zahl", "rechts"], ["01.01.2025", "Datum", "rechts"],
+        ["Produkt A", "Text", "links"], ["3,14", "Zahl", "rechts"], ["15.03.2024", "Datum", "rechts"],
+        ["Umsatz 2024", "Text", "links"], ["999", "Zahl", "rechts"], ["31.12.2025", "Datum", "rechts"],
+        ["Abteilung 3", "Text", "links"]
+      ]},
+      "instructions": "1. Bestimmen Sie für jeden Wert, ob es sich um Text, eine Zahl oder ein Datum handelt.\n2. Tragen Sie den Datentyp in Spalte B ein.\n3. Tragen Sie die Standardausrichtung (links oder rechts) in Spalte C ein.",
+      "order": 3, "formulaHint": null,
+      "hint1": "Text wird in Excel automatisch linksbündig ausgerichtet.",
+      "hint2": "Zahlen und Datumsangaben werden automatisch rechtsbündig ausgerichtet.",
+      "hint3": "Enthält der Wert Buchstaben, ist es Text — auch wenn Zahlen darin vorkommen (z.B. 'Abteilung 3').",
+      "learningObjectives": ["Zwischen Text, Zahlen und Datumsangaben unterscheiden", "Die automatische Ausrichtung von Datentypen verstehen"],
+      "estimated_minutes": 8, "prerequisites": [],
+      "theoryTitle": "Datentypen in Excel",
+      "theory": "Excel erkennt automatisch drei Hauptdatentypen:\n\n• Text: Enthält Buchstaben. Linksbündig. Beispiele: 'Müller', 'Produkt A'.\n• Zahl: Rein numerisch. Rechtsbündig. Komma als Dezimaltrennzeichen (3,14).\n• Datum: Als Zahl gespeichert, als Datum formatiert. Rechtsbündig. Notation: TT.MM.JJJJ.\n\nTipp: Apostroph (') vor einem Wert erzwingt Textformat.",
+      "moduleId": "m2", "moduleSection": "2.1",
+      "moduleTitle": "Modul 2: Dateneingabe und -bearbeitung",
+      "sectionTitle": "Datentypen"
+    },
+    {
+      "title": "AutoAusfüllen: Monatsnamen",
+      "description": "Vervollständigen Sie die Monatsliste mit der AutoAusfüllen-Funktion.",
+      "template": {
+        "cols": 3, "rows": 13,
+        "headers": ["Monat", "Nr.", "Quartal"],
+        "data": [
+          ["Januar", 1, null], ["Februar", 2, null], ["März", 3, "Q1"],
+          [null, 4, null], [null, 5, null], [null, 6, "Q2"],
+          [null, 7, null], [null, 8, null], [null, 9, "Q3"],
+          [null, 10, null], [null, 11, null], [null, 12, "Q4"],
+          [null, null, null]
+        ],
+        "taskCols": [0]
+      },
+      "solution": { "data": [
+        ["Januar", 1, null], ["Februar", 2, null], ["März", 3, "Q1"],
+        ["April", 4, null], ["Mai", 5, null], ["Juni", 6, "Q2"],
+        ["Juli", 7, null], ["August", 8, null], ["September", 9, "Q3"],
+        ["Oktober", 10, null], ["November", 11, null], ["Dezember", 12, "Q4"],
+        [null, null, null]
+      ]},
+      "instructions": "1. Vervollständigen Sie die fehlenden Monatsnamen in Spalte A.\n2. Die Monate müssen in der richtigen Reihenfolge und mit korrekter deutscher Schreibweise eingetragen werden.\n3. Januar bis März sind bereits vorgegeben. Fahren Sie mit April fort.",
+      "order": 4, "formulaHint": null,
+      "hint1": "Nach März kommt April — die deutsche Schreibweise ist wie im Kalender.",
+      "hint2": "Die Monate auf Deutsch: Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember.",
+      "hint3": "In Excel können Sie 'Januar' in eine Zelle schreiben und am Ausfüllkästchen ziehen.",
+      "learningObjectives": ["Die AutoAusfüllen-Funktion von Excel verstehen", "Monatsnamen in korrekter Reihenfolge eintragen"],
+      "estimated_minutes": 5, "prerequisites": [],
+      "theoryTitle": "AutoAusfüllen",
+      "theory": "Die AutoAusfüllen-Funktion: Geben Sie einen Wert ein und ziehen Sie am Ausfüllkästchen (kleines Quadrat rechts unten). Excel erkennt Muster wie Monatsnamen, Wochentage und Zahlenfolgen automatisch.",
+      "moduleId": "m2", "moduleSection": "2.3",
+      "moduleTitle": "Modul 2: Dateneingabe und -bearbeitung",
+      "sectionTitle": "AutoAusfüllen und Reihen"
+    },
+    {
+      "title": "Zahlenreihen mit AutoAusfüllen",
+      "description": "Erstellen Sie Zahlenfolgen mit der AutoAusfüllen-Funktion.",
+      "template": {
+        "cols": 3, "rows": 11,
+        "headers": ["5er-Schritte", "Verdopplung", "Rückwärts"],
+        "data": [
+          [5, 1, 100], [10, 2, null], [null, 4, null], [null, 8, null],
+          [null, 16, null], [null, null, null], [null, null, null],
+          [null, null, null], [null, null, null], [null, null, null],
+          [null, null, null]
+        ],
+        "taskCols": [0, 1, 2]
+      },
+      "solution": { "data": [
+        [5, 1, 100], [10, 2, 90], [15, 4, 80], [20, 8, 70],
+        [25, 16, 60], [30, 32, 50], [35, 64, 40], [40, 128, 30],
+        [45, 256, 20], [50, 512, 10], [55, 1024, 0]
+      ]},
+      "instructions": "1. Spalte A (5er-Schritte): Setzen Sie die Reihe in 5er-Schritten fort.\n2. Spalte B (Verdopplung): Verdoppeln Sie jeden Wert — 1, 2, 4, 8, 16...\n3. Spalte C (Rückwärts): Zählen Sie in 10er-Schritten rückwärts von 100 bis 0.",
+      "order": 5, "formulaHint": null,
+      "hint1": "Spalte A: Jeder Wert ist um 5 größer als der vorherige.",
+      "hint2": "Spalte B: Jeder Wert ist das Doppelte des vorherigen.",
+      "hint3": "Spalte C: Jeder Wert ist um 10 kleiner. 100, 90, 80...",
+      "learningObjectives": ["Zahlenfolgen mit AutoAusfüllen erstellen", "Verschiedene Schrittmuster erkennen", "Rückwärtszählen mit negativem Schritt"],
+      "estimated_minutes": 8, "prerequisites": [],
+      "theoryTitle": "Zahlenreihen",
+      "theory": "Excel erkennt Zahlenmuster: Geben Sie die ersten zwei Werte ein, markieren Sie beide und ziehen Sie. Für lineare Reihen (5, 10 → 15, 20) und geometrische (1, 2 → 4, 8). Rechtsklick auf das Ausfüllkästchen bietet weitere Optionen.",
+      "moduleId": "m2", "moduleSection": "2.3",
+      "moduleTitle": "Modul 2: Dateneingabe und -bearbeitung",
+      "sectionTitle": "AutoAusfüllen und Reihen"
+    },
+    {
+      "title": "Grundrechenarten anwenden",
+      "description": "Führen Sie Berechnungen mit den Grundoperatoren (+, -, *, /) durch.",
+      "template": {
+        "cols": 4, "rows": 7,
+        "headers": ["Artikel", "Preis €", "Menge", "Gesamtpreis €"],
+        "data": [
+          ["Bleistift", 1.5, 10, null], ["Kugelschreiber", 2.8, 5, null],
+          ["Notizbuch", 4.5, 3, null], ["Marker", 3.2, 8, null],
+          ["Radiergummi", 0.9, 20, null], ["Lineal", 2.1, 6, null]
+        ],
+        "taskCols": [3]
+      },
+      "solution": { "data": [
+        ["Bleistift", 1.5, 10, 15], ["Kugelschreiber", 2.8, 5, 14],
+        ["Notizbuch", 4.5, 3, 13.5], ["Marker", 3.2, 8, 25.6],
+        ["Radiergummi", 0.9, 20, 18], ["Lineal", 2.1, 6, 12.6]
+      ]},
+      "instructions": "1. Berechnen Sie den Gesamtpreis: Preis × Menge.\n2. Formel in D2: =B2*C2.\n3. Verwenden Sie Zellbezüge, damit die Formel kopiert werden kann.",
+      "order": 6, "formulaHint": "=B2*C2",
+      "hint1": "Multiplikation in Excel verwendet den *-Operator.",
+      "hint2": "Gesamtpreis = Preis × Menge. Für Bleistift: =1,5*10 oder besser =B2*C2.",
+      "hint3": "Zellbezüge sind besser als feste Zahlen, weil Excel dann automatisch aktualisiert.",
+      "learningObjectives": ["Grundoperatoren anwenden", "Zellbezüge in Formeln verwenden", "Multiplikation mit * durchführen"],
+      "estimated_minutes": 8, "prerequisites": [],
+      "theoryTitle": "Grundrechenarten",
+      "theory": "Operatoren: + (Addition), - (Subtraktion), * (Multiplikation), / (Division), ^ (Potenz). Jede Formel beginnt mit =. Verwenden Sie Zellbezüge wie B2 statt fester Zahlen — Excel aktualisiert dann automatisch.",
+      "moduleId": "m4", "moduleSection": "4.1",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Grundlagen der Formeln"
+    },
+    {
+      "title": "SUMME: Gesamtumsatz berechnen",
+      "description": "Verwenden Sie die SUMME-Funktion, um den Gesamtumsatz zu ermitteln.",
+      "template": {
+        "cols": 3, "rows": 9,
+        "headers": ["Monat", "Umsatz €", "Notiz"],
+        "data": [
+          ["Januar", 12500, null], ["Februar", 13800, null], ["März", 14200, null],
+          ["April", 11900, null], ["Mai", 15100, null], ["Juni", 16300, null],
+          [null, null, null], ["GESAMT", null, "SUMME verwenden"], [null, null, null]
+        ],
+        "taskCols": [1]
+      },
+      "solution": { "data": [
+        ["Januar", 12500, null], ["Februar", 13800, null], ["März", 14200, null],
+        ["April", 11900, null], ["Mai", 15100, null], ["Juni", 16300, null],
+        [null, null, null], ["GESAMT", 83800, "SUMME verwenden"], [null, null, null]
+      ]},
+      "instructions": "1. Berechnen Sie den Gesamtumsatz in Zelle B8 mit =SUMME(B2:B7).\n2. Die Formel addiert alle Monatswerte von Januar bis Juni.",
+      "order": 7, "formulaHint": "=SUMME(B2:B7)",
+      "hint1": "SUMME addiert alle Werte in einem Bereich.",
+      "hint2": "Der Bereich Januar–Juni ist B2:B7.",
+      "hint3": "Formel: =SUMME(B2:B7). Kurzwahl: Alt+= (AutoSumme).",
+      "learningObjectives": ["SUMME-Funktion anwenden", "Zellbereich als Argument übergeben"],
+      "estimated_minutes": 6, "prerequisites": [],
+      "theoryTitle": "SUMME-Funktion",
+      "theory": "=SUMME(Bereich) addiert alle Zahlen. Beispiel: =SUMME(B2:B7). Mehrere Bereiche möglich: =SUMME(B2:B7;D2:D7). AutoSumme: Σ-Symbol oder Alt+=. Ignoriert Text und leere Zellen.",
+      "moduleId": "m4", "moduleSection": "4.3",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Statistische und mathematische Funktionen"
+    },
+    {
+      "title": "MITTELWERT, MIN und MAX",
+      "description": "Berechnen Sie Durchschnitt, Minimum und Maximum einer Zahlenreihe.",
+      "template": {
+        "cols": 4, "rows": 8,
+        "headers": ["Tag", "Temperatur °C", "Niederschlag mm", "Wind km/h"],
+        "data": [
+          ["Montag", 22, 0, 12], ["Dienstag", 25, 2, 18], ["Mittwoch", 19, 8, 15],
+          ["Donnerstag", 28, 1, 10], ["Freitag", 24, 0, 20],
+          [null, null, null, null],
+          ["Durchschnitt", null, null, null],
+          ["Maximum", null, null, null]
+        ],
+        "taskCols": [1, 2, 3]
+      },
+      "solution": { "data": [
+        ["Montag", 22, 0, 12], ["Dienstag", 25, 2, 18], ["Mittwoch", 19, 8, 15],
+        ["Donnerstag", 28, 1, 10], ["Freitag", 24, 0, 20],
+        [null, null, null, null],
+        ["Durchschnitt", 23.6, 2.2, 15],
+        ["Maximum", 28, 8, 20]
+      ]},
+      "instructions": "1. Zeile 7: Durchschnitt mit =MITTELWERT(B2:B6) für Temperatur, dann für C und D.\n2. Zeile 8: Maximum mit =MAX(B2:B6), dann für C und D.",
+      "order": 8, "formulaHint": "=MITTELWERT(B2:B6) und =MAX(B2:B6)",
+      "hint1": "MITTELWERT addiert alle Werte und teilt durch die Anzahl.",
+      "hint2": "MAX findet den größten Wert im Bereich.",
+      "hint3": "Gleiches Muster für alle Spalten: =MITTELWERT(C2:C6), =MAX(D2:D6).",
+      "learningObjectives": ["MITTELWERT, MIN und MAX anwenden", "Statistische Auswertungen für mehrere Spalten"],
+      "estimated_minutes": 10, "prerequisites": [],
+      "theoryTitle": "MITTELWERT, MIN, MAX",
+      "theory": "=MITTELWERT(Bereich): arithmetischer Durchschnitt. =MIN(Bereich): kleinster Wert. =MAX(Bereich): größter Wert. Alle ignorieren leere Zellen und Text.",
+      "moduleId": "m4", "moduleSection": "4.3",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Statistische und mathematische Funktionen"
+    },
+    {
+      "title": "ANZAHL und ANZAHL2",
+      "description": "Zählen Sie Zellen mit ANZAHL und ANZAHL2.",
+      "template": {
+        "cols": 5, "rows": 9,
+        "headers": ["Name", "Punkte", "Note", "Abgegeben?", "Kommentar"],
+        "data": [
+          ["Anna", 85, 2, "Ja", "Gut"], ["Ben", 92, 1, "Ja", null],
+          ["Clara", null, null, "Nein", "Krank"], ["David", 78, 3, "Ja", "OK"],
+          ["Eva", null, null, null, null], ["Felix", 88, 2, "Ja", "Sehr gut"],
+          [null, null, null, null, null],
+          ["Anzahl Zahlen", null, null, null, null],
+          ["Anzahl nicht-leer", null, null, null, null]
+        ],
+        "taskCols": [1, 2, 3, 4]
+      },
+      "solution": { "data": [
+        ["Anna", 85, 2, "Ja", "Gut"], ["Ben", 92, 1, "Ja", null],
+        ["Clara", null, null, "Nein", "Krank"], ["David", 78, 3, "Ja", "OK"],
+        ["Eva", null, null, null, null], ["Felix", 88, 2, "Ja", "Sehr gut"],
+        [null, null, null, null, null],
+        ["Anzahl Zahlen", 4, 3, 0, 1],
+        ["Anzahl nicht-leer", 6, 6, 6, 4]
+      ]},
+      "instructions": "1. Zeile 8: =ANZAHL(B2:B7) — zählt nur Zahlen (Punkte, Noten).\n2. Zeile 9: =ANZAHL2(B2:B7) — zählt alle nicht-leeren Zellen.",
+      "order": 9, "formulaHint": "=ANZAHL(B2:B7) und =ANZAHL2(B2:B7)",
+      "hint1": "ANZAHL ignoriert Text und Leere. Zählt nur Zahlen.",
+      "hint2": "ANZAHL2 zählt ALLE nicht-leeren Zellen — Text, Zahlen, alles.",
+      "hint3": "In Spalte D zählt ANZAHL 0 (nur Text), ANZAHL2 zählt 6 (alle Einträge).",
+      "learningObjectives": ["ANZAHL vs ANZAHL2 unterscheiden", "Gezielte Zählungen durchführen"],
+      "estimated_minutes": 10, "prerequisites": [],
+      "theoryTitle": "ANZAHL vs ANZAHL2",
+      "theory": "=ANZAHL(Bereich): nur Zahlen. =ANZAHL2(Bereich): alle nicht-leeren Zellen. ANZAHL für 'Wie viele Zahlen?', ANZAHL2 für 'Wie viele Einträge?'.",
+      "moduleId": "m4", "moduleSection": "4.3",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Statistische und mathematische Funktionen"
+    },
+    {
+      "title": "WENN: Bestanden oder nicht?",
+      "description": "Verwenden Sie die WENN-Funktion zur Prüfung der Bestehensgrenze.",
+      "template": {
+        "cols": 4, "rows": 9,
+        "headers": ["Name", "Punktzahl", "Bestanden?", "Bewertung"],
+        "data": [
+          ["Müller", 85, null, null], ["Schmidt", 45, null, null],
+          ["Weber", 72, null, null], ["Fischer", 60, null, null],
+          ["Wagner", 38, null, null], ["Becker", 91, null, null],
+          [null, null, null, null],
+          [null, "Mindestpunktzahl:", null, 50], [null, null, null, null]
+        ],
+        "taskCols": [2, 3]
+      },
+      "solution": { "data": [
+        ["Müller", 85, "Bestanden", "Sehr gut"], ["Schmidt", 45, "Nicht bestanden", "Mangelhaft"],
+        ["Weber", 72, "Bestanden", "Gut"], ["Fischer", 60, "Bestanden", "Ausreichend"],
+        ["Wagner", 38, "Nicht bestanden", "Mangelhaft"], ["Becker", 91, "Bestanden", "Sehr gut"],
+        [null, null, null, null],
+        [null, "Mindestpunktzahl:", null, 50], [null, null, null, null]
+      ]},
+      "instructions": "1. Spalte C: =WENN(B2>=50;\"Bestanden\";\"Nicht bestanden\").\n2. Spalte D: verschachteltes WENN: ≥80='Sehr gut', ≥60='Gut', ≥50='Ausreichend', <50='Mangelhaft'.\n   =WENN(B2>=80;\"Sehr gut\";WENN(B2>=60;\"Gut\";WENN(B2>=50;\"Ausreichend\";\"Mangelhaft\")))",
+      "order": 10, "formulaHint": "=WENN(B2>=50;\"Bestanden\";\"Nicht bestanden\")",
+      "hint1": "WENN hat 3 Teile: =WENN(Bedingung; Wert_wenn_wahr; Wert_wenn_falsch).",
+      "hint2": "Für Spalte C: Bedingung ist B2>=50. 'Bestanden' bei Wahr, 'Nicht bestanden' bei Falsch.",
+      "hint3": "Verschachteltes WENN: =WENN(B2>=80;\"Sehr gut\";WENN(B2>=60;\"Gut\";...)).",
+      "learningObjectives": ["WENN-Funktion anwenden", "Verschachtelte WENN erstellen", "Textausgaben aus Zahlen generieren"],
+      "estimated_minutes": 12, "prerequisites": [],
+      "theoryTitle": "WENN-Funktion",
+      "theory": "=WENN(Bedingung; Wahr; Falsch). Vergleichsoperatoren: =, >, <, >=, <=, <>. Text in Anführungszeichen. Verschachtelung: WENN in WENN.",
+      "moduleId": "m4", "moduleSection": "4.4",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Logische Funktionen"
+    },
+    {
+      "title": "ZÄHLENWENN: Bedingtes Zählen",
+      "description": "Zählen Sie Einträge mit ZÄHLENWENN basierend auf einer Bedingung.",
+      "template": {
+        "cols": 2, "rows": 14,
+        "headers": ["Abteilung", "Mitarbeiter"],
+        "data": [
+          ["Vertrieb", "Müller"], ["IT", "Schmidt"], ["Vertrieb", "Weber"],
+          ["Marketing", "Fischer"], ["IT", "Wagner"], ["Vertrieb", "Becker"],
+          ["Marketing", "Hoffmann"], ["IT", "Schäfer"], ["Vertrieb", "Koch"],
+          ["Marketing", "Richter"], [null, null],
+          ["Anzahl Vertrieb:", null], ["Anzahl Marketing:", null], ["Anzahl IT:", null]
+        ],
+        "taskCols": [1]
+      },
+      "solution": { "data": [
+        ["Vertrieb", "Müller"], ["IT", "Schmidt"], ["Vertrieb", "Weber"],
+        ["Marketing", "Fischer"], ["IT", "Wagner"], ["Vertrieb", "Becker"],
+        ["Marketing", "Hoffmann"], ["IT", "Schäfer"], ["Vertrieb", "Koch"],
+        ["Marketing", "Richter"], [null, null],
+        ["Anzahl Vertrieb:", 4], ["Anzahl Marketing:", 3], ["Anzahl IT:", 3]
+      ]},
+      "instructions": "1. B12: =ZÄHLENWENN(A2:A11;\"Vertrieb\").\n2. B13: =ZÄHLENWENN(A2:A11;\"Marketing\").\n3. B14: =ZÄHLENWENN(A2:A11;\"IT\").",
+      "order": 11, "formulaHint": "=ZÄHLENWENN(A2:A11;\"Vertrieb\")",
+      "hint1": "ZÄHLENWENN prüft jede Zelle und zählt nur Treffer.",
+      "hint2": "Das Kriterium muss in Anführungszeichen: \"Vertrieb\".",
+      "hint3": "Bereich A2:A11 enthält alle 10 Einträge.",
+      "learningObjectives": ["ZÄHLENWENN anwenden", "Textbedingungen verwenden", "Häufigkeiten auszählen"],
+      "estimated_minutes": 8, "prerequisites": [],
+      "theoryTitle": "ZÄHLENWENN",
+      "theory": "=ZÄHLENWENN(Bereich; Kriterium). Kriterien: Text (\"Vertrieb\"), Zahlen (100), Vergleich (\">50\"), Wildcard (\"M*\").",
+      "moduleId": "m5", "moduleSection": "5.1",
+      "moduleTitle": "Modul 5: Einfache Datenanalyse",
+      "sectionTitle": "Bedingte Mathematik"
+    },
+    {
+      "title": "SUMMEWENN: Bedingte Summe",
+      "description": "Summieren Sie Werte mit SUMMEWENN basierend auf einer Bedingung.",
+      "template": {
+        "cols": 3, "rows": 12,
+        "headers": ["Produkt", "Kategorie", "Umsatz €"],
+        "data": [
+          ["Laptop", "Elektronik", 45000], ["Buch", "Medien", 8500],
+          ["Tablet", "Elektronik", 28000], ["DVD", "Medien", 3200],
+          ["Monitor", "Elektronik", 12000], ["Zeitschrift", "Medien", 1500],
+          ["Drucker", "Elektronik", 9500], ["E-Book", "Medien", 6800],
+          [null, null, null],
+          ["Umsatz Elektronik:", null, null], ["Umsatz Medien:", null, null],
+          ["Gesamtumsatz:", null, null]
+        ],
+        "taskCols": [2]
+      },
+      "solution": { "data": [
+        ["Laptop", "Elektronik", 45000], ["Buch", "Medien", 8500],
+        ["Tablet", "Elektronik", 28000], ["DVD", "Medien", 3200],
+        ["Monitor", "Elektronik", 12000], ["Zeitschrift", "Medien", 1500],
+        ["Drucker", "Elektronik", 9500], ["E-Book", "Medien", 6800],
+        [null, null, null],
+        ["Umsatz Elektronik:", null, 94500], ["Umsatz Medien:", null, 20000],
+        ["Gesamtumsatz:", null, 114500]
+      ]},
+      "instructions": "1. C10: =SUMMEWENN(B2:B9;\"Elektronik\";C2:C9).\n2. C11: =SUMMEWENN(B2:B9;\"Medien\";C2:C9).\n3. C12: =SUMME(C2:C9).",
+      "order": 12, "formulaHint": "=SUMMEWENN(B2:B9;\"Elektronik\";C2:C9)",
+      "hint1": "SUMMEWENN hat 3 Argumente: Prüfbereich, Kriterium, Summenbereich.",
+      "hint2": "Prüfbereich = Kategorie (B), Summenbereich = Umsatz (C).",
+      "hint3": "Gesamtumsatz einfach mit =SUMME(C2:C9).",
+      "learningObjectives": ["SUMMEWENN anwenden", "Prüf- und Summenbereich unterscheiden", "Kategoriebasierte Summen berechnen"],
+      "estimated_minutes": 10, "prerequisites": [],
+      "theoryTitle": "SUMMEWENN",
+      "theory": "=SUMMEWENN(Prüfbereich; Kriterium; Summenbereich). Prüft jede Zelle und addiert die entsprechende aus dem Summenbereich. ZÄHLENWENN zählt, SUMMEWENN summiert.",
+      "moduleId": "m5", "moduleSection": "5.1",
+      "moduleTitle": "Modul 5: Einfache Datenanalyse",
+      "sectionTitle": "Bedingte Mathematik"
+    },
+    {
+      "title": "SVERWEIS: Produktpreis nachschlagen",
+      "description": "Verwenden Sie SVERWEIS, um Informationen aus einer Tabelle zu finden.",
+      "template": {
+        "cols": 5, "rows": 12,
+        "headers": ["ID", "Produktname", "Preis €", "Bestand", "Kategorie"],
+        "data": [
+          ["P001", "Laptop", 899, 25, "Elektronik"], ["P002", "Maus", 24.99, 150, "Zubehör"],
+          ["P003", "Tastatur", 49.99, 80, "Zubehör"], ["P004", "Monitor", 249, 35, "Elektronik"],
+          ["P005", "Drucker", 179, 20, "Elektronik"], ["P006", "USB-Stick", 12.99, 300, "Zubehör"],
+          [null, null, null, null, null],
+          ["Suche:", "P003", null, null, null],
+          ["Name:", null, null, null, null], ["Preis:", null, null, null, null],
+          ["Bestand:", null, null, null, null], ["Kategorie:", null, null, null, null]
+        ],
+        "taskCols": [1]
+      },
+      "solution": { "data": [
+        ["P001", "Laptop", 899, 25, "Elektronik"], ["P002", "Maus", 24.99, 150, "Zubehör"],
+        ["P003", "Tastatur", 49.99, 80, "Zubehör"], ["P004", "Monitor", 249, 35, "Elektronik"],
+        ["P005", "Drucker", 179, 20, "Elektronik"], ["P006", "USB-Stick", 12.99, 300, "Zubehör"],
+        [null, null, null, null, null],
+        ["Suche:", "P003", null, null, null],
+        ["Name:", "Tastatur", null, null, null], ["Preis:", 49.99, null, null, null],
+        ["Bestand:", 80, null, null, null], ["Kategorie:", "Zubehör", null, null, null]
+      ]},
+      "instructions": "1. B9: =SVERWEIS(B8;A2:E6;2;FALSCH) für Produktname.\n2. B10: =SVERWEIS(B8;A2:E6;3;FALSCH) für Preis.\n3. B11: =SVERWEIS(B8;A2:E6;4;FALSCH) für Bestand.\n4. B12: =SVERWEIS(B8;A2:E6;5;FALSCH) für Kategorie.",
+      "order": 13, "formulaHint": "=SVERWEIS(B8;A2:E6;2;FALSCH)",
+      "hint1": "SVERWEIS sucht in der ersten Spalte und gibt Wert aus anderer Spalte zurück.",
+      "hint2": "Suchkriterium in B8 (P003). Tabelle A2:E6.",
+      "hint3": "Spaltenindex: 2=Name, 3=Preis, 4=Bestand, 5=Kategorie. FALSCH=exakte Suche.",
+      "learningObjectives": ["SVERWEIS anwenden", "Spaltenindex korrekt bestimmen", "Exakte vs ungefähre Suche unterscheiden"],
+      "estimated_minutes": 12, "prerequisites": [],
+      "theoryTitle": "SVERWEIS",
+      "theory": "=SVERWEIS(Suchkrit.; Tabelle; Spaltenindex; Bereich_Verweis). FALSCH=exakt. Suchkriterium muss in erster Spalte der Tabelle stehen.",
+      "moduleId": "m5", "moduleSection": "5.2",
+      "moduleTitle": "Modul 5: Einfache Datenanalyse",
+      "sectionTitle": "Einfache Suchfunktionen"
+    },
+    {
+      "title": "Relative Bezüge: Provision berechnen",
+      "description": "Berechnen Sie Provisionen mit relativen Zellbezügen.",
+      "template": {
+        "cols": 4, "rows": 8,
+        "headers": ["Verkäufer", "Umsatz €", "Prozentsatz", "Provision €"],
+        "data": [
+          ["Müller", 50000, 0.05, null], ["Schmidt", 38000, 0.05, null],
+          ["Weber", 62000, 0.05, null], ["Fischer", 45000, 0.05, null],
+          ["Wagner", 71000, 0.05, null], [null, null, null, null],
+          [null, "Gesamt Provision:", null, null]
+        ],
+        "taskCols": [3]
+      },
+      "solution": { "data": [
+        ["Müller", 50000, 0.05, 2500], ["Schmidt", 38000, 0.05, 1900],
+        ["Weber", 62000, 0.05, 3100], ["Fischer", 45000, 0.05, 2250],
+        ["Wagner", 71000, 0.05, 3550], [null, null, null, null],
+        [null, "Gesamt Provision:", null, 13300]
+      ]},
+      "instructions": "1. D2: =B2*C2. Kopieren Sie nach unten.\n2. Relative Bezüge passen sich an: D3 wird =B3*C3.\n3. D7: =SUMME(D2:D6).",
+      "order": 14, "formulaHint": "=B2*C2 und nach unten kopieren",
+      "hint1": "Relative Bezüge passen sich beim Kopieren automatisch an.",
+      "hint2": "Aus =B2*C2 in D2 wird =B3*C3 in D3.",
+      "hint3": "Gesamtsumme: =SUMME(D2:D6).",
+      "learningObjectives": ["Relative Bezüge verwenden", "Formeln durch Kopieren anwenden"],
+      "estimated_minutes": 8, "prerequisites": [],
+      "theoryTitle": "Relative Bezüge",
+      "theory": "Relative Bezüge (z.B. A1) ändern sich beim Kopieren. Excel merkt sich die relative Position, nicht die absolute Adresse. Standard in Excel — praktisch für Tabellen.",
+      "moduleId": "m4", "moduleSection": "4.2",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Bezüge"
+    },
+    {
+      "title": "Absolute Bezüge: Mehrwertsteuer",
+      "description": "Verwenden Sie absolute Bezüge ($) für eine feste Zellreferenz.",
+      "template": {
+        "cols": 4, "rows": 9,
+        "headers": ["Produkt", "Nettopreis €", "MwSt-Satz", "Bruttopreis €"],
+        "data": [
+          ["Laptop", 899, null, null], ["Maus", 24.99, null, null],
+          ["Tastatur", 49.99, null, null], ["Monitor", 249, null, null],
+          ["Drucker", 179, null, null], ["USB-Stick", 12.99, null, null],
+          [null, null, null, null], [null, null, "MwSt:", 0.19]
+        ],
+        "taskCols": [3]
+      },
+      "solution": { "data": [
+        ["Laptop", 899, null, 1069.81], ["Maus", 24.99, null, 29.74],
+        ["Tastatur", 49.99, null, 59.49], ["Monitor", 249, null, 296.31],
+        ["Drucker", 179, null, 213.01], ["USB-Stick", 12.99, null, 15.46],
+        [null, null, null, null], [null, null, "MwSt:", 0.19]
+      ]},
+      "instructions": "1. Bruttopreis = Nettopreis × (1 + MwSt).\n2. Formel: =B2*(1+$D$8). Der $-Bezug fixiert D8.\n3. Kopieren Sie nach unten — $D$8 bleibt immer gleich.",
+      "order": 15, "formulaHint": "=B2*(1+$D$8)",
+      "hint1": "$D$8 fixiert die Zelle — sie ändert sich beim Kopieren nicht.",
+      "hint2": "Ohne $ würde beim Kopieren D8→D9→D10 werden.",
+      "hint3": "Bruttopreis = Nettopreis × 1,19 (19% MwSt).",
+      "learningObjectives": ["Absolute Bezüge mit $ verwenden", "Feste Referenz beim Kopieren beibehalten"],
+      "estimated_minutes": 10, "prerequisites": [],
+      "theoryTitle": "Absolute Bezüge",
+      "theory": "$A$1 fixiert Spalte und Zeile. $A1 fixiert nur Spalte. A$1 fixiert nur Zeile. F4 schaltet zwischen den Modi um.",
+      "moduleId": "m4", "moduleSection": "4.2",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Bezüge"
+    },
+    {
+      "title": "WENN mit UND: Bonus berechnen",
+      "description": "Kombinieren Sie WENN mit UND für Bonus-Berechnungen mit mehreren Bedingungen.",
+      "template": {
+        "cols": 5, "rows": 8,
+        "headers": ["Name", "Umsatz €", "Kunden", "Ziel erreicht?", "Bonus €"],
+        "data": [
+          ["Müller", 85000, 12, null, null], ["Schmidt", 92000, 8, null, null],
+          ["Weber", 78000, 15, null, null], ["Fischer", 105000, 11, null, null],
+          ["Wagner", 65000, 9, null, null], [null, null, null, null, null],
+          [null, "Mindestumsatz:", 80000, "Mindestkunden:", 10]
+        ],
+        "taskCols": [3, 4]
+      },
+      "solution": { "data": [
+        ["Müller", 85000, 12, "Ja", 2000], ["Schmidt", 92000, 8, "Nein", 0],
+        ["Weber", 78000, 15, "Nein", 0], ["Fischer", 105000, 11, "Ja", 2500],
+        ["Wagner", 65000, 9, "Nein", 0], [null, null, null, null, null],
+        [null, "Mindestumsatz:", 80000, "Mindestkunden:", 10]
+      ]},
+      "instructions": "1. D2: =WENN(UND(B2>=B7;C2>=D7);\"Ja\";\"Nein\").\n2. E2: =WENN(D2=\"Ja\";WENN(B2>100000;2500;2000);0).",
+      "order": 16, "formulaHint": "=WENN(UND(B2>=80000;C2>=10);\"Ja\";\"Nein\")",
+      "hint1": "UND prüft mehrere Bedingungen — alle müssen WAHR sein.",
+      "hint2": "Bedingungen: Umsatz ≥ Mindestumsatz UND Kunden ≥ Mindestkunden.",
+      "hint3": "Bonus: 2000 €. Bei >100.000 € Umsatz: 2500 €.",
+      "learningObjectives": ["WENN mit UND kombinieren", "Mehrere Bedingungen prüfen", "Gestaffelte Berechnungen"],
+      "estimated_minutes": 12, "prerequisites": [],
+      "theoryTitle": "WENN mit UND/ODER",
+      "theory": "=WENN(UND(Bed1;Bed2);Wahr;Falsch) — alle müssen erfüllt sein. =WENN(ODER(Bed1;Bed2);Wahr;Falsch) — eine reicht.",
+      "moduleId": "m4", "moduleSection": "4.4",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Logische Funktionen"
+    },
+    {
+      "title": "HEUTE: Alter berechnen",
+      "description": "Berechnen Sie das Alter mit Datumsfunktionen.",
+      "template": {
+        "cols": 4, "rows": 8,
+        "headers": ["Name", "Geburtsdatum", "Heute", "Alter (Formel)"],
+        "data": [
+          ["Müller", "15.03.1985", null, null], ["Schmidt", "22.11.1990", null, null],
+          ["Weber", "08.07.1978", null, null], ["Fischer", "03.01.2000", null, null],
+          ["Wagner", "30.09.1995", null, null], [null, null, null, null],
+          [null, null, "Formel:", "Formel:"]
+        ],
+        "taskCols": [2, 3]
+      },
+      "solution": { "data": [
+        ["Müller", "15.03.1985", null, null], ["Schmidt", "22.11.1990", null, null],
+        ["Weber", "08.07.1978", null, null], ["Fischer", "03.01.2000", null, null],
+        ["Wagner", "30.09.1995", null, null], [null, null, null, null],
+        [null, null, "=HEUTE()", "=JAHR(C2)-JAHR(B2)"]
+      ]},
+      "instructions": "1. C7: Notieren Sie =HEUTE() als Formel für das heutige Datum.\n2. D7: Notieren Sie =JAHR(HEUTE())-JAHR(B2) als Formel zur Altersberechnung.",
+      "order": 17, "formulaHint": "=JAHR(HEUTE())-JAHR(B2)",
+      "hint1": "HEUTE() liefert das aktuelle Datum — ohne Argumente.",
+      "hint2": "JAHR() extrahiert das Jahr aus einem Datum.",
+      "hint3": "Alter = aktuelles Jahr − Geburtsjahr.",
+      "learningObjectives": ["HEUTE() anwenden", "JAHR() zur Extraktion nutzen", "Altersberechnungen durchführen"],
+      "estimated_minutes": 8, "prerequisites": [],
+      "theoryTitle": "Datumsfunktionen",
+      "theory": "=HEUTE(): aktuelles Datum. =JETZT(): Datum+Uhrzeit. =JAHR(Datum), =MONAT(Datum), =TAG(Datum). =MONATSENDE(Datum;0). =WOCHENTAG(Datum;2). Alter: =JAHR(HEUTE())-JAHR(Geburtsdatum).",
+      "moduleId": "m5", "moduleSection": "5.3",
+      "moduleTitle": "Modul 5: Einfache Datenanalyse",
+      "sectionTitle": "Text- und Datumsfunktionen"
+    },
+    {
+      "title": "WENNFEHLER: Saubere Tabellen",
+      "description": "Verwenden Sie WENNFEHLER, um Fehlerwerte zu vermeiden.",
+      "template": {
+        "cols": 4, "rows": 7,
+        "headers": ["Produkt", "Umsatz €", "Stückzahl", "Preis pro Stück €"],
+        "data": [
+          ["Laptop", 45000, 50, null], ["Maus", 2500, 0, null],
+          ["Tastatur", 4800, 30, null], ["Monitor", 12000, 0, null],
+          ["Drucker", 9500, 25, null], [null, null, null, null]
+        ],
+        "taskCols": [3]
+      },
+      "solution": { "data": [
+        ["Laptop", 45000, 50, 900], ["Maus", 2500, 0, "Keine Stück"],
+        ["Tastatur", 4800, 30, 160], ["Monitor", 12000, 0, "Keine Stück"],
+        ["Drucker", 9500, 25, 380], [null, null, null, null]
+      ]},
+      "instructions": "1. Preis pro Stück = Umsatz ÷ Stückzahl.\n2. D2: =WENNFEHLER(B2/C2;\"Keine Stück\").\n3. Ohne WENNFEHLER würde #DIV/0! erscheinen.",
+      "order": 18, "formulaHint": "=WENNFEHLER(B2/C2;\"Keine Stück\")",
+      "hint1": "Division durch 0 ergibt #DIV/0!.",
+      "hint2": "WENNFEHLER fängt Fehler ab und zeigt Ersatzwert.",
+      "hint3": "Formel: =WENNFEHLER(B2/C2;\"Keine Stück\").",
+      "learningObjectives": ["WENNFEHLER anwenden", "#DIV/0! abfangen", "Professionelle Tabellen ohne Fehlerwerte"],
+      "estimated_minutes": 8, "prerequisites": [],
+      "theoryTitle": "WENNFEHLER",
+      "theory": "=WENNFEHLER(Formel; Ersatzwert). Fehler: #DIV/0!, #WERT!, #BEZUG!, #NAME?, #NV. Besonders nützlich mit SVERWEIS.",
+      "moduleId": "m5", "moduleSection": "5.4",
+      "moduleTitle": "Modul 5: Einfache Datenanalyse",
+      "sectionTitle": "Fehlerbehandlung"
+    },
+    {
+      "title": "Gemischte Übung: Verkaufsauswertung",
+      "description": "Kombinieren Sie mehrere Funktionen für eine vollständige Verkaufsauswertung.",
+      "template": {
+        "cols": 6, "rows": 10,
+        "headers": ["Monat", "Verkäufe", "Retouren", "Netto", "Ziel erreicht?", "Provision €"],
+        "data": [
+          ["Januar", 150, 5, null, null, null], ["Februar", 180, 8, null, null, null],
+          ["März", 200, 3, null, null, null], ["April", 160, 12, null, null, null],
+          ["Mai", 220, 6, null, null, null], ["Juni", 190, 4, null, null, null],
+          [null, null, null, null, null, null], ["GESAMT", null, null, null, null, null],
+          [null, null, "Netto > 170?", null, "Provision: 5%", "vom Netto"]
+        ],
+        "taskCols": [3, 4, 5]
+      },
+      "solution": { "data": [
+        ["Januar", 150, 5, 145, "Nein", 0], ["Februar", 180, 8, 172, "Ja", 8.6],
+        ["März", 200, 3, 197, "Ja", 9.85], ["April", 160, 12, 148, "Nein", 0],
+        ["Mai", 220, 6, 214, "Ja", 10.7], ["Juni", 190, 4, 186, "Ja", 9.3],
+        [null, null, null, null, null, null], ["GESAMT", null, null, 1062, null, 38.45],
+        [null, null, "Netto > 170?", null, "Provision: 5%", "vom Netto"]
+      ]},
+      "instructions": "1. D2: =B2-C2 (Netto).\n2. E2: =WENN(D2>170;\"Ja\";\"Nein\") (Ziel).\n3. F2: =WENN(E2=\"Ja\";D2*0,05;0) (Provision).\n4. Zeile 8: SUMME für D und F.",
+      "order": 19, "formulaHint": "Netto=B2-C2 | Ziel=WENN(D2>170;\"Ja\";\"Nein\") | Provision=WENN(E2=\"Ja\";D2*0,05;0)",
+      "hint1": "Netto = Verkäufe − Retouren.",
+      "hint2": "Ziel erreicht wenn Netto > 170.",
+      "hint3": "Provision = 5% vom Netto, nur bei Zielerreichung.",
+      "learningObjectives": ["Mehrere Funktionen kombinieren", "SUMME, WENN und Arithmetik gemeinsam einsetzen"],
+      "estimated_minutes": 15, "prerequisites": [],
+      "theoryTitle": "Funktionen kombinieren",
+      "theory": "In der Praxis werden Arithmetik, WENN, SUMME und Prozentrechnung kombiniert. Bauen Sie komplexe Tabellen Schritt für Schritt auf.",
+      "moduleId": "m4", "moduleSection": "4.4",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Logische Funktionen"
+    },
+    {
+      "title": "Abschlussübung: Monatsbericht",
+      "description": "Erstellen Sie einen vollständigen Monatsbericht mit allen gelernten Funktionen.",
+      "template": {
+        "cols": 7, "rows": 10,
+        "headers": ["Produkt", "Jan", "Feb", "Mär", "Summe Q1", "Schnitt", "Trend"],
+        "data": [
+          ["Laptop", 12000, 13500, 14200, null, null, null],
+          ["Tablet", 8500, 9200, 8800, null, null, null],
+          ["Monitor", 4500, 5100, 4800, null, null, null],
+          ["Drucker", 3200, 2800, 3600, null, null, null],
+          ["Maus", 1500, 1800, 1600, null, null, null],
+          [null, null, null, null, null, null, null],
+          ["GESAMT", null, null, null, null, null, null],
+          ["MAXIMUM", null, null, null, null, null, null],
+          [null, null, null, null, null, null, null],
+          [null, "Bester Monat:", null, null, null, null, null]
+        ],
+        "taskCols": [4, 5, 6]
+      },
+      "solution": { "data": [
+        ["Laptop", 12000, 13500, 14200, 39700, 13233.33, "Steigend"],
+        ["Tablet", 8500, 9200, 8800, 26500, 8833.33, "Schwankend"],
+        ["Monitor", 4500, 5100, 4800, 14400, 4800, "Schwankend"],
+        ["Drucker", 3200, 2800, 3600, 9600, 3200, "Schwankend"],
+        ["Maus", 1500, 1800, 1600, 4900, 1633.33, "Schwankend"],
+        [null, null, null, null, null, null, null],
+        ["GESAMT", 29700, 32400, 33000, 95100, null, null],
+        ["MAXIMUM", 12000, 13500, 14200, 39700, null, null],
+        [null, null, null, null, null, null, null],
+        [null, "Bester Monat:", "März", null, null, null, null]
+      ]},
+      "instructions": "1. E2: =SUMME(B2:D2) — Summe Q1.\n2. F2: =MITTELWERT(B2:D2) — Durchschnitt.\n3. G2: =WENN(D2>B2;\"Steigend\";\"Schwankend\") — Trend.\n4. Zeile 7: SUMME für jede Spalte.\n5. Zeile 8: MAX für jede Spalte.\n6. C10: Name des besten Monats (März).",
+      "order": 20, "formulaHint": "Summe=SUMME(B2:D2) | Schnitt=MITTELWERT(B2:D2) | Trend=WENN(D2>B2;\"Steigend\";\"Schwankend\")",
+      "hint1": "Beginnen Sie mit Spalte E: =SUMME(B2:D2).",
+      "hint2": "Spalte F: =MITTELWERT(B2:D2).",
+      "hint3": "Spalte G: Steigend wenn März > Januar.",
+      "learningObjectives": ["Alle Grundfunktionen in realistischer Aufgabe anwenden", "SUMME, MITTELWERT, MAX, WENN kombinieren", "Vollständigen Monatsbericht erstellen"],
+      "estimated_minutes": 15, "prerequisites": [],
+      "theoryTitle": "Monatsberichte",
+      "theory": "Ein Monatsbericht fasst Daten zusammen: Summen (Gesamtvolumen), Durchschnitte (typische Leistung), Trends (steigend/fallend), Maximum (Spitzenwerte). Alle Grundfunktionen in einer Übung vereint.",
+      "moduleId": "m4", "moduleSection": "4.3",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Statistische und mathematische Funktionen"
+    }
+  ]
+}

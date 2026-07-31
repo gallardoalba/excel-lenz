@@ -251,35 +251,35 @@
         "data": [
           [
             "R001",
-            "2024-01-15",
+            "15.01.2024",
             30,
             null,
             null
           ],
           [
             "R002",
-            "2024-02-28",
+            "28.02.2024",
             14,
             null,
             null
           ],
           [
             "R003",
-            "2024-03-10",
+            "10.03.2024",
             45,
             null,
             null
           ],
           [
             "R004",
-            "2024-04-01",
+            "01.04.2024",
             60,
             null,
             null
           ],
           [
             "R005",
-            "2024-05-20",
+            "20.05.2024",
             7,
             null,
             null
@@ -294,37 +294,37 @@
         "data": [
           [
             "R001",
-            "2024-01-15",
+            "15.01.2024",
             30,
-            "2024-02-14",
+            "14.02.2024",
             null
           ],
           [
             "R002",
-            "2024-02-28",
+            "28.02.2024",
             14,
-            "2024-03-13",
+            "13.03.2024",
             null
           ],
           [
             "R003",
-            "2024-03-10",
+            "10.03.2024",
             45,
-            "2024-04-24",
+            "24.04.2024",
             null
           ],
           [
             "R004",
-            "2024-04-01",
+            "01.04.2024",
             60,
-            "2024-05-31",
+            "31.05.2024",
             null
           ],
           [
             "R005",
-            "2024-05-20",
+            "20.05.2024",
             7,
-            "2024-05-27",
+            "27.05.2024",
             null
           ]
         ]
@@ -638,7 +638,7 @@
       ],
       "estimated_minutes": 12,
       "theoryTitle": "Datenbankfunktionen & WENNS",
-      "theory": "Excel bietet WENNS-Funktionen für bedingte Berechnungen mit mehreren Kriterien:\n\n• =SUMMEWENNS(Summe; Ber1; Krit1; Ber2; Krit2)\n• =MITTELWERTWENNS(Mittel; Ber1; Krit1; ...)\n• =ZÄHLENWENNS(Ber1; Krit1; Ber2; Krit2)\n\nKlassische DB-Funktionen:\n• =BDSUMME(Datenbank; Feld; Kriterien)\n• =BDPROMEDIO(Datenbank; Feld; Kriterien)\n\nDie WENNS-Varianten sind einfacher und flexibler."
+      "theory": "Excel bietet WENNS-Funktionen für bedingte Berechnungen mit mehreren Kriterien:\n\n• =SUMMEWENNS(Summe; Ber1; Krit1; Ber2; Krit2)\n• =MITTELWERTWENNS(Mittel; Ber1; Krit1; ...)\n• =ZÄHLENWENNS(Ber1; Krit1; Ber2; Krit2)\n\nKlassische DB-Funktionen:\n• =BDSUMME(Datenbank; Feld; Kriterien)\n• =DBMITTELWERT(Datenbank; Feld; Kriterien)\n\nDie WENNS-Varianten sind einfacher und flexibler."
     },
     {
       "title": "SVERWEIS mit Mehrfachkriterien",
@@ -1704,9 +1704,9 @@
           ]
         ]
       },
-      "instructions": "1. UND-Prüfung: =UND(B2=$B$7;C2>$B$8).\n2. Qualifiziert wenn: Abteilung=IT UND Gehalt>50000.\n3. Zähle: =ZÄHLENWENN(D2:D6;\"✅\").",
+      "instructions": "1. UND-Prüfung: =UND(B2=$B$7;C2>50000).\n2. Qualifiziert wenn: Abteilung=IT UND Gehalt>50000.\n3. Zähle: =ZÄHLENWENN(D2:D6;\"✅\").",
       "order": 12,
-      "formulaHint": "=UND(B2=$B$7;C2>$B$8)",
+      "formulaHint": "=UND(B2=$B$7;C2>50000)",
       "hint1": "Spezialfilter prüft mehrere Bedingungen gleichzeitig",
       "hint2": "UND(Bedingung1; Bedingung2) = beide müssen WAHR sein",
       "learningObjectives": [
@@ -1931,10 +1931,10 @@
           ]
         ]
       },
-      "instructions": "1. =WENN(ZÄHLENWENN($B$2:$B$6;B2)>1;\"⚠️ Duplikat\";\"✅ Eindeutig\").\n2. ZÄHLENWENN zählt wie oft die E-Mail vorkommt.\n3. >1 = kommt mehrfach vor → Duplikat.",
+      "instructions": "1. =WENN(ZÄHLENWENN($B$2:B2;B2)>1;\"⚠️ Duplikat\";\"✅ Eindeutig\").\n2. ZÄHLENWENN zählt wie oft die E-Mail vorkommt.\n3. >1 = kommt mehrfach vor → Duplikat.",
       "order": 14,
-      "formulaHint": "=WENN(ZÄHLENWENN($B$2:$B$6;B2)>1;\"⚠️\";\"✅\")",
-      "hint1": "ZÄHLENWENN($B$2:$B$6;B2) zählt Vorkommen der E-Mail",
+      "formulaHint": "=WENN(ZÄHLENWENN($B$2:B2;B2)>1;\"⚠️\";\"✅\")",
+      "hint1": "ZÄHLENWENN($B$2:B2;B2) zählt Vorkommen der E-Mail",
       "hint2": "Absolute Referenz $B$2:$B$6 wichtig!",
       "learningObjectives": [
         "Duplikaterkennung",
@@ -4087,17 +4087,17 @@
           ],
           [
             "Standardabweichung:",
-            79.37,
+            80,
             ""
           ],
           [
             "Varianz:",
-            6300,
+            6400,
             ""
           ]
         ]
       },
-      "instructions": "1. =STABW.S(B2:B7) = 79,37 T€.\n2. =VAR.S(B2:B7) = 6.300.\n3. Hohe Streuung = ungleichmäßige Performance der Filialen.",
+      "instructions": "1. =STABW.S(B2:B7) = 80 T€.\n2. =VAR.S(B2:B7) = 6.400.\n3. Hohe Streuung = ungleichmäßige Performance der Filialen.",
       "order": 33,
       "formulaHint": "=STABW.S(B2:B7), =VAR.S(B2:B7)",
       "hint1": "STABW.S = Stichproben-Standardabweichung",

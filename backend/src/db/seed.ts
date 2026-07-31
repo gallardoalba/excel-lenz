@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcryptjs';
 
 // ── Exercise data (edit the JSON files, not this file!) ──
-import course1Data from './exercises/course1_principiantes.json';
+import course1Data from './exercises/course1_grundlage.json';
 import course2Data from './exercises/course2_datenanalyse.json';
 import course3Data from './exercises/course3_fortgeschrittene.json';
 import course4Data from './exercises/course4_datenbank.json';
@@ -98,8 +98,8 @@ export function seed(): void {
   }
 
   console.log(`✅ Database seeded (${ALL_COURSES.length} Kurse, ${total} Übungen)`);
-  console.log(`   Teacher: dozent@excel-lenz.edu / ${seedPwd}`);
-  console.log(`   Student: student@excel-lenz.edu / ${seedPwd}`);
+  console.log(`   Teacher: dozent@excel-lenz.edu / ${process.env.SEED_PASSWORD || 'devpassword'}`);
+  console.log(`   Student: student@excel-lenz.edu / ${process.env.SEED_PASSWORD || 'devpassword'}`);
 
   const badges = [
     ['ersteschritte', 'Fundament', 'Erste Übung gemeistert', 'Award', 'exercises', 1],

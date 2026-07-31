@@ -121,6 +121,7 @@ export default function SpreadsheetHandsontable({
   const applyFormatsWithUndo = useCallback((newFormats: CellFormats) => {
     const hot = hotRef.current;
     setCellFormats(newFormats);
+    cellFormatsRef.current = newFormats; // sync ref immediately for renderer
     onCellFormatsChange?.(newFormats);
     // Touch the active cell to create an undo point in Handsontable's history
     if (hot && !hot.isDestroyed && activeCell) {
@@ -199,8 +200,6 @@ export default function SpreadsheetHandsontable({
       }
     }
     applyFormatsWithUndo(newFormats);
-    const hot = hotRef.current;
-    if (hot && !hot.isDestroyed) hot.render();
   }, [selectedRange, cellFormats, applyFormatsWithUndo]);
 
   // Zoom
@@ -523,7 +522,6 @@ export default function SpreadsheetHandsontable({
           // Enable filters on the range
           const f = hot.getPlugin('filters');
           if (f) f.filter();
-          hot.render();
         }
         break;
       }
@@ -563,7 +561,7 @@ export default function SpreadsheetHandsontable({
       colHeaders: true,
       rowHeaders: true,
       height: externalGridHeight || 360,
-      minRows: 30,
+      minRows: 50,
       minCols: 50,
       undo: true,
       licenseKey: 'non-commercial-and-evaluation',

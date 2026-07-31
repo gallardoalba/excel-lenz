@@ -27,6 +27,9 @@ const CRUMB_ROUTES = ['/courses', '/dashboard', '/teacher', '/exercises'];
 export default function Breadcrumbs() {
   const location = useLocation();
 
+  // Don't show global breadcrumbs on exercise page (rendered inline there)
+  if (location.pathname.startsWith('/exercises/')) return null;
+
   const crumbs = useMemo((): Crumb[] => {
     const pathParts = location.pathname.split('/').filter(Boolean);
     if (pathParts.length === 0) return [];

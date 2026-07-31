@@ -56,7 +56,7 @@ export default function Exercise() {
   const [mode, setMode] = useState<'practice' | 'exam'>('practice');
   const [exerciseTab, setExerciseTab] = useState<'instructions' | 'theory' | 'community'>('instructions');
   const [attemptCount, setAttemptCount] = useState(0);
-  const [hintLevel, setHintLevel] = useState(0);
+  const [hintLevel, setHintLevel] = useState(1); // Show first hint by default
   const [showSolution, setShowSolution] = useState(false);
   const [cellFeedback, setCellFeedback] = useState<{ row: number; col: number; expected: any; got: any }[]>([]);
   const [focusMode, setFocusMode] = useState(false);
@@ -64,7 +64,7 @@ export default function Exercise() {
   const { increment: incrementGoal } = useDailyGoal();
   const scoreRef = useRef<HTMLDivElement>(null);
   const leftPanelRef = useRef<HTMLElement>(null);
-  const [gridHeight, setGridHeight] = useState(320);
+  const [gridHeight, setGridHeight] = useState(327);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const abortRef = useRef<AbortController | null>(null);
   const [nextExercise, setNextExercise] = useState<{ id: string; title: string; estimated_minutes?: number } | null>(null);
@@ -76,18 +76,7 @@ export default function Exercise() {
     return () => document.body.classList.remove('focus-mode');
   }, [focusMode]);
 
-  // Measure left panel height and sync to spreadsheet grid
-  useEffect(() => {
-    const panel = leftPanelRef.current;
-    if (!panel) return;
-    const ro = new ResizeObserver(() => {
-      // Subtract ribbon + formulaBar + statusBar + margins (~210px total)
-      const h = panel.getBoundingClientRect().height - 210;
-      if (h > 200) setGridHeight(Math.round(h));
-    });
-    ro.observe(panel);
-    return () => ro.disconnect();
-  }, []);
+  // gridHeight is set directly via useState above
 
   // Cleanup timers on unmount to prevent setState on unmounted component
   useEffect(() => {
@@ -265,12 +254,21 @@ export default function Exercise() {
 
   return (
     <div className="exercise-page">
-      <Link to={`/courses/${exercise.course_id}`} className="btn btn-outline btn-sm"
-        aria-label={`Zurück zum Kurs`}>
-        <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zum Kurs
-      </Link>
+      <div className="flex items-center gap-sm" style={{ marginBottom: 12 }}>
+        <Link to={`/courses/${exercise.course_id}`} className="btn btn-outline btn-sm"
+          aria-label={`Zurück zum Kurs`}>
+          <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zum Kurs
+        </Link>
+        <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>
+          <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</Link>
+          <span style={{ margin: '0 4px' }}>›</span>
+          <Link to="/courses" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link>
+          <span style={{ margin: '0 4px' }}>›</span>
+          <span style={{ color: 'var(--text)' }}>Übung</span>
+        </span>
+      </div>
 
-      <h1 className="mb-3">
+      <h1 style={{ marginBottom: 6 }}>
         {exercise.title}
         <button
           onClick={() => setFocusMode(!focusMode)}
@@ -282,13 +280,9 @@ export default function Exercise() {
         </button>
       </h1>
 
-      {/* Guest banner */}
-      {!user && (
-        <div className="guest-banner mb-3">
-          <span><Eye size={14} style={{marginRight:4, verticalAlign:'middle'}} /><strong>Gastmodus:</strong> Sie können die Übung ansehen, aber nicht speichern.</span>
-          <Link to="/login" className="btn btn-sm btn-primary">Anmelden</Link>
-        </div>
-      )}
+      <p className="exercise-description" style={{ marginBottom: 14, marginTop: 0, fontSize: '1.05rem' }}>
+        {exercise.description}
+      </p>
 
       <div className="flex items-center gap-md mb-3 flex-wrap">
         {exercise.template_data?.estimated_minutes && (
@@ -301,10 +295,6 @@ export default function Exercise() {
 
       <div className="exercise-layout">
         <section className="instructions-panel" ref={leftPanelRef} aria-label="Aufgabenstellung und Hinweise">
-          {/* Description */}
-          <p className="exercise-description">
-            {exercise.description}
-          </p>
 
           {/* ── TABS ── */}
           <div className="exercise-tabs">
@@ -322,6 +312,8 @@ export default function Exercise() {
               </button>
             ))}
           </div>
+
+          <div className="instructions-scroll">
 
           {/* ── TAB: INSTRUCTIONS ── */}
           {exerciseTab === 'instructions' && (
@@ -358,21 +350,27 @@ export default function Exercise() {
                 );
               })()}
 
-              {/* Formula hint */}
-              {mode === 'practice' && template.formulaHint && hintLevel === 0 && score === null && (
+              {/* Initial Tipp — always visible */}
+              {mode === 'practice' && score === null && (template.formulaHint || hints[0]) && (
                 <div className="hint-box">
                   <Lightbulb size={14} style={{marginRight:4, color: 'var(--accent)'}} />
-                  <strong>Tipp:</strong> {template.formulaHint}
+                  <strong>Tipp:</strong> {template.formulaHint || hints[0]}
                 </div>
               )}
 
               {/* Progressive Hints */}
-              {mode === 'practice' && hintLevel > 0 && (
+              {mode === 'practice' && hintLevel > 1 && (
                 <div className="mt-3">
-                  {hints.slice(0, hintLevel).map((hint, i) => (
-                    <div key={i} className={`hint-box-tip ${i === 3 ? 'border-left-tertiary' : 'border-left-primary'}`}>
-                      <strong>{i < 3 ? <><Lightbulb size={12} style={{marginRight:4}} />Tipp {i + 1}:</> : <><Award size={12} style={{marginRight:4}} />Lösung:</>}</strong>{' '}
-                      {i === 3 ? (
+                  {hints.slice(1, Math.min(hintLevel, hints.length)).map((hint, i) => (
+                    <div key={i} className="hint-box-tip border-left-primary">
+                      <strong><Lightbulb size={12} style={{marginRight:4}} />Tipp {i + 2}:</strong> {hint}
+                    </div>
+                  ))}
+                  {/* Lösung section */}
+                  {hintLevel > hints.length && (
+                    <div className="hint-box-tip border-left-tertiary">
+                      <strong><Award size={12} style={{marginRight:4}} />Lösung:</strong>{' '}
+                      {template.formulaHint ? (
                         <span>
                           <button className="btn btn-sm btn-outline" style={{ marginLeft: 8 }}
                             onClick={() => setShowSolution(!showSolution)}>
@@ -380,13 +378,13 @@ export default function Exercise() {
                           </button>
                           {showSolution && (
                             <pre style={{ marginTop: 8, whiteSpace: 'pre-wrap', fontFamily: 'var(--font-mono)', fontSize: '0.82rem' }}>
-                              {exercise.template_data?.formulaHint}
+                              {template.formulaHint}
                             </pre>
                           )}
                         </span>
-                      ) : hint}
+                      ) : hints[hints.length - 1]}
                     </div>
-                  ))}
+                  )}
                   {hintLevel > 0 && score !== null && (
                     <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 8, textAlign: 'center' }}>
                       War dieser Hinweis hilfreich?{' '}
@@ -398,6 +396,14 @@ export default function Exercise() {
                     </p>
                   )}
                 </div>
+              )}
+
+              {/* Tipp button — more hints */}
+              {mode === 'practice' && hintLevel < hints.length + 1 && hintLevel >= 1 && score === null && hints.length > 1 && (
+                <button className="btn btn-sm btn-outline mt-2"
+                  onClick={() => setHintLevel((h) => Math.min(h + 1, hints.length + 1))}>
+                  <Lightbulb size={14} style={{marginRight:4}} />{hintLevel >= hints.length ? 'Lösung anzeigen' : 'Weitere Tipps'}
+                </button>
               )}
 
               {/* Cell-level Feedback */}
@@ -418,9 +424,9 @@ export default function Exercise() {
                       Erwartet: <code>{fb.expected}</code> — Erhalten: <code>{fb.got ?? 'leer'}</code>
                     </div>
                   ))}
-                  {mode === 'practice' && (
+                  {mode === 'practice' && hintLevel < 4 && (
                     <button className="btn btn-sm btn-outline mt-1"
-                      onClick={() => setHintLevel((h) => Math.min(h + 1, 1))}>
+                      onClick={() => setHintLevel((h) => Math.min(h + 1, 4))}>
                       <Lightbulb size={14} style={{marginRight:4}} />Tipp anzeigen
                     </button>
                   )}
@@ -492,7 +498,11 @@ export default function Exercise() {
                     <BookOpen size={14} style={{marginRight:6, verticalAlign:'middle'}} />
                     {exercise.template_data.theoryTitle || 'Konzept verstehen'}
                   </h4>
-                  {exercise.template_data.theory}
+                  <div dangerouslySetInnerHTML={{
+                    __html: exercise.template_data.theory
+                      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                      .replace(/\n/g, '<br/>')
+                  }} />
                 </div>
               ) : (
                 <p className="empty-state">
@@ -508,6 +518,7 @@ export default function Exercise() {
           )}
 
           {/* ── STICKY BOTTOM BAR ── */}
+          </div>{/* closes instructions-scroll */}
           <div className="exercise-sticky-bar">
             {/* Mode toggle switch */}
             <div className="mode-toggle">
@@ -544,12 +555,12 @@ export default function Exercise() {
                   <LogIn size={14} style={{marginRight:4}} />Anmelden zum Speichern
                 </Link>
               )}
-              <button className="btn btn-outline btn-sm" onClick={() => startTour(EXERCISE_TOUR)}
-                aria-label="Hilfe-Tour starten" title="Hilfe-Tour"
-                style={{ fontSize: '0.82rem', fontWeight: 600 }}>
-                <HelpCircle size={14} style={{marginRight:4}} />Hilfe
-              </button>
             </div>
+            <button className="btn btn-outline btn-sm" onClick={() => startTour(EXERCISE_TOUR)}
+              aria-label="Hilfe-Tour starten" title="Hilfe-Tour"
+              style={{ fontSize: '0.82rem', fontWeight: 600, width: '100%' }}>
+              <HelpCircle size={14} style={{marginRight:4}} />Hilfe
+            </button>
           </div>
 
           {/* Success Checkmark (replaces confetti) */}

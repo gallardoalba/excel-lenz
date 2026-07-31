@@ -186,11 +186,11 @@ export default function CourseDetail() {
 
   return (
     <div className="course-detail-page">
-      {/* ── HERO V2 — Rich stats dashboard ── */}
-      <section className="course-hero-v2" style={{ background: theme.gradient }}>
+      {/* ── HERO V2 — Clean, Tesla-style documentation layout ── */}
+      <section className="course-hero-v2" style={{ background: 'var(--bg-alt)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="course-hero-inner">
-        <Link to="/courses" className="btn btn-outline btn-sm course-hero-back">
-          <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
+        <Link to="/courses" style={{ display: 'inline-block', marginBottom: '24px', color: 'var(--tertiary)', fontSize: '0.9rem', textDecoration: 'none' }}>
+          ← Zurück zu den Kursen
         </Link>
 
         {activeSection ? (
