@@ -25,6 +25,10 @@ const Dashboard = lazy(() => import('./pages/Dashboard'));
 const StudentPanel = lazy(() => import('./pages/StudentPanel'));
 const TeacherPanel = lazy(() => import('./pages/TeacherPanel'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const ServerError = lazy(() => import('./pages/ServerError'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
+const VerifyEmail = lazy(() => import('./pages/VerifyEmail'));
 
 export default function App() {
   const { user, loading, logout } = useAuth();
@@ -173,12 +177,16 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={user ? <Navigate to="/student" /> : <Login />} />
           <Route path="/register" element={user ? <Navigate to="/student" /> : <Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/:id" element={<CourseDetail />} />
           <Route path="/exercises/:id" element={<Exercise />} />
           <Route path="/student" element={user ? <StudentPanel /> : <Navigate to="/login" />} />
           <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="/teacher" element={user?.role === 'teacher' ? <TeacherPanel /> : <Navigate to="/dashboard" />} />
+          <Route path="/error" element={<ServerError />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

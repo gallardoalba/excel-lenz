@@ -79,7 +79,36 @@ export default function Comments({ exerciseId }: CommentsProps) {
     return date.toLocaleDateString('de-DE');
   };
 
-  if (!user) return null;
+  if (!user) {
+    // Guests can view comments but not post
+    if (loading) return <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Kommentare werden geladen...</p>;
+    return (
+      <div style={{ marginTop: 28 }}>
+        <h3 style={{ marginBottom: 16 }}>
+          <MessageCircle size={18} style={{marginRight:6, verticalAlign:'middle'}} />Kommentare ({comments.length})
+        </h3>
+        {topLevel.length === 0 ? (
+          <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Noch keine Kommentare.</p>
+        ) : (
+          topLevel.map(c => (
+            <div key={c.id} style={{ marginBottom: 16, padding: '12px 16px', background: 'var(--bg-alt)', borderRadius: 'var(--radius-sm)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', background: avatarProps(c.user_name).bg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: 700 }}>
+                  {avatarProps(c.user_name).initials}
+                </div>
+                <strong style={{ fontSize: '0.85rem' }}>{c.user_name}</strong>
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{formatDate(c.created_at)}</span>
+              </div>
+              <p style={{ fontSize: '0.85rem', margin: 0 }}>{c.content}</p>
+            </div>
+          ))
+        )}
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 8 }}>
+          <a href="/login" style={{ color: 'var(--tertiary)' }}>Melde dich an</a>, um einen Kommentar zu schreiben.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div style={{ marginTop: 28 }}>

@@ -1,11 +1,13 @@
 // Centralized configuration constants
 // Override via environment variables in production
 
+const isTest = process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID !== undefined;
+
 export const config = {
   // Auth
   auth: {
     tokenExpiry: '24h',
-    maxLoginAttempts: 5,
+    maxLoginAttempts: isTest ? 1000 : 5,
     loginWindowMs: 15 * 60 * 1000, // 15 minutes
   },
 
@@ -17,10 +19,10 @@ export const config = {
     trustProxy: true,
   },
 
-  // Rate limiting
+  // Rate limiting — disabled/high in test environment
   rateLimit: {
-    global: { windowMs: 15 * 60 * 1000, max: 500 },
-    auth: { windowMs: 15 * 60 * 1000, max: 20 },
+    global: { windowMs: 15 * 60 * 1000, max: isTest ? 10000 : 500 },
+    auth: { windowMs: 15 * 60 * 1000, max: isTest ? 10000 : 20 },
   },
 
   // Database

@@ -36,7 +36,9 @@ export function useExamTimer(durationInMinutes: number, onTimeUp: () => void) {
 
   const reset = useCallback((newDuration?: number) => {
     stop();
-    setSecondsLeft((newDuration ?? durationInMinutes) * 60);
+    const val = (newDuration ?? durationInMinutes) * 60;
+    setSecondsLeft(val);
+    secondsLeftRef.current = val; // Sync ref so start() uses the new value
   }, [stop, durationInMinutes]);
 
   useEffect(() => {

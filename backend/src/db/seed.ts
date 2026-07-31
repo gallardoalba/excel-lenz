@@ -63,6 +63,20 @@ export function seed(): void {
   );
 
   const addExercise = (courseId: string, ex: ExerciseJson) => {
+    // Validate required fields
+    if (!ex.title || !ex.description || !ex.instructions) {
+      console.error(`❌ Seed: Übung übersprungen — fehlende Pflichtfelder (title, description, instructions)`);
+      return;
+    }
+    if (!ex.template || typeof ex.template !== 'object') {
+      console.error(`❌ Seed: Übung "${ex.title}" übersprungen — template fehlt oder ungültig`);
+      return;
+    }
+    if (!ex.solution || typeof ex.solution !== 'object') {
+      console.error(`❌ Seed: Übung "${ex.title}" übersprungen — solution fehlt oder ungültig`);
+      return;
+    }
+
     const template: Record<string, unknown> = { ...ex.template };
     if (ex.formulaHint) template.formulaHint = ex.formulaHint;
     if (ex.hint1) template.hint1 = ex.hint1;
