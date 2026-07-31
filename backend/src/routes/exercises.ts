@@ -39,15 +39,22 @@ router.get('/:id/mastery', authMiddleware, (req: Request, res: Response) => {
   }
 
   // Check which prerequisite skills the user has mastered (≥80% on any exercise with that skill tag)
+  // Fetch all completed exercise template_data and parse JSON properly
+  const completedExercises = db.prepare(`
+    SELECT e.template_data, p.score FROM progress p
+    JOIN exercises e ON e.id = p.exercise_id
+    WHERE p.user_id = ? AND p.completed = 1 AND p.score >= 80
+  `).all(userId) as any[];
+
   const missing: string[] = [];
   for (const prereq of prerequisites) {
-    const mastered = db.prepare(`
-      SELECT 1 FROM progress p
-      JOIN exercises e ON e.id = p.exercise_id
-      WHERE p.user_id = ? AND p.completed = 1 AND p.score >= 80
-      AND e.template_data LIKE ?
-      LIMIT 1
-    `).get(userId, `%${prereq}%`);
+    const mastered = completedExercises.some(row => {
+      try {
+        const tmpl = JSON.parse(row.template_data || '{}');
+        const tags: string[] = tmpl.prerequisites || [];
+        return tags.includes(prereq);
+      } catch { return false; }
+    });
     if (!mastered) missing.push(prereq);
   }
 
@@ -101,37 +108,44 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     return;
   }
 
-  // Calculate score by comparing with solution (handle both numbers and strings)
-  const solution = JSON.parse(exercise.solution_data || '{}');
-  let score = 0;
-
   // Validate input structure
   if (!Array.isArray(data)) {
     res.status(400).json({ error: 'Ungültiges Datenformat' });
     return;
   }
 
+  // ── Single-pass scoring + feedback ──────────────────────
+  const solution = JSON.parse(exercise.solution_data || '{}');
+  const taskCols: number[] = JSON.parse(exercise.template_data || '{}').taskCols || [];
+  let score = 0;
+  let correctCells = 0;
+  let totalCells = 0;
+  const details: { row: number; col: number; expected: any; got: any }[] = [];
+
   if (solution.data && data) {
-    const taskCols = JSON.parse(exercise.template_data || '{}').taskCols || [];
-    const totalCells = solution.data.length * taskCols.length;
-    let correctCells = 0;
+    totalCells = solution.data.length * taskCols.length;
 
     for (const taskCol of taskCols) {
       for (let row = 0; row < solution.data.length; row++) {
         const userVal = data[row]?.[taskCol];
         const solVal = solution.data[row]?.[taskCol];
 
-        if (isCorrectAnswer(userVal, solVal)) correctCells++;
+        if (isCorrectAnswer(userVal, solVal)) {
+          correctCells++;
+        } else {
+          details.push({ row, col: taskCol, expected: solVal, got: userVal ?? null });
+        }
       }
     }
     score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
   }
 
-  const existing = db.prepare(
-    'SELECT id FROM progress WHERE user_id = ? AND exercise_id = ?'
-  ).get(userId, req.params.id);
+  // ── Persist progress (query prevScore BEFORE update!) ───
+  const prevProgress = db.prepare(
+    'SELECT id, score FROM progress WHERE user_id = ? AND exercise_id = ?'
+  ).get(userId, req.params.id) as { id: string; score: number } | undefined;
 
-  if (existing) {
+  if (prevProgress) {
     db.prepare(
       `UPDATE progress SET submitted_data = ?, score = ?, completed = 1, completed_at = datetime('now')
        WHERE user_id = ? AND exercise_id = ?`
@@ -143,20 +157,20 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     ).run(uuid(), userId, req.params.id, JSON.stringify(data), score);
   }
 
-  // Only award full XP if this is a new best score
+  // ── XP award based on previous best score ───────────────
   let xpGained = 0;
   try {
-    const prevScore = existing ? (db.prepare('SELECT score FROM progress WHERE user_id = ? AND exercise_id = ?').get(userId, req.params.id) as any)?.score : null;
+    const prevScore = prevProgress?.score ?? null;
     if (prevScore === 100 && score === 100) {
       xpGained = 10; // Small review bonus, no more farming
-    } else if (prevScore == null || score > (prevScore || 0)) {
+    } else if (prevScore == null || score > prevScore) {
       xpGained = awardXP(userId, score);
     } else {
       xpGained = 0; // No improvement, no XP
     }
   } catch { xpGained = 0; }
 
-  // Update spaced repetition (SM-2): 0% = quality 0 (complete failure)
+  // ── Update spaced repetition (SM-2) ─────────────────────
   const quality = score >= 100 ? 5 : score >= 80 ? 4 : score >= 50 ? 3 : score >= 30 ? 2 : score > 0 ? 1 : 0;
   const existingSr = db.prepare(
     'SELECT * FROM spaced_repetition WHERE user_id = ? AND exercise_id = ?'
@@ -172,35 +186,21 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     VALUES (?, ?, ?, ?, ?, ?, ?)
   `).run(userId, req.params.id, srResult.ef, srResult.interval, srResult.repetitions, nextReview.toISOString(), score);
 
-  // Build cell-level feedback (use same comparison as scoring)
-  const details: { row: number; col: number; expected: any; got: any }[] = [];
-  if (solution.data && data && score < 100) {
-    const taskCols = JSON.parse(exercise.template_data || '{}').taskCols || [];
-    for (const taskCol of taskCols) {
-      for (let row = 0; row < solution.data.length; row++) {
-        const userVal = data[row]?.[taskCol];
-        const solVal = solution.data[row]?.[taskCol];
-        if (!isCorrectAnswer(userVal, solVal)) {
-          details.push({ row, col: taskCol, expected: solVal, got: userVal ?? null });
-        }
-      }
-    }
-  }
-
-  // Calculate correct/total for frontend display
-  let correctCells = 0;
-  let totalCells = 0;
-  if (solution.data) {
-    const taskCols = JSON.parse(exercise.template_data || '{}').taskCols || [];
-    totalCells = solution.data.length * taskCols.length;
-    for (const taskCol of taskCols) {
-      for (let row = 0; row < solution.data.length; row++) {
-        if (isCorrectAnswer(data[row]?.[taskCol], solution.data[row]?.[taskCol])) correctCells++;
-      }
-    }
-  }
-
   res.json({ score, completed: true, details, xpGained, correctCells, totalCells });
+});
+
+// Get last exercise the user was working on (for "Weitermachen" button)
+router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) => {
+  const { userId } = req.user as AuthPayload;
+  const db = getDb();
+  const last = db.prepare(`
+    SELECT e.id, e.title FROM progress p
+    JOIN exercises e ON e.id = p.exercise_id
+    WHERE p.user_id = ?
+    ORDER BY p.completed_at DESC
+    LIMIT 1
+  `).get(userId) as { id: string; title: string } | undefined;
+  res.json(last || null);
 });
 
 // Get user progress across all exercises

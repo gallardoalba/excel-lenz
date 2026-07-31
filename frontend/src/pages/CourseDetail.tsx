@@ -125,10 +125,12 @@ export default function CourseDetail() {
   const [masteryMap, setMasteryMap] = useState<Record<string, boolean>>({});
   const [unlockedMap, setUnlockedMap] = useState<Record<string, boolean>>({});
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
     setSelectedSection(null);
+    setError(null);
     apiFetch(`/courses/${id}`)
       .then(c => {
         setCourse(c);
@@ -146,7 +148,7 @@ export default function CourseDetail() {
           setUnlockedMap(unlocked);
         });
       })
-      .catch(console.error)
+      .catch(err => { console.error(err); setError('Der Kurs konnte nicht geladen werden. Bitte versuchen Sie es später erneut.'); })
       .finally(() => setLoading(false));
   }, [id, user]);
 
@@ -161,6 +163,13 @@ export default function CourseDetail() {
   }, [course]);
 
   if (loading) return <ExcelSpinner text="Kurse werden geladen..." />;
+  if (error) return (
+    <div className="empty-state" style={{ padding: '80px 24px' }}>
+      <h2>Ladefehler</h2>
+      <p style={{ marginBottom: 20, color: 'var(--text-secondary)' }}>{error}</p>
+      <button className="btn btn-primary" onClick={() => window.location.reload()}>Erneut versuchen</button>
+    </div>
+  );
   if (!course) return (
     <div className="empty-state" style={{ padding: '80px 24px' }}>
       <h2>Kurs nicht gefunden</h2>

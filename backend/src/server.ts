@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import { config } from './config';
 import logger from './utils/logger';
 import { initDb } from './db/database';
 import { seed } from './db/seed';
@@ -15,23 +16,25 @@ import adaptiveRoutes from './routes/adaptive';
 import communityRoutes from './routes/community';
 
 const app = express();
-const PORT = process.env.PORT || 3001;
-const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:5173';
+const PORT = config.server.port;
+const CORS_ORIGIN = config.server.corsOrigin;
 
 // Trust proxy for rate limiting behind nginx/load balancer
-app.set('trust proxy', 1);
+if (config.server.trustProxy) {
+  app.set('trust proxy', 1);
+}
 
 // Security headers
 app.use(helmet({ contentSecurityPolicy: false })); // CSP configured separately if needed
 
 // CORS
 app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
-app.use(express.json({ limit: '2mb' }));
+app.use(express.json({ limit: config.server.jsonLimit }));
 
 // Rate limiting — global
 app.use(rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
-  max: 500,
+  windowMs: config.rateLimit.global.windowMs,
+  max: config.rateLimit.global.max,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Zu viele Anfragen. Bitte später erneut versuchen.' },
@@ -39,8 +42,8 @@ app.use(rateLimit({
 
 // Stricter rate limit on auth routes
 const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 20,
+  windowMs: config.rateLimit.auth.windowMs,
+  max: config.rateLimit.auth.max,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Zu viele Login-Versuche. Bitte warte 15 Minuten.' },

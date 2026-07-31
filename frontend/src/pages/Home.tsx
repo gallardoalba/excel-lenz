@@ -20,11 +20,16 @@ export default function Home() {
   const { user } = useAuth();
   const { startTour } = useTour();
   const [lastExercise, setLastExercise] = useState<{ id: string; title: string; course_title: string } | null>(null);
+  const [guestCourseId, setGuestCourseId] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
       apiFetch('/exercises/user/last-exercise').then(setLastExercise).catch(() => {});
     }
+    // Fetch first course ID dynamically for "Als Gast testen" button
+    apiFetch('/courses').then((courses: { id: string }[]) => {
+      if (courses?.length) setGuestCourseId(courses[0].id);
+    }).catch(() => {});
   }, [user]);
 
   return (
@@ -46,9 +51,15 @@ export default function Home() {
             <Link to="/courses" className="btn btn-primary btn-lg">
               Kurse entdecken
             </Link>
-            <Link to="/courses/d2f44dd9-e1df-4ea3-aa41-84ed501362b1" className="btn btn-outline btn-lg">
-              Als Gast testen
-            </Link>
+            {guestCourseId ? (
+              <Link to={`/courses/${guestCourseId}`} className="btn btn-outline btn-lg">
+                Als Gast testen
+              </Link>
+            ) : (
+              <Link to="/courses" className="btn btn-outline btn-lg">
+                Kurse entdecken
+              </Link>
+            )}
           </div>
 
           {/* Continue where you left off */}

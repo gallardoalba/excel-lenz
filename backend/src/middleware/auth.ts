@@ -4,7 +4,11 @@ import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET;
 
 if (!JWT_SECRET) {
-  throw new Error('FATAL: JWT_SECRET environment variable is required. Set it before starting the server.');
+  throw new Error(
+    'FATAL: JWT_SECRET environment variable is required.\n' +
+    'Set it before starting the server, e.g.: JWT_SECRET=your-secret npm run dev\n' +
+    'In production, use a strong random secret (min 32 characters).'
+  );
 }
 
 // TypeScript: after the throw, JWT_SECRET is narrowed but TS doesn't know that

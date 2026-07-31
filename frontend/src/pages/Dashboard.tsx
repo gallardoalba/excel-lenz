@@ -127,7 +127,7 @@ export default function Dashboard() {
             </h3>
             <div className="flex-col gap-sm">
               {reviews.slice(0, 3).map((r) => (
-                <Link key={r.exercise_id} to={`/exercise/${r.exercise_id}`} className="card border-left-warning" style={{
+                <Link key={r.exercise_id} to={`/exercises/${r.exercise_id}`} className="card border-left-warning" style={{
                   padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                   textDecoration: 'none', color: 'inherit',
                 }}>

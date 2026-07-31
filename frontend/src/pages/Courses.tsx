@@ -27,10 +27,7 @@ export default function Courses() {
 
   if (loading) return <ExcelSpinner text="Kurse werden geladen..." />;
 
-  // Temporarily hide certain courses
-  const visibleCourses = courses.filter(c =>
-    c.title !== 'Datenanalyse & Statistik' && c.title !== 'Datenbank & Business Intelligence'
-  );
+  const visibleCourses = courses;
 
   return (
     <div>

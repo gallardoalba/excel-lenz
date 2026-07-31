@@ -45,7 +45,7 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
   const userId = (req.user as AuthPayload)?.userId;
   const course = db.prepare('SELECT * FROM courses WHERE id = ?').get(req.params.id) as any;
   if (!course) {
-    res.status(404).json({ error: 'Curso no encontrado' });
+    res.status(404).json({ error: 'Kurs nicht gefunden' });
     return;
   }
 
@@ -92,7 +92,7 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
 
   for (const ex of exercises) {
     const modId = ex.moduleId || 'default';
-    const modTitle = ex.moduleTitle || 'Ejercicios';
+    const modTitle = ex.moduleTitle || 'Übungen';
     const secId = ex.moduleSection || '';
     const secTitle = ex.sectionTitle || '';
 

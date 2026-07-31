@@ -1,4 +1,5 @@
 import { useState, useEffect, ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Zap, Bell } from 'lucide-react';
 import { apiFetch, useAuth } from '../../context/AuthContext';
 
@@ -12,6 +13,7 @@ interface Notification {
 
 export function NotificationCenter() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [notifs, setNotifs] = useState<Notification[]>([]);
 
@@ -62,7 +64,7 @@ export function NotificationCenter() {
             ) : (
               notifs.map(n => (
                 <div key={n.id} className="notif-item"
-                  onClick={() => { if (n.link) { window.location.href = n.link; setOpen(false); } }}
+                  onClick={() => { if (n.link) { navigate(n.link); setOpen(false); } }}
                   style={{ cursor: n.link ? 'pointer' : 'default' }}
                 >
                   <span style={{ fontSize: '0.85rem' }}>{n.message}</span>

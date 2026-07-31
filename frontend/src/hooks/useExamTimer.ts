@@ -7,12 +7,14 @@ export function useExamTimer(durationInMinutes: number, onTimeUp: () => void) {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const endTimeRef = useRef<number>(0);
+  const secondsLeftRef = useRef(secondsLeft);
   const onTimeUpRef = useRef(onTimeUp);
   onTimeUpRef.current = onTimeUp;
+  secondsLeftRef.current = secondsLeft;
 
   const start = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
-    endTimeRef.current = Date.now() + secondsLeft * 1000;
+    endTimeRef.current = Date.now() + secondsLeftRef.current * 1000;
     intervalRef.current = setInterval(() => {
       const remaining = Math.round((endTimeRef.current - Date.now()) / 1000);
       if (remaining <= 0) {
@@ -22,8 +24,8 @@ export function useExamTimer(durationInMinutes: number, onTimeUp: () => void) {
       } else {
         setSecondsLeft(remaining);
       }
-    }, 500); // Check every 500ms to catch drift sooner
-  }, [secondsLeft]);
+    }, 500);
+  }, []); // Stable callback — uses refs for latest values
 
   const stop = useCallback(() => {
     if (intervalRef.current) {

@@ -92,7 +92,7 @@ router.get('/me', authMiddleware, (req: Request, res: Response) => {
   ).get(userId);
 
   if (!user) {
-    res.status(404).json({ error: 'Usuario no encontrado' });
+    res.status(404).json({ error: 'Benutzer nicht gefunden' });
     return;
   }
   res.json(user);

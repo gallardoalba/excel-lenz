@@ -109,7 +109,11 @@ export default function Exercise() {
   }, [exercise, spreadsheetData]);
 
   const safeTimeout = useCallback((fn: () => void, ms: number) => {
-    const id = setTimeout(fn, ms);
+    const id = setTimeout(() => {
+      // Auto-remove from tracking array once executed to prevent memory leak
+      timersRef.current = timersRef.current.filter(t => t !== id);
+      fn();
+    }, ms);
     timersRef.current.push(id);
     return id;
   }, []);
@@ -190,9 +194,9 @@ export default function Exercise() {
       if (result.score < 100 && result.details) {
         setCellFeedback(result.details || []);
         announce(`Ergebnis: ${result.score} Prozent. ${result.details.length} Fehler gefunden.`, 'assertive');
-        // Growth-oriented hint based on common mistakes
+        // Growth-oriented hint based on score tier — generic strategy advice
         if (result.score < 30) {
-          setFeedbackHint(<><Lightbulb size={14} style={{marginRight:4}} />Tipp: Überprüfe die verwendete Funktion. Brauchst du vielleicht SUMME statt MITTELWERT?</>);
+          setFeedbackHint(<><Lightbulb size={14} style={{marginRight:4}} />Tipp: Überprüfe die verwendete Funktion — ist es die richtige für diese Aufgabe? Ein Blick in die Theorie hilft!</>);
         } else if (result.score < 70) {
           setFeedbackHint(<><Lightbulb size={14} style={{marginRight:4}} />Fast geschafft! Überprüfe die Zellbezüge — hast du den richtigen Bereich ausgewählt?</>);
         } else {
@@ -229,8 +233,10 @@ export default function Exercise() {
           safeTimeout(() => setShowSuccessCheck(false), 3000);
         }
       } catch { setXpGained(50); }
-      // Track daily goal progress
-      incrementGoal();
+      // Track daily goal progress — only count meaningful attempts
+      if (result.score > 0) {
+        incrementGoal();
+      }
     } catch (err) {
       console.error(err);
     } finally {

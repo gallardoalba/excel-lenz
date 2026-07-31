@@ -77,9 +77,7 @@ export default function StudentPanel() {
     return map;
   }, [progress]);
 
-  const visibleCourses = courses.filter(c =>
-    c.title !== 'Datenanalyse & Statistik' && c.title !== 'Datenbank & Business Intelligence'
-  );
+  const visibleCourses = courses;
 
   const xp = gami?.xp;
   const recentBadges = gami?.badges?.slice(0, 3) || [];

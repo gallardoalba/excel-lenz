@@ -35,8 +35,8 @@ export default function Register() {
       setError('Passwörter stimmen nicht überein');
       return;
     }
-    if (password.length < 6) {
-      setError('Passwort muss mindestens 6 Zeichen haben');
+    if (password.length < 8) {
+      setError('Passwort muss mindestens 8 Zeichen haben');
       return;
     }
 
@@ -80,7 +80,7 @@ export default function Register() {
             <label htmlFor="password">Passwort</label>
             <input id="password" type="password" className="form-input" value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mindestens 6 Zeichen" required minLength={6} />
+              placeholder="Mindestens 8 Zeichen" required minLength={8} />
             {strength.label && (
               <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <div className="progress-bar" style={{ flex: 1, maxWidth: 120 }}>
