@@ -39,15 +39,20 @@ export function seed(): void {
   initDb();
   const db = getDb();
 
-  const { count } = db.prepare('SELECT COUNT(*) as count FROM users').get() as { count: number };
-  if (count > 0) return;
+  // Only seed users if table is empty
+  const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get() as { count: number };
+  if (userCount.count === 0) {
+    const hash = bcrypt.hashSync('password123', 10);
+    const insertUser = db.prepare(
+      'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
+    );
+    insertUser.run(uuid(), 'dozent@excel-lenz.edu', hash, 'Lehrer Müller', 'teacher');
+    insertUser.run(uuid(), 'student@excel-lenz.edu', hash, 'Anna Schmidt', 'student');
+  }
 
-  const hash = bcrypt.hashSync('password123', 10);
-  const insertUser = db.prepare(
-    'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
-  );
-  insertUser.run(uuid(), 'dozent@excel-lenz.edu', hash, 'Lehrer Müller', 'teacher');
-  insertUser.run(uuid(), 'student@excel-lenz.edu', hash, 'Anna Schmidt', 'student');
+  // Only seed exercises if table is empty (allows updating exercises on restart)
+  const exCount = db.prepare('SELECT COUNT(*) as count FROM exercises').get() as { count: number };
+  if (exCount.count > 0) return;
 
   const insertEx = db.prepare(
     'INSERT INTO exercises (id, course_id, title, description, template_data, solution_data, instructions, order_index) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'

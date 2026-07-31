@@ -6753,10 +6753,10 @@
           ]
         ]
       },
-      "instructions": "1. =WENN(ZÄHLENWENN($B$2:$B$6;B2)>1;\"⚠️ Duplikat\";\"✅ Eindeutig\").\n2. ZÄHLENWENN zählt wie oft die E-Mail vorkommt.\n3. >1 = kommt mehrfach vor → Duplikat.",
+      "instructions": "1. =WENN(ZÄHLENWENN($B$2:B2;B2)>1;\"⚠️ Duplikat\";\"✅ Eindeutig\").\n2. ZÄHLENWENN zählt wie oft die E-Mail vorkommt.\n3. >1 = kommt mehrfach vor → Duplikat.",
       "order": 55,
-      "formulaHint": "=WENN(ZÄHLENWENN($B$2:$B$6;B2)>1;\"⚠️\";\"✅\")",
-      "hint1": "ZÄHLENWENN($B$2:$B$6;B2) zählt Vorkommen der E-Mail",
+      "formulaHint": "=WENN(ZÄHLENWENN($B$2:B2;B2)>1;\"⚠️\";\"✅\")",
+      "hint1": "ZÄHLENWENN($B$2:B2;B2) zählt Vorkommen der E-Mail",
       "hint2": "Absolute Referenz $B$2:$B$6 wichtig!",
       "learningObjectives": [
         "Duplikaterkennung",
