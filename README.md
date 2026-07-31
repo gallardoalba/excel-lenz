@@ -26,7 +26,6 @@ Traditionelles Excel-Lernen leidet unter drei Problemen: **kein direktes Feedbac
 | **Sofortiges Feedback** | Automatische Zell-für-Zell-Korrektur zeigt genau, was falsch ist — mit Hinweisen zur Verbesserung |
 | **Adaptive Lernpfade** | Spaced Repetition und Fähigkeitsanalyse passen die Übungsempfehlungen individuell an |
 | **Micro-Learning** | Übungen sind in 5-15 Minuten abschließbar — ideal für den Arbeitsalltag |
-| **Gamification** | XP, Abzeichen, tägliche Ziele und Bestenlisten motivieren zum kontinuierlichen Üben |
 
 ### Für wen ist Excel-lenz?
 
@@ -77,11 +76,9 @@ Die Plattform bietet einen vollständigen Excel-Simulator mit Werkzeugen für ef
 | **Prüfungsmodus** | Zeitgesteuerte Assessments mit Countdown-Timer, automatischer Abgabe und geschützter Umgebung |
 | **Datenwerkzeuge** | SVG-Diagramme (Balken/Linie), Datenvalidierung mit benutzerdefinierten Regeln, interaktive Pivot-Tabellen |
 | **Adaptives Lernen** | Personalisierte Übungsempfehlungen basierend auf Spaced Repetition und Fähigkeitsanalyse |
-| **Gamification** | Erfahrungspunkte, Abzeichen, tägliche Ziele, Bestenlisten und Fortschrittsdiagramme |
 | **Lehrer-Panel** | Verwaltung von Kursen und Übungen, Schülerübersicht mit Fortschrittsanalyse |
 | **Barrierefreiheit** | Screenreader-Unterstützung, Tastaturnavigation, Fokus-Modus, reduzierte Bewegung |
 | **Dark Mode** | Vollständige Dark-Mode-Unterstützung mit CSS-Custom-Properties |
-| **Mehrsprachig** | Deutsche Oberfläche, HyperFormula mit DE/EN-Formelübersetzung |
 
 ---
 
