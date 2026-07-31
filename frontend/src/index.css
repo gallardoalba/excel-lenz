@@ -2482,8 +2482,8 @@ body.dark .cf-rule-range { color: #ddd; }
    ============================================================ */
 .exercise-layout {
   display: grid;
-  grid-template-columns: 500px 1fr;
-  gap: 32px;
+  grid-template-columns: 560px minmax(0, 1fr);
+  gap: 40px;
   padding: 40px;
   background: var(--bg-alt);
   align-items: start;

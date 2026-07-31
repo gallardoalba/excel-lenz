@@ -68,6 +68,7 @@ export default function Exercise() {
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const abortRef = useRef<AbortController | null>(null);
   const [nextExercise, setNextExercise] = useState<{ id: string; title: string; estimated_minutes?: number } | null>(null);
+  const [prevExercise, setPrevExercise] = useState<{ id: string; title: string } | null>(null);
 
   // Focus Mode — hide navbar/footer
   useEffect(() => {
@@ -146,8 +147,13 @@ export default function Exercise() {
           .then((course: { exercises: { id: string; title: string; estimated_minutes?: number }[] }) => {
             if (signal.aborted) return;
             const currentIdx = course.exercises.findIndex((e: { id: string }) => e.id === id);
-            if (currentIdx >= 0 && currentIdx < course.exercises.length - 1) {
-              setNextExercise(course.exercises[currentIdx + 1]);
+            if (currentIdx >= 0) {
+              if (currentIdx < course.exercises.length - 1) {
+                setNextExercise(course.exercises[currentIdx + 1]);
+              }
+              if (currentIdx > 0) {
+                setPrevExercise(course.exercises[currentIdx - 1]);
+              }
             }
           })
           .catch(() => { /* course fetch failure is non-critical */ });
@@ -259,6 +265,21 @@ export default function Exercise() {
           aria-label={`Zurück zum Kurs`}>
           <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zum Kurs
         </Link>
+        {/* Prev/Next navigation */}
+        <div style={{ display: 'flex', gap: 4, marginLeft: 4 }}>
+          {prevExercise && (
+            <Link to={`/exercises/${prevExercise.id}`} className="btn btn-outline btn-sm"
+              style={{ padding: '6px 10px' }} title={`Vorherige: ${prevExercise.title}`}>
+              <ArrowLeft size={14} />
+            </Link>
+          )}
+          {nextExercise && (
+            <Link to={`/exercises/${nextExercise.id}`} className="btn btn-outline btn-sm"
+              style={{ padding: '6px 10px' }} title={`Nächste: ${nextExercise.title}`}>
+              <ArrowRight size={14} />
+            </Link>
+          )}
+        </div>
         <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>
           <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</Link>
           <span style={{ margin: '0 4px' }}>›</span>

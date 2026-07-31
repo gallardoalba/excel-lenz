@@ -67,42 +67,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATISTICS — Light section, big numbers, no dark box */}
-      <section className="section" style={{ padding: '80px 24px', borderTop: '1px solid var(--border-light)', borderBottom: '1px solid var(--border-light)' }}>
-        <div className="stats-grid" style={{ maxWidth: 'var(--content-max)', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px', textAlign: 'center' }}>
-          <div className="stat-item" style={{ padding: '8px' }}>
-            <div style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: '800', color: 'var(--text)', lineHeight: '1.1' }}>10+</div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>Jahre Bildungserfahrung</div>
-          </div>
-          <div className="stat-item" style={{ padding: '8px' }}>
-            <div style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: '800', color: 'var(--text)', lineHeight: '1.1' }}>200+</div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>Interaktive Übungen</div>
-          </div>
-          <div className="stat-item" style={{ padding: '8px' }}>
-            <div style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: '800', color: 'var(--text)', lineHeight: '1.1' }}>15.000+</div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>Zufriedene Lernende</div>
-          </div>
-          <div className="stat-item" style={{ padding: '8px' }}>
-            <div style={{ fontSize: 'clamp(3rem, 5vw, 4rem)', fontWeight: '800', color: 'var(--text)', lineHeight: '1.1' }}>98%</div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>Weiterempfehlungsrate</div>
-          </div>
-        </div>
-      </section>
-
-      {/* CLIENT LOGOS */}
-      <section className="section section-alt">
-        <div className="section-inner">
-          <p className="text-label text-center mb-md">Vertrauen von führenden Institutionen</p>
-          <div className="client-logos-grid">
-            {homeContent.clients.map((name) => (
-              <span key={name} className="client-logo-item">{name}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* SERVICES */}
-      <section className="section">
+      <section className="section section-alt">
         <div className="section-inner">
           <div className="text-center mb-4">
             <h2>Unsere Lernlösungen</h2>
@@ -126,7 +92,7 @@ export default function Home() {
       </section>
 
       {/* USPs */}
-      <section className="section section-alt">
+      <section className="section">
         <div className="section-inner">
           <div className="text-center mb-4">
             <h2>Was uns unterscheidet</h2>
@@ -144,27 +110,6 @@ export default function Home() {
                   <h4>{usp.title}</h4>
                   <p>{usp.description}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="section">
-        <div className="section-inner">
-          <div className="text-center mb-4">
-            <h2>Erfahrung, die begeistert</h2>
-            <p className="text-muted mt-2 max-w-560">
-              Was unsere Lernenden über Excel-lenz sagen.
-            </p>
-          </div>
-          <div className="testimonial-grid">
-            {homeContent.testimonials.map((t, i) => (
-              <div className="testimonial-card" key={i}>
-                <p className="testimonial-text">{t.text}</p>
-                <p className="testimonial-author">{t.author}</p>
-                <p className="testimonial-role">{t.role}</p>
               </div>
             ))}
           </div>
