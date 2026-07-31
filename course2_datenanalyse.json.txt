@@ -1,0 +1,5787 @@
+{
+  "title": "Datenanalyse & Statistik",
+  "description": "50 Übungen: Deskriptive Statistik, Verteilungen, Regression, Zeitreihenanalyse, Hypothesentests, Datenbereinigung, Stichproben und Transformationen für Fortgeschrittene.",
+  "difficulty": "intermediate",
+  "exercises": [
+    {
+      "title": "Verkaufsstatistik berechnen",
+      "description": "Berechne Mittelwert, Median, Minimum und Maximum der Verkaufszahlen.",
+      "template": {
+        "cols": 2,
+        "rows": 8,
+        "headers": [
+          "Monat",
+          "Verkäufe"
+        ],
+        "data": [
+          [
+            "Januar",
+            340
+          ],
+          [
+            "Februar",
+            290
+          ],
+          [
+            "März",
+            410
+          ],
+          [
+            "April",
+            380
+          ],
+          [
+            "Mai",
+            450
+          ],
+          [
+            "",
+            ""
+          ],
+          [
+            "MITTELWERT",
+            null
+          ],
+          [
+            "MEDIAN",
+            null
+          ],
+          [
+            "MIN",
+            null
+          ],
+          [
+            "MAX",
+            null
+          ]
+        ],
+        "taskCols": [
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Januar",
+            340
+          ],
+          [
+            "Februar",
+            290
+          ],
+          [
+            "März",
+            410
+          ],
+          [
+            "April",
+            380
+          ],
+          [
+            "Mai",
+            450
+          ],
+          [
+            "",
+            ""
+          ],
+          [
+            "MITTELWERT",
+            374
+          ],
+          [
+            "MEDIAN",
+            380
+          ],
+          [
+            "MIN",
+            290
+          ],
+          [
+            "MAX",
+            450
+          ]
+        ]
+      },
+      "instructions": "1. Berechne den MITTELWERT der Verkäufe.\n2. Berechne den MEDIAN.\n3. Finde MIN und MAX.\n4. Verwende =MITTELWERT(B2:B6), =MEDIAN(B2:B6), =MIN(B2:B6), =MAX(B2:B6).",
+      "order": 1,
+      "formulaHint": "=MITTELWERT(B2:B6)",
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Prozentuale Verteilung",
+      "description": "Berechne den prozentualen Anteil jeder Kategorie am Gesamtumsatz.",
+      "template": {
+        "cols": 4,
+        "rows": 6,
+        "headers": [
+          "Kategorie",
+          "Umsatz (€)",
+          "Anteil (%)",
+          "Prüfsumme"
+        ],
+        "data": [
+          [
+            "Lebensmittel",
+            45000,
+            null,
+            null
+          ],
+          [
+            "Elektronik",
+            32000,
+            null,
+            null
+          ],
+          [
+            "Kleidung",
+            18000,
+            null,
+            null
+          ],
+          [
+            "Möbel",
+            25000,
+            null,
+            null
+          ],
+          [
+            "Gesamt",
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          4
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Lebensmittel",
+            45000,
+            37.5
+          ],
+          [
+            "Elektronik",
+            32000,
+            26.67
+          ],
+          [
+            "Kleidung",
+            18000,
+            15
+          ],
+          [
+            "Möbel",
+            25000,
+            20.83
+          ],
+          [
+            "Gesamt",
+            120000,
+            100
+          ]
+        ]
+      },
+      "instructions": "1. Berechne Gesamtumsatz mit =SUMME(B2:B5).\n2. Berechne für jede Kategorie den prozentualen Anteil: =B2/$B$6*100.\n3. Verwende absolute Referenz $B$6 damit die Formel kopiert werden kann.",
+      "order": 2,
+      "formulaHint": "=B2/B6*100 für Prozent",
+      "estimated_minutes": 8
+    },
+    {
+      "title": "ZÄHLENWENN & Häufigkeiten",
+      "description": "Analysiere Umfragedaten mit ZÄHLENWENN.",
+      "template": {
+        "cols": 3,
+        "rows": 10,
+        "headers": [
+          "Teilnehmer",
+          "Bewertung",
+          ""
+        ],
+        "data": [
+          [
+            "P1",
+            "Gut",
+            null
+          ],
+          [
+            "P2",
+            "Sehr gut",
+            null
+          ],
+          [
+            "P3",
+            "Gut",
+            null
+          ],
+          [
+            "P4",
+            "Befriedigend",
+            null
+          ],
+          [
+            "P5",
+            "Sehr gut",
+            null
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Auswertung:",
+            "",
+            ""
+          ],
+          [
+            "Sehr gut",
+            null,
+            null
+          ],
+          [
+            "Gut",
+            null,
+            null
+          ],
+          [
+            "Befriedigend",
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          8,
+          9,
+          10
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "P1",
+            "Gut"
+          ],
+          [
+            "P2",
+            "Sehr gut"
+          ],
+          [
+            "P3",
+            "Gut"
+          ],
+          [
+            "P4",
+            "Befriedigend"
+          ],
+          [
+            "P5",
+            "Sehr gut"
+          ],
+          [
+            "",
+            ""
+          ],
+          [
+            "Auswertung:",
+            ""
+          ],
+          [
+            "Sehr gut",
+            2
+          ],
+          [
+            "Gut",
+            2
+          ],
+          [
+            "Befriedigend",
+            1
+          ]
+        ]
+      },
+      "instructions": "1. Zähle wie oft jede Bewertung vorkommt.\n2. =ZÄHLENWENN($B$2:$B$6;A8).\n3. Nutze absolute Referenz und verweise auf die Zelle mit dem Bewertungstext.",
+      "order": 3,
+      "formulaHint": "=ZÄHLENWENN($B$2:$B$6;A8)",
+      "hint1": "ZÄHLENWENN zählt, wie oft ein Wert vorkommt",
+      "hint2": "=ZÄHLENWENN($B$2:$B$6;\"Sehr gut\")",
+      "hint3": "Nutze absolute Referenz $B$2:$B$6 und verweise auf A8",
+      "learningObjectives": [
+        "ZÄHLENWENN für Häufigkeiten",
+        "Absolute Referenzen in Formeln",
+        "Auswertungen automatisieren"
+      ],
+      "estimated_minutes": 7,
+      "theoryTitle": "ZÄHLENWENN verstehen",
+      "theory": "ZÄHLENWENN zählt Zellen, die ein bestimmtes Kriterium erfüllen.\n\nSyntax: =ZÄHLENWENN(Bereich; Kriterium)\n\nBeispiele:\n• =ZÄHLENWENN(B2:B10;\"Gut\") — zählt \"Gut\"\n• =ZÄHLENWENN(B2:B10;\">80\") — zählt Werte >80\n• =ZÄHLENWENN(B2:B10;A1) — Kriterium aus Zelle A1\n\n💡 Tipp: Für mehrere Kriterien nutze ZÄHLENWENNS()."
+    },
+    {
+      "title": "Mehrblatt-Referenzen",
+      "description": "Verknüpfe Daten aus mehreren Tabellenblättern (simuliert in einem Blatt).",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Produkt",
+          "Q1",
+          "Q2",
+          "Jahressumme"
+        ],
+        "data": [
+          [
+            "Laptop",
+            1200,
+            null,
+            null
+          ],
+          [
+            "Tablet",
+            800,
+            null,
+            null
+          ],
+          [
+            "Maus",
+            300,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Q2-Daten:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Produkt",
+            "Q2",
+            "",
+            ""
+          ],
+          [
+            "Laptop",
+            1350,
+            "",
+            ""
+          ],
+          [
+            "Tablet",
+            950,
+            "",
+            ""
+          ],
+          [
+            "Maus",
+            350,
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          1,
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Laptop",
+            1350,
+            1200,
+            2550
+          ],
+          [
+            "Tablet",
+            950,
+            800,
+            1750
+          ],
+          [
+            "Maus",
+            350,
+            300,
+            650
+          ]
+        ]
+      },
+      "instructions": "1. Hole Q2-Daten aus Zeile 8-10: =B8 für Laptop.\n2. Berechne Jahressumme: =B2+C2.\n3. Stelle dir vor, Q1 und Q2 wären separate Tabellenblätter.",
+      "order": 3,
+      "formulaHint": "=B8 für Q2-Wert, =B2+C2 für Summe",
+      "hint1": "Q2-Daten stehen in Zeile 8-10",
+      "hint2": "=B8 holt den Q2-Wert für Laptop",
+      "hint3": "Jahressumme = Q1 + Q2: =B2+C2",
+      "learningObjectives": [
+        "Daten aus anderen Bereichen referenzieren",
+        "Mehrblatt-Konzept verstehen",
+        "Querverweise in Tabellen"
+      ],
+      "estimated_minutes": 10,
+      "theoryTitle": "Mehrblatt-Referenzen",
+      "theory": "In Excel kannst du Daten aus anderen Tabellenblättern referenzieren:\n\nSyntax: =Tabellenblatt!Zelle\n\nBeispiele:\n• =Q2!B2 — Wert aus Blatt \"Q2\", Zelle B2\n• =SUMME(Q1:Q4!B2) — 3D-Summe über mehrere Blätter\n\n💡 Tipp: Klicke beim Formelschreiben einfach auf das andere Tabellenblatt — Excel fügt die Referenz automatisch ein."
+    },
+    {
+      "title": "Bedingte Formatierung mit WENN",
+      "description": "Markiere Werte über/unter dem Durchschnitt mit WENN.",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Monat",
+          "Umsatz (T€)",
+          "Trend"
+        ],
+        "data": [
+          [
+            "Jan",
+            45,
+            null
+          ],
+          [
+            "Feb",
+            38,
+            null
+          ],
+          [
+            "Mär",
+            52,
+            null
+          ],
+          [
+            "Apr",
+            41,
+            null
+          ],
+          [
+            "Mai",
+            55,
+            null
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Durchschnitt",
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Jan",
+            45,
+            "▼ Unter Ø"
+          ],
+          [
+            "Feb",
+            38,
+            "▼ Unter Ø"
+          ],
+          [
+            "Mär",
+            52,
+            "▲ Über Ø"
+          ],
+          [
+            "Apr",
+            41,
+            "▼ Unter Ø"
+          ],
+          [
+            "Mai",
+            55,
+            "▲ Über Ø"
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Durchschnitt",
+            46.2,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Berechne den Durchschnitt: =MITTELWERT(B2:B6).\n2. Vergleiche jeden Wert: =WENN(B2>$B$7;\"▲ Über Ø\";\"▼ Unter Ø\").\n3. Nutze $B$7 als feste Referenz.",
+      "order": 4,
+      "formulaHint": "=MITTELWERT(B2:B6), =WENN(B2>B7;\"▲ Über Ø\";\"▼ Unter Ø\")",
+      "hint1": "Durchschnitt: =MITTELWERT(B2:B6)",
+      "hint2": "Trend: =WENN(B2>$B$7;\"▲ Über Ø\";\"▼ Unter Ø\")",
+      "hint3": "Verwende $B$7 als absolute Referenz auf den Durchschnitt",
+      "learningObjectives": [
+        "WENN mit Vergleichsoperator",
+        "Absolute Referenz auf berechneten Wert",
+        "Datenanalyse mit Schwellwerten"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Datenüberprüfung mit WENN",
+      "description": "Validiere Eingabedaten — simuliert Excel-Datenüberprüfung.",
+      "template": {
+        "cols": 4,
+        "rows": 7,
+        "headers": [
+          "Name",
+          "Alter",
+          "E-Mail",
+          "Gültig?"
+        ],
+        "data": [
+          [
+            "Anna",
+            28,
+            "anna@mail.com",
+            null
+          ],
+          [
+            "Ben",
+            15,
+            "ben@mail",
+            null
+          ],
+          [
+            "Clara",
+            42,
+            "clara@mail.com",
+            null
+          ],
+          [
+            "David",
+            -5,
+            "david@mail.com",
+            null
+          ],
+          [
+            "Eva",
+            33,
+            "eva@",
+            null
+          ],
+          [
+            "Felix",
+            27,
+            "felix@mail.com",
+            null
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            28,
+            "anna@mail.com",
+            "✅"
+          ],
+          [
+            "Ben",
+            15,
+            "ben@mail",
+            "❌"
+          ],
+          [
+            "Clara",
+            42,
+            "clara@mail.com",
+            "✅"
+          ],
+          [
+            "David",
+            -5,
+            "david@mail.com",
+            "❌"
+          ],
+          [
+            "Eva",
+            33,
+            "eva@",
+            "❌"
+          ],
+          [
+            "Felix",
+            27,
+            "felix@mail.com",
+            "✅"
+          ]
+        ]
+      },
+      "instructions": "1. Prüfe ob das Alter zwischen 18 und 100 liegt.\n2. Prüfe ob die E-Mail-Adresse mehr als 10 Zeichen hat.\n3. Kombiniere: =WENN(UND(B2>=18;B2<=100;LÄNGE(C2)>10);\"✅\";\"❌\").",
+      "order": 4,
+      "formulaHint": "=WENN(UND(B2>=18;B2<=100;LÄNGE(C2)>10);\"✅\";\"❌\")",
+      "hint1": "Prüfe: Alter 18-100 UND E-Mail mindestens 11 Zeichen",
+      "hint2": "LÄNGE(C2) gibt die Zeichenanzahl zurück",
+      "hint3": "=WENN(UND(B2>=18;B2<=100;LÄNGE(C2)>10);\"✅\";\"❌\")",
+      "learningObjectives": [
+        "Datenvalidierung mit Formeln",
+        "UND mit Zahlen- und Textprüfung",
+        "LÄNGE-Funktion"
+      ],
+      "estimated_minutes": 10,
+      "theoryTitle": "Datenüberprüfung in Excel",
+      "theory": "Excel-Datenüberprüfung verhindert falsche Eingaben:\n\nDaten > Datentools > Datenüberprüfung\n\nMögliche Regeln:\n• Ganze Zahl zwischen 1-100\n• Textlänge maximal 50 Zeichen\n• Benutzerdefinierte Formel: =UND(B2>=18;B2<=100)\n\nWir simulieren das hier mit WENN-Formeln. In echtem Excel würdest du die Datenüberprüfung nutzen."
+    },
+    {
+      "title": "KORREL: Zusammenhang prüfen",
+      "description": "Berechne die Korrelation zwischen Werbeausgaben und Umsatz.",
+      "template": {
+        "cols": 3,
+        "rows": 7,
+        "headers": [
+          "Monat",
+          "Werbung (€)",
+          "Umsatz (€)"
+        ],
+        "data": [
+          [
+            "Jan",
+            500,
+            12000
+          ],
+          [
+            "Feb",
+            700,
+            14500
+          ],
+          [
+            "Mär",
+            300,
+            9800
+          ],
+          [
+            "Apr",
+            900,
+            18000
+          ],
+          [
+            "Mai",
+            600,
+            13500
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Korrelation",
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Jan",
+            500,
+            12000
+          ],
+          [
+            "Feb",
+            700,
+            14500
+          ],
+          [
+            "Mär",
+            300,
+            9800
+          ],
+          [
+            "Apr",
+            900,
+            18000
+          ],
+          [
+            "Mai",
+            600,
+            13500
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Korrelation",
+            0.989,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Berechne die Korrelation: =KORREL(B2:B6;C2:C6).\n2. Werte nahe +1 bedeuten starken positiven Zusammenhang.\n3. Interpretiere das Ergebnis.",
+      "order": 5,
+      "formulaHint": "=KORREL(B2:B6;C2:C6)",
+      "hint1": "KORREL misst den linearen Zusammenhang (-1 bis +1)",
+      "hint2": "=KORREL(Bereich1;Bereich2)",
+      "hint3": "=KORREL(B2:B6;C2:C6)",
+      "learningObjectives": [
+        "Korrelationsanalyse verstehen",
+        "KORREL-Funktion anwenden",
+        "Zusammenhänge statistisch messen"
+      ],
+      "estimated_minutes": 7
+    },
+    {
+      "title": "SUMMEWENN: Bedingte Summen",
+      "description": "Summiere nur Werte die ein bestimmtes Kriterium erfüllen.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Kategorie",
+          "Artikel",
+          "Betrag",
+          ""
+        ],
+        "data": [
+          [
+            "Büro",
+            "Papier",
+            45,
+            null
+          ],
+          [
+            "IT",
+            "Laptop",
+            1200,
+            null
+          ],
+          [
+            "Büro",
+            "Stifte",
+            23,
+            null
+          ],
+          [
+            "IT",
+            "Maus",
+            35,
+            null
+          ],
+          [
+            "Büro",
+            "Ordner",
+            67,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Summe Büro",
+            null,
+            null,
+            null
+          ],
+          [
+            "Summe IT",
+            null,
+            null,
+            null
+          ],
+          [
+            "Summe >100€",
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          7,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Büro",
+            "Papier",
+            45
+          ],
+          [
+            "IT",
+            "Laptop",
+            1200
+          ],
+          [
+            "Büro",
+            "Stifte",
+            23
+          ],
+          [
+            "IT",
+            "Maus",
+            35
+          ],
+          [
+            "Büro",
+            "Ordner",
+            67
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Summe Büro",
+            135,
+            null
+          ],
+          [
+            "Summe IT",
+            1235,
+            null
+          ],
+          [
+            "Summe >100€",
+            1200,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Summiere Büro-Artikel: =SUMMEWENN(A2:A6;\"Büro\";C2:C6).\n2. Summiere IT-Artikel: =SUMMEWENN(A2:A6;\"IT\";C2:C6).\n3. Summiere Beträge >100€: =SUMMEWENN(C2:C6;\">100\").",
+      "order": 5,
+      "formulaHint": "=SUMMEWENN(A2:A6;\"Büro\";C2:C6), =SUMMEWENN(C2:C6;\">100\")",
+      "hint1": "SUMMEWENN(Bereich; Kriterium; Summe_Bereich)",
+      "hint2": "=SUMMEWENN(A2:A6;\"Büro\";C2:C6) summiert Büro-Artikel",
+      "hint3": "Ohne Summe_Bereich wird der erste Bereich summiert: =SUMMEWENN(C2:C6;\">100\")",
+      "learningObjectives": [
+        "SUMMEWENN für bedingte Summen",
+        "Kriterien als Text und Vergleich",
+        "Kategorie-basierte Analyse"
+      ],
+      "estimated_minutes": 10,
+      "theoryTitle": "SUMMEWENN & SUMIFS",
+      "theory": "SUMMEWENN summiert Zellen die ein Kriterium erfüllen:\n\nSyntax: =SUMMEWENN(Bereich; Kriterium; [Summe_Bereich])\n\nBeispiele:\n• =SUMMEWENN(A2:A10;\"Büro\";C2:C10) — Summe wo Kategorie=\"Büro\"\n• =SUMMEWENN(C2:C10;\">100\") — Summe aller Beträge >100\n\nFür mehrere Kriterien: =SUMMEWENNS(Summe; Bereich1; Krit1; Bereich2; Krit2)"
+    },
+    {
+      "title": "Quartalsvergleich mit Prozent",
+      "description": "Vergleiche Quartalsergebnisse und berechne prozentuale Veränderung.",
+      "template": {
+        "cols": 5,
+        "rows": 6,
+        "headers": [
+          "Region",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4"
+        ],
+        "data": [
+          [
+            "Nord",
+            450,
+            520,
+            480,
+            null
+          ],
+          [
+            "Süd",
+            380,
+            410,
+            390,
+            null
+          ],
+          [
+            "Ost",
+            290,
+            310,
+            350,
+            null
+          ],
+          [
+            "West",
+            510,
+            490,
+            530,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Wachstum Q1→Q3",
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          1,
+          2,
+          3,
+          4,
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Nord",
+            450,
+            520,
+            480,
+            483.3333333333333
+          ],
+          [
+            "Süd",
+            380,
+            410,
+            390,
+            393.3333333333333
+          ],
+          [
+            "Ost",
+            290,
+            310,
+            350,
+            316.6666666666667
+          ],
+          [
+            "West",
+            510,
+            490,
+            530,
+            510
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Wachstum Q1→Q3",
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Berechne das Wachstum Q1→Q2: =(C2-B2)/B2.\n2. Prognostiziere Q4 als Durchschnitt von Q1-Q3.\n3. Berechne das Gesamtwachstum Q1→Q3 für die letzte Zeile.",
+      "order": 6,
+      "formulaHint": "=(C2-B2)/B2 für Wachstum, =SUMME(B2:D2) für Q4 Prognose",
+      "hint1": "Wachstum = (Neu - Alt) / Alt",
+      "hint2": "Prognose Q4: Durchschnitt der ersten 3 Quartale",
+      "hint3": "=(C2-B2)/B2 für Q1→Q2 Wachstum, =MITTELWERT(B2:D2) für Q4",
+      "learningObjectives": [
+        "Prozentuale Veränderung",
+        "Trendberechnung",
+        "Quartalsanalyse"
+      ],
+      "estimated_minutes": 12,
+      "theoryTitle": "Prozentuale Veränderung",
+      "theory": "Die prozentuale Veränderung zeigt, wie stark sich ein Wert verändert hat:\n\nFormel: = (Neu - Alt) / Alt\n\nBeispiel:\n• Q1=100, Q2=120 → Wachstum = (120-100)/100 = 20%\n• Negatives Wachstum = Rückgang\n\nFür Prognosen: Mittelwert oder Trendfunktion nutzen."
+    },
+    {
+      "title": "MEDIAN & MODUS: Lagemaße",
+      "description": "Berechne Median und Modus — robuste Alternativen zum Mittelwert.",
+      "template": {
+        "cols": 3,
+        "rows": 9,
+        "headers": [
+          "Monat",
+          "Umsatz (T€)",
+          ""
+        ],
+        "data": [
+          [
+            "Jan",
+            45
+          ],
+          [
+            "Feb",
+            48
+          ],
+          [
+            "Mär",
+            52
+          ],
+          [
+            "Apr",
+            480
+          ],
+          [
+            "Mai",
+            55
+          ],
+          [
+            "Jun",
+            58
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "MITTELWERT:",
+            null
+          ],
+          [
+            "MEDIAN:",
+            null
+          ],
+          [
+            "MODUS:",
+            null
+          ]
+        ],
+        "taskCols": [
+          8,
+          9,
+          10
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Jan",
+            45
+          ],
+          [
+            "Feb",
+            48
+          ],
+          [
+            "Mär",
+            52
+          ],
+          [
+            "Apr",
+            480
+          ],
+          [
+            "Mai",
+            55
+          ],
+          [
+            "Jun",
+            58
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "MITTELWERT:",
+            123
+          ],
+          [
+            "MEDIAN:",
+            53.5
+          ],
+          [
+            "MODUS:",
+            "#NV (kein Wert mehrfach)"
+          ]
+        ]
+      },
+      "instructions": "1. MITTELWERT = 123 T€ — stark verzerrt durch April (Ausreißer 480!).\n2. MEDIAN = 53.5 T€ — robuster, unbeeinflusst vom Ausreißer.\n3. MODUS = häufigster Wert (hier keiner).\n\n💡 Median ist besser bei Ausreißern!",
+      "order": 10,
+      "formulaHint": "=MEDIAN(B2:B7)",
+      "hint1": "MEDIAN = mittlerer Wert (50% darüber, 50% darunter)",
+      "hint2": "MITTELWERT=123 aber MEDIAN=53,5 → April verzerrt den Mittelwert!",
+      "learningObjectives": [
+        "MEDIAN vs MITTELWERT",
+        "Ausreißer erkennen",
+        "Robuste Statistik"
+      ],
+      "theoryTitle": "Lagemaße: Mittelwert vs Median",
+      "theory": "MITTELWERT ist empfindlich gegenüber Ausreißern. MEDIAN ist robust.\n\nBeispiel: Gehälter [40k, 45k, 50k, 55k, 500k]\n• Mittelwert = 138k (verzerrt durch Chef-Gehalt)\n• Median = 50k (realistischer)\n\n💡 Faustregel: Bei schiefen Verteilungen immer Median verwenden!",
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Spannweite & IQR: Streuungsmaße",
+      "description": "Berechne Spannweite und Interquartilsabstand (IQR) für Streuung.",
+      "template": {
+        "cols": 3,
+        "rows": 9,
+        "headers": [
+          "Filiale",
+          "Umsatz (T€)",
+          ""
+        ],
+        "data": [
+          [
+            "A",
+            45
+          ],
+          [
+            "B",
+            52
+          ],
+          [
+            "C",
+            38
+          ],
+          [
+            "D",
+            61
+          ],
+          [
+            "E",
+            49
+          ],
+          [
+            "F",
+            55
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Spannweite:",
+            null
+          ],
+          [
+            "IQR:",
+            null
+          ],
+          [
+            "Q1:",
+            null
+          ],
+          [
+            "Q3:",
+            null
+          ]
+        ],
+        "taskCols": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "A",
+            45
+          ],
+          [
+            "B",
+            52
+          ],
+          [
+            "C",
+            38
+          ],
+          [
+            "D",
+            61
+          ],
+          [
+            "E",
+            49
+          ],
+          [
+            "F",
+            55
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Spannweite:",
+            23
+          ],
+          [
+            "IQR:",
+            8.5
+          ],
+          [
+            "Q1:",
+            46
+          ],
+          [
+            "Q3:",
+            54.5
+          ]
+        ]
+      },
+      "instructions": "1. Spannweite = MAX-MIN = 61-38 = 23.\n2. Q1 = QUARTILE.INKL(B2:B7;1) = 46.\n3. Q3 = QUARTILE.INKL(B2:B7;3) = 54.5.\n4. IQR = Q3-Q1 = 8.5 (mittlere 50% der Daten).",
+      "order": 11,
+      "formulaHint": "Spannweite: =MAX(B2:B7)-MIN(B2:B7), IQR: =QUARTILE.INKL(B2:B7;3)-QUARTILE.INKL(B2:B7;1)",
+      "learningObjectives": [
+        "Spannweite & IQR",
+        "QUARTILE-Funktion",
+        "Streuungsmaße"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Ausreißer mit IQR-Methode erkennen",
+      "description": "Identifiziere Ausreißer mit der 1.5×IQR-Regel.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Name",
+          "Gehalt (T€)",
+          "Ausreißer?",
+          ""
+        ],
+        "data": [
+          [
+            "Anna",
+            45,
+            null
+          ],
+          [
+            "Ben",
+            48,
+            null
+          ],
+          [
+            "Clara",
+            52,
+            null
+          ],
+          [
+            "David",
+            150,
+            null
+          ],
+          [
+            "Eva",
+            50,
+            null
+          ],
+          [
+            "Felix",
+            47,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Q1:",
+            null,
+            "Q3:",
+            null
+          ],
+          [
+            "IQR:",
+            null,
+            "Grenze:",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            45,
+            "✅ OK"
+          ],
+          [
+            "Ben",
+            48,
+            "✅ OK"
+          ],
+          [
+            "Clara",
+            52,
+            "✅ OK"
+          ],
+          [
+            "David",
+            150,
+            "⚠️ Ausreißer"
+          ],
+          [
+            "Eva",
+            50,
+            "✅ OK"
+          ],
+          [
+            "Felix",
+            47,
+            "✅ OK"
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Q1:",
+            46.5,
+            "Q3:",
+            51
+          ],
+          [
+            "IQR:",
+            4.5,
+            "Grenze:",
+            57.75
+          ]
+        ]
+      },
+      "instructions": "1. Q1=46.5, Q3=51, IQR=4.5.\n2. Obere Grenze = Q3+1.5×IQR = 51+6.75 = 57.75.\n3. Davids Gehalt (150) > 57.75 → Ausreißer!\n4. =WENN(B2>$D$9;\"⚠️ Ausreißer\";\"✅ OK\").",
+      "order": 12,
+      "formulaHint": "Grenze: =QUARTILE.INKL(B2:B7;3)+1.5*(QUARTILE.INKL(B2:B7;3)-QUARTILE.INKL(B2:B7;1))",
+      "hint1": "Die 1.5×IQR-Regel ist der Standard für Ausreißer-Erkennung",
+      "hint2": "Alles > Q3+1.5×IQR oder < Q1-1.5×IQR ist ein Ausreißer",
+      "learningObjectives": [
+        "Ausreißer-Erkennung",
+        "IQR-Methode",
+        "Datenbereinigung"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Schiefe & Wölbung (Skewness/Kurtosis)",
+      "description": "Berechne Schiefe und Wölbung einer Verteilung.",
+      "template": {
+        "cols": 3,
+        "rows": 9,
+        "headers": [
+          "Tag",
+          "Temperatur (°C)",
+          ""
+        ],
+        "data": [
+          [
+            "Mo",
+            22
+          ],
+          [
+            "Di",
+            21
+          ],
+          [
+            "Mi",
+            23
+          ],
+          [
+            "Do",
+            35
+          ],
+          [
+            "Fr",
+            24
+          ],
+          [
+            "Sa",
+            22
+          ],
+          [
+            "So",
+            21
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "MITTELWERT:",
+            null
+          ],
+          [
+            "Std.Abw.:",
+            null
+          ],
+          [
+            "Schiefe:",
+            null
+          ],
+          [
+            "Wölbung:",
+            null
+          ]
+        ],
+        "taskCols": [
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Mo",
+            22
+          ],
+          [
+            "Di",
+            21
+          ],
+          [
+            "Mi",
+            23
+          ],
+          [
+            "Do",
+            35
+          ],
+          [
+            "Fr",
+            24
+          ],
+          [
+            "Sa",
+            22
+          ],
+          [
+            "So",
+            21
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "MITTELWERT:",
+            24
+          ],
+          [
+            "Std.Abw.:",
+            4.98
+          ],
+          [
+            "Schiefe:",
+            1.81
+          ],
+          [
+            "Wölbung:",
+            3.67
+          ]
+        ]
+      },
+      "instructions": "1. =SCHIEFE(B2:B8) = 1.81 → rechtsschief (Ausreißer nach oben).\n2. =WÖLBUNG(B2:B8) = 3.67 → steilgipflig.\n3. Schiefe > 0 = rechtsschief, < 0 = linksschief, ≈ 0 = symmetrisch.",
+      "order": 13,
+      "formulaHint": "=SCHIEFE(B2:B8), =WÖLBUNG(B2:B8)",
+      "hint1": "Schiefe misst Asymmetrie der Verteilung",
+      "hint2": "Positiv = Schwanz nach rechts (wie bei Einkommen)",
+      "learningObjectives": [
+        "Schiefe/Wölbung",
+        "Verteilungsform",
+        "Statistische Kennzahlen"
+      ],
+      "estimated_minutes": 7
+    },
+    {
+      "title": "Variationskoeffizient: Vergleichbarkeit",
+      "description": "Vergleiche Streuung verschiedener Datensätze mit dem Variationskoeffizient.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Filiale",
+          "Ø-Umsatz",
+          "Std.Abw.",
+          "VK (%)"
+        ],
+        "data": [
+          [
+            "A",
+            500,
+            75,
+            null
+          ],
+          [
+            "B",
+            1200,
+            140,
+            null
+          ],
+          [
+            "C",
+            800,
+            95,
+            null
+          ],
+          [
+            "D",
+            2000,
+            210,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Stabilste:",
+            null,
+            "",
+            ""
+          ],
+          [
+            "Volatilste:",
+            null,
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          3,
+          6,
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "A",
+            500,
+            75,
+            15.0
+          ],
+          [
+            "B",
+            1200,
+            140,
+            11.67
+          ],
+          [
+            "C",
+            800,
+            95,
+            11.88
+          ],
+          [
+            "D",
+            2000,
+            210,
+            10.5
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Stabilste:",
+            "D",
+            "",
+            ""
+          ],
+          [
+            "Volatilste:",
+            "A",
+            "",
+            ""
+          ]
+        ]
+      },
+      "instructions": "1. VK = Std.Abw./Mittelwert*100.\n2. VK(A) = 75/500*100 = 15% (höchste relative Streuung).\n3. VK(D) = 210/2000*100 = 10.5% (stabilste).\n\n💡 VK macht Streuungen vergleichbar trotz unterschiedlicher Skalen!",
+      "order": 14,
+      "formulaHint": "=C2/B2*100",
+      "hint1": "Variationskoeffizient = Standardabweichung / Mittelwert",
+      "hint2": "Je niedriger der VK, desto stabiler die Daten",
+      "learningObjectives": [
+        "Variationskoeffizient",
+        "Relative Streuung",
+        "Vergleichbarkeit"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Histogramm-Daten: Klassen einteilen",
+      "description": "Bereite Daten für ein Histogramm vor: Klassen und Häufigkeiten.",
+      "template": {
+        "cols": 3,
+        "rows": 10,
+        "headers": [
+          "Name",
+          "Punkte",
+          ""
+        ],
+        "data": [
+          [
+            "Anna",
+            72
+          ],
+          [
+            "Ben",
+            85
+          ],
+          [
+            "Clara",
+            55
+          ],
+          [
+            "David",
+            91
+          ],
+          [
+            "Eva",
+            63
+          ],
+          [
+            "Felix",
+            78
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Klassen:",
+            "50-59",
+            "60-69",
+            "70-79",
+            "80-89",
+            "90-99"
+          ],
+          [
+            "Grenzen:",
+            59,
+            69,
+            79,
+            89,
+            99
+          ],
+          [
+            "Häufigkeit:",
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            72
+          ],
+          [
+            "Ben",
+            85
+          ],
+          [
+            "Clara",
+            55
+          ],
+          [
+            "David",
+            91
+          ],
+          [
+            "Eva",
+            63
+          ],
+          [
+            "Felix",
+            78
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Grenzen:",
+            59,
+            69,
+            79,
+            89,
+            99
+          ],
+          [
+            "Häufigkeit:",
+            1,
+            1,
+            2,
+            1,
+            1
+          ]
+        ]
+      },
+      "instructions": "1. =HÄUFIGKEIT(B2:B7;D9:H9) als Matrixformel (Strg+Shift+Enter).\n2. 50-59: 1, 60-69: 1, 70-79: 2, 80-89: 1, 90-99: 1.\n3. Diese Daten ergeben ein Histogramm mit 5 Balken.",
+      "order": 15,
+      "formulaHint": "{=HÄUFIGKEIT(B2:B7;D9:H9)}",
+      "hint1": "HÄUFIGKEIT braucht Klassen-OBERGRENZEN (nicht Bereiche!)",
+      "hint2": "Matrixformel: gesamten Ausgabebereich markieren, Formel eingeben, Strg+Shift+Enter",
+      "learningObjectives": [
+        "Histogramm-Daten",
+        "HÄUFIGKEIT",
+        "Klasseneinteilung"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Boxplot-Werte berechnen",
+      "description": "Berechne die 5 Kennzahlen für einen Boxplot.",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Filiale",
+          "Umsatz",
+          ""
+        ],
+        "data": [
+          [
+            "A",
+            45
+          ],
+          [
+            "B",
+            52
+          ],
+          [
+            "C",
+            38
+          ],
+          [
+            "D",
+            61
+          ],
+          [
+            "E",
+            49
+          ],
+          [
+            "F",
+            55
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Min:",
+            null
+          ],
+          [
+            "Q1:",
+            null
+          ],
+          [
+            "Median:",
+            null
+          ],
+          [
+            "Q3:",
+            null
+          ],
+          [
+            "Max:",
+            null
+          ],
+          [
+            "IQR:",
+            null
+          ]
+        ],
+        "taskCols": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "A",
+            45
+          ],
+          [
+            "B",
+            52
+          ],
+          [
+            "C",
+            38
+          ],
+          [
+            "D",
+            61
+          ],
+          [
+            "E",
+            49
+          ],
+          [
+            "F",
+            55
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Min:",
+            38
+          ],
+          [
+            "Q1:",
+            46
+          ],
+          [
+            "Median:",
+            50.5
+          ],
+          [
+            "Q3:",
+            54.5
+          ],
+          [
+            "Max:",
+            61
+          ],
+          [
+            "IQR:",
+            8.5
+          ]
+        ]
+      },
+      "instructions": "1. MIN = 38, Q1 = 46, MEDIAN = 50.5, Q3 = 54.5, MAX = 61.\n2. IQR = 8.5 → kompakte Verteilung.\n3. Boxplot zeigt: Box von Q1-Q3, Linie bei Median, Whisker zu Min/Max.",
+      "order": 16,
+      "formulaHint": "MIN: =MIN(B2:B7), Q1: =QUARTILE.INKL(B2:B7;1), MEDIAN: =MEDIAN(B2:B7)",
+      "learningObjectives": [
+        "Boxplot-Kennzahlen",
+        "Fünf-Punkte-Zusammenfassung",
+        "Datenvisualisierung"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Z-Transformation (Standardisierung)",
+      "description": "Transformiere Werte in Z-Scores für Vergleichbarkeit.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Name",
+          "Punkte",
+          "Z-Score",
+          "Interpretation"
+        ],
+        "data": [
+          [
+            "Anna",
+            72,
+            null,
+            null
+          ],
+          [
+            "Ben",
+            85,
+            null,
+            null
+          ],
+          [
+            "Clara",
+            55,
+            null,
+            null
+          ],
+          [
+            "David",
+            91,
+            null,
+            null
+          ],
+          [
+            "Eva",
+            63,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Mittelwert:",
+            null,
+            "Std:",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          3,
+          7,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            72,
+            -0.07,
+            "≈ Durchschnitt"
+          ],
+          [
+            "Ben",
+            85,
+            0.89,
+            "Über Ø"
+          ],
+          [
+            "Clara",
+            55,
+            -1.34,
+            "Weit unter Ø"
+          ],
+          [
+            "David",
+            91,
+            1.33,
+            "Weit über Ø"
+          ],
+          [
+            "Eva",
+            63,
+            -0.74,
+            "Unter Ø"
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Mittelwert:",
+            73.2,
+            "Std:",
+            13.37
+          ]
+        ]
+      },
+      "instructions": "1. Z = (Wert - Mittelwert) / Standardabweichung.\n2. Z(Anna) = (72-73.2)/13.37 = -0.07.\n3. Z > 0 = überdurchschnittlich, Z < 0 = unterdurchschnittlich.\n\n💡 Z-Scores machen Werte verschiedener Skalen vergleichbar!",
+      "order": 17,
+      "formulaHint": "=(B2-$B$7)/$C$7",
+      "learningObjectives": [
+        "Z-Transformation",
+        "Standardisierung",
+        "Vergleichbarkeit"
+      ],
+      "theoryTitle": "Z-Transformation (Standardisierung)",
+      "theory": "Z-Scores transformieren beliebige Werte auf eine einheitliche Skala:\n\nZ = (X - μ) / σ\n\n• μ = Mittelwert\n• σ = Standardabweichung\n• Z=0 = genau Durchschnitt\n• Z=1 = eine Std.Abw. über Ø\n• Z=-2 = zwei Std.Abw. unter Ø\n\n💡 Perfekt um Testergebnisse, Gehälter oder andere Werte vergleichbar zu machen!",
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Normalverteilung: NORM.VERT",
+      "description": "Berechne Wahrscheinlichkeiten mit der Normalverteilung.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "x",
+          "Dichte f(x)",
+          "Verteilung F(x)",
+          ""
+        ],
+        "data": [
+          [
+            "-2",
+            null,
+            null
+          ],
+          [
+            "-1",
+            null,
+            null
+          ],
+          [
+            "0",
+            null,
+            null
+          ],
+          [
+            "1",
+            null,
+            null
+          ],
+          [
+            "2",
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "P(X<1.5):",
+            null
+          ],
+          [
+            "P(X>1):",
+            null
+          ]
+        ],
+        "taskCols": [
+          1,
+          2,
+          7,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "-2",
+            0.054,
+            0.023
+          ],
+          [
+            "-1",
+            0.242,
+            0.159
+          ],
+          [
+            "0",
+            0.399,
+            0.5
+          ],
+          [
+            "1",
+            0.242,
+            0.841
+          ],
+          [
+            "2",
+            0.054,
+            0.977
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "P(X<1.5):",
+            0.933
+          ],
+          [
+            "P(X>1):",
+            0.159
+          ]
+        ]
+      },
+      "instructions": "1. Dichte: =NORM.VERT(A2;0;1;FALSCH) — Glockenkurve.\n2. Verteilung: =NORM.VERT(A2;0;1;WAHR) — kumulativ.\n3. P(X<1.5) = NORM.VERT(1.5;0;1;WAHR) = 93.3%.\n4. Standardnormalverteilung: μ=0, σ=1.",
+      "order": 18,
+      "formulaHint": "=NORM.VERT(A2;0;1;FALSCH) für Dichte, =NORM.VERT(1.5;0;1;WAHR) für Wahrscheinlichkeit",
+      "learningObjectives": [
+        "Normalverteilung",
+        "NORM.VERT",
+        "Wahrscheinlichkeiten"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Konfidenzintervall berechnen",
+      "description": "Berechne ein 95%-Konfidenzintervall für den Mittelwert.",
+      "template": {
+        "cols": 3,
+        "rows": 9,
+        "headers": [
+          "Stichprobe",
+          "Wert",
+          ""
+        ],
+        "data": [
+          [
+            "1",
+            48
+          ],
+          [
+            "2",
+            52
+          ],
+          [
+            "3",
+            45
+          ],
+          [
+            "4",
+            55
+          ],
+          [
+            "5",
+            49
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Mittelwert:",
+            null
+          ],
+          [
+            "Std.Abw.:",
+            null
+          ],
+          [
+            "KI unten:",
+            null
+          ],
+          [
+            "KI oben:",
+            null
+          ]
+        ],
+        "taskCols": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "1",
+            48
+          ],
+          [
+            "2",
+            52
+          ],
+          [
+            "3",
+            45
+          ],
+          [
+            "4",
+            55
+          ],
+          [
+            "5",
+            49
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Mittelwert:",
+            49.8
+          ],
+          [
+            "Std.Abw.:",
+            3.83
+          ],
+          [
+            "KI unten:",
+            45.04
+          ],
+          [
+            "KI oben:",
+            54.56
+          ]
+        ]
+      },
+      "instructions": "1. KI = Mittelwert ± 1.96 × Std.Abw./√n.\n2. =B7-1.96*B8/WURZEL(5) = 45.04.\n3. =B7+1.96*B8/WURZEL(5) = 54.56.\n4. Mit 95% Sicherheit liegt der wahre Mittelwert zwischen 45.04 und 54.56.",
+      "order": 19,
+      "formulaHint": "KI unten: =B7-1.96*B8/WURZEL(5), KI oben: =B7+1.96*B8/WURZEL(5)",
+      "hint1": "1.96 = z-Wert für 95% Konfidenzniveau",
+      "hint2": "WURZEL(n) = Wurzel der Stichprobengröße (Standardfehler)",
+      "learningObjectives": [
+        "Konfidenzintervall",
+        "Standardfehler",
+        "Schätzgenauigkeit"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Kovarianz: Gemeinsame Streuung",
+      "description": "Miss den linearen Zusammenhang mit der Kovarianz.",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Monat",
+          "Werbung (T€)",
+          "Verkäufe (T€)"
+        ],
+        "data": [
+          [
+            "Jan",
+            12,
+            85
+          ],
+          [
+            "Feb",
+            8,
+            62
+          ],
+          [
+            "Mär",
+            15,
+            92
+          ],
+          [
+            "Apr",
+            10,
+            70
+          ],
+          [
+            "Mai",
+            18,
+            105
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Kovarianz:",
+            null
+          ],
+          [
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Jan",
+            12,
+            85
+          ],
+          [
+            "Feb",
+            8,
+            62
+          ],
+          [
+            "Mär",
+            15,
+            92
+          ],
+          [
+            "Apr",
+            10,
+            70
+          ],
+          [
+            "Mai",
+            18,
+            105
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Kovarianz:",
+            93.3
+          ]
+        ]
+      },
+      "instructions": "1. =KOVARIANZ.P(B2:B6;C2:C6) = 93.3.\n2. Kovarianz > 0 = positiver Zusammenhang.\n3. Im Gegensatz zu KORREL ist die Kovarianz nicht auf [-1;+1] normiert.",
+      "order": 20,
+      "formulaHint": "=KOVARIANZ.P(B2:B6;C2:C6)",
+      "hint1": "KOVARIANZ.P = Kovarianz der Grundgesamtheit",
+      "hint2": "KOVARIANZ.S = Kovarianz der Stichprobe",
+      "learningObjectives": [
+        "Kovarianz vs Korrelation",
+        "Gemeinsame Streuung",
+        "KOVARIANZ.P/.S"
+      ],
+      "estimated_minutes": 7
+    },
+    {
+      "title": "Bestimmtheitsmaß R²",
+      "description": "Berechne das Bestimmtheitsmaß — wie gut erklärt Werbung die Verkäufe?",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Monat",
+          "Werbeausgaben",
+          "Verkäufe"
+        ],
+        "data": [
+          [
+            "Jan",
+            12,
+            85
+          ],
+          [
+            "Feb",
+            8,
+            62
+          ],
+          [
+            "Mär",
+            15,
+            92
+          ],
+          [
+            "Apr",
+            10,
+            70
+          ],
+          [
+            "Mai",
+            18,
+            105
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Korrelation:",
+            null
+          ],
+          [
+            "R²:",
+            null
+          ],
+          [
+            "Interpretation:",
+            null
+          ]
+        ],
+        "taskCols": [
+          7,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Jan",
+            12,
+            85
+          ],
+          [
+            "Feb",
+            8,
+            62
+          ],
+          [
+            "Mär",
+            15,
+            92
+          ],
+          [
+            "Apr",
+            10,
+            70
+          ],
+          [
+            "Mai",
+            18,
+            105
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Korrelation:",
+            0.982
+          ],
+          [
+            "R²:",
+            0.964
+          ],
+          [
+            "Interpretation:",
+            "96.4% der Streuung erklärt"
+          ]
+        ]
+      },
+      "instructions": "1. Korrelation: =KORREL(B2:B6;C2:C6) = 0.982.\n2. R² = Korrelation² = 0.982² = 0.964.\n3. 96.4% der Verkaufs-Schwankungen werden durch Werbeausgaben erklärt.\n\n💡 R² = Anteil der erklärten Streuung!",
+      "order": 21,
+      "formulaHint": "=KORREL(B2:B6;C2:C6)^2",
+      "hint1": "R² = Bestimmtheitsmaß = (Korrelation)²",
+      "hint2": "R² nahe 1 = gutes Modell, R² nahe 0 = schlechtes Modell",
+      "learningObjectives": [
+        "Bestimmtheitsmaß R²",
+        "Modellgüte",
+        "Korrelation²"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Einfache lineare Regression",
+      "description": "Berechne Steigung und Achsenabschnitt der Regressionsgeraden.",
+      "template": {
+        "cols": 3,
+        "rows": 9,
+        "headers": [
+          "x (Werbung)",
+          "y (Verkäufe)",
+          ""
+        ],
+        "data": [
+          [
+            "12",
+            85
+          ],
+          [
+            "8",
+            62
+          ],
+          [
+            "15",
+            92
+          ],
+          [
+            "10",
+            70
+          ],
+          [
+            "18",
+            105
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Steigung:",
+            null
+          ],
+          [
+            "Achsenabschnitt:",
+            null
+          ],
+          [
+            "Prognose für x=14:",
+            null
+          ]
+        ],
+        "taskCols": [
+          7,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "12",
+            85
+          ],
+          [
+            "8",
+            62
+          ],
+          [
+            "15",
+            92
+          ],
+          [
+            "10",
+            70
+          ],
+          [
+            "18",
+            105
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Steigung:",
+            4.35
+          ],
+          [
+            "Achsenabschnitt:",
+            30.14
+          ],
+          [
+            "Prognose für x=14:",
+            91.04
+          ]
+        ]
+      },
+      "instructions": "1. Steigung: =STEIGUNG(B2:B6;A2:A6) = 4.35.\n2. Achsenabschnitt: =ACHSENABSCHNITT(B2:B6;A2:A6) = 30.14.\n3. Prognose: =B8*14+B9 = 91.04.\n4. Gleichung: y = 4.35x + 30.14.",
+      "order": 22,
+      "formulaHint": "Steigung: =STEIGUNG(B2:B6;A2:A6), Achsenabschnitt: =ACHSENABSCHNITT(B2:B6;A2:A6)",
+      "learningObjectives": [
+        "Lineare Regression",
+        "STEIGUNG/ACHSENABSCHNITT",
+        "Prognose mit Regressionsgerade"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Residuen: Prognosefehler analysieren",
+      "description": "Berechne die Abweichung zwischen tatsächlichen und prognostizierten Werten.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "x",
+          "y (Ist)",
+          "y (Prognose)",
+          "Residuum"
+        ],
+        "data": [
+          [
+            "12",
+            85,
+            null,
+            null
+          ],
+          [
+            "8",
+            62,
+            null,
+            null
+          ],
+          [
+            "15",
+            92,
+            null,
+            null
+          ],
+          [
+            "10",
+            70,
+            null,
+            null
+          ],
+          [
+            "18",
+            105,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Steigung:",
+            4.35,
+            "Achse:",
+            30.14
+          ]
+        ],
+        "taskCols": [
+          2,
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "12",
+            85,
+            82.34,
+            2.66
+          ],
+          [
+            "8",
+            62,
+            64.94,
+            -2.94
+          ],
+          [
+            "15",
+            92,
+            95.39,
+            -3.39
+          ],
+          [
+            "10",
+            70,
+            73.64,
+            -3.64
+          ],
+          [
+            "18",
+            105,
+            108.44,
+            -3.44
+          ]
+        ]
+      },
+      "instructions": "1. Prognose: =$B$7*A2+$C$7.\n2. Residuum = Ist - Prognose: =B2-C2.\n3. Residuen sollten zufällig um 0 streuen — kein Muster → gutes Modell!",
+      "order": 23,
+      "formulaHint": "Prognose: =$B$7*A2+$C$7, Residuum: =B2-C2",
+      "hint1": "Residuen = Prognosefehler",
+      "hint2": "Ideale Residuen: zufällig, kein Muster, ≈ symmetrisch um 0",
+      "learningObjectives": [
+        "Residuenanalyse",
+        "Prognosefehler",
+        "Modellvalidierung"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "RANG.KORREL: Spearman-Korrelation",
+      "description": "Miss monotone Zusammenhänge — robuster als Pearson-Korrelation.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Name",
+          "Rang Prüfung",
+          "Rang Erfahrung",
+          ""
+        ],
+        "data": [
+          [
+            "Anna",
+            1,
+            2
+          ],
+          [
+            "Ben",
+            2,
+            1
+          ],
+          [
+            "Clara",
+            3,
+            4
+          ],
+          [
+            "David",
+            4,
+            3
+          ],
+          [
+            "Eva",
+            5,
+            5
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Spearman-Korrelation:",
+            null
+          ]
+        ],
+        "taskCols": [
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            1,
+            2
+          ],
+          [
+            "Ben",
+            2,
+            1
+          ],
+          [
+            "Clara",
+            3,
+            4
+          ],
+          [
+            "David",
+            4,
+            3
+          ],
+          [
+            "Eva",
+            5,
+            5
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Spearman-Korrelation:",
+            0.9
+          ]
+        ]
+      },
+      "instructions": "1. Erstelle Ranglisten: =RANG.MITTELW(B2;$B$2:$B$6).\n2. =KORREL(Rang1; Rang2) = 0.9.\n3. Spearman = Pearson auf den Rängen — robuster gegen Ausreißer.",
+      "order": 24,
+      "formulaHint": "=KORREL(RANG.MITTELW(B2;$B$2:$B$6); RANG.MITTELW(C2;$C$2:$C$6))",
+      "hint1": "RANG.MITTELW gibt bei Gleichstand den Durchschnittsrang",
+      "hint2": "Spearman misst monotone (nicht nur lineare) Zusammenhänge",
+      "learningObjectives": [
+        "Spearman-Korrelation",
+        "Rang-Korrelation",
+        "Robuste Statistik"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Gleitender Durchschnitt (Zentriert)",
+      "description": "Glätte eine Zeitreihe mit zentriertem gleitenden Durchschnitt (3 Perioden).",
+      "template": {
+        "cols": 3,
+        "rows": 9,
+        "headers": [
+          "Monat",
+          "Umsatz",
+          "Gleit. Ø (3M, zentriert)"
+        ],
+        "data": [
+          [
+            "Jan",
+            45,
+            null
+          ],
+          [
+            "Feb",
+            48,
+            null
+          ],
+          [
+            "Mär",
+            52,
+            null
+          ],
+          [
+            "Apr",
+            55,
+            null
+          ],
+          [
+            "Mai",
+            58,
+            null
+          ],
+          [
+            "Jun",
+            62,
+            null
+          ],
+          [
+            "Jul",
+            60,
+            null
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          2
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Jan",
+            45,
+            null
+          ],
+          [
+            "Feb",
+            48,
+            48.33
+          ],
+          [
+            "Mär",
+            52,
+            51.67
+          ],
+          [
+            "Apr",
+            55,
+            55
+          ],
+          [
+            "Mai",
+            58,
+            58.33
+          ],
+          [
+            "Jun",
+            62,
+            60
+          ],
+          [
+            "Jul",
+            60,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Feb: =MITTELWERT(B2:B4) = 48.33.\n2. Ziehe runter — Fenster von 3 Monaten.\n3. Erste und letzte Periode haben keinen Wert (Randproblem).",
+      "order": 25,
+      "formulaHint": "=MITTELWERT(B2:B4)",
+      "hint1": "Zentriert = der Ø steht in der MITTE des Fensters",
+      "hint2": "Fensterbreite 3: Feb = Ø(Jan+Feb+Mär)",
+      "learningObjectives": [
+        "Gleitender Durchschnitt",
+        "Zeitreihen glätten",
+        "Saisonbereinigung"
+      ],
+      "estimated_minutes": 6
+    },
+    {
+      "title": "Saisonale Zerlegung: Additives Modell",
+      "description": "Zerlege eine Zeitreihe in Trend und Saisonkomponente.",
+      "template": {
+        "cols": 5,
+        "rows": 10,
+        "headers": [
+          "Quartal",
+          "Umsatz",
+          "Gleit. Ø (4Q)",
+          "Zentriert",
+          "Saison (Abw.)"
+        ],
+        "data": [
+          [
+            "Q1-2025",
+            120,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q2-2025",
+            200,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q3-2025",
+            160,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q4-2025",
+            250,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q1-2026",
+            130,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q2-2026",
+            220,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q3-2026",
+            170,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q4-2026",
+            270,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          3,
+          4
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Q1-2025",
+            120,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q2-2025",
+            200,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q3-2025",
+            160,
+            182.5,
+            185,
+            -25
+          ],
+          [
+            "Q4-2025",
+            250,
+            185,
+            187.5,
+            62.5
+          ],
+          [
+            "Q1-2026",
+            130,
+            190,
+            192.5,
+            -62.5
+          ],
+          [
+            "Q2-2026",
+            220,
+            192.5,
+            195,
+            25
+          ],
+          [
+            "Q3-2026",
+            170,
+            null,
+            null,
+            null
+          ],
+          [
+            "Q4-2026",
+            270,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. 4Q gleitender Ø: =MITTELWERT(B2:B5).\n2. Zentriert: =MITTELWERT(C3:C4).\n3. Saisonabweichung = Umsatz - Zentriert.\n4. Q4 hat stark positive Saison (+62.5), Q1 negativ.",
+      "order": 26,
+      "formulaHint": "Gleit 4Q: =MITTELWERT(B2:B5), Zentriert: =MITTELWERT(C3:C4), Saison: =B3-D3",
+      "learningObjectives": [
+        "Saisonale Zerlegung",
+        "Trend-Saison-Modell",
+        "Zeitreihenanalyse"
+      ],
+      "estimated_minutes": 12
+    },
+    {
+      "title": "Exponentielle Glättung (Simple)",
+      "description": "Prognostiziere mit exponentieller Glättung (α=0.3).",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Periode",
+          "Nachfrage",
+          "Prognose (α=0.3)"
+        ],
+        "data": [
+          [
+            "1",
+            100,
+            null
+          ],
+          [
+            "2",
+            110,
+            null
+          ],
+          [
+            "3",
+            105,
+            null
+          ],
+          [
+            "4",
+            115,
+            null
+          ],
+          [
+            "5",
+            120,
+            null
+          ],
+          [
+            "6",
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          2
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "1",
+            100,
+            100
+          ],
+          [
+            "2",
+            110,
+            100
+          ],
+          [
+            "3",
+            105,
+            103
+          ],
+          [
+            "4",
+            115,
+            103.6
+          ],
+          [
+            "5",
+            120,
+            107.02
+          ],
+          [
+            "6",
+            null,
+            110.91
+          ]
+        ]
+      },
+      "instructions": "1. Start: Prognose₁ = Nachfrage₁ = 100.\n2. Prognose₂ = α×Nachfrage₁ + (1-α)×Prognose₁ = 0.3×100+0.7×100 = 100.\n3. Prognose₃ = 0.3×110+0.7×100 = 103.\n4. Formel: =0.3*B2+0.7*C2.",
+      "order": 27,
+      "formulaHint": "=0.3*B2+0.7*C2",
+      "hint1": "α=0.3 = 30% Gewicht auf aktuellem Wert, 70% auf alter Prognose",
+      "hint2": "Höheres α = reaktionsschneller, niedrigeres α = glatter",
+      "learningObjectives": [
+        "Exponentielle Glättung",
+        "Prognoseverfahren",
+        "Glättungsparameter α"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Saisonindex berechnen",
+      "description": "Berechne Saisonindizes für quartalsweise Daten.",
+      "template": {
+        "cols": 5,
+        "rows": 9,
+        "headers": [
+          "",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4"
+        ],
+        "data": [
+          [
+            "2024",
+            120,
+            200,
+            160,
+            250
+          ],
+          [
+            "2025",
+            130,
+            220,
+            170,
+            270
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø pro Quartal:",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Saisonindex:",
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "2024",
+            120,
+            200,
+            160,
+            250
+          ],
+          [
+            "2025",
+            130,
+            220,
+            170,
+            270
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø pro Quartal:",
+            125,
+            210,
+            165,
+            260
+          ],
+          [
+            "Saisonindex:",
+            0.66,
+            1.11,
+            0.87,
+            1.37
+          ]
+        ]
+      },
+      "instructions": "1. Ø Q1: =MITTELWERT(B2:B3) = 125.\n2. Gesamt-Ø: =MITTELWERT(B2:E3) = 190.\n3. Saisonindex Q1 = 125/190 = 0.66 (Q1 liegt 34% UNTER dem Durchschnitt).\n4. Q4-Index = 260/190 = 1.37 (37% ÜBER dem Durchschnitt).",
+      "order": 28,
+      "formulaHint": "Saisonindex: =B4/MITTELWERT($B$2:$E$3)",
+      "hint1": "Saisonindex = Quartals-Ø / Gesamt-Ø",
+      "hint2": "Index > 1 = überdurchschnittlich, < 1 = unterdurchschnittlich",
+      "learningObjectives": [
+        "Saisonindex",
+        "Saisonbereinigung",
+        "Zeitreihenanalyse"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Autokorrelation (Lag-1)",
+      "description": "Miss die Korrelation einer Zeitreihe mit sich selbst (1 Periode verzögert).",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "t",
+          "Y(t)",
+          "Y(t-1)",
+          ""
+        ],
+        "data": [
+          [
+            "1",
+            100,
+            null
+          ],
+          [
+            "2",
+            110,
+            null
+          ],
+          [
+            "3",
+            105,
+            null
+          ],
+          [
+            "4",
+            115,
+            null
+          ],
+          [
+            "5",
+            120,
+            null
+          ],
+          [
+            "6",
+            125,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Autokorrelation Lag-1:",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "1",
+            100,
+            null
+          ],
+          [
+            "2",
+            110,
+            100
+          ],
+          [
+            "3",
+            105,
+            110
+          ],
+          [
+            "4",
+            115,
+            105
+          ],
+          [
+            "5",
+            120,
+            115
+          ],
+          [
+            "6",
+            125,
+            120
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Autokorrelation Lag-1:",
+            0.967
+          ]
+        ]
+      },
+      "instructions": "1. Y(t-1): =B1 (vorheriger Wert).\n2. =KORREL(B3:B7;C3:C7) = 0.967.\n3. Starke positive Autokorrelation → Trend!\n4. Werte hängen stark vom Vorgänger ab.",
+      "order": 29,
+      "formulaHint": "Y(t-1): =B1, Autokorrelation: =KORREL(B3:B7;C3:C7)",
+      "hint1": "Lag-1 = Verschiebung um eine Periode",
+      "hint2": "Autokorrelation nahe 1 = starker Trend, nahe 0 = zufällig",
+      "learningObjectives": [
+        "Autokorrelation",
+        "Lag-Operator",
+        "Muster in Zeitreihen"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "t-Test: Mittelwertvergleich (simuliert)",
+      "description": "Vergleiche zwei Gruppenmittelwerte — simulierter t-Test.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Gruppe",
+          "Wert",
+          "",
+          ""
+        ],
+        "data": [
+          [
+            "A",
+            85
+          ],
+          [
+            "A",
+            92
+          ],
+          [
+            "A",
+            78
+          ],
+          [
+            "A",
+            88
+          ],
+          [
+            "B",
+            72
+          ],
+          [
+            "B",
+            75
+          ],
+          [
+            "B",
+            70
+          ],
+          [
+            "B",
+            74
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø Gruppe A:",
+            null
+          ],
+          [
+            "Ø Gruppe B:",
+            null
+          ],
+          [
+            "Differenz:",
+            null
+          ],
+          [
+            "Effektgröße:",
+            null
+          ]
+        ],
+        "taskCols": [
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "A",
+            85
+          ],
+          [
+            "A",
+            92
+          ],
+          [
+            "A",
+            78
+          ],
+          [
+            "A",
+            88
+          ],
+          [
+            "B",
+            72
+          ],
+          [
+            "B",
+            75
+          ],
+          [
+            "B",
+            70
+          ],
+          [
+            "B",
+            74
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø Gruppe A:",
+            85.75
+          ],
+          [
+            "Ø Gruppe B:",
+            72.75
+          ],
+          [
+            "Differenz:",
+            13.0
+          ],
+          [
+            "Effektgröße:",
+            1.66
+          ]
+        ]
+      },
+      "instructions": "1. Ø A = 85.75, Ø B = 72.75.\n2. Differenz = 13 Punkte.\n3. Effektgröße (Cohens d) = Diff/Std.Abw.(gepoolt) ≈ 1.66.\n4. d > 0.8 = großer Effekt → signifikanter Unterschied!",
+      "order": 30,
+      "formulaHint": "Ø A: =MITTELWERT(B2:B5), Ø B: =MITTELWERT(B6:B9)",
+      "learningObjectives": [
+        "Mittelwertvergleich",
+        "Effektgröße",
+        "t-Test-Konzept"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Chi²-Test: Erwartete Häufigkeiten",
+      "description": "Berechne erwartete Häufigkeiten für eine Kreuztabelle — Chi²-Vorbereitung.",
+      "template": {
+        "cols": 4,
+        "rows": 7,
+        "headers": [
+          "",
+          "Männer",
+          "Frauen",
+          "Gesamt"
+        ],
+        "data": [
+          [
+            "Produkt A",
+            45,
+            35,
+            null
+          ],
+          [
+            "Produkt B",
+            30,
+            50,
+            null
+          ],
+          [
+            "Gesamt",
+            null,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Erwartet (A/M):",
+            null
+          ],
+          [
+            "Erwartet (A/F):",
+            null
+          ],
+          [
+            "Erwartet (B/M):",
+            null
+          ],
+          [
+            "Erwartet (B/F):",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "",
+            "Männer",
+            "Frauen",
+            "Gesamt"
+          ],
+          [
+            "Produkt A",
+            45,
+            35,
+            80
+          ],
+          [
+            "Produkt B",
+            30,
+            50,
+            80
+          ],
+          [
+            "Gesamt",
+            75,
+            85,
+            160
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Erwartet (A/M):",
+            37.5
+          ],
+          [
+            "Erwartet (A/F):",
+            42.5
+          ],
+          [
+            "Erwartet (B/M):",
+            37.5
+          ],
+          [
+            "Erwartet (B/F):",
+            42.5
+          ]
+        ]
+      },
+      "instructions": "1. Gesamt: =SUMME(B2:C2).\n2. Erwartet(A/M) = Zeilensumme×Spaltensumme/Gesamt = 80×75/160 = 37.5.\n3. Chi² vergleicht beobachtet vs erwartet.\n4. Beobachtet(A/M)=45 > Erwartet=37.5 → Männer kaufen A überproportional.",
+      "order": 31,
+      "formulaHint": "Erwartet(A/M): =$D2*B$4/$D$4",
+      "hint1": "Erwartete Häufigkeit = (Zeilensumme × Spaltensumme) / Gesamtsumme",
+      "hint2": "Gemischte Bezüge: $D2 (Spalte fixiert), B$4 (Zeile fixiert)",
+      "learningObjectives": [
+        "Chi²-Test Grundlage",
+        "Erwartete Häufigkeiten",
+        "Kreuztabellen-Analyse"
+      ],
+      "estimated_minutes": 12
+    },
+    {
+      "title": "ANOVA: Streuungszerlegung",
+      "description": "Zerlege die Gesamtstreuung in Streuung zwischen und innerhalb von Gruppen.",
+      "template": {
+        "cols": 4,
+        "rows": 10,
+        "headers": [
+          "Gruppe 1",
+          "Gruppe 2",
+          "Gruppe 3",
+          ""
+        ],
+        "data": [
+          [
+            "85",
+            72,
+            90
+          ],
+          [
+            "92",
+            75,
+            95
+          ],
+          [
+            "78",
+            70,
+            88
+          ],
+          [
+            "88",
+            74,
+            92
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø:",
+            null,
+            null,
+            null
+          ],
+          [
+            "SS zwischen:",
+            null
+          ],
+          [
+            "SS innerhalb:",
+            null
+          ],
+          [
+            "F-Wert:",
+            null
+          ]
+        ],
+        "taskCols": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "85",
+            72,
+            90
+          ],
+          [
+            "92",
+            75,
+            95
+          ],
+          [
+            "78",
+            70,
+            88
+          ],
+          [
+            "88",
+            74,
+            92
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø:",
+            85.75,
+            72.75,
+            91.25
+          ],
+          [
+            "SS zwischen:",
+            714.5
+          ],
+          [
+            "SS innerhalb:",
+            80.5
+          ],
+          [
+            "F-Wert:",
+            39.89
+          ]
+        ]
+      },
+      "instructions": "1. Gruppen-Ø: =MITTELWERT(A2:A5).\n2. Gesamt-Ø = 83.25.\n3. SS_zwischen = 4×[(85.75-83.25)²+(72.75-83.25)²+(91.25-83.25)²] = 714.5.\n4. F = (SS_zwischen/2)/(SS_innerhalb/9) ≈ 39.9 → signifikant!",
+      "order": 32,
+      "formulaHint": "SS_zwischen: =4*((B6-GESAMTMITTEL)^2+(C6-GESAMTMITTEL)^2+(D6-GESAMTMITTEL)^2)",
+      "learningObjectives": [
+        "ANOVA-Konzept",
+        "Streuungszerlegung",
+        "Gruppenvergleich"
+      ],
+      "estimated_minutes": 15
+    },
+    {
+      "title": "Stichprobenumfang berechnen",
+      "description": "Berechne den nötigen Stichprobenumfang für eine gewünschte Genauigkeit.",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Parameter",
+          "Wert",
+          ""
+        ],
+        "data": [
+          [
+            "Konfidenzniveau",
+            "95%"
+          ],
+          [
+            "Z-Wert (1.96)",
+            1.96
+          ],
+          [
+            "Gewünschte Genauigkeit (±)",
+            5
+          ],
+          [
+            "Erwartete Std.Abw.",
+            15
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Benötigte Stichprobe:",
+            null
+          ]
+        ],
+        "taskCols": [
+          6
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Konfidenzniveau",
+            "95%"
+          ],
+          [
+            "Z-Wert (1.96)",
+            1.96
+          ],
+          [
+            "Gewünschte Genauigkeit (±)",
+            5
+          ],
+          [
+            "Erwartete Std.Abw.",
+            15
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Benötigte Stichprobe:",
+            34.57
+          ]
+        ]
+      },
+      "instructions": "1. n = (z×σ/E)² = (1.96×15/5)² = 34.57.\n2. Mindestens 35 Stichproben nötig.\n3. Höhere Genauigkeit (kleineres E) → viel größeres n!",
+      "order": 33,
+      "formulaHint": "=(B2*B4/B3)^2",
+      "hint1": "n = (z×σ/E)² — z für 95%=1.96",
+      "hint2": "Doppelte Genauigkeit → vierfacher Stichprobenumfang!",
+      "learningObjectives": [
+        "Stichprobenumfang",
+        "Power-Analyse",
+        "Statistische Planung"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "p-Wert Konzept: Permutationstest",
+      "description": "Simuliere einen einfachen Permutationstest um die Signifikanz zu prüfen.",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Gruppe",
+          "Wert",
+          ""
+        ],
+        "data": [
+          [
+            "A",
+            85
+          ],
+          [
+            "A",
+            92
+          ],
+          [
+            "B",
+            72
+          ],
+          [
+            "B",
+            75
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø A:",
+            null
+          ],
+          [
+            "Ø B:",
+            null
+          ],
+          [
+            "Differenz:",
+            null
+          ]
+        ],
+        "taskCols": [
+          6,
+          7,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "A",
+            85
+          ],
+          [
+            "A",
+            92
+          ],
+          [
+            "B",
+            72
+          ],
+          [
+            "B",
+            75
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø A:",
+            88.5
+          ],
+          [
+            "Ø B:",
+            73.5
+          ],
+          [
+            "Differenz:",
+            15
+          ]
+        ]
+      },
+      "instructions": "1. Ø A = 88.5, Ø B = 73.5, Differenz = 15.\n2. Permutationstest: \"Wie oft wäre eine so große Differenz zufällig?\"\n3. Bei 4!/(2!2!)=6 möglichen Gruppierungen ist die beobachtete Differenz die extremste.",
+      "order": 34,
+      "formulaHint": "Ø A: =MITTELWERT(B2:B3), Ø B: =MITTELWERT(B4:B5)",
+      "learningObjectives": [
+        "Permutationstest-Konzept",
+        "p-Wert-Intuition",
+        "Randomisierung"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Fehlende Werte: Mittelwert-Imputation",
+      "description": "Ersetze fehlende Werte durch den Gruppen-Mittelwert.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Name",
+          "Gehalt",
+          "Abteilung",
+          "Gehalt (imputiert)"
+        ],
+        "data": [
+          [
+            "Anna",
+            55,
+            "IT",
+            null
+          ],
+          [
+            "Ben",
+            null,
+            "IT",
+            null
+          ],
+          [
+            "Clara",
+            62,
+            "IT",
+            null
+          ],
+          [
+            "David",
+            48,
+            "HR",
+            null
+          ],
+          [
+            "Eva",
+            null,
+            "HR",
+            null
+          ],
+          [
+            "Felix",
+            52,
+            "HR",
+            null
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            55,
+            "IT",
+            55
+          ],
+          [
+            "Ben",
+            null,
+            "IT",
+            58.5
+          ],
+          [
+            "Clara",
+            62,
+            "IT",
+            62
+          ],
+          [
+            "David",
+            48,
+            "HR",
+            48
+          ],
+          [
+            "Eva",
+            null,
+            "HR",
+            50
+          ],
+          [
+            "Felix",
+            52,
+            "HR",
+            52
+          ]
+        ]
+      },
+      "instructions": "1. Imputierter Wert = MITTELWERT der Abteilung.\n2. IT-Ø = (55+62)/2 = 58.5.\n3. HR-Ø = (48+52)/2 = 50.\n4. =WENN(ISTLEER(B2);WENN(C2=\"IT\";$B$8;$B$9);B2).",
+      "order": 35,
+      "formulaHint": "=WENN(ISTLEER(B2);MITTELWERTWENN($C$2:$C$7;C2;$B$2:$B$7);B2)",
+      "hint1": "MITTELWERTWENN ignoriert leere Zellen automatisch",
+      "hint2": "Imputation = fehlende Werte durch plausible Werte ersetzen",
+      "learningObjectives": [
+        "Fehlende Werte behandeln",
+        "MITTELWERTWENN",
+        "Daten-Imputation"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Ausreißer durch Z-Score erkennen",
+      "description": "Identifiziere Ausreißer: Werte mit |Z| > 2.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Name",
+          "Umsatz",
+          "Z-Score",
+          "Ausreißer?"
+        ],
+        "data": [
+          [
+            "Anna",
+            450,
+            null,
+            null
+          ],
+          [
+            "Ben",
+            520,
+            null,
+            null
+          ],
+          [
+            "Clara",
+            380,
+            null,
+            null
+          ],
+          [
+            "David",
+            1200,
+            null,
+            null
+          ],
+          [
+            "Eva",
+            490,
+            null,
+            null
+          ],
+          [
+            "Felix",
+            550,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Mittelwert:",
+            null,
+            "Std:",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          3,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            450,
+            -0.4,
+            "✅ OK"
+          ],
+          [
+            "Ben",
+            520,
+            -0.15,
+            "✅ OK"
+          ],
+          [
+            "Clara",
+            380,
+            -0.65,
+            "✅ OK"
+          ],
+          [
+            "David",
+            1200,
+            2.4,
+            "⚠️ Ausreißer"
+          ],
+          [
+            "Eva",
+            490,
+            -0.26,
+            "✅ OK"
+          ],
+          [
+            "Felix",
+            550,
+            -0.04,
+            "✅ OK"
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Mittelwert:",
+            598.33,
+            "Std:",
+            283.2
+          ]
+        ]
+      },
+      "instructions": "1. Z = (B2-Mittelwert)/Std.\n2. Davids Z = (1200-598)/283 = 2.4 → |Z|>2 → Ausreißer!\n3. =WENN(ABS(C2)>2;\"⚠️ Ausreißer\";\"✅ OK\").",
+      "order": 36,
+      "formulaHint": "Z-Score: =(B2-$B$8)/$B$9, Ausreißer: =WENN(ABS(C2)>2;\"⚠️\";\"✅\")",
+      "learningObjectives": [
+        "Z-Score Ausreißer",
+        "ABS-Funktion",
+        "Statistische Ausreißererkennung"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Min-Max-Normalisierung",
+      "description": "Skaliere Werte auf [0;1] mit Min-Max-Normalisierung.",
+      "template": {
+        "cols": 4,
+        "rows": 7,
+        "headers": [
+          "Name",
+          "Punkte",
+          "Normalisiert [0;1]",
+          ""
+        ],
+        "data": [
+          [
+            "Anna",
+            72,
+            null
+          ],
+          [
+            "Ben",
+            85,
+            null
+          ],
+          [
+            "Clara",
+            55,
+            null
+          ],
+          [
+            "David",
+            91,
+            null
+          ],
+          [
+            "Eva",
+            63,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "MIN:",
+            null,
+            "MAX:",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          7,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            72,
+            0.47
+          ],
+          [
+            "Ben",
+            85,
+            0.83
+          ],
+          [
+            "Clara",
+            55,
+            0.0
+          ],
+          [
+            "David",
+            91,
+            1.0
+          ],
+          [
+            "Eva",
+            63,
+            0.22
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "MIN:",
+            55,
+            "MAX:",
+            91
+          ]
+        ]
+      },
+      "instructions": "1. Normalisiert = (Wert-MIN)/(MAX-MIN).\n2. Anna: (72-55)/(91-55) = 17/36 = 0.47.\n3. Kleinster Wert → 0, Größter → 1.\n\n💡 Gut für ML-Algorithmen und Vergleichbarkeit!",
+      "order": 37,
+      "formulaHint": "=(B2-$B$7)/($C$7-$B$7)",
+      "hint1": "Min-Max skaliert alles auf [0;1]",
+      "hint2": "Behalte MIN und MAX als Referenz für neue Daten",
+      "learningObjectives": [
+        "Normalisierung",
+        "Min-Max-Skalierung",
+        "Datenvorbereitung"
+      ],
+      "estimated_minutes": 7
+    },
+    {
+      "title": "Log-Transformation für Schiefe",
+      "description": "Transformiere schiefe Daten mit LOG10 für bessere Analyse.",
+      "template": {
+        "cols": 3,
+        "rows": 7,
+        "headers": [
+          "Einkommen",
+          "LOG10",
+          ""
+        ],
+        "data": [
+          [
+            "30000",
+            null
+          ],
+          [
+            "45000",
+            null
+          ],
+          [
+            "55000",
+            null
+          ],
+          [
+            "80000",
+            null
+          ],
+          [
+            "250000",
+            null
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Schiefe (original):",
+            null
+          ],
+          [
+            "Schiefe (LOG10):",
+            null
+          ]
+        ],
+        "taskCols": [
+          1,
+          7,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "30000",
+            4.48
+          ],
+          [
+            "45000",
+            4.65
+          ],
+          [
+            "55000",
+            4.74
+          ],
+          [
+            "80000",
+            4.9
+          ],
+          [
+            "250000",
+            5.4
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Schiefe (original):",
+            2.13
+          ],
+          [
+            "Schiefe (LOG10):",
+            0.42
+          ]
+        ]
+      },
+      "instructions": "1. LOG10: =LOG10(A2).\n2. Original-Schiefe = 2.13 (stark rechtsschief).\n3. Log-Schiefe = 0.42 (viel symmetrischer!).\n\n💡 Log-Transformation macht schiefe Daten normalverteilter!",
+      "order": 38,
+      "formulaHint": "=LOG10(A2)",
+      "hint1": "Log-Transformation \"staucht\" große Werte",
+      "hint2": "Besonders nützlich bei Einkommen, Preisen, Bevölkerungszahlen",
+      "learningObjectives": [
+        "Log-Transformation",
+        "Schiefe korrigieren",
+        "Datenvorbereitung"
+      ],
+      "estimated_minutes": 7
+    },
+    {
+      "title": "Daten gruppieren & aggregieren",
+      "description": "Fasse Rohdaten per Kategorie mit MITTELWERTWENN & co zusammen.",
+      "template": {
+        "cols": 4,
+        "rows": 10,
+        "headers": [
+          "Datum",
+          "Kategorie",
+          "Umsatz",
+          ""
+        ],
+        "data": [
+          [
+            "01.01.",
+            "A",
+            450
+          ],
+          [
+            "02.01.",
+            "B",
+            320
+          ],
+          [
+            "03.01.",
+            "A",
+            520
+          ],
+          [
+            "04.01.",
+            "B",
+            380
+          ],
+          [
+            "05.01.",
+            "A",
+            480
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Kat.",
+            "Anzahl",
+            "Summe",
+            "Ø"
+          ],
+          [
+            "A",
+            null,
+            null,
+            null
+          ],
+          [
+            "B",
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "01.01.",
+            "A",
+            450
+          ],
+          [
+            "02.01.",
+            "B",
+            320
+          ],
+          [
+            "03.01.",
+            "A",
+            520
+          ],
+          [
+            "04.01.",
+            "B",
+            380
+          ],
+          [
+            "05.01.",
+            "A",
+            480
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Kat.",
+            "Anzahl",
+            "Summe",
+            "Ø"
+          ],
+          [
+            "A",
+            3,
+            1450,
+            483.33
+          ],
+          [
+            "B",
+            2,
+            700,
+            350
+          ]
+        ]
+      },
+      "instructions": "1. Anzahl: =ZÄHLENWENN($B$2:$B$6;A9).\n2. Summe: =SUMMEWENN($B$2:$B$6;A9;$C$2:$C$6).\n3. Ø: =MITTELWERTWENN($B$2:$B$6;A9;$C$2:$C$6).\n4. Eine Zeile pro Kategorie = aggregierte Analyse.",
+      "order": 39,
+      "formulaHint": "Anzahl: =ZÄHLENWENN($B$2:$B$6;A9), Summe: =SUMMEWENN($B$2:$B$6;A9;$C$2:$C$6)",
+      "learningObjectives": [
+        "Datenaggregation",
+        "ZÄHLENWENN/SUMMEWENN",
+        "Kategorie-Analyse"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Datenprofil: Übersichtstabelle",
+      "description": "Erstelle ein automatisches Datenprofil mit Kennzahlen aller Spalten.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Spalte",
+          "MIN",
+          "MAX",
+          "MITTELWERT"
+        ],
+        "data": [
+          [
+            "Umsatz (T€)",
+            null,
+            null,
+            null
+          ],
+          [
+            "Kosten (T€)",
+            null,
+            null,
+            null
+          ],
+          [
+            "Marge (%)",
+            null,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Daten:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Umsatz",
+            "Kosten",
+            "Marge",
+            ""
+          ],
+          [
+            "450",
+            "300",
+            "33%"
+          ],
+          [
+            "520",
+            "350",
+            "33%"
+          ],
+          [
+            "380",
+            "260",
+            "32%"
+          ]
+        ],
+        "taskCols": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Umsatz (T€)",
+            380,
+            520,
+            450
+          ],
+          [
+            "Kosten (T€)",
+            260,
+            350,
+            303.33
+          ],
+          [
+            "Marge (%)",
+            0.32,
+            0.33,
+            0.327
+          ]
+        ]
+      },
+      "instructions": "1. MIN: =MIN(B7:B9).\n2. MAX: =MAX(B7:B9).\n3. MITTELWERT: =MITTELWERT(B7:B9).\n4. Schnelles Datenprofil für beliebige Spalten!",
+      "order": 40,
+      "formulaHint": "=MIN(B7:B9), =MAX(B7:B9), =MITTELWERT(B7:B9)",
+      "learningObjectives": [
+        "Datenprofil",
+        "MIN/MAX/MITTELWERT",
+        "Automatische Übersicht"
+      ],
+      "estimated_minutes": 6
+    },
+    {
+      "title": "Zufallsstichprobe (Systematisch)",
+      "description": "Ziehe eine systematische Stichprobe — jeden 3. Datensatz.",
+      "template": {
+        "cols": 3,
+        "rows": 9,
+        "headers": [
+          "Nr",
+          "Wert",
+          "Stichprobe?"
+        ],
+        "data": [
+          [
+            "1",
+            45,
+            null
+          ],
+          [
+            "2",
+            52,
+            null
+          ],
+          [
+            "3",
+            38,
+            null
+          ],
+          [
+            "4",
+            61,
+            null
+          ],
+          [
+            "5",
+            49,
+            null
+          ],
+          [
+            "6",
+            55,
+            null
+          ],
+          [
+            "7",
+            42,
+            null
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Schrittweite:",
+            3,
+            ""
+          ]
+        ],
+        "taskCols": [
+          2
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "1",
+            45,
+            ""
+          ],
+          [
+            "2",
+            52,
+            ""
+          ],
+          [
+            "3",
+            38,
+            "✅"
+          ],
+          [
+            "4",
+            61,
+            ""
+          ],
+          [
+            "5",
+            49,
+            ""
+          ],
+          [
+            "6",
+            55,
+            "✅"
+          ],
+          [
+            "7",
+            42,
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Schrittweite:",
+            3
+          ]
+        ]
+      },
+      "instructions": "1. =WENN(REST(A2;$B$9)=0;\"✅\";\"\").\n2. Jeder 3. Datensatz (A=3,6,9...).\n3. Systematisch = gleichmäßig, einfach, aber periodische Muster möglich.",
+      "order": 41,
+      "formulaHint": "=WENN(REST(A2;$B$9)=0;\"✅\";\"\")",
+      "hint1": "REST(Dividend; Divisor) = Rest der Division",
+      "hint2": "REST(Nr;3)=0 → jeder 3. Datensatz",
+      "learningObjectives": [
+        "Systematische Stichprobe",
+        "REST-Funktion",
+        "Stichprobenverfahren"
+      ],
+      "estimated_minutes": 6
+    },
+    {
+      "title": "Geschichtete Stichprobe",
+      "description": "Ziehe 2 zufällige Datensätze pro Kategorie (Schicht).",
+      "template": {
+        "cols": 4,
+        "rows": 10,
+        "headers": [
+          "Name",
+          "Abteilung",
+          "Zufall",
+          "Stichprobe?"
+        ],
+        "data": [
+          [
+            "Anna",
+            "IT",
+            null,
+            null
+          ],
+          [
+            "Ben",
+            "IT",
+            null,
+            null
+          ],
+          [
+            "Clara",
+            "IT",
+            null,
+            null
+          ],
+          [
+            "David",
+            "HR",
+            null,
+            null
+          ],
+          [
+            "Eva",
+            "HR",
+            null,
+            null
+          ],
+          [
+            "Felix",
+            "HR",
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Stichproben pro Schicht:",
+            2,
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          2,
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            "IT",
+            0.45,
+            "✅"
+          ],
+          [
+            "Ben",
+            "IT",
+            0.12,
+            "✅"
+          ],
+          [
+            "Clara",
+            "IT",
+            0.89,
+            ""
+          ],
+          [
+            "David",
+            "HR",
+            0.34,
+            "✅"
+          ],
+          [
+            "Eva",
+            "HR",
+            0.67,
+            ""
+          ],
+          [
+            "Felix",
+            "HR",
+            0.23,
+            "✅"
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Stichproben pro Schicht:",
+            2
+          ]
+        ]
+      },
+      "instructions": "1. Zufallszahl: =ZUFALLSZAHL().\n2. Rang innerhalb Schicht: =RANG(C2;$C$2:$C$4) für IT.\n3. =WENN(Rang_in_Schicht<=$B$8;\"✅\";\"\").\n4. Garantiert 2 IT + 2 HR in der Stichprobe!",
+      "order": 42,
+      "formulaHint": "Zufall: =ZUFALLSZAHL(), Rang: =RANG(C2;$C$2:$C$4)",
+      "hint1": "Geschichtet = proportional aus jeder Untergruppe",
+      "hint2": "Stellt sicher dass alle Kategorien repräsentiert sind",
+      "learningObjectives": [
+        "Geschichtete Stichprobe",
+        "ZUFALLSZAHL+RANG",
+        "Repräsentative Stichproben"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Gepaarter Vergleich: Vorher-Nachher",
+      "description": "Analysiere Veränderungen mit einem Vorher-Nachher-Vergleich.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Name",
+          "Vorher",
+          "Nachher",
+          "Veränderung"
+        ],
+        "data": [
+          [
+            "Anna",
+            72,
+            85,
+            null
+          ],
+          [
+            "Ben",
+            65,
+            70,
+            null
+          ],
+          [
+            "Clara",
+            80,
+            92,
+            null
+          ],
+          [
+            "David",
+            55,
+            60,
+            null
+          ],
+          [
+            "Eva",
+            68,
+            75,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø-Veränderung:",
+            null
+          ],
+          [
+            "Median-Veränderung:",
+            null
+          ]
+        ],
+        "taskCols": [
+          3,
+          7,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            72,
+            85,
+            13
+          ],
+          [
+            "Ben",
+            65,
+            70,
+            5
+          ],
+          [
+            "Clara",
+            80,
+            92,
+            12
+          ],
+          [
+            "David",
+            55,
+            60,
+            5
+          ],
+          [
+            "Eva",
+            68,
+            75,
+            7
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø-Veränderung:",
+            8.4
+          ],
+          [
+            "Median-Veränderung:",
+            7
+          ]
+        ]
+      },
+      "instructions": "1. Veränderung: =C2-B2.\n2. Ø-Verbesserung: =MITTELWERT(D2:D6) = 8.4 Punkte.\n3. Alle haben sich verbessert → konsistenter positiver Effekt!",
+      "order": 43,
+      "formulaHint": "=C2-B2",
+      "learningObjectives": [
+        "Gepaarter Vergleich",
+        "Vorher-Nachher",
+        "Effektanalyse"
+      ],
+      "estimated_minutes": 6
+    },
+    {
+      "title": "INDEX & VERGLEICH für Datensuche",
+      "description": "Finde Werte in großen Tabellen mit INDEX+VERGLEICH.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "ID",
+          "Name",
+          "Umsatz",
+          ""
+        ],
+        "data": [
+          [
+            "E001",
+            "Max",
+            45000
+          ],
+          [
+            "E002",
+            "Lisa",
+            48000
+          ],
+          [
+            "E003",
+            "Tom",
+            62000
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Suche ID:",
+            "E002",
+            "",
+            ""
+          ],
+          [
+            "Ergebnis (Name):",
+            null
+          ],
+          [
+            "Ergebnis (Umsatz):",
+            null
+          ]
+        ],
+        "taskCols": [
+          6,
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "E001",
+            "Max",
+            45000
+          ],
+          [
+            "E002",
+            "Lisa",
+            48000
+          ],
+          [
+            "E003",
+            "Tom",
+            62000
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Suche ID:",
+            "E002"
+          ],
+          [
+            "Ergebnis (Name):",
+            "Lisa"
+          ],
+          [
+            "Ergebnis (Umsatz):",
+            48000
+          ]
+        ]
+      },
+      "instructions": "1. Name: =INDEX(B2:B4;VERGLEICH(B5;A2:A4;0)).\n2. VERGLEICH findet Position von E002 (=2).\n3. INDEX(B2:B4;2) = Lisa.\n4. Flexibler als SVERWEIS — funktioniert in beide Richtungen!",
+      "order": 44,
+      "formulaHint": "=INDEX(B2:B4;VERGLEICH(B5;A2:A4;0))",
+      "learningObjectives": [
+        "INDEX+VERGLEICH",
+        "Bidirektionale Suche",
+        "Flexible Lookups"
+      ],
+      "estimated_minutes": 8
+    },
+    {
+      "title": "Bedingte Ränge: Rang pro Gruppe",
+      "description": "Berechne Ränge innerhalb jeder Kategorie mit ZÄHLENWENNS.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Name",
+          "Abteilung",
+          "Gehalt",
+          "Rang (in Abt.)"
+        ],
+        "data": [
+          [
+            "Anna",
+            "IT",
+            55,
+            null
+          ],
+          [
+            "Ben",
+            "IT",
+            62,
+            null
+          ],
+          [
+            "Clara",
+            "IT",
+            48,
+            null
+          ],
+          [
+            "David",
+            "HR",
+            52,
+            null
+          ],
+          [
+            "Eva",
+            "HR",
+            45,
+            null
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            "IT",
+            55,
+            2
+          ],
+          [
+            "Ben",
+            "IT",
+            62,
+            1
+          ],
+          [
+            "Clara",
+            "IT",
+            48,
+            3
+          ],
+          [
+            "David",
+            "HR",
+            52,
+            1
+          ],
+          [
+            "Eva",
+            "HR",
+            45,
+            2
+          ]
+        ]
+      },
+      "instructions": "1. =ZÄHLENWENNS($B$2:$B$6;B2;$C$2:$C$6;\">\"&C2)+1.\n2. Zähle wie viele in der gleichen Abteilung ein HÖHERES Gehalt haben + 1.\n3. Ben (IT, 62k) → 0 höhere → Rang 1.",
+      "order": 45,
+      "formulaHint": "=ZÄHLENWENNS($B$2:$B$6;B2;$C$2:$C$6;\">\"&C2)+1",
+      "hint1": "ZÄHLENWENNS mit 2 Kriterien: gleiche Abteilung + höheres Gehalt",
+      "hint2": "+1 weil Rang 1 = der mit den meisten höheren (0)",
+      "learningObjectives": [
+        "Rang pro Gruppe",
+        "ZÄHLENWENNS Rang-Trick",
+        "Kategorie-Analyse"
+      ],
+      "estimated_minutes": 10
+    },
+    {
+      "title": "Gini-Koeffizient (Ungleichheit)",
+      "description": "Berechne ein einfaches Ungleichheitsmaß: den Gini-Koeffizienten.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Person",
+          "Einkommen",
+          "Kum. Anteil Pers.",
+          "Kum. Anteil Eink."
+        ],
+        "data": [
+          [
+            "A",
+            20,
+            null,
+            null
+          ],
+          [
+            "B",
+            30,
+            null,
+            null
+          ],
+          [
+            "C",
+            50,
+            null,
+            null
+          ],
+          [
+            "D",
+            100,
+            null,
+            null
+          ],
+          [
+            "E",
+            300,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gini:",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          3,
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "A",
+            20,
+            0.2,
+            0.04
+          ],
+          [
+            "B",
+            30,
+            0.4,
+            0.1
+          ],
+          [
+            "C",
+            50,
+            0.6,
+            0.2
+          ],
+          [
+            "D",
+            100,
+            0.8,
+            0.4
+          ],
+          [
+            "E",
+            300,
+            1.0,
+            1.0
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gini:",
+            0.456
+          ]
+        ]
+      },
+      "instructions": "1. Kum. Pers.: =ZEILE(A1)/5.\n2. Kum. Eink: =SUMME($B$2:B2)/SUMME($B$2:$B$6).\n3. Gini ≈ 1 - SUMME((C2-C1)*(D2+D1)).\n4. Gini=0=perfekte Gleichheit, Gini=1=maximale Ungleichheit.",
+      "order": 46,
+      "formulaHint": "Gini ≈ 1 - SUMME(ΔkumPers × ØkumEink)",
+      "learningObjectives": [
+        "Gini-Koeffizient",
+        "Ungleichheitsmaß",
+        "Kumulierte Anteile"
+      ],
+      "estimated_minutes": 12
+    },
+    {
+      "title": "Wachstumsrate (CAGR)",
+      "description": "Berechne die durchschnittliche jährliche Wachstumsrate (CAGR).",
+      "template": {
+        "cols": 3,
+        "rows": 7,
+        "headers": [
+          "Jahr",
+          "Umsatz (Mio)",
+          ""
+        ],
+        "data": [
+          [
+            "2019",
+            10.0
+          ],
+          [
+            "2020",
+            12.0
+          ],
+          [
+            "2021",
+            13.5
+          ],
+          [
+            "2022",
+            16.0
+          ],
+          [
+            "2023",
+            19.0
+          ],
+          [
+            "",
+            ""
+          ],
+          [
+            "CAGR 2019-2023:",
+            null
+          ]
+        ],
+        "taskCols": [
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "2019",
+            10.0
+          ],
+          [
+            "2020",
+            12.0
+          ],
+          [
+            "2021",
+            13.5
+          ],
+          [
+            "2022",
+            16.0
+          ],
+          [
+            "2023",
+            19.0
+          ],
+          [
+            "",
+            ""
+          ],
+          [
+            "CAGR 2019-2023:",
+            0.174
+          ]
+        ]
+      },
+      "instructions": "1. CAGR = (Endwert/Startwert)^(1/Jahre) - 1.\n2. =(B5/B1)^(1/4)-1 = 1.9^0.25-1 = 17.4%.\n3. Durchschnittlich 17.4% Wachstum pro Jahr.",
+      "order": 47,
+      "formulaHint": "=(B5/B1)^(1/4)-1",
+      "hint1": "CAGR = Compound Annual Growth Rate",
+      "hint2": "Glättet jährliche Schwankungen zu einer konstanten Rate",
+      "learningObjectives": [
+        "CAGR",
+        "Wachstumsrate",
+        "Geometrisches Mittel"
+      ],
+      "estimated_minutes": 7
+    },
+    {
+      "title": "Gewichteter Mittelwert",
+      "description": "Berechne einen gewichteten Durchschnitt (z.B. Notendurchschnitt mit ECTS).",
+      "template": {
+        "cols": 4,
+        "rows": 7,
+        "headers": [
+          "Fach",
+          "Note",
+          "ECTS",
+          "Gewichtet"
+        ],
+        "data": [
+          [
+            "Mathe",
+            2.3,
+            8,
+            null
+          ],
+          [
+            "Statistik",
+            1.7,
+            6,
+            null
+          ],
+          [
+            "Excel",
+            3.0,
+            4,
+            null
+          ],
+          [
+            "VWL",
+            2.0,
+            6,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gewichteter Ø:",
+            null
+          ]
+        ],
+        "taskCols": [
+          3,
+          6
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Mathe",
+            2.3,
+            8,
+            18.4
+          ],
+          [
+            "Statistik",
+            1.7,
+            6,
+            10.2
+          ],
+          [
+            "Excel",
+            3.0,
+            4,
+            12.0
+          ],
+          [
+            "VWL",
+            2.0,
+            6,
+            12.0
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gewichteter Ø:",
+            2.19
+          ]
+        ]
+      },
+      "instructions": "1. Gewichtet: =B2*C2.\n2. Gewichteter Ø: =SUMME(D2:D5)/SUMME(C2:C5) = 52.6/24 = 2.19.\n3. Einfacher Ø wäre 2.25 — ECTS-Gewichtung ändert das Ergebnis!",
+      "order": 48,
+      "formulaHint": "=SUMME(D2:D5)/SUMME(C2:C5)",
+      "learningObjectives": [
+        "Gewichteter Mittelwert",
+        "ECTS-Noten",
+        "SUMME/SUMME-Muster"
+      ],
+      "estimated_minutes": 7
+    },
+    {
+      "title": "Trend bereinigen: Differenzen-Methode",
+      "description": "Entferne einen Trend aus Zeitreihendaten durch Differenzenbildung.",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "t",
+          "Y(t)",
+          "ΔY(t) = Y(t)-Y(t-1)"
+        ],
+        "data": [
+          [
+            "1",
+            100,
+            null
+          ],
+          [
+            "2",
+            108,
+            null
+          ],
+          [
+            "3",
+            115,
+            null
+          ],
+          [
+            "4",
+            122,
+            null
+          ],
+          [
+            "5",
+            130,
+            null
+          ],
+          [
+            "6",
+            137,
+            null
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø ΔY:",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "1",
+            100,
+            null
+          ],
+          [
+            "2",
+            108,
+            8
+          ],
+          [
+            "3",
+            115,
+            7
+          ],
+          [
+            "4",
+            122,
+            7
+          ],
+          [
+            "5",
+            130,
+            8
+          ],
+          [
+            "6",
+            137,
+            7
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Ø ΔY:",
+            7.4
+          ]
+        ]
+      },
+      "instructions": "1. ΔY(t) = B3-B2 = Y(t) - Y(t-1).\n2. Entfernt den Trend — ΔY schwingt um ~7.4.\n3. Jetzt kann man Saisonalität in den ΔY-Werten analysieren.",
+      "order": 49,
+      "formulaHint": "=B3-B2",
+      "hint1": "Differenzenbildung = einfachste Trendbereinigung",
+      "hint2": "Erste Differenz entfernt linearen Trend",
+      "learningObjectives": [
+        "Trendbereinigung",
+        "Differenzen-Methode",
+        "Stationarität"
+      ],
+      "estimated_minutes": 6
+    },
+    {
+      "title": "Datenqualität: Vollständigkeits-Check",
+      "description": "Analysiere die Datenqualität: wie viele Werte fehlen pro Spalte?",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Name",
+          "Alter",
+          "Gehalt",
+          "E-Mail"
+        ],
+        "data": [
+          [
+            "Anna",
+            28,
+            55000,
+            "anna@mail.com"
+          ],
+          [
+            "Ben",
+            null,
+            48000,
+            null
+          ],
+          [
+            "Clara",
+            35,
+            null,
+            "clara@mail.com"
+          ],
+          [
+            "David",
+            42,
+            62000,
+            "david@mail.com"
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Fehlend:",
+            null,
+            null,
+            null
+          ],
+          [
+            "Vollständig %:",
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            28,
+            55000,
+            "anna@mail.com"
+          ],
+          [
+            "Ben",
+            null,
+            48000,
+            null
+          ],
+          [
+            "Clara",
+            35,
+            null,
+            "clara@mail.com"
+          ],
+          [
+            "David",
+            42,
+            62000,
+            "david@mail.com"
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Fehlend:",
+            1,
+            1,
+            1
+          ],
+          [
+            "Vollständig %:",
+            0.75,
+            0.75,
+            0.75
+          ]
+        ]
+      },
+      "instructions": "1. Fehlende: =ZÄHLENWENN(B2:B5;\"\")+ANZAHLLEEREZELLEN(B2:B5).\n2. Vollständig: =1-Fehlend/4.\n3. Nur 75% der Daten vollständig → Handlungsbedarf!",
+      "order": 50,
+      "formulaHint": "Fehlend: =ANZAHLLEEREZELLEN(B2:B5), Vollständig: =1-B6/4",
+      "learningObjectives": [
+        "Datenqualität",
+        "ANZAHLLEEREZELLEN",
+        "Vollständigkeitsanalyse"
+      ],
+      "estimated_minutes": 6
+    }
+  ]
+}
