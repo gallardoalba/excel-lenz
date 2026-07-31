@@ -15,13 +15,12 @@ interface ChartDialogProps {
 const CHART_COLORS = ['#4472c4', '#ed7d31', '#a5a5a5', '#ffc000', '#5b9bd5', '#70ad47'];
 
 export default function ChartDialog({ visible, chartType, data, onClose }: ChartDialogProps) {
-  if (!visible || data.length === 0) return null;
-
-  const keys = Object.keys(data[0]);
-  const labelKey = keys[0];
+  const keys = data.length > 0 ? Object.keys(data[0]) : [];
+  const labelKey = keys[0] || '';
   const seriesKeys = keys.slice(1);
 
   const chart = useMemo(() => {
+    if (!visible || data.length === 0) return null;
     const values = seriesKeys.map(k => data.map(d => Number(d[k]) || 0));
     const allValues = values.flat();
     const maxVal = Math.max(...allValues, 1);
@@ -111,6 +110,8 @@ export default function ChartDialog({ visible, chartType, data, onClose }: Chart
       </svg>
     );
   }, [data, chartType, labelKey, seriesKeys]);
+
+  if (!visible || data.length === 0) return null;
 
   return (
     <div className="excel-dialog-overlay" onClick={onClose}>

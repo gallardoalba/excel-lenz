@@ -134,7 +134,12 @@ export default function Exercise() {
         if (signal.aborted) return;
         setExercise(data);
         if (data.progress?.completed && data.progress?.submitted_data) {
-          setSpreadsheetData(data.template_data.data);
+          try {
+            const saved = JSON.parse(data.progress.submitted_data);
+            setSpreadsheetData(saved);
+          } catch {
+            setSpreadsheetData(data.template_data.data);
+          }
           setScore(data.progress.score);
         } else {
           setSpreadsheetData(data.template_data.data);
@@ -172,17 +177,10 @@ export default function Exercise() {
       setScore(result.score);
       setAttemptCount(c => c + 1);
 
-      // Partial credit tracking
-      if (result.details) {
-        const taskColCount = exercise.template_data.taskCols?.length || 1;
-        const total = result.details.length + (result.score === 100 ? 0 : Math.round((100 - result.score) / 100 * taskColCount * (exercise.template_data.data?.length || 1)));
-        setTotalCells(result.details.length + Math.round(result.score / 100 * result.details.length / Math.max(1, (100 - result.score) / 100)));
-      }
-      // Approximate correct cells from score
-      if (result.score != null) {
-        const estimated = Math.round(result.score / 100 * 5); // rough estimate
-        setCorrectCells(estimated);
-        setTotalCells(5);
+      // Use exact cell counts from backend
+      if (result.correctCells !== undefined && result.totalCells !== undefined) {
+        setCorrectCells(result.correctCells);
+        setTotalCells(result.totalCells);
       }
 
       // Generate cell-level feedback

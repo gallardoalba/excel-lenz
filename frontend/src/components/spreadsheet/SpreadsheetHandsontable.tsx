@@ -1263,7 +1263,7 @@ export default function SpreadsheetHandsontable({
                 targetRef.replace(/\$/g, '').replace(/([A-Z]+)/, '$$$1'),
                 targetRef.replace(/\$/g, '').replace(/(\d+)/, '$$$1'),
               ];
-              const currentMode = modes.indexOf(targetRef.replace(/\$/g, ''));
+              const currentMode = modes.indexOf(targetRef);
               const nextMode = modes[(currentMode + 1) % modes.length] || modes[0];
               const newVal = val.slice(0, refStart) + nextMode + val.slice(refEnd);
               activeEditor.setValue(newVal);

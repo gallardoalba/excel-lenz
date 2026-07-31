@@ -57,7 +57,7 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
   const db = getDb();
   const exercise = db.prepare('SELECT * FROM exercises WHERE id = ?').get(req.params.id) as any;
   if (!exercise) {
-    res.status(404).json({ error: 'Ejercicio no encontrado' });
+    res.status(404).json({ error: 'Übung nicht gefunden' });
     return;
   }
 
@@ -95,7 +95,7 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
 
   const exercise = db.prepare('SELECT * FROM exercises WHERE id = ?').get(req.params.id) as any;
   if (!exercise) {
-    res.status(404).json({ error: 'Ejercicio no encontrado' });
+    res.status(404).json({ error: 'Übung nicht gefunden' });
     return;
   }
 
@@ -176,7 +176,20 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     }
   }
 
-  res.json({ score, completed: true, details, xpGained });
+  // Calculate correct/total for frontend display
+  let correctCells = 0;
+  let totalCells = 0;
+  if (solution.data) {
+    const taskCols = JSON.parse(exercise.template_data || '{}').taskCols || [];
+    totalCells = solution.data.length * taskCols.length;
+    for (const taskCol of taskCols) {
+      for (let row = 0; row < solution.data.length; row++) {
+        if (isCorrectAnswer(data[row]?.[taskCol], solution.data[row]?.[taskCol])) correctCells++;
+      }
+    }
+  }
+
+  res.json({ score, completed: true, details, xpGained, correctCells, totalCells });
 });
 
 // Get user progress across all exercises

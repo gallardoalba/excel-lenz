@@ -1,0 +1,143 @@
+¡Hola! He revisado en profundidad el código que has compartido. El proyecto tiene una arquitectura muy interesante y ambiciosa, integrando Handsontable, HyperFormula, algoritmos de repetición espaciada (SM-2) y gamificación en un entorno de simulación de Excel.
+
+A continuación, detallo los **bugs críticos**, **problemas de diseño**, **errores en el sistema de ejercicios** y **mejoras potenciales** que he identificado.
+
+---
+
+### 1. 🚨 Bugs Críticos (Rompen la funcionalidad)
+
+**A. Violación de las Reglas de Hooks en `ChartDialog.tsx`**
+Tienes un `return null` antes de llamar a `useMemo`. Esto rompe las reglas de React, ya que los hooks no deben llamamar condicionalmente o después de un retorno temprano. Si el componente se renderiza con `visible: false` y luego cambia a `true`, React lanzará un error en tiempo de ejecución.
+*   **Solución:** Mueve la lógica de `useMemo` antes del `if (!visible || data.length === 0) return null;`.
+
+**B. El progreso del alumno se borra al recargar la página (`Exercise.tsx`)**
+En el `useEffect` de carga de datos, si el usuario ya completó el ejercicio, cargas los datos de la plantilla vacía en lugar de su progreso guardado:
+```typescript
+if (data.progress?.completed && data.progress?.submitted_data) {
+  setSpreadsheetData(data.template_data.data); // ❌ BUG: Debería ser data.progress.submitted_data
+  setScore(data.progress.score);
+} else {
+  setSpreadsheetData(data.template_data.data);
+}
+```
+*   **Solución:** Cambiar `data.template_data.data` por `data.progress.submitted_data`.
+
+**C. La lógica de F4 (Referencias Absolutas) está rota (`SpreadsheetHandsontable.tsx`)**
+El cálculo para alternar entre `$A$1`, `A$1`, `$A1` y `A1` no funciona. El error está en cómo detectas el modo actual:
+```typescript
+const currentMode = modes.indexOf(targetRef.replace(/\$/g, ''));
+```
+Si el usuario tiene `$A$1`, le quitas los dólares (`A1`) y lo buscas en el array `modes`. Siempre encontrará el índice `0`, por lo que F4 siempre cambiará al modo `$A$1` y nunca avanzará.
+*   **Solución:** Busca el `targetRef` exacto en el array `modes` sin quitarle los dólares: `const currentMode = modes.indexOf(targetRef);`
+
+**D. Lenguaje inconsistente en la API (`exercises_api.ts`)**
+Estás mezclando alemán y español en las respuestas de la API. El frontend está en alemán, pero la API devuelve errores en español:
+```typescript
+res.status(404).json({ error: 'Ejercicio no encontrado' }); // ❌ Español
+res.status(400).json({ error: 'Ungültiges Datenformat' });  // ✅ Alemán
+```
+
+**E. Pestañas del Ribbon Inaccesibles (`ExcelRibbon.tsx`)**
+El array `TABS` solo define `start`, `formulas` y `data`. Sin embargo, en el renderizado tienes bloques condicionales para `insert`, `pageLayout`, `review` y `view`. Como no están en `TABS`, el usuario nunca podrá hacer clic en ellas, por lo que toda esa UI está oculta e inutilizable.
+
+---
+
+### 2. 🧩 Mejoras en el Sistema de Ejercicios y Evaluación
+
+**A. Sistema de Puntuación y "Feedback" Ilogógico en `Exercise.tsx`**
+El cálculo de celdas correctas es confuso y contiene matemáticas extrañas que sobreescriben variables:
+```typescript
+// Primero calculas un total complejo:
+const total = result.details.length + (result.score === 100 ? 0 : Math.round((100 - result.score) / 100 * taskColCount * (exercise.template_data.data?.length || 1)));
+setTotalCells(result.details.length + Math.round(result.score / 100 * result.details.length / Math.max(1, (100 - result.score) / 100)));
+
+// Luego, si el score no es nulo, ¡lo sobreescribes con un 5 hardcodeado!
+if (result.score != null) {
+  const estimated = Math.round(result.score / 100 * 5); // rough estimate
+  setCorrectCells(estimated);
+  setTotalCells(5); // ❌ Esto hace que el cálculo anterior sea inútil
+}
+```
+*   **Mejora:** Pide al backend en `exercises_api.ts` que devuelva `correctCells` y `totalCells` directamente en el payload de `/submit`. No tiene sentido que el frontend haga "estimaciones" burdas cuando el backend acaba de iterar por las celdas y sabe exactamente cuáles estaban bien.
+
+**B. El modo Práctica evalúa antes de tiempo (`SpreadsheetHandsontable.tsx`)**
+En `afterChange`, llamas a `checkCellPractice` inmediatamente. El problema es que HyperFormula podría no haber recalculado las dependencias todavía, por lo que `getDataAtCell` podría devolver el valor antiguo o la fórmula en texto en lugar del resultado.
+*   **Mejora:** Asegúrate de forzar la evaluación de HyperFormula u obtén el valor de la instancia de HyperFormula directamente en lugar de Handsontable.
+
+**C. El sistema de Pistas (Hints) está al revés (`Exercise.tsx`)**
+Para que aparezca el botón de "Pedir pista", el usuario tiene que tener `hintLevel > 0`. Pero el único lugar donde incrementas `hintLevel` es *después* de enviar la respuesta (`handleSubmit`). Esto significa que el usuario no puede pedir pistas *antes* de intentar el ejercicio, solo se le dan pistas automáticas si falla.
+*   **Mejora:** Añade un botón manual de "Necesito una pista" que incremente `hintLevel` antes del envío.
+
+**D. Riesgo de Inyección SQL en el EndPoint de Mastery (`exercises_api.ts`)**
+```typescript
+const mastered = db.prepare(`... WHERE ... AND e.template_data LIKE ?`).get(userId, `%${prereq}%`);
+```
+Aunque usas `?` para el value, si `prereq` proviene de un JSON parseado y contiene caracteres como `%` o `_`, alterará la lógica del `LIKE`. Es más seguro parsear el JSON en Node.js y comparar los arrays de skills directamente en JS en lugar de hacer un `LIKE` a la base de datos.
+
+---
+
+### 3. 🎨 Discrepancias de Diseño y UI/UX
+
+**A. Desajuste de Hardcoded Styling en Handsontable**
+En `SpreadsheetHandsontable.tsx`, el renderer tiene esto para las columnas de tarea (`taskCols`):
+```typescript
+if (isTask) {
+  td.style.background = isActive ? '#c8e6c9' : (fmt?.bgColor || '#e8f5e9');
+  if (!fmt?.bold) td.style.fontWeight = '600';
+}
+```
+Si un ejercicio de formato pide al usuario "Pinta la columna C de Rojo y ponla en Negrita", tu código no se lo permitirá porque fuerza el fondo verde claro y la negrita. Las columnas de tarea deberían solo indicar dónde se trabaja (ej. con un borde), no forzar estilos que el usuario necesita modificar.
+
+**B. Menús Desplegables del Ribbon No Funcionales**
+En el Ribbon (`ExcelRibbon.tsx`), el botón de AutoSuma tiene un menú desplegable (SUMME, MITTELWERT, ANZAHL, etc.), pero al hacer clic en ellos, el único código que se ejecuta es `setShowAutoSum(false)`. No aplican ninguna función.
+
+**C. Manipulación del DOM en el Renderer de Handsontable**
+Para mostrar el triángulo rojo de error haces esto:
+```typescript
+const triangle = document.createElement('div');
+triangle.className = 'excel-error-triangle';
+td.appendChild(triangle);
+```
+Manipular el DOM directamente dentro de Handsontable causa fugas de memoria y problemas de renderizado porque Handsontable reutiliza los nodos `<td>`. Cuando la celda pasa a estar correcta, el triángulo no se elimina correctamente o se "mueve" a otras celdas.
+*   **Solución:** Añade una clase CSS a la celda (`td.classList.add('has-error')`) y usa CSS `::after` para dibujar el triángulo rojo en la esquina.
+
+**D. Cálculo de Letras de Columna en ContextMenu**
+En `ContextMenu.tsx`:
+```typescript
+{ label: 'Spalte ${String.fromCharCode(65 + cellRange.startCol)}' }
+```
+Esto fallará si la columna es mayor a 25 (pasará de Z a caracteres no alfabéticos como `[`). Tienes una función `colToLetter` en `types.ts`, úsala aquí también.
+
+---
+
+### 4. 🗑️ Código Innecesario / Redundante
+
+**A. Sobrecarga de Listeners de Teclado en `SpreadsheetHandsontable.tsx`**
+Tienes un `useEffect` gigantesco que maneja `document.addEventListener('keydown', handleKeyDown)` para atajos como Ctrl+B, Ctrl+C, etc. Handsontable ya maneja la mayoría de estos atajos nativamente. Sobreescribirlos a nivel de `document` a menudo interfiere con el foco de la hoja de cálculo (ej. si el usuario escribe "b" en una celda, podría no funcionar si tu listener global se ejecuta primero). Deberías delegar los atajos a Handsontable mediante su API de `hooks` o asegurar un `e.stopPropagation()` más estricto.
+
+**B. `SpreadsheetHandsontable.tsx`: Sincronización de formatos con dependencias rotas**
+```typescript
+const applyFormatsWithUndo = useCallback((newFormats: CellFormats) => {
+  // ...
+  if (hot && !hot.isDestroyed && activeCell) {
+    const currentVal = hot.getDataAtCell(activeCell.row, activeCell.col);
+    // ❌ Esto crea un punto de deshacer (undo) modificando el valor de la celda
+    // por el mismo valor, lo cual es un hack frágil.
+    hot.setDataAtCell(activeCell.row, activeCell.col, currentVal, 'formatChange');
+  }
+```
+Manejar el "Undo" de formatos en Handsontable es complicado, pero este hack de reescribir el valor puede disparar renderizados innecesarios o bucles infinitos sutiles con HyperFormula. Sería mejor mantener un historial de formatos paralelo al undo de datos.
+
+**C. Función de Búsqueda de Funciones Duplicada**
+En `FormulaBar.tsx` y `SpreadsheetHandsontable.tsx` mantienes arrays de funciones de Excel en alemán duplicados. Deberías centralizar esto en el archivo `types.ts` o en un archivo de constantes para mantener una única fuente de verdad.
+
+---
+
+### Resumen de Acciones Recomendadas (Prioridad ALTA):
+
+1.  **Arreglar el Hook de ChartDialog.tsx** (causa errores en producción).
+2.  **Corregir la carga de datos guardados en Exercise.tsx** (los usuarios pierden su trabajo al refrescar).
+3.  **Reescribir la lógica de F4** en Handsontable (es un bug lógico simple pero crítico para aprender Excel).
+4.  **Devolver métricas exactas desde el backend** y eliminar la matemática mágica de cálculo de celdas correctas en el frontend.
+5.  **Añadir las pestañas faltantes al Ribbon** o eliminar el código muerto de `insert`, `review`, etc.
+6.  **Quitar los estilos forzados (background verde/negrita) de las `taskCols`** en el renderer para no interferir con ejercicios de formato.
