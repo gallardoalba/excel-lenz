@@ -191,8 +191,8 @@ cd frontend && npx tsc --noEmit
 cd frontend && npm run build
 ```
 
-> 📖 Ausführliche technische Dokumentation: [DOKUMENTATION_STRUKTUR.md](DOKUMENTATION_STRUKTUR.md)  
-> 📦 Abhängigkeiten: [package-lock.json](package-lock.json)
+> Ausführliche technische Dokumentation: [DOKUMENTATION_STRUKTUR.md](DOKUMENTATION_STRUKTUR.md)  
+> Abhängigkeiten: [package-lock.json](package-lock.json)
 
 ---
 
