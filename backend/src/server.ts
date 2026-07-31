@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import logger from './utils/logger';
 import { initDb } from './db/database';
 import { seed } from './db/seed';
 import authRoutes from './routes/auth';
@@ -22,7 +23,7 @@ app.use(helmet({ contentSecurityPolicy: false })); // CSP configured separately 
 
 // CORS
 app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '2mb' }));
 
 // Rate limiting — global
 app.use(rateLimit({
@@ -63,10 +64,15 @@ app.get('/api/health', (_req, res) => {
 
 // Global error handler
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  console.error('Unhandled error:', err.message);
+  logger.error('Unhandled error', { error: err.message, stack: err.stack });
   res.status(500).json({ error: 'Interner Serverfehler' });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Excel-lenz backend running on http://localhost:${PORT}`);
-});
+// Only start listening if this file is run directly (not imported for tests)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    logger.info(`Excel-lenz backend running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;

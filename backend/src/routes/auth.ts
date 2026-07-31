@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs';
 import { v4 as uuid } from 'uuid';
 import { getDb } from '../db/database';
 import { generateToken, authMiddleware, AuthPayload } from '../middleware/auth';
+import logger from '../utils/logger';
+import { registerSchema, loginSchema } from '../utils/validation';
 
 const router = Router();
 
@@ -24,21 +26,12 @@ function checkRateLimit(ip: string): boolean {
 }
 
 router.post('/register', async (req: Request, res: Response) => {
-  const { email, password, name } = req.body;
-  if (!email || !password || !name) {
-    res.status(400).json({ error: 'Email, contraseña y nombre son obligatorios' });
+  const parsed = registerSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: parsed.error.issues[0].message });
     return;
   }
-
-  // Password strength: min 8 chars, at least one letter and one number
-  if (password.length < 8) {
-    res.status(400).json({ error: 'La contraseña debe tener al menos 8 caracteres' });
-    return;
-  }
-  if (!/[a-zA-Z]/.test(password) || !/[0-9]/.test(password)) {
-    res.status(400).json({ error: 'La contraseña debe contener letras y números' });
-    return;
-  }
+  const { email, password, name } = parsed.data;
 
   const db = getDb();
   const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
@@ -54,12 +47,11 @@ router.post('/register', async (req: Request, res: Response) => {
   ).run(id, email, hash, name, 'student');
 
   const token = generateToken({ userId: id, email, role: 'student' });
+  logger.info('User registered', { userId: id, email });
   res.status(201).json({ token, user: { id, email, name, role: 'student' } });
 });
 
 router.post('/login', async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-
   // Rate limiting
   const ip = req.ip || req.socket.remoteAddress || 'unknown';
   if (!checkRateLimit(ip)) {
@@ -67,10 +59,12 @@ router.post('/login', async (req: Request, res: Response) => {
     return;
   }
 
-  if (!email || !password) {
-    res.status(400).json({ error: 'Email y contraseña son obligatorios' });
+  const parsed = loginSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: 'Ungültige Eingabe. E-Mail und Passwort sind erforderlich.' });
     return;
   }
+  const { email, password } = parsed.data;
 
   const db = getDb();
   const user = db.prepare(
@@ -78,11 +72,12 @@ router.post('/login', async (req: Request, res: Response) => {
   ).get(email) as { id: string; email: string; password_hash: string; name: string; role: string } | undefined;
 
   if (!user || !(await bcrypt.compare(password, user.password_hash))) {
-    res.status(401).json({ error: 'Credenciales inválidas' });
+    res.status(401).json({ error: 'Ungültige Anmeldedaten.' });
     return;
   }
 
   const token = generateToken({ userId: user.id, email: user.email, role: user.role });
+  logger.info('User logged in', { userId: user.id });
   res.json({
     token,
     user: { id: user.id, email: user.email, name: user.name, role: user.role }
