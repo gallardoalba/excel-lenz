@@ -1,0 +1,78 @@
+{
+  "usps": [
+    {
+      "icon": "Trophy",
+      "title": "Maßgeschneiderte Lernlösungen",
+      "description": "Jede Übung wird an Ihre individuellen Ziele und Vorkenntnisse angepasst."
+    },
+    {
+      "icon": "User",
+      "title": "Individuelles Lernen statt Massenabfertigung",
+      "description": "Ihr eigenes Tempo, Ihre Schwerpunkte – kein Einheitskurs."
+    },
+    {
+      "icon": "Clock",
+      "title": "Flexibler Start und freie Zeiteinteilung",
+      "description": "Einstieg jederzeit möglich – lernen Sie, wann und wo Sie wollen."
+    },
+    {
+      "icon": "Award",
+      "title": "Anerkannte Zertifikate",
+      "description": "Nach Kursabschluss erhalten Sie ein Zertifikat für Ihren Lebenslauf."
+    },
+    {
+      "icon": "Star",
+      "title": "Höchste Qualitätsstandards",
+      "description": "Alle Übungen werden von erfahrenen Excel-Trainern entwickelt und geprüft."
+    },
+    {
+      "icon": "RefreshCw",
+      "title": "Sofortiges Feedback",
+      "description": "Automatische Korrektur in Echtzeit – Sie sehen sofort, was Sie verbessern können."
+    }
+  ],
+  "testimonials": [
+    {
+      "text": "Die interaktiven Excel-Übungen sind genial. Ich konnte endlich Pivot-Tabellen verstehen, ohne ein teures Seminar zu buchen.",
+      "author": "Thomas K.",
+      "role": "Controlling, München"
+    },
+    {
+      "text": "Als Quereinsteigerin hatte ich große Excel-Lücken. Excel-lenz hat mir geholfen, im neuen Job sicher mit Tabellen umzugehen. Die sofortige Korrektur ist Gold wert!",
+      "author": "Laura M.",
+      "role": "Personalabteilung, Hamburg"
+    },
+    {
+      "text": "Hervorragende Plattform! Die Übungen sind praxisnah und die Oberfläche ist intuitiv. Meine Schüler machen endlich freiwillig Excel-Aufgaben.",
+      "author": "Herr Dr. Schmidt",
+      "role": "Dozent, Berlin"
+    }
+  ],
+  "clients": [
+    "Deutsche Bank", "Siemens", "TU München", "Allianz",
+    "Fraunhofer", "Bertelsmann", "IHK Akademie", "SAP"
+  ],
+  "services": [
+    {
+      "icon": "BarChart3",
+      "title": "Excel-Grundlagen meistern",
+      "description": "Vom ersten Summenzeichen bis zur professionellen Tabelle: Lernen Sie Excel Schritt für Schritt mit interaktiven Übungen, die Sie sofort anwenden können.",
+      "link": "/courses",
+      "linkText": "Grundlagen entdecken"
+    },
+    {
+      "icon": "TrendingUp",
+      "title": "Fortgeschrittene Techniken",
+      "description": "Pivot-Tabellen, SVERWEIS, Makros: Meistern Sie die Werkzeuge, die im Berufsalltag wirklich zählen – mit praxisnahen Simulationen.",
+      "link": "/courses",
+      "linkText": "Techniken entdecken"
+    },
+    {
+      "icon": "GraduationCap",
+      "title": "Individuelle Lernpfade",
+      "description": "Jeder lernt anders. Unsere Plattform passt sich Ihrem Fortschritt an und empfiehlt die nächsten Schritte – für effizientes Lernen ohne Umwege.",
+      "link": "/register",
+      "linkText": "Jetzt starten"
+    }
+  ]
+}
