@@ -9,14 +9,16 @@ const router = Router();
 
 // Shared answer comparison — used for both scoring and feedback
 function isCorrectAnswer(userVal: any, solVal: any): boolean {
-  const userNum = userVal !== null && userVal !== undefined && userVal !== '' ? Number(userVal) : null;
-  const solNum = solVal !== null && solVal !== undefined && solVal !== '' ? Number(solVal) : null;
+  // Normalize null/undefined to empty string for consistent comparison
+  const u = userVal ?? '';
+  const s = solVal ?? '';
+  const userNum = u !== '' ? Number(u) : null;
+  const solNum = s !== '' ? Number(s) : null;
 
   if (userNum !== null && solNum !== null && !isNaN(userNum) && !isNaN(solNum)) {
     return Math.abs(userNum - solNum) < 0.01;
   }
-  // String comparison: trim + case-insensitive
-  return String(userVal ?? '').trim().toLowerCase() === String(solVal ?? '').trim().toLowerCase();
+  return String(u).trim().toLowerCase() === String(s).trim().toLowerCase();
 }
 
 // ── Mastery check: can user access this exercise? ──────────
