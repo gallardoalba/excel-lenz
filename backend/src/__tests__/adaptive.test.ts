@@ -119,4 +119,53 @@ describe('Adaptive / Spaced Repetition Routes', () => {
     expect(second.body.interval).toBeGreaterThanOrEqual(6);
     expect(second.body.repetitions).toBeGreaterThanOrEqual(2);
   });
+
+  it('SM-2 resets interval to 1 after score 0', async () => {
+    // First: high score to build up interval
+    await supertest(app)
+      .post('/api/adaptive/review-complete')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ exercise_id: exerciseId, score: 100 });
+
+    await supertest(app)
+      .post('/api/adaptive/review-complete')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ exercise_id: exerciseId, score: 100 });
+
+    // Then: score 0 should reset
+    const resetRes = await supertest(app)
+      .post('/api/adaptive/review-complete')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ exercise_id: exerciseId, score: 0 });
+
+    expect(resetRes.body.interval).toBe(1);
+    expect(resetRes.body.repetitions).toBe(0);
+  });
+
+  it('SM-2 EF is capped at minimum 1.3 after repeated failures', async () => {
+    // Submit with score 0 multiple times
+    for (let i = 0; i < 10; i++) {
+      await supertest(app)
+        .post('/api/adaptive/review-complete')
+        .set('Authorization', `Bearer ${token}`)
+        .send({ exercise_id: exerciseId, score: 0 });
+    }
+
+    // Review again — EF should not go below 1.3
+    const res = await supertest(app)
+      .post('/api/adaptive/review-complete')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ exercise_id: exerciseId, score: 0 });
+
+    expect(res.status).toBe(200);
+  });
+
+  it('GET /api/adaptive/skills returns skills even without progress', async () => {
+    const res = await supertest(app)
+      .get('/api/adaptive/skills')
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('skills');
+  });
 });

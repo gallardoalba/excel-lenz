@@ -29,7 +29,12 @@ import { positionToRef, colToLetter, refToRange } from './types';
 
 // HyperFormula instance — created per component mount via useRef
 function createHF(): HyperFormula {
-  const hf = HyperFormula.buildEmpty({ licenseKey: 'gpl-v3', language: 'deDE' });
+  const hf = HyperFormula.buildEmpty({
+    licenseKey: 'gpl-v3',
+    language: 'deDE',
+    useColumnIndex: true,                    // Accelerates VLOOKUP/MATCH on large datasets
+    maxPendingLazyTransformations: 100,      // Balance memory vs CPU for lazy evaluation
+  });
   hf.addSheet('Sheet1');
   return hf;
 }

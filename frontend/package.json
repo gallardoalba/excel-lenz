@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fortune-sheet/react": "^1.0.4",
+    "@sentry/react": "^10.69.0",
     "canvas-confetti": "^1.9.4",
     "handsontable": "^14.6.1",
     "hyperformula": "^3.3.0",

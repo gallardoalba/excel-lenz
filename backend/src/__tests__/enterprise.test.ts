@@ -131,6 +131,66 @@ describe('Enterprise Routes', () => {
     expect(res.status).toBe(404);
   });
 
+  // ── API Keys (Pro/Team only) ──────────────────────────────
+
+  it('GET /api/enterprise/api-keys returns 403 for free tier', async () => {
+    // Register a fresh user who is still on free tier
+    const freeRes = await supertest(app)
+      .post('/api/auth/register')
+      .send({ email: 'free-tier-test@ex.com', password: 'test1234', name: 'FreeUser' });
+    const freeToken = freeRes.body.token;
+
+    const res = await supertest(app)
+      .get('/api/enterprise/api-keys')
+      .set('Authorization', `Bearer ${freeToken}`);
+
+    expect(res.status).toBe(403);
+  });
+
+  it('POST /api/enterprise/api-keys returns 403 for free tier', async () => {
+    const freeRes = await supertest(app)
+      .post('/api/auth/register')
+      .send({ email: 'free-tier2@ex.com', password: 'test1234', name: 'FreeUser2' });
+    const freeToken = freeRes.body.token;
+
+    const res = await supertest(app)
+      .post('/api/enterprise/api-keys')
+      .set('Authorization', `Bearer ${freeToken}`)
+      .send({ name: 'My Key' });
+
+    expect(res.status).toBe(403);
+  });
+
+  it('API keys work after upgrading to pro', async () => {
+    // Token is already pro from previous subscription tests
+    const createRes = await supertest(app)
+      .post('/api/enterprise/api-keys')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ name: 'Test Key' });
+
+    expect(createRes.status).toBe(201);
+    expect(createRes.body).toHaveProperty('key');
+    expect(createRes.body.key).toMatch(/^ex_/);
+
+    // List API keys
+    const listRes = await supertest(app)
+      .get('/api/enterprise/api-keys')
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(listRes.status).toBe(200);
+    expect(listRes.body.length).toBeGreaterThanOrEqual(1);
+    expect(listRes.body[0]).toHaveProperty('name', 'Test Key');
+  });
+
+  it('POST /api/enterprise/api-keys without name returns 400', async () => {
+    const res = await supertest(app)
+      .post('/api/enterprise/api-keys')
+      .set('Authorization', `Bearer ${token}`)
+      .send({});
+
+    expect(res.status).toBe(400);
+  });
+
   // ── Auth required ────────────────────────────────────────────
 
   it('GET /api/enterprise/subscription without auth returns 401', async () => {

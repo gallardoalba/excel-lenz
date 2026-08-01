@@ -236,4 +236,42 @@ describe('Teacher Routes', () => {
       expect(res.body[0]).toHaveProperty('avg_score');
     }
   });
+
+  it('GET /api/teacher/analytics includes exercises with no attempts', async () => {
+    const res = await supertest(app)
+      .get('/api/teacher/analytics')
+      .set('Authorization', `Bearer ${teacherToken}`);
+
+    // All exercises should appear, even those with 0 attempts
+    expect(res.body.length).toBeGreaterThan(0);
+  });
+
+  it('GET /api/teacher/students/:id shows progress after exercise submission', async () => {
+    // First make the student submit an exercise
+    const coursesRes = await supertest(app).get('/api/courses');
+    const courseRes = await supertest(app)
+      .get(`/api/courses/${coursesRes.body[0].id}`)
+      .set('Authorization', `Bearer ${studentToken}`);
+    const exerciseId = courseRes.body.exercises[0].id;
+    const exRes = await supertest(app)
+      .get(`/api/exercises/${exerciseId}`)
+      .set('Authorization', `Bearer ${studentToken}`);
+
+    await supertest(app)
+      .post(`/api/exercises/${exerciseId}/submit`)
+      .set('Authorization', `Bearer ${studentToken}`)
+      .send({ data: exRes.body.template_data.data });
+
+    // Now check student detail as teacher
+    const studentsRes = await supertest(app)
+      .get('/api/teacher/students')
+      .set('Authorization', `Bearer ${teacherToken}`);
+    const student = studentsRes.body.find((s: any) => s.name === 'Test Student');
+
+    const res = await supertest(app)
+      .get(`/api/teacher/students/${student.id}`)
+      .set('Authorization', `Bearer ${teacherToken}`);
+
+    expect(res.body.progress.length).toBeGreaterThanOrEqual(1);
+  });
 });
