@@ -1,13 +1,13 @@
 # Excel-lenz — Dokumentation der Webseitenstruktur & Architektur
 
-> **Version**: 5.0 — Aktuell  
-> **Stand**: 1. August 2026  
+> **Version**: 5.1 — Aktuell  
+> **Stand**: 1. August 2026 (abends)  
 > **Status**: Beta — Produktionsbereit für kontrollierte Umgebungen  
 > **Sprache**: Deutsch (primär), Spanisch (Code of Conduct)  
 > **Stack**: React 18 + Vite 6 | Express 4 + SQLite | Handsontable + HyperFormula  
 > **Design**: Enterprise SaaS — Lucide Icons, CSS Utilities, Dark Mode, Focus Mode, Exam Mode  
 > **Lizenz**: AGPLv3 (GNU Affero General Public License)  
-> **Tests**: 128 Tests in 11 Suiten (Jest + Supertest)  
+> **Tests**: 158 Tests in 13 Suiten (Jest + Supertest)  
 > **CI/CD**: GitHub Actions (Backend Tests + Frontend Build)
 
 ---
@@ -29,7 +29,9 @@
 13. [Gamification-System](#13-gamification-system)
 14. [Enterprise & Monetarisierung](#14-enterprise--monetarisierung)
 15. [Deployment & Skalierung](#15-deployment--skalierung)
-16. [Verzeichnisstruktur](#16-verzeichnisstruktur)
+16. [Analytics-System](#16-analytics-system)
+17. [Testing & Qualitätssicherung](#17-testing--qualitätssicherung)
+18. [Verzeichnisstruktur](#18-verzeichnisstruktur)
 
 ---
 
@@ -60,8 +62,9 @@
 | 📧 **Auth-Flows** | Registrierung, Login, Passwort-Reset, E-Mail-Verifikation |
 | 📈 **Analytics** | Nutzungs-Tracking, Lernmetriken, Engagement-Analyse |
 | 📖 **API-Dokumentation** | Swagger/OpenAPI unter `/api/docs` |
-| 🧪 **Testing** | 128 Tests (11 Suiten), Jest + Supertest, CI/CD via GitHub Actions |
+| 🧪 **Testing** | 158 Tests (13 Suiten), Jest + Supertest, CI/CD via GitHub Actions |
 | 🔓 **Lizenz** | AGPLv3 — Copyleft stark, Verbesserungen fließen zurück ins Gemeingut |
+| 📈 **Analytics** | Session-Tracking, Batching, sendBeacon, node-cache, Indizes, Validation |
 
 ---
 
@@ -588,12 +591,93 @@ docker compose up -d --build
 
 ---
 
-## 16. Verzeichnisstruktur
+## 16. Analytics-System
+
+### Architektur
+
+```
+Frontend (useAnalytics.ts)
+  ├── sessionStorage (persistiert über F5, stirbt bei Tab-Schließung)
+  ├── Event Queue (Batching alle 5s + sofort bei kritischen Events)
+  ├── navigator.sendBeacon (garantiert delivery bei page close)
+  └── Fallback: fetch() mit static import
+         │
+         ▼ POST /api/analytics/track-batch  { events: [...] }
+Backend (analytics.ts)
+  ├── rate-limit: 200 req / 15 min
+  ├── Transaktion: db.transaction() — 50 Inserts in einer Operation
+  ├── Validation: event_type ≤ 50 Zeichen, metadata ≤ 2KB
+  └── Keine Cache-Invalidierung (5-Min-TTL reicht für Dashboards)
+         │
+         ▼ SQLite (analytics_events)
+Datenbank
+  ├── Indizes: user_id, event_type, created_at
+  └── WAL-Mode + synchronous=NORMAL
+         │
+         ▼ GET /api/analytics/summary (nur Teacher)
+Cache (node-cache)
+  └── TTL 300s — Antwort in <5ms aus dem RAM
+```
+
+### Erfasste Events
+
+| Event | Metadaten |
+|-------|-----------|
+| `page_view` | resource_id = URL |
+| `exercise_start` | resource_id = Exercise-ID |
+| `exercise_complete` | duration_seconds |
+| `exercise_submit` | score (0-100) |
+
+### Metriken für das Teacher-Dashboard
+
+- **totalUsers**: Unique user_id (all time)
+- **activeUsers**: Unique user_id (letzte 7 Tage)
+- **eventsByType**: page_view / exercise_start / exercise_submit
+- **eventsByDay**: Zeitreihe (30 Tage)
+- **topExercises**: Meistversuchte Übungen (Top 10)
+- **avgSessionDuration**: Durchschnittliche Bearbeitungszeit
+- **completionRate**: % der Submits mit Score ≥ 80%
+
+---
+
+## 17. Testing & Qualitätssicherung
+
+### Test-Suiten (158 Tests, 13 Suiten)
+
+| Suite | Tests | Fokus |
+|-------|-------|-------|
+| `auth.test.ts` | 23 | Register, Login, /me, Passwort-Reset, E-Mail-Verifikation, Validierung |
+| `exercises.test.ts` | 17 | Submit, Scoring, XP-Re-Submission, Last-Exercise, Progress, Mastery |
+| `teacher.test.ts` | 16 | CRUD Courses, CRUD Exercises, Students, Analytics |
+| `analytics.test.ts` | 18 | Track, Track-Batch, Validation, Summary (Teacher-only), Cache |
+| `enterprise.test.ts` | 12 | Pricing, Subscription, Upgrade, Checkout, SCORM Export |
+| `validation.test.ts` | 12 | Zod: Login/Register Schemas, Passwort-Regeln |
+| `exercise-validation.test.ts` | 11 | Alle 229 Übungen: Struktur, Scoring-Pipeline, Edge Cases |
+| `spacedRepetition.test.ts` | 10 | SM-2 Algorithmus: Qualität, Intervalle, Caps |
+| `courses.test.ts` | 8 | Kursliste, Kursdetails, User Progress, Guest Access |
+| `community.test.ts` | 8 | Kommentare CRUD, Replies, Limits |
+| `adaptive.test.ts` | 7 | Review-Due, Review-Complete, Skills |
+| `gamification.test.ts` | 7 | Stats, Leaderboard, XP Gain, Streaks |
+| `seed.test.ts` | 7 | Seed-Validierung, Idempotenz, Badges |
+
+### CI/CD Pipeline
+
+```yaml
+GitHub Actions (.github/workflows/ci.yml):
+  backend-tests:
+    - npm ci → npm test → npx tsc --noEmit
+  frontend-build:
+    - npm ci → npx tsc --noEmit → npm run build
+```
+
+---
+
+## 18. Verzeichnisstruktur
 
 ```
 excel-lenz/
 ├── README.md
-├── LICENSE (MIT)
+├── LICENSE (AGPLv3)
 ├── .gitignore
 ├── .env.example
 ├── package.json              # Root: concurrently scripts
