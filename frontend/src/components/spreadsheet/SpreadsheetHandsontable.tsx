@@ -90,6 +90,11 @@ export default function SpreadsheetHandsontable({
   const formulaBeforeSelectionRef = useRef<string>('');
   const cursorStartRef = useRef<number>(0);
   const cursorEndRef = useRef<number>(0);
+  // Bug fix: suppress afterChange during range-selection to prevent #ERROR!
+  // When user clicks a cell while editing a formula, Handsontable closes the
+  // editor and commits the incomplete formula (e.g. "=SUMME(") → #ERROR!.
+  // This flag blocks that commit; the real formula is rebuilt in afterSelectionEnd.
+  const isRangeSelecting = useRef(false);
   const { dark } = useTheme();
   dataRef.current = data;
   headersRef.current = headers;
@@ -1042,12 +1047,16 @@ export default function SpreadsheetHandsontable({
               || (selectionStart !== selectionEnd);
             if (isRangeExpected) {
               isAppendingRangeRef.current = true;
+              isRangeSelecting.current = true;
               originalEditCellRef.current = { row: activeEditor.row, col: activeEditor.col };
               formulaBeforeSelectionRef.current = val;
               cursorStartRef.current = selectionStart;
               cursorEndRef.current = selectionEnd;
               // Safety timeout in case mouseup doesn't trigger afterSelectionEnd
-              setTimeout(() => { isAppendingRangeRef.current = false; }, 2000);
+              setTimeout(() => {
+                isAppendingRangeRef.current = false;
+                isRangeSelecting.current = false;
+              }, 2000);
             }
           }
         }
@@ -1367,6 +1376,15 @@ export default function SpreadsheetHandsontable({
       afterChange(changes: any, source: string) {
         // Step 3: clear function ScreenTip when editing finishes
         if (source !== 'loadData') setFuncTooltip(null);
+
+        // Bug fix: suppress incomplete formula commits during range-selection.
+        // When user clicks away while editing a formula (e.g. "=SUMME("),
+        // Handsontable closes the editor and saves the partial formula → #ERROR!.
+        // The real formula is rebuilt in afterSelectionEnd, so skip this commit.
+        if (isRangeSelecting.current) {
+          isRangeSelecting.current = false;
+          return;
+        }
 
         if (!changes || source === 'loadData' || isInternalChange.current) {
           // Clear format history on full data reload (sheet switch, etc.)

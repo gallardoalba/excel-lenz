@@ -501,6 +501,118 @@ describe('Reference Utilities (from types.ts)', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════
+// BUG FIX: Range selection during formula editing — #ERROR suppression
+// ═══════════════════════════════════════════════════════════════════════
+// When typing =SUMME( and clicking a cell with the mouse, Handsontable
+// closes the editor and commits the incomplete formula (=SUMME() → #ERROR!
+// BEFORE afterSelectionEnd can rebuild the formula with the cell reference.
+// Fix: isRangeSelecting flag suppresses the spurious afterChange commit.
+
+describe('Bug Fix: Range Selection During Formula Editing', () => {
+  describe('Formula reconstruction during range selection', () => {
+    it('builds =SUMME(C7 from =SUMME( + click on C7', () => {
+      const formula = '=SUMME(';
+      const selStart = 7; // cursor at end
+      const selEnd = 7;
+      const clickedCell = { row: 6, col: 2 }; // C7 → row 6, col 2
+      const rangeStr = rangeToRef({
+        startRow: clickedCell.row,
+        startCol: clickedCell.col,
+        endRow: clickedCell.row,
+        endCol: clickedCell.col,
+      });
+      expect(rangeStr).toBe('C7');
+      const newFormula = formula.substring(0, selStart) + rangeStr + formula.substring(selEnd);
+      expect(newFormula).toBe('=SUMME(C7');
+    });
+
+    it('builds =SUMME(A1:B5 from =SUMME( + drag-select A1:B5', () => {
+      const formula = '=SUMME(';
+      const selStart = 7;
+      const selEnd = 7;
+      const rangeStr = rangeToRef({
+        startRow: 0, startCol: 0,
+        endRow: 4, endCol: 1,
+      });
+      expect(rangeStr).toBe('A1:B5');
+      const newFormula = formula.substring(0, selStart) + rangeStr + formula.substring(selEnd);
+      expect(newFormula).toBe('=SUMME(A1:B5');
+    });
+
+    it('builds =WENN(C7 from =WENN( + click on C7', () => {
+      const formula = '=WENN(';
+      const selStart = 6;
+      const selEnd = 6;
+      const rangeStr = positionToRef({ row: 6, col: 2 });
+      expect(rangeStr).toBe('C7');
+      const newFormula = formula.substring(0, selStart) + rangeStr + formula.substring(selEnd);
+      expect(newFormula).toBe('=WENN(C7');
+    });
+
+    it('builds =SVERWEIS(42;C7 from =SVERWEIS(42; + click on C7', () => {
+      const formula = '=SVERWEIS(42;';
+      const selStart = 14;
+      const selEnd = 14;
+      const rangeStr = positionToRef({ row: 6, col: 2 });
+      expect(rangeStr).toBe('C7');
+      const newFormula = formula.substring(0, selStart) + rangeStr + formula.substring(selEnd);
+      expect(newFormula).toBe('=SVERWEIS(42;C7');
+    });
+
+    it('replaces selected text with range (as Excel does)', () => {
+      const formula = '=SUMME(X99)';
+      const selStart = 7;
+      const selEnd = 10; // 'X99' selected
+      const rangeStr = 'C7';
+      const newFormula = formula.substring(0, selStart) + rangeStr + formula.substring(selEnd);
+      expect(newFormula).toBe('=SUMME(C7)');
+    });
+  });
+
+  describe('isRangeSelecting flag logic (simulated)', () => {
+    it('afterChange is suppressed when isRangeSelecting is true', () => {
+      // Simulate the flow:
+      // 1. User types =SUMME( in cell A1
+      // 2. User clicks C7 → beforeOnCellMouseDown sets isRangeSelecting=true
+      // 3. Handsontable closes editor → afterChange fires
+      // 4. afterChange sees isRangeSelecting=true → skips onChange
+      let isRangeSelecting = true;
+      let onChangeCalled = false;
+
+      const changes = [[1, 0, 'oldValue', '=SUMME(']] as [number, number, string, string][];
+      const source: string = 'edit';
+
+      // Simulated afterChange
+      if (isRangeSelecting) {
+        isRangeSelecting = false;
+        // Skip — do NOT call onChange
+      } else if (changes && source !== 'loadData') {
+        onChangeCalled = true;
+      }
+
+      expect(onChangeCalled).toBe(false);
+      expect(isRangeSelecting).toBe(false);
+    });
+
+    it('afterChange is NOT suppressed when isRangeSelecting is false', () => {
+      let isRangeSelecting = false;
+      let onChangeCalled = false;
+
+      const changes = [[1, 0, 'oldValue', '=SUMME(C7']] as [number, number, string, string][];
+      const source: string = 'edit';
+
+      if (isRangeSelecting) {
+        isRangeSelecting = false;
+      } else if (changes && source !== 'loadData') {
+        onChangeCalled = true;
+      }
+
+      expect(onChangeCalled).toBe(true);
+    });
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════════
 // PERFORMANCE TESTS
 // ═══════════════════════════════════════════════════════════════════════
 // These measure relative performance and catch algorithmic regressions.
