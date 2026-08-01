@@ -16,6 +16,7 @@ import gamificationRoutes from './routes/gamification';
 import enterpriseRoutes from './routes/enterprise';
 import adaptiveRoutes from './routes/adaptive';
 import communityRoutes from './routes/community';
+import analyticsRoutes from './routes/analytics';
 
 const app = express();
 const PORT = config.server.port;
@@ -64,6 +65,7 @@ app.use('/api/gamification', gamificationRoutes);
 app.use('/api/enterprise', enterpriseRoutes);
 app.use('/api/adaptive', adaptiveRoutes);
 app.use('/api/community', communityRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // Health check
 app.get('/api/health', (_req, res) => {

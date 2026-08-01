@@ -167,5 +167,22 @@ export function initDb(): void {
       created_at TEXT NOT NULL DEFAULT (datetime('now')),
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
+
+    CREATE TABLE IF NOT EXISTS analytics_events (
+      id TEXT PRIMARY KEY,
+      user_id TEXT,
+      event_type TEXT NOT NULL,
+      resource_type TEXT,
+      resource_id TEXT,
+      metadata TEXT,
+      session_id TEXT,
+      client_timestamp TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_analytics_user_id ON analytics_events(user_id);
+    CREATE INDEX IF NOT EXISTS idx_analytics_event_type ON analytics_events(event_type);
+    CREATE INDEX IF NOT EXISTS idx_analytics_created_at ON analytics_events(created_at);
   `);
 }

@@ -5,6 +5,7 @@ import { apiFetch, useAuth } from '../context/AuthContext';
 import FunctionMap from '../components/visualizations/FunctionMap';
 import { ExcelSpinner } from '../components/animations/Celebrations';
 import { COURSE_ICONS, COURSE_THEME, DIFFICULTY_LABELS, translateCourse } from '../data/course-config';
+import { usePageView } from '../hooks/useAnalytics';
 
 interface ExerciseItem {
   id: string; title: string; description: string; order_index: number;
@@ -120,6 +121,7 @@ export default function CourseDetail() {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
   const navigate = useNavigate();
+  usePageView(`course/${id}`);
   const [course, setCourse] = useState<CourseDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [masteryMap, setMasteryMap] = useState<Record<string, boolean>>({});

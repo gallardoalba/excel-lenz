@@ -1,12 +1,14 @@
 # Excel-lenz — Dokumentation der Webseitenstruktur & Architektur
 
-> **Version**: 4.0 — Aktuell  
-> **Stand**: 31. Juli 2026  
-> **Status**: 🟢 **Produktionsbereit** — Alle Features integriert  
-> **Sprache**: Deutsch (ausschließlich)  
+> **Version**: 5.0 — Aktuell  
+> **Stand**: 1. August 2026  
+> **Status**: Beta — Produktionsbereit für kontrollierte Umgebungen  
+> **Sprache**: Deutsch (primär), Spanisch (Code of Conduct)  
 > **Stack**: React 18 + Vite 6 | Express 4 + SQLite | Handsontable + HyperFormula  
 > **Design**: Enterprise SaaS — Lucide Icons, CSS Utilities, Dark Mode, Focus Mode, Exam Mode  
-> **Lizenz**: MIT
+> **Lizenz**: AGPLv3 (GNU Affero General Public License)  
+> **Tests**: 128 Tests in 11 Suiten (Jest + Supertest)  
+> **CI/CD**: GitHub Actions (Backend Tests + Frontend Build)
 
 ---
 
@@ -55,6 +57,11 @@
 | 🌙 **Dark Mode** | CSS-Variablen, vollständig |
 | 📱 **Responsive** | Ribbon Mobile-Collapse (☰), Grids adaptiv |
 | 🐳 **Deployment** | Docker + Compose, Nginx Reverse Proxy, Production-Build |
+| 📧 **Auth-Flows** | Registrierung, Login, Passwort-Reset, E-Mail-Verifikation |
+| 📈 **Analytics** | Nutzungs-Tracking, Lernmetriken, Engagement-Analyse |
+| 📖 **API-Dokumentation** | Swagger/OpenAPI unter `/api/docs` |
+| 🧪 **Testing** | 128 Tests (11 Suiten), Jest + Supertest, CI/CD via GitHub Actions |
+| 🔓 **Lizenz** | AGPLv3 — Copyleft stark, Verbesserungen fließen zurück ins Gemeingut |
 
 ---
 

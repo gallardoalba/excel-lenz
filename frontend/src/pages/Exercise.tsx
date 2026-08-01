@@ -9,6 +9,7 @@ import { useTour, EXERCISE_TOUR } from '../components/tour/OnboardingTour';
 import Comments from '../components/community/Comments';
 import KeyboardHelp from '../components/help/KeyboardHelp';
 import { useDailyGoal } from '../context/DailyGoalContext';
+import { useExerciseTimer } from '../hooks/useAnalytics';
 
 interface TemplateData {
   cols: number;
@@ -69,6 +70,7 @@ export default function Exercise() {
   const abortRef = useRef<AbortController | null>(null);
   const [nextExercise, setNextExercise] = useState<{ id: string; title: string; estimated_minutes?: number } | null>(null);
   const [prevExercise, setPrevExercise] = useState<{ id: string; title: string } | null>(null);
+  const { trackSubmit } = useExerciseTimer(id || '');
 
   // Focus Mode — hide navbar/footer
   useEffect(() => {
@@ -183,6 +185,7 @@ export default function Exercise() {
       });
       setScore(result.score);
       setAttemptCount(c => c + 1);
+      trackSubmit(result.score);
 
       // Use exact cell counts from backend
       if (result.correctCells !== undefined && result.totalCells !== undefined) {
