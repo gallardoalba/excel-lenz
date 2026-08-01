@@ -1,5 +1,5 @@
 import { initDb, getDb } from './database';
-import { v4 as uuid } from 'uuid';
+import crypto from 'node:crypto';
 import bcrypt from 'bcryptjs';
 
 // ── Exercise data (edit the JSON files, not this file!) ──
@@ -47,8 +47,8 @@ export function seed(): void {
     const insertUser = db.prepare(
       'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
     );
-    insertUser.run(uuid(), 'dozent@excel-lenz.edu', hash, 'Lehrer Müller', 'teacher');
-    insertUser.run(uuid(), 'student@excel-lenz.edu', hash, 'Anna Schmidt', 'student');
+    insertUser.run(crypto.randomUUID(), 'dozent@excel-lenz.edu', hash, 'Lehrer Müller', 'teacher');
+    insertUser.run(crypto.randomUUID(), 'student@excel-lenz.edu', hash, 'Anna Schmidt', 'student');
   }
 
   // Only seed exercises if table is empty (allows updating exercises on restart)
@@ -94,7 +94,7 @@ export function seed(): void {
     if ((ex as any).sectionTitle) template._sectionTitle = (ex as any).sectionTitle;
 
     insertEx.run(
-      uuid(), courseId, ex.title, ex.description,
+      crypto.randomUUID(), courseId, ex.title, ex.description,
       JSON.stringify(template), JSON.stringify(ex.solution),
       ex.instructions, ex.order
     );
@@ -102,7 +102,7 @@ export function seed(): void {
 
   let total = 0;
   for (const data of ALL_COURSES) {
-    const courseId = uuid();
+    const courseId = crypto.randomUUID();
     const modulesMeta = (data as any).modules ? JSON.stringify((data as any).modules) : null;
     insertCourse.run(courseId, data.title, data.description, data.difficulty, modulesMeta);
     for (const ex of data.exercises) {

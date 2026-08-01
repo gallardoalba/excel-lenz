@@ -29,6 +29,7 @@ const ServerError = lazy(() => import('./pages/ServerError'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const VerifyEmail = lazy(() => import('./pages/VerifyEmail'));
+const Developer = lazy(() => import('./pages/Developer'));
 
 export default function App() {
   const { user, loading, logout } = useAuth();
@@ -202,6 +203,7 @@ export default function App() {
           <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="/teacher" element={user?.role === 'teacher' ? <TeacherPanel /> : <Navigate to="/dashboard" />} />
           <Route path="/error" element={<ServerError />} />
+          <Route path="/entwickler" element={<Developer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
@@ -223,11 +225,11 @@ export default function App() {
             </ul>
           </div>
           <div>
-            <h4>Unternehmen</h4>
+            <h4>Entwickler</h4>
             <ul>
-              <li><Link to="/">Über uns</Link></li>
-              <li><Link to="/">Dozenten</Link></li>
-              <li><Link to="/">Kontakt</Link></li>
+              <li><Link to="/entwickler">Über den Entwickler</Link></li>
+              <li><a href="https://github.com/gallardoalba/excel-lenz" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>GitHub Repository</a></li>
+              <li><span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Freiburg, Deutschland</span></li>
             </ul>
           </div>
           <div>

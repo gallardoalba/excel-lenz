@@ -1,5 +1,5 @@
 // ── ExcelRibbon: Modern Excel 365-style ribbon ──────────────────────────────
-// Replaces FortuneSheet's built-in toolbar with a custom React ribbon
+// Custom React ribbon replacing Handsontable's built-in toolbar
 // that looks and behaves like real Excel.
 
 import { useState, useCallback, useEffect, useRef } from 'react';
@@ -21,6 +21,7 @@ interface ExcelRibbonProps {
   onInsertChart?: (type: 'bar' | 'line') => void;
   onDataValidation?: () => void;
   onPivotTable?: () => void;
+  onExport?: () => void;
   // Exam mode
   examTimeString?: string;
   isExamUrgent?: boolean;
@@ -82,6 +83,7 @@ export default function ExcelRibbon({
   onInsertChart,
   onDataValidation,
   onPivotTable,
+  onExport,
   examTimeString,
   isExamUrgent,
   onMerge,
@@ -470,6 +472,12 @@ export default function ExcelRibbon({
               </div>
             </RibbonGroupBox>
             <RibbonSeparator />
+            <RibbonGroupBox label="Export">
+              <div className="ribbon-group-row">
+                <RibbonBtn icon={<DownloadIcon />} label="XLSX" w={52} h={28} onClick={() => onExport?.()} />
+              </div>
+            </RibbonGroupBox>
+            <RibbonSeparator />
             <RibbonGroupBox label="Zeilen/Spalten">
               <div className="ribbon-group-row">
                 <RibbonBtn icon={<InsertIcon />} label="Zeile einfügen" w={56} h={28} onClick={onInsertRow} />
@@ -588,6 +596,7 @@ function FreezeBothIcon() { return <svg width="14" height="14" viewBox="0 0 16 1
 function ZoomOutIcon() { return <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M4 7h6"/></svg>; }
 function ZoomInIcon() { return <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4M7 4v6M4 7h6"/></svg>; }
 function ZoomPercentIcon() { return <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>; }
+function DownloadIcon() { return <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1v10M4 8l4 4 4-4M2 13h12v2H2v-2z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
 
 // Page Layout & Review tab icons
 function ThemeIcon() { return <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" strokeWidth="1.2"/><path d="M8 2v12"/></svg>; }

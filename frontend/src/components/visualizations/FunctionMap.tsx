@@ -1,4 +1,3 @@
-import React from 'react';
 import { Map, CheckCircle2, Lock } from 'lucide-react';
 
 interface FunctionNode {

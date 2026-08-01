@@ -1,7 +1,6 @@
 import { Router, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
-import { v4 as uuid } from 'uuid';
 import { getDb } from '../db/database';
 import { generateToken, authMiddleware, AuthPayload } from '../middleware/auth';
 import logger from '../utils/logger';
@@ -41,7 +40,7 @@ router.post('/register', async (req: Request, res: Response) => {
     return;
   }
 
-  const id = uuid();
+  const id = crypto.randomUUID();
   const hash = await bcrypt.hash(password, 10);
   db.prepare(
     'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
@@ -54,7 +53,7 @@ router.post('/register', async (req: Request, res: Response) => {
   const verifyExpires = new Date(Date.now() + 86400000).toISOString(); // 24 hours
   db.prepare(
     'INSERT INTO email_verification_tokens (id, user_id, token, expires_at) VALUES (?, ?, ?, ?)'
-  ).run(uuid(), id, verifyToken, verifyExpires);
+  ).run(crypto.randomUUID(), id, verifyToken, verifyExpires);
 
   logger.info('User registered', { userId: id, email });
   console.log(`   📧 Email verification: http://localhost:5173/verify-email?token=${verifyToken}`);
@@ -132,7 +131,7 @@ router.post('/forgot-password', async (req: Request, res: Response) => {
 
   db.prepare(
     'INSERT INTO password_reset_tokens (id, user_id, token, expires_at) VALUES (?, ?, ?, ?)'
-  ).run(uuid(), user.id, token, expiresAt);
+  ).run(crypto.randomUUID(), user.id, token, expiresAt);
 
   logger.info('Password reset requested', { userId: user.id });
   // In production: send email with link containing token

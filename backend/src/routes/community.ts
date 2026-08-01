@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import crypto from 'node:crypto';
 import { getDb } from '../db/database';
 import { authMiddleware, AuthPayload } from '../middleware/auth';
 
@@ -36,8 +37,7 @@ router.post('/exercise/:exerciseId', (req: Request, res: Response) => {
   }
 
   const db = getDb();
-  const { v4: uuid } = require('uuid');
-  const id = uuid();
+  const id = crypto.randomUUID();
 
   db.prepare(`
     INSERT INTO exercise_comments (id, exercise_id, user_id, content, parent_id)

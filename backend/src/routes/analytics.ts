@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { v4 as uuid } from 'uuid';
+import crypto from 'node:crypto';
 import { getDb } from '../db/database';
 import { authMiddleware, optionalAuth, AuthPayload } from '../middleware/auth';
 import rateLimit from 'express-rate-limit';
@@ -51,7 +51,7 @@ router.post('/track-batch', trackLimiter, optionalAuth, (req: Request, res: Resp
       }
 
       insert.run(
-        uuid(), userId,
+        crypto.randomUUID(), userId,
         ev.event_type,
         ev.resource_type || null,
         ev.resource_id || null,
@@ -92,7 +92,7 @@ router.post('/track', trackLimiter, optionalAuth, (req: Request, res: Response) 
     INSERT INTO analytics_events (id, user_id, event_type, resource_type, resource_id, metadata, session_id, client_timestamp)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
-    uuid(), userId, event_type,
+    crypto.randomUUID(), userId, event_type,
     resource_type || null, resource_id || null,
     metadata ? JSON.stringify(metadata) : null,
     session_id || null, client_timestamp || null

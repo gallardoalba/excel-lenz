@@ -42,7 +42,7 @@ export interface SpreadsheetTemplate {
   formulaHint?: string;
 }
 
-// ── Cell Formatting (mirrors FortuneSheet cell properties) ──────────────
+// ── Cell Formatting (Handsontable cell properties) ──────────────
 
 export interface CellFormat {
   bold?: boolean;

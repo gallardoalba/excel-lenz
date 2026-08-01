@@ -3,7 +3,7 @@ import { getDb } from '../db/database';
 import { authMiddleware, optionalAuth, AuthPayload } from '../middleware/auth';
 import { sm2Update } from '../utils/spacedRepetition';
 import { awardXP } from './gamification';
-import { v4 as uuid } from 'uuid';
+import crypto from 'node:crypto';
 
 const router = Router();
 
@@ -154,7 +154,7 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     db.prepare(
       `INSERT INTO progress (id, user_id, exercise_id, submitted_data, score, completed, completed_at)
        VALUES (?, ?, ?, ?, ?, 1, datetime('now'))`
-    ).run(uuid(), userId, req.params.id, JSON.stringify(data), score);
+    ).run(crypto.randomUUID(), userId, req.params.id, JSON.stringify(data), score);
   }
 
   // ── XP award based on previous best score ───────────────
