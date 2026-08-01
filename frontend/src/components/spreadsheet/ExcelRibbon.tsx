@@ -17,7 +17,7 @@ interface ExcelRibbonProps {
   onZoomOut: () => void;
   onFreeze?: (type: 'row' | 'column' | 'both' | 'none') => void;
   onConditionalFormat?: () => void;
-  onAutoSum?: () => void;
+  onAutoSum?: (type?: 'sum' | 'avg' | 'count' | 'max' | 'min') => void;
   onInsertChart?: (type: 'bar' | 'line') => void;
   onDataValidation?: () => void;
   onPivotTable?: () => void;
@@ -44,8 +44,12 @@ type TabDef = { id: RibbonTabId; label: string };
 
 const TABS: TabDef[] = [
   { id: 'start', label: 'Start' },
+  { id: 'insert', label: 'Einfügen' },
+  { id: 'pageLayout', label: 'Seitenlayout' },
   { id: 'formulas', label: 'Formeln' },
   { id: 'data', label: 'Daten' },
+  { id: 'review', label: 'Überprüfen' },
+  { id: 'view', label: 'Ansicht' },
 ];
 
 const FONTS = ['Calibri', 'Arial', 'Times New Roman', 'Courier New', 'Verdana', 'Georgia'];
@@ -155,7 +159,7 @@ export default function ExcelRibbon({
       <div className="ribbon-titlebar">
         {/* Quick Access Toolbar */}
         <div className="ribbon-qat">
-          <button className="qat-btn" title="Speichern" aria-label="Speichern" onClick={() => onSave?.()}><SaveIcon /></button>
+          <button className="qat-btn" title="Exportieren" aria-label="Exportieren" onClick={() => onSave?.()}><DownloadIcon /></button>
           <button className="qat-btn" onClick={onUndo} disabled={!canUndo} title="Rückgängig (Strg+Z)" aria-label="Rückgängig"><UndoIcon /></button>
           <button className="qat-btn" onClick={onRedo} disabled={!canRedo} title="Wiederholen (Strg+Y)" aria-label="Wiederholen"><RedoIcon /></button>
         </div>
@@ -230,7 +234,7 @@ export default function ExcelRibbon({
               <div className="ribbon-group-row">
                 {/* Font family dropdown */}
                 <div className="ribbon-dropdown-wrap" style={{ width: 110 }}>
-                  <button className="ribbon-dropdown-btn" onClick={() => setShowFontList(!showFontList)}>
+                  <button className="ribbon-dropdown-btn" onClick={() => openMenu('fontList')}>
                     <span>{activeFormat.fontFamily || 'Calibri'}</span>
                     <span className="ribbon-chevron">▼</span>
                   </button>
@@ -247,7 +251,7 @@ export default function ExcelRibbon({
                 </div>
                 {/* Font size dropdown */}
                 <div className="ribbon-dropdown-wrap" style={{ width: 52 }}>
-                  <button className="ribbon-dropdown-btn" onClick={() => setShowFontSize(!showFontSize)}>
+                  <button className="ribbon-dropdown-btn" onClick={() => openMenu('fontSize')}>
                     <span>{activeFormat.fontSize || 11}</span>
                     <span className="ribbon-chevron">▼</span>
                   </button>
@@ -383,11 +387,11 @@ export default function ExcelRibbon({
                   </div>
                   {showAutoSum && (
                     <div className="ribbon-dropdown-menu" style={{ minWidth: 130 }}>
-                      <button className="ribbon-dropdown-item" onClick={() => { setShowAutoSum(false); }}>SUMME</button>
-                      <button className="ribbon-dropdown-item" onClick={() => { setShowAutoSum(false); }}>MITTELWERT</button>
-                      <button className="ribbon-dropdown-item" onClick={() => { setShowAutoSum(false); }}>ANZAHL</button>
-                      <button className="ribbon-dropdown-item" onClick={() => { setShowAutoSum(false); }}>MAX</button>
-                      <button className="ribbon-dropdown-item" onClick={() => { setShowAutoSum(false); }}>MIN</button>
+                      <button className="ribbon-dropdown-item" onClick={() => { onAutoSum?.(); setShowAutoSum(false); }}>SUMME</button>
+                      <button className="ribbon-dropdown-item" onClick={() => { onAutoSum?.('avg'); setShowAutoSum(false); }}>MITTELWERT</button>
+                      <button className="ribbon-dropdown-item" onClick={() => { onAutoSum?.('count'); setShowAutoSum(false); }}>ANZAHL</button>
+                      <button className="ribbon-dropdown-item" onClick={() => { onAutoSum?.('max'); setShowAutoSum(false); }}>MAX</button>
+                      <button className="ribbon-dropdown-item" onClick={() => { onAutoSum?.('min'); setShowAutoSum(false); }}>MIN</button>
                     </div>
                   )}
                 </div>
@@ -403,7 +407,7 @@ export default function ExcelRibbon({
         {activeTab === 'insert' && (
           <div className="ribbon-groups">
             <RibbonGroupBox label="Tabellen">
-              <RibbonBtn icon={<TableIcon />} label="Tabelle" w={64} />
+              <RibbonBtn icon={<TableIcon />} label="Tabelle" w={64} disabled title="Tabellenformatierung nicht verfügbar" />
             </RibbonGroupBox>
             <RibbonSeparator />
             <RibbonGroupBox label="Diagramme">
@@ -420,24 +424,26 @@ export default function ExcelRibbon({
         {activeTab === 'pageLayout' && (
           <div className="ribbon-groups">
             <RibbonGroupBox label="Themen">
-              <RibbonBtn icon={<ThemeIcon />} label="Themen" w={60} />
+              <RibbonBtn icon={<ThemeIcon />} label="Themen" w={60} disabled title="Nicht verfügbar" />
             </RibbonGroupBox>
             <RibbonSeparator />
             <RibbonGroupBox label="Seite einrichten">
               <div className="ribbon-group-row">
-                <RibbonBtn icon={<MarginsIcon />} label="Seitenränder" w={56} />
-                <RibbonBtn icon={<OrientationIcon />} label="Ausrichtung" w={52} />
-                <RibbonBtn icon={<SizeIcon />} label="Größe" w={48} />
+                <RibbonBtn icon={<MarginsIcon />} label="Seitenränder" w={56} disabled title="Nicht verfügbar" />
+                <RibbonBtn icon={<OrientationIcon />} label="Ausrichtung" w={52} disabled title="Nicht verfügbar" />
+                <RibbonBtn icon={<SizeIcon />} label="Größe" w={48} disabled title="Nicht verfügbar" />
               </div>
             </RibbonGroupBox>
             <RibbonSeparator />
             <RibbonGroupBox label="An Format anpassen">
-              <RibbonBtn icon={<ScaleIcon />} label="Skalierung" w={56} />
+              <RibbonBtn icon={<ScaleIcon />} label="Skalierung" w={56} disabled title="Nicht verfügbar" />
             </RibbonGroupBox>
             <RibbonSeparator />
             <RibbonGroupBox label="Blattoptionen">
-              <RibbonBtn icon={<GridlinesIcon />} label="Gitternetzlinien" w={64} />
-              <RibbonBtn icon={<HeadingsIcon />} label="Überschriften" w={52} />
+              <div className="ribbon-group-row">
+              <RibbonBtn icon={<GridlinesIcon />} label="Gitternetzlinien" w={64} disabled title="Nicht verfügbar" />
+              <RibbonBtn icon={<HeadingsIcon />} label="Überschriften" w={52} disabled title="Nicht verfügbar" />
+              </div>
             </RibbonGroupBox>
           </div>
         )}
@@ -447,7 +453,7 @@ export default function ExcelRibbon({
           <div className="ribbon-groups">
             <RibbonGroupBox label="Funktionsbibliothek">
               <div className="ribbon-group-row">
-                <RibbonBtn icon={<FxIcon />} label="Funktion einfügen" w={64} />
+                <RibbonBtn icon={<FxIcon />} label="Funktion einfügen" w={64} onClick={() => { onAutoSum?.(); }} />
                 <RibbonBtn icon={<SumIcon />} label="AutoSumme ▾" w={60} onClick={() => onAutoSum?.()} />
               </div>
             </RibbonGroupBox>
@@ -491,17 +497,21 @@ export default function ExcelRibbon({
         {activeTab === 'review' && (
           <div className="ribbon-groups">
             <RibbonGroupBox label="Dokumentprüfung">
-              <RibbonBtn icon={<SpellCheckIcon />} label="Rechtschreibung" w={62} />
+              <RibbonBtn icon={<SpellCheckIcon />} label="Rechtschreibung" w={62} disabled title="Nicht verfügbar" />
             </RibbonGroupBox>
             <RibbonSeparator />
             <RibbonGroupBox label="Kommentare">
-              <RibbonBtn icon={<CommentIcon />} label="Neuer Kommentar" w={64} />
-              <RibbonBtn icon={<DeleteCommentIcon />} label="Löschen" w={52} />
+              <div className="ribbon-group-row">
+              <RibbonBtn icon={<CommentIcon />} label="Neuer Kommentar" w={64} disabled title="Nicht verfügbar" />
+              <RibbonBtn icon={<DeleteCommentIcon />} label="Löschen" w={52} disabled title="Nicht verfügbar" />
+              </div>
             </RibbonGroupBox>
             <RibbonSeparator />
             <RibbonGroupBox label="Schützen">
-              <RibbonBtn icon={<ProtectIcon />} label="Blatt schützen" w={56} />
-              <RibbonBtn icon={<LockIcon />} label="Arbeitsmappe schützen" w={64} />
+              <div className="ribbon-group-row">
+              <RibbonBtn icon={<ProtectIcon />} label="Blatt schützen" w={56} disabled title="Nicht verfügbar" />
+              <RibbonBtn icon={<LockIcon />} label="Arbeitsmappe schützen" w={64} disabled title="Nicht verfügbar" />
+              </div>
             </RibbonGroupBox>
           </div>
         )}
@@ -511,8 +521,8 @@ export default function ExcelRibbon({
           <div className="ribbon-groups">
             <RibbonGroupBox label="Arbeitsmappenansicht">
               <div className="ribbon-group-row">
-                <RibbonBtn icon={<NormalIcon />} label="Normal" w={48} h={48} />
-                <RibbonBtn icon={<PageLayoutIcon />} label="Seitenlayout" w={52} h={48} />
+                <RibbonBtn icon={<NormalIcon />} label="Normal" w={48} h={48} active title="Aktuelle Ansicht" />
+                <RibbonBtn icon={<PageLayoutIcon />} label="Seitenlayout" w={52} h={48} disabled title="Nicht verfügbar" />
               </div>
             </RibbonGroupBox>
             <RibbonSeparator />
@@ -627,15 +637,16 @@ function RibbonSeparator() {
   return <div className="ribbon-sep" />;
 }
 
-function RibbonBtn({ icon, label, w, h, onClick, title, active }: {
-  icon: React.ReactNode; label: string; w?: number; h?: number; onClick?: () => void; title?: string; active?: boolean;
+function RibbonBtn({ icon, label, w, h, onClick, title, active, disabled }: {
+  icon: React.ReactNode; label: string; w?: number; h?: number; onClick?: () => void; title?: string; active?: boolean; disabled?: boolean;
 }) {
   return (
     <button
-      className={`ribbon-btn ${active ? 'active' : ''}`}
+      className={`ribbon-btn ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
       style={{ minWidth: w || 38, height: h || 44 }}
-      onClick={onClick}
-      title={title}
+      onClick={disabled ? undefined : onClick}
+      title={disabled ? title || 'Nicht verfügbar' : title}
+      disabled={disabled}
     >
       <span className="ribbon-btn-icon">{icon}</span>
       <span className="ribbon-btn-label">{label}</span>

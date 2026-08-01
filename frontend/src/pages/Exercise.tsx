@@ -65,7 +65,22 @@ export default function Exercise() {
   const { increment: incrementGoal } = useDailyGoal();
   const scoreRef = useRef<HTMLDivElement>(null);
   const leftPanelRef = useRef<HTMLElement>(null);
-  const [gridHeight, setGridHeight] = useState(327);
+  const [gridHeight, setGridHeight] = useState(320);
+  // Bug #13 fix: throttle resize handler via requestAnimationFrame
+  useEffect(() => {
+    let rafId: number | null = null;
+    const update = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        setGridHeight(Math.max(280, window.innerHeight - 520));
+      });
+    };
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('resize', update);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const abortRef = useRef<AbortController | null>(null);
   const [nextExercise, setNextExercise] = useState<{ id: string; title: string; estimated_minutes?: number } | null>(null);
@@ -98,9 +113,14 @@ export default function Exercise() {
     }
   }, [exercise]);
 
+  // Bug #4 fix: use ref for spreadsheetData to avoid re-subscribing beforeunload
+  // on every keystroke
+  const spreadsheetDataRef = useRef(spreadsheetData);
+  useEffect(() => { spreadsheetDataRef.current = spreadsheetData; }, [spreadsheetData]);
+
   useEffect(() => {
     const handler = (e: BeforeUnloadEvent) => {
-      const current = JSON.stringify(spreadsheetData);
+      const current = JSON.stringify(spreadsheetDataRef.current);
       if (exercise && !exercise.progress?.completed && current !== originalDataRef.current) {
         e.preventDefault();
         e.returnValue = '';
@@ -108,7 +128,7 @@ export default function Exercise() {
     };
     window.addEventListener('beforeunload', handler);
     return () => window.removeEventListener('beforeunload', handler);
-  }, [exercise, spreadsheetData]);
+  }, [exercise]); // Bug #4 fix: only depends on exercise, not spreadsheetData
 
   const safeTimeout = useCallback((fn: () => void, ms: number) => {
     const id = setTimeout(() => {
@@ -611,6 +631,7 @@ export default function Exercise() {
         <section aria-label="Excel-Arbeitsblatt" style={{ display: 'flex', flexDirection: 'column' }}>
           <div className="spreadsheet-container" style={{ flex: 1 }}>
             <SpreadsheetHandsontable
+              key={id}
               headers={template.headers}
               data={spreadsheetData}
               onChange={setSpreadsheetData}

@@ -45,7 +45,22 @@ export default function ContextMenu({
       }
     };
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const items = menuRef.current?.querySelectorAll<HTMLElement>('.context-menu-item:not(.disabled)');
+        if (!items || items.length === 0) return;
+        const current = document.activeElement as HTMLElement;
+        let index = Array.from(items).indexOf(current);
+        if (index === -1) {
+          (items[0] as HTMLElement).focus();
+        } else {
+          index = e.key === 'ArrowDown'
+            ? (index + 1) % items.length
+            : (index - 1 + items.length) % items.length;
+          (items[index] as HTMLElement).focus();
+        }
+      }
     };
     // Delay to prevent the right-click event itself from closing
     setTimeout(() => {

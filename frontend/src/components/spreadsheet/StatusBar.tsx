@@ -59,33 +59,23 @@ export default function StatusBar({
         <span>{modeLabel}</span>
       </div>
 
-      {/* Center: Selection aggregates */}
+      {/* Center: Selection aggregates (Excel standard: SUM, AVERAGE, COUNT) */}
       <div className="statusbar-aggregates">
         {hasSelection && showAggregates && (
           <>
             {info.selectionAvg !== undefined && (
               <span className="statusbar-agg" title="Mittelwert">
-                MITTELWERT: {formatNum(info.selectionAvg)}
+                Mittelwert: {formatNum(info.selectionAvg)}
               </span>
             )}
             {info.selectionCount !== undefined && (
               <span className="statusbar-agg" title="Anzahl">
-                ANZAHL: {info.selectionCount}
+                Anzahl: {info.selectionCount}
               </span>
             )}
             {info.selectionSum !== undefined && (
               <span className="statusbar-agg" title="Summe">
-                SUMME: {formatNum(info.selectionSum)}
-              </span>
-            )}
-            {info.selectionMin !== undefined && (
-              <span className="statusbar-agg" title="Minimum">
-                MIN: {formatNum(info.selectionMin)}
-              </span>
-            )}
-            {info.selectionMax !== undefined && (
-              <span className="statusbar-agg" title="Maximum">
-                MAX: {formatNum(info.selectionMax)}
+                Summe: {formatNum(info.selectionSum)}
               </span>
             )}
           </>
