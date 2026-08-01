@@ -1,61 +1,68 @@
 ---
-description: "Expert agent for Excel spreadsheet simulation development. Handles FortuneSheet Canvas rendering, HyperFormula formula engine, data conversion, cell editing, toolbar/ribbon, and spreadsheet components. Use when working on SpreadsheetFortune.tsx, FormulaAdapter.ts, dataConverter.ts, or any FortuneSheet/HyperFormula code."
+description: "Expert agent for Excel spreadsheet simulation development. Handles Handsontable 18 grid rendering, HyperFormula formula engine, data conversion, cell editing, toolbar/ribbon, and spreadsheet components. Use when working on SpreadsheetHandsontable.tsx, ExcelRibbon.tsx, FormulaBar.tsx, or any Handsontable/HyperFormula code."
 tools: read_file, replace_string_in_file, multi_replace_string_in_file, get_errors, grep_search, file_search, run_in_terminal, open_browser_page, screenshot_page, navigate_page, read_page, click_element, run_playwright_code
 user-invocable: true
 ---
 
 # Spreadsheet Agent — Excel-lenz Project
 
-## FortuneSheet v1.0.4 API
+## Handsontable v18 API
 
-### Component Props
-```
-<Workbook ref data onChange hooks showToolbar showFormulaBar showSheetTabs allowEdit lang defaultColWidth defaultRowHeight forceCalculation />
-```
-
-### WorkbookInstance (via ref)
-- `getAllSheets()`, `getCellValue(r,c)`, `setCellValue(r,c,v)`, `setCellFormat(r,c,attr,v)`
-- `getSelection()`, `setSelection(range)`, `autoFillCell(copy,apply,dir)`, `freeze(type,range)`
-
-### Cell Format
-```
-{ v, ct:{ fa, t:'g'|'n'|'b'|'d' }, bg, bl:0|1, it:0|1, fs, fc, ht:0|1|2, vt:0|1|2, lo:0|1, tb:0|1 }
-```
-
-### Hooks
+### Component Config
 ```typescript
-{
-  beforeUpdateCell: (row, col, value) => boolean,  // return false to block
-  afterUpdateCell: (row, col, oldValue, newValue) => void,
-  afterSelectionChange: (sheetId, selection) => void,
-  beforeRenderCell/afterRenderCell, beforeCellMouseDown/afterCellMouseDown,
-  beforeRenderColumnHeaderCell/afterRenderColumnHeaderCell,
-  beforeRenderRowHeaderCell/afterRenderRowHeaderCell
-}
+const hot = new Handsontable(containerRef.current, {
+  data: 2D array, colHeaders: true, rowHeaders: true,
+  formulas: { engine: hfRef.current }, licenseKey: 'non-commercial-and-evaluation',
+  columnSorting: false, // Disabled — HF.setRowOrder incompatibility
+  filters: true, search: true,
+  manualColumnResize: true, manualRowResize: true, mergeCells: true,
+  fillHandle: !readOnly, readOnly,
+  allowInsertRow/Column/RemoveRow/Column: !readOnly,
+  contextMenu: false, // Custom ContextMenu component used instead
+  exportFile: { engines: { xlsx: ExcelJS } },
+  minRows: 50, minCols: 50, stretchH: 'all', undo: true,
+});
 ```
 
-## FormulaAdapter
-- `evaluate(formula, row, col, data?)` — translates DE/ES→EN, resolves refs, uses HyperFormula
-- `syncData(data)` — loads flat array into HF
-- `resolveReferences(formula, data)` — B2:D2 → individual values
-- NAME_MAP: WENN→IF, SUMME→SUM, MITTELWERT→AVERAGE, 20+ translations
+### Plugin API
+- `hot.getPlugin('exportFile')` → `downloadFileAsync('xlsx', opts)` (v18)
+- `hot.getPlugin('columnSorting')` → `sort({ column, sortOrder })` (ribbon only)
+- `hot.getPlugin('filters')` → `filter()`
+- `hot.alter('insert_row'|'remove_row'|'insert_col'|'remove_col', index, amount)`
+- `hot.undo()` / `hot.redo()` / `hot.getDataAtCell(r,c)` / `hot.setDataAtCell(r,c,v)`
+
+### HyperFormula v3.3 (deDE)
+- `HyperFormula.registerLanguage('deDE', deDE)` — imports from `hyperformula/i18n/languages/deDE`
+- `HyperFormula.buildEmpty({ language: 'deDE', licenseKey: 'gpl-v3' })`
+- `hf.addSheet('Sheet1')`, `hf.setSheetContent(sheetId, cells)`, `hf.getCellValue(address)`
+- Errors: `#DIV/0!`, `#WERT!`, `#BEZUG!`, `#NAME?` (German names via deDE locale)
 
 ## Data Flow
 ```
-Edit cell → afterUpdateCell → FormulaAdapter.evaluate → setCellValue(result)
-Submit → workbookRef.getAllSheets() → fromFortuneSheet → POST /submit
-State change → useMemo(toFortuneSheet) → FortuneSheet re-renders
+Template JSON → [headers, ...data] → Handsontable Grid
+    ↓ afterChange (skips row 0)
+onChange → source data (stripped header row) → React State
+    ↓ Submit button
+POST /api/exercises/:id/submit → Score → UI feedback
+    ↓ Speichern/XLSX ribbon button
+exportFile.downloadFileAsync('xlsx') → ExcelJS engine → file download
 ```
 
 ## Key Patterns
-- Use refs (dataRef, taskColsRef) not closures in hooks (empty deps `[]`)
-- `isInternalChange` ref prevents onChange loops
-- `beforeUpdateCell` returns false for locked cells (row===0 header, non-taskCols)
-- Always check `signal.aborted` before setState in fetch effects
-- Define useMemo/useRef BEFORE useEffect that references them (Temporal Dead Zone)
+- `isUpdatingRef` guard prevents `afterChange` infinite loops
+- `hfRef` passed as formulas engine (useRef, not useState — survives StrictMode)
+- `afterChange` strips header row (index 0) before syncing to source data
+- AutoSum: `colToLetter(col) + rowIndex` — v18 fix: end row uses `row + 1` (not `row`)
+- Always check `signal.aborted` before setState in fetch effects (React 19 StrictMode)
+- Define `useMemo`/`useRef` BEFORE `useEffect` that references them (Temporal Dead Zone)
+- `readOnly` prop toggles `allowInsert/Remove*` config options
 
 ## Files
-- `SpreadsheetFortune.tsx` — FortuneSheet wrapper
-- `FormulaAdapter.ts` — HyperFormula bridge
-- `dataConverter.ts` — toFortuneSheet/fromFortuneSheet
-- `Exercise.tsx` — USE_FORTUNESHEET flag
+- `SpreadsheetHandsontable.tsx` — Main grid component (~1570 lines), Handsontable + HF
+- `ExcelRibbon.tsx` — 3-tab ribbon (Start, Formeln, Daten) with export, sort, filter
+- `FormulaBar.tsx` — Name box + formula input with DE autocomplete
+- `StatusBar.tsx` — Mode indicator, aggregates, zoom slider
+- `ContextMenu.tsx` — Right-click context menu
+- `types.ts` — `colToLetter`, `positionToRef`, `refToRange` utilities
+- `Exercise.tsx` — Parent page, passes data/onChange/readOnly to SpreadsheetHandsontable
+

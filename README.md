@@ -1,6 +1,6 @@
 # Excel-lenz
 
-[![Version](https://img.shields.io/badge/version-0.1.0-34C759)](https://github.com) [![Tests](https://img.shields.io/badge/tests-128%20passing-34C759)](https://github.com) [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-18.3-087ea4)](https://react.dev/) [![Express](https://img.shields.io/badge/Express-4.21-000000)](https://expressjs.com/) [![Docker](https://img.shields.io/badge/Docker-ready-2496ed)](https://www.docker.com/) [![License](https://img.shields.io/badge/License-AGPLv3-3178c6)](LICENSE) [![Docs](https://img.shields.io/badge/Docs-DE%2FES-8B5CF6)](ARCHITECTURE.md)
+[![Version](https://img.shields.io/badge/version-0.1.0-34C759)](https://github.com) [![Tests](https://img.shields.io/badge/tests-178%20passing-34C759)](https://github.com) [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178c6)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-19-087ea4)](https://react.dev/) [![Express](https://img.shields.io/badge/Express-4.21-000000)](https://expressjs.com/) [![Docker](https://img.shields.io/badge/Docker-ready-2496ed)](https://www.docker.com/) [![License](https://img.shields.io/badge/License-AGPLv3-3178c6)](LICENSE) [![Docs](https://img.shields.io/badge/Docs-DE%2FES-8B5CF6)](docs/ARCHITECTURE.md)
 
 > Interaktives Excel-Lernportal — Praxisorientiertes Training mit direktem Feedback und adaptiven Lernpfaden.
 
@@ -69,7 +69,7 @@ Die Plattform bietet einen vollständigen Excel-Simulator mit Werkzeugen für ef
 
 | Bereich | Details |
 |---------|---------|
-| **Excel-Simulator** | Handsontable 14 + HyperFormula 3 — Ribbon-Interface, Formelleiste mit Autovervollständigung, Zellformatierung, bedingte Formatierung, Zoom, Sortierung, Filter |
+| **Excel-Simulator** | Handsontable 18 + HyperFormula 3 — Ribbon-Interface, Formelleiste mit Autovervollständigung, Zellformatierung, bedingte Formatierung, Zoom, Sortierung, Filter |
 | **Übungssystem** | Geführte Aufgaben mit schrittweisen Instruktionen, progressiven Hinweisen (4 Stufen) und automatischer Korrektur mit Zell-für-Zell-Feedback |
 | **Prüfungsmodus** | Zeitgesteuerte Assessments mit Countdown-Timer, automatischer Abgabe und geschützter Umgebung |
 | **Datenwerkzeuge** | SVG-Diagramme (Balken/Linie), Datenvalidierung mit benutzerdefinierten Regeln, interaktive Pivot-Tabellen |
@@ -108,7 +108,7 @@ Klassische Three-Tier-Architektur mit REST-API und JWT-Authentifizierung.
 
 | Schicht | Technologie |
 |---------|-------------|
-| **Client** | React 18 · TypeScript · Vite · Handsontable · HyperFormula |
+| **Client** | React 19 · TypeScript 7 · Vite 6 · Handsontable 18 · HyperFormula 3 |
 | **API** | HTTP REST · JWT Bearer Auth |
 | **Server** | Express 4 · better-sqlite3 · tsx · Auth · Courses · Exercises |
 | **Datenbank** | SQLite (Entwicklung) · PostgreSQL (Produktion) |
@@ -121,8 +121,8 @@ Bewährte Open-Source-Technologien für Stabilität und Erweiterbarkeit.
 
 | Schicht | Technologie |
 |---------|-------------|
-| **Spreadsheet** | Handsontable 14.6 · HyperFormula 3.3 |
-| **Frontend** | React 18.3 · TypeScript 5.6 · Vite 6 |
+| **Spreadsheet** | Handsontable 18 · HyperFormula 3 |
+| **Frontend** | React 19 · TypeScript 7 · Vite 6 |
 | **Backend** | Express 4.21 · TypeScript · tsx |
 | **Datenbank** | better-sqlite3 11 (Entwicklung) · PostgreSQL 16 (Produktion) |
 | **Authentifizierung** | JWT (Bearer Tokens) · bcryptjs |
@@ -179,7 +179,7 @@ cd frontend && npx tsc --noEmit
 cd frontend && npm run build
 ```
 
-> Ausführliche technische Dokumentation: [ARCHITECTURE.md](ARCHITECTURE.md)  
+> Ausführliche technische Dokumentation: [ARCHITECTURE.md](docs/ARCHITECTURE.md)  
 > Abhängigkeiten: [package-lock.json](package-lock.json)
 
 ---

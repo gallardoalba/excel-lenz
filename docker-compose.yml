@@ -4,7 +4,7 @@
 #
 # NOTE: The backend currently uses SQLite via better-sqlite3.
 # The DB_PATH volume persists the database file.
-# PostgreSQL migration is planned for v2.0 — see DEPLOYMENT.md.
+# PostgreSQL migration is planned for v2.0 — see docs/DEPLOYMENT.md.
 
 version: '3.8'
 

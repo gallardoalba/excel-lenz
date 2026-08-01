@@ -3,19 +3,26 @@
 
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import Handsontable from 'handsontable';
-import 'handsontable/dist/handsontable.full.min.css';
+import 'handsontable/styles/handsontable.css';
+import 'handsontable/styles/ht-theme-main.css';
+import 'handsontable/styles/ht-theme-horizon.css';
+import 'handsontable/styles/ht-icons-main.css';
+import 'handsontable/styles/ht-icons-horizon.css';
 import { HyperFormula } from 'hyperformula';
 import deDE from 'hyperformula/i18n/languages/deDE';
+import { useTheme } from '../../context/ThemeContext';
+import ExcelJS from 'exceljs';
 
-// Register German language pack
-HyperFormula.registerLanguage('deDE', deDE);
+// Register German language pack (guard against HMR double-registration)
+try {
+  HyperFormula.registerLanguage('deDE', deDE);
+} catch {
+  // Already registered via HMR
+}
 
-// Register plugins
-import { registerPlugin, ColumnSorting, Filters, Search, AutoColumnSize } from 'handsontable/plugins';
-registerPlugin(ColumnSorting);
-registerPlugin(Filters);
-registerPlugin(Search);
-registerPlugin(AutoColumnSize);
+// Register plugins — v18 auto-registers; these imports are for type references only
+import { ColumnSorting, Filters, Search, AutoColumnSize } from 'handsontable/plugins';
+import { textRenderer } from 'handsontable/renderers';
 
 import ExcelRibbon from './ExcelRibbon';
 import FormulaBar from './FormulaBar';
@@ -75,6 +82,7 @@ export default function SpreadsheetHandsontable({
   const headersRef = useRef(headers);
   const isInternalChange = useRef(false);
   const dataIdRef = useRef<number>(0);
+  const { dark } = useTheme();
   dataRef.current = data;
   headersRef.current = headers;
 
@@ -140,15 +148,34 @@ export default function SpreadsheetHandsontable({
   const handleUndo = useCallback(() => {
     const hot = hotRef.current;
     if (!hot || hot.isDestroyed) return;
-    hot.undo();
+    (hot as any).undo();
     hot.render();
   }, []);
 
   const handleRedo = useCallback(() => {
     const hot = hotRef.current;
     if (!hot || hot.isDestroyed) return;
-    hot.redo();
+    (hot as any).redo();
     hot.render();
+  }, []);
+
+  // XLSX Export (Handsontable v18 — uses downloadFileAsync with ExcelJS engine)
+  const handleExportXlsx = useCallback(() => {
+    const hot = hotRef.current;
+    if (!hot || hot.isDestroyed) return;
+    try {
+      const plugin = hot.getPlugin('exportFile') as any;
+      if (plugin?.downloadFileAsync) {
+        plugin.downloadFileAsync('xlsx', { filename: 'excel-lenz-uebung' }).catch(() => {
+          // Fallback: CSV export if XLSX engine fails
+          plugin.downloadFile('csv', { filename: 'excel-lenz-uebung', columnHeaders: true });
+        });
+      } else if (plugin?.downloadFile) {
+        plugin.downloadFile('csv', { filename: 'excel-lenz-uebung', columnHeaders: true });
+      }
+    } catch {
+      // Plugin not available
+    }
   }, []);
 
   // Multi-sheet state
@@ -217,7 +244,7 @@ export default function SpreadsheetHandsontable({
     const hot = hotRef.current;
     if (!hot || hot.isDestroyed) return;
     const row = selectedRange?.startRow ?? activeCell?.row ?? 0;
-    hot.alter('insert_row_below', row);
+    hot.alter('insert_row', row);
     setTimeout(() => {
       const physicalData = hot.getSourceData() as (string | number | null)[][];
       onChange(physicalData.slice(1).map(r => [...r]));
@@ -227,7 +254,7 @@ export default function SpreadsheetHandsontable({
   const handleDeleteRow = useCallback(() => {
     const hot = hotRef.current;
     if (!hot || hot.isDestroyed) return;
-    const row = selectedRange?.startRow ?? activeCell?.row ?? 0;
+    const row = selectedRange?.startRow ?? activeCell?.row ?? 1;
     hot.alter('remove_row', row);
     setTimeout(() => {
       const physicalData = hot.getSourceData() as (string | number | null)[][];
@@ -375,11 +402,11 @@ export default function SpreadsheetHandsontable({
     const hot = hotRef.current;
     if (!hot || hot.isDestroyed || sheetId === activeSheetId) return;
     // Save current data and formats
-    allDataRef.current[activeSheetId] = (hot.getSourceData() as (string | number | null)[][]).slice(1);
+    allDataRef.current[activeSheetId] = (hot.getSourceData() as (string | number | null)[][]);
     allFormatsRef.current[activeSheetId] = { ...cellFormatsRef.current };
     // Load new sheet data
     const newData = allDataRef.current[sheetId] || [];
-    hot.loadData([headersRef.current.map(h => h), ...newData.map(row => row.map(cell => (cell === null ? '' : cell)))]);
+    hot.loadData(newData.map(row => row.map(cell => (cell === null ? '' : cell))));
     // Load sheet formats
     const newFormats = allFormatsRef.current[sheetId] || {};
     setCellFormats(newFormats);
@@ -453,10 +480,10 @@ export default function SpreadsheetHandsontable({
       case 'pasteTranspose': { if (sr) { navigator.clipboard.readText().then(text => { const rows = text.split('\n').filter(Boolean).map((r: string) => r.split('\t')); const transposed = rows[0]?.map((_: any, i: number) => rows.map(r => r[i] || '')) || []; hot.populateFromArray(sr.startRow, sr.startCol, transposed); }); } break; }
 
       // Insert/Delete
-      case 'insertCells': if (sr) { hot.alter('insert_row_below', sr.startRow); } break;
-      case 'insertRow': hot.alter('insert_row_below', sr?.startRow ?? 0); break;
+      case 'insertCells': if (sr) { hot.alter('insert_row', sr.startRow); } break;
+      case 'insertRow': hot.alter('insert_row', sr?.startRow ?? 0); break;
       case 'insertColumn': 
-        if (sr) { const amount = sr.endCol - sr.startCol + 1; hot.alter('insert_col_start', sr.startCol, amount); }
+        if (sr) { const amount = sr.endCol - sr.startCol + 1; hot.alter('insert_col', sr.startCol, amount); }
         break;
       case 'deleteCells': if (sr) { hot.alter('remove_row', sr.startRow, sr.endRow); } break;
       case 'deleteRow': if (sr) { const amount = sr.endRow - sr.startRow + 1; hot.alter('remove_row', sr.startRow, amount); } break;
@@ -578,7 +605,10 @@ export default function SpreadsheetHandsontable({
       manualRowResize: true,
       mergeCells: true,
       fillHandle: !readOnly,
-      columnSorting: true,
+      // columnSorting disabled: incompatible with HyperFormula formulas engine.
+      // HT v18 sort plugin calls HF.setRowOrder() which fails:
+      // "Invalid arguments, expected number of rows provided to be sheet height"
+      columnSorting: false,
       filters: true,
       search: true,
       autoWrapRow: true,
@@ -590,8 +620,12 @@ export default function SpreadsheetHandsontable({
       allowInsertColumn: !readOnly,
       allowRemoveRow: !readOnly,
       allowRemoveColumn: !readOnly,
+      textEllipsis: true,
+      exportFile: {
+        engines: { xlsx: ExcelJS },
+      },
 
-      beforePaste(data: any[][], _coords: any[]) {
+      beforePaste(data: unknown[][], _coords: unknown[]) {
         if (pasteModeRef.current === 'values') {
           for (let r = 0; r < data.length; r++) {
             for (let c = 0; c < data[r].length; c++) {
@@ -625,12 +659,8 @@ export default function SpreadsheetHandsontable({
       },
 
       cells(row: number, col: number) {
-        const cellMeta: Record<string, any> = {};
+        const cellMeta: Record<string, unknown> = {};
         const isTask = taskCols.includes(col) && col < headers.length;
-        // Block editing of header row (row 0)
-        if (row === 0) {
-          cellMeta.readOnly = true;
-        }
         // Read from REFS (not state) to avoid stale closure
         const fmt = cellFormatsRef.current[`R${row}C${col}`];
         const rules = condRulesRef.current;
@@ -643,7 +673,7 @@ export default function SpreadsheetHandsontable({
         else if (fmt?.numberFormat === '#,##0.00') { cellMeta.type = 'numeric'; cellMeta.numericFormat = { pattern: '#,##0.00' }; }
         // Data validation
         const rule = validationRulesRef.current.find(r => r.col === col);
-        if (rule && row > 0) {
+        if (rule) {
           if (rule.type === 'number') {
             cellMeta.validator = (value: any, callback: (valid: boolean) => void) => {
               if (value === '' || value === null || value === undefined) return callback(true);
@@ -659,7 +689,7 @@ export default function SpreadsheetHandsontable({
         }
         // Renderer
         cellMeta.renderer = (instance: any, td: HTMLTableCellElement, _r: number, _c: number, _p: any, v: any, _cp: any) => {
-          Handsontable.renderers.TextRenderer(instance, td, _r, _c, _p, v, _cp);
+          textRenderer(instance, td, _r, _c, _p, v, _cp);
           // Reset inline styles to prevent ghost formats from previous exercises
           td.style.background = '';
           td.style.color = '';
@@ -699,15 +729,7 @@ export default function SpreadsheetHandsontable({
           if (fmt?.borderRight) td.style.borderRight = fmt.borderRight;
           if (fmt?.borderBottom) td.style.borderBottom = fmt.borderBottom;
           if (fmt?.borderLeft) td.style.borderLeft = fmt.borderLeft;
-          // Header row (row 0) styling — bold + gray like Excel column headers
-          if (_r === 0) {
-            td.style.fontWeight = '600';
-            td.style.background = isActive ? '#d6e6da' : '#f3f2f1';
-            td.style.color = '#444';
-            if (isActive) { td.style.outline = '2px solid #217346'; td.style.outlineOffset = '-2px'; td.style.zIndex = '2'; }
-            return;
-          }
-          // Conditional formatting rules (skip header row) — read from REF
+          // Conditional formatting rules — read from REF
           for (const rule of rulesRenderer) {
             if (rule.col === _c) {
               const num = typeof v === 'string' ? parseFloat(v) : (typeof v === 'number' ? v : NaN);
@@ -884,12 +906,12 @@ export default function SpreadsheetHandsontable({
         if (!changes || source === 'loadData' || isInternalChange.current) return;
         const h2 = hotRef.current;
         if (h2 && !h2.isDestroyed) {
-          setCanUndo(h2.isUndoAvailable());
-          setCanRedo(h2.isRedoAvailable());
+          setCanUndo((h2 as any).isUndoAvailable());
+          setCanRedo((h2 as any).isRedoAvailable());
         }
         const nd = dataRef.current.map(r => [...r]);
         for (const [row, col, _old, newVal] of changes) {
-          if (row === 0) continue;
+          if (row === 0) continue; // Skip header row
           if (nd[row - 1]) nd[row - 1][col] = newVal;
           // Practice mode: check cell immediately
           if (mode === 'practice') checkCellPractice(row, col);
@@ -905,11 +927,11 @@ export default function SpreadsheetHandsontable({
         setCellAutocomplete(prev => ({ ...prev, visible: false }));
       },
 
-      // Copy formats when auto-filling
-      afterAutofill(start: any, end: any, _data: any) {
-        // Handsontable passes coordinates as arrays: [startRow, startCol, endRow, endCol]
-        const [startRow, startCol, endRowSrc, endColSrc] = start;
-        const [endRow, endCol] = end;
+      // Copy formats when auto-filling (v18 signature: fillData, sourceRange, targetRange, direction)
+      afterAutofill(_fillData: unknown[][], sourceRange: { from: { row: number | null; col: number | null }; to: { row: number | null; col: number | null } }, targetRange: { from: { row: number | null; col: number | null }; to: { row: number | null; col: number | null } }) {
+        const startRow = sourceRange.from.row ?? 0, startCol = sourceRange.from.col ?? 0;
+        const endRowSrc = sourceRange.to.row ?? startRow, endColSrc = sourceRange.to.col ?? startCol;
+        const endRow = targetRange.to.row ?? 0, endCol = targetRange.to.col ?? 0;
         if (startRow == null || startCol == null) return;
         // Read from ref to avoid stale closure
         const currentFormats = cellFormatsRef.current;
@@ -1051,6 +1073,13 @@ export default function SpreadsheetHandsontable({
     };
   }, []); // Only init once
 
+  // Sync dark mode theme with Handsontable v18 Theme API
+  useEffect(() => {
+    const hot = hotRef.current;
+    if (!hot || hot.isDestroyed) return;
+    hot.updateSettings({ themeName: dark ? 'ht-theme-horizon' : 'ht-theme-main' } as any);
+  }, [dark]);
+
   // Sync data changes to Handsontable — ONLY for external changes (new exercise, reset)
   // User edits go through afterChange → onChange directly; skip loadData for those
   useEffect(() => {
@@ -1061,7 +1090,7 @@ export default function SpreadsheetHandsontable({
       isInternalChange.current = false;
       return;
     }
-    // External data change — reload the grid (including headers as row 0)
+    // External data change — reload the grid (header row 0 + data rows)
     hot.loadData([headers.map(h => h), ...data.map(row => row.map(cell => (cell === null ? '' : cell)))]);
     requestAnimationFrame(() => { isInternalChange.current = false; });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1129,11 +1158,11 @@ export default function SpreadsheetHandsontable({
           }
         }
       }
-      // Ctrl+R: Fill right (skip if selection includes header row)
+      // Ctrl+R: Fill right
       else if (ctrl && e.key === 'r') {
         e.preventDefault();
         const hot = hotRef.current;
-        if (hot && selectedRange && selectedRange.startRow > 0 && selectedRange.endCol > selectedRange.startCol) {
+        if (hot && selectedRange && selectedRange.endCol > selectedRange.startCol) {
           for (let r = selectedRange.startRow; r <= selectedRange.endRow; r++) {
             const src = hot.getDataAtCell(r, selectedRange.startCol);
             for (let c = selectedRange.startCol + 1; c <= selectedRange.endCol; c++) {
@@ -1146,25 +1175,25 @@ export default function SpreadsheetHandsontable({
       else if (e.altKey && e.key === '=') {
         e.preventDefault();
         const hot = hotRef.current;
-        if (hot && activeCell && activeCell.row > 0) {
+        if (hot && activeCell) {
           const col = activeCell.col;
           const row = activeCell.row;
           const colLetter = colToLetter(col);
           // Scan upward for contiguous numbers — use evaluated values from HOT
           let upStart: number | null = null;
           for (let r = row - 1; r >= 0; r--) {
-            const val = hot.getDataAtCell(r, col);
-            if (typeof val !== 'number' && isNaN(parseFloat(val))) break;
+            const val = hot.getDataAtCell(r, col) as string | number | null;
+            if (typeof val !== 'number' && isNaN(parseFloat(val as string))) break;
             upStart = r;
           }
           if (upStart !== null) {
-            hot.setDataAtCell(row, col, `=SUMME(${colLetter}${upStart + 1}:${colLetter}${row})`);
+            hot.setDataAtCell(row, col, `=SUMME(${colLetter}${upStart + 1}:${colLetter}${row + 1})`);
           } else {
             // Scan left
             let leftStart: number | null = null;
             for (let c = col - 1; c >= 0; c--) {
-              const val = hot.getDataAtCell(row, c);
-              if (typeof val !== 'number' && isNaN(parseFloat(val))) break;
+              const val = hot.getDataAtCell(row, c) as string | number | null;
+              if (typeof val !== 'number' && isNaN(parseFloat(val as string))) break;
               leftStart = c;
             }
             if (leftStart !== null) {
@@ -1363,17 +1392,17 @@ export default function SpreadsheetHandsontable({
     const colLetter = colToLetter(col);
     let upStart: number | null = null;
     for (let r = row - 1; r >= 0; r--) {
-      const val = hot.getDataAtCell(r, col);
-      if (typeof val !== 'number' && isNaN(parseFloat(val))) break;
+      const val = hot.getDataAtCell(r, col) as string | number | null;
+      if (typeof val !== 'number' && isNaN(parseFloat(val as string))) break;
       upStart = r;
     }
     if (upStart !== null) {
-      hot.setDataAtCell(row, col, `=SUMME(${colLetter}${upStart + 1}:${colLetter}${row})`);
+      hot.setDataAtCell(row, col, `=SUMME(${colLetter}${upStart + 1}:${colLetter}${row + 1})`);
     } else {
       let leftStart: number | null = null;
       for (let c = col - 1; c >= 0; c--) {
-        const val = hot.getDataAtCell(row, c);
-        if (typeof val !== 'number' && isNaN(parseFloat(val))) break;
+        const val = hot.getDataAtCell(row, c) as string | number | null;
+        if (typeof val !== 'number' && isNaN(parseFloat(val as string))) break;
         leftStart = c;
       }
       if (leftStart !== null) {
@@ -1414,6 +1443,8 @@ export default function SpreadsheetHandsontable({
           onFormatPainter={handleFormatPainter}
           isFormatPainterActive={!!formatPainterSrc}
           selectedRange={selectedRange}
+          onExport={handleExportXlsx}
+          onSave={handleExportXlsx}
         />
       )}
       {!readOnly && (

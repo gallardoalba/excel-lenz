@@ -135,12 +135,14 @@ body.dark .navbar {
 }
 
 body.dark .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #252528;
+  border: 1px solid #3A3A3C;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 body.dark .card:hover {
-  border-color: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
 /* Gradient text utility */
@@ -908,6 +910,8 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--text); }
   transform: scale(0.98);
   box-shadow: none;
 }
+body.dark .btn-primary { background: var(--bg-alt2); color: var(--text); border-color: var(--border); }
+body.dark .btn-primary:hover { background: var(--surface); color: var(--text); }
 
 .btn-outline {
   background: transparent;
@@ -942,6 +946,8 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--text); }
 
 .btn-white { background: white; color: var(--primary); border: 1px solid var(--border); }
 .btn-white:hover { background: var(--primary-light); color: var(--primary-dark); }
+body.dark .btn-white { background: var(--bg); color: var(--text); border-color: var(--border); }
+body.dark .btn-white:hover { background: var(--bg-alt); color: var(--text); }
 
 .btn-success { background: var(--text); color: var(--bg); }
 .btn-success:hover { background: #333; }
@@ -1178,6 +1184,9 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--text); }
 }
 .cta-section h2 { color: white; margin-bottom: 12px; }
 .cta-section p { color: rgba(255,255,255,0.85); max-width: 500px; margin: 0 auto 28px; font-size: 1.05rem; }
+body.dark .cta-section { background: var(--surface); color: var(--text); }
+body.dark .cta-section h2 { color: var(--text); }
+body.dark .cta-section p { color: var(--text-secondary); }
 
 /* ============================================================
    FOOTER — Apple-style, clean, organized
@@ -1330,7 +1339,7 @@ body.dark .auth-container {
    ============================================================ */
 .spreadsheet-container { border-radius: var(--radius); box-shadow: var(--shadow); margin: 8px 0; }
 
-/* FortuneSheet wrapper: full Excel-like structure with ribbon + grid + statusbar */
+/* Handsontable wrapper: full Excel-like structure with ribbon + grid + statusbar */
 .spreadsheet-fortune-wrapper {
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
@@ -2664,7 +2673,7 @@ body.dark .hero-badge { background: var(--surface); }
 body.dark .page-header {
   background: linear-gradient(180deg, var(--primary-lighter) 0%, var(--bg) 100%);
 }
-body.dark .section-alt { background: var(--bg-alt); }
+body.dark .section-alt { background: #141414; }
 body.dark .section-alt2 { background: var(--bg-alt2); }
 /* ── Spacing (margin) ── */
 .m-0 { margin: 0; }
@@ -3237,12 +3246,34 @@ body.dark .exercise-sticky-bar {
 }
 /* Dark mode footer */
 body.dark .footer { background: #0A0A0A; border-top-color: var(--border); }
+/* ── Handsontable v18 CSS Custom Properties (controls grid theme) ── */
+:root {
+  --ht-border-color: var(--border);
+  --ht-cell-background: var(--surface);
+  --ht-cell-color: var(--text);
+  --ht-header-background: var(--bg-alt);
+  --ht-header-color: var(--text-secondary);
+  --ht-selection-background: rgba(33, 115, 70, 0.12);
+  --ht-accent-color: var(--primary, #217346);
+}
+body.dark {
+  --ht-border-color: var(--border);
+  --ht-cell-background: var(--surface);
+  --ht-cell-color: var(--text);
+  --ht-header-background: var(--bg-alt);
+  --ht-header-color: var(--text-secondary);
+  --ht-selection-background: rgba(255, 255, 255, 0.08);
+  --ht-accent-color: var(--primary, #4ade80);
+}
+
+body.dark .usp-card { background: #252528; }
 body.dark .usp-card:hover { background: var(--bg-alt); }
 body.dark .navbar { background: rgba(0, 0, 0, 0.72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid transparent; }
 body.dark .form-input { background: var(--surface); color: var(--text); }
 body.dark .ht_master .wtHolder { background: var(--surface); }
-body.dark .handsontable th { background: var(--bg-alt); color: var(--text-secondary); }
-body.dark .handsontable td { background: var(--surface); color: var(--text); }
+
+/* Dark mode: Handsontable grid — background/text now handled by HT v18 Theme API (ht-theme-horizon) */
+
 body.dark .navbar-links a:hover { background: transparent; color: var(--text); }
 body.dark .navbar-links a.active { background: transparent; color: var(--text); font-weight: 500; }
 body.dark .navbar-search-btn { background: var(--bg-alt2); }
@@ -3255,6 +3286,13 @@ body.dark .mobile-drawer { background: var(--surface); }
 body.dark .hero-dashboard-icon { background: var(--surface); border-color: var(--border); }
 body.dark .hero-stat { background: var(--surface); }
 body.dark .course-hero-back { background: rgba(0,0,0,0.4) !important; }
+
+/* Dark mode: Course cards — lighter bg so they stand out from #000 page */
+body.dark .course-card article { background: #1C1C1E; border-color: #333; }
+body.dark .course-card:hover article { background: #252528; }
+body.dark .courses-hero { background: linear-gradient(180deg, #1C1C1E 0%, #000 100%); }
+body.dark .courses-hero h1 { color: var(--text); }
+body.dark .courses-grid-container { background: transparent; }
 body.dark .module-card { background: var(--surface); }
 body.dark .module-card-header:hover { background: var(--bg-alt); }
 body.dark .module-card-footer { border-color: var(--border); }
@@ -3280,12 +3318,7 @@ body.dark .ribbon-dropdown-item { color: #C9D1D9; }
 body.dark .ribbon-dropdown-item:hover { background: #1C2128; color: #E6EDF3; }
 body.dark .ribbon-toggle-btn { background: #1C2128; border-color: #30363D; color: #C9D1D9; }
 
-/* Dark mode: Handsontable grid borders */
-body.dark .handsontable td,
-body.dark .handsontable th {
-  border-right-color: #2d333b !important;
-  border-bottom-color: #2d333b !important;
-}
+/* Dark mode: Handsontable grid borders — handled by HT v18 theme (--ht-* variables) */
 
 /* Dark mode: Ribbon content background */
 body.dark .ribbon-content { background: #161B22; border-bottom-color: #21262D; }

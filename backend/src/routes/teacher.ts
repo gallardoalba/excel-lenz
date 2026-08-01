@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { v4 as uuid } from 'uuid';
+import crypto from 'node:crypto';
 import { getDb } from '../db/database';
 import { authMiddleware, AuthPayload } from '../middleware/auth';
 
@@ -27,7 +27,7 @@ router.post('/courses', (req: Request, res: Response) => {
     res.status(400).json({ error: 'Titel und Beschreibung erforderlich' });
     return;
   }
-  const id = uuid();
+  const id = crypto.randomUUID();
   getDb().prepare(
     'INSERT INTO courses (id, title, description, difficulty) VALUES (?, ?, ?, ?)'
   ).run(id, title, description, difficulty || 'beginner');
@@ -65,7 +65,7 @@ router.post('/exercises', (req: Request, res: Response) => {
   const course = getDb().prepare('SELECT id FROM courses WHERE id = ?').get(course_id);
   if (!course) { res.status(404).json({ error: 'Kurs nicht gefunden' }); return; }
 
-  const id = uuid();
+  const id = crypto.randomUUID();
   const order = order_index ?? (
     (getDb().prepare('SELECT MAX(order_index) as m FROM exercises WHERE course_id = ?').get(course_id) as any)?.m + 1 || 1
   );

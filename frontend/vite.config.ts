@@ -1,9 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
   appType: 'spa',
+  resolve: {
+    alias: {
+      // Bypass Vite's exports-map resolution for handsontable CSS
+      'handsontable/styles': path.resolve(__dirname, 'node_modules/handsontable/styles'),
+    },
+  },
   server: {
     port: 5173,
     headers: {
