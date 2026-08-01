@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './swagger';
 import { config } from './config';
 import logger from './utils/logger';
 import { initDb } from './db/database';
@@ -66,6 +68,17 @@ app.use('/api/community', communityRoutes);
 // Health check
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Swagger / OpenAPI docs
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customCss: '.swagger-ui .topbar { display: none }' }));
+app.get('/api/docs.json', (_req, res) => res.json(swaggerSpec));
+
+// CSRF token endpoint (simple double-submit cookie pattern)
+app.get('/api/csrf-token', (_req, res) => {
+  const token = require('crypto').randomBytes(32).toString('hex');
+  res.cookie('csrf-token', token, { httpOnly: false, sameSite: 'strict', secure: process.env.NODE_ENV === 'production' });
+  res.json({ token });
 });
 
 // Global error handler
