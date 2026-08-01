@@ -1,6 +1,6 @@
 {
   "name": "excel-lenz-backend",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Backend API for Excel-lenz educational portal",
   "scripts": {
     "dev": "JWT_SECRET=dev-secret-key-not-for-production tsx watch src/server.ts",
