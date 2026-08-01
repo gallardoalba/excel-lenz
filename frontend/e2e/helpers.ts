@@ -9,9 +9,17 @@ import { type Page, type BrowserContext } from '@playwright/test';
 /** Get the first exercise ID from the courses API */
 export async function getFirstExerciseId(): Promise<string> {
   const res = await fetch('http://localhost:3001/api/courses');
+  if (!res.ok) {
+    const body = await res.text().catch(() => '(unable to read body)');
+    throw new Error(`GET /api/courses failed (${res.status}): ${body}`);
+  }
   const courses = await res.json() as any[];
+  if (!Array.isArray(courses)) {
+    throw new Error(`GET /api/courses returned non-array: ${JSON.stringify(courses)}`);
+  }
   for (const course of courses) {
     const detailRes = await fetch(`http://localhost:3001/api/courses/${course.id}`);
+    if (!detailRes.ok) continue;
     const detail = await detailRes.json() as any;
     if (detail.exercises?.length > 0) {
       return detail.exercises[0].id;

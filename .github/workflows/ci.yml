@@ -100,9 +100,10 @@ jobs:
         run: mkdir -p backend/data && cd backend && JWT_SECRET=ci-secret SEED_PASSWORD=ci-pass DB_PATH=./data/excel-lenz.db npx tsx src/db/seed.ts
 
       - name: Start backend
-        run: cd backend && JWT_SECRET=ci-secret DB_PATH=./data/excel-lenz.db npx tsx src/server.ts &
+        run: cd backend && JWT_SECRET=ci-secret DB_PATH=./data/excel-lenz.db NODE_ENV=test npx tsx src/server.ts &
         env:
           JWT_SECRET: ci-secret
+          NODE_ENV: test
 
       - name: Start frontend
         run: cd frontend && npx vite --host &

@@ -509,7 +509,8 @@ test.describe('Nested & Complex Formulas', () => {
 
     const result = await page.evaluate(() => {
       const hot = (window as any).__hotInstance;
-      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+      // Click was on tr:nth-child(2) td:nth-child(2) → HF (0,0); read the same cell
+      return hot ? String(hot.getDataAtCell(0, 0) ?? '') : '';
     });
     // HF DE parser may use commas or semicolons depending on config
     expect(result).toBe('Groß');
@@ -528,7 +529,8 @@ test.describe('Nested & Complex Formulas', () => {
 
     const result = await page.evaluate(() => {
       const hot = (window as any).__hotInstance;
-      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+      // Click was on tr:nth-child(2) td:nth-child(2) → HF (0,0); read the same cell
+      return hot ? String(hot.getDataAtCell(0, 0) ?? '') : '';
     });
     expect(result).toBe('Klein');
   });
