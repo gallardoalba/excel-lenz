@@ -5,7 +5,10 @@ import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { DailyGoalProvider } from './context/DailyGoalContext';
+import { initSentry } from './utils/sentry';
 import './index.css';
+
+initSentry();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

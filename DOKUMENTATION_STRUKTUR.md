@@ -1,14 +1,15 @@
 # Excel-lenz — Dokumentation der Webseitenstruktur & Architektur
 
-> **Version**: 5.1 — Aktuell  
-> **Stand**: 1. August 2026 (abends)  
+> **Version**: 5.2 — Aktuell  
+> **Stand**: 1. August 2026 (nacht)  
 > **Status**: Beta — Produktionsbereit für kontrollierte Umgebungen  
 > **Sprache**: Deutsch (primär), Spanisch (Code of Conduct)  
 > **Stack**: React 18 + Vite 6 | Express 4 + SQLite | Handsontable + HyperFormula  
 > **Design**: Enterprise SaaS — Lucide Icons, CSS Utilities, Dark Mode, Focus Mode, Exam Mode  
 > **Lizenz**: AGPLv3 (GNU Affero General Public License)  
 > **Tests**: 158 Tests in 13 Suiten (Jest + Supertest)  
-> **CI/CD**: GitHub Actions (Backend Tests + Frontend Build)
+> **CI/CD**: GitHub Actions (Backend Tests + Frontend Build + Security Audit)  
+> **Monitoring**: Sentry, Prometheus, Redis-Cache
 
 ---
 
@@ -30,8 +31,9 @@
 14. [Enterprise & Monetarisierung](#14-enterprise--monetarisierung)
 15. [Deployment & Skalierung](#15-deployment--skalierung)
 16. [Analytics-System](#16-analytics-system)
-17. [Testing & Qualitätssicherung](#17-testing--qualitätssicherung)
-18. [Verzeichnisstruktur](#18-verzeichnisstruktur)
+17. [Monitoring & Observability](#17-monitoring--observability)
+18. [Testing & Qualitätssicherung](#18-testing--qualitätssicherung)
+19. [Verzeichnisstruktur](#19-verzeichnisstruktur)
 
 ---
 
@@ -65,6 +67,7 @@
 | 🧪 **Testing** | 158 Tests (13 Suiten), Jest + Supertest, CI/CD via GitHub Actions |
 | 🔓 **Lizenz** | AGPLv3 — Copyleft stark, Verbesserungen fließen zurück ins Gemeingut |
 | 📈 **Analytics** | Session-Tracking, Batching, sendBeacon, node-cache, Indizes, Validation |
+| 📊 **Monitoring** | Sentry (Error-Tracking), Prometheus (Metriken), Redis-Cache (optional) |
 
 ---
 
@@ -640,7 +643,50 @@ Cache (node-cache)
 
 ---
 
-## 17. Testing & Qualitätssicherung
+## 17. Monitoring & Observability
+
+### Sentry (Error Tracking)
+
+Aktivierbar via `SENTRY_DSN` Umgebungsvariable. Bei gesetztem DSN:
+- Automatische Erfassung aller unbehandelten Express-Fehler
+- Performance-Profiling mit `@sentry/profiling-node`
+- Sampling: 10% Traces in Produktion, 100% in Entwicklung
+- Sensitive Daten (Cookies, Auth-Header) werden vor dem Senden gefiltert
+
+```typescript
+// backend/src/utils/sentry.ts
+Sentry.init({
+  dsn: SENTRY_DSN,
+  tracesSampleRate: 0.1,
+  integrations: [nodeProfilingIntegration()],
+});
+```
+
+### Prometheus (Metriken)
+
+Endpoint `/metrics` (nur mit lazy-import, keine Startup-Last in Tests):
+- `excellenz_http_request_duration_seconds` — Histogram (method, route, status)
+- `excellenz_exercises_submitted_total` — Counter (pro Kurs)
+- `excellenz_users_active` — Gauge (letzte 7 Tage)
+- `excellenz_exercises_total` — Gauge
+
+Abfragbar via Prometheus oder Grafana. Standard-Metriken (CPU, Memory, Event Loop) nur außerhalb der Testumgebung.
+
+### Redis Cache
+
+Opt-in via `REDIS_URL`. Fallback auf In-Memory `Map` wenn Redis nicht verfügbar:
+```typescript
+// backend/src/utils/cache.ts
+await cacheSet('courses:list', data, 300);  // 5 min TTL
+const courses = await cacheGet<Course[]>('courses:list');
+await cacheDel('courses:list');
+```
+
+Redis-Client (`ioredis`) mit exponential backoff Retry (max 5 Versuche).
+
+---
+
+## 18. Testing & Qualitätssicherung
 
 ### Test-Suiten (158 Tests, 13 Suiten)
 
@@ -672,7 +718,7 @@ GitHub Actions (.github/workflows/ci.yml):
 
 ---
 
-## 18. Verzeichnisstruktur
+## 19. Verzeichnisstruktur
 
 ```
 excel-lenz/
