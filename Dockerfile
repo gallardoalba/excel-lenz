@@ -3,7 +3,7 @@
 # ═══════════════════════════════════════════════════════════
 
 # ── Stage 1: Frontend Build ─────────────────────────────
-FROM node:18-alpine AS frontend-build
+FROM node:25-alpine AS frontend-build
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm ci
@@ -11,7 +11,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # ── Stage 2: Backend Build ──────────────────────────────
-FROM node:18-alpine AS backend-build
+FROM node:25-alpine AS backend-build
 WORKDIR /app/backend
 COPY backend/package*.json ./
 RUN npm ci
@@ -19,7 +19,7 @@ COPY backend/ ./
 RUN npx tsc
 
 # ── Stage 3: Production ─────────────────────────────────
-FROM node:18-alpine
+FROM node:25-alpine
 WORKDIR /app
 
 RUN addgroup -g 1001 -S excel-lenz && \
