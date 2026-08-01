@@ -1115,16 +1115,18 @@ export default function SpreadsheetHandsontable({
         }
 
         if (isAppendingRangeRef.current) {
-          isAppendingRangeRef.current = false;
           const original = originalEditCellRef.current;
           const formula = formulaBeforeSelectionRef.current;
           const selStart = cursorStartRef.current;
           const selEnd = cursorEndRef.current;
 
-          // If user clicked the same cell they were editing, let normal behavior handle it
+          // If user clicked the same cell they were editing, let normal behavior handle it.
+          // Don't clear isAppendingRangeRef yet — the next afterSelectionEnd (for the
+          // actually-clicked cell) will need it.
           if (original && original.row === _r && original.col === _c && _r === _r2 && _c === _c2) {
-            // Fall through to normal afterSelectionEnd
+            // Fall through to normal afterSelectionEnd (no flag clearing)
           } else {
+            isAppendingRangeRef.current = false;
             // Calculate the range reference (e.g. "A1:B5" or "A1")
             const rangeStr = rangeToRef({
               startRow: Math.min(_r, _r2),
@@ -1136,16 +1138,18 @@ export default function SpreadsheetHandsontable({
             // Insert range into formula (replacing any selected text)
             const newFormula = formula.substring(0, selStart) + rangeStr + formula.substring(selEnd);
 
-            // Re-select the original cell where the formula was being typed
-            isRestoringEditorRef.current = true;
-            if (original) {
-              hot.selectCell(original.row, original.col, original.row, original.col);
-            }
-
-            // Reopen editor with the new formula, cursor positioned after the inserted range
-            requestAnimationFrame(() => {
+            // Update formula bar immediately
+            setFormulaBarValue(newFormula);
+            formulaValueRef.current = newFormula;
+            
+            // Re-select original cell and reopen editor (deferred to avoid recursion issues)
+            const origRow = original ? original.row : _r;
+            const origCol = original ? original.col : _c;
+            setTimeout(() => {
               const h = hotRef.current;
               if (!h || h.isDestroyed) return;
+              isRestoringEditorRef.current = true;
+              h.selectCell(origRow, origCol, origRow, origCol);
               const editor = h.getActiveEditor() as any;
               if (editor) {
                 editor.beginEditing(newFormula);
@@ -1154,10 +1158,11 @@ export default function SpreadsheetHandsontable({
                 textarea.focus();
                 textarea.selectionStart = newCursorPos;
                 textarea.selectionEnd = newCursorPos;
-                setFormulaBarValue(newFormula);
-                formulaValueRef.current = newFormula;
               }
-            });
+              // Set formula bar AFTER selectCell/beginEditing to overwrite any source-data read
+              setFormulaBarValue(newFormula);
+              formulaValueRef.current = newFormula;
+            }, 0);
             return; // Skip normal afterSelectionEnd (no state/aggregate updates)
           }
         }
@@ -1588,6 +1593,17 @@ export default function SpreadsheetHandsontable({
     });
 
     hotRef.current = hot;
+    (window as any).__hotInstance = hot;
+    // Expose range-selection refs for E2E tests
+    (window as any).__testRangeRefs = {
+      isAppendingRangeRef,
+      isRangeSelecting,
+      originalEditCellRef,
+      formulaBeforeSelectionRef,
+      cursorStartRef,
+      cursorEndRef,
+      isRestoringEditorRef,
+    };
 
     // Context menu handler — supports cell and column header right-click
     const root = hot.rootElement;
