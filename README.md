@@ -1,6 +1,6 @@
 # Excel-lenz
 
-[![Version](https://img.shields.io/badge/version-0.1.0-34C759)](https://github.com) [![Tests](https://img.shields.io/badge/tests-128%20passing-34C759)](https://github.com) [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-18.3-087ea4)](https://react.dev/) [![Express](https://img.shields.io/badge/Express-4.21-000000)](https://expressjs.com/) [![Docker](https://img.shields.io/badge/Docker-ready-2496ed)](https://www.docker.com/) [![License](https://img.shields.io/badge/License-MIT-217346)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-34C759)](https://github.com) [![Tests](https://img.shields.io/badge/tests-128%20passing-34C759)](https://github.com) [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-18.3-087ea4)](https://react.dev/) [![Express](https://img.shields.io/badge/Express-4.21-000000)](https://expressjs.com/) [![Docker](https://img.shields.io/badge/Docker-ready-2496ed)](https://www.docker.com/) [![License](https://img.shields.io/badge/License-AGPLv3-990000)](LICENSE)
 
 > Interaktives Excel-Lernportal — Praxisorientiertes Training mit direktem Feedback und adaptiven Lernpfaden.
 

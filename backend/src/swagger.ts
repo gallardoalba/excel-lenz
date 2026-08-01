@@ -8,7 +8,7 @@ const options: swaggerJsdoc.Options = {
       version: '0.1.0',
       description: 'REST API for the Excel-lenz interactive learning platform. Provides exercises, courses, gamification, spaced repetition, and community features.',
       contact: { name: 'Excel-lenz Team' },
-      license: { name: 'MIT' },
+      license: { name: 'AGPLv3', url: 'https://www.gnu.org/licenses/agpl-3.0.html' },
     },
     servers: [
       { url: 'http://localhost:3001', description: 'Development server' },
