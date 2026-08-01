@@ -6,6 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './swagger';
 import { config } from './config';
 import logger from './utils/logger';
+import { initSentry } from './utils/sentry';
 import { initDb } from './db/database';
 import { seed } from './db/seed';
 import authRoutes from './routes/auth';
@@ -56,6 +57,9 @@ const authLimiter = rateLimit({
 initDb();
 seed();
 
+// Initialize Sentry (no-op if SENTRY_DSN not set)
+initSentry();
+
 // Routes
 app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/courses', courseRoutes);
@@ -72,6 +76,13 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Prometheus metrics endpoint (lazy-loaded to avoid startup overhead in tests)
+app.get('/metrics', async (_req, res) => {
+  const { metricsHandler } = await import('./utils/metrics');
+  res.set('Content-Type', 'text/plain');
+  res.send(await metricsHandler());
+});
+
 // Swagger / OpenAPI docs
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customCss: '.swagger-ui .topbar { display: none }' }));
 app.get('/api/docs.json', (_req, res) => res.json(swaggerSpec));
@@ -86,6 +97,7 @@ app.get('/api/csrf-token', (_req, res) => {
 // Global error handler
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   logger.error('Unhandled error', { error: err.message, stack: err.stack });
+  // Sentry captures the error automatically via the SDK
   res.status(500).json({ error: 'Interner Serverfehler' });
 });
 

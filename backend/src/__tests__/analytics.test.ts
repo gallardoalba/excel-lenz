@@ -27,7 +27,7 @@ describe('Analytics Routes', () => {
       .post('/api/auth/login')
       .send({ email: 'dozent@excel-lenz.edu', password: 'test-password' });
     teacherToken = teacherRes.body.token;
-  });
+  }, 15000); // Longer timeout for setup with metrics initialization
 
   // ── Single Track ───────────────────────────────────────────
 

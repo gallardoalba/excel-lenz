@@ -716,9 +716,6 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--text); }
   align-items: center;
   gap: 2px;
   font-size: 0.82rem;
-  max-width: var(--content-max);
-  width: 100%;
-  margin: 0 auto;
 }
 .breadcrumb-item {
   display: flex;

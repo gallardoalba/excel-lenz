@@ -200,16 +200,23 @@ export default function CourseDetail() {
       {/* ── HERO V2 — Clean, Tesla-style documentation layout ── */}
       <section className="course-hero-v2" style={{ background: 'var(--bg-alt)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="course-hero-inner">
-        <Link to="/courses" style={{ display: 'inline-block', marginBottom: '24px', color: 'var(--tertiary)', fontSize: '0.9rem', textDecoration: 'none' }}>
-          ← Zurück zu den Kursen
-        </Link>
-
         {activeSection ? (
-          /* ── Section header (compact) ── */
-          <div className="section-header" style={{ marginTop: 20 }}>
-            <button className="btn btn-outline btn-sm" onClick={() => setSelectedSection(null)} style={{ marginBottom: 16 }}>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 16 }}>
+            <Link to="/courses" className="btn btn-outline btn-sm">
+              <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
+            </Link>
+            <button className="btn btn-outline btn-sm" onClick={() => setSelectedSection(null)}>
               <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zur Übersicht
             </button>
+          </div>
+        ) : (
+          <Link to="/courses" className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen" style={{ display: 'inline-flex', marginBottom: 16 }}>
+            <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
+          </Link>
+        )}
+        {activeSection ? (
+          /* ── Section header (compact) ── */
+          <div className="section-header">
             <h1>{activeSection.title}</h1>
             <p className="text-muted">{activeSection.description}</p>
             {activeSection.exerciseCount > 0 && (

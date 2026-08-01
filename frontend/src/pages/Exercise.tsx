@@ -270,9 +270,8 @@ export default function Exercise() {
   return (
     <div className="exercise-page">
       <div className="flex items-center gap-sm" style={{ marginBottom: 12 }}>
-        <Link to={`/courses/${exercise.course_id}`} className="btn btn-outline btn-sm"
-          aria-label={`Zurück zum Kurs`}>
-          <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zum Kurs
+        <Link to="/courses" className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
+          <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
         </Link>
         {/* Prev/Next navigation */}
         <div style={{ display: 'flex', gap: 4, marginLeft: 4 }}>

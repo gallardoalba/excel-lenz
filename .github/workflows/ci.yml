@@ -50,3 +50,24 @@ jobs:
 
       - name: Build
         run: cd frontend && npm run build
+
+      - name: Audit dependencies
+        run: cd frontend && npm audit --audit-level=high
+        continue-on-error: true
+
+  backend-audit:
+    name: Backend Security Audit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - run: npm audit --audit-level=high
+        continue-on-error: true

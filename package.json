@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "dev:backend": "cd backend && npx tsx src/server.ts",
+    "dev:backend": "cd backend && JWT_SECRET=dev-secret-key-not-for-production npx tsx src/server.ts",
     "dev:frontend": "cd frontend && npx vite",
     "db:seed": "cd backend && npx tsx src/db/seed.ts",
     "install:all": "cd backend && npm install && cd ../frontend && npm install"
