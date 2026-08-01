@@ -1,5 +1,5 @@
 // ── ExcelRibbon: Modern Excel 365-style ribbon ──────────────────────────────
-// Replaces FortuneSheet's built-in toolbar with a custom React ribbon
+// Custom React ribbon replacing Handsontable's built-in toolbar
 // that looks and behaves like real Excel.
 
 import { useState, useCallback, useEffect, useRef } from 'react';

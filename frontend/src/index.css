@@ -1339,7 +1339,7 @@ body.dark .auth-container {
    ============================================================ */
 .spreadsheet-container { border-radius: var(--radius); box-shadow: var(--shadow); margin: 8px 0; }
 
-/* FortuneSheet wrapper: full Excel-like structure with ribbon + grid + statusbar */
+/* Handsontable wrapper: full Excel-like structure with ribbon + grid + statusbar */
 .spreadsheet-fortune-wrapper {
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
