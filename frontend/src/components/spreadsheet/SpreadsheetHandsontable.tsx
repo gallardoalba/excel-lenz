@@ -39,6 +39,9 @@ function createHF(): HyperFormula {
   const hf = HyperFormula.buildEmpty({
     licenseKey: 'gpl-v3',
     language: 'deDE',
+    // German locale: semicolon argument separator, comma decimal separator
+    functionArgSeparator: ';',
+    decimalSeparator: ',',
     // useColumnIndex: true breaks VLOOKUP — column index must be relative to range (Excel behavior)
     maxPendingLazyTransformations: 100,
   });

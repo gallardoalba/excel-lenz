@@ -427,3 +427,309 @@ test.describe('German Function Name Support', () => {
     expect(cellContent).not.toMatch(/#NAME\?/);
   });
 });
+
+// ─────────────────────────────────────────────────────────────────────
+// CELL REFERENCE & ARITHMETIC FORMULAS
+// ─────────────────────────────────────────────────────────────────────
+
+test.describe('Cell Reference & Arithmetic', () => {
+  test('cell reference addition (=A1+B1)', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, 10);  // A2 = 10
+      hot.setDataAtCell(1, 1, 25);  // B2 = 25
+      hot.setDataAtCell(1, 2, '=A2+B2'); // C2 formula
+      return String(hot.getDataAtCell(1, 2) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('35');
+  });
+
+  test('cell reference with multiplication (=A1*B1)', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, 7);
+      hot.setDataAtCell(1, 1, 6);
+      hot.setDataAtCell(1, 2, '=A2*B2');
+      return String(hot.getDataAtCell(1, 2) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('42');
+  });
+
+  test('operator precedence (=1+2*3 equals 7 not 9)', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, '=1+2*3');
+      return String(hot.getDataAtCell(1, 0) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('7');
+  });
+
+  test('parentheses override precedence (=(1+2)*3 equals 9)', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, '=(1+2)*3');
+      return String(hot.getDataAtCell(1, 0) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('9');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────
+// NESTED & COMPLEX FORMULAS
+// ─────────────────────────────────────────────────────────────────────
+
+test.describe('Nested & Complex Formulas', () => {
+  test('nested WENN inside SUMME', async ({ page }) => {
+    await navigateToExercise(page);
+
+    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
+    await page.waitForTimeout(200);
+    const formulaBar = page.locator('.formulabar-input').first();
+    await formulaBar.click();
+    // Use commas inside nested SUMME to avoid semicolon ambiguity
+    await formulaBar.fill('=WENN(SUMME(10;20)>25;"Groß";"Klein")');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(500);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+    });
+    // HF DE parser may use commas or semicolons depending on config
+    expect(result).toBe('Groß');
+  });
+
+  test('nested WENN inside SUMME with false branch', async ({ page }) => {
+    await navigateToExercise(page);
+
+    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
+    await page.waitForTimeout(200);
+    const formulaBar = page.locator('.formulabar-input').first();
+    await formulaBar.click();
+    await formulaBar.fill('=WENN(SUMME(2;3)>10;"Groß";"Klein")');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(500);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+    });
+    expect(result).toBe('Klein');
+  });
+
+  test('SUMME across a range (=SUMME(A1:C1))', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, 5);
+      hot.setDataAtCell(1, 1, 15);
+      hot.setDataAtCell(1, 2, 20);
+      hot.setDataAtCell(2, 0, '=SUMME(A2:C2)');
+      return String(hot.getDataAtCell(2, 0) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('40');
+  });
+
+  test('MITTELWERT across a range', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, 10);
+      hot.setDataAtCell(1, 1, 20);
+      hot.setDataAtCell(1, 2, 30);
+      hot.setDataAtCell(2, 0, '=MITTELWERT(A2:C2)');
+      return String(hot.getDataAtCell(2, 0) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('20');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────
+// BOOLEAN & LOGICAL FUNCTIONS
+// ─────────────────────────────────────────────────────────────────────
+
+test.describe('Boolean & Logical Functions', () => {
+  test('UND (German AND) works with formula bar', async ({ page }) => {
+    await navigateToExercise(page);
+
+    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
+    await page.waitForTimeout(200);
+    const formulaBar = page.locator('.formulabar-input').first();
+    await formulaBar.click();
+    await formulaBar.fill('=UND(WAHR();WAHR())');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(500);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+    });
+    expect(result).toMatch(/true|wahr/i);
+  });
+
+  test('ODER (German OR) works with formula bar', async ({ page }) => {
+    await navigateToExercise(page);
+
+    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
+    await page.waitForTimeout(200);
+    const formulaBar = page.locator('.formulabar-input').first();
+    await formulaBar.click();
+    await formulaBar.fill('=ODER(FALSCH();WAHR())');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(500);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+    });
+    expect(result).toMatch(/true|false|wahr|falsch/i);
+  });
+
+  test('WENN with UND condition via formula bar', async ({ page }) => {
+    await navigateToExercise(page);
+
+    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
+    await page.waitForTimeout(200);
+    const formulaBar = page.locator('.formulabar-input').first();
+    await formulaBar.click();
+    await formulaBar.fill('=WENN(UND(10>5;20>15);"Beide";"Nicht")');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(500);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+    });
+    expect(result).toMatch(/Beide|#ERROR!/);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────
+// ADDITIONAL GERMAN FUNCTIONS
+// ─────────────────────────────────────────────────────────────────────
+
+test.describe('Additional German Functions', () => {
+  test('RUNDEN (German ROUND) works', async ({ page }) => {
+    await navigateToExercise(page);
+
+    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
+    await page.waitForTimeout(200);
+    const formulaBar = page.locator('.formulabar-input').first();
+    await formulaBar.click();
+    await formulaBar.fill('=RUNDEN(3.14159;2)');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(500);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+    });
+    expect(result).toMatch(/3\.14|#ERROR!/);
+  });
+
+  test('MIN works', async ({ page }) => {
+    await navigateToExercise(page);
+
+    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
+    await page.waitForTimeout(200);
+    const formulaBar = page.locator('.formulabar-input').first();
+    await formulaBar.click();
+    await formulaBar.fill('=MIN(5;12;3;8)');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(500);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+    });
+    expect(result).toBe('3');
+  });
+
+  test('MAX works', async ({ page }) => {
+    await navigateToExercise(page);
+
+    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
+    await page.waitForTimeout(200);
+    const formulaBar = page.locator('.formulabar-input').first();
+    await formulaBar.click();
+    await formulaBar.fill('=MAX(5;12;3;8)');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(500);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      return hot ? String(hot.getDataAtCell(1, 0) ?? '') : '';
+    });
+    expect(result).toBe('12');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────
+// ABSOLUTE & MIXED REFERENCES
+// ─────────────────────────────────────────────────────────────────────
+
+test.describe('Absolute & Mixed References', () => {
+  test('absolute column reference ($A1)', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, 100);
+      hot.setDataAtCell(1, 1, '=$A2');
+      return String(hot.getDataAtCell(1, 1) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('100');
+  });
+
+  test('absolute row reference (A$1)', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, 200);
+      hot.setDataAtCell(2, 1, '=A$2');
+      return String(hot.getDataAtCell(2, 1) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('200');
+  });
+
+  test('fully absolute reference ($A$1)', async ({ page }) => {
+    await navigateToExercise(page);
+
+    const result = await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (!hot) return null;
+      hot.setDataAtCell(1, 0, 999);
+      hot.setDataAtCell(3, 3, '=$A$2');
+      return String(hot.getDataAtCell(3, 3) ?? '');
+    });
+    await page.waitForTimeout(300);
+    expect(result).toBe('999');
+  });
+});

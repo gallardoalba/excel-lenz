@@ -97,7 +97,7 @@ jobs:
         run: cd frontend && npx playwright install --with-deps chromium
 
       - name: Seed database
-        run: cd backend && JWT_SECRET=ci-secret SEED_PASSWORD=ci-pass DB_PATH=./data/excel-lenz.db npx tsx src/db/seed.ts
+        run: mkdir -p backend/data && cd backend && JWT_SECRET=ci-secret SEED_PASSWORD=ci-pass DB_PATH=./data/excel-lenz.db npx tsx src/db/seed.ts
 
       - name: Start backend
         run: cd backend && JWT_SECRET=ci-secret DB_PATH=./data/excel-lenz.db npx tsx src/server.ts &
