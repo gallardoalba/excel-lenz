@@ -148,7 +148,7 @@ describe('bugs1.md — Performance & Stale Closures', () => {
       const data = Array.from({ length: 50 }, (_, r) =>
         Array.from({ length: 50 }, (_, c) => `R${r}C${c}`)
       );
-      const changes = [[3, 5, 'old', 'new']]; // row 4, col F
+      const changes: [number, number, string, string][] = [[3, 5, 'old', 'new']]; // row 4, col F
       const changedRowSet = new Set<number>();
       for (const [row] of changes) {
         if (row > 0) changedRowSet.add(row - 1);
