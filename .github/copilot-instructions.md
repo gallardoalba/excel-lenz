@@ -3,7 +3,7 @@
 ## Project Overview
 
 **Excel-lenz** is an interactive Excel learning portal built with:
-- **Frontend**: React 18 + TypeScript + Vite + FortuneSheet (Canvas-based spreadsheet)
+- **Frontend**: React 19 + TypeScript 7 + Vite 6 + Handsontable 18 (Excel-like spreadsheet)
 - **Backend**: Express + TypeScript + better-sqlite3 + JWT auth
 - **Architecture**: Monorepo with `frontend/` (port 5173) and `backend/` (port 3001)
 
@@ -15,7 +15,7 @@ The platform provides 154 interactive Excel exercises across 4 courses (Beginner
 |-------|-----------|-------|
 | Spreadsheet | Handsontable + HyperFormula | Excel-like grid with DE formula support via HyperFormula `deDE` locale |
 | Formula Engine | HyperFormula 3.3 | DE function names translated via `hyperformula/i18n/languages/deDE` |
-| Frontend | React 18.3 + TypeScript 5.6 + Vite 6 | Port 5173, proxies /api to backend |
+| Frontend | React 19 + TypeScript 7 + Vite 6 | Port 5173, proxies /api to backend |
 | Backend | Express 4.21 + TypeScript + tsx | Port 3001, JWT auth, SQLite |
 | Database | better-sqlite3 11.x + WAL mode | `backend/data/excel-lenz.db` |
 | Exercises | JSON files | `backend/src/db/exercises/course1-4.json` |

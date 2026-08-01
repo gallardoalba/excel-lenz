@@ -4,7 +4,7 @@
 > **Stand**: 1. August 2026  
 > **Status**: Beta — Produktionsbereit für kontrollierte Umgebungen  
 > **Sprache**: Deutsch (primär), Spanisch (Code of Conduct)  
-> **Stack**: React 18 + Vite 6 | Express 4 + SQLite | Handsontable + HyperFormula  
+> **Stack**: React 19 + Vite 6 | Express 4 + SQLite | Handsontable 18 + HyperFormula 3  
 > **Design**: Enterprise SaaS — Lucide Icons, CSS Utilities, Dark Mode, Focus Mode, Exam Mode  
 > **Lizenz**: AGPLv3 (GNU Affero General Public License)  
 > **Tests**: 167 Tests in 13 Suiten (Jest + Supertest)  
@@ -77,7 +77,7 @@
 ┌──────────────────────────────────────────────────────────────┐
 │                     CLIENT (Browser)                         │
 │  ┌─────────────────────────────────────────────────────────┐│
-│  │              React 18 SPA (Vite)                        ││
+│  │              React 19 SPA (Vite)                        ││
 │  │  ┌───────────┐ ┌───────────┐ ┌───────────────────────┐ ││
 │  │  │ React     │ │ Lucide    │ │ Handsontable          │ ││
 │  │  │ Router v6 │ │ Icons     │ │ + HyperFormula        │ ││
@@ -115,12 +115,12 @@
 
 | Schicht | Technologie | Version | Begründung |
 |---------|------------|---------|------------|
-| **Frontend** | React | 18.3 | Komponentenbasiert |
+| **Frontend** | React | 19 | Komponentenbasiert |
 | **Build-Tool** | Vite | 6.4 | Schnelle HMR, TypeScript-nativ |
 | **Sprache** | TypeScript | 5.6 | Typensicherheit |
 | **Routing** | React Router | 6.28 | Client-seitiges Routing |
 | **Icons** | lucide-react | 0.x | SVG-Icons, konsistent |
-| **Spreadsheet** | Handsontable | 14.6 | Excel-ähnliche UI |
+| **Spreadsheet** | Handsontable | 18 | Excel-ähnliche UI |
 | **Formula Engine** | HyperFormula | 3.3 | Excel-Formelauswertung |
 | **Confetti** | canvas-confetti | 1.x | Feier-Animationen |
 | **Backend** | Express | 4.21 | Bewährt, minimalistisch |
@@ -333,7 +333,7 @@ App
 │   │   ├── Breadcrumbs.tsx (Route-basiert)
 │   │   └── MobileDrawer.tsx (Responsive Sidebar)
 │   ├── spreadsheet/
-│   │   ├── SpreadsheetHandsontable.tsx (Hauptkomponente, ~1400 Zeilen)
+│   │   ├── SpreadsheetHandsontable.tsx (Hauptkomponente, ~1570 Zeilen)
 │   │   ├── ExcelRibbon.tsx (3 Tabs, Exam Timer, Mobile-Collapse)
 │   │   ├── FormulaBar.tsx (Name Box, Autocomplete, Syntax)
 │   │   ├── StatusBar.tsx (Aggregates, Zoom)
@@ -740,8 +740,6 @@ excel-lenz/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── nginx.conf
-├── DEPLOYMENT.md
-├── ARCHITECTURE.md
 │
 ├── frontend/
 │   ├── index.html
@@ -792,7 +790,7 @@ excel-lenz/
 │           │   ├── Breadcrumbs.tsx
 │           │   └── MobileDrawer.tsx
 │           ├── spreadsheet/
-│           │   ├── SpreadsheetHandsontable.tsx  # ~1400 Zeilen
+│           │   ├── SpreadsheetHandsontable.tsx  # ~1570 Zeilen
 │           │   ├── ExcelRibbon.tsx
 │           │   ├── FormulaBar.tsx
 │           │   ├── StatusBar.tsx
@@ -853,6 +851,8 @@ excel-lenz/
 │
 ├── docs/
 │   ├── screen.jpg               # README Screenshot
+│   ├── ARCHITECTURE.md
+│   ├── DEPLOYMENT.md
 │   ├── examen.md
 │   ├── examen2.md
 │   ├── mejoras5.md

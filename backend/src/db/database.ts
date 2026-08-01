@@ -185,4 +185,10 @@ export function initDb(): void {
     CREATE INDEX IF NOT EXISTS idx_analytics_event_type ON analytics_events(event_type);
     CREATE INDEX IF NOT EXISTS idx_analytics_created_at ON analytics_events(created_at);
   `);
+
+  // Migration: add client_timestamp column if missing
+  const colInfo = db.prepare("PRAGMA table_info('analytics_events')").all() as { name: string }[];
+  if (!colInfo.some(c => c.name === 'client_timestamp')) {
+    db.exec('ALTER TABLE analytics_events ADD COLUMN client_timestamp TEXT');
+  }
 }

@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express';
-import { v4 as uuid } from 'uuid';
 import crypto from 'crypto';
 import { getDb } from '../db/database';
 import { authMiddleware, AuthPayload } from '../middleware/auth';
@@ -26,7 +25,7 @@ router.get('/subscription', (req: Request, res: Response) => {
   const { userId } = req.user as AuthPayload;
   const db = getDb();
   // Ensure user has subscription
-  db.prepare('INSERT OR IGNORE INTO subscriptions (id, user_id, tier) VALUES (?, ?, ?)').run(uuid(), userId, 'free');
+  db.prepare('INSERT OR IGNORE INTO subscriptions (id, user_id, tier) VALUES (?, ?, ?)').run(crypto.randomUUID(), userId, 'free');
   const sub = db.prepare('SELECT * FROM subscriptions WHERE user_id = ?').get(userId);
   const tierKey = ((sub as any)?.tier || 'free') as keyof typeof TIERS;
   res.json({ subscription: sub, tier: TIERS[tierKey] });
@@ -42,7 +41,7 @@ router.post('/subscribe', (req: Request, res: Response) => {
 
   const db = getDb();
   db.prepare('INSERT OR REPLACE INTO subscriptions (id, user_id, tier, status, stripe_id) VALUES (?, ?, ?, ?, ?)')
-    .run(uuid(), userId, tier, 'active', tier === 'free' ? null : `sub_sim_${Date.now()}`);
+    .run(crypto.randomUUID(), userId, tier, 'active', tier === 'free' ? null : `sub_sim_${Date.now()}`);
 
   auditLog(db, userId, 'subscribe', 'subscription', userId, { tier });
   res.json({ success: true, tier, checkoutUrl: tier === 'free' ? null : `/payment/success?tier=${tier}` });
@@ -132,7 +131,7 @@ router.post('/api-keys', (req: Request, res: Response) => {
 
   getDb().prepare(
     'INSERT INTO api_keys (id, user_id, name, key_hash) VALUES (?, ?, ?, ?)'
-  ).run(uuid(), userId, name, keyHash);
+  ).run(crypto.randomUUID(), userId, name, keyHash);
 
   auditLog(getDb(), userId, 'api_key_created', 'api_key', userId, { name });
   res.status(201).json({ key: apiKey, name }); // Only time the full key is shown
@@ -207,7 +206,7 @@ export function auditLog(db: any, userId: string, action: string, resource: stri
   try {
     db.prepare(
       'INSERT INTO audit_logs (id, user_id, action, resource, resource_id, metadata) VALUES (?, ?, ?, ?, ?, ?)'
-    ).run(uuid(), userId, action, resource, resourceId || null, metadata ? JSON.stringify(metadata) : null);
+    ).run(crypto.randomUUID(), userId, action, resource, resourceId || null, metadata ? JSON.stringify(metadata) : null);
   } catch (err) {
     console.error('[AUDIT] Failed to write audit log:', err);
   }

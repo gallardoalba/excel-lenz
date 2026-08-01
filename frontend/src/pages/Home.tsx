@@ -127,6 +127,7 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* BOTTOM CTA */}
       <section className="cta-section">
         <h2>Bereit für Ihren Excel-Vorsprung?</h2>
