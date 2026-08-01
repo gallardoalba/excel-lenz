@@ -1,13 +1,13 @@
 # Excel-lenz — Dokumentation der Webseitenstruktur & Architektur
 
 > **Version**: 5.2 — Aktuell  
-> **Stand**: 1. August 2026 (nacht)  
+> **Stand**: 1. August 2026  
 > **Status**: Beta — Produktionsbereit für kontrollierte Umgebungen  
 > **Sprache**: Deutsch (primär), Spanisch (Code of Conduct)  
 > **Stack**: React 18 + Vite 6 | Express 4 + SQLite | Handsontable + HyperFormula  
 > **Design**: Enterprise SaaS — Lucide Icons, CSS Utilities, Dark Mode, Focus Mode, Exam Mode  
 > **Lizenz**: AGPLv3 (GNU Affero General Public License)  
-> **Tests**: 158 Tests in 13 Suiten (Jest + Supertest)  
+> **Tests**: 167 Tests in 13 Suiten (Jest + Supertest)  
 > **CI/CD**: GitHub Actions (Backend Tests + Frontend Build + Security Audit)  
 > **Monitoring**: Sentry, Prometheus, Redis-Cache
 
@@ -45,29 +45,29 @@
 
 | Kategorie | Funktionen |
 |-----------|-----------|
-| 📝 **Interaktive Übungen** | Handsontable + HyperFormula, ExcelRibbon (3 Tabs), FormulaBar mit Autocomplete, Error-Highlighting (rot + grünes Dreieck), Guided Steps |
-| ✅ **Automatische Korrektur** | Server-Zellvergleich, Error-Highlighting in Zellen, Progressive Hints (4 Stufen), Cell Feedback |
-| ⏱️ **Prüfungsmodus** | Countdown-Timer im Ribbon, Automatische Abgabe, Practice/Exam Toggle |
-| 📊 **Daten-Tools** | SVG-Diagramme (Balken/Linie), Datenvalidierung (Min/Max/Liste), Pivot-Tabellen (react-pivottable) |
-| 📊 **Fortschritt** | Dashboard: XP, Level, Streaks, Badges, Skill-Bars, Spaced Repetition |
-| 🎨 **Design-System** | Corporate Blue/Gold, Lucide Icons, CSS Utilities, Focus Mode, Glass-Morphism |
-| 📚 **Kursstruktur** | 4 Kurse, 7 Module, Guided Steps pro Übung, Seitenleisten-TOC |
-| 🧭 **Navigation** | UserMenu (Avatar + Dropdown), CommandPalette (⌘K), Breadcrumbs, MobileDrawer |
-| 👨‍🏫 **Lehrer-Panel** | CRUD, Schüler mit Avataren + Progress Bars, Klassen-Analyse |
-| 🏆 **Gamification** | XP, Badges, Daily Goals, Leaderboard |
-| 🎯 **Focus Mode** | Blendet Navbar/Footer aus — nur Instructions + Spreadsheet |
-| 💬 **Community** | Kommentare mit Initial-Avataren, Threading |
-| ♿ **Accessibility** | SkipNav, LiveRegion, FocusTrap, ReducedMotion, KeyboardHelp |
-| 🌙 **Dark Mode** | CSS-Variablen, vollständig |
-| 📱 **Responsive** | Ribbon Mobile-Collapse (☰), Grids adaptiv |
-| 🐳 **Deployment** | Docker + Compose, Nginx Reverse Proxy, Production-Build |
-| 📧 **Auth-Flows** | Registrierung, Login, Passwort-Reset, E-Mail-Verifikation |
-| 📈 **Analytics** | Nutzungs-Tracking, Lernmetriken, Engagement-Analyse |
-| 📖 **API-Dokumentation** | Swagger/OpenAPI unter `/api/docs` |
-| 🧪 **Testing** | 158 Tests (13 Suiten), Jest + Supertest, CI/CD via GitHub Actions |
-| 🔓 **Lizenz** | AGPLv3 — Copyleft stark, Verbesserungen fließen zurück ins Gemeingut |
-| 📈 **Analytics** | Session-Tracking, Batching, sendBeacon, node-cache, Indizes, Validation |
-| 📊 **Monitoring** | Sentry (Error-Tracking), Prometheus (Metriken), Redis-Cache (optional) |
+| **Interaktive Übungen** | Handsontable + HyperFormula, ExcelRibbon (3 Tabs), FormulaBar mit Autocomplete, Error-Highlighting (rot + grünes Dreieck), Guided Steps |
+| **Automatische Korrektur** | Server-Zellvergleich, Error-Highlighting in Zellen, Progressive Hints (4 Stufen), Cell Feedback |
+| **Prüfungsmodus** | Countdown-Timer im Ribbon, Automatische Abgabe, Practice/Exam Toggle |
+| **Daten-Tools** | SVG-Diagramme (Balken/Linie), Datenvalidierung (Min/Max/Liste), Pivot-Tabellen (react-pivottable) |
+| **Fortschritt** | Dashboard: XP, Level, Streaks, Badges, Skill-Bars, Spaced Repetition |
+| **Design-System** | Corporate Blue/Gold, Lucide Icons, CSS Utilities, Focus Mode, Glass-Morphism |
+| **Kursstruktur** | 4 Kurse, 7 Module, Guided Steps pro Übung, Seitenleisten-TOC |
+| **Navigation** | UserMenu (Avatar + Dropdown), CommandPalette (⌘K), Breadcrumbs, MobileDrawer |
+| **Lehrer-Panel** | CRUD, Schüler mit Avataren + Progress Bars, Klassen-Analyse |
+| **Gamification** | XP, Badges, Daily Goals, Leaderboard |
+| **Focus Mode** | Blendet Navbar/Footer aus — nur Instructions + Spreadsheet |
+| **Community** | Kommentare mit Initial-Avataren, Threading |
+| **Accessibility** | SkipNav, LiveRegion, FocusTrap, ReducedMotion, KeyboardHelp |
+| **Dark Mode** | CSS-Variablen, vollständig |
+| **Responsive** | Ribbon Mobile-Collapse (☰), Grids adaptiv |
+| **Deployment** | Docker + Compose, Nginx Reverse Proxy, Production-Build |
+| **Auth-Flows** | Registrierung, Login, Passwort-Reset, E-Mail-Verifikation |
+| **Analytics** | Nutzungs-Tracking, Lernmetriken, Engagement-Analyse |
+| **API-Dokumentation** | Swagger/OpenAPI unter `/api/docs` |
+| **Testing** | 158 Tests (13 Suiten), Jest + Supertest, CI/CD via GitHub Actions |
+| **Lizenz** | AGPLv3 — Copyleft stark, Verbesserungen fließen zurück ins Gemeingut |
+| **Analytics** | Session-Tracking, Batching, sendBeacon, node-cache, Indizes, Validation |
+| **Monitoring** | Sentry (Error-Tracking), Prometheus (Metriken), Redis-Cache (optional) |
 
 ---
 
@@ -145,6 +145,7 @@ Express App
 │   ├── /api/teacher     → teacherRoutes
 │   ├── /api/gamification→ gamificationRoutes
 │   ├── /api/enterprise  → enterpriseRoutes
+│   ├── /api/analytics → analyticsRoutes
 │   ├── /api/adaptive    → adaptiveRoutes
 │   └── /api/community   → communityRoutes
 └── /api/health (Health Check)
@@ -154,7 +155,7 @@ Express App
 
 | Router | Datei | Endpunkte |
 |--------|-------|-----------|
-| Auth | `routes/auth.ts` | 3 (Register, Login, Me) |
+| Auth | `routes/auth.ts` | 6 (Register, Login, Me, ForgotPassword, ResetPassword, VerifyEmail) |
 | Courses | `routes/courses.ts` | 2 (Liste, Detail) |
 | Exercises | `routes/exercises.ts` | 3 (Detail, Submit, Progress) |
 | Teacher | `routes/teacher.ts` | 8 (CRUD Kurse/Übungen, Schüler) |
@@ -162,6 +163,7 @@ Express App
 | Enterprise | `routes/enterprise.ts` | 8 (Pricing, Subs, API Keys, SCORM) |
 | Adaptive | `routes/adaptive.ts` | 2 (Review-Due, Skills) |
 | Community | `routes/community.ts` | 2 (Comments CRUD) |
+| Analytics | `routes/analytics.ts` | 2 (Track-Batch, Summary) |
 
 ---
 
@@ -193,8 +195,7 @@ main.tsx
 | Context | Datei | Zustand |
 |---------|-------|---------|
 | `AuthContext` | `context/AuthContext.tsx` | user, token, login(), logout(), apiFetch() |
-| `ThemeContext` | `context/ThemeContext.tsx` | dark, toggle() → localStorage |
-
+| `ThemeContext` | `context/ThemeContext.tsx` | dark, toggle() → localStorage || `DailyGoalContext` | `context/DailyGoalContext.tsx` | dailyGoal, progress, update() |
 ---
 
 ## 5. Datenmodell
@@ -230,11 +231,11 @@ main.tsx
 
 ---
 
-## 6. API-Endpunkte (30 total)
+## 6. API-Endpunkte (35 total)
 
 | Bereich | Endpunkte |
 |---------|-----------|
-| Auth | 3 |
+| Auth | 6 |
 | Courses | 2 |
 | Exercises | 3 |
 | Teacher | 8 |
@@ -242,6 +243,7 @@ main.tsx
 | Enterprise | 8 |
 | Adaptive | 2 |
 | Community | 2 |
+| Analytics | 2 |
 
 ---
 
@@ -374,11 +376,17 @@ App
 | `/` | Home | Nein | Landing Page mit DailyGoal |
 | `/login` | Login | Redirect | Anmeldung |
 | `/register` | Register | Redirect | Registrierung |
+| `/forgot-password` | ForgotPassword | Nein | Passwort zurücksetzen anfordern |
+| `/reset-password/:token` | ResetPassword | Nein | Neues Passwort setzen |
+| `/verify-email` | VerifyEmail | Nein | E-Mail-Adresse bestätigen |
 | `/courses` | Courses | Nein | Kursübersicht |
 | `/courses/:id` | CourseDetail | Nein | Kursdetails + Module + Sidebar TOC |
 | `/exercises/:id` | Exercise | Ja | Interaktive Übung (Üben/Prüfung) |
 | `/dashboard` | Dashboard | Ja | Fortschritt + Stats |
+| `/pricing` | Pricing | Nein | Tarife und Preisübersicht |
 | `/teacher` | TeacherPanel | Teacher | Lehrer-Admin |
+| `/student` | StudentPanel | Student | Schüler-Dashboard |
+| `/server-error` | ServerError | Nein | 500-Fehlerseite |
 | `*` | NotFound | Nein | 404-Seite |
 
 ---
@@ -517,7 +525,7 @@ Score (0-100%) → ScoreDisplay + XP + Badges + Confetti
 - Server-seitiger Zellvergleich mit numerischer Toleranz (<0.01)
 - Nur `taskCols` werden bewertet
 - **Error Highlighting**: Falsche Zellen rot + grünes Dreieck + Tooltip
-- **Guided Steps**: Nummerierte Schritte, abgeschlossene zeigen ✓
+- **Guided Steps**: Nummerierte Schritte, abgeschlossene werden markiert
 - **Partial Credit**: `correctCells/totalCells` Anzeige
 - **Practice Mode**: Echtzeit-Evaluierung via `checkCellPractice()`
 
@@ -545,17 +553,17 @@ Submit → Server-Vergleich → Score
 
 ### 13.2 Badges (9 Stück, professionell)
 
-| ID | Name | Icon | Kriterium |
-|----|------|------|-----------|
-| ersteschritte | Fundament | 🎖️ | 1 Übung |
-| fleissig | Praxis | 📋 | 10 Übungen |
-| profi | Spezialist | 🏅 | 25 Übungen |
-| streak3 | Kontinuität | 📅 | 3 Tage Streak |
-| streak7 | Disziplin | 📆 | 7 Tage Streak |
-| streak30 | Engagement | 🗓️ | 30 Tage Streak |
-| level5 | Fortgeschritten | 🔷 | Stufe 5 |
-| level10 | Experte | 🔶 | Stufe 10 |
-| perfekt | Präzision | ✓ | 5× 100% |
+| ID | Name | Kriterium |
+|----|------|-----------|
+| ersteschritte | Fundament | 1 Übung |
+| fleissig | Praxis | 10 Übungen |
+| profi | Spezialist | 25 Übungen |
+| streak3 | Kontinuität | 3 Tage Streak |
+| streak7 | Disziplin | 7 Tage Streak |
+| streak30 | Engagement | 30 Tage Streak |
+| level5 | Fortgeschritten | Stufe 5 |
+| level10 | Experte | Stufe 10 |
+| perfekt | Präzision | 5× 100% |
 
 ### 13.3 Leaderboard
 - Top 20, **standardmäßig eingeklappt**
@@ -713,7 +721,9 @@ GitHub Actions (.github/workflows/ci.yml):
   backend-tests:
     - npm ci → npm test → npx tsc --noEmit
   frontend-build:
-    - npm ci → npx tsc --noEmit → npm run build
+    - npm ci → npx tsc --noEmit → npm run build → npm audit
+  backend-audit:
+    - npm ci → npm audit
 ```
 
 ---
@@ -730,8 +740,8 @@ excel-lenz/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── nginx.conf
-├── DEPLOY.md
-├── DOKUMENTATION_STRUKTUR.md
+├── DEPLOYMENT.md
+├── ARCHITECTURE.md
 │
 ├── frontend/
 │   ├── index.html
@@ -744,21 +754,35 @@ excel-lenz/
 │       ├── index.css              # ~1900 Zeilen, CSS custom properties
 │       ├── context/
 │       │   ├── AuthContext.tsx     # JWT State + apiFetch
-│       │   └── ThemeContext.tsx    # Dark Mode
+│       │   ├── ThemeContext.tsx    # Dark Mode
+│       │   └── DailyGoalContext.tsx # Daily Goal Tracking
 │       ├── hooks/
 │       │   ├── useExamTimer.ts    # Countdown + Auto-Submit
-│       │   └── useAutosave.ts
+│       │   ├── useAutosave.ts
+│       │   ├── useAnalytics.ts    # Event Tracking + Batching
+│       │   └── useCachedFetch.ts  # Cache mit TTL
 │       ├── types/
-│       │   └── react-pivottable.d.ts
+│       │   ├── react-pivottable.d.ts
+│       │   └── canvas-confetti.d.ts
+│       ├── data/
+│       │   └── course-config.tsx  # Kurs-Metadaten
+│       ├── utils/
+│       │   └── sentry.ts          # Frontend Error Tracking
 │       ├── pages/
 │       │   ├── Home.tsx
 │       │   ├── Login.tsx
 │       │   ├── Register.tsx
+│       │   ├── ForgotPassword.tsx
+│       │   ├── ResetPassword.tsx
+│       │   ├── VerifyEmail.tsx
 │       │   ├── Courses.tsx
 │       │   ├── CourseDetail.tsx    # Hero Dashboard + Sidebar TOC
 │       │   ├── Exercise.tsx        # Üben/Prüfung Toggle
 │       │   ├── Dashboard.tsx
+│       │   ├── Pricing.tsx
 │       │   ├── TeacherPanel.tsx
+│       │   ├── StudentPanel.tsx
+│       │   ├── ServerError.tsx
 │       │   └── NotFound.tsx
 │       └── components/
 │           ├── ErrorBoundary.tsx
@@ -774,13 +798,15 @@ excel-lenz/
 │           │   ├── StatusBar.tsx
 │           │   ├── ContextMenu.tsx
 │           │   ├── ChartDialog.tsx
+│           │   ├── ConditionalFormatDialog.tsx
 │           │   ├── DataValidationDialog.tsx
 │           │   ├── PivotTableDialog.tsx
 │           │   └── types.ts
 │           ├── animations/
 │           │   └── Celebrations.tsx
 │           ├── visualizations/
-│           │   └── Charts.tsx
+│           │   ├── Charts.tsx
+│           │   └── FunctionMap.tsx
 │           ├── gamification/
 │           │   ├── DailyGoal.tsx
 │           │   └── Notifications.tsx
@@ -799,6 +825,8 @@ excel-lenz/
 │   ├── data/                    # SQLite DB files (gitignored)
 │   └── src/
 │       ├── server.ts
+│       ├── config.ts
+│       ├── swagger.ts
 │       ├── db/
 │       │   ├── database.ts      # SQLite WAL mode
 │       │   ├── seed.ts          # Seeder (imports JSON)
@@ -813,9 +841,15 @@ excel-lenz/
 │       │   ├── gamification.ts
 │       │   ├── enterprise.ts
 │       │   ├── adaptive.ts
+│       │   ├── analytics.ts
 │       │   └── community.ts
 │       └── utils/
-│           └── spacedRepetition.ts
+│           ├── cache.ts
+│           ├── logger.ts
+│           ├── metrics.ts
+│           ├── sentry.ts
+│           ├── spacedRepetition.ts
+│           └── validation.ts
 │
 ├── docs/
 │   ├── screen.jpg               # README Screenshot
@@ -838,10 +872,10 @@ excel-lenz/
 
 | Metrik | Wert |
 |--------|------|
-| Source-Dateien | 45+ (.tsx/.ts/.css) |
-| Code-Zeilen | ~12.000 |
-| Komponenten | 25 + 9 Pages |
-| API-Endpunkte | 30 |
+| Source-Dateien | 55+ (.tsx/.ts/.css) |
+| Code-Zeilen | ~16.600 |
+| Komponenten | 23 + 15 Pages |
+| API-Endpunkte | 35 |
 | DB-Tabellen | 8+ |
 | Lucide Icons | 60+ |
 | CSS Utilities | 30+ |
@@ -850,6 +884,6 @@ excel-lenz/
 ---
 
 > **Autor**: Excel-lenz Development Team  
-> **Letzte Aktualisierung**: 31. Juli 2026  
-> **Status**: 🟢 **v3.1** — Dokumentation aktuell
+> **Letzte Aktualisierung**: 1. August 2026  
+> **Status**: **v3.1** — Dokumentation aktuell
 
