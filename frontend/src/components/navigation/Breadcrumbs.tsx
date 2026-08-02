@@ -17,13 +17,14 @@ const ROUTE_LABELS: Record<string, string> = {
   login: 'Anmelden',
   register: 'Registrieren',
   didaktik: 'Didaktik',
+  lehrplan: 'Lehrplan',
 };
 
 // UUID pattern: 8-4-4-4-12 hex digits
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // Pages where breadcrumbs should appear (not on home or 404)
-const CRUMB_ROUTES = ['/courses', '/dashboard', '/teacher', '/exercises', '/didaktik'];
+const CRUMB_ROUTES = ['/courses', '/dashboard', '/teacher', '/exercises', '/didaktik', '/lehrplan'];
 
 export default function Breadcrumbs() {
   const location = useLocation();
@@ -77,6 +78,8 @@ export default function Breadcrumbs() {
   // Detect pages that need a back button in the breadcrumbs
   const isCourseDetail = /^\/courses\/[0-9a-f-]+$/i.test(location.pathname);
   const isCoursesList = location.pathname === '/courses';
+  const isLehrplan = /^\/lehrplan\/.+$/i.test(location.pathname);
+  const isLehrplanList = location.pathname === '/lehrplan';
 
   return (
     <nav className="breadcrumbs" aria-label="Breadcrumb">
@@ -91,6 +94,18 @@ export default function Breadcrumbs() {
           <Link to="/" className="btn btn-outline btn-sm" style={{ marginRight: 12, display: 'inline-flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
             <ArrowLeft size={14} />
             Zurück zur Startseite
+          </Link>
+        )}
+        {isLehrplanList && (
+          <Link to="/courses" className="btn btn-outline btn-sm" style={{ marginRight: 12, display: 'inline-flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
+            <ArrowLeft size={14} />
+            Zurück zur Kursübersicht
+          </Link>
+        )}
+        {isLehrplan && (
+          <Link to="/lehrplan" className="btn btn-outline btn-sm" style={{ marginRight: 12, display: 'inline-flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
+            <ArrowLeft size={14} />
+            Zurück zur Übersicht
           </Link>
         )}
         {crumbs.map((crumb, i) => (

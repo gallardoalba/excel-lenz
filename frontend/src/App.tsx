@@ -32,6 +32,8 @@ const VerifyEmail = lazy(() => import('./pages/VerifyEmail'));
 const Developer = lazy(() => import('./pages/Developer'));
 const DidacticGuide = lazy(() => import('./pages/DidacticGuide'));
 const DidacticGuideList = lazy(() => import('./pages/DidacticGuideList'));
+const LehrplanList = lazy(() => import('./pages/LehrplanList'));
+const LehrplanPage = lazy(() => import('./pages/LehrplanPage'));
 
 export default function App() {
   const { user, loading, logout } = useAuth();
@@ -208,6 +210,8 @@ export default function App() {
           <Route path="/entwickler" element={<Developer />} />
           <Route path="/didaktik/:type" element={<DidacticGuide />} />
           <Route path="/didaktik" element={<DidacticGuideList />} />
+          <Route path="/lehrplan" element={<LehrplanList />} />
+          <Route path="/lehrplan/:type" element={<LehrplanPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

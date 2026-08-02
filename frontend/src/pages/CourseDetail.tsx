@@ -130,6 +130,7 @@ export default function CourseDetail() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setLoading(true);
     setSelectedSection(null);
     setError(null);
@@ -178,6 +179,15 @@ export default function CourseDetail() {
         pdf: '/downloads/Didaktischer_Leitfaden_Excel_Fortgeschrittene.pdf',
         label: 'Didaktischer Leitfaden: Excel für Fortgeschrittene',
       },
+    };
+    return map[course.difficulty] || null;
+  }, [course]);
+
+  // Lehrplan URL mapping by difficulty
+  const lehrplanUrl = useMemo(() => {
+    if (!course) return null;
+    const map: Record<string, string> = {
+      beginner: '/lehrplan/anfaenger',
     };
     return map[course.difficulty] || null;
   }, [course]);
@@ -346,12 +356,49 @@ export default function CourseDetail() {
       <div className={`course-body ${activeSection ? 'course-body--single' : ''}`}>
         {/* Main column */}
         <div className="course-main">
+          {/* ── LEHRPLAN ── */}
+          {!activeSection && lehrplanUrl && (
+            <>
+              <h2 className="course-section-title">
+                <BookOpen size={22} style={{marginRight:8, verticalAlign:'middle'}} />
+                Lehrplan
+              </h2>
+              <div
+                className="module-card"
+                style={{ textDecoration: 'none', color: 'inherit', display: 'block', marginBottom: 28, cursor: 'pointer' }}
+                onClick={() => navigate(lehrplanUrl)}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter') navigate(lehrplanUrl); }}
+              >
+              <div className="module-card-header">
+                <span className="module-card-num">
+                  <BookOpen size={22} />
+                </span>
+                <div className="module-card-info">
+                  <h3 className="module-card-title">Vollständiger Lehrplan mit Theorie und Übungen</h3>
+                  <p className="module-card-desc">
+                    13 Module mit verständlicher Theorie und 49 praktischen Excel-Übungen —
+                    von den Grundlagen bis zu Makros und VBA.
+                  </p>
+                  <div className="module-card-meta">
+                    <span><BookOpen size={12} /> 13 Module</span>
+                    <span><Clock size={12} /> ~12 Stunden</span>
+                    <span>49 Übungen</span>
+                  </div>
+                </div>
+                <ChevronRight size={20} className="module-card-chevron" />
+              </div>
+            </div>
+            </>
+          )}
+
           {/* ── SECTION OVERVIEW — Module cards ── */}
           {!activeSection && sections.length > 0 && (
             <>
               <h2 className="course-section-title">
                 <BookOpen size={22} style={{marginRight:8, verticalAlign:'middle'}} />
-                Kursinhalte
+                Interaktive Übungen
               </h2>
 
               <div className="module-cards">
