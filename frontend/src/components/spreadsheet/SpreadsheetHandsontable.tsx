@@ -32,7 +32,7 @@ import ChartDialog from './ChartDialog';
 import DataValidationDialog from './DataValidationDialog';
 import PivotTableDialog from './PivotTableDialog';
 import type { CellPosition, CellRange, CellFormat, CellFormats, StatusBarInfo, ContextMenuAction, ContextMenuState } from './types';
-import { positionToRef, colToLetter, refToRange, rangeToRef } from './types';
+import { positionToRef, colToLetter, refToRange, rangeToRef, EXCEL_FUNCTIONS_DE } from './types';
 
 // HyperFormula instance — created per component mount via useRef
 function createHF(): HyperFormula {
@@ -136,79 +136,7 @@ export default function SpreadsheetHandsontable({
   useEffect(() => { errorCellsRef.current = mergedErrors; }, [mergedErrors]);
   useEffect(() => { errorCellsSetRef.current = new Set(mergedErrors.map(e => `${e.row}:${e.col}`)); }, [mergedErrors]);
 
-  // Shared helper: insert function name at cursor without destroying surrounding formula
-  const insertFunctionIntoEditor = useCallback((fnName: string) => {
-    const hot = hotRef.current;
-    if (!hot || !activeCellRef.current) return;
-    const ac = activeCellRef.current;
-    const activeEditor = hot.getActiveEditor() as any;
-
-    if (activeEditor && activeEditor.isOpened()) {
-      const textarea = activeEditor.TEXTAREA;
-      const cursorPos = textarea.selectionStart ?? 0;
-      const currentVal = textarea.value ?? '';
-      // Try to replace a partial word before cursor; otherwise insert at cursor
-      const regex = /([A-Za-z_ÄÖÜäöüß]+)$/;
-      const match = currentVal.substring(0, cursorPos).match(regex);
-      let newVal: string, newPos: number;
-      if (match) {
-        const wordStart = cursorPos - match[1].length;
-        newVal = currentVal.substring(0, wordStart) + fnName + '(' + currentVal.substring(cursorPos);
-        newPos = wordStart + fnName.length + 1;
-      } else {
-        newVal = currentVal.substring(0, cursorPos) + fnName + '(' + currentVal.substring(cursorPos);
-        newPos = cursorPos + fnName.length + 1;
-      }
-      activeEditor.setValue(newVal);
-      textarea.focus();
-      textarea.selectionStart = newPos;
-      textarea.selectionEnd = newPos;
-      setFormulaBarValue(newVal);
-      formulaValueRef.current = newVal;
-    } else {
-      // Editor not open — start editing with the function
-      const currentVal = hot.getDataAtCell(ac.row, ac.col);
-      if (typeof currentVal === 'string' && currentVal.startsWith('=')) {
-        // Append to existing formula
-        const formula = currentVal + fnName + '(';
-        // Bug #1.2 fix: use source param instead of isInternalChange + RAF
-        hot.setDataAtCell(ac.row, ac.col, formula, 'internalUpdate');
-        requestAnimationFrame(() => {
-          hot.selectCell(ac.row, ac.col);
-          const editor = hot.getActiveEditor() as any;
-          if (editor) {
-            editor.beginEditing(formula);
-            const ta = editor.TEXTAREA;
-            const pos = formula.length;
-            ta.focus();
-            ta.selectionStart = pos;
-            ta.selectionEnd = pos;
-          }
-        });
-      } else {
-        // Start new formula
-        const formula = `=${fnName}(`;
-        // Bug #1.2 fix: use source param instead of isInternalChange + RAF
-        hot.setDataAtCell(ac.row, ac.col, formula, 'internalUpdate');
-        requestAnimationFrame(() => {
-          hot.selectCell(ac.row, ac.col);
-          const editor = hot.getActiveEditor() as any;
-          if (editor) {
-            editor.beginEditing(formula);
-            const ta = editor.TEXTAREA;
-            const pos = formula.length;
-            ta.focus();
-            ta.selectionStart = pos;
-            ta.selectionEnd = pos;
-          }
-        });
-      }
-    }
-  }, []);
-
   // Refs to avoid keyboard listener re-renders
-  // In-cell autocomplete
-  const [cellAutocomplete, setCellAutocomplete] = useState<{ visible: boolean; x: number; y: number; items: { name: string; syntax: string }[]; index: number }>({ visible: false, x: 0, y: 0, items: [], index: 0 });
   // Step 1: Excel function ScreenTip (with HTML for argument highlighting)
   const [funcTooltip, setFuncTooltip] = useState<{ html: string; x: number; y: number } | null>(null);
   // Format Painter state
@@ -333,32 +261,6 @@ export default function SpreadsheetHandsontable({
   const [activeSheetId, setActiveSheetId] = useState(0);
   const allDataRef = useRef<Record<number, (string | number | null)[][]>>({ 0: data });
   const allFormatsRef = useRef<Record<number, CellFormats>>({ 0: {} });
-
-  // German function list for autocomplete
-  const DE_FUNCTIONS: { name: string; syntax: string }[] = [
-    { name: 'SUMME', syntax: 'SUMME(Zahl1; [Zahl2]; ...)' },
-    { name: 'SUMMEWENN', syntax: 'SUMMEWENN(Bereich; Kriterium; [Summe_Bereich])' },
-    { name: 'MITTELWERT', syntax: 'MITTELWERT(Zahl1; [Zahl2]; ...)' },
-    { name: 'ANZAHL', syntax: 'ANZAHL(Wert1; [Wert2]; ...)' },
-    { name: 'ANZAHL2', syntax: 'ANZAHL2(Wert1; [Wert2]; ...)' },
-    { name: 'ZÄHLENWENN', syntax: 'ZÄHLENWENN(Bereich; Kriterium)' },
-    { name: 'MIN', syntax: 'MIN(Zahl1; [Zahl2]; ...)' },
-    { name: 'MAX', syntax: 'MAX(Zahl1; [Zahl2]; ...)' },
-    { name: 'MEDIAN', syntax: 'MEDIAN(Zahl1; [Zahl2]; ...)' },
-    { name: 'WENN', syntax: 'WENN(Prüfung; Dann_Wert; [Sonst_Wert])' },
-    { name: 'UND', syntax: 'UND(Wahrheitswert1; [Wahrheitswert2]; ...)' },
-    { name: 'ODER', syntax: 'ODER(Wahrheitswert1; [Wahrheitswert2]; ...)' },
-    { name: 'WENNFEHLER', syntax: 'WENNFEHLER(Wert; Wert_falls_Fehler)' },
-    { name: 'SVERWEIS', syntax: 'SVERWEIS(Suchkriterium; Matrix; Spaltenindex; [Bereich_Verweis])' },
-    { name: 'XVERWEIS', syntax: 'XVERWEIS(Suchkriterium; Suchmatrix; Rückgabematrix; [Standardwert])' },
-    { name: 'RUNDEN', syntax: 'RUNDEN(Zahl; Anzahl_Stellen)' },
-    { name: 'HEUTE', syntax: 'HEUTE()' },
-    { name: 'JETZT', syntax: 'JETZT()' },
-    { name: 'PRODUKT', syntax: 'PRODUKT(Zahl1; [Zahl2]; ...)' },
-    { name: 'ABS', syntax: 'ABS(Zahl)' },
-    { name: 'WURZEL', syntax: 'WURZEL(Zahl)' },
-    { name: 'STABW', syntax: 'STABW(Zahl1; [Zahl2]; ...)' },
-  ];
 
   // Sync external formats
   useEffect(() => {
@@ -808,10 +710,7 @@ export default function SpreadsheetHandsontable({
   useEffect(() => { selectedRangeRef.current = selectedRange; }, [selectedRange]);
   const activeCellRef = useRef(activeCell);
   useEffect(() => { activeCellRef.current = activeCell; }, [activeCell]);
-  const cellAutocompleteRef = useRef(cellAutocomplete);
-  useEffect(() => { cellAutocompleteRef.current = cellAutocomplete; }, [cellAutocomplete]);
-  const insertFnRef = useRef(insertFunctionIntoEditor);
-  useEffect(() => { insertFnRef.current = insertFunctionIntoEditor; }, [insertFunctionIntoEditor]);
+
 
   // Refs for formula editing — must be declared BEFORE the HOT init useEffect
   const formulaValueRef = useRef(formulaBarValue);
@@ -1386,7 +1285,6 @@ export default function SpreadsheetHandsontable({
         }
 
         if (!activeEditor || !activeEditor.isOpened()) {
-          if (cellAutocompleteRef.current.visible) setCellAutocomplete(prev => ({ ...prev, visible: false }));
           return;
         }
         // Use the editor API instead of reading TEXTAREA directly (avoids DOM coupling)
@@ -1450,7 +1348,7 @@ export default function SpreadsheetHandsontable({
             const fnMatch = val.substring(0, lastOpenParen).match(/([A-Za-z_ÄÖÜäöüß]+)$/);
             if (fnMatch) {
               const fnName = fnMatch[1].toUpperCase();
-              const found = DE_FUNCTIONS.find(f => f.name === fnName);
+              const found = EXCEL_FUNCTIONS_DE.find(f => f.name === fnName);
               if (found) {
                 const td = hot.getCell(activeEditor.row, activeEditor.col, true);
                 if (td) {
@@ -1488,25 +1386,7 @@ export default function SpreadsheetHandsontable({
             setFuncTooltip(null);
           }
 
-          // Extract the last function-name fragment (after =, (, ,, +, -, etc.)
-          const m = val.match(/(?:^=|[(,;+\-*/><=& ])\s*([A-Za-z_ÄÖÜäöüß]+)$/);
-          const partial = m ? m[1].toUpperCase() : null;
-          if (partial && partial.length >= 1) {
-            const matches = DE_FUNCTIONS.filter(f => f.name.startsWith(partial));
-            if (matches.length > 0) {
-              const td = hot.getCell(activeEditor.row, activeEditor.col, true);
-              if (td) {
-                const rect = td.getBoundingClientRect();
-                setCellAutocomplete({ visible: true, x: rect.left, y: rect.bottom + 2, items: matches, index: 0 });
-              }
-            } else {
-              setCellAutocomplete(prev => ({ ...prev, visible: false }));
-            }
-          } else {
-            setCellAutocomplete(prev => ({ ...prev, visible: false }));
-          }
         } else {
-          setCellAutocomplete(prev => ({ ...prev, visible: false }));
           setFuncTooltip(null); // Step 2b: hide tooltip when not a formula
         }
       },
@@ -1561,8 +1441,7 @@ export default function SpreadsheetHandsontable({
         if (lastChange) {
           setFormulaBarValue(lastChange[3] ?? '');
         }
-        // Hide autocomplete on confirm — afterDocumentKeyDown handles live suggestions
-        setCellAutocomplete(prev => ({ ...prev, visible: false }));
+
       },
 
       // Autofill: copy cell metadata natively so HT's undo/redo can track it
@@ -2036,7 +1915,7 @@ export default function SpreadsheetHandsontable({
             const m = val.match(/([A-Za-z_ÄÖÜäöüß]+)$/);
             if (m) {
               const fnName = m[1].toUpperCase();
-              const found = DE_FUNCTIONS.find(f => f.name === fnName);
+              const found = EXCEL_FUNCTIONS_DE.find(f => f.name === fnName);
               if (found) {
                 const argsMatch = found.syntax.match(/\((.*)\)/);
                 if (argsMatch) {
@@ -2056,31 +1935,8 @@ export default function SpreadsheetHandsontable({
         }
       }
       // F2: Handsontable handles natively — no custom override needed
-      // Inline autocomplete keyboard navigation (use ref to avoid stale state)
-      const cac = cellAutocompleteRef.current;
-      if (cac.visible) {
-        if (e.key === 'ArrowDown') { e.preventDefault(); setCellAutocomplete(prev => ({ ...prev, index: Math.min(prev.index + 1, prev.items.length - 1) })); return; }
-        if (e.key === 'ArrowUp') { e.preventDefault(); setCellAutocomplete(prev => ({ ...prev, index: Math.max(prev.index - 1, 0) })); return; }
-        if (e.key === 'Tab' || e.key === 'Enter') {
-          e.preventDefault();
-          e.stopImmediatePropagation(); // Step 3: prevent Handsontable from moving cell
-          const selected = cac.items[cac.index];
-          const acRef = activeCellRef.current;
-          if (selected && acRef) {
-            insertFnRef.current(selected.name);
-          }
-          setCellAutocomplete(prev => ({ ...prev, visible: false }));
-          return;
-        }
-        if (e.key === 'Escape') { e.preventDefault(); setCellAutocomplete(prev => ({ ...prev, visible: false })); return; }
-        // Step 2 fix: ArrowLeft/ArrowRight dismiss autocomplete and let cursor move naturally (Excel behavior)
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-          setCellAutocomplete(prev => ({ ...prev, visible: false }));
-          // Don't preventDefault — let Handsontable move the cursor natively
-        }
-      }
       // F4: toggle absolute references — cursor-position-aware
-      else if (e.key === 'F4') {
+      if (e.key === 'F4') {
         e.preventDefault();
         const hot = hotRef.current;
         const ac = activeCellRef.current;
@@ -2379,34 +2235,6 @@ export default function SpreadsheetHandsontable({
         onAction={handleContextMenuAction}
         onClose={() => setContextMenu((prev: ContextMenuState) => ({ ...prev, visible: false }))}
       />
-      {/* In-cell autocomplete dropdown */}
-      {cellAutocomplete.visible && (
-        <div style={{
-          position: 'fixed', zIndex: 600, left: cellAutocomplete.x, top: cellAutocomplete.y,
-          background: '#fff', border: '1px solid #c0c0c0', borderRadius: 4,
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)', minWidth: 200, maxHeight: 200, overflow: 'auto',
-          fontFamily: "'Segoe UI', system-ui, sans-serif", fontSize: '0.78rem',
-        }}>
-          {cellAutocomplete.items.map((fn, i) => (
-            <div
-              key={fn.name}
-              onMouseDown={e => {
-                e.preventDefault();
-                insertFunctionIntoEditor(fn.name);
-                setCellAutocomplete(prev => ({ ...prev, visible: false }));
-              }}
-              style={{
-                padding: '4px 10px', cursor: 'pointer',
-                background: i === cellAutocomplete.index ? '#e8edf2' : 'transparent',
-                display: 'flex', justifyContent: 'space-between',
-              }}
-            >
-              <strong>{fn.name}</strong>
-              <span style={{ color: '#888', fontSize: '0.7rem', marginLeft: 12 }}>{fn.syntax}</span>
-            </div>
-          ))}
-        </div>
-      )}
       {/* Step 4: Function ScreenTip — floating syntax hint with argument highlight */}
       {funcTooltip && (
         <div style={{
