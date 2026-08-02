@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Lightbulb, Trophy, CheckCircle, ThumbsUp, BookOpen, Award, HelpCircle, Search, Sprout, ThumbsDown, Bike, Loader2, LogIn, ArrowRight, ArrowLeft, Star, Target, ListChecks, Clock, MessageCircle, Eye } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
@@ -60,6 +60,18 @@ export default function Exercise() {
   const [hintLevel, setHintLevel] = useState(1); // Show first hint by default
   const [showSolution, setShowSolution] = useState(false);
   const [cellFeedback, setCellFeedback] = useState<{ row: number; col: number; expected: any; got: any }[]>([]);
+  // Bug #16 fix: memoize errorCells prop to avoid new array ref on every parent render
+  const errorCellsProp = useMemo(
+    () => cellFeedback.length > 0
+      ? cellFeedback.map(fb => ({
+          row: fb.row,
+          col: fb.col,
+          expected: String(fb.expected),
+          got: fb.got != null ? String(fb.got) : null,
+        }))
+      : undefined,
+    [cellFeedback]
+  );
   const [focusMode, setFocusMode] = useState(false);
   const { startTour } = useTour();
   const { increment: incrementGoal } = useDailyGoal();
@@ -147,6 +159,21 @@ export default function Exercise() {
   ];
 
   useEffect(() => {
+    // Bug fix: reset loading state + exercise-specific state when id changes
+    // to prevent stale data from previous exercise bleeding through
+    setLoading(true);
+    setScore(null);
+    setCellFeedback([]);
+    setShowSolution(false);
+    setHintLevel(1);
+    setAttemptCount(0);
+    setShowSuccessCheck(false);
+    setShowXpFly(false);
+    setNewBadge(null);
+    setShowReflection(false);
+    isDirtyRef.current = false;
+    originalDataRef.current = '';
+
     const controller = new AbortController();
     abortRef.current = controller;
     const signal = controller.signal;
@@ -650,12 +677,7 @@ export default function Exercise() {
               }}
               taskCols={template.taskCols}
               gridHeight={gridHeight}
-              errorCells={cellFeedback.length > 0 ? cellFeedback.map(fb => ({
-                row: fb.row,
-                col: fb.col,
-                expected: String(fb.expected),
-                got: fb.got != null ? String(fb.got) : null,
-              })) : undefined}
+              errorCells={errorCellsProp}
             />
           </div>
         </section>

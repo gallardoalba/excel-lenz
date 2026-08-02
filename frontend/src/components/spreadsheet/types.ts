@@ -105,7 +105,7 @@ export type ContextMenuAction =
   | 'deleteCells' | 'deleteRow' | 'deleteColumn'
   | 'clearContents' | 'clearFormats' | 'clearAll'
   | 'formatCells' | 'mergeCells' | 'unmergeCells' | 'formatAsTable'
-  | 'conditionalFormatting' | 'autoFitColumn' | 'hideColumn' | 'unhideColumn'
+  | 'conditionalFormatting' | 'autoFitColumn' | 'hideColumn' | 'unhideColumn' | 'hideRow' | 'unhideRow'
   | 'sortAsc' | 'sortDesc' | 'filterByValue' | 'quickAnalysis';
 
 export interface ContextMenuState {

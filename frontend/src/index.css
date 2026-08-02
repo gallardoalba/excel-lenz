@@ -3488,7 +3488,7 @@ body.dark .excel-dialog { background: #161B22; border-color: #21262D; }
   --ht-selection-border-color: #217346;
 }
 .handsontable .wtBorder.current {
-  border: 2px solid var(--ht-selection-border-color) !important;
+  border: 1px solid var(--ht-selection-border-color) !important;
 }
 
 .htMaster .wtBorder.corner {
@@ -3537,6 +3537,20 @@ body.dark .excel-dialog { background: #161B22; border-color: #21262D; }
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Prevent in-cell editor textarea from overflowing the cell */
+.handsontable .handsontableInputHolder,
+.handsontable .handsontableInput {
+  height: 26px !important;
+  max-height: 26px !important;
+  padding: 0 4px !important;
+  line-height: 26px !important;
+  font-size: 13px !important;
+  box-sizing: border-box !important;
+}
+.handsontable .handsontableInputHolder {
+  transform: translateX(-3px);
 }
 
 /* Green header when column/row selected */

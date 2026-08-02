@@ -87,6 +87,7 @@ export default function SpreadsheetHandsontable({
   const headersRef = useRef(headers);
   const taskColsRef = useRef(taskCols);
   const isInternalChange = useRef(false);
+  const lastLoadedDataRef = useRef<string>(''); // Bug #16: signature-based data reload guard
   const dataIdRef = useRef<number>(0);
   // Excel-like range selection refs: track formula editing to insert range references
   const isAppendingRangeRef = useRef(false);
@@ -116,6 +117,8 @@ export default function SpreadsheetHandsontable({
   const [statusInfo, setStatusInfo] = useState<StatusBarInfo>({ mode: 'ready', zoom: 100 });
   const [contextMenu, setContextMenu] = useState<ContextMenuState>({ visible: false, x: 0, y: 0, cellRange: null });
   const [zoom, setZoom] = useState(100);
+  const zoomRef = useRef(zoom); // Bug #16: fix stale closure in afterSelectionEnd
+  useEffect(() => { zoomRef.current = zoom; }, [zoom]);
   // Native undo state for ribbon buttons
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
@@ -133,8 +136,16 @@ export default function SpreadsheetHandsontable({
   useEffect(() => { condRulesRef.current = condRules; }, [condRules]);
   // Merge prop errors with internal practice mode errors
   const mergedErrors = useMemo(() => [...(errorCells || []), ...internalErrors], [errorCells, internalErrors]);
-  useEffect(() => { errorCellsRef.current = mergedErrors; }, [mergedErrors]);
-  useEffect(() => { errorCellsSetRef.current = new Set(mergedErrors.map(e => `${e.row}:${e.col}`)); }, [mergedErrors]);
+  // Bug #16 fix: single gated effect instead of two effects that fire on every parent render
+  useEffect(() => {
+    const next = new Set(mergedErrors.map(e => `${e.row}:${e.col}`));
+    // Only update if content actually changed
+    if (next.size !== errorCellsSetRef.current.size ||
+        [...next].some(k => !errorCellsSetRef.current.has(k))) {
+      errorCellsSetRef.current = next;
+      errorCellsRef.current = mergedErrors;
+    }
+  }, [mergedErrors]);
 
   // Refs to avoid keyboard listener re-renders
   // Step 1: Excel function ScreenTip (with HTML for argument highlighting)
@@ -418,6 +429,17 @@ export default function SpreadsheetHandsontable({
         mc.unmerge(startRow, startCol, endRow, endCol);
       } else {
         mc.merge(startRow, startCol, endRow, endCol);
+        // Bug #4 fix: Merge & Center should automatically center text (Excel behavior)
+        const newFormats = { ...cellFormatsRef.current };
+        for (let r = startRow; r <= endRow; r++) {
+          for (let c = startCol; c <= endCol; c++) {
+            const key = `R${r}C${c}`;
+            newFormats[key] = { ...newFormats[key], hAlign: 'center' };
+          }
+        }
+        setCellFormats(newFormats);
+        cellFormatsRef.current = newFormats;
+        onCellFormatsChange?.(newFormats);
       }
       // Bug #5.1 fix: push to format undo stack so Ctrl+Z restores merge state
       applyFormatsWithUndo(cellFormatsRef.current);
@@ -617,7 +639,8 @@ export default function SpreadsheetHandsontable({
       case 'pasteValues': pasteModeRef.current = 'values'; cp?.paste(); break;
       case 'pasteFormulas': pasteModeRef.current = 'normal'; cp?.paste(); break;
       case 'pasteFormats': pasteModeRef.current = 'formats'; cp?.paste(); break;
-      case 'pasteTranspose': { if (sr) { const hot = hotRef.current; if (!hot) break; const data = hot.getData(sr.startRow, sr.startCol, sr.endRow, sr.endCol); const rows = (data as string[][]).map(r => r.map(c => String(c ?? ''))); const transposed = rows[0]?.map((_: string, i: number) => rows.map(r => r[i] || '')) || []; hot.populateFromArray(sr.startRow, sr.startCol, transposed); } break; }
+      case 'pasteTranspose': { if (sr) { const hot = hotRef.current; if (!hot) break; // Bug #5 fix: use getSourceData() to preserve formulas instead of getData() which returns evaluated values
+        const data = hot.getSourceData(sr.startRow, sr.startCol, sr.endRow, sr.endCol); const rows = (data as string[][]).map(r => r.map(c => String(c ?? ''))); const transposed = rows[0]?.map((_: string, i: number) => rows.map(r => r[i] || '')) || []; hot.populateFromArray(sr.startRow, sr.startCol, transposed); } break; }
 
       // Insert/Delete
       case 'insertCells': if (sr) { hot.alter('insert_row', sr.startRow); } break;
@@ -647,7 +670,8 @@ export default function SpreadsheetHandsontable({
             const newWidth = plugin.getColumnWidth(c);
             const resizePlugin = hot.getPlugin('manualColumnResize');
             if (newWidth && resizePlugin && typeof (resizePlugin as any).setManualSize === 'function') {
-              (resizePlugin as any).setManualSize(c, Math.min(newWidth, 300));
+              // Bug #7 fix: remove arbitrary 300px cap; Excel AutoFit has no limit
+              (resizePlugin as any).setManualSize(c, newWidth);
             }
           }
         }
@@ -668,6 +692,27 @@ export default function SpreadsheetHandsontable({
         if (hiddenPlugin) {
           for (let c = sr.startCol; c <= sr.endCol; c++) {
             (hiddenPlugin as any).showColumn?.(c);
+          }
+          hot.render();
+        }
+      } break;
+      // Bug #8 fix: Hide/Unhide Rows (Excel parity with columns)
+      case 'hideRow': if (sr) {
+        const hiddenPlugin = hot.getPlugin('hiddenRows');
+        let currentlyHidden: number[] = [];
+        if (hiddenPlugin && Array.isArray((hiddenPlugin as any).hiddenRows)) {
+          currentlyHidden = (hiddenPlugin as any).hiddenRows;
+        }
+        for (let r = sr.startRow; r <= sr.endRow; r++) {
+          if (!currentlyHidden.includes(r)) currentlyHidden.push(r);
+        }
+        hot.updateSettings({ hiddenRows: { rows: currentlyHidden } });
+      } break;
+      case 'unhideRow': if (sr) {
+        const hiddenPlugin = hot.getPlugin('hiddenRows');
+        if (hiddenPlugin) {
+          for (let r = sr.startRow; r <= sr.endRow; r++) {
+            (hiddenPlugin as any).showRow?.(r);
           }
           hot.render();
         }
@@ -716,6 +761,7 @@ export default function SpreadsheetHandsontable({
   const formulaValueRef = useRef(formulaBarValue);
   formulaValueRef.current = formulaBarValue;
   const isFormulaEditingRef = useRef(false);
+  const isSyncingFormulaRef = useRef(false); // Prevent re-entry in formula sync
 
   // Init Handsontable
   useEffect(() => {
@@ -858,16 +904,14 @@ export default function SpreadsheetHandsontable({
         // Read from REFS (not state) to avoid stale closure
         const fmt = cellFormatsRef.current[`R${row}C${col}`];
         const rules = condRulesRef.current;
-        if (!fmt?.numberFormat) {
-          cellMeta.type = 'text';
-          cellMeta.numericFormat = undefined;
-        } else if (fmt?.numberFormat === 'DD.MM.YYYY') {
-          cellMeta.type = 'date';
-          cellMeta.dateFormat = 'DD.MM.YYYY';
-          cellMeta.correctFormat = true;
-        } else if (fmt?.numberFormat === '0%') { cellMeta.type = 'numeric'; cellMeta.numericFormat = { pattern: '0%' }; }
-        else if (fmt?.numberFormat === '#,##0.00 €') { cellMeta.type = 'numeric'; cellMeta.numericFormat = { pattern: '#,##0.00 €', culture: 'de-DE' }; }
-        else if (fmt?.numberFormat === '#,##0.00') { cellMeta.type = 'numeric'; cellMeta.numericFormat = { pattern: '#,##0.00' }; }
+        // Bug #1 fix: always keep cells as 'text' type so non-numeric values (e.g. "N/A", "Pending")
+        // are accepted even in formatted cells. Excel formats are purely visual — they only apply
+        // to numbers, text bypasses the format. Number rendering is handled in the renderer below.
+        cellMeta.type = 'text';
+        if (fmt?.numberFormat && fmt.numberFormat !== '@') {
+          // Store format in meta for the renderer to use
+          (cellMeta as any)._excelFormat = fmt.numberFormat;
+        }
         // Data validation — skip header row (row 0)
         if (row > 0) {
         const rule = validationRulesRef.current.find(r => r.col === col);
@@ -892,12 +936,35 @@ export default function SpreadsheetHandsontable({
         // Renderer
         cellMeta.renderer = (instance: any, td: HTMLTableCellElement, _r: number, _c: number, _p: any, v: any, _cp: any) => {
           textRenderer(instance, td, _r, _c, _p, v, _cp);
+          // Bug #1 fix: apply Excel number formatting in renderer (visual only, text bypasses format)
+          const meta = instance.getCellMeta(_r, _c);
+          const excelFmt: string | undefined = (meta as any)._excelFormat;
+          if (excelFmt && typeof v === 'number' && isFinite(v)) {
+            let formatted: string;
+            if (excelFmt === 'DD.MM.YYYY') {
+              // Convert Excel serial date to DD.MM.YYYY
+              const jsDate = new Date((v - 25569) * 86400 * 1000);
+              const dd = String(jsDate.getDate()).padStart(2, '0');
+              const mm = String(jsDate.getMonth() + 1).padStart(2, '0');
+              const yyyy = jsDate.getFullYear();
+              formatted = `${dd}.${mm}.${yyyy}`;
+            } else if (excelFmt === '0%') {
+              formatted = new Intl.NumberFormat('de-DE', { style: 'percent', minimumFractionDigits: 0 }).format(v);
+            } else if (excelFmt === '#,##0.00 €') {
+              formatted = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(v);
+            } else if (excelFmt === '#,##0.00') {
+              formatted = new Intl.NumberFormat('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v);
+            } else {
+              formatted = String(v);
+            }
+            td.textContent = formatted;
+          }
           // Safe class cleanup: only remove our format classes, never destroy HT internals
           td.className = td.className.replace(/\bht(Bold|Italic|Underline|Align(Left|Center|Right|Top|Middle|Bottom)|Wrap)\b/g, '').trim();
           // Clean up stale error classes and indicators
           td.classList.remove('has-excel-error');
           // Bug #6.1: error triangle now rendered via CSS ::after — no DOM cleanup needed
-          const isActive = activeCell && activeCell.row === _r && activeCell.col === _c;
+          const isActive = activeCellRef.current && activeCellRef.current.row === _r && activeCellRef.current.col === _c;
           // Read from REF inside renderer callback to avoid stale closure
           const key = `R${_r}C${_c}`;
           const fmt = cellFormatsRef.current[key];
@@ -1076,8 +1143,8 @@ export default function SpreadsheetHandsontable({
       },
 
       afterSelection(_r: number, _c: number, _r2: number, _c2: number) {
-        // Bug #1 fix: update refs only during drag (no state → no re-render)
-        // State updates deferred to afterSelectionEnd
+        // Bug #3 fix: update refs only during drag (no React state → no re-render)
+        // State updates (formulaBar, isMerged) deferred to afterSelectionEnd
         activeCellRef.current = { row: _r, col: _c };
         selectedRangeRef.current = {
           startRow: Math.min(_r, _r2),
@@ -1085,30 +1152,6 @@ export default function SpreadsheetHandsontable({
           endRow: Math.max(_r, _r2),
           endCol: Math.max(_c, _c2),
         };
-
-        // Update formula bar (lightweight — no state change for drag-selections)
-        // Bug fix: skip formula bar overwrite during range selection (user is building a formula)
-        if (!isAppendingRangeRef.current) {
-          const h = hotRef.current;
-          if (h && !h.isDestroyed) {
-            const activeEditor = h.getActiveEditor() as any;
-            if (activeEditor && activeEditor.isOpened()) {
-              const editorVal = activeEditor.getValue?.();
-              setFormulaBarValue(editorVal ?? '');
-            } else if (_r !== _r2 || _c !== _c2) {
-              setFormulaBarValue('');
-            } else {
-              const sourceVal = h.getSourceDataAtCell(_r, _c);
-              setFormulaBarValue(sourceVal === null || sourceVal === undefined ? '' : String(sourceVal));
-            }
-          }
-        }
-        // Merge cells info
-        const mc = hotRef.current?.getPlugin('mergeCells');
-        if (mc) {
-          const mergedParent = (mc as any).mergedCellsCollection?.get(_r, _c);
-          setIsMerged(!!mergedParent);
-        }
       },
 
       // Format Painter + Status Bar aggregation (moved here for performance)
@@ -1203,6 +1246,27 @@ export default function SpreadsheetHandsontable({
           endRow: Math.max(_r, _r2),
           endCol: Math.max(_c, _c2),
         });
+        // Bug #3 fix: formula bar + merge info moved from afterSelection to here (only on mouse release)
+        if (!isAppendingRangeRef.current) {
+          const h = hotRef.current;
+          if (h && !h.isDestroyed) {
+            const activeEditor = h.getActiveEditor() as any;
+            if (activeEditor && activeEditor.isOpened()) {
+              const editorVal = activeEditor.getValue?.();
+              setFormulaBarValue(editorVal ?? '');
+            } else if (_r !== _r2 || _c !== _c2) {
+              setFormulaBarValue('');
+            } else {
+              const sourceVal = h.getSourceDataAtCell(_r, _c);
+              setFormulaBarValue(sourceVal === null || sourceVal === undefined ? '' : String(sourceVal));
+            }
+          }
+        }
+        const mc = hotRef.current?.getPlugin('mergeCells');
+        if (mc) {
+          const mergedParent = (mc as any).mergedCellsCollection?.get(_r, _c);
+          setIsMerged(!!mergedParent);
+        }
         // Format Painter — apply on mouse release
         const painterSrc = formatPainterSrcRef.current;
         if (painterSrc) {
@@ -1249,16 +1313,16 @@ export default function SpreadsheetHandsontable({
           if (nonEmptyCount > 0) {
             const sum = nums.reduce((a, b) => a + b, 0);
             setStatusInfo({
-              mode: 'ready', zoom,
+              mode: 'ready', zoom: zoomRef.current,
               selectionCount: nonEmptyCount,
               selectionSum: nums.length > 0 ? sum : undefined,
               selectionAvg: nums.length > 0 ? sum / nums.length : undefined,
             });
           } else {
-            setStatusInfo({ mode: 'ready', zoom });
+            setStatusInfo({ mode: 'ready', zoom: zoomRef.current });
           }
         } else {
-          setStatusInfo({ mode: 'ready', zoom });
+          setStatusInfo({ mode: 'ready', zoom: zoomRef.current });
         }
       },
 
@@ -1404,7 +1468,11 @@ export default function SpreadsheetHandsontable({
         }
 
         // Bug #1.2 fix: also skip changes from programmatic setDataAtCell calls
-        if (!changes || source === 'loadData' || source === 'internalUpdate' || isInternalChange.current) {
+        // Bug #16 fix: also skip 'auto' (HyperFormula recalculation), 'dateFix',
+        // 'contextmenuCopyPaste', 'skipTheme' and other internal sources
+        const SKIP_SOURCES = ['loadData', 'internalUpdate', 'auto',
+          'dateFix', 'contextmenuCopyPaste', 'skipTheme'];
+        if (!changes || SKIP_SOURCES.includes(source) || isInternalChange.current) {
           // Clear format history on full data reload (sheet switch, etc.)
           if (source === 'loadData') {
             formatHistoryRef.current = [];
@@ -1412,6 +1480,10 @@ export default function SpreadsheetHandsontable({
           }
           return;
         }
+
+        // Bug #16 fix: skip if no actual value changed (pure recalculation with same result)
+        const hasRealChange = changes.some(([,, oldVal, newVal]: any[]) => oldVal !== newVal);
+        if (!hasRealChange) return;
         const h2 = hotRef.current;
         if (h2 && !h2.isDestroyed) {
           const undoRedo = h2.getPlugin('undoRedo') as any;
@@ -1436,9 +1508,11 @@ export default function SpreadsheetHandsontable({
         }
         isInternalChange.current = true;
         onChange(nd);
-        requestAnimationFrame(() => { isInternalChange.current = false; });
+        // Bug #16 fix: use setTimeout(0) instead of requestAnimationFrame
+        // to ensure isInternalChange stays true through the full async React update cycle
+        setTimeout(() => { isInternalChange.current = false; }, 0);
         const lastChange = changes[changes.length - 1];
-        if (lastChange) {
+        if (lastChange && !isSyncingFormulaRef.current) {
           setFormulaBarValue(lastChange[3] ?? '');
         }
 
@@ -1708,45 +1782,41 @@ export default function SpreadsheetHandsontable({
 
   // Step 2: real-time sync formula bar typing into Handsontable cell
   useEffect(() => {
-    if (isFormulaEditingRef.current) {
-      const hot = hotRef.current;
-      if (hot && !hot.isDestroyed) {
-        const activeEditor = hot.getActiveEditor() as any;
-        if (activeEditor && activeEditor.isOpened()) {
-          if (activeEditor.getValue() !== formulaBarValue) {
-            const ta = activeEditor.TEXTAREA;
-            // Bug #4.2 fix: save cursor position before setValue and restore after
-            const selStart = ta?.selectionStart ?? formulaBarValue.length;
-            const selEnd = ta?.selectionEnd ?? selStart;
-            activeEditor.setValue(formulaBarValue);
-            if (ta) {
-              const clampedStart = Math.min(selStart, formulaBarValue.length);
-              const clampedEnd = Math.min(selEnd, formulaBarValue.length);
-              ta.selectionStart = clampedStart;
-              ta.selectionEnd = clampedEnd;
-            }
-          }
-        }
-      }
+    if (!isFormulaEditingRef.current || isSyncingFormulaRef.current) return;
+    const hot = hotRef.current;
+    if (!hot || hot.isDestroyed) return;
+    const activeEditor = hot.getActiveEditor() as any;
+    if (!activeEditor || !activeEditor.isOpened()) return;
+    if (activeEditor.getValue() === formulaBarValue) return;
+    isSyncingFormulaRef.current = true;
+    const ta = activeEditor.TEXTAREA;
+    const selStart = ta?.selectionStart ?? formulaBarValue.length;
+    const selEnd = ta?.selectionEnd ?? selStart;
+    activeEditor.setValue(formulaBarValue);
+    if (ta) {
+      const clampedStart = Math.min(selStart, formulaBarValue.length);
+      const clampedEnd = Math.min(selEnd, formulaBarValue.length);
+      ta.selectionStart = clampedStart;
+      ta.selectionEnd = clampedEnd;
     }
+    isSyncingFormulaRef.current = false;
   }, [formulaBarValue]);
 
-  // Bug #14.1 fix: compare data length + first data row too, not just headers
+  // Bug #16 fix: use signature-based comparison to detect true parent-driven data changes,
+  // avoiding false reloads caused by HyperFormula recalculation or afterChange divergences
   // Sync data changes to Handsontable — compare source data to avoid reload on user edits
   useEffect(() => {
     const hot = hotRef.current;
     if (!hot || hot.isDestroyed) return;
-    const currentSource = hot.getSourceData();
     const targetData = [headers.map(h => h), ...data.map(row => row.map(cell => (cell === null ? '' : cell)))];
-    // Accept loadData when headers, row count, OR first data row differ (covers exercise reset)
-    const needsReload = currentSource.length !== targetData.length
-      || JSON.stringify(currentSource[0]) !== JSON.stringify(targetData[0])
-      || (currentSource.length > 1 && targetData.length > 1
-          && JSON.stringify(currentSource[1]) !== JSON.stringify(targetData[1]));
-    if (needsReload) {
+    const signature = JSON.stringify(targetData);
+    // Only reload if the data signature truly changed vs. what we last loaded
+    if (signature !== lastLoadedDataRef.current) {
+      lastLoadedDataRef.current = signature;
       isInternalChange.current = true;
       hot.loadData(targetData);
-      requestAnimationFrame(() => { isInternalChange.current = false; });
+      // Bug #16 fix: use setTimeout(0) to keep isInternalChange true through the full update cycle
+      setTimeout(() => { isInternalChange.current = false; }, 0);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
@@ -1802,43 +1872,34 @@ export default function SpreadsheetHandsontable({
       else if (!ctrl && e.shiftKey && e.key === ' ') { e.preventDefault(); const hot = hotRef.current; const ac = activeCellRef.current; if (hot && ac) hot.selectRows(ac.row); }
       // Ctrl+1: Open Format Cells dialog (BUG 11: ensure shift not pressed)
       else if (ctrl && !e.shiftKey && e.key === '1') { e.preventDefault(); setShowFormatCellsDialog(true); }
-      // Ctrl+D: Fill down — use source formulas so references adjust relatively
+      // Ctrl+D: Fill down — use Copy/Paste plugin so HyperFormula adjusts relative references
       else if (ctrl && e.key === 'd') {
         e.preventDefault();
         e.stopImmediatePropagation(); // Bug #16.1: prevent browser bookmark shortcut
         const hot = hotRef.current;
         const sr = selectedRangeRef.current;
         if (hot && sr && sr.startRow > 0 && sr.endRow > sr.startRow) {
-          const sourceFormulas = [];
-          for (let c = sr.startCol; c <= sr.endCol; c++) {
-            sourceFormulas.push(hot.getSourceDataAtCell(sr.startRow, c));
-          }
-          const fillData = [];
-          for (let i = sr.startRow + 1; i <= sr.endRow; i++) {
-            fillData.push([...sourceFormulas]);
-          }
-          hot.populateFromArray(sr.startRow + 1, sr.startCol, fillData);
+          // Bug #2 fix: use native Copy/Paste instead of populateFromArray
+          // so HyperFormula adjusts relative references (e.g. =A1 → =A2)
+          hot.selectCell(sr.startRow, sr.startCol, sr.startRow, sr.endCol);
+          (hot.getPlugin('copyPaste') as any).copy();
+          hot.selectCell(sr.startRow + 1, sr.startCol, sr.endRow, sr.endCol);
+          (hot.getPlugin('copyPaste') as any).paste();
         }
       }
-      // Ctrl+R: Fill right — use source formulas so references adjust relatively
+      // Ctrl+R: Fill right — use Copy/Paste plugin so HyperFormula adjusts relative references
       else if (ctrl && e.key === 'r') {
         e.preventDefault();
         e.stopImmediatePropagation(); // Bug #16.1: prevent browser reload shortcut
         const hot = hotRef.current;
         const sr = selectedRangeRef.current;
         if (hot && sr && sr.endCol > sr.startCol) {
-          const sourceFormulas = [];
-          for (let r = sr.startRow; r <= sr.endRow; r++) {
-            sourceFormulas.push([hot.getSourceDataAtCell(r, sr.startCol)]);
-          }
-          const targetData = sourceFormulas.map(row => {
-            const filled = [];
-            for (let c = sr.startCol + 1; c <= sr.endCol; c++) {
-              filled.push(row[0]);
-            }
-            return filled;
-          });
-          hot.populateFromArray(sr.startRow, sr.startCol + 1, targetData);
+          // Bug #2 fix: use native Copy/Paste instead of populateFromArray
+          // so HyperFormula adjusts relative references (e.g. =A1 → =B1)
+          hot.selectCell(sr.startRow, sr.startCol, sr.endRow, sr.startCol);
+          (hot.getPlugin('copyPaste') as any).copy();
+          hot.selectCell(sr.startRow, sr.startCol + 1, sr.endRow, sr.endCol);
+          (hot.getPlugin('copyPaste') as any).paste();
         }
       }
       // Alt+= : AutoSum — scan up, then left (skip on header row)

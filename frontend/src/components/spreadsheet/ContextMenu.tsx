@@ -115,12 +115,10 @@ export default function ContextMenu({
     // Section 2: Insert / Delete
     [
       { label: 'Einfügen', submenu: [
-        { label: 'Zellen...', action: 'insertCells' },
         { label: 'Zeile', action: 'insertRow' },
         { label: 'Spalte', action: 'insertColumn' },
       ]},
       { label: 'Löschen', submenu: [
-        { label: 'Zellen...', action: 'deleteCells' },
         { label: 'Zeile', action: 'deleteRow' },
         { label: 'Spalte', action: 'deleteColumn' },
       ]},
@@ -136,7 +134,12 @@ export default function ContextMenu({
       { label: 'Sortieren Z → A', action: 'sortDesc' },
       { label: 'Filtern nach Zellwert', action: 'filterByValue' },
     ],
-    // Section 5: Format
+    // Section 5: Hide/Unhide (Bug #8: added row hide/unhide for Excel parity)
+    [
+      { label: 'Zeile ausblenden', action: 'hideRow' },
+      { label: 'Zeile einblenden', action: 'unhideRow' },
+    ],
+    // Section 6: Format
     [
       { label: 'Zellen formatieren...', action: 'formatCells', shortcut: 'Strg+1' },
       { label: 'Zellen verbinden', action: 'mergeCells' },
