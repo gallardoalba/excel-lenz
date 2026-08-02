@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Didaktischer_Leitfaden_Excel_Fortgeschrittene_clean</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#präsentation-und-grundlagen"
+id="toc-präsentation-und-grundlagen">1. Präsentation und
+Grundlagen</a></li>
+<li><a href="#entwickelte-kompetenzen"
+id="toc-entwickelte-kompetenzen">3. Entwickelte Kompetenzen</a></li>
+<li><a href="#didaktische-methodik" id="toc-didaktische-methodik">5.
+Didaktische Methodik</a></li>
+<li><a href="#fortschrittsverfolgung" id="toc-fortschrittsverfolgung">7.
+Fortschrittsverfolgung</a></li>
+<li><a href="#ausgestaltung-der-sitzungen"
+id="toc-ausgestaltung-der-sitzungen">8. Ausgestaltung der
+Sitzungen</a></li>
+<li><a href="#anhang-zuordnung-zu-den-übungen-der-excel-lenz-plattform"
+id="toc-anhang-zuordnung-zu-den-übungen-der-excel-lenz-plattform">Anhang:
+Zuordnung zu den Übungen der Excel-lenz-Plattform</a></li>
+</ul>
+</nav>
+<h2 id="präsentation-und-grundlagen">1. Präsentation und Grundlagen</h2>
+<h3 id="teilnehmerprofil">1.1. Teilnehmerprofil</h3>
+<p>Dieser Kurs richtet sich an Fachleute, die bereits über operative
+Excel-Kenntnisse verfügen und ein fortgeschrittenes Niveau erreichen
+möchten, das ihnen ermöglicht, Aufgaben zu automatisieren, komplexe
+Szenarien zu modellieren und aus großen Datenmengen Erkenntnisse zu
+gewinnen. Das typische Profil umfasst:</p>
+<ul>
+<li>Daten-, Finanz-, Marketing- und Betriebsanalysten</li>
+<li>Mittleres Management und Führungskräfte, die Berichte und Dashboards
+erstellen</li>
+<li>Berater und Wirtschaftsprüfer, die intensiv mit
+Tabellenkalkulationen arbeiten</li>
+<li>Fachleute, die bereits SVERWEIS, SUMMEWENN und einfache
+Pivot-Tabellen verwenden und das nächste Produktivitätsniveau
+anstreben</li>
+</ul>
+<h3 id="pädagogische-grundlagen">1.2. Pädagogische Grundlagen</h3>
+<p>Das didaktische Design basiert auf denselben andragogischen
+Prinzipien wie der Einsteigerkurs, angepasst an das fortgeschrittene
+Niveau:</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr>
+<th>Andragogisches Prinzip</th>
+<th>Umsetzung im Fortgeschrittenenkurs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lernbedürfnis</strong></td>
+<td>Jede Sitzung ist mit einem realen beruflichen Problem verknüpft: Wie
+reduziere ich diese monatliche Aufgabe von 2 Stunden auf 2 Minuten?</td>
+</tr>
+<tr>
+<td><strong>Selbstverständnis des Erwachsenen</strong></td>
+<td>Der Teilnehmer bringt seine Excel-Erfahrung ein; der Dozent
+diagnostiziert spezifische Lücken und baut auf der vorhandenen Basis
+auf</td>
+</tr>
+<tr>
+<td><strong>Vorerfahrung</strong></td>
+<td>Ausgangspunkt sind die realen Arbeitsabläufe des Teilnehmers, wobei
+Ineffizienzen identifiziert und fortgeschrittene Lösungen vorgeschlagen
+werden</td>
+</tr>
+<tr>
+<td><strong>Lernorientierung</strong></td>
+<td>Fokus auf die Lösung komplexer Probleme: Finanzmodelle,
+Automatisierung, Executive Dashboards</td>
+</tr>
+<tr>
+<td><strong>Intrinsische Motivation</strong></td>
+<td>Der Teilnehmer erlebt einen unmittelbaren qualitativen Sprung in
+seiner beruflichen Produktivität</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rolle-der-ergänzenden-webplattform">1.3. Rolle der ergänzenden
+Webplattform</h3>
+<p>Die Plattform Excel-lenz dient als <strong>Vertiefungsressource
+zwischen den Sitzungen</strong>:</p>
+<ul>
+<li><strong>Vorbereitung</strong>: Theorie nachlesen und sich mit neuen
+Funktionen vor der Präsenzsitzung vertraut machen</li>
+<li><strong>Selbstständiges Üben</strong>: Übungen mit automatischer
+Zelle-für-Zelle-Korrektur zur Festigung komplexer Verfahren</li>
+<li><strong>Progressives Scaffolding</strong>: Vierstufiges
+Hinweissystem zur Lösung von Übungen ohne Abhängigkeit vom Dozenten</li>
+</ul>
+<p>Das bedeutungsvolle Lernen findet in der <strong>Präsenzpraxis mit
+dem echten Excel</strong> statt, wo der Dozent fortgeschrittene
+Techniken vorführt, komplexe Formeln in Echtzeit debuggt und das Tempo
+an die individuelle Lernkurve anpasst.</p>
+<h2 id="entwickelte-kompetenzen">3. Entwickelte Kompetenzen</h2>
+<h3 id="fortgeschrittene-digitale-kompetenz">3.1. Fortgeschrittene
+digitale Kompetenz</h3>
+<p>Der Kurs vertieft den <strong>DigComp 2.2-Rahmen</strong> (Vuorikari
+et al., 2022) auf mittlerem bis fortgeschrittenem Niveau:</p>
+<table>
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr>
+<th>DigComp 2.2-Bereich</th>
+<th>Entwicklung im Kurs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Informationen und Datenkompetenz</td>
+<td>Spezialfilter, Datenbankfunktionen, Extraktion eindeutiger
+Datensätze, Konsolidierung aus mehreren Quellen</td>
+</tr>
+<tr>
+<td>Erstellung digitaler Inhalte</td>
+<td>Professionelle Dashboards, kombinierte Diagramme, benutzerdefinierte
+Formate, Vorlagen</td>
+</tr>
+<tr>
+<td>Sicherheit</td>
+<td>Erweiterter Blatt- und Arbeitsmappenschutz, Ausblenden von Formeln,
+Makrosicherheit</td>
+</tr>
+<tr>
+<td>Problemlösung</td>
+<td>Modellierung mit Solver, Was-wäre-wenn-Analyse, Automatisierung
+komplexer Aufgaben mit Makros</td>
+</tr>
+</tbody>
+</table>
+<h3 id="computational-thinking-und-modellierung">3.2. Computational
+Thinking und Modellierung</h3>
+<ul>
+<li><strong>Fortgeschrittene Abstraktion</strong>: Erstellung von
+Finanz- und Betriebsmodellen mit mehreren voneinander abhängigen
+Variablen</li>
+<li><strong>Automatisierung</strong>: Identifikation wiederkehrender
+Aufgaben, die durch Makros automatisiert werden können</li>
+<li><strong>Systematische Fehlerbehebung</strong>: Einsatz von
+Formelüberwachungswerkzeugen zur Diagnose von Folgefehlern</li>
+</ul>
+<h3 id="übergreifende-berufliche-kompetenzen">3.3. Übergreifende
+berufliche Kompetenzen</h3>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr>
+<th>Kompetenz</th>
+<th>Entwicklung im Kurs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datengestützte Entscheidungsfindung</td>
+<td>Szenarioanalyse, Sensitivitätstabellen, Zielwertsuche</td>
+</tr>
+<tr>
+<td>Effizienz und Produktivität</td>
+<td>Automatisierung mit Makros, erweiterte Tastenkombinationen, Best
+Practices der Modellierung</td>
+</tr>
+<tr>
+<td>Executive Communication</td>
+<td>Erstellung professioneller Dashboards für die Präsentation vor der
+Geschäftsleitung</td>
+</tr>
+<tr>
+<td>Kritisches Denken</td>
+<td>Formelüberwachung, Modellvalidierung, Fehlererkennung</td>
+</tr>
+</tbody>
+</table>
+<h2 id="didaktische-methodik">5. Didaktische Methodik</h2>
+<h3 id="struktur-einer-standardsitzung-90-minuten">5.1. Struktur einer
+Standardsitzung (90 Minuten)</h3>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Dauer</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5-10 Min</td>
+<td>Klärung von Fragen aus der vorherigen Sitzung und Besprechung der
+selbstständigen Übung</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>15-20 Min</td>
+<td>Vorführung fortgeschrittener Techniken: Der Dozent erstellt live und
+spricht dabei seinen Denkprozess aus. Der Teilnehmer reproduziert
+gleichzeitig auf seinem Gerät</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>40-50 Min</td>
+<td>Übungen mit zunehmender Komplexität. Der Dozent beobachtet,
+diagnostiziert Fehler und gibt unmittelbares Feedback</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>10-15 Min</td>
+<td>Integrationsübung, die mehrere Techniken kombiniert. Der Teilnehmer
+arbeitet eigenständig; der Dozent greift nur ein, wenn es unbedingt
+nötig ist</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min</td>
+<td>Zusammenfassung des Gelernten, Vorschau auf die nächste Sitzung und
+Empfehlung von Übungen auf der Plattform</td>
+</tr>
+</tbody>
+</table>
+<h3 id="methodische-grundsätze">5.2. Methodische Grundsätze</h3>
+<ol type="1">
+<li><strong>Eingangsdiagnose</strong>: Jede Sitzung beginnt mit einer
+informellen Bewertung des tatsächlichen Niveaus des Teilnehmers im
+jeweiligen Thema</li>
+<li><strong>Problembasiertes Lernen</strong>: Die Übungen bilden
+authentische berufliche Situationen nach</li>
+<li><strong>Expertenmodellierung</strong>: Der Dozent macht seinen
+Denkprozess beim Erstellen komplexer Formeln und Modelle sichtbar</li>
+<li><strong>Gezieltes Üben</strong>: Übungen, die darauf ausgelegt sind,
+die festgestellten spezifischen Schwachstellen zu überwinden</li>
+<li><strong>Fortschreitende Automatisierung</strong>: Vom manuellen
+Verständnis zur Automatisierung mit Makros</li>
+</ol>
+<h2 id="fortschrittsverfolgung">7. Fortschrittsverfolgung</h2>
+<p>Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird
+ein Modell der <strong>kontinuierlichen qualitativen Verfolgung</strong>
+eingesetzt:</p>
+<ul>
+<li><strong>Direkte Beobachtung</strong>: Der Dozent bewertet die
+Flüssigkeit, Genauigkeit und Selbstständigkeit des Teilnehmers in jeder
+Sitzung</li>
+<li><strong>Üben zwischen den Sitzungen</strong>: Die Webplattform
+zeichnet die abgeschlossenen Übungen auf</li>
+<li><strong>Sofortiges Feedback</strong>: Korrektur im Moment mit
+ausführlicher Erklärung der Fehlerursache</li>
+<li><strong>Teilnahmebescheinigung</strong>: Wird am Ende des Kurses auf
+Basis von Anwesenheit und aktiver Teilnahme ausgestellt</li>
+</ul>
+<h2 id="ausgestaltung-der-sitzungen">8. Ausgestaltung der Sitzungen</h2>
+<h3
+id="sitzung-1-erweiterte-formate-bedingte-formatierung-und-datenüberprüfung">Sitzung
+1: Erweiterte Formate, bedingte Formatierung und Datenüberprüfung</h3>
+<p><strong>Integriertes Modul</strong>: M1 (Erweiterte Formate und
+Datenüberprüfung)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="sitzungsziele">Sitzungsziele</h4>
+<ul>
+<li>Benutzerdefinierte Zahlenformate mit Formatcodes entwerfen (0, #, ?,
+%, @)</li>
+<li>Formelbasierte Regeln für bedingte Formatierung erstellen, um
+Zeilen, Daten und Unterschiede hervorzuheben</li>
+<li>Erweiterte Datenüberprüfung mit Listen, Einschränkungen und
+benutzerdefinierten Formeln konfigurieren</li>
+<li>Gezielten Schutz von Zellen, Blättern und der Arbeitsmappenstruktur
+einrichten</li>
+</ul>
+<h4 id="inhalte">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzepte</th>
+<th>Verfahren</th>
+<th>Haltungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formatcodes: positiv;negativ;null;text</td>
+<td>Benutzerdefinierte Formate mit Text, Farben und Bedingungen
+erstellen</td>
+<td>Sorgfalt bei der professionellen Darstellung von Daten</td>
+</tr>
+<tr>
+<td>Bedingte Formatierung mit Formeln</td>
+<td>Komplexe Regeln entwerfen (=$F5=“TX”, =UND(B4&gt;HEUTE();…))</td>
+<td>Aufmerksamkeit für die Logik der Bedingungen</td>
+</tr>
+<tr>
+<td>Arten der erweiterten Überprüfung</td>
+<td>Eingabemeldungen und benutzerdefinierte Fehlermeldungen
+konfigurieren</td>
+<td>Verantwortung für die Datenintegrität</td>
+</tr>
+<tr>
+<td>Granularer Zell- und Blattschutz</td>
+<td>Formelzellen sperren und Bearbeitung in Eingabezellen zulassen</td>
+<td>Wertschätzung der Informationssicherheit</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sitzungsablauf">Sitzungsablauf</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5 Min</td>
+<td>Gespräch: Welche Art von Berichten erstellt der Teilnehmer? Welche
+Formatierungs- oder Überprüfungsprobleme sind aufgetreten?</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min</td>
+<td>Erstellung eines benutzerdefinierten Zahlenformats mit 4
+Abschnitten. Anwendung formelbasierter bedingter Formatierung zur
+Hervorhebung ganzer Zeilen. Konfiguration der Überprüfung mit Liste und
+numerischer Einschränkung</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>45 Min</td>
+<td>Der Teilnehmer erstellt ein Mitarbeiterregister mit:
+Datenüberprüfung (Abteilungsliste, Altersspanne), bedingter Formatierung
+zur Hervorhebung von Ausreißern und Schutz von Formelzellen</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min</td>
+<td>Eigenständige Übung: Entwurf eines Rechnungsformats mit
+benutzerdefinierten Formaten und Überprüfung</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min</td>
+<td>Zusammenfassung. Übung auf der Plattform: Modul 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sitzung-2-erweiterte-funktionen-und-komplexe-formeln">Sitzung 2:
+Erweiterte Funktionen und komplexe Formeln</h3>
+<p><strong>Integriertes Modul</strong>: M2 (Erweiterte Funktionen)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="sitzungsziele-1">Sitzungsziele</h4>
+<ul>
+<li>Zweidimensionale Suchen mit INDEX + VERGLEICH und dynamische Bezüge
+mit BEREICH.VERSCHIEBEN durchführen</li>
+<li>Verschachtelte logische Funktionen mit WENN, UND, ODER und
+WENNFEHLER implementieren</li>
+<li>SUMMEWENNS und ZÄHLENWENNS mit mehreren Kriterien anwenden</li>
+<li>Wichtige Finanzfunktionen nutzen: NBW, IKV, RMZ, ZW</li>
+<li>Matrixformeln mit Strg+Umschalt+Eingabe erstellen</li>
+</ul>
+<h4 id="inhalte-1">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzepte</th>
+<th>Verfahren</th>
+<th>Haltungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mehrdimensionale Suche und dynamische Bezüge</td>
+<td>Zweidimensionales INDEX+VERGLEICH und BEREICH.VERSCHIEBEN mit SUMME
+erstellen</td>
+<td>Wertschätzung der Flexibilität gegenüber SVERWEIS</td>
+</tr>
+<tr>
+<td>Verschachtelung logischer Funktionen</td>
+<td>WENN, UND, ODER und WENNFEHLER in realen Kontexten verketten</td>
+<td>Geduld bei syntaktischer Komplexität</td>
+</tr>
+<tr>
+<td>Mehrfache Bedingungsberechnung</td>
+<td>SUMMEWENNS mit 3+ Kriterien entwerfen</td>
+<td>Sorgfalt bei der Spezifikation von Bedingungen</td>
+</tr>
+<tr>
+<td>Zeitwert des Geldes</td>
+<td>NBW, IKV, RMZ für Finanzentscheidungen berechnen</td>
+<td>Interesse an beruflicher Anwendung</td>
+</tr>
+<tr>
+<td>Matrixformeln</td>
+<td>Matrixformeln mit Strg+Umschalt+Eingabe erstellen und debuggen</td>
+<td>Neugier auf fortgeschrittene Techniken</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sitzungsablauf-1">Sitzungsablauf</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5 Min</td>
+<td>Kurze Wiederholung von SVERWEIS und SUMMEWENN als Aktivierung des
+Vorwissens</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min</td>
+<td>Dialogische Erstellung eines Gehaltsabrechnungsmodells:
+INDEX+VERGLEICH zur Suche nach Mitarbeiterdaten, verschachteltes WENN
+für Gehaltskategorien, SUMMEWENNS für Abteilungssummen</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>45 Min</td>
+<td>Investitionsanalysemodell: NBW und IKV zur Projektbewertung, RMZ zur
+Berechnung von Darlehensraten, Matrixformel für Bedingungssumme</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min</td>
+<td>Integrationsübung mit echten Finanzdaten</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min</td>
+<td>Zusammenfassung. Übung auf der Plattform: Modul 2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sitzung-3-3d-bezüge-datenbanken-und-spezialfilter">Sitzung 3:
+3D-Bezüge, Datenbanken und Spezialfilter</h3>
+<p><strong>Integrierte Module</strong>: M3 (Bezüge und Namen) + M4
+(Datenbanken)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Praxis</p>
+<h4 id="sitzungsziele-2">Sitzungsziele</h4>
+<ul>
+<li>Definierte Namen für Bereiche, Formeln und Konstanten erstellen und
+verwalten</li>
+<li>3D-Bezüge zur Konsolidierung von Daten zwischen Blättern
+erstellen</li>
+<li>Spezialfilter mit Kriterienbereich anwenden (UND-,
+ODER-Operatoren)</li>
+<li>Datenbankfunktionen nutzen: DBSUMME, DBMITTELWERT, DBAUSZUG</li>
+<li>Automatische mehrstufige Teilergebnisse berechnen</li>
+</ul>
+<h4 id="inhalte-2">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzepte</th>
+<th>Verfahren</th>
+<th>Haltungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Definierte Namen als Best Practice</td>
+<td>Namen aus dem Namensfeld und dem Namens-Manager erstellen</td>
+<td>Wertschätzung für Klarheit und Wartbarkeit</td>
+</tr>
+<tr>
+<td>3D-Bezüge zur Konsolidierung</td>
+<td>=SUMME(Tabelle1:Tabelle5!B2) erstellen</td>
+<td>Wertschätzung der Effizienz bei der Konsolidierung</td>
+</tr>
+<tr>
+<td>Spezialfilterkriterien</td>
+<td>Kriterienbereiche mit UND (gleiche Zeile) und ODER (verschiedene
+Zeilen) entwerfen</td>
+<td>Sorgfalt bei der Spezifikation von Bedingungen</td>
+</tr>
+<tr>
+<td>Datenbankfunktionen</td>
+<td>DBSUMME, DBMITTELWERT, DBAUSZUG erstellen</td>
+<td>Neugier auf spezialisierte Werkzeuge</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sitzungsablauf-2">Sitzungsablauf</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5 Min</td>
+<td>Kurze Wiederholung absoluter und relativer Bezüge</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min</td>
+<td>Erstellung einer Arbeitsmappe mit Quartalsdaten auf getrennten
+Blättern, Definition von Namen für Schlüsselbereiche und jährliche
+Konsolidierung mittels 3D-Bezügen. Vorführung des Spezialfilters mit
+mehreren Kriterien</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>45 Min</td>
+<td>Der Teilnehmer erstellt eine Abteilungsbudget-Arbeitsmappe mit
+3D-Konsolidierung, wendet Spezialfilter zur Extraktion bestimmter
+Datensätze an und nutzt DBSUMME für bedingte Abfragen</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min</td>
+<td>Eigenständige Übung mit Mitarbeiterdatenbank: mehrstufige
+Sortierung, Teilergebnisse nach Abteilung, Spezialfilter mit berechneten
+Kriterien</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min</td>
+<td>Zusammenfassung. Übung auf der Plattform: Module 3 und 4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sitzung-4-erweiterte-pivot-tabellen">Sitzung 4: Erweiterte
+Pivot-Tabellen</h3>
+<p><strong>Integriertes Modul</strong>: M5 (Pivot-Tabellen und
+Pivot-Charts)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="sitzungsziele-3">Sitzungsziele</h4>
+<ul>
+<li>Komplexe Pivot-Tabellen mit mehreren Feldern und benutzerdefinierten
+Zusammenfassungsfunktionen erstellen</li>
+<li>Daten nach Datum (Monat, Quartal, Jahr) und numerischen Bereichen
+gruppieren</li>
+<li>Datenschnitte und Zeitleisten für interaktive visuelle Filterung
+einfügen</li>
+<li>Berechnete Felder und berechnete Elemente erstellen</li>
+<li>Verknüpfte Pivot-Charts entwerfen und erweiterte
+Präsentationsformate anwenden</li>
+</ul>
+<h4 id="inhalte-3">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzepte</th>
+<th>Verfahren</th>
+<th>Haltungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mehrdimensionale Datenstruktur</td>
+<td>Felder in Zeilen, Spalten, Werten und Filtern konfigurieren</td>
+<td>Freude an der interaktiven Erkundung von Daten</td>
+</tr>
+<tr>
+<td>Zeitliche und numerische Gruppierung</td>
+<td>Daten gruppieren und benutzerdefinierte Bereiche erstellen</td>
+<td>Wertschätzung der Synthese gegenüber dem Detail</td>
+</tr>
+<tr>
+<td>Datenschnitte als Benutzeroberfläche</td>
+<td>Slicers einfügen und mit mehreren Tabellen verbinden</td>
+<td>Interesse am Design interaktiver Werkzeuge</td>
+</tr>
+<tr>
+<td>Benutzerdefinierte Berechnungen in Pivot-Tabellen</td>
+<td>Berechnete Felder erstellen und Zusammenfassungsfunktionen
+ändern</td>
+<td>Neugier, die Standardfunktionen zu erweitern</td>
+</tr>
+<tr>
+<td>Professionelles Design und Präsentation</td>
+<td>Tabellenformate anwenden und Werte als % der Gesamtsumme
+anzeigen</td>
+<td>Sorgfalt für effektive visuelle Kommunikation</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sitzungsablauf-3">Sitzungsablauf</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5 Min</td>
+<td>Hat der Teilnehmer Pivot-Tabellen verwendet? Auf welche
+Einschränkungen ist er gestoßen?</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min</td>
+<td>Ausgehend von einer Rechnungsdatenbank erstellt der Dozent eine
+Pivot-Tabelle, gruppiert nach Quartalen, fügt ein berechnetes Feld für
+Rentabilität hinzu, fügt einen Regions-Slicer ein und erstellt ein
+Pivot-Chart</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>45 Min</td>
+<td>Der Teilnehmer erstellt Umsatzberichte nach Region und Produkt mit
+zeitlicher Gruppierung, % der Gesamtsumme, Rankings und mit mehreren
+Tabellen verbundenen Datenschnitten</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min</td>
+<td>Übung: Erstellung eines Executive-Berichts mit Pivot-Tabelle,
+Slicers und Pivot-Chart</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min</td>
+<td>Zusammenfassung. Übung auf der Plattform: Modul 5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sitzung-5-datenanalyse-szenarien-und-solver">Sitzung 5:
+Datenanalyse, Szenarien und Solver</h3>
+<p><strong>Integriertes Modul</strong>: M6 (Datenanalyse und
+Szenariomodelle)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="sitzungsziele-4">Sitzungsziele</h4>
+<ul>
+<li>Sparklines zur Visualisierung in Zellen einfügen und anpassen</li>
+<li>Trendlinien zu Diagrammen hinzufügen und den R²-Wert
+interpretieren</li>
+<li>Was-wäre-wenn-Analyse-Werkzeuge anwenden: Zielwertsuche, Szenarien
+und Datentabellen</li>
+<li>Optimierungsprobleme mit Solver lösen (Nebenbedingungen,
+Zielfunktion)</li>
+<li>Formelüberwachungswerkzeuge zur Validierung von Modellen nutzen</li>
+</ul>
+<h4 id="inhalte-4">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzepte</th>
+<th>Verfahren</th>
+<th>Haltungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sparklines als kompakte Visualisierung</td>
+<td>Linien-, Spalten- und Gewinn/Verlust-Sparklines einfügen</td>
+<td>Wertschätzung der kontextbezogenen Visualisierung</td>
+</tr>
+<tr>
+<td>Lineare Regression und Kurvenanpassung</td>
+<td>Trendlinien hinzufügen und R² analysieren</td>
+<td>Neugier auf prädiktive Modellierung</td>
+</tr>
+<tr>
+<td>Grundlagen der Was-wäre-wenn-Analyse</td>
+<td>Zielwertsuche, Szenarien und Datentabellen anwenden</td>
+<td>Vertrauen in entscheidungsunterstützende Werkzeuge</td>
+</tr>
+<tr>
+<td>Optimierung mit Nebenbedingungen</td>
+<td>Solver konfigurieren: Zielzelle, Variablen und Nebenbedingungen</td>
+<td>Interesse an Ressourcenoptimierung</td>
+</tr>
+<tr>
+<td>Formelüberwachung</td>
+<td>Vorgänger- und Nachfolgerspuren verfolgen und Formeln auswerten</td>
+<td>Sorgfalt bei der Modellvalidierung</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sitzungsablauf-4">Sitzungsablauf</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5 Min</td>
+<td>Gespräch über datengestützte Entscheidungen, die der Teilnehmer
+regelmäßig trifft</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min</td>
+<td>Erstellung eines Rentabilitätsmodells: Sparklines für Trends,
+Trendlinie mit R², Zielwertsuche für Break-Even-Point, Solver zur
+Gewinnmaximierung mit Nebenbedingungen</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>45 Min</td>
+<td>Der Teilnehmer erstellt ein vollständiges Analysemodell:
+Datentabelle mit zwei Variablen, drei Szenarien (optimistisch, Basis,
+pessimistisch), Solver zur Optimierung und Formelüberwachung zur
+Validierung</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min</td>
+<td>Übung zur Fehlerdiagnose in einem vorgefertigten Modell</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min</td>
+<td>Zusammenfassung. Übung auf der Plattform: Modul 6</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sitzung-6-erweiterte-diagramme-und-dashboards">Sitzung 6:
+Erweiterte Diagramme und Dashboards</h3>
+<p><strong>Integriertes Modul</strong>: M7 (Erweiterte Diagramme und
+Visualisierung)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Praxis</p>
+<h4 id="sitzungsziele-5">Sitzungsziele</h4>
+<ul>
+<li>Den optimalen Diagrammtyp für jede Datenart und Botschaft
+auswählen</li>
+<li>Kombinierte Diagramme (Säule + Linie) mit Sekundärachse
+erstellen</li>
+<li>Erweiterte Anpassung: Achsen, Beschriftungen, Fehlerindikatoren,
+Trendlinien</li>
+<li>Executive Dashboards mit Integration von Tabellen, Diagrammen,
+Sparklines und Datenschnitten entwerfen</li>
+<li>Diagramme und Dashboards für Präsentationen exportieren</li>
+</ul>
+<h4 id="inhalte-5">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzepte</th>
+<th>Verfahren</th>
+<th>Haltungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grammatik der Datenvisualisierung</td>
+<td>Den zur Botschaft passenden Diagrammtyp auswählen</td>
+<td>Kritisches Bewusstsein für visuelle Kommunikation</td>
+</tr>
+<tr>
+<td>Kombinierte Diagramme und Sekundärachsen</td>
+<td>Diagramme mit zwei verschiedenen Skalen erstellen</td>
+<td>Aufmerksamkeit für darstellerische Klarheit</td>
+</tr>
+<tr>
+<td>Erweiterte Diagrammanpassung</td>
+<td>Achsen formatieren, Fehlerindikatoren und Trendlinien
+hinzufügen</td>
+<td>Sorgfalt für visuelles Detail</td>
+</tr>
+<tr>
+<td>Dashboard-Design-Prinzipien</td>
+<td>Mehrere visuelle Elemente kohärent integrieren</td>
+<td>Ganzheitliche Sicht auf die Datenpräsentation</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sitzungsablauf-5">Sitzungsablauf</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5 Min</td>
+<td>Durchsicht der vom Teilnehmer in seiner Arbeit erstellten
+Diagramme</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min</td>
+<td>Erstellung eines Vertriebs-Dashboards: kombiniertes Diagramm mit
+monatlichen Umsätzen und Marge, Sparklines pro Produkt, Trendlinie mit
+Prognose, Pivot-Tabelle mit Slicer</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>45 Min</td>
+<td>Der Teilnehmer entwirft sein eigenes Dashboard aus einem
+Rechnungsdatensatz und wendet alle bearbeiteten Visualisierungstechniken
+an</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min</td>
+<td>Kritische Überprüfung des Dashboards: Kommuniziert es effektiv? Was
+könnte verbessert werden?</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min</td>
+<td>Zusammenfassung. Übung auf der Plattform: Modul 7</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sitzung-7-automatisierung-mit-makros-einführung">Sitzung 7:
+Automatisierung mit Makros (Einführung)</h3>
+<p><strong>Integriertes Modul</strong>: M8 (Makros —
+Einführungsniveau)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="sitzungsziele-6">Sitzungsziele</h4>
+<ul>
+<li>Verstehen, was ein Makro ist, wie es funktioniert und wann es
+eingesetzt wird</li>
+<li>Die Registerkarte Entwicklertools aktivieren und die Makrosicherheit
+konfigurieren</li>
+<li>Makros mit absoluten und relativen Bezügen aufzeichnen</li>
+<li>Makros über das Dialogfeld, Tastenkombinationen und Schaltflächen
+ausführen</li>
+<li>Einfache Makros im VBA-Editor bearbeiten</li>
+</ul>
+<h4 id="inhalte-6">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzepte</th>
+<th>Verfahren</th>
+<th>Haltungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Konzept von Makro und VBA</td>
+<td>Registerkarte Entwicklertools aktivieren und Sicherheit
+konfigurieren</td>
+<td>Bewusstsein für Sicherheitsrisiken</td>
+</tr>
+<tr>
+<td>Aufzeichnung mit absoluten vs. relativen Bezügen</td>
+<td>Ein Makro aufzeichnen, das einen Bericht formatiert</td>
+<td>Wertschätzung der Zeitersparnis</td>
+</tr>
+<tr>
+<td>Ausführungsmethoden</td>
+<td>Makro einer Schaltfläche, Form und Tastenkombination zuweisen</td>
+<td>Interesse an Produktivität</td>
+</tr>
+<tr>
+<td>Grundstruktur von VBA</td>
+<td>Aufgezeichneten Code im Editor lesen und ändern</td>
+<td>Neugier, den generierten Code zu verstehen</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sitzungsablauf-6">Sitzungsablauf</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5 Min</td>
+<td>Welche wiederkehrenden Aufgaben führt der Teilnehmer wöchentlich in
+Excel aus?</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min</td>
+<td>Live-Aufzeichnung eines Makros, das einen Bericht formatiert:
+Fettdruck in Überschriften, Rahmen, Spaltenanpassung und Summenformeln.
+Zuweisung zu einer Schaltfläche und grundlegende Code-Änderung</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>45 Min</td>
+<td>Der Teilnehmer zeichnet drei Makros auf: (1) Berichtsformatierung,
+(2) Anwendung von Filtern und Sortierung, (3) Einfügen eines
+Übersichtsblatts. Weist sie Schaltflächen zu und übt ihre Bearbeitung in
+VBA</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min</td>
+<td>Übung: Ein Makro aufzeichnen, das eine reale Aufgabe des Teilnehmers
+automatisiert</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min</td>
+<td>Zusammenfassung. Übung auf der Plattform: Modul 8</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="sitzung-8-angewandtes-vba-zusammenarbeit-und-kursabschluss">Sitzung
+8: Angewandtes VBA, Zusammenarbeit und Kursabschluss</h3>
+<p><strong>Integrierte Module</strong>: M9 (Erweitertes VBA) + M10
+(Zusammenarbeit)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="sitzungsziele-7">Sitzungsziele</h4>
+<ul>
+<li>Die Grundlagen der VBA-Programmierung verstehen: Variablen, Typen,
+Kontrollstrukturen</li>
+<li>Blatt- und Arbeitsmappenereignisse kennen (Worksheet_Change,
+Workbook_Open)</li>
+<li>Das Konzept benutzerdefinierter Funktionen (UDF) einführen</li>
+<li>Vorlagen, erweiterten Schutz und Zusammenarbeit konfigurieren</li>
+<li>Den Ausbildungsweg festigen und einen Plan für die zukünftige
+Entwicklung entwerfen</li>
+</ul>
+<h4 id="inhalte-7">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzepte</th>
+<th>Verfahren</th>
+<th>Haltungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variablen, Typen und Kontrollstrukturen in VBA</td>
+<td>Eine For Each-Schleife und eine If/Then-Bedingung schreiben</td>
+<td>Neugier auf Programmierung</td>
+</tr>
+<tr>
+<td>Excel-Ereignisse</td>
+<td>Ein Worksheet_Change-Ereignis zur automatischen Validierung
+erstellen</td>
+<td>Interesse an reaktiver Automatisierung</td>
+</tr>
+<tr>
+<td>Benutzerdefinierte Funktionen</td>
+<td>Eine einfache UDF erstellen und in einem Blatt verwenden</td>
+<td>Wertschätzung der Erweiterbarkeit von Excel</td>
+</tr>
+<tr>
+<td>Vorlagen und Zusammenarbeit</td>
+<td>Eine .xltx-Vorlage erstellen und Schutz konfigurieren</td>
+<td>Verantwortung bei gemeinsamer Arbeit</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sitzungsablauf-7">Sitzungsablauf</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rückblick</td>
+<td>5 Min</td>
+<td>Überprüfung der in der vorherigen Sitzung aufgezeichneten
+Makros</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min</td>
+<td>Geführtes Schreiben einer For Each-Schleife zur Verarbeitung eines
+Bereichs, Erstellung einer einfachen UDF, Konfiguration eines
+Worksheet_Change-Ereignisses</td>
+</tr>
+<tr>
+<td>Geführte Übung</td>
+<td>40 Min</td>
+<td>Der Teilnehmer schreibt VBA-Code, um Daten zu durchlaufen und
+bedingt zu formatieren, erstellt eine UDF zur Berechnung einer
+benutzerdefinierten Kennzahl und verwendet sie in einem Blatt</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min</td>
+<td>Allgemeine Kursrückschau: Der Teilnehmer identifiziert die Werkzeuge
+mit der größten Auswirkung auf seine Arbeit und die Bereiche, die er
+vertiefen möchte</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>10 Min</td>
+<td>Übergabe der Bescheinigung. Entwicklungsplan: empfohlene Ressourcen,
+erweiterter VBA-Kurs, Excel-lenz-Community</td>
+</tr>
+</tbody>
+</table>
+<h2
+id="anhang-zuordnung-zu-den-übungen-der-excel-lenz-plattform">Anhang:
+Zuordnung zu den Übungen der Excel-lenz-Plattform</h2>
+<p>Die Excel-lenz-Plattform verfügt über <strong>25 Übungen auf
+fortgeschrittenem Niveau</strong>. Ihre Nutzung als ergänzende Praxis
+wird empfohlen:</p>
+<table>
+<thead>
+<tr>
+<th>Sitzung</th>
+<th>Modul auf der Plattform</th>
+<th>Übungen</th>
+<th>Typ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>M1: Erweiterte Formatierung</td>
+<td>3</td>
+<td>Spreadsheet + Quiz</td>
+</tr>
+<tr>
+<td>2</td>
+<td>M2: Erweiterte Funktionen</td>
+<td>6</td>
+<td>Spreadsheet</td>
+</tr>
+<tr>
+<td>3</td>
+<td>M3: Bezüge + M4: Datenbanken</td>
+<td>5</td>
+<td>Spreadsheet</td>
+</tr>
+<tr>
+<td>4</td>
+<td>M5: Pivot-Tabellen</td>
+<td>1 (Quiz)</td>
+<td>Quiz</td>
+</tr>
+<tr>
+<td>5</td>
+<td>M6: Datenanalyse</td>
+<td>4</td>
+<td>Quiz</td>
+</tr>
+<tr>
+<td>6</td>
+<td>M7: Diagramme</td>
+<td>—</td>
+<td>In Entwicklung</td>
+</tr>
+<tr>
+<td>7</td>
+<td>M8: Makros</td>
+<td>2</td>
+<td>Quiz</td>
+</tr>
+<tr>
+<td>8</td>
+<td>M9: VBA + M10: Kollaboration</td>
+<td>4</td>
+<td>Quiz</td>
+</tr>
+</tbody>
+</table>
+<p><em>Hinweis: Die Übungen der Module 5 bis 10 befinden sich in der
+Entwicklung. Der Dozent stellt bis dahin gleichwertige Übungen im
+Excel-Format zur Verfügung.</em></p>
+</body>
+</html>

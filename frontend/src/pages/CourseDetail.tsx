@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Lock, Clock, BookOpen, ChevronRight, Play, Target, BookMarked, GraduationCap, Trophy, BarChart3, Zap, Brain, Sprout } from 'lucide-react';
+import { CheckCircle, Lock, Clock, BookOpen, ChevronRight, Play, Target, BookMarked, GraduationCap, Trophy, BarChart3, Zap, Brain, Sprout, FileText } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
 import FunctionMap from '../components/visualizations/FunctionMap';
 import { ExcelSpinner } from '../components/animations/Celebrations';
@@ -164,6 +164,24 @@ export default function CourseDetail() {
     return findNextExercise(course.exercises);
   }, [course]);
 
+  // Map course difficulty to didactic guide assets
+  const didacticGuide = useMemo(() => {
+    if (!course) return null;
+    const map: Record<string, { html: string; pdf: string; label: string }> = {
+      beginner: {
+        html: '/didaktik/anfaenger',
+        pdf: '/downloads/Didaktischer_Leitfaden_Excel_Anfaenger.pdf',
+        label: 'Didaktischer Leitfaden: Excel für Anfänger',
+      },
+      advanced: {
+        html: '/didaktik/fortgeschrittene',
+        pdf: '/downloads/Didaktischer_Leitfaden_Excel_Fortgeschrittene.pdf',
+        label: 'Didaktischer Leitfaden: Excel für Fortgeschrittene',
+      },
+    };
+    return map[course.difficulty] || null;
+  }, [course]);
+
   if (loading) return <ExcelSpinner text="Kurse werden geladen..." />;
   if (error) return (
     <div className="empty-state" style={{ padding: '80px 24px' }}>
@@ -197,23 +215,9 @@ export default function CourseDetail() {
 
   return (
     <div className="course-detail-page">
-      {/* ── HERO V2 — Clean, Tesla-style documentation layout ── */}
+      {/* ── HERO V2 ── */}
       <section className="course-hero-v2" style={{ background: 'var(--bg-alt)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="course-hero-inner">
-        {activeSection ? (
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 16 }}>
-            <Link to="/courses" className="btn btn-outline btn-sm">
-              <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
-            </Link>
-            <button className="btn btn-outline btn-sm" onClick={() => setSelectedSection(null)}>
-              <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zur Übersicht
-            </button>
-          </div>
-        ) : (
-          <Link to="/courses" className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen" style={{ display: 'inline-flex', marginBottom: 16 }}>
-            <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
-          </Link>
-        )}
         {activeSection ? (
           /* ── Section header (compact) ── */
           <div className="section-header">
@@ -286,28 +290,48 @@ export default function CourseDetail() {
                       <div className="progress-bar-fill" style={{ width: `${pct}%`, background: theme.accent }} />
                     </div>
                   </div>
-                  {nextEx && pct < 100 && (
-                    <button
-                      className="btn btn-accent hero-cta-btn"
-                      onClick={() => navigate(`/exercises/${nextEx.id}`)}
-                    >
-                      <Play size={16} /> Weiter mit: {nextEx.title}
-                    </button>
-                  )}
-                  {pct >= 100 && (
-                    <div className="hero-complete-badge">
-                      <Trophy size={20} /> Alle Übungen abgeschlossen!
-                    </div>
-                  )}
+                  <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+                    {nextEx && pct < 100 && (
+                      <button
+                        className="btn btn-accent hero-cta-btn"
+                        onClick={() => navigate(`/exercises/${nextEx.id}`)}
+                      >
+                        <Play size={16} /> Weiter mit: {nextEx.title}
+                      </button>
+                    )}
+                    {pct >= 100 && (
+                      <div className="hero-complete-badge">
+                        <Trophy size={20} /> Alle Übungen abgeschlossen!
+                      </div>
+                    )}
+                    {didacticGuide && (
+                      <button
+                        className="btn btn-accent hero-cta-btn btn-dark-accent"
+                        onClick={() => window.open(didacticGuide.html, '_blank')}
+                      >
+                        <FileText size={16} />
+                        Didaktisches Programm
+                      </button>
+                    )}
+                  </div>
                 </div>
               ) : (
-                <div className="hero-progress-cta">
+                <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
                   {nextEx && (
                     <button
                       className="btn btn-accent btn-lg hero-cta-btn"
                       onClick={() => navigate(`/exercises/${nextEx.id}`)}
                     >
                       <Play size={18} /> Jetzt starten
+                    </button>
+                  )}
+                  {didacticGuide && (
+                    <button
+                      className="btn btn-accent btn-lg hero-cta-btn btn-dark-accent"
+                      onClick={() => window.open(didacticGuide.html, '_blank')}
+                    >
+                      <FileText size={18} />
+                      Didaktisches Programm
                     </button>
                   )}
                 </div>

@@ -30,6 +30,8 @@ const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const VerifyEmail = lazy(() => import('./pages/VerifyEmail'));
 const Developer = lazy(() => import('./pages/Developer'));
+const DidacticGuide = lazy(() => import('./pages/DidacticGuide'));
+const DidacticGuideList = lazy(() => import('./pages/DidacticGuideList'));
 
 export default function App() {
   const { user, loading, logout } = useAuth();
@@ -204,6 +206,8 @@ export default function App() {
           <Route path="/teacher" element={user?.role === 'teacher' ? <TeacherPanel /> : <Navigate to="/dashboard" />} />
           <Route path="/error" element={<ServerError />} />
           <Route path="/entwickler" element={<Developer />} />
+          <Route path="/didaktik/:type" element={<DidacticGuide />} />
+          <Route path="/didaktik" element={<DidacticGuideList />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

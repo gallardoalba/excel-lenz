@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Didaktischer_Leitfaden_Excel_Anfaenger_clean</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#vorstellung-und-grundlagen"
+id="toc-vorstellung-und-grundlagen">1. Vorstellung und
+Grundlagen</a></li>
+<li><a href="#entwickelte-kompetenzen"
+id="toc-entwickelte-kompetenzen">3. Entwickelte Kompetenzen</a></li>
+<li><a href="#didaktische-methodik" id="toc-didaktische-methodik">5.
+Didaktische Methodik</a></li>
+<li><a href="#fortschrittsverfolgung" id="toc-fortschrittsverfolgung">7.
+Fortschrittsverfolgung</a></li>
+<li><a href="#ablauf-der-sitzungen" id="toc-ablauf-der-sitzungen">8.
+Ablauf der Sitzungen</a></li>
+<li><a href="#anhang-zuordnung-zu-den-übungen-der-excel-lenz-plattform"
+id="toc-anhang-zuordnung-zu-den-übungen-der-excel-lenz-plattform">Anhang:
+Zuordnung zu den Übungen der Excel-lenz-Plattform</a></li>
+</ul>
+</nav>
+<h2 id="vorstellung-und-grundlagen">1. Vorstellung und Grundlagen</h2>
+<h3 id="profil-der-lernenden">1.1. Profil der Lernenden</h3>
+<p>Dieser Kurs richtet sich an Erwachsene, die aus beruflichen oder
+persönlichen Gründen Kompetenzen im Umgang mit Tabellenkalkulationen
+erwerben müssen. Das typische Profil der Lernenden umfasst:</p>
+<ul>
+<li>Berufstätige, die Excel als tägliches Arbeitswerkzeug einsetzen</li>
+<li>Personen, die ihr berufliches Profil verbessern möchten</li>
+<li>Unternehmer und Selbstständige, die ihre eigenen Finanz- und
+Betriebsdaten verwalten</li>
+<li>Erwachsene, die ihre Ausbildung nach einer lernfernen Phase wieder
+aufnehmen</li>
+</ul>
+<h3 id="pädagogische-grundlage-das-lernen-erwachsener">1.2. Pädagogische
+Grundlage: Das Lernen Erwachsener</h3>
+<p>Das didaktische Design stützt sich auf die von Malcolm Knowles (1980)
+formulierten Prinzipien der Andragogik, die die besonderen Merkmale des
+erwachsenen Lernenden anerkennen:</p>
+<table>
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr>
+<th>Andragogisches Prinzip</th>
+<th>Umsetzung im Kurs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lernbedürfnis</strong></td>
+<td>Jede Sitzung beginnt mit der Verdeutlichung der unmittelbaren
+Anwendbarkeit der Inhalte im beruflichen oder persönlichen Kontext des
+Lernenden</td>
+</tr>
+<tr>
+<td><strong>Selbstverständnis des Erwachsenen</strong></td>
+<td>Der Unterricht findet auf Augenhöhe statt und fördert die
+schrittweise Autonomie und Entscheidungsfindung über das eigene
+Lernen</td>
+</tr>
+<tr>
+<td><strong>Vorerfahrung</strong></td>
+<td>Die praktischen Fälle gehen von der Lebens- und Berufserfahrung des
+Lernenden aus und verbinden neues Wissen mit seiner gesammelten
+Erfahrung</td>
+</tr>
+<tr>
+<td><strong>Lernorientierung</strong></td>
+<td>Es wird ein problemlösungsorientierter Ansatz verfolgt, der
+praxisferne, abstrakte Theoriebildung vermeidet</td>
+</tr>
+<tr>
+<td><strong>Intrinsische Motivation</strong></td>
+<td>Der Lernende erlebt den Fortschritt greifbar durch die unmittelbare
+Anwendung des Gelernten auf für ihn relevante Situationen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="referenzmodelle-der-pädagogik">1.3. Referenzmodelle der
+Pädagogik</h3>
+<p>Der Leitfaden stützt sich auf drei komplementäre pädagogische
+Strömungen, die die didaktischen Entscheidungen prägen:</p>
+<ol type="1">
+<li><p><strong>Konnektivismus</strong> (Siemens, 2005): Lernen findet
+durch Netzwerke und Verbindungen statt. Die ergänzende Webplattform
+fungiert als Knotenpunkt, der es dem Lernenden ermöglicht, zwischen den
+Präsenzsitzungen mit den Inhalten in Kontakt zu bleiben.</p></li>
+<li><p><strong>Transformatives Lernen</strong> (Mezirow, 1991):
+Erwachsene verändern ihre Perspektiven durch kritische Reflexion ihrer
+Erfahrungen. Die angeleitete Praxis regt den Lernenden dazu an, seine
+eigenen Arbeitsmethoden mit Daten zu hinterfragen und zu
+verfeinern.</p></li>
+<li><p><strong>TPACK-Modell</strong> (Mishra &amp; Koehler, 2006): Die
+ausgewogene Integration von technologischem, pädagogischem und
+inhaltlichem Wissen ermöglicht es dem Lehrenden, die technische
+Beherrschung von Excel mit didaktischen Strategien zu verbinden, die an
+das individuelle Lerntempo und den Lernstil angepasst sind.</p></li>
+</ol>
+<h3 id="rolle-der-ergänzenden-webplattform">1.4. Rolle der ergänzenden
+Webplattform</h3>
+<p>Die Plattform Excel-lenz dient als <strong>Vertiefungsressource
+zwischen den Sitzungen</strong>, nicht als Ersatz für die Praxis mit
+echtem Excel:</p>
+<ul>
+<li><strong>Vorbereitung</strong>: Der Lernende kann die Theorie vor der
+Sitzung einsehen, um die Präsenzzeit zu optimieren</li>
+<li><strong>Selbstständige Übung</strong>: Übungen mit automatischer
+Korrektur, die das im Unterricht Gelernte festigen</li>
+<li><strong>Schrittweise Hilfestellung</strong>: Vierstufiges
+Hinweissystem, das den Lernenden anleitet, ohne die Lösung direkt
+preiszugeben</li>
+</ul>
+<p>Der Kern des Lernens liegt in der <strong>Präsenzpraxis mit echtem
+Microsoft Excel</strong>, bei der der Lehrende den Lernenden in Echtzeit
+begleitet, sofortige Fragen klärt und die Erklärung an die während der
+Sitzung festgestellten spezifischen Bedürfnisse anpasst.</p>
+<h2 id="entwickelte-kompetenzen">3. Entwickelte Kompetenzen</h2>
+<h3 id="digitale-kompetenz">3.1. Digitale Kompetenz</h3>
+<p>Die digitale Kompetenz bildet das Rückgrat des Kurses. Gemäß dem
+<strong>Europäischen Rahmen für digitale Kompetenzen der Bürger —
+DigComp 2.2</strong> (Vuorikari et al., 2022) werden folgende Bereiche
+bearbeitet:</p>
+<table>
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr>
+<th>DigComp 2.2-Bereich</th>
+<th>Anwendung im Kurs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Information und Datenkompetenz</td>
+<td>Navigation in Tabellenblättern, erweiterte Filterung, Suche und
+Abruf von Informationen</td>
+</tr>
+<tr>
+<td>Kommunikation und Zusammenarbeit</td>
+<td>Freigabe von Arbeitsmappen, PDF-Export, Einfügen von
+Kommentaren</td>
+</tr>
+<tr>
+<td>Erstellung digitaler Inhalte</td>
+<td>Erstellung professioneller Tabellenkalkulationen, Diagramme und
+Dashboards</td>
+</tr>
+<tr>
+<td>Sicherheit</td>
+<td>Schutz von Zellen und Tabellenblättern, Passwortverwaltung,
+Entfernung von Metadaten</td>
+</tr>
+<tr>
+<td>Problemlösung</td>
+<td>Kreativer Einsatz von Funktionen zur Lösung realer
+Datenverarbeitungsprobleme</td>
+</tr>
+</tbody>
+</table>
+<h3 id="computergestütztes-und-analytisches-denken">3.2.
+Computergestütztes und analytisches Denken</h3>
+<p>Die Erstellung von Formeln in Excel entwickelt übertragbare
+Fähigkeiten des algorithmischen Denkens:</p>
+<ul>
+<li><strong>Zerlegung</strong>: Aufteilung eines komplexen Problems in
+sequenzielle logische Schritte</li>
+<li><strong>Mustererkennung</strong>: Identifizierung von
+Regelmäßigkeiten in Datensätzen</li>
+<li><strong>Abstraktion</strong>: Darstellung von Beziehungen durch
+Zellbezüge und parametrisierte Funktionen</li>
+<li><strong>Systematische Fehlerbehebung</strong>: Diagnose und
+Korrektur von Fehlern (#DIV/0!, #NAME?, #BEZUG!, #WERT!, #NULL!)</li>
+</ul>
+<h3 id="übergreifende-berufliche-kompetenzen">3.3. Übergreifende
+berufliche Kompetenzen</h3>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr>
+<th>Kompetenz</th>
+<th>Entwicklung im Kurs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Organisation und Informationsmanagement</td>
+<td>Strukturierung von Daten in Tabellen, systematischer Einsatz von
+Filtern und Sortierung</td>
+</tr>
+<tr>
+<td>Ergebnisorientierung</td>
+<td>Praxis mit realen Fällen: Budgets, Umsatzberichte,
+Rentabilitätsanalysen</td>
+</tr>
+<tr>
+<td>Lernautonomie</td>
+<td>Selbstständige Übung zwischen den Sitzungen mit sofortigem Feedback
+auf der Webplattform</td>
+</tr>
+<tr>
+<td>Liebe zum Detail</td>
+<td>Präzision in Formelsyntax, Bezügen und Zahlenformaten</td>
+</tr>
+</tbody>
+</table>
+<h2 id="didaktische-methodik">5. Didaktische Methodik</h2>
+<h3 id="struktur-einer-typischen-sitzung-90-minuten">5.1. Struktur einer
+typischen Sitzung (90 Minuten)</h3>
+<p>Die Struktur folgt dem Modell der <strong>direkten Instruktion mit
+sofortiger Praxis</strong>, optimal für den Einzelunterricht von
+IT-Werkzeugen:</p>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Dauer</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5-10 Min.</td>
+<td>Rückblick auf Fragen der vorherigen Sitzung und Überprüfung der
+selbstständig durchgeführten Übungen</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>15-20 Min.</td>
+<td>Dialogische Erklärung mit dem Lernenden, wobei Fragen direkt geklärt
+werden. Jedes Konzept wird mit Beispielen in echtem Excel
+veranschaulicht, während der Lernende es gleichzeitig auf seinem Gerät
+nachvollzieht</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>40-50 Min.</td>
+<td>Fortschreitende Übungen mit steigendem Schwierigkeitsgrad. Der
+Lehrende beobachtet, korrigiert und gibt sofortiges Feedback, wobei er
+bei jeder erkannten Schwierigkeit inne hält</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>10-15 Min.</td>
+<td>Der Lernende löst selbstständig eine integrative Übung, die die
+behandelten Konzepte kombiniert. Der Lehrende greift nur bei Bedarf
+ein</td>
+</tr>
+<tr>
+<td>Abschluss und Orientierung</td>
+<td>5 Min.</td>
+<td>Zusammenfassung der wichtigsten Lernergebnisse und Empfehlung
+spezifischer Übungen auf der Webplattform für die Woche</td>
+</tr>
+</tbody>
+</table>
+<h3 id="methodische-prinzipien">5.2. Methodische Prinzipien</h3>
+<ol type="1">
+<li><p><strong>Individualisierung</strong>: Der Unterricht passt sich
+dem Tempo, Lernstil und den beruflichen Zielen des Lernenden an. Jede
+Erklärung wird in Echtzeit an die festgestellten Bedürfnisse
+angepasst.</p></li>
+<li><p><strong>Bedeutungsvolles Lernen</strong>: Alle Inhalte werden in
+reale Situationen aus dem beruflichen Umfeld des Lernenden eingebettet
+(Budgets, Rechnungen, Berichte, Analyse von Geschäftsdaten).</p></li>
+<li><p><strong>Sofortige Praxis</strong>: Die direkte Instruktion wird
+mit der gleichzeitigen Ausführung durch den Lernenden in echtem Excel
+kombiniert. Es gibt keine Trennung zwischen Theorie und Praxis.</p></li>
+<li><p><strong>Spiralförmige Progression</strong>: Jede Sitzung greift
+frühere Inhalte auf und erweitert sie, aufbauend auf einer sich
+schrittweise festigenden Basis.</p></li>
+<li><p><strong>Hilfestellung mit schrittweisem Abbau</strong>: Der
+Lehrende bietet zu Beginn jedes neuen Inhalts ein hohes Maß an Anleitung
+und reduziert diese schrittweise, je mehr der Lernende an Autonomie
+gewinnt.</p></li>
+</ol>
+<h3 id="methodische-strategien">5.3. Methodische Strategien</h3>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr>
+<th>Strategie</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dialogischer Unterricht</strong></td>
+<td>Die Erklärung erfolgt im Dialog, nicht als Monolog. Der Lehrende
+stellt Fragen, um das Verständnis zu überprüfen und die Reflexion des
+Lernenden anzuregen</td>
+</tr>
+<tr>
+<td><strong>Modellierung (Modeling)</strong></td>
+<td>Der Lehrende zeigt, wie eine Aufgabe in Excel durchgeführt wird,
+während er seinen Denkprozess verbalisiert und die zugrunde liegende
+Logik sichtbar macht</td>
+</tr>
+<tr>
+<td><strong>Verteilte Übung</strong></td>
+<td>Die Übungen zwischen den Sitzungen auf der Webplattform ermöglichen
+eine zeitliche Streuung der Praxis, was die Festigung im
+Langzeitgedächtnis begünstigt</td>
+</tr>
+<tr>
+<td><strong>Fallbasiertes Lernen</strong></td>
+<td>Jede Sitzung gipfelt in einem praktischen Fall, der die behandelten
+Inhalte integriert und eine realistische berufliche Situation
+simuliert</td>
+</tr>
+<tr>
+<td><strong>Sofortiges korrektives Feedback</strong></td>
+<td>Die Korrektur erfolgt unmittelbar, am konkreten Fehler, mit
+Erklärung der Ursache und der Lösung, um die Anhäufung von Fragen zu
+vermeiden</td>
+</tr>
+</tbody>
+</table>
+<h3 id="räumliche-ressourcen">5.4. Räumliche Ressourcen</h3>
+<ul>
+<li><strong>Ausgestatteter Schulungsraum oder Büro</strong> mit einem
+Computer für den Lernenden und einem für den Lehrenden</li>
+<li><strong>Beamer oder zweiter Bildschirm</strong>, der es dem
+Lernenden ermöglicht, die Demonstrationen zu sehen, während er an seinem
+eigenen Gerät arbeitet</li>
+<li><strong>Microsoft Excel</strong> in der Desktop-Version (2019 oder
+Microsoft 365), nicht in der Web-Version</li>
+</ul>
+<h2 id="fortschrittsverfolgung">7. Fortschrittsverfolgung</h2>
+<p>Da es sich um eine individuelle Weiterbildung im nicht-formalen
+Kontext handelt, wird kein benotendes Bewertungssystem angewendet. Es
+wird ein Modell der <strong>kontinuierlichen
+Fortschrittsverfolgung</strong> verwendet, das auf Beobachtung und
+Dialog basiert:</p>
+<h3 id="fortschrittsindikatoren">7.1. Fortschrittsindikatoren</h3>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 30%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Indikator</th>
+<th>Quelle</th>
+<th>Zweck</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flüssigkeit bei der Aufgabenausführung</td>
+<td>Direkte Beobachtung im Unterricht</td>
+<td>Bewertung der Automatisierung von Verfahren</td>
+</tr>
+<tr>
+<td>Art und Häufigkeit von Fehlern</td>
+<td>Beobachtung während der angeleiteten Übung</td>
+<td>Identifizierung hartnäckiger Fehlvorstellungen</td>
+</tr>
+<tr>
+<td>Durchgeführte selbstständige Übung</td>
+<td>Webplattform Excel-lenz</td>
+<td>Bewertung von Engagement und Beständigkeit</td>
+</tr>
+<tr>
+<td>Fortschreitende Autonomie</td>
+<td>Längsschnittbeobachtung</td>
+<td>Messung der abnehmenden Abhängigkeit von der Anleitung des
+Lehrenden</td>
+</tr>
+</tbody>
+</table>
+<h3 id="feedback-an-den-lernenden">7.2. Feedback an den Lernenden</h3>
+<ul>
+<li><strong>Sofort</strong>: Korrektur und Erklärung im Moment während
+der Präsenzsitzungen</li>
+<li><strong>Zeitversetzt</strong>: Durchsicht der auf der Plattform
+zwischen den Sitzungen bearbeiteten Übungen</li>
+<li><strong>Teilnahmebescheinigung</strong>: Am Ende des Kurses wird ein
+Nachweisdokument auf Basis der Anwesenheit und aktiven Teilnahme
+ausgestellt</li>
+</ul>
+<h2 id="ablauf-der-sitzungen">8. Ablauf der Sitzungen</h2>
+<p>Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des
+Kurses dargestellt.</p>
+<h3
+id="sitzung-1-erste-schritte-in-excel-umgebung-navigation-und-dateneingabe">Sitzung
+1: Erste Schritte in Excel — Umgebung, Navigation und Dateneingabe</h3>
+<p><strong>Integrierte Module</strong>: M1 (Einführung) + M2
+(Dateneingabe und -bearbeitung)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="ziele-der-sitzung">Ziele der Sitzung</h4>
+<ul>
+<li>Die grundlegenden Bestandteile der Excel-Oberfläche
+identifizieren</li>
+<li>Den konzeptionellen Unterschied zwischen Arbeitsmappe, Tabellenblatt
+und Zelle verstehen</li>
+<li>Sicher im Tabellenblatt navigieren, sowohl mit der Maus als auch mit
+der Tastatur</li>
+<li>Daten unterschiedlicher Art (Text, Zahlen, Datumsangaben) eingeben
+und ihr unterschiedliches Verhalten verstehen</li>
+<li>Arbeitsmappen in den wichtigsten Formaten (.xlsx, .pdf) erstellen,
+speichern und öffnen</li>
+</ul>
+<h4 id="inhalte">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzeptuell</th>
+<th>Prozedural</th>
+<th>Einstellungsbezogen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Konzept und Zweck der Tabellenkalkulation</td>
+<td>Excel-Arbeitsmappen öffnen, erstellen und schließen</td>
+<td>Wertschätzung der Organisation und Struktur von Information</td>
+</tr>
+<tr>
+<td>Arbeitsmappe, Tabellenblatt und Zelle als hierarchische Ebenen</td>
+<td>Zwischen Zellen mit Tastatur und Maus navigieren</td>
+<td>Neugier, die Möglichkeiten des Werkzeugs zu erkunden</td>
+</tr>
+<tr>
+<td>Die Multifunktionsleiste (Ribbon) und ihre Hauptregisterkarten</td>
+<td>Zellen, Zeilen, Spalten und Bereiche auswählen</td>
+<td>Sorgfalt bei der korrekten Benennung von Dateien</td>
+</tr>
+<tr>
+<td>Dateiformate: .xlsx, .xls, .csv, .pdf</td>
+<td>Daten in Zellen eingeben und ändern</td>
+<td>Genauigkeit bei der Dateneingabe</td>
+</tr>
+<tr>
+<td>Datentypen: Text, Zahl, Datum</td>
+<td>Rückgängig (Strg+Z) und Wiederherstellen (Strg+Y) verwenden</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ablauf-der-sitzung">Ablauf der Sitzung</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5 Min.</td>
+<td>Einstiegsdialog: Hat der Lernende schon einmal Excel oder eine
+andere Tabellenkalkulation verwendet? In welchem Kontext? Was erwartet
+er am Ende des Kurses zu erreichen?</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min.</td>
+<td>Geführte Tour durch die Oberfläche, während der Lernende sie
+gleichzeitig erkundet. Demonstration der Eingabe verschiedener
+Datentypen und ihres Verhaltens. Erster Kontakt mit dem Ausfüllkästchen
+und automatischen Reihen (AutoAusfüllen)</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>45 Min.</td>
+<td>Erstellung einer beruflichen Kontaktliste mit Text-, Datums- und
+Zahlenfeldern. Übung zum Kopieren, Ausschneiden und Einfügen mit
+Erkundung der Inhalte-einfügen-Optionen</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min.</td>
+<td>Der Lernende erstellt von Grund auf eine kleine monatliche
+Ausgabenübersicht und wendet alle behandelten Verfahren an</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min.</td>
+<td>Zusammenfassung des Gelernten. Die Übungen 1 bis 5 der Module 1 und
+2 der Plattform Excel-lenz werden für die Woche empfohlen</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="sitzung-2-professionelles-format-von-tabellenkalkulationen">Sitzung
+2: Professionelles Format von Tabellenkalkulationen</h3>
+<p><strong>Integriertes Modul</strong>: M3 (Format und Zellstil)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Praxis</p>
+<h4 id="ziele-der-sitzung-1">Ziele der Sitzung</h4>
+<ul>
+<li>Schriftart-, Rahmen-, Schattierungs- und Ausrichtungsformate zur
+Verbesserung der Lesbarkeit anwenden</li>
+<li>Zahlen angemessen als Währung, Prozent, Datum und andere spezielle
+Formate formatieren</li>
+<li>Spaltenbreite und Zeilenhöhe manuell und automatisch anpassen</li>
+<li>Grundlegende bedingte Formatierung verwenden, um relevante Werte
+visuell hervorzuheben</li>
+<li>Datenbereiche in formatierte Tabellen umwandeln (Strg+T)</li>
+</ul>
+<h4 id="inhalte-1">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzeptuell</th>
+<th>Prozedural</th>
+<th>Einstellungsbezogen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visuelle Hierarchie und Lesbarkeit von Daten</td>
+<td>Fett, Kursiv, Unterstrichen und Schriftfarbe anwenden</td>
+<td>Ästhetisches Empfinden bei der Darstellung von Informationen</td>
+</tr>
+<tr>
+<td>Vordefinierte und benutzerdefinierte Zahlenformate</td>
+<td>Zellen über das Dialogfeld formatieren (Strg+1)</td>
+<td>Genauigkeit bei der Darstellung von Beträgen</td>
+</tr>
+<tr>
+<td>Anpassung von Zeilen und Spalten</td>
+<td>Breite und Höhe ändern; an Inhalt automatisch anpassen</td>
+<td>Sorgfalt für professionelle Präsentation</td>
+</tr>
+<tr>
+<td>Grundlagen der bedingten Formatierung</td>
+<td>Hervorhebungsregeln basierend auf Werten erstellen</td>
+<td>Gezielte Aufmerksamkeit auf relevante Daten</td>
+</tr>
+<tr>
+<td>Excel-Tabellen (Strg+T)</td>
+<td>Vordefinierte Tabellenformatvorlagen anwenden</td>
+<td>Wertschätzung visueller Konsistenz</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ablauf-der-sitzung-1">Ablauf der Sitzung</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5 Min.</td>
+<td>Durchsicht der selbstständigen Übung. Klärung von während der Woche
+aufgetretenen Fragen</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>15 Min.</td>
+<td>Live-Formatierung einer unformatierten Tabelle: schrittweise
+Anwendung von Schriftarten, Rahmen, Farben, Zahlenformaten und bedingter
+Formatierung</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>50 Min.</td>
+<td>Angeleitete Umwandlung eines Quartalsumsatzberichts: von Rohdaten zu
+einem professionellen Dokument. Alle Formate werden kumulativ
+bearbeitet</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min.</td>
+<td>Der Lernende erhält eine unformatierte Datentabelle und muss ein auf
+dem Bildschirm gezeigtes professionelles Muster nachbilden</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min.</td>
+<td>Zusammenfassung der behandelten Formate. Empfohlene Übungen auf der
+Plattform: Modul 3</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="sitzung-3-grundlagen-der-berechnung-formeln-funktionen-und-bezüge">Sitzung
+3: Grundlagen der Berechnung — Formeln, Funktionen und Bezüge</h3>
+<p><strong>Integriertes Modul</strong>: M4 (Formeln und grundlegende
+Funktionen)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="ziele-der-sitzung-2">Ziele der Sitzung</h4>
+<ul>
+<li>Arithmetische Formeln mit mathematischen Operatoren (+, -, *, /, ^)
+erstellen</li>
+<li>Relative (A1), absolute ($A<span
+class="math inline">1)<em>u</em><em>n</em><em>d</em><em>g</em><em>e</em><em>m</em><em>i</em><em>s</em><em>c</em><em>h</em><em>t</em><em>e</em><em>B</em><em>e</em><em>z</em><em>ü</em><em>g</em><em>e</em>(</span>A1,
+A$1) verstehen und korrekt anwenden</li>
+<li>Die grundlegenden statistischen Funktionen verwenden: SUMME,
+MITTELWERT, MIN, MAX, ANZAHL, ANZAHL2</li>
+<li>Die WENN-Funktion für elementare logische Entscheidungen
+implementieren</li>
+<li>Die häufigsten Formelfehler erkennen, interpretieren und
+beheben</li>
+</ul>
+<h4 id="inhalte-2">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzeptuell</th>
+<th>Prozedural</th>
+<th>Einstellungsbezogen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Syntax einer Formel: das =-Zeichen als obligatorischer Beginn</td>
+<td>Arithmetische Formeln schrittweise schreiben</td>
+<td>Angewandtes logisch-mathematisches Denken</td>
+</tr>
+<tr>
+<td>Arten von Bezügen und ihr Verhalten beim Kopieren</td>
+<td>Zwischen Bezugstypen mit der F4-Taste wechseln</td>
+<td>Sorgfalt bei der Ergebnisüberprüfung</td>
+</tr>
+<tr>
+<td>Funktionen als vordefinierte Berechnungsbausteine</td>
+<td>Funktionen aus der Bibliothek einfügen oder direkt eintippen</td>
+<td>Schrittweises Vertrauen in die Automatisierung</td>
+</tr>
+<tr>
+<td>Grundlegende Bedingungslogik</td>
+<td>Bedingungen mit Vergleichsoperatoren erstellen</td>
+<td>Neugier, Varianten zu erkunden</td>
+</tr>
+<tr>
+<td>Fehlertypologie: #DIV/0!, #NAME?, #WERT!, #BEZUG!</td>
+<td>Die Ursache eines Fehlers diagnostizieren und beheben</td>
+<td>Durchhaltevermögen bei Schwierigkeiten</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ablauf-der-sitzung-2">Ablauf der Sitzung</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5 Min.</td>
+<td>Durchsicht der angesammelten Fragen. Kurze Formatierungsübung zur
+Reaktivierung des Vorwissens</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min.</td>
+<td>Dialogischer Aufbau einer einfachen Gehaltsabrechnung, wobei jeder
+Bezugstyp und die Funktionen SUMME, MITTELWERT, MIN und MAX schrittweise
+eingeführt werden. Demonstration der WENN-Funktion</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>45 Min.</td>
+<td>Der Lernende erstellt ein Haushaltsbudget-Modell, das Folgendes
+integriert: arithmetische Berechnungen, absolute Bezüge für feste Sätze
+(MwSt., Einkommensteuer), statistische Funktionen für Summen und
+Durchschnitte sowie die WENN-Funktion für
+Ausgabenüberschreitungswarnungen</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min.</td>
+<td>Überprüfungsübung: Ein Blatt mit vorsätzlichen Fehlern wird
+bereitgestellt, die der Lernende erkennen und beheben muss</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min.</td>
+<td>Zusammenfassung. Empfohlene Übung auf der Plattform: Modul 4 (10
+progressive Übungen)</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="sitzung-4-datenqualitätskontrolle-validierung-bereinigung-und-import">Sitzung
+4: Datenqualitätskontrolle — Validierung, Bereinigung und Import</h3>
+<p><strong>Integriertes Modul</strong>: M5 (Bereinigung, Validierung und
+Datenverwaltung)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Praxis</p>
+<h4 id="ziele-der-sitzung-3">Ziele der Sitzung</h4>
+<ul>
+<li>Datenüberprüfungsregeln konfigurieren: Dropdown-Listen und
+numerische Einschränkungen</li>
+<li>Bereinigungswerkzeuge anwenden: Duplikate entfernen, Text in Spalten
+und Blitzvorschau</li>
+<li>Informationen aus mehreren Tabellenblättern oder Arbeitsmappen
+konsolidieren</li>
+<li>Daten aus externen Dateien im TXT- und CSV-Format importieren</li>
+</ul>
+<h4 id="inhalte-3">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzeptuell</th>
+<th>Prozedural</th>
+<th>Einstellungsbezogen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grundsätze der Datenqualität</td>
+<td>Dropdown-Listen mit und ohne Zellquelle erstellen</td>
+<td>Wertschätzung der Datenintegrität</td>
+</tr>
+<tr>
+<td>Arten von Eingabeeinschränkungen</td>
+<td>Eingaben nach Typ, Bereich und Länge einschränken</td>
+<td>Kritischer Blick auf inkonsistente Daten</td>
+</tr>
+<tr>
+<td>Methoden zur Bereinigung importierter Daten</td>
+<td>Text in Spalten und Blitzvorschau anwenden</td>
+<td>Geduld und Sorgfalt bei der Bereinigung</td>
+</tr>
+<tr>
+<td>Austauschformate: TXT, CSV</td>
+<td>Externe Daten in Excel importieren</td>
+<td>Bewusstsein für Herkunft und Zuverlässigkeit der Daten</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ablauf-der-sitzung-3">Ablauf der Sitzung</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5 Min.</td>
+<td>Kurze Durchsicht der Übung der Vorwoche</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>15 Min.</td>
+<td>Anhand einer aus dem Internet heruntergeladenen CSV-Datei
+demonstriert der Lehrende den vollständigen Prozess von Import,
+Validierung und Bereinigung bis zur analysebereiten Datentabelle</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>50 Min.</td>
+<td>Der Lernende arbeitet mit drei Datensätzen: einer Kundendatenbank
+mit Duplikaten, einer Produktliste mit fehlerhaft formatierten Daten und
+einer getrennten Textdatei, die eine vollständige Umwandlung
+erfordert</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min.</td>
+<td>Integrationsübung: Aus einer bereitgestellten CSV-Datei importiert,
+validiert, bereinigt und bereitet der Lernende die Daten für die Analyse
+vor</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min.</td>
+<td>Zusammenfassung. Empfohlene Übung auf der Plattform: Modul 5</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="sitzung-5-organisation-und-analyse-von-daten-tabellen-filter-und-bedingungsfunktionen">Sitzung
+5: Organisation und Analyse von Daten — Tabellen, Filter und
+Bedingungsfunktionen</h3>
+<p><strong>Integrierte Module</strong>: M6 (Datenverwaltung: Tabellen
+und Filter) + M7 teilweise (Bedingungsfunktionen)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Praxis</p>
+<h4 id="ziele-der-sitzung-4">Ziele der Sitzung</h4>
+<ul>
+<li>Daten nach einfachen und mehrstufigen Kriterien sortieren</li>
+<li>Text-, Zahlen-, Farb- und Datumsfilter zur Segmentierung von
+Informationen anwenden</li>
+<li>Bereiche in strukturierte Tabellen umwandeln und strukturierte
+Verweise verwenden</li>
+<li>Automatische Teilergebnisse berechnen und Gruppierungsgliederungen
+erstellen</li>
+<li>Die Funktionen SUMMEWENN, SUMMEWENNS, ZÄHLENWENN und ZÄHLENWENNS
+verwenden</li>
+</ul>
+<h4 id="inhalte-4">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzeptuell</th>
+<th>Prozedural</th>
+<th>Einstellungsbezogen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sortierung als Methode der Datenexploration</td>
+<td>Nach einer oder mehreren Spalten gleichzeitig sortieren</td>
+<td>Analytische Neugier gegenüber Datensätzen</td>
+</tr>
+<tr>
+<td>Filtertypen und ihre Kriterien</td>
+<td>Filter verschiedener Art anwenden und kombinieren</td>
+<td>Sorgfalt bei der Informationssegmentierung</td>
+</tr>
+<tr>
+<td>Excel-Tabellen als Datenstruktur</td>
+<td>Bereiche in Tabellen umwandeln und strukturierte Verweise
+verwenden</td>
+<td>Wertschätzung für Struktur und Ordnung</td>
+</tr>
+<tr>
+<td>Teilergebnis als Synthesewerkzeug</td>
+<td>Teilergebnisse einfügen und Gliederungsebenen verwalten</td>
+<td>Wertschätzung der Synthese gegenüber dem Detail</td>
+</tr>
+<tr>
+<td>Bedingte Berechnung mit Kriterien</td>
+<td>SUMMEWENN, SUMMEWENNS, ZÄHLENWENN, ZÄHLENWENNS erstellen</td>
+<td>Freude an der Ergebnispräzision</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ablauf-der-sitzung-4">Ablauf der Sitzung</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5 Min.</td>
+<td>Kurzes Gespräch über Erfahrungen mit ungeordneten oder schwer
+interpretierbaren Daten</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>15 Min.</td>
+<td>Anhand einer Vertriebsdatenbank zeigt der Lehrende, wie Daten
+sortiert, gefiltert und zusammengefasst werden, um Geschäftsfragen zu
+beantworten</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>50 Min.</td>
+<td>Der Lernende arbeitet mit einer Rechnungsdatenbank: mehrstufige
+Sortierung, kombinierte Filter, Teilergebnisse nach Kategorie und
+Berechnung von Kennzahlen mit SUMMEWENN und ZÄHLENWENN</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min.</td>
+<td>Analysefragen: „Welches Produkt verkaufte sich im Norden im März am
+besten?“, „Wie viele Verkäufe überstiegen 1.000 € im zweiten
+Quartal?”</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min.</td>
+<td>Zusammenfassung. Empfohlene Übung auf der Plattform: Modul 6 und
+Modul 7 (Übungen 1-5)</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="sitzung-6-suchfunktionen-textverarbeitung-und-datenvisualisierung">Sitzung
+6: Suchfunktionen, Textverarbeitung und Datenvisualisierung</h3>
+<p><strong>Integrierte Module</strong>: M7 (Fortsetzung) + M8
+(Diagramme)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Praxis</p>
+<h4 id="ziele-der-sitzung-5">Ziele der Sitzung</h4>
+<ul>
+<li>Suchvorgänge mit SVERWEIS und WVERWEIS durchführen (exakte und
+ungefähre Übereinstimmung)</li>
+<li>INDEX und VERGLEICH als flexible Alternative zu SVERWEIS
+kombinieren</li>
+<li>Textzeichenfolgen mit spezialisierten Funktionen bearbeiten</li>
+<li>Den geeigneten Diagrammtyp je nach Art der Daten auswählen</li>
+<li>Professionelle Diagramme erstellen und anpassen (Säulen, Balken,
+Linien, Kreis)</li>
+<li>Kombinierte Diagramme mit Sekundärachse erstellen</li>
+</ul>
+<h4 id="inhalte-5">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzeptuell</th>
+<th>Prozedural</th>
+<th>Einstellungsbezogen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prinzip der Schlüsselsuche</td>
+<td>SVERWEIS mit exakter und ungefährer Übereinstimmung erstellen</td>
+<td>Geduld bei syntaktischer Komplexität</td>
+</tr>
+<tr>
+<td>Unterschiede zwischen SVERWEIS / INDEX+VERGLEICH / XVERWEIS</td>
+<td>INDEX + VERGLEICH für bidirektionale Suchvorgänge
+implementieren</td>
+<td>Neugier, Alternativen zu erkunden</td>
+</tr>
+<tr>
+<td>Textfunktionen: LINKS, RECHTS, TEIL, VERKETTEN, FINDEN</td>
+<td>Textfragmente extrahieren und kombinieren</td>
+<td>Aufmerksamkeit für Genauigkeit bei der Datenbearbeitung</td>
+</tr>
+<tr>
+<td>Diagrammtypen und Auswahlkriterien</td>
+<td>Diagramme einfügen und anpassen</td>
+<td>Ästhetisches Empfinden in der visuellen Kommunikation</td>
+</tr>
+<tr>
+<td>Konfigurierbare Diagrammelemente</td>
+<td>Titel, Achsen, Legenden und Datenbeschriftungen ändern</td>
+<td>Wertschätzung der darstellerischen Klarheit</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ablauf-der-sitzung-5">Ablauf der Sitzung</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5 Min.</td>
+<td>Durchsicht der selbstständigen Übung der Woche</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>15 Min.</td>
+<td>Preissuche in einem Produktkatalog mit SVERWEIS. Umwandlung von
+Produktcodes mit Textfunktionen. Live-Erstellung eines Umsatzdiagramms
+aus einer Tabelle</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>50 Min.</td>
+<td>Verkettete Übungen: (1) SVERWEIS verwenden, um Produkten Kategorien
+zuzuweisen, (2) Codes mit LINKS und FINDEN extrahieren, (3) ein
+kombiniertes Diagramm der monatlichen Verkäufe erstellen, (4) ein
+Liniendiagramm mit Sekundärachse hinzufügen, um die Wachstumsrate
+anzuzeigen</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min.</td>
+<td>Der Lernende erhält eine Bestelltabelle und muss einen visuellen
+Bericht erstellen, der mindestens zwei Diagrammtypen integriert</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min.</td>
+<td>Zusammenfassung. Übung auf der Plattform: Module 7 und 8</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="sitzung-7-explorative-analyse-pivot-tabellen-und-was-wäre-wenn-werkzeuge">Sitzung
+7: Explorative Analyse — Pivot-Tabellen und Was-wäre-wenn-Werkzeuge</h3>
+<p><strong>Integrierte Module</strong>: M9 (Pivot-Tabellen) + M10
+(Was-wäre-wenn-Analyse)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="ziele-der-sitzung-6">Ziele der Sitzung</h4>
+<ul>
+<li>Das Konzept und die Struktur einer Pivot-Tabelle verstehen</li>
+<li>Pivot-Tabellen mit korrekter Konfiguration der Zeilen-, Spalten-,
+Werte- und Filterfelder erstellen</li>
+<li>Daten nach Datumsangaben und numerischen Bereichen innerhalb einer
+Pivot-Tabelle gruppieren</li>
+<li>Das Werkzeug Zielwertsuche zur Lösung von Sollwertproblemen
+anwenden</li>
+<li>Grundlegende Finanzfunktionen verwenden: RMZ und ZW</li>
+</ul>
+<h4 id="inhalte-6">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzeptuell</th>
+<th>Prozedural</th>
+<th>Einstellungsbezogen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pivot-Tabelle als mehrdimensionales Synthesewerkzeug</td>
+<td>Eine Pivot-Tabelle aus einem Datenbereich erstellen</td>
+<td>Freude an der Entdeckung verborgener Muster</td>
+</tr>
+<tr>
+<td>Zeilen-, Spalten-, Werte- und Filterfelder</td>
+<td>Die Struktur der Tabelle konfigurieren und ändern</td>
+<td>Forschende Neugier gegenüber den Daten</td>
+</tr>
+<tr>
+<td>Zeitliche und numerische Gruppierung</td>
+<td>Datumsangaben nach Monat, Quartal und Jahr gruppieren</td>
+<td>Wertschätzung der analytischen Perspektive</td>
+</tr>
+<tr>
+<td>Prinzip der Zielwertsuche</td>
+<td>Eingabewerte für gewünschte Ergebnisse finden</td>
+<td>Vertrauen in entscheidungsunterstützende Werkzeuge</td>
+</tr>
+<tr>
+<td>Grundlegende Finanzfunktionen</td>
+<td>Kreditraten (RMZ) und Zukunftswert (ZW) berechnen</td>
+<td>Interesse an der praktischen Anwendung auf persönliche Finanzen</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ablauf-der-sitzung-6">Ablauf der Sitzung</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5 Min.</td>
+<td>Durchsicht der Übung der Vorwoche</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min.</td>
+<td>Anhand einer Vertriebsdatenbank mit mehreren Produkten, Regionen und
+Datumsangaben erstellt der Lehrende eine Pivot-Tabelle und zeigt, wie
+Daten pivotiert, die Zusammenfassungsfunktion geändert und nach
+Quartalen gruppiert werden. Demonstration der Zielwertsuche und RMZ</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>45 Min.</td>
+<td>Der Lernende erstellt Pivot-Tabellen zur Beantwortung von
+Geschäftsfragen. Wendet die Zielwertsuche an, um das erforderliche
+Verkaufsvolumen zur Erreichung eines Sollgewinns zu bestimmen. Berechnet
+die monatliche Rate eines Kredits</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min.</td>
+<td>Integrationsübung mit einer Rechnungsdatenbank</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min.</td>
+<td>Zusammenfassung. Übung auf der Plattform: Module 9 und 10</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="sitzung-8-professionalisierung-der-arbeit-druck-schutz-und-produktivität">Sitzung
+8: Professionalisierung der Arbeit — Druck, Schutz und
+Produktivität</h3>
+<p><strong>Integrierte Module</strong>: M11 (Druck) + M12 (Schutz und
+Sicherheit) + M13 (Makros)<br />
+<strong>Dauer</strong>: 90 Minuten<br />
+<strong>Schwerpunkt</strong>: Theorie-Praxis</p>
+<h4 id="ziele-der-sitzung-7">Ziele der Sitzung</h4>
+<ul>
+<li>Die Seite für den professionellen Druck angemessen
+konfigurieren</li>
+<li>Druckbereiche festlegen und Seitenumbrüche verwalten</li>
+<li>Benutzerdefinierte Kopf- und Fußzeilen erstellen</li>
+<li>Zellen, Tabellenblätter und die Arbeitsmappenstruktur schützen</li>
+<li>Die produktivsten Tastenkombinationen kennen</li>
+<li>Das Makro-Konzept verstehen und ein einfaches Makro aufzeichnen</li>
+</ul>
+<h4 id="inhalte-7">Inhalte</h4>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Konzeptuell</th>
+<th>Prozedural</th>
+<th>Einstellungsbezogen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seitenkonfiguration und Druckbereich</td>
+<td>Ränder, Ausrichtung und Skalierung anpassen</td>
+<td>Sorgfalt für die endgültige Präsentation der Arbeit</td>
+</tr>
+<tr>
+<td>Elemente von Kopf- und Fußzeile</td>
+<td>Seitenzahl, Datum und Dateiname einfügen</td>
+<td>Liebe zum Detail in Dokumenten für Dritte</td>
+</tr>
+<tr>
+<td>Schutzprinzipien in Excel</td>
+<td>Zellen sperren und mit Passwort schützen</td>
+<td>Verantwortung im Umgang mit sensiblen Informationen</td>
+</tr>
+<tr>
+<td>Tastenkombinationen als Effizienzwerkzeug</td>
+<td>Die wichtigsten Tastenkombinationen üben (Strg+Pfeiltasten, F4,
+Strg+1, Alt+=)</td>
+<td>Wertschätzung von Produktivität und Arbeitsfluss</td>
+</tr>
+<tr>
+<td>Makro-Konzept und Aufzeichnungsfunktion</td>
+<td>Ein einfaches Makro aufzeichnen, ausführen und zuweisen</td>
+<td>Neugier auf Automatisierung</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ablauf-der-sitzung-7">Ablauf der Sitzung</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 25%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Zeit</th>
+<th>Aktivität</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aktivierung</td>
+<td>5 Min.</td>
+<td>Durchsicht der Vorwoche</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>20 Min.</td>
+<td>Vorbereitung eines Berichts für den Druck: Seitenkonfiguration,
+Einfügen von Umbrüchen, Kopf- und Fußzeilen. Schutz eines Tabellenblatts
+mit bearbeitbaren Zellen. Aufzeichnung eines Makros, das einen Bericht
+formatiert</td>
+</tr>
+<tr>
+<td>Angeleitete Übung</td>
+<td>45 Min.</td>
+<td>Der Lernende bereitet einen vollständigen Bericht für den Druck vor,
+schützt die Formelzellen und lässt die Dateneingabezellen bearbeitbar
+und zeichnet ein Makro zur Automatisierung der monatlichen Formatierung
+eines Berichts auf</td>
+</tr>
+<tr>
+<td>Festigung</td>
+<td>15 Min.</td>
+<td>Allgemeine Wiederholung des Kurses: Der Lernende identifiziert die
+wertvollsten Lernerfahrungen und die Bereiche, die er weiterentwickeln
+möchte</td>
+</tr>
+<tr>
+<td>Abschluss</td>
+<td>5 Min.</td>
+<td>Übergabe der Teilnahmebescheinigung. Orientierung über Ressourcen
+zur Fortsetzung des Lernens (Fortgeschrittenenkurs,
+Excel-lenz-Community, empfohlene Kanäle)</td>
+</tr>
+</tbody>
+</table>
+<h2
+id="anhang-zuordnung-zu-den-übungen-der-excel-lenz-plattform">Anhang:
+Zuordnung zu den Übungen der Excel-lenz-Plattform</h2>
+<p>Die Excel-lenz-Plattform bietet <strong>44 interaktive
+Übungen</strong> auf Anfängerniveau. Ihre Verwendung als ergänzende
+Praxis zwischen den Sitzungen wird gemäß folgender Verteilung
+empfohlen:</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 50%" />
+<col style="width: 18%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr>
+<th>Sitzung</th>
+<th>Modul auf der Plattform</th>
+<th>Übungen</th>
+<th>Typ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>M1: Einführung in Excel + M2: Dateneingabe</td>
+<td>9 Übungen</td>
+<td>Quiz + Spreadsheet</td>
+</tr>
+<tr>
+<td>2</td>
+<td>M3: Format und Stil</td>
+<td>5 Übungen</td>
+<td>Spreadsheet</td>
+</tr>
+<tr>
+<td>3</td>
+<td>M4: Formeln und Funktionen</td>
+<td>10 Übungen</td>
+<td>Spreadsheet</td>
+</tr>
+<tr>
+<td>4</td>
+<td>M5: Datenbereinigung</td>
+<td>8 Übungen</td>
+<td>Spreadsheet + Quiz</td>
+</tr>
+<tr>
+<td>5</td>
+<td>M6: Tabellen &amp; Filter</td>
+<td>6 Übungen</td>
+<td>Spreadsheet</td>
+</tr>
+<tr>
+<td>6</td>
+<td>M7: Erweiterte Funktionen</td>
+<td>6 Übungen</td>
+<td>Spreadsheet</td>
+</tr>
+<tr>
+<td>7-8</td>
+<td>M8-M13</td>
+<td>In Entwicklung</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><em>Hinweis: Die Übungen der Module 8 bis 13 befinden sich auf der
+Plattform in der Entwicklungsphase. In der Zwischenzeit stellt der
+Lehrende gleichwertige Übungen im Excel-Format zur Verfügung.</em></p>
+</body>
+</html>

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronRight, Home } from 'lucide-react';
+import { ChevronRight, Home, ArrowLeft } from 'lucide-react';
 
 interface Crumb {
   label: string;
@@ -16,13 +16,14 @@ const ROUTE_LABELS: Record<string, string> = {
   teacher: 'Lehrer-Panel',
   login: 'Anmelden',
   register: 'Registrieren',
+  didaktik: 'Didaktik',
 };
 
 // UUID pattern: 8-4-4-4-12 hex digits
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // Pages where breadcrumbs should appear (not on home or 404)
-const CRUMB_ROUTES = ['/courses', '/dashboard', '/teacher', '/exercises'];
+const CRUMB_ROUTES = ['/courses', '/dashboard', '/teacher', '/exercises', '/didaktik'];
 
 export default function Breadcrumbs() {
   const location = useLocation();
@@ -73,9 +74,25 @@ export default function Breadcrumbs() {
   const shouldShow = CRUMB_ROUTES.some(r => location.pathname.startsWith(r));
   if (!shouldShow || crumbs.length <= 1) return null;
 
+  // Detect pages that need a back button in the breadcrumbs
+  const isCourseDetail = /^\/courses\/[0-9a-f-]+$/i.test(location.pathname);
+  const isCoursesList = location.pathname === '/courses';
+
   return (
     <nav className="breadcrumbs" aria-label="Breadcrumb">
       <div className="breadcrumbs-inner">
+        {isCourseDetail && (
+          <Link to="/courses" className="btn btn-outline btn-sm" style={{ marginRight: 12, display: 'inline-flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
+            <ArrowLeft size={14} />
+            Zurück zur Übersicht
+          </Link>
+        )}
+        {isCoursesList && (
+          <Link to="/" className="btn btn-outline btn-sm" style={{ marginRight: 12, display: 'inline-flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
+            <ArrowLeft size={14} />
+            Zurück zur Startseite
+          </Link>
+        )}
         {crumbs.map((crumb, i) => (
           <span key={crumb.path} className="breadcrumb-item">
             {i > 0 && <ChevronRight size={14} className="breadcrumb-sep" />}
