@@ -100,7 +100,7 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
 router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
   const db = getDb();
   const { userId } = req.user as AuthPayload;
-  const { data } = req.body;
+  const { data, type, answers, formats } = req.body;
 
   const exercise = db.prepare('SELECT * FROM exercises WHERE id = ?').get(req.params.id) as any;
   if (!exercise) {
@@ -108,36 +108,85 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     return;
   }
 
-  // Validate input structure
-  if (!Array.isArray(data)) {
-    res.status(400).json({ error: 'Ungültiges Datenformat' });
-    return;
-  }
-
-  // ── Single-pass scoring + feedback ──────────────────────
-  const solution = JSON.parse(exercise.solution_data || '{}');
-  const taskCols: number[] = JSON.parse(exercise.template_data || '{}').taskCols || [];
+  // ── Quiz scoring ─────────────────────────────────────────
   let score = 0;
   let correctCells = 0;
   let totalCells = 0;
   const details: { row: number; col: number; expected: any; got: any }[] = [];
+  const solution = JSON.parse(exercise.solution_data || '{}');
 
-  if (solution.data && data) {
-    totalCells = solution.data.length * taskCols.length;
-
-    for (const taskCol of taskCols) {
-      for (let row = 0; row < solution.data.length; row++) {
-        const userVal = data[row]?.[taskCol];
-        const solVal = solution.data[row]?.[taskCol];
-
-        if (isCorrectAnswer(userVal, solVal)) {
-          correctCells++;
-        } else {
-          details.push({ row, col: taskCol, expected: solVal, got: userVal ?? null });
-        }
+  if (type === 'quiz' && answers && solution.type === 'quiz') {
+    const userAnswers: number[][] = answers;
+    const correctAnswers: number[][] = solution.answers || [];
+    for (let i = 0; i < correctAnswers.length; i++) {
+      const ua = userAnswers[i] || [];
+      const ca = correctAnswers[i] || [];
+      if (ua.length === ca.length && ua.every((x: number) => ca.includes(x)) && ca.every((x: number) => ua.includes(x))) {
+        correctCells++;
       }
     }
+    totalCells = correctAnswers.length;
     score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
+  } else {
+    // ── Spreadsheet scoring ──────────────────────────────────
+    if (!Array.isArray(data)) {
+      res.status(400).json({ error: 'Ungültiges Datenformat' });
+      return;
+    }
+    const taskCols: number[] = JSON.parse(exercise.template_data || '{}').taskCols || [];
+
+    if (solution.data && data) {
+      totalCells = solution.data.length * taskCols.length;
+
+      for (const taskCol of taskCols) {
+        for (let row = 0; row < solution.data.length; row++) {
+          const userVal = data[row]?.[taskCol];
+          const solVal = solution.data[row]?.[taskCol];
+
+          if (isCorrectAnswer(userVal, solVal)) {
+            correctCells++;
+          } else {
+            details.push({ row, col: taskCol, expected: solVal, got: userVal ?? null });
+          }
+        }
+      }
+      score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
+    }
+
+    // ── Format scoring (optional, additive) ─────────────────
+    const templateData = JSON.parse(exercise.template_data || '{}');
+    const formatSolution: Record<string, Record<string, unknown>> = templateData.formatSolution || {};
+    const userFormats: Record<string, Record<string, unknown>> = formats || {};
+    const formatKeys = Object.keys(formatSolution);
+
+    if (formatKeys.length > 0) {
+      let formatCorrect = 0;
+      for (const key of formatKeys) {
+        const expected = formatSolution[key];
+        const actual = userFormats[key] || {};
+        let match = true;
+        for (const field of Object.keys(expected)) {
+          if (actual[field] !== expected[field]) {
+            match = false;
+            break;
+          }
+        }
+        if (match) formatCorrect++;
+      }
+      // Blend value score and format score (70% values, 30% formatting when both present)
+      if (totalCells > 0) {
+        const valueScore = correctCells / totalCells;
+        const formatScore = formatCorrect / formatKeys.length;
+        score = Math.round((valueScore * 0.7 + formatScore * 0.3) * 100);
+        correctCells = Math.round(valueScore * totalCells + formatScore * formatKeys.length);
+        totalCells = totalCells + formatKeys.length;
+      } else {
+        // Pure format scoring (no value cells to check)
+        correctCells = formatCorrect;
+        totalCells = formatKeys.length;
+        score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
+      }
+    }
   }
 
   // ── Persist progress (query prevScore BEFORE update!) ───

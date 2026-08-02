@@ -3561,12 +3561,11 @@
       "title": "3D-Summe: Mehrere identische Tabellen summieren",
       "description": "Summiere gleich aufgebaute Tabellen (simuliert Tabellenblätter Q1-Q4).",
       "template": {
-        "cols": 3,
-        "rows": 9,
+        "cols": 2,
+        "rows": 3,
         "headers": [
           "Produkt",
-          "Q1-Q4 Summe",
-          ""
+          "Q1-Q4 Summe"
         ],
         "data": [
           [
@@ -3580,42 +3579,96 @@
           [
             "Tastatur",
             null
-          ],
-          [
-            "",
-            "",
-            ""
-          ],
-          [
-            "Q1:",
-            "Q2:",
-            "Q3:",
-            "Q4:"
-          ],
-          [
-            "Laptop",
-            4500,
-            5200,
-            4800,
-            5100
-          ],
-          [
-            "Maus",
-            800,
-            950,
-            870,
-            820
-          ],
-          [
-            "Tastatur",
-            1200,
-            1350,
-            1100,
-            1400
           ]
         ],
         "taskCols": [
           1
+        ],
+        "sheets": [
+          {
+            "name": "Q1",
+            "headers": [
+              "Produkt",
+              "Umsatz"
+            ],
+            "data": [
+              [
+                "Laptop",
+                4500
+              ],
+              [
+                "Maus",
+                800
+              ],
+              [
+                "Tastatur",
+                1200
+              ]
+            ]
+          },
+          {
+            "name": "Q2",
+            "headers": [
+              "Produkt",
+              "Umsatz"
+            ],
+            "data": [
+              [
+                "Laptop",
+                5200
+              ],
+              [
+                "Maus",
+                950
+              ],
+              [
+                "Tastatur",
+                1350
+              ]
+            ]
+          },
+          {
+            "name": "Q3",
+            "headers": [
+              "Produkt",
+              "Umsatz"
+            ],
+            "data": [
+              [
+                "Laptop",
+                4800
+              ],
+              [
+                "Maus",
+                870
+              ],
+              [
+                "Tastatur",
+                1100
+              ]
+            ]
+          },
+          {
+            "name": "Q4",
+            "headers": [
+              "Produkt",
+              "Umsatz"
+            ],
+            "data": [
+              [
+                "Laptop",
+                5100
+              ],
+              [
+                "Maus",
+                820
+              ],
+              [
+                "Tastatur",
+                1400
+              ]
+            ]
+          }
         ]
       },
       "solution": {
@@ -3631,45 +3684,14 @@
           [
             "Tastatur",
             5050
-          ],
-          [
-            "",
-            ""
-          ],
-          [
-            "Q1:",
-            "Q2:",
-            "Q3:",
-            "Q4:"
-          ],
-          [
-            "Laptop",
-            4500,
-            5200,
-            4800,
-            5100
-          ],
-          [
-            "Maus",
-            800,
-            950,
-            870,
-            820
-          ],
-          [
-            "Tastatur",
-            1200,
-            1350,
-            1100,
-            1400
           ]
         ]
       },
-      "instructions": "1. Q1-Q4 Summe: =SUMME(B6:E6) für Laptop.\n2. In echtem Excel: =SUMME(Q1:Q4!B2).\n3. 3D-Referenzen addieren über mehrere Tabellenblätter.",
+      "instructions": "1. Gehe zum Blatt \"Konsolidiert\" (Tabelle1).\n2. Schreibe in B2: =SUMME(Q1:Q4!B2)\n3. Kopiere die Formel für Maus und Tastatur.\n4. 💡 3D-Referenzen summieren über mehrere Tabellenblätter.",
       "order": 29,
-      "formulaHint": "=SUMME(B6:E6)",
-      "hint1": "3D-Referenz: =SUMME(Tabelle1:Tabelle4!B2)",
-      "hint2": "Alle Tabellenblätter müssen identisch aufgebaut sein",
+      "formulaHint": "=SUMME(Q1:Q4!B2)",
+      "hint1": "3D-Referenz: =SUMME(Q1:Q4!B2) summiert Zelle B2 über Q1 bis Q4",
+      "hint2": "Die Syntax ist =SUMME(ErstesBlatt:LetztesBlatt!Zelle)",
       "learningObjectives": [
         "3D-Summen",
         "Mehrblatt-Referenzen",

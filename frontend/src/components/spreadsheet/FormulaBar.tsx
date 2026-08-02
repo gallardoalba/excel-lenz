@@ -292,6 +292,11 @@ export default function FormulaBar(props: FormulaBarProps) {
           onChange={(e) => handleInput(e.target.value)}
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
+          onMouseDown={(e) => {
+            // Prevent Handsontable from stealing focus when clicking the formula bar
+            e.stopPropagation();
+            if (inputRef.current) inputRef.current.focus();
+          }}
           onBlur={(e) => {
             const relatedTarget = e.relatedTarget as HTMLElement;
             if (relatedTarget?.classList.contains('formulabar-btn-cancel')) return;

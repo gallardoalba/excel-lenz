@@ -4,9 +4,9 @@ import bcrypt from 'bcryptjs';
 
 // ── Exercise data (edit the JSON files, not this file!) ──
 import course1Data from './exercises/course1_grundlage.json';
-import course2Data from './exercises/course2_datenanalyse.json';
+// import course2Data from './exercises/course2_datenanalyse.json';
 import course3Data from './exercises/course3_fortgeschrittene.json';
-import course4Data from './exercises/course4_datenbank.json';
+// import course4Data from './exercises/course4_datenbank.json';
 
 type ExerciseJson = {
   title: string;
@@ -33,7 +33,8 @@ type CourseJson = {
   exercises: ExerciseJson[];
 };
 
-const ALL_COURSES: CourseJson[] = [course1Data, course2Data, course3Data, course4Data];
+// Courses 2 (Datenanalyse) and 4 (Datenbank) temporarily disabled
+const ALL_COURSES: CourseJson[] = [course1Data, course3Data];
 
 export function seed(): void {
   initDb();

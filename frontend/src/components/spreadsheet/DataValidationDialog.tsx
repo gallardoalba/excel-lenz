@@ -27,6 +27,7 @@ export default function DataValidationDialog({ visible, headers, onApply, onClos
   const [max, setMax] = useState('');
   const [list, setList] = useState('');
   const [errorMsg, setErrorMsg] = useState('Ungültiger Wert');
+  const [error, setError] = useState('');
 
   // Bug #32 fix: restore focus to previously active element when dialog closes
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -51,8 +52,6 @@ export default function DataValidationDialog({ visible, headers, onApply, onClos
   }, [visible, onClose]);
 
   if (!visible) return null;
-
-  const [error, setError] = useState('');
 
   const handleApply = () => {
     const hasMin = min.trim() !== '';

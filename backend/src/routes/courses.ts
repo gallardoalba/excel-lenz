@@ -9,7 +9,9 @@ router.get('/', optionalAuth, (req: Request, res: Response) => {
   const db = getDb();
   const userId = (req.user as AuthPayload)?.userId;
   const courses = db.prepare(
-    `SELECT c.*, COUNT(e.id) as exercise_count FROM courses c LEFT JOIN exercises e ON e.course_id = c.id GROUP BY c.id
+    `SELECT c.*, COUNT(e.id) as exercise_count
+     FROM courses c LEFT JOIN exercises e ON e.course_id = c.id
+     GROUP BY c.id
      ORDER BY CASE c.difficulty
        WHEN 'beginner' THEN 1
        WHEN 'intermediate' THEN 2
@@ -18,6 +20,14 @@ router.get('/', optionalAuth, (req: Request, res: Response) => {
        ELSE 5
      END, c.created_at ASC`
   ).all() as any[];
+
+  // Compute modules_count from exercises
+  for (const course of courses) {
+    const modCount = db.prepare(
+      'SELECT COUNT(DISTINCT json_extract(template_data, ?)) as cnt FROM exercises WHERE course_id = ?'
+    ).get('$._moduleId', course.id) as any;
+    course.modules_count = modCount?.cnt || 0;
+  }
 
   // If user is logged in, add progress with a single query
   if (userId) {

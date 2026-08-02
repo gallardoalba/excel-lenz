@@ -54,6 +54,20 @@ export default function StudentPanel() {
 
   useEffect(() => { loadData(); }, []);
 
+  const progressMap = useMemo(() => {
+    const map = new Map<string, number>();
+    progress.filter(p => p.completed).forEach(p => {
+      map.set(p.course_id, (map.get(p.course_id) || 0) + 1);
+    });
+    return map;
+  }, [progress]);
+
+  const visibleCourses = courses;
+
+  const xp = gami?.xp;
+  const recentBadges = gami?.badges?.slice(0, 3) || [];
+  const completedCount = gami?.totalCompleted || progress.filter(p => p.completed).length;
+
   if (loading) return <ExcelSpinner text="Dashboard wird geladen..." />;
 
   if (error) {
@@ -68,20 +82,6 @@ export default function StudentPanel() {
       </div>
     );
   }
-
-  const progressMap = useMemo(() => {
-    const map = new Map<string, number>();
-    progress.filter(p => p.completed).forEach(p => {
-      map.set(p.course_id, (map.get(p.course_id) || 0) + 1);
-    });
-    return map;
-  }, [progress]);
-
-  const visibleCourses = courses;
-
-  const xp = gami?.xp;
-  const recentBadges = gami?.badges?.slice(0, 3) || [];
-  const completedCount = gami?.totalCompleted || progress.filter(p => p.completed).length;
 
   return (
     <div className="student-panel">

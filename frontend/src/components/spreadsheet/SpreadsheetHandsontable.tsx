@@ -65,6 +65,8 @@ interface SpreadsheetHandsontableProps {
   /** Practice mode: evaluate cells on each change */
   mode?: 'exam' | 'practice';
   solution?: { evaluatedData: (string | number | null)[][] };
+  /** Pre-populated sheets for multi-sheet exercises */
+  initialSheets?: { name: string; headers: string[]; data: (string | number | null)[][] }[];
 }
 
 export default function SpreadsheetHandsontable({
@@ -79,6 +81,7 @@ export default function SpreadsheetHandsontable({
   errorCells,
   mode = 'exam',
   solution,
+  initialSheets,
 }: SpreadsheetHandsontableProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const hotRef = useRef<Handsontable | null>(null);
@@ -518,28 +521,36 @@ export default function SpreadsheetHandsontable({
     // Save current data — use getSourceData for consistency with handleSwitchSheet (BUG 6)
     const hot = hotRef.current;
     if (hot && !hot.isDestroyed) {
-      allDataRef.current[activeSheetId] = (hot.getSourceData() as (string | number | null)[][]);
+      const srcData = hot.getSourceData() as (string | number | null)[][];
+      allDataRef.current[activeSheetId] = srcData.slice(1); // Skip header row
     }
-    // Add sheet to HF — Bug #9.2: initialize with empty data matching grid
-    // dimensions so cross-sheet references (=Tabelle2!A1) resolve to 0/empty
-    // instead of #REF! before the user enters any data.
+    // Add sheet to HF with empty data
     const hf = hfRef.current;
+    const numCols = Math.max(headersRef.current.length, 30);
+    const numRows = 30;
     if (hf) {
       const sheetNames = hf.getSheetNames();
       if (!sheetNames.includes(newName)) {
         hf.addSheet(newName);
         const newHfId = hf.getSheetId(newName);
-        const dataRows = data.length || 10;
-        const dataCols = headers.length || 5;
-        const emptyData = [headers.map(h => h), ...Array(dataRows).fill(null).map(() => Array(dataCols).fill(''))];
+        // Empty data: generic headers + empty rows
+        const emptyData = [Array(numCols).fill(''), ...Array(numRows).fill(null).map(() => Array(numCols).fill(''))];
         if (newHfId !== undefined) {
           try { hf.setSheetContent(newHfId, emptyData as any); } catch { /* ignore */ }
         }
       }
     }
-    allDataRef.current[newId] = [];
+    // Store empty data for the new sheet (no header row, just empty rows)
+    allDataRef.current[newId] = Array(numRows).fill(null).map(() => Array(numCols).fill(''));
     setSheets(prev => [...prev, { id: newId, name: newName }]);
     setActiveSheetId(newId);
+    // Load empty data into HOT
+    if (hot && !hot.isDestroyed) {
+      const emptyTarget = [Array(numCols).fill(''), ...allDataRef.current[newId]];
+      internalChangeDepth.current++;
+      hot.loadData(emptyTarget);
+      setTimeout(() => { if (internalChangeDepth.current > 0) internalChangeDepth.current--; }, 100);
+    }
   }, [sheets, activeSheetId]);
 
   const handleSwitchSheet = useCallback((sheetId: number) => {
@@ -547,7 +558,7 @@ export default function SpreadsheetHandsontable({
     const hf = hfRef.current;
     if (!hot || hot.isDestroyed || !hf || sheetId === activeSheetId) return;
     // Save current data and formats
-    allDataRef.current[activeSheetId] = (hot.getSourceData() as (string | number | null)[][]);
+    allDataRef.current[activeSheetId] = (hot.getSourceData() as (string | number | null)[][]).slice(1); // Skip header row
     allFormatsRef.current[activeSheetId] = { ...cellFormatsRef.current };
     // Bug #9.2 fix: sync ALL sheets' data to HyperFormula so cross-sheet
     // references (e.g. =Tabelle2!A1) resolve correctly after switching.
@@ -777,14 +788,54 @@ export default function SpreadsheetHandsontable({
     // This dramatically reduces DOM nodes and HyperFormula memory.
     const dataRows = data.length;
     const dataCols = headers.length;
-    const dynamicMinRows = Math.max(dataRows + 10, 15);
-    const dynamicMinCols = Math.max(dataCols + 3, 5);
+    const dynamicMinRows = Math.max(dataRows + 10, 30);
+    const dynamicMinCols = Math.max(dataCols + 3, 30);
 
     // Create HyperFormula instance per component (prevents cross-instance leaks)
     if (!hfRef.current) {
       hfRef.current = createHF();
       hfRef.current.renameSheet(0, 'Tabelle1');
     }
+
+    // Initialize multi-sheet data if provided (additional sheets beyond the main one)
+    if (initialSheets && initialSheets.length > 0) {
+      const hf = hfRef.current;
+      // Main sheet is already created as Sheet1, renamed to Tabelle1
+      // Store main sheet data in allDataRef[0]
+      allDataRef.current = { 0: data.map(row => [...row]) };
+      const newSheets: { id: number; name: string }[] = [{ id: 0, name: 'Tabelle1' }];
+      for (let i = 0; i < initialSheets.length; i++) {
+        const sheet = initialSheets[i];
+        const sheetId = i + 1;
+        hf.addSheet(sheet.name);
+        const hfId = hf.getSheetId(sheet.name);
+        newSheets.push({ id: sheetId, name: sheet.name });
+        allDataRef.current[sheetId] = sheet.data.map(row => [...row]);
+        allFormatsRef.current[sheetId] = {};
+        // Initialize HF sheet content
+        const hfData = [sheet.headers.map(h => h), ...sheet.data.map(row => row.map(cell => (cell === null ? '' : cell)))];
+        if (hfId !== undefined) {
+          try { hf.setSheetContent(hfId, hfData as any); } catch { /* ignore */ }
+        }
+      }
+      setSheets(newSheets);
+      // allDataRef[0] already set from props data
+    }
+
+    // ── 3D Reference Expansion ──────────────────────────────────────────
+    const expand3DRefs = (formula: string): string => {
+      const hf = hfRef.current;
+      if (!hf) return formula;
+      const allSheets = hf.getSheetNames();
+      const re = /([A-Za-z0-9_ÄÖÜäöüß]+):([A-Za-z0-9_ÄÖÜäöüß]+)!(\$?[A-Z]+\$?\d+(?::\$?[A-Z]+\$?\d+)?)/g;
+      return formula.replace(re, (_match: string, first: string, last: string, cellRef: string) => {
+        const firstIdx = allSheets.indexOf(first);
+        const lastIdx = allSheets.indexOf(last);
+        if (firstIdx === -1 || lastIdx === -1 || firstIdx > lastIdx) return _match;
+        const sheetsInRange = allSheets.slice(firstIdx, lastIdx + 1);
+        return sheetsInRange.map(s => `${s}!${cellRef}`).join(';');
+      });
+    };
 
     const hot = new Handsontable(containerRef.current, {
       data: [headers.map(h => h), ...data.map(row => row.map(cell => (cell === null ? '' : cell)))],
@@ -1061,6 +1112,25 @@ export default function SpreadsheetHandsontable({
 
       afterBeginEditing() {
         setStatusInfo(prev => ({ ...prev, mode: 'enter' as const }));
+        // When editing a cell that shows an error (#ERROR!, #DIV/0!, etc.),
+        // restore the original formula from source data so the user can fix it.
+        const hot = hotRef.current;
+        if (hot && !hot.isDestroyed) {
+          const sel = hot.getSelected();
+          if (sel && sel.length > 0) {
+            const row = sel[0][0];
+            const col = sel[0][1];
+            const displayed = hot.getDataAtCell(row, col);
+            const source = hot.getSourceDataAtCell(row, col);
+            if (typeof displayed === 'string' && /^#/.test(displayed) &&
+                typeof source === 'string' && source.startsWith('=')) {
+              const editor = hot.getActiveEditor() as any;
+              if (editor) {
+                editor.setValue(source);
+              }
+            }
+          }
+        }
       },
 
       // Excel-like range selection: detect when user clicks another cell while editing a formula
@@ -1068,36 +1138,67 @@ export default function SpreadsheetHandsontable({
         const hot = hotRef.current;
         if (!hot || hot.isDestroyed) return;
 
-        // Path A: In-cell editor is open — the original range-selection path
+        // Path A: In-cell editor is open — insert range reference immediately
         const activeEditor = hot.getActiveEditor() as any;
         if (activeEditor && activeEditor.isOpened()) {
           const val: string = activeEditor.getValue?.() || '';
           if (typeof val === 'string' && val.startsWith('=')) {
             const textarea = activeEditor.TEXTAREA;
-            const selectionStart: number = textarea.selectionStart ?? 0;
-            const selectionEnd: number = textarea.selectionEnd ?? selectionStart;
+            const selectionStart: number = textarea?.selectionStart ?? 0;
+            const selectionEnd: number = textarea?.selectionEnd ?? selectionStart;
             const textBeforeCursor = val.substring(0, selectionStart);
             // Check if cursor is at a position where a range is expected
             const isRangeExpected = /[({,;+\-*/>=<&=\s]$/.test(textBeforeCursor)
               || textBeforeCursor === '='
               || (selectionStart !== selectionEnd);
-            if (isRangeExpected) {
+            if (isRangeExpected && coords.row !== null && coords.col !== null) {
+              // Store original formula and cursor position (before any range is inserted).
+              // afterSelectionEnd will build the final formula using the actual selection range.
+              const origRow = activeEditor.row;
+              const origCol = activeEditor.col;
+
+              // Insert single-cell reference for immediate visual feedback
+              const singleCellRef = positionToRef({ row: coords.row, col: coords.col });
+              const previewFormula = val.substring(0, selectionStart) + singleCellRef + val.substring(selectionEnd);
+              activeEditor.setValue(previewFormula);
+              if (textarea) {
+                const cursorPos = selectionStart + singleCellRef.length;
+                textarea.selectionStart = cursorPos;
+                textarea.selectionEnd = cursorPos;
+                // Auto-expand editor to show formula, capped to avoid overflow
+                const spreadsheetWrap = document.querySelector('.spreadsheet-container') as HTMLElement;
+                if (spreadsheetWrap) {
+                  const wrapRect = spreadsheetWrap.getBoundingClientRect();
+                  const edRect = textarea.getBoundingClientRect();
+                  const maxWidth = Math.max(150, wrapRect.right - edRect.left - 12);
+                  textarea.style.maxWidth = maxWidth + 'px';
+                  textarea.style.width = 'auto';
+                }
+              }
+              setFormulaBarValue(previewFormula);
+              formulaValueRef.current = previewFormula;
+
+              // Set flags for the original cancel+rebuild flow (handles drag-to-range).
+              // Note: we don't setDataAtCell here because HyperFormula would evaluate
+              // the incomplete formula and show #ERROR! during drag. The cell will briefly
+              // revert to its pre-edit value during drag, then afterSelectionEnd sets the
+              // correct formula (with or without range).
               isAppendingRangeRef.current = true;
               isRangeSelecting.current = true;
               isFormulaBarRangeSource.current = false;
-              originalEditCellRef.current = { row: activeEditor.row, col: activeEditor.col };
-              formulaBeforeSelectionRef.current = val;
+              originalEditCellRef.current = { row: origRow, col: origCol };
+              formulaBeforeSelectionRef.current = val; // Original formula BEFORE click
               cursorStartRef.current = selectionStart;
               cursorEndRef.current = selectionEnd;
-              // Bug #1.1 fix: Do NOT manipulate editor value here.
-              // Instead, beforeChange returns false to cancel the incomplete
-              // formula commit, and afterSelectionEnd rebuilds the full formula.
-              // Safety timeout in case mouseup doesn't trigger afterSelectionEnd
+              // Safety timeout
               if (rangeSafetyTimer1Ref.current) clearTimeout(rangeSafetyTimer1Ref.current);
               rangeSafetyTimer1Ref.current = setTimeout(() => {
                 isAppendingRangeRef.current = false;
                 isRangeSelecting.current = false;
               }, 2000);
+
+              // DON'T stop propagation — let drag-selection work for ranges
+              return;
             }
           }
         }
@@ -1137,13 +1238,32 @@ export default function SpreadsheetHandsontable({
         }
       },
 
-      beforeChange(_changes: any, source: string) {
+      beforeChange(changes: any, source: string) {
         // Bug #1.1 fix: Cancel the incomplete formula commit explicitly.
-        // When user clicks away from an in-cell formula editor to select a range,
-        // Handsontable tries to commit the partial formula (e.g. "=SUMME(") → #ERROR!.
-        // Returning false cancels the commit; afterSelectionEnd rebuilds the real formula.
         if (isRangeSelecting.current || isAppendingRangeRef.current) {
           return false;
+        }
+        if (changes && source !== 'loadData' && source !== 'internalUpdate') {
+          for (let i = 0; i < changes.length; i++) {
+            const [, , oldVal, newVal] = changes[i];
+            if (typeof newVal === 'string' && newVal.startsWith('=')) {
+              let formula = newVal;
+              // Auto-close unmatched parentheses
+              let open = 0;
+              for (const ch of formula) {
+                if (ch === '(') open++;
+                else if (ch === ')') open--;
+              }
+              if (open > 0) {
+                formula = formula + ')'.repeat(open);
+              }
+              // Expand 3D references: Sheet1:SheetN!Range → Sheet1!Range;Sheet2!Range;...
+              formula = expand3DRefs(formula);
+              if (formula !== changes[i][3]) {
+                changes[i][3] = formula;
+              }
+            }
+          }
         }
       },
 
@@ -1208,36 +1328,49 @@ export default function SpreadsheetHandsontable({
             const origCol = original ? original.col : _c;
             const wasFormulaBarEdit = isFormulaBarRangeSource.current;
             isFormulaBarRangeSource.current = false;
-            setTimeout(() => {
-              if (wasFormulaBarEdit) {
-                // Formula Bar was the editing source: focus it and place cursor after the inserted range.
-                const fbInput = document.querySelector('.formulabar-input') as HTMLTextAreaElement | null;
-                if (fbInput) {
-                  const newCursorPos = selStart + rangeStr.length;
-                  fbInput.focus();
-                  fbInput.selectionStart = newCursorPos;
-                  fbInput.selectionEnd = newCursorPos;
-                }
-              } else {
-                // In-cell editor was the source: re-select original cell and reopen editor.
-                const h = hotRef.current;
-                if (!h || h.isDestroyed) return;
+            if (wasFormulaBarEdit) {
+              // Formula Bar was the editing source: focus it and place cursor after the inserted range.
+              const fbInput = document.querySelector('.formulabar-input') as HTMLTextAreaElement | null;
+              if (fbInput) {
+                const newCursorPos = selStart + rangeStr.length;
+                fbInput.focus();
+                fbInput.selectionStart = newCursorPos;
+                fbInput.selectionEnd = newCursorPos;
+              }
+            } else {
+              // In-cell editor was the source: re-select original cell, set formula, reopen editor.
+              const h = hotRef.current;
+              if (h && !h.isDestroyed) {
                 isRestoringEditorRef.current = true;
+                // Set cell value first so it's never left white/empty
+                h.setDataAtCell(origRow, origCol, newFormula, 'internalUpdate');
                 h.selectCell(origRow, origCol, origRow, origCol);
+                // Reopen editor so user can continue editing
                 const editor = h.getActiveEditor() as any;
                 if (editor) {
                   editor.beginEditing(newFormula);
                   const textarea = editor.TEXTAREA;
                   const newCursorPos = selStart + rangeStr.length;
-                  textarea.focus();
-                  textarea.selectionStart = newCursorPos;
-                  textarea.selectionEnd = newCursorPos;
+                  if (textarea) {
+                    textarea.focus();
+                    textarea.selectionStart = newCursorPos;
+                    textarea.selectionEnd = newCursorPos;
+                    // Auto-expand editor to show formula, capped to avoid overflow
+                    const spreadsheetWrap2 = document.querySelector('.spreadsheet-container') as HTMLElement;
+                    if (spreadsheetWrap2) {
+                      const wr = spreadsheetWrap2.getBoundingClientRect();
+                      const er = textarea.getBoundingClientRect();
+                      const mw = Math.max(150, wr.right - er.left - 12);
+                      textarea.style.maxWidth = mw + 'px';
+                      textarea.style.width = 'auto';
+                    }
+                  }
                 }
               }
-              // Set formula bar AFTER restoring focus to overwrite any source-data read
-              setFormulaBarValue(newFormula);
-              formulaValueRef.current = newFormula;
-            }, 0);
+            }
+            // Set formula bar to reflect the new formula
+            setFormulaBarValue(newFormula);
+            formulaValueRef.current = newFormula;
             return; // Skip normal afterSelectionEnd (no state/aggregate updates)
           }
         }
@@ -1818,7 +1951,18 @@ export default function SpreadsheetHandsontable({
   useEffect(() => {
     const hot = hotRef.current;
     if (!hot || hot.isDestroyed) return;
-    const targetData = [headers.map(h => h), ...data.map(row => row.map(cell => (cell === null ? '' : cell)))];
+    // Bug #33 fix: normalize all rows to the same column count before loadData.
+    // Handsontable's loadData silently truncates values when rows have different
+    // lengths (e.g., headers=3 cols but user edited column E making a row 5 cols).
+    // Padding all rows to uniform width prevents data loss.
+    const headerRow = headers.map(h => h);
+    const dataRows = data.map(row => Array.from(row, cell => (cell === null || cell === undefined ? '' : cell)));
+    const maxCols = Math.max(headerRow.length, ...dataRows.map(r => r.length));
+    const padRow = (row: any[]) => {
+      if (row.length >= maxCols) return row;
+      return [...row, ...Array(maxCols - row.length).fill('')];
+    };
+    const targetData = [padRow(headerRow), ...dataRows.map(padRow)];
     const signature = JSON.stringify(targetData);
     // Only reload if the data signature truly changed vs. what we last loaded
     if (signature !== lastLoadedDataRef.current) {
@@ -2245,6 +2389,7 @@ export default function SpreadsheetHandsontable({
           onConditionalFormat={handleConditionalFormat}
           onAutoSum={handleAutoSum}
           onInsertChart={handleInsertChart}
+          onInsertTable={() => handleContextMenuAction('formatAsTable')}
           onDataValidation={() => setShowValidationDialog(true)}
           onPivotTable={handleOpenPivot}
           onSort={handleSort}
@@ -2311,7 +2456,7 @@ export default function SpreadsheetHandsontable({
         onAction={handleContextMenuAction}
         onClose={() => setContextMenu((prev: ContextMenuState) => ({ ...prev, visible: false }))}
       />
-      {/* Step 4: Function ScreenTip — floating syntax hint with argument highlight */}
+      {/* Step 4: Function ScreenTip — floating syntax hint with argument highlight
       {funcTooltip && (
         <div style={{
           position: 'fixed', zIndex: 601, left: funcTooltip.x, top: funcTooltip.y,
@@ -2321,6 +2466,7 @@ export default function SpreadsheetHandsontable({
           pointerEvents: 'none', whiteSpace: 'nowrap',
         }} dangerouslySetInnerHTML={{ __html: funcTooltip.html }} />
       )}
+      */}
       {/* Conditional Formatting Dialog */}
       {showCFDialog && (
         <div className="excel-dialog-overlay" onClick={() => setShowCFDialog(false)}>

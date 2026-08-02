@@ -19,6 +19,7 @@ interface ExcelRibbonProps {
   onConditionalFormat?: () => void;
   onAutoSum?: (type?: 'sum' | 'avg' | 'count' | 'max' | 'min' | 'fx') => void;
   onInsertChart?: (type: 'bar' | 'line') => void;
+  onInsertTable?: () => void;
   onDataValidation?: () => void;
   onPivotTable?: () => void;
   onExport?: () => void;
@@ -85,6 +86,7 @@ export default function ExcelRibbon({
   onConditionalFormat,
   onAutoSum,
   onInsertChart,
+  onInsertTable,
   onDataValidation,
   onPivotTable,
   onExport,
@@ -432,7 +434,7 @@ export default function ExcelRibbon({
         {activeTab === 'insert' && (
           <div className="ribbon-groups">
             <RibbonGroupBox label="Tabellen">
-              <RibbonBtn icon={<TableIcon />} label="Tabelle" w={64} disabled title="Tabellenformatierung nicht verfügbar" />
+              <RibbonBtn icon={<TableIcon />} label="Tabelle" w={64} onClick={onInsertTable} title="Als Tabelle formatieren (Strg+T)" />
             </RibbonGroupBox>
             <RibbonSeparator />
             <RibbonGroupBox label="Diagramme">

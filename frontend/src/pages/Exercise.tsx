@@ -4,12 +4,14 @@ import { Lightbulb, Trophy, CheckCircle, ThumbsUp, BookOpen, Award, HelpCircle, 
 import { apiFetch, useAuth } from '../context/AuthContext';
 import { BadgeModal, XPFlying, ExcelSpinner } from '../components/animations/Celebrations';
 import { announce } from '../components/a11y/Accessibility';
+import QuizExercise from '../components/quiz/QuizExercise';
 import { useTour, EXERCISE_TOUR } from '../components/tour/OnboardingTour';
 import Comments from '../components/community/Comments';
 import KeyboardHelp from '../components/help/KeyboardHelp';
 
 // Lazy-load heavy spreadsheet component (Handsontable + HyperFormula ~4.5MB)
 const SpreadsheetHandsontable = lazy(() => import('../components/spreadsheet/SpreadsheetHandsontable'));
+import type { CellFormats } from '../components/spreadsheet/types';
 import { useDailyGoal } from '../context/DailyGoalContext';
 import { useExerciseTimer } from '../hooks/useAnalytics';
 
@@ -27,6 +29,8 @@ interface TemplateData {
   learningObjectives?: string[];
   theory?: string;
   theoryTitle?: string;
+  /** Multi-sheet exercises: pre-populated sheets */
+  sheets?: { name: string; headers: string[]; data: (string | number | null)[][] }[];
 }
 
 interface ExerciseData {
@@ -47,6 +51,7 @@ export default function Exercise() {
   const [score, setScore] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [spreadsheetData, setSpreadsheetData] = useState<(string | number | null)[][]>([]);
+  const [cellFormats, setCellFormats] = useState<CellFormats>({});
   const [xpGained, setXpGained] = useState<number | null>(null);
   const [showSuccessCheck, setShowSuccessCheck] = useState(false);
   const [showXpFly, setShowXpFly] = useState(false);
@@ -57,7 +62,7 @@ export default function Exercise() {
   const [feedbackHint, setFeedbackHint] = useState<React.ReactNode>('');
   const [showReflection, setShowReflection] = useState(false);
   const [mode, setMode] = useState<'practice' | 'exam'>('practice');
-  const [exerciseTab, setExerciseTab] = useState<'instructions' | 'theory' | 'community'>('instructions');
+  const [exerciseTab, setExerciseTab] = useState<'instructions' | 'theory' | 'community'>('theory');
   const [attemptCount, setAttemptCount] = useState(0);
   const [hintLevel, setHintLevel] = useState(1); // Show first hint by default
   const [showSolution, setShowSolution] = useState(false);
@@ -231,7 +236,7 @@ export default function Exercise() {
       const submitData = spreadsheetData;
       const result = await apiFetch(`/exercises/${id}/submit`, {
         method: 'POST',
-        body: JSON.stringify({ data: submitData }),
+        body: JSON.stringify({ data: submitData, formats: cellFormats }),
       });
       setScore(result.score);
       setAttemptCount(c => c + 1);
@@ -316,6 +321,72 @@ export default function Exercise() {
   );
 
   const template = exercise.template_data;
+
+  // ── Quiz exercise type: no spreadsheet, just Q&A ──────────────────────
+  if (template.type === 'quiz' && template.questions) {
+    const handleQuizSubmit = async (answers: number[][]) => {
+      setSubmitting(true);
+      try {
+        const result = await apiFetch(`/exercises/${id}/submit`, {
+          method: 'POST',
+          body: JSON.stringify({ type: 'quiz', answers }),
+        });
+        setScore(result.score);
+        setAttemptCount(c => c + 1);
+        trackSubmit(result.score);
+        try {
+          const gami = await apiFetch('/gamification/stats');
+          setXpGained(result.xpGained || 50);
+          setShowXpFly(true);
+          safeTimeout(() => setShowXpFly(false), 2000);
+        } catch { setXpGained(result.xpGained || 50); setShowXpFly(true); }
+        if (result.score > 0) incrementGoal();
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setSubmitting(false);
+      }
+    };
+
+    return (
+      <div className="exercise-page">
+        <div className="flex items-center gap-sm" style={{ marginBottom: 12 }}>
+          <Link to="/courses" className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
+            <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
+          </Link>
+          {/* Prev/Next navigation */}
+          <div style={{ display: 'flex', gap: 4, marginLeft: 4 }}>
+            {prevExercise && (
+              <Link to={`/exercises/${prevExercise.id}`} className="btn btn-outline btn-sm"
+                style={{ padding: '6px 10px' }} title={`Vorherige: ${prevExercise.title}`}>
+                <ArrowLeft size={14} />
+              </Link>
+            )}
+            {nextExercise && (
+              <Link to={`/exercises/${nextExercise.id}`} className="btn btn-outline btn-sm"
+                style={{ padding: '6px 10px' }} title={`Nächste: ${nextExercise.title}`}>
+                <ArrowRight size={14} />
+              </Link>
+            )}
+          </div>
+          <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>
+            <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</Link> › <Link to="/courses" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link> › Übung
+          </span>
+        </div>
+        <h1 style={{ marginBottom: 6 }}>{exercise.title}</h1>
+        <p className="exercise-description" style={{ marginBottom: 14, fontSize: '1.05rem' }}>{exercise.description}</p>
+        <QuizExercise
+          questions={template.questions}
+          onSubmit={handleQuizSubmit}
+          submitting={submitting}
+          score={score}
+        />
+        <XPFlying xp={xpGained || 0} sourceRef={scoreRef} trigger={showXpFly} />
+        <BadgeModal show={!!newBadge} badge={newBadge} onClose={() => setNewBadge(null)} />
+      </div>
+    );
+  }
+
   const scoreClass = score === null ? '' : score >= 80 ? 'score-success' : score >= 50 ? 'score-partial' : 'score-fail';
 
   const scoreIcon = score === null ? null :
@@ -387,8 +458,8 @@ export default function Exercise() {
           {/* ── TABS ── */}
           <div className="exercise-tabs">
             {[
-              { key: 'instructions' as const, icon: <ListChecks size={16} />, label: 'Anleitung' },
               { key: 'theory' as const, icon: <BookOpen size={16} />, label: 'Theorie' },
+              { key: 'instructions' as const, icon: <ListChecks size={16} />, label: 'Anleitung' },
               { key: 'community' as const, icon: <MessageCircle size={16} />, label: 'Community' },
             ].map(tab => (
               <button
@@ -678,9 +749,12 @@ export default function Exercise() {
                 isDirtyRef.current = true;
                 setSpreadsheetData(newData);
               }}
+              externalFormats={cellFormats}
+              onCellFormatsChange={(fmts) => setCellFormats(fmts)}
               taskCols={template.taskCols}
               gridHeight={gridHeight}
               errorCells={errorCellsProp}
+              initialSheets={template.sheets}
             />
             </Suspense>
           </div>
