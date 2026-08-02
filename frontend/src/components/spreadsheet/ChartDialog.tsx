@@ -1,7 +1,7 @@
 // ── ChartDialog: Simple SVG bar/line chart overlay ──────────────────────
 // Renders a basic chart from selected Handsontable data without external deps
 
-import { useMemo } from 'react';
+import { useMemo, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
 interface ChartDialogProps {
@@ -19,6 +19,17 @@ export default function ChartDialog({ visible, chartType, data, onClose }: Chart
   const labelKey = keys[0] || '';
   const seriesKeys = keys.slice(1);
 
+  // Bug #32 fix: restore focus to previously active element when dialog closes
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (visible) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+    } else if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
+  }, [visible]);
+
   const chart = useMemo(() => {
     if (!visible || data.length === 0) return null;
     const values = seriesKeys.map(k => data.map(d => Number(d[k]) || 0));
@@ -33,8 +44,10 @@ export default function ChartDialog({ visible, chartType, data, onClose }: Chart
     const plotW = W - pad.left - pad.right;
     const plotH = H - pad.top - pad.bottom;
     const barGap = 2;
-    const totalBars = data.length * seriesKeys.length;
-    const barW = Math.max(3, (plotW / totalBars) - barGap);
+    // Bug #20.1 fix: group bars by data point, center each group
+    const groupWidth = plotW / (data.length || 1);
+    const seriesCount = seriesKeys.length || 1;
+    const barW = Math.max(3, (groupWidth - barGap * (seriesCount + 1)) / seriesCount);
 
     // Y-axis ticks
     const yTicks = 5;
@@ -74,9 +87,10 @@ export default function ChartDialog({ visible, chartType, data, onClose }: Chart
             data.map((d, di) => {
               const val = Number(d[key]) || 0;
               const barH = Math.max(1, (Math.abs(val) / range) * plotH);
-              const x = pad.left + di * (plotW / data.length) + si * barW + barGap;
+              // Bug #20.1: center bars within data-point groups
+              const x = pad.left + di * groupWidth + barGap + si * (barW + barGap);
               const y = val >= 0 ? pad.top + plotH - ((val - minVal) / range) * plotH : pad.top + plotH - ((-minVal) / range) * plotH;
-              return <rect key={`${si}-${di}`} x={x} y={y} width={barW - barGap} height={barH} fill={CHART_COLORS[si % CHART_COLORS.length]} rx={1} />;
+              return <rect key={`${si}-${di}`} x={x} y={y} width={barW} height={barH} fill={CHART_COLORS[si % CHART_COLORS.length]} rx={1} />;
             })
           )
         ) : (

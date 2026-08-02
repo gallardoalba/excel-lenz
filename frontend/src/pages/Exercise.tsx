@@ -106,6 +106,8 @@ export default function Exercise() {
   }, []);
 
   // Prevent accidental navigation only if user has modified data (dirty check)
+  // Bug #11.1 fix: use isDirtyRef instead of JSON.stringify for beforeunload
+  const isDirtyRef = useRef(false);
   const originalDataRef = useRef<string>('');
   useEffect(() => {
     if (exercise && !originalDataRef.current) {
@@ -113,22 +115,18 @@ export default function Exercise() {
     }
   }, [exercise]);
 
-  // Bug #4 fix: use ref for spreadsheetData to avoid re-subscribing beforeunload
-  // on every keystroke
-  const spreadsheetDataRef = useRef(spreadsheetData);
-  useEffect(() => { spreadsheetDataRef.current = spreadsheetData; }, [spreadsheetData]);
-
+  // Bug #11.1: isDirtyRef replaces spreadsheetDataRef for beforeunload check
+  // (avoids JSON.stringify on large grids blocking the main thread on tab close)
   useEffect(() => {
     const handler = (e: BeforeUnloadEvent) => {
-      const current = JSON.stringify(spreadsheetDataRef.current);
-      if (exercise && !exercise.progress?.completed && current !== originalDataRef.current) {
+      if (exercise && !exercise.progress?.completed && isDirtyRef.current) {
         e.preventDefault();
         e.returnValue = '';
       }
     };
     window.addEventListener('beforeunload', handler);
     return () => window.removeEventListener('beforeunload', handler);
-  }, [exercise]); // Bug #4 fix: only depends on exercise, not spreadsheetData
+  }, [exercise]);
 
   const safeTimeout = useCallback((fn: () => void, ms: number) => {
     const id = setTimeout(() => {
@@ -162,11 +160,14 @@ export default function Exercise() {
             const saved = JSON.parse(data.progress.submitted_data);
             setSpreadsheetData(saved);
           } catch {
-            setSpreadsheetData(data.template_data.data);
+            setSpreadsheetData(JSON.parse(JSON.stringify(data.template_data.data)));
           }
           setScore(data.progress.score);
         } else {
-          setSpreadsheetData(data.template_data.data);
+          // Bug #28 fix: deep clone template data to prevent reference sharing
+          setSpreadsheetData(JSON.parse(JSON.stringify(data.template_data.data)));
+          // Bug #25 fix: reset attemptCount on new exercise load
+          setAttemptCount(0);
         }
         // Fetch next exercise in course sequence
         apiFetch(`/courses/${data.course_id}`, { signal })
@@ -255,7 +256,16 @@ export default function Exercise() {
           announce('Perfekt! 100 Prozent erreicht!', 'assertive');
           safeTimeout(() => setShowSuccessCheck(false), 3000);
         }
-      } catch { setXpGained(50); }
+      } catch {
+        // Bug #11.2 fix: still award XP even if gamification endpoint fails
+        setXpGained(result.xpGained || 50);
+        setShowXpFly(true);
+        safeTimeout(() => setShowXpFly(false), 2000);
+        if (result.score >= 100) {
+          setShowSuccessCheck(true);
+          safeTimeout(() => setShowSuccessCheck(false), 3000);
+        }
+      }
       // Track daily goal progress — only count meaningful attempts
       if (result.score > 0) {
         incrementGoal();
@@ -634,7 +644,10 @@ export default function Exercise() {
               key={id}
               headers={template.headers}
               data={spreadsheetData}
-              onChange={setSpreadsheetData}
+              onChange={(newData) => {
+                isDirtyRef.current = true;
+                setSpreadsheetData(newData);
+              }}
               taskCols={template.taskCols}
               gridHeight={gridHeight}
               errorCells={cellFeedback.length > 0 ? cellFeedback.map(fb => ({

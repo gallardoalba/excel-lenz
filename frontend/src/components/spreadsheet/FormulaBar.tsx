@@ -188,14 +188,14 @@ export default function FormulaBar(props: FormulaBarProps) {
     onChange?.(newVal);
     setShowAutocomplete(false);
     // Step 3: restore focus and position cursor after inserted function
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       inputRef.current?.focus();
       if (inputRef.current) {
         const pos = newVal.length;
         inputRef.current.selectionStart = pos;
         inputRef.current.selectionEnd = pos;
       }
-    }, 0);
+    });
   }, [onChange, editValue]);
 
   // ── Keyboard handling ────────────────────────────────────────────────
@@ -209,7 +209,9 @@ export default function FormulaBar(props: FormulaBarProps) {
     }
     if (e.key === 'Enter') { e.preventDefault(); onNavigate?.(e.shiftKey ? 'shiftEnter' : 'enter'); onConfirm?.(); }
     else if (e.key === 'Tab') { e.preventDefault(); onNavigate?.(e.shiftKey ? 'shiftTab' : 'tab'); onConfirm?.(); }
+    // Bug #10.2 fix: Escape dismisses formula bar and returns focus to the grid
     else if (e.key === 'Escape') { e.preventDefault(); onCancel?.(); }
+    else if (e.ctrlKey && e.key === 'Tab') { e.preventDefault(); onCancel?.(); }
   }, [showAutocomplete, autocompleteItems, autocompleteIndex, selectAutocomplete, onConfirm, onCancel, onNavigate]);
 
   const handleConfirm = useCallback(() => { onConfirm?.(); }, [onConfirm]);

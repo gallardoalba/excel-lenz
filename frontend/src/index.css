@@ -1368,8 +1368,13 @@ body.dark .spreadsheet-fortune-grid {
   cursor: crosshair !important;
 }
 
-/* Excel error triangle (BUG 12: red corner indicator, not green) */
-.excel-error-triangle {
+/* Excel error triangle (Bug #6.1: CSS pseudo-element replaces DOM injection in renderer) */
+.handsontable td.has-excel-error {
+  position: relative;
+  background: #fff0f0 !important;
+}
+.handsontable td.has-excel-error::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -1652,7 +1657,6 @@ body.dark .spreadsheet-toast {
   opacity: 0.35;
   cursor: not-allowed;
   pointer-events: none;
-}
 }
 .ribbon-btn.active {
   background: rgba(0, 0, 0, 0.08);

@@ -2,6 +2,7 @@
 // Displays mode indicator, selection aggregates, and zoom controls.
 
 import { useState } from 'react';
+import React from 'react';
 import type { StatusBarInfo } from './types';
 
 interface StatusBarProps {
@@ -18,7 +19,9 @@ interface StatusBarProps {
   onAddSheet?: () => void;
 }
 
-export default function StatusBar({
+export default React.memo(StatusBar);
+
+function StatusBar({
   info,
   onZoomIn,
   onZoomOut,

@@ -61,6 +61,28 @@ export default function ContextMenu({
           (items[index] as HTMLElement).focus();
         }
       }
+      // Bug #10.1 fix: open submenus with ArrowRight/Enter (keyboard a11y)
+      if (e.key === 'ArrowRight' || e.key === 'Enter') {
+        const current = document.activeElement as HTMLElement;
+        const hasSubmenu = current?.classList.contains('has-submenu') || current?.querySelector('.context-submenu');
+        if (hasSubmenu) {
+          e.preventDefault();
+          current.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+          const firstSubItem = current.querySelector('.context-submenu .context-menu-item') as HTMLElement;
+          firstSubItem?.focus();
+        }
+      }
+      // Bug #10.1 fix: close submenus with ArrowLeft
+      if (e.key === 'ArrowLeft') {
+        const current = document.activeElement as HTMLElement;
+        const parentSubmenu = current?.closest('.context-submenu');
+        if (parentSubmenu) {
+          e.preventDefault();
+          const parentItem = parentSubmenu.closest('.context-menu-item') as HTMLElement;
+          parentItem?.focus();
+          parentItem?.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        }
+      }
     };
     // Delay to prevent the right-click event itself from closing
     setTimeout(() => {
@@ -146,7 +168,9 @@ export default function ContextMenu({
 
   // Adjust position to keep menu within viewport
   const adjustedX = Math.min(x, window.innerWidth - 220);
-  const adjustedY = Math.min(y, window.innerHeight - 400);
+  // Bug #4.3 fix: use dynamic height from menu ref instead of hardcoded 400px
+  const menuHeight = menuRef.current?.offsetHeight || 400;
+  const adjustedY = Math.min(y, window.innerHeight - Math.max(menuHeight, 120));
 
   const isRightEdge = x > window.innerWidth - 250;
 
@@ -178,6 +202,16 @@ function ContextMenuItem({ item, onAction, onClose }: {
 }) {
   const [showSub, setShowSub] = useState(false);
   const closeTimer = useRef<number | null>(null);
+
+  // Bug #16.2 fix: cleanup timeout on unmount to prevent setState on dead component
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) {
+        window.clearTimeout(closeTimer.current);
+        closeTimer.current = null;
+      }
+    };
+  }, []);
 
   const handleMouseEnter = () => {
     if (closeTimer.current) { window.clearTimeout(closeTimer.current); closeTimer.current = null; }

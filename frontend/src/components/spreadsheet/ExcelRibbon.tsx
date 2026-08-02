@@ -17,7 +17,7 @@ interface ExcelRibbonProps {
   onZoomOut: () => void;
   onFreeze?: (type: 'row' | 'column' | 'both' | 'none') => void;
   onConditionalFormat?: () => void;
-  onAutoSum?: (type?: 'sum' | 'avg' | 'count' | 'max' | 'min') => void;
+  onAutoSum?: (type?: 'sum' | 'avg' | 'count' | 'max' | 'min' | 'fx') => void;
   onInsertChart?: (type: 'bar' | 'line') => void;
   onDataValidation?: () => void;
   onPivotTable?: () => void;
@@ -170,7 +170,10 @@ export default function ExcelRibbon({
             <button
               key={tab.id}
               className={`ribbon-tab ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                if (isCollapsed) setIsCollapsed(false); // Bug #21.2: expand on single click
+              }}
               onDoubleClick={() => setIsCollapsed(c => !c)}
             >
               {tab.label}
@@ -298,7 +301,7 @@ export default function ExcelRibbon({
                     title="Schriftfarbe"
                   />
                   {showFontColor && (
-                    <ColorGrid colors={COLORS} onPick={c => { onFormatChange({ fontColor: c }); setShowFontColor(false); }}
+                    <ColorGrid colors={COLORS} currentColor={activeFormat.fontColor} onPick={c => { onFormatChange({ fontColor: c }); setShowFontColor(false); }}
                       onNone={() => { onFormatChange({ fontColor: undefined }); setShowFontColor(false); }} />
                   )}
                 </div>
@@ -311,7 +314,7 @@ export default function ExcelRibbon({
                     title="Füllfarbe"
                   />
                   {showFillColor && (
-                    <ColorGrid colors={COLORS} onPick={c => { onFormatChange({ bgColor: c }); setShowFillColor(false); }}
+                    <ColorGrid colors={COLORS} currentColor={activeFormat.bgColor} onPick={c => { onFormatChange({ bgColor: c }); setShowFillColor(false); }}
                       onNone={() => { onFormatChange({ bgColor: undefined }); setShowFillColor(false); }} />
                   )}
                 </div>
@@ -362,15 +365,37 @@ export default function ExcelRibbon({
                 <SmallBtn icon=".0+" onClick={() => {
                   let f = activeFormat.numberFormat || '';
                   if (!f || f === 'General' || f === '@') f = '0';
-                  if (!f.includes('.')) onFormatChange({ numberFormat: f + '.0' });
+                  // Bug #3.2 fix: handle percentage formats (0% → 0.0%, not 0%.0)
+                  if (f === '0%') onFormatChange({ numberFormat: '0.0%' });
+                  else if (f.endsWith('%')) onFormatChange({ numberFormat: f.replace(/%$/, '0%') });
+                  else if (!f.includes('.')) onFormatChange({ numberFormat: f + '.0' });
                   else onFormatChange({ numberFormat: f + '0' });
                 }} title="Dezimalstelle hinzufügen" />
                 <SmallBtn icon=".0−" onClick={() => {
                   let f = activeFormat.numberFormat || '0.00';
                   if (f === 'General' || !f.includes('.')) return;
-                  let newF = f.slice(0, -1);
-                  if (newF.endsWith('.')) newF = newF.slice(0, -1);
-                  onFormatChange({ numberFormat: newF || '0' });
+                  // Bug #3.2 fix: handle percentage formats (0.0% → 0%)
+                  if (f.endsWith('%')) {
+                    const pctPart = f.slice(0, -1);
+                    let newPct = pctPart.slice(0, -1);
+                    if (newPct.endsWith('.')) newPct = newPct.slice(0, -1);
+                    onFormatChange({ numberFormat: newPct + '%' });
+                    return;
+                  }
+                  // Bug #23 fix: handle currency/number with suffixes (€, $, spaces)
+                  // Remove last digit/char that is part of the decimal pattern
+                  const match = f.match(/^(.+?)(\s*[€$]?\s*)$/);
+                  if (match) {
+                    let numPart = match[1];
+                    const suffix = match[2];
+                    let newNum = numPart.slice(0, -1);
+                    if (newNum.endsWith('.')) newNum = newNum.slice(0, -1);
+                    onFormatChange({ numberFormat: (newNum + suffix) || '0' });
+                  } else {
+                    let newF = f.slice(0, -1);
+                    if (newF.endsWith('.')) newF = newF.slice(0, -1);
+                    onFormatChange({ numberFormat: newF || '0' });
+                  }
                 }} title="Dezimalstelle löschen" />
               </div>
             </RibbonGroupBox>
@@ -453,7 +478,7 @@ export default function ExcelRibbon({
           <div className="ribbon-groups">
             <RibbonGroupBox label="Funktionsbibliothek">
               <div className="ribbon-group-row">
-                <RibbonBtn icon={<FxIcon />} label="Funktion einfügen" w={64} onClick={() => { onAutoSum?.(); }} />
+                <RibbonBtn icon={<FxIcon />} label="Funktion einfügen" w={64} onClick={() => { onAutoSum?.('fx'); }} />
                 <RibbonBtn icon={<SumIcon />} label="AutoSumme ▾" w={60} onClick={() => onAutoSum?.()} />
               </div>
             </RibbonGroupBox>
@@ -690,14 +715,19 @@ function SplitColorBtn({ icon, color, onClick, title }: {
   );
 }
 
-function ColorGrid({ colors, onPick, onNone }: {
-  colors: string[]; onPick: (c: string) => void; onNone: () => void;
+function ColorGrid({ colors, currentColor, onPick, onNone }: {
+  colors: string[]; currentColor?: string; onPick: (c: string) => void; onNone: () => void;
 }) {
   return (
     <div className="ribbon-color-grid">
       <div className="color-grid-colors">
         {colors.map(c => (
-          <button key={c} className="color-swatch" style={{ background: c }}
+          <button key={c} className="color-swatch"
+            style={{
+              background: c,
+              // Bug #20.2 fix: show indicator for currently active color
+              boxShadow: c === currentColor ? '0 0 0 2px #217346 inset, 0 0 0 3px #fff' : '0 0 0 1px rgba(0,0,0,0.1)',
+            }}
             onClick={() => onPick(c)} title={c} />
         ))}
       </div>
