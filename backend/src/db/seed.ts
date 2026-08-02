@@ -54,7 +54,26 @@ export function seed(): void {
 
   // Only seed exercises if table is empty (allows updating exercises on restart)
   const exCount = db.prepare('SELECT COUNT(*) as count FROM exercises').get() as { count: number };
-  if (exCount.count > 0) return;
+
+  // Delete existing course3 exercises before re-seeding (incremental update)
+  // This allows adding new exercises to course3 without wiping the entire DB
+  const existingCourse3 = db.prepare(
+    "SELECT id FROM courses WHERE title = 'Fortgeschrittene Funktionen'"
+  ).get() as { id: string } | undefined;
+  if (existingCourse3) {
+    db.prepare('DELETE FROM exercises WHERE course_id = ?').run(existingCourse3.id);
+    db.prepare('DELETE FROM courses WHERE id = ?').run(existingCourse3.id);
+    console.log('🔄 Gelöschte alte Kurs 3 Daten für Re-Seed');
+  }
+
+  // Determine which courses need seeding
+  const existingTitles = db.prepare('SELECT title FROM courses').all() as { title: string }[];
+  const existingSet = new Set(existingTitles.map(r => r.title));
+  const coursesToSeed = ALL_COURSES.filter(c => !existingSet.has(c.title));
+  if (coursesToSeed.length === 0 && exCount.count > 0) {
+    console.log('✅ Alle Kurse bereits vorhanden — kein Seed nötig');
+    return;
+  }
 
   const insertEx = db.prepare(
     'INSERT INTO exercises (id, course_id, title, description, template_data, solution_data, instructions, order_index) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
@@ -102,7 +121,7 @@ export function seed(): void {
   };
 
   let total = 0;
-  for (const data of ALL_COURSES) {
+  for (const data of coursesToSeed) {
     const courseId = crypto.randomUUID();
     const modulesMeta = (data as any).modules ? JSON.stringify((data as any).modules) : null;
     insertCourse.run(courseId, data.title, data.description, data.difficulty, modulesMeta);
@@ -112,7 +131,7 @@ export function seed(): void {
     total += data.exercises.length;
   }
 
-  console.log(`✅ Database seeded (${ALL_COURSES.length} Kurse, ${total} Übungen)`);
+  console.log(`✅ Database seeded (${coursesToSeed.length} Kurse, ${total} Übungen)`);
   console.log(`   Teacher: dozent@excel-lenz.edu / ${process.env.SEED_PASSWORD || 'devpassword'}`);
   console.log(`   Student: student@excel-lenz.edu / ${process.env.SEED_PASSWORD || 'devpassword'}`);
 

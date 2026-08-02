@@ -1,6 +1,6 @@
 {
   "title": "Excel für Anfänger",
-  "description": "Strukturierter Lehrgang nach europäischem Curriculum: von der Excel-Oberfläche über grundlegende Formeln und Formatierung bis zu Datenvalidierung und Analyse. 5 strukturierte Module mit 32 praxisnahen Übungen — perfekt für Berufseinsteiger und Quereinsteiger.",
+  "description": "Strukturierter Lehrgang nach europäischem Curriculum: von der Excel-Oberfläche über grundlegende Formeln und Formatierung bis zu Datenvalidierung und Analyse. 5 strukturierte Module mit 43 praxisnahen Übungen — perfekt für Berufseinsteiger und Quereinsteiger.",
   "difficulty": "beginner",
   "modules": [
     {
@@ -385,6 +385,147 @@
       }
     },
     {
+      "title": "Erste Dateneingabe: Mitarbeiterliste",
+      "description": "Machen Sie Ihre ersten Schritte im Excel-Arbeitsblatt: Daten eingeben, zwischen Zellen navigieren und Zellen korrekt benennen.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Name",
+          "Abteilung",
+          "Eintrittsjahr",
+          "Standort"
+        ],
+        "data": [
+          [
+            "Anna Schmidt",
+            "Vertrieb",
+            2022,
+            null
+          ],
+          [
+            "Ben Müller",
+            "IT",
+            null,
+            null
+          ],
+          [
+            null,
+            "Marketing",
+            2021,
+            null
+          ],
+          [
+            "David Fischer",
+            null,
+            2020,
+            null
+          ],
+          [
+            null,
+            "Personal",
+            null,
+            "Berlin"
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna Schmidt",
+            "Vertrieb",
+            2022,
+            "München"
+          ],
+          [
+            "Ben Müller",
+            "IT",
+            2023,
+            "Hamburg"
+          ],
+          [
+            "Clara Weber",
+            "Marketing",
+            2021,
+            "Berlin"
+          ],
+          [
+            "David Fischer",
+            "Finanzen",
+            2020,
+            "München"
+          ],
+          [
+            "Eva Klein",
+            "Personal",
+            2019,
+            "Berlin"
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Klicken Sie auf D2 und geben Sie 'München' ein. Mit Tab → nächste Zelle.\n2. Vervollständigen Sie Zeile 2 (Ben Müller): Eintrittsjahr = 2023, Standort = Hamburg.\n3. Zeile 3: Name = 'Clara Weber' (in A3 eintragen).\n4. Zeile 4: Abteilung = 'Finanzen', Standort = 'München'.\n5. Zeile 5: Name = 'Eva Klein', Eintrittsjahr = 2019.",
+      "order": 3,
+      "formulaHint": null,
+      "hint1": "Klicken Sie einfach in die gewünschte Zelle und tippen Sie los. Mit Enter springen Sie eine Zeile nach unten.",
+      "hint2": "Das Namensfeld links oben zeigt immer die Adresse der aktiven Zelle an, z.B. D2.",
+      "hint3": "Die Lösung zeigt die vollständige Tabelle mit allen korrekten Einträgen.",
+      "learningObjectives": [
+        "Daten durch Klicken und Tippen in Zellen eingeben",
+        "Mit Tab, Enter und Pfeiltasten zwischen Zellen navigieren",
+        "Zelladressen im Namensfeld ablesen (A1, B2, D2...)"
+      ],
+      "estimated_minutes": 7,
+      "prerequisites": [],
+      "theoryTitle": "Daten eingeben und navigieren",
+      "theory": "Klicken Sie auf eine Zelle und tippen Sie — fertig! Mit Enter springen Sie nach unten, mit Tab nach rechts, mit Shift+Enter nach oben. Das Namensfeld (links neben der Bearbeitungsleiste) zeigt immer die aktuelle Zelladresse (z.B. A1, B2). Mit den Pfeiltasten bewegen Sie sich frei in alle Richtungen.",
+      "moduleId": "m1",
+      "moduleSection": "1.3",
+      "moduleTitle": "Modul 1: Einführung in Excel und die Arbeitsumgebung",
+      "sectionTitle": "Grundlegende Navigation"
+    },
+    {
       "title": "Zellen und Bereiche benennen",
       "description": "Üben Sie die korrekte Benennung von Zellen und Zellbereichen in Excel.",
       "template": {
@@ -523,7 +664,7 @@
         ]
       },
       "instructions": "Beantworten Sie die folgenden Fragen zu Zellbezügen und Bereichen.",
-      "order": 3,
+      "order": 4,
       "formulaHint": null,
       "hint1": "Eine Zelle wird mit Spaltenbuchstabe + Zeilennummer benannt: A1, B2, C3...",
       "hint2": "Ein Bereich von A1 bis A5 wird als A1:A5 geschrieben.",
@@ -605,7 +746,7 @@
         ]
       },
       "instructions": "Beantworten Sie die Fragen zur Dateiverwaltung in Excel.",
-      "order": 4,
+      "order": 5,
       "formulaHint": null,
       "hint1": "Excel verwendet verschiedene Dateiendungen für verschiedene Zwecke.",
       "hint2": "Strg+S = Speichern, Strg+O = Öffnen, Strg+N = Neue Arbeitsmappe.",
@@ -787,7 +928,7 @@
         ]
       },
       "instructions": "Beantworten Sie die folgenden Fragen zu Datentypen in Excel.",
-      "order": 5,
+      "order": 6,
       "formulaHint": null,
       "hint1": "Text wird in Excel automatisch linksbündig ausgerichtet.",
       "hint2": "Zahlen und Datumsangaben werden automatisch rechtsbündig ausgerichtet.",
@@ -868,7 +1009,7 @@
         ]
       },
       "instructions": "Beantworten Sie die Fragen zu den Bearbeitungswerkzeugen in Excel.",
-      "order": 6,
+      "order": 7,
       "formulaHint": null,
       "hint1": "F2 ist die schnellste Methode, um den Inhalt einer Zelle zu bearbeiten.",
       "hint2": "Strg+Z = Rückgängig, Strg+Y = Wiederholen/Wiederherstellen.",
@@ -1057,7 +1198,7 @@
         ]
       },
       "instructions": "1. Vervollständigen Sie die fehlenden Monatsnamen in Spalte A.\n2. Die Monate müssen in der richtigen Reihenfolge und mit korrekter deutscher Schreibweise eingetragen werden.\n3. Januar bis März sind bereits vorgegeben. Fahren Sie mit April fort.",
-      "order": 7,
+      "order": 8,
       "formulaHint": null,
       "hint1": "Nach März kommt April — die deutsche Schreibweise ist wie im Kalender.",
       "hint2": "Die Monate auf Deutsch: Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember.",
@@ -1209,7 +1350,7 @@
         ]
       },
       "instructions": "1. Spalte A (5er-Schritte): Setzen Sie die Reihe in 5er-Schritten fort.\n2. Spalte B (Verdopplung): Verdoppeln Sie jeden Wert — 1, 2, 4, 8, 16...\n3. Spalte C (Rückwärts): Zählen Sie in 10er-Schritten rückwärts von 100 bis 0.",
-      "order": 8,
+      "order": 9,
       "formulaHint": null,
       "hint1": "Spalte A: Jeder Wert ist um 5 größer als der vorherige.",
       "hint2": "Spalte B: Jeder Wert ist das Doppelte des vorherigen.",
@@ -1289,7 +1430,7 @@
         ]
       },
       "instructions": "Beantworten Sie die Fragen zum Kopieren, Ausschneiden und Einfügen.",
-      "order": 9,
+      "order": 10,
       "formulaHint": null,
       "hint1": "Die drei grundlegenden Tastenkombinationen: Strg+C, Strg+X, Strg+V.",
       "hint2": "Rechtsklick → Inhalte einfügen bietet viele Spezialoptionen.",
@@ -1325,6 +1466,168 @@
           ]
         ]
       }
+    },
+    {
+      "title": "Format übertragen",
+      "description": "Lernen Sie, wie Sie mit dem Formatpinsel Zellformatierungen schnell auf andere Bereiche übertragen.",
+      "template": {
+        "cols": 4,
+        "rows": 10,
+        "headers": [
+          "Name",
+          "Abteilung",
+          "Budget €",
+          "Status"
+        ],
+        "data": [
+          [
+            "Müller",
+            "IT",
+            15000,
+            "Genehmigt"
+          ],
+          [
+            "Schmidt",
+            "Vertrieb",
+            null,
+            null
+          ],
+          [
+            "Weber",
+            "Marketing",
+            null,
+            null
+          ],
+          [
+            "Fischer",
+            "IT",
+            null,
+            null
+          ],
+          [
+            "Klein",
+            "Vertrieb",
+            null,
+            null
+          ],
+          [
+            "Wagner",
+            "Marketing",
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Müller",
+            "IT",
+            15000,
+            "Genehmigt"
+          ],
+          [
+            "Schmidt",
+            "Vertrieb",
+            15000,
+            "Genehmigt"
+          ],
+          [
+            "Weber",
+            "Marketing",
+            15000,
+            "Genehmigt"
+          ],
+          [
+            "Fischer",
+            "IT",
+            15000,
+            "Genehmigt"
+          ],
+          [
+            "Klein",
+            "Vertrieb",
+            15000,
+            "Genehmigt"
+          ],
+          [
+            "Wagner",
+            "Marketing",
+            15000,
+            "Genehmigt"
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Markieren Sie Zeile 2 (Müller) — diese Zeile ist bereits fertig formatiert.\n2. Klicken Sie im Ribbon 'Start' auf den Formatpinsel-Button (Pinsel-Symbol).\n3. Markieren Sie die Zeilen 3-6 (Schmidt bis Wagner), um das Format zu übertragen.\n4. Füllen Sie Spalte C mit 15000 und Spalte D mit 'Genehmigt'.",
+      "order": 11,
+      "formulaHint": null,
+      "hint1": "Der Formatpinsel befindet sich im Ribbon 'Start' in der Gruppe 'Zwischenablage'.",
+      "hint2": "Doppelklick auf den Formatpinsel hält ihn für mehrere Anwendungen aktiv.",
+      "hint3": "Markieren Sie zuerst die Quelle (Zeile 2), dann Formatpinsel, dann das Ziel.",
+      "learningObjectives": [
+        "Format mit dem Formatpinsel übertragen",
+        "Quell- und Zielbereich korrekt auswählen"
+      ],
+      "estimated_minutes": 5,
+      "prerequisites": [],
+      "theoryTitle": "Formatpinsel",
+      "theory": "Der Formatpinsel (Start → Zwischenablage) überträgt Formatierungen von einer Zelle auf andere. Einfachklick = einmalige Anwendung. Doppelklick = Pinsel bleibt aktiv für mehrere Zellen. ESC deaktiviert den Pinsel.",
+      "moduleId": "m2",
+      "moduleSection": "2.4",
+      "moduleTitle": "Modul 2: Dateneingabe und -bearbeitung",
+      "sectionTitle": "Format übertragen"
     },
     {
       "title": "Zellen formatieren: Schrift und Ausrichtung",
@@ -1495,7 +1798,7 @@
         ]
       },
       "instructions": "1. Schreiben Sie in D2 'Aktiv' und kopieren Sie nach unten (Doppelklick auf Ausfüllkästchen).\n2. Markieren Sie die Überschriften (Zeile 1) und machen Sie sie FETT (Strg+Umschalt+F oder Ribbon-Button).\n3. Zentrieren Sie die Spalten B, C und D mit dem Zentrieren-Button im Ribbon.\n4. Wählen Sie Spalte A und setzen Sie die Schriftart auf 'Calibri'.",
-      "order": 10,
+      "order": 12,
       "formulaHint": null,
       "hint1": "Der Fett-Button (F) ist im Ribbon unter 'Start' → 'Schriftart' zu finden.",
       "hint2": "Den Zentrieren-Button finden Sie unter 'Start' → 'Ausrichtung'.",
@@ -1513,6 +1816,296 @@
       "moduleSection": "3.1",
       "moduleTitle": "Modul 3: Format und Stil von Zellen",
       "sectionTitle": "Schrift, Rahmen und Farben"
+    },
+    {
+      "title": "Rahmen, Schriftfarbe und Füllfarbe",
+      "description": "Gestalten Sie eine Tabelle mit Rahmen, Schriftfarben und Hintergrundfarben für ein professionelles Aussehen.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Produkt",
+          "Kategorie",
+          "Preis €",
+          "Lager"
+        ],
+        "data": [
+          [
+            "Laptop Pro",
+            "Elektronik",
+            1299,
+            15
+          ],
+          [
+            "Monitor 24\"",
+            "Elektronik",
+            249,
+            32
+          ],
+          [
+            "Bürostuhl",
+            "Möbel",
+            399,
+            8
+          ],
+          [
+            "Schreibtisch",
+            "Möbel",
+            599,
+            5
+          ],
+          [
+            "Tastatur",
+            "Zubehör",
+            89,
+            45
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": []
+      },
+      "solution": {
+        "data": [
+          [
+            "Laptop Pro",
+            "Elektronik",
+            1299,
+            15
+          ],
+          [
+            "Monitor 24\"",
+            "Elektronik",
+            249,
+            32
+          ],
+          [
+            "Bürostuhl",
+            "Möbel",
+            399,
+            8
+          ],
+          [
+            "Schreibtisch",
+            "Möbel",
+            599,
+            5
+          ],
+          [
+            "Tastatur",
+            "Zubehör",
+            89,
+            45
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Markieren Sie die Kopfzeile (A1:D1) und geben Sie eine dunkle Füllfarbe (z.B. dunkelblau) und weiße Schriftfarbe.\n2. Markieren Sie alle Datenzellen (A2:D6) und fügen Sie einen dünnen Rahmen hinzu (Start → Schriftart → Rahmen → Alle Rahmen).\n3. Markieren Sie die Preise (C2:C6) und setzen Sie die Schriftfarbe auf Grün.",
+      "order": 13,
+      "formulaHint": null,
+      "hint1": "Füllfarbe und Schriftfarbe finden Sie im Ribbon 'Start' in der Gruppe 'Schriftart'.",
+      "hint2": "Rahmen-Optionen: Start → Schriftart → Rahmen → Alle Rahmen (Gitternetz).",
+      "hint3": "Professionelle Tabellen verwenden dunkle Kopfzeilen mit heller Schrift.",
+      "learningObjectives": [
+        "Rahmen auf Zellbereiche anwenden",
+        "Schriftfarbe und Füllfarbe gezielt einsetzen",
+        "Professionelle Tabellengestaltung verstehen"
+      ],
+      "estimated_minutes": 7,
+      "prerequisites": [
+        "3.1"
+      ],
+      "theoryTitle": "Rahmen, Schriftfarbe und Füllfarbe",
+      "theory": "Rahmen heben Tabellenstrukturen hervor (Start → Schriftart → Rahmen). Schriftfarbe und Füllfarbe lenken die Aufmerksamkeit. Tipp: Dunkle Kopfzeile + helle Schrift = professioneller Kontrast. Weniger ist mehr — maximal 2-3 Farben pro Tabelle.",
+      "moduleId": "m3",
+      "moduleSection": "3.1",
+      "moduleTitle": "Modul 3: Format und Stil von Zellen",
+      "sectionTitle": "Rahmen und Farben"
+    },
+    {
+      "title": "Zellen verbinden und Zeilenumbruch",
+      "description": "Erstellen Sie eine übersichtliche Tabelle mit verbundenen Zellen für Überschriften und Zeilenumbruch für lange Texte.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "data": [
+          [
+            "Umsatzbericht Q1 2025",
+            null,
+            null,
+            null
+          ],
+          [
+            "Monat",
+            "Produkt",
+            "Umsatz €",
+            "Kommentar"
+          ],
+          [
+            "Januar",
+            "Laptop",
+            45000,
+            "Starkes Weihnachtsgeschäft und Jahresendverkäufe"
+          ],
+          [
+            "Januar",
+            "Monitor",
+            28000,
+            "Gute Nachfrage nach WQHD-Monitoren für Home-Office"
+          ],
+          [
+            "Februar",
+            "Laptop",
+            42000,
+            null
+          ],
+          [
+            "Februar",
+            "Monitor",
+            25000,
+            null
+          ],
+          [
+            "März",
+            "Laptop",
+            48000,
+            "Neues Modell eingeführt"
+          ],
+          [
+            "März",
+            "Monitor",
+            31000,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Umsatzbericht Q1 2025",
+            null,
+            null,
+            null
+          ],
+          [
+            "Monat",
+            "Produkt",
+            "Umsatz €",
+            "Kommentar"
+          ],
+          [
+            "Januar",
+            "Laptop",
+            45000,
+            "Starkes Weihnachtsgeschäft und Jahresendverkäufe"
+          ],
+          [
+            "Januar",
+            "Monitor",
+            28000,
+            "Gute Nachfrage nach WQHD-Monitoren für Home-Office"
+          ],
+          [
+            "Februar",
+            "Laptop",
+            42000,
+            "Stabiles Geschäft"
+          ],
+          [
+            "Februar",
+            "Monitor",
+            25000,
+            "Leichter Rückgang"
+          ],
+          [
+            "März",
+            "Laptop",
+            48000,
+            "Neues Modell eingeführt"
+          ],
+          [
+            "März",
+            "Monitor",
+            31000,
+            "Erholung spürbar"
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Markieren Sie A1:D1 und klicken Sie 'Verbinden und zentrieren' (Start → Ausrichtung).\n2. Markieren Sie D3:D8 und aktivieren Sie 'Zeilenumbruch' (Start → Ausrichtung).\n3. Füllen Sie fehlende Kommentare in D5:D8 aus: 'Stabiles Geschäft', 'Leichter Rückgang', 'Neues Modell eingeführt', 'Erholung spürbar'.",
+      "order": 14,
+      "formulaHint": null,
+      "hint1": "'Verbinden und zentrieren' finden Sie im Ribbon Start → Ausrichtung.",
+      "hint2": "Zeilenumbruch sorgt dafür, dass lange Texte in der Zelle automatisch umgebrochen werden.",
+      "hint3": "Verbundene Zellen eignen sich gut für Hauptüberschriften über mehrere Spalten.",
+      "learningObjectives": [
+        "Zellen verbinden und zentrieren anwenden",
+        "Zeilenumbruch für lange Texte nutzen",
+        "Überschriften professionell gestalten"
+      ],
+      "estimated_minutes": 7,
+      "prerequisites": [
+        "3.1"
+      ],
+      "theoryTitle": "Verbinden und zentrieren, Zeilenumbruch",
+      "theory": "Verbinden und zentrieren (Start → Ausrichtung) fasst mehrere Zellen zu einer zusammen. Zeilenumbruch: Text wird automatisch umgebrochen, wenn er breiter als die Spalte ist. Alternative: 'An Wortumbrüchen ausrichten'.",
+      "moduleId": "m3",
+      "moduleSection": "3.1",
+      "moduleTitle": "Modul 3: Format und Stil von Zellen",
+      "sectionTitle": "Verbinden und Zeilenumbruch"
     },
     {
       "title": "Zahlen formatieren: Währung und Prozent",
@@ -1682,7 +2275,7 @@
         ]
       },
       "instructions": "1. Markieren Sie Spalte B (Preise) und wenden Sie das Währungsformat an (Ribbon Start → Zahl → Währung).\n2. Markieren Sie Spalte D (Rabatte) und wenden Sie das Prozentformat an.\n3. Erhöhen Sie die Dezimalstellen der Preise auf 2 Stellen mit dem Button ',00'.\n4. Berechnen Sie in Spalte E den Nettopreis: =B2*(1-D2). Kopieren Sie die Formel nach unten.",
-      "order": 11,
+      "order": 15,
       "formulaHint": "=B2*(1-D2)",
       "hint1": "Das Währungsformat finden Sie im Dropdown-Menü 'Standard' im Ribbon unter Start → Zahl.",
       "hint2": "Das Prozentzeichen (%) multipliziert den Wert mit 100 und zeigt das %-Symbol.",
@@ -1701,6 +2294,156 @@
       "moduleSection": "3.2",
       "moduleTitle": "Modul 3: Format und Stil von Zellen",
       "sectionTitle": "Zahlen formatieren"
+    },
+    {
+      "title": "Datum formatieren",
+      "description": "Lernen Sie verschiedene Datumsformate in Excel kennen und wenden Sie sie auf eine Projektliste an.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Projekt",
+          "Start",
+          "Ende",
+          "Dauer (Tage)"
+        ],
+        "data": [
+          [
+            "Website Relaunch",
+            "2025-01-15",
+            "2025-03-20",
+            null
+          ],
+          [
+            "CRM Migration",
+            "2025-02-01",
+            "2025-04-15",
+            null
+          ],
+          [
+            "Büroumzug",
+            "2025-03-10",
+            "2025-03-28",
+            null
+          ],
+          [
+            "Sicherheitsaudit",
+            "2025-04-01",
+            "2025-04-30",
+            null
+          ],
+          [
+            "Schulung Excel",
+            "2025-05-05",
+            "2025-05-09",
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Website Relaunch",
+            "2025-01-15",
+            "2025-03-20",
+            64
+          ],
+          [
+            "CRM Migration",
+            "2025-02-01",
+            "2025-04-15",
+            73
+          ],
+          [
+            "Büroumzug",
+            "2025-03-10",
+            "2025-03-28",
+            18
+          ],
+          [
+            "Sicherheitsaudit",
+            "2025-04-01",
+            "2025-04-30",
+            29
+          ],
+          [
+            "Schulung Excel",
+            "2025-05-05",
+            "2025-05-09",
+            4
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Markieren Sie Spalte B und C (Start- und Enddaten).\n2. Wenden Sie das Datumsformat 'TT.MM.JJJJ' an (Start → Zahl → Datum, kurz).\n3. Berechnen Sie in Spalte D die Dauer: =C2-B2. Kopieren Sie nach unten.",
+      "order": 16,
+      "formulaHint": "=C2-B2",
+      "hint1": "Datumsformate finden Sie im Zahlenformat-Dropdown unter Start → Zahl.",
+      "hint2": "Excel speichert Datumsangaben als Zahlen — deshalb kann man sie subtrahieren.",
+      "hint3": "=C2-B2 berechnet die Anzahl der Tage zwischen zwei Daten.",
+      "learningObjectives": [
+        "Datumsformat TT.MM.JJJJ anwenden",
+        "Datumsdifferenz mit Formel berechnen",
+        "Verschiedene Datumsformate unterscheiden"
+      ],
+      "estimated_minutes": 7,
+      "prerequisites": [],
+      "theoryTitle": "Datumsformate",
+      "theory": "Excel bietet 17 vordefinierte Datumsformate. Datumsangaben werden intern als fortlaufende Zahlen gespeichert (1 = 01.01.1900). Deshalb kann man Daten subtrahieren. Kurzformate: TT.MM.JJJJ oder TT.MMM. Langformate: TTTT, T. MMMM JJJJ.",
+      "moduleId": "m3",
+      "moduleSection": "3.2",
+      "moduleTitle": "Modul 3: Format und Stil von Zellen",
+      "sectionTitle": "Datum formatieren"
     },
     {
       "title": "Zeilen und Spalten anpassen",
@@ -1821,7 +2564,7 @@
         ]
       },
       "instructions": "1. Spalte A ist zu schmal — verbreitern Sie sie durch Doppelklick auf den rechten Rand der Spaltenüberschrift A.\n2. Schreiben Sie in D2 eine WENN-Formel: =WENN(C2<5;\"Ja\";\"Nein\") und kopieren Sie sie nach unten.\n3. Fügen Sie eine neue Zeile zwischen 'Aktenordner' und 'Whiteboard' ein (Rechtsklick → Zeile einfügen).",
-      "order": 12,
+      "order": 17,
       "formulaHint": "=WENN(C2<5;\"Ja\";\"Nein\")",
       "hint1": "Doppelklick auf den Spaltenrand passt die Breite automatisch an den Inhalt an.",
       "hint2": "Die WENN-Formel prüft, ob der Lagerbestand unter 5 liegt.",
@@ -1903,7 +2646,7 @@
         ]
       },
       "instructions": "Beantworten Sie die Fragen zur bedingten Formatierung.",
-      "order": 13,
+      "order": 18,
       "formulaHint": null,
       "hint1": "Bedingte Formatierung finden Sie im Ribbon unter 'Start' → 'Bedingte Formatierung'.",
       "hint2": "Datenbalken eignen sich gut für den Vergleich von Zahlen auf einen Blick.",
@@ -2141,7 +2884,7 @@
         ]
       },
       "instructions": "1. D2: =B2-C2 (Gewinn). Kopieren Sie nach unten.\n2. Markieren Sie den gesamten Bereich A1:D7.\n3. Klicken Sie im Menüband auf 'Einfügen' → 'Tabelle' oder nutzen Sie Rechtsklick → 'Als Tabelle formatieren'.\n4. Die Tabelle erhält automatisch abwechselnde Zeilenfarben und Filter.",
-      "order": 14,
+      "order": 19,
       "formulaHint": "=B2-C2",
       "hint1": "=B2-C2 berechnet den Gewinn als Differenz zwischen Umsatz und Kosten.",
       "hint2": "Strg+T ist die Tastenkombination zum Erstellen einer Tabelle.",
@@ -2255,7 +2998,7 @@
         ]
       },
       "instructions": "1. Berechnen Sie den Gesamtpreis: Preis × Menge.\n2. Formel in D2: =B2*C2.\n3. Verwenden Sie Zellbezüge, damit die Formel kopiert werden kann.",
-      "order": 15,
+      "order": 20,
       "formulaHint": "=B2*C2",
       "hint1": "Multiplikation in Excel verwendet den *-Operator.",
       "hint2": "Gesamtpreis = Preis × Menge. Für Bleistift: =1,5*10 oder besser =B2*C2.",
@@ -2273,6 +3016,430 @@
       "moduleSection": "4.1",
       "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
       "sectionTitle": "Grundlagen der Formeln"
+    },
+    {
+      "title": "Relative Bezüge: Provision berechnen",
+      "description": "Berechnen Sie Provisionen mit relativen Zellbezügen.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Verkäufer",
+          "Umsatz €",
+          "Prozentsatz",
+          "Provision €"
+        ],
+        "data": [
+          [
+            "Müller",
+            50000,
+            0.05,
+            null
+          ],
+          [
+            "Schmidt",
+            38000,
+            0.05,
+            null
+          ],
+          [
+            "Weber",
+            62000,
+            0.05,
+            null
+          ],
+          [
+            "Fischer",
+            45000,
+            0.05,
+            null
+          ],
+          [
+            "Wagner",
+            71000,
+            0.05,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            "Gesamt Provision:",
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Müller",
+            50000,
+            0.05,
+            2500
+          ],
+          [
+            "Schmidt",
+            38000,
+            0.05,
+            1900
+          ],
+          [
+            "Weber",
+            62000,
+            0.05,
+            3100
+          ],
+          [
+            "Fischer",
+            45000,
+            0.05,
+            2250
+          ],
+          [
+            "Wagner",
+            71000,
+            0.05,
+            3550
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            "Gesamt Provision:",
+            null,
+            13300
+          ]
+        ]
+      },
+      "instructions": "1. D2: =B2*C2 — Provision = Umsatz × Prozentsatz.\n2. Kopieren Sie die Formel nach unten: Ziehen Sie am Ausfüllkästchen (kleines Quadrat unten rechts an der Zelle) oder drücken Sie Strg+D.\n3. Relative Bezüge passen sich automatisch an: D3 wird zu =B3*C3.\n4. D7: =SUMME(D2:D6) — Gesamtprovision.",
+      "order": 21,
+      "formulaHint": "=B2*C2 und nach unten kopieren (Strg+D oder Ausfüllkästchen)",
+      "hint1": "Relative Bezüge passen sich beim Kopieren automatisch an.",
+      "hint2": "Aus =B2*C2 in D2 wird =B3*C3 in D3.",
+      "hint3": "Gesamtsumme: =SUMME(D2:D6).",
+      "learningObjectives": [
+        "Relative Bezüge verwenden",
+        "Formeln durch Kopieren anwenden"
+      ],
+      "estimated_minutes": 8,
+      "prerequisites": [],
+      "theoryTitle": "Relative Bezüge",
+      "theory": "Relative Bezüge (z.B. A1) ändern sich beim Kopieren. Excel merkt sich die relative Position, nicht die absolute Adresse. Standard in Excel — praktisch für Tabellen.",
+      "moduleId": "m4",
+      "moduleSection": "4.2",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Bezüge"
+    },
+    {
+      "title": "Absolute Bezüge: Mehrwertsteuer",
+      "description": "Verwenden Sie absolute Bezüge ($) für eine feste Zellreferenz.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Produkt",
+          "Nettopreis €",
+          "MwSt-Satz",
+          "Bruttopreis €"
+        ],
+        "data": [
+          [
+            "Laptop",
+            899,
+            null,
+            null
+          ],
+          [
+            "Maus",
+            24.99,
+            null,
+            null
+          ],
+          [
+            "Tastatur",
+            49.99,
+            null,
+            null
+          ],
+          [
+            "Monitor",
+            249,
+            null,
+            null
+          ],
+          [
+            "Drucker",
+            179,
+            null,
+            null
+          ],
+          [
+            "USB-Stick",
+            12.99,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            "MwSt:",
+            0.19
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Laptop",
+            899,
+            null,
+            1069.81
+          ],
+          [
+            "Maus",
+            24.99,
+            null,
+            29.74
+          ],
+          [
+            "Tastatur",
+            49.99,
+            null,
+            59.49
+          ],
+          [
+            "Monitor",
+            249,
+            null,
+            296.31
+          ],
+          [
+            "Drucker",
+            179,
+            null,
+            213.01
+          ],
+          [
+            "USB-Stick",
+            12.99,
+            null,
+            15.46
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            "MwSt:",
+            0.19
+          ]
+        ]
+      },
+      "instructions": "1. Bruttopreis = Nettopreis × (1 + MwSt).\n2. Formel: =B2*(1+$D$8). Der $-Bezug fixiert D8.\n3. Kopieren Sie nach unten — $D$8 bleibt immer gleich.",
+      "order": 22,
+      "formulaHint": "=B2*(1+$D$8)",
+      "hint1": "$D$8 fixiert die Zelle — sie ändert sich beim Kopieren nicht.",
+      "hint2": "Ohne $ würde beim Kopieren D8→D9→D10 werden.",
+      "hint3": "Bruttopreis = Nettopreis × 1,19 (19% MwSt).",
+      "learningObjectives": [
+        "Absolute Bezüge mit $ verwenden",
+        "Feste Referenz beim Kopieren beibehalten"
+      ],
+      "estimated_minutes": 10,
+      "prerequisites": [],
+      "theoryTitle": "Absolute Bezüge",
+      "theory": "$A$1 fixiert Spalte und Zeile. $A1 fixiert nur Spalte. A$1 fixiert nur Zeile. F4 schaltet zwischen den Modi um.",
+      "moduleId": "m4",
+      "moduleSection": "4.2",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Bezüge"
+    },
+    {
+      "title": "Gemischte Bezüge: Multiplikationstabelle",
+      "description": "Erstellen Sie eine Multiplikationstabelle mit gemischten Bezügen ($A1 und A$1), um eine Formel in beide Richtungen kopieren zu können.",
+      "template": {
+        "cols": 6,
+        "rows": 7,
+        "headers": [
+          "×",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "data": [
+          [
+            "1",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "2",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "3",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "4",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "5",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "6",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "1",
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          [
+            "2",
+            4,
+            6,
+            8,
+            10,
+            12
+          ],
+          [
+            "3",
+            6,
+            9,
+            12,
+            15,
+            18
+          ],
+          [
+            "4",
+            8,
+            12,
+            16,
+            20,
+            24
+          ],
+          [
+            "5",
+            10,
+            15,
+            20,
+            25,
+            30
+          ],
+          [
+            "6",
+            12,
+            18,
+            24,
+            30,
+            36
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Geben Sie in B2 die Formel =$A2*B$1 ein.\n2. Kopieren Sie die Formel nach rechts bis F2 und dann nach unten bis B6:F6.\n3. $A2 fixiert die Spalte A (Zeile variabel) — B$1 fixiert die Zeile 1 (Spalte variabel).\n4. Mit F4 können Sie beim Bearbeiten der Formel zwischen den Bezugstypen wechseln.",
+      "order": 23,
+      "formulaHint": "=$A2*B$1",
+      "hint1": "$A2 = Spalte A ist fixiert, Zeile ist variabel (ändert sich beim Kopieren nach unten).",
+      "hint2": "B$1 = Zeile 1 ist fixiert, Spalte B ist variabel (ändert sich beim Kopieren nach rechts).",
+      "hint3": "Drücken Sie F4 beim Bearbeiten einer Formel, um zwischen $A$1 → A$1 → $A1 → A1 zu wechseln.",
+      "learningObjectives": [
+        "Gemischte Bezüge ($A1 und A$1) verstehen",
+        "F4-Taste zum Umschalten der Bezugstypen nutzen",
+        "Eine Formel in zwei Richtungen kopieren"
+      ],
+      "estimated_minutes": 8,
+      "prerequisites": [
+        "4.2"
+      ],
+      "theoryTitle": "Gemischte Bezüge",
+      "theory": "Gemischte Bezüge fixieren entweder die Spalte ($A1) oder die Zeile (A$1). Perfekt für Kreuztabellen: eine Formel, in beide Richtungen kopierbar. F4 schaltet durch: A1 → $A$1 → A$1 → $A1 → A1.",
+      "moduleId": "m4",
+      "moduleSection": "4.2",
+      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
+      "sectionTitle": "Gemischte Bezüge"
     },
     {
       "title": "SUMME: Gesamtumsatz berechnen",
@@ -2386,7 +3553,7 @@
         ]
       },
       "instructions": "1. Berechnen Sie den Gesamtumsatz in Zelle B8 mit =SUMME(B2:B7).\n2. Die Formel addiert alle Monatswerte von Januar bis Juni.",
-      "order": 16,
+      "order": 24,
       "formulaHint": "=SUMME(B2:B7)",
       "hint1": "SUMME addiert alle Werte in einem Bereich.",
       "hint2": "Der Bereich Januar–Juni ist B2:B7.",
@@ -2525,7 +3692,7 @@
         ]
       },
       "instructions": "1. Zeile 7: Durchschnitt mit =MITTELWERT(B2:B6) für Temperatur, dann für C und D.\n2. Zeile 8: Maximum mit =MAX(B2:B6), dann für C und D.",
-      "order": 17,
+      "order": 25,
       "formulaHint": "=MITTELWERT(B2:B6) und =MAX(B2:B6)",
       "hint1": "MITTELWERT addiert alle Werte und teilt durch die Anzahl.",
       "hint2": "MAX findet den größten Wert im Bereich.",
@@ -2696,7 +3863,7 @@
         ]
       },
       "instructions": "1. Zeile 8: =ANZAHL(B2:B7) — zählt nur Zahlen (Punkte, Noten).\n2. Zeile 9: =ANZAHL2(B2:B7) — zählt alle nicht-leeren Zellen.",
-      "order": 18,
+      "order": 26,
       "formulaHint": "=ANZAHL(B2:B7) und =ANZAHL2(B2:B7)",
       "hint1": "ANZAHL ignoriert Text und Leere. Zählt nur Zahlen.",
       "hint2": "ANZAHL2 zählt ALLE nicht-leeren Zellen — Text, Zahlen, alles.",
@@ -2715,190 +3882,71 @@
       "sectionTitle": "Statistische und mathematische Funktionen"
     },
     {
-      "title": "Relative Bezüge: Provision berechnen",
-      "description": "Berechnen Sie Provisionen mit relativen Zellbezügen.",
-      "template": {
-        "cols": 4,
-        "rows": 8,
-        "headers": [
-          "Verkäufer",
-          "Umsatz €",
-          "Prozentsatz",
-          "Provision €"
-        ],
-        "data": [
-          [
-            "Müller",
-            50000,
-            0.05,
-            null
-          ],
-          [
-            "Schmidt",
-            38000,
-            0.05,
-            null
-          ],
-          [
-            "Weber",
-            62000,
-            0.05,
-            null
-          ],
-          [
-            "Fischer",
-            45000,
-            0.05,
-            null
-          ],
-          [
-            "Wagner",
-            71000,
-            0.05,
-            null
-          ],
-          [
-            null,
-            null,
-            null,
-            null
-          ],
-          [
-            null,
-            "Gesamt Provision:",
-            null,
-            null
-          ]
-        ],
-        "taskCols": [
-          3
-        ]
-      },
-      "solution": {
-        "data": [
-          [
-            "Müller",
-            50000,
-            0.05,
-            2500
-          ],
-          [
-            "Schmidt",
-            38000,
-            0.05,
-            1900
-          ],
-          [
-            "Weber",
-            62000,
-            0.05,
-            3100
-          ],
-          [
-            "Fischer",
-            45000,
-            0.05,
-            2250
-          ],
-          [
-            "Wagner",
-            71000,
-            0.05,
-            3550
-          ],
-          [
-            null,
-            null,
-            null,
-            null
-          ],
-          [
-            null,
-            "Gesamt Provision:",
-            null,
-            13300
-          ]
-        ]
-      },
-      "instructions": "1. D2: =B2*C2 — Provision = Umsatz × Prozentsatz.\n2. Kopieren Sie die Formel nach unten: Ziehen Sie am Ausfüllkästchen (kleines Quadrat unten rechts an der Zelle) oder drücken Sie Strg+D.\n3. Relative Bezüge passen sich automatisch an: D3 wird zu =B3*C3.\n4. D7: =SUMME(D2:D6) — Gesamtprovision.",
-      "order": 19,
-      "formulaHint": "=B2*C2 und nach unten kopieren (Strg+D oder Ausfüllkästchen)",
-      "hint1": "Relative Bezüge passen sich beim Kopieren automatisch an.",
-      "hint2": "Aus =B2*C2 in D2 wird =B3*C3 in D3.",
-      "hint3": "Gesamtsumme: =SUMME(D2:D6).",
-      "learningObjectives": [
-        "Relative Bezüge verwenden",
-        "Formeln durch Kopieren anwenden"
-      ],
-      "estimated_minutes": 8,
-      "prerequisites": [],
-      "theoryTitle": "Relative Bezüge",
-      "theory": "Relative Bezüge (z.B. A1) ändern sich beim Kopieren. Excel merkt sich die relative Position, nicht die absolute Adresse. Standard in Excel — praktisch für Tabellen.",
-      "moduleId": "m4",
-      "moduleSection": "4.2",
-      "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
-      "sectionTitle": "Bezüge"
-    },
-    {
-      "title": "Absolute Bezüge: Mehrwertsteuer",
-      "description": "Verwenden Sie absolute Bezüge ($) für eine feste Zellreferenz.",
+      "title": "Bereiche benennen und in Formeln nutzen",
+      "description": "Vergeben Sie aussagekräftige Namen für Zellbereiche und verwenden Sie diese in Formeln statt Zelladressen.",
       "template": {
         "cols": 4,
         "rows": 9,
         "headers": [
-          "Produkt",
-          "Nettopreis €",
-          "MwSt-Satz",
-          "Bruttopreis €"
+          "Monat",
+          "Umsatz",
+          "Kosten",
+          "Gewinn"
         ],
         "data": [
           [
-            "Laptop",
-            899,
-            null,
+            "Januar",
+            52000,
+            31000,
             null
           ],
           [
-            "Maus",
-            24.99,
-            null,
+            "Februar",
+            48000,
+            29000,
             null
           ],
           [
-            "Tastatur",
-            49.99,
-            null,
+            "März",
+            61000,
+            35000,
             null
           ],
           [
-            "Monitor",
-            249,
-            null,
+            "April",
+            55000,
+            32000,
             null
           ],
           [
-            "Drucker",
-            179,
-            null,
+            "Mai",
+            63000,
+            37000,
             null
           ],
           [
-            "USB-Stick",
-            12.99,
-            null,
-            null
-          ],
-          [
-            null,
-            null,
-            null,
+            "Juni",
+            58000,
+            34000,
             null
           ],
           [
             null,
             null,
-            "MwSt:",
-            0.19
+            null,
+            null
+          ],
+          [
+            "Steuersatz",
+            0.19,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
           ]
         ],
         "taskCols": [
@@ -2908,40 +3956,40 @@
       "solution": {
         "data": [
           [
-            "Laptop",
-            899,
-            null,
-            1069.81
+            "Januar",
+            52000,
+            31000,
+            21000
           ],
           [
-            "Maus",
-            24.99,
-            null,
-            29.74
+            "Februar",
+            48000,
+            29000,
+            19000
           ],
           [
-            "Tastatur",
-            49.99,
-            null,
-            59.49
+            "März",
+            61000,
+            35000,
+            26000
           ],
           [
-            "Monitor",
-            249,
-            null,
-            296.31
+            "April",
+            55000,
+            32000,
+            23000
           ],
           [
-            "Drucker",
-            179,
-            null,
-            213.01
+            "Mai",
+            63000,
+            37000,
+            26000
           ],
           [
-            "USB-Stick",
-            12.99,
-            null,
-            15.46
+            "Juni",
+            58000,
+            34000,
+            24000
           ],
           [
             null,
@@ -2950,31 +3998,40 @@
             null
           ],
           [
+            "Steuersatz",
+            0.19,
+            null,
+            null
+          ],
+          [
             null,
             null,
-            "MwSt:",
-            0.19
+            null,
+            null
           ]
         ]
       },
-      "instructions": "1. Bruttopreis = Nettopreis × (1 + MwSt).\n2. Formel: =B2*(1+$D$8). Der $-Bezug fixiert D8.\n3. Kopieren Sie nach unten — $D$8 bleibt immer gleich.",
-      "order": 20,
-      "formulaHint": "=B2*(1+$D$8)",
-      "hint1": "$D$8 fixiert die Zelle — sie ändert sich beim Kopieren nicht.",
-      "hint2": "Ohne $ würde beim Kopieren D8→D9→D10 werden.",
-      "hint3": "Bruttopreis = Nettopreis × 1,19 (19% MwSt).",
+      "instructions": "1. Berechnen Sie in D2 den Gewinn: =B2-C2. Kopieren Sie nach unten.\n2. Markieren Sie die Umsatz-Spalte B2:B7 und geben Sie im Namensfeld (links oben) den Namen 'Umsatz' ein.\n3. Markieren Sie B8 (Steuersatz) und nennen Sie sie 'Steuer'.\n4. Test: Schreiben Sie in C8: =SUMME(Umsatz) — das addiert alle Umsätze.",
+      "order": 27,
+      "formulaHint": "=B2-C2",
+      "hint1": "Das Namensfeld steht links neben der Bearbeitungsleiste und zeigt normalerweise die Zelladresse.",
+      "hint2": "Bereichsnamen dürfen keine Leerzeichen enthalten. Verwenden Sie Unterstriche: 'Umsatz_Q1'.",
+      "hint3": "Bereichsnamen machen Formeln lesbarer: =SUMME(Umsatz) statt =SUMME(B2:B7).",
       "learningObjectives": [
-        "Absolute Bezüge mit $ verwenden",
-        "Feste Referenz beim Kopieren beibehalten"
+        "Zellbereiche über das Namensfeld benennen",
+        "Bereichsnamen in Formeln verwenden",
+        "Lesbarkeit von Formeln verbessern"
       ],
-      "estimated_minutes": 10,
-      "prerequisites": [],
-      "theoryTitle": "Absolute Bezüge",
-      "theory": "$A$1 fixiert Spalte und Zeile. $A1 fixiert nur Spalte. A$1 fixiert nur Zeile. F4 schaltet zwischen den Modi um.",
+      "estimated_minutes": 8,
+      "prerequisites": [
+        "4.3"
+      ],
+      "theoryTitle": "Bereichsnamen",
+      "theory": "Bereichsnamen (Namensfeld oder Formeln → Namens-Manager) ersetzen Zelladressen durch verständliche Namen. Regeln: keine Leerzeichen (Unterstrich _), Beginn mit Buchstabe, keine Zelladresse als Name (z.B. 'Q3'). Formeln werden lesbarer: =SUMME(Umsatz).",
       "moduleId": "m4",
-      "moduleSection": "4.2",
+      "moduleSection": "4.3",
       "moduleTitle": "Modul 4: Grundlegende Formeln und Funktionen",
-      "sectionTitle": "Bezüge"
+      "sectionTitle": "Bereiche benennen"
     },
     {
       "title": "WENN: Bestanden oder nicht?",
@@ -3108,7 +4165,7 @@
         ]
       },
       "instructions": "1. Spalte C: =WENN(B2>=50;\"Bestanden\";\"Nicht bestanden\").\n2. Spalte D: verschachteltes WENN: ≥80='Sehr gut', ≥60='Gut', ≥50='Ausreichend', <50='Mangelhaft'.\n   =WENN(B2>=80;\"Sehr gut\";WENN(B2>=60;\"Gut\";WENN(B2>=50;\"Ausreichend\";\"Mangelhaft\")))",
-      "order": 21,
+      "order": 28,
       "formulaHint": "=WENN(B2>=50;\"Bestanden\";\"Nicht bestanden\")",
       "hint1": "WENN hat 3 Teile: =WENN(Bedingung; Wert_wenn_wahr; Wert_wenn_falsch).",
       "hint2": "Für Spalte C: Bedingung ist B2>=50. 'Bestanden' bei Wahr, 'Nicht bestanden' bei Falsch.",
@@ -3250,7 +4307,7 @@
         ]
       },
       "instructions": "1. D2: =WENN(UND(B2>=B7;C2>=D7);\"Ja\";\"Nein\").\n2. E2: =WENN(D2=\"Ja\";WENN(B2>100000;2500;2000);0).",
-      "order": 22,
+      "order": 29,
       "formulaHint": "=WENN(UND(B2>=80000;C2>=10);\"Ja\";\"Nein\")",
       "hint1": "UND prüft mehrere Bedingungen — alle müssen WAHR sein.",
       "hint2": "Bedingungen: Umsatz ≥ Mindestumsatz UND Kunden ≥ Mindestkunden.",
@@ -3440,7 +4497,7 @@
         ]
       },
       "instructions": "1. D2: =B2-C2 (Netto).\n2. E2: =WENN(D2>170;\"Ja\";\"Nein\") (Ziel).\n3. F2: =WENN(E2=\"Ja\";D2*0,05;0) (Provision).\n4. Zeile 8: SUMME für D und F.",
-      "order": 23,
+      "order": 30,
       "formulaHint": "Netto=B2-C2 | Ziel=WENN(D2>170;\"Ja\";\"Nein\") | Provision=WENN(E2=\"Ja\";D2*0,05;0)",
       "hint1": "Netto = Verkäufe − Retouren.",
       "hint2": "Ziel erreicht wenn Netto > 170.",
@@ -3666,7 +4723,7 @@
         ]
       },
       "instructions": "1. E2: =SUMME(B2:D2) — Summe Q1.\n2. F2: =MITTELWERT(B2:D2) — Durchschnitt.\n3. G2: =WENN(D2>B2;\"Steigend\";\"Schwankend\") — Trend.\n4. Zeile 7: SUMME für jede Spalte.\n5. Zeile 8: MAX für jede Spalte.\n6. C10: Name des besten Monats (März).",
-      "order": 24,
+      "order": 31,
       "formulaHint": "Summe=SUMME(B2:D2) | Schnitt=MITTELWERT(B2:D2) | Trend=WENN(D2>B2;\"Steigend\";\"Schwankend\")",
       "hint1": "Beginnen Sie mit Spalte E: =SUMME(B2:D2).",
       "hint2": "Spalte F: =MITTELWERT(B2:D2).",
@@ -3818,7 +4875,7 @@
         ]
       },
       "instructions": "1. Spalte B (Abteilung): Wählen Sie B2:B6 → Daten → Datenüberprüfung → Liste → Quelle: =$B$7:$D$7\n2. Spalte C (Status): Wählen Sie C2:C6 → Datenüberprüfung → Liste → Quelle: =$B$8:$D$8\n3. Füllen Sie die Dropdowns aus (siehe Lösung unten).\n4. Spalte D: Tragen Sie Beispiel-Gehälter ein (z.B. 45000, 52000, 48000, 44000, 51000).",
-      "order": 25,
+      "order": 32,
       "formulaHint": null,
       "hint1": "Datenüberprüfung finden Sie im Ribbon unter 'Daten' → 'Datenüberprüfung'.",
       "hint2": "Bei 'Zulassen' wählen Sie 'Liste'. Die Quelle kann ein Zellbereich sein (z.B. =$B$7:$D$7).",
@@ -3836,6 +4893,301 @@
       "moduleSection": "5.1",
       "moduleTitle": "Modul 5: Datenbereinigung und -validierung",
       "sectionTitle": "Datenüberprüfung"
+    },
+    {
+      "title": "Textfunktionen: LINKS und RECHTS",
+      "description": "Extrahieren Sie Teile von Texten mit den Funktionen LINKS und RECHTS — unverzichtbar für die Datenbereinigung.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Artikelnummer",
+          "Produktname",
+          "Kategorie-Code",
+          "Land-Code"
+        ],
+        "data": [
+          [
+            "LT-2025-001",
+            "Laptop Pro 15\"",
+            null,
+            null
+          ],
+          [
+            "MN-2025-042",
+            "Monitor WQHD 27\"",
+            null,
+            null
+          ],
+          [
+            "TB-2025-108",
+            "Tastatur Mechanisch",
+            null,
+            null
+          ],
+          [
+            "MS-2025-015",
+            "Maus Ergonomisch",
+            null,
+            null
+          ],
+          [
+            "DK-2025-203",
+            "Docking Station USB-C",
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "LT-2025-001",
+            "Laptop Pro 15\"",
+            "LT",
+            "001"
+          ],
+          [
+            "MN-2025-042",
+            "Monitor WQHD 27\"",
+            "MN",
+            "042"
+          ],
+          [
+            "TB-2025-108",
+            "Tastatur Mechanisch",
+            "TB",
+            "108"
+          ],
+          [
+            "MS-2025-015",
+            "Maus Ergonomisch",
+            "MS",
+            "015"
+          ],
+          [
+            "DK-2025-203",
+            "Docking Station USB-C",
+            "DK",
+            "203"
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Extrahieren Sie den Kategorie-Code in C2 mit =LINKS(A2;2) — die ersten 2 Zeichen.\n2. Extrahieren Sie den Land-Code in D2 mit =RECHTS(A2;3) — die letzten 3 Zeichen.\n3. Kopieren Sie beide Formeln nach unten.",
+      "order": 33,
+      "formulaHint": "=LINKS(A2;2)",
+      "hint1": "LINKS(Text; Anzahl) extrahiert Zeichen von links. RECHTS(Text; Anzahl) extrahiert von rechts.",
+      "hint2": "Der Kategorie-Code sind die ersten 2 Zeichen: LT, MN, TB, MS, DK.",
+      "hint3": "Der Land-Code (Seriennummer) sind die letzten 3 Zeichen der Artikelnummer.",
+      "learningObjectives": [
+        "LINKS-Funktion anwenden",
+        "RECHTS-Funktion anwenden",
+        "Textteile aus strukturierten Codes extrahieren"
+      ],
+      "estimated_minutes": 7,
+      "prerequisites": [],
+      "theoryTitle": "LINKS und RECHTS",
+      "theory": "LINKS(Text; N) gibt die ersten N Zeichen zurück. RECHTS(Text; N) die letzten N. Perfekt für Artikelnummern, PLZ-Extraktion oder Namenskürzel. Weitere Textfunktionen: TEIL (MID), LÄNGE (LEN), GLÄTTEN (TRIM).",
+      "moduleId": "m5",
+      "moduleSection": "5.1",
+      "moduleTitle": "Modul 5: Datenbereinigung und -validierung",
+      "sectionTitle": "Textfunktionen"
+    },
+    {
+      "title": "Text verketten mit &",
+      "description": "Kombinieren Sie Text aus mehreren Zellen mit dem &-Operator zu aussagekräftigen Beschriftungen.",
+      "template": {
+        "cols": 5,
+        "rows": 8,
+        "headers": [
+          "Vorname",
+          "Nachname",
+          "Abteilung",
+          "E-Mail",
+          "Anzeigename"
+        ],
+        "data": [
+          [
+            "Anna",
+            "Müller",
+            "Vertrieb",
+            null,
+            null
+          ],
+          [
+            "Ben",
+            "Schmidt",
+            "IT",
+            null,
+            null
+          ],
+          [
+            "Clara",
+            "Weber",
+            "Marketing",
+            null,
+            null
+          ],
+          [
+            "David",
+            "Fischer",
+            "IT",
+            null,
+            null
+          ],
+          [
+            "Eva",
+            "Klein",
+            "Vertrieb",
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          3,
+          4
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna",
+            "Müller",
+            "Vertrieb",
+            "anna.mueller@firma.de",
+            "Anna Müller (Vertrieb)"
+          ],
+          [
+            "Ben",
+            "Schmidt",
+            "IT",
+            "ben.schmidt@firma.de",
+            "Ben Schmidt (IT)"
+          ],
+          [
+            "Clara",
+            "Weber",
+            "Marketing",
+            "clara.weber@firma.de",
+            "Clara Weber (Marketing)"
+          ],
+          [
+            "David",
+            "Fischer",
+            "IT",
+            "david.fischer@firma.de",
+            "David Fischer (IT)"
+          ],
+          [
+            "Eva",
+            "Klein",
+            "Vertrieb",
+            "eva.klein@firma.de",
+            "Eva Klein (Vertrieb)"
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "instructions": "1. Erstellen Sie die E-Mail-Adresse in D2: =A2&\".\"&B2&\"@firma.de\" — alles in Kleinbuchstaben.\n2. Erstellen Sie den Anzeigenamen in E2: =A2&\" \"&B2&\" (\"&C2&\")\".\n3. Kopieren Sie beide Formeln nach unten.",
+      "order": 34,
+      "formulaHint": "=A2&\".\"&B2&\"@firma.de\"",
+      "hint1": "Der &-Operator verbindet Texte. Text in Anführungszeichen setzen: \"@firma.de\".",
+      "hint2": "Der Punkt zwischen Vor- und Nachname muss in Anführungszeichen: \".\".",
+      "hint3": "Das Leerzeichen zwischen Vor- und Nachname: \" \".",
+      "learningObjectives": [
+        "&-Operator zur Textverkettung nutzen",
+        "Feste Textbausteine mit Zellinhalten kombinieren",
+        "E-Mail-Adressen und Labels generieren"
+      ],
+      "estimated_minutes": 8,
+      "prerequisites": [],
+      "theoryTitle": "Text verketten mit &",
+      "theory": "Der &-Operator verbindet Text aus Zellen und festen Textbausteinen. Fester Text steht in Anführungszeichen: \"@firma.de\". Alternative: VERKETTEN()-Funktion. Beispiele: =A2&\" \"&B2 (Vor- und Nachname), =\"Kd-Nr: \"&A1.",
+      "moduleId": "m5",
+      "moduleSection": "5.1",
+      "moduleTitle": "Modul 5: Datenbereinigung und -validierung",
+      "sectionTitle": "Text verketten"
     },
     {
       "title": "Sortieren und Filtern",
@@ -3900,7 +5252,7 @@
         ]
       },
       "instructions": "Beantworten Sie die Fragen zum Sortieren und Filtern.",
-      "order": 26,
+      "order": 35,
       "formulaHint": null,
       "hint1": "Filter finden Sie im Ribbon unter 'Daten' → 'Filtern' oder mit Strg+Umschalt+L.",
       "hint2": "Sortieren: Daten → Sortieren → Ebene hinzufügen für mehrstufiges Sortieren.",
@@ -3934,6 +5286,309 @@
           ],
           [
             0
+          ]
+        ]
+      }
+    },
+    {
+      "title": "Suchen und Ersetzen",
+      "description": "Lernen Sie, wie Sie mit Strg+F und Strg+H Daten schnell finden und ersetzen können.",
+      "template": {
+        "type": "quiz",
+        "questions": [
+          {
+            "question": "Mit Strg+F öffnen Sie den Suchen-Dialog in Excel.",
+            "options": [
+              "Wahr",
+              "Falsch"
+            ],
+            "correct": [
+              0
+            ],
+            "type": "tf",
+            "explanation": "Richtig! Strg+F öffnet 'Suchen', Strg+H öffnet 'Suchen und Ersetzen'."
+          },
+          {
+            "question": "Welche erweiterten Suchoptionen bietet Excel?",
+            "options": [
+              "Groß-/Kleinschreibung beachten",
+              "Gesamten Zellinhalt vergleichen",
+              "In Formeln suchen",
+              "Nach Schriftfarbe suchen"
+            ],
+            "correct": [
+              0,
+              1,
+              2
+            ],
+            "type": "multiple",
+            "explanation": "Groß-/Kleinschreibung, gesamter Zellinhalt und Suche in Formeln sind Optionen. Nach Schriftfarbe sucht man über Filter, nicht über Strg+F."
+          },
+          {
+            "question": "Mit 'Alle ersetzen' werden alle Vorkommen eines Suchbegriffs auf einmal ersetzt.",
+            "options": [
+              "Wahr",
+              "Falsch"
+            ],
+            "correct": [
+              0
+            ],
+            "type": "tf",
+            "explanation": "Richtig! 'Alle ersetzen' tauscht jedes Vorkommen aus. Vorsicht: Vorher prüfen, ob das gewünscht ist!"
+          },
+          {
+            "question": "Welche Tastenkombination öffnet 'Suchen und Ersetzen'?",
+            "options": [
+              "Strg+F",
+              "Strg+H",
+              "Strg+S",
+              "Strg+R"
+            ],
+            "correct": [
+              1
+            ],
+            "type": "single",
+            "explanation": "Strg+H öffnet 'Suchen und Ersetzen'. Strg+F öffnet nur 'Suchen'."
+          }
+        ]
+      },
+      "instructions": "Beantworten Sie die Fragen zum Suchen und Ersetzen in Excel.",
+      "order": 36,
+      "formulaHint": null,
+      "hint1": "Strg+F = Suchen, Strg+H = Suchen und Ersetzen.",
+      "hint2": "Erweiterte Optionen erreichen Sie über 'Optionen >>' im Suchen-Dialog.",
+      "hint3": "Sie können in Werten, Formeln oder Kommentaren suchen.",
+      "learningObjectives": [
+        "Suchen mit Strg+F anwenden",
+        "Ersetzen mit Strg+H anwenden",
+        "Erweiterte Suchoptionen verstehen"
+      ],
+      "estimated_minutes": 5,
+      "prerequisites": [],
+      "theoryTitle": "Suchen und Ersetzen",
+      "theory": "Strg+F = Suchen (Find). Strg+H = Suchen und Ersetzen (Replace). Optionen: Groß-/Kleinschreibung, gesamter Zellinhalt, Suche in Formeln/Werten/Kommentaren. 'Alle ersetzen' mit Vorsicht nutzen — immer vorher prüfen!",
+      "moduleId": "m5",
+      "moduleSection": "5.2",
+      "moduleTitle": "Modul 5: Datenbereinigung und -validierung",
+      "sectionTitle": "Suchen und Ersetzen",
+      "solution": {
+        "type": "quiz",
+        "answers": [
+          [
+            0
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "title": "Duplikate entfernen",
+      "description": "Lernen Sie, wie Sie doppelte Einträge in Ihren Daten finden und entfernen.",
+      "template": {
+        "type": "quiz",
+        "questions": [
+          {
+            "question": "Die Funktion 'Duplikate entfernen' löscht doppelte Zeilen dauerhaft aus Ihren Daten.",
+            "options": [
+              "Wahr",
+              "Falsch"
+            ],
+            "correct": [
+              0
+            ],
+            "type": "tf",
+            "explanation": "Richtig! 'Duplikate entfernen' löscht Zeilen unwiderruflich. Erstellen Sie vorher eine Sicherungskopie."
+          },
+          {
+            "question": "Wo finden Sie die Funktion zum Entfernen von Duplikaten?",
+            "options": [
+              "Daten → Datentools → Duplikate entfernen",
+              "Start → Bearbeiten → Duplikate entfernen",
+              "Überprüfen → Duplikate entfernen",
+              "Einfügen → Duplikate entfernen"
+            ],
+            "correct": [
+              0
+            ],
+            "type": "single",
+            "explanation": "Daten → Datentools → Duplikate entfernen. Sie können wählen, welche Spalten auf Duplikate geprüft werden."
+          },
+          {
+            "question": "Welche Aussagen zu 'Duplikate entfernen' sind korrekt?",
+            "options": [
+              "Sie können auswählen, welche Spalten verglichen werden",
+              "Die erste gefundene Zeile bleibt erhalten",
+              "Die Aktion kann rückgängig gemacht werden (Strg+Z)",
+              "Duplikate werden nur markiert, nicht gelöscht"
+            ],
+            "correct": [
+              0,
+              1,
+              2
+            ],
+            "type": "multiple",
+            "explanation": "Spaltenauswahl, erste Zeile erhalten, rückgängig machbar — alles korrekt. Duplikate werden gelöscht, nicht nur markiert."
+          },
+          {
+            "question": "Vor dem Entfernen von Duplikaten sollten Sie immer eine Sicherungskopie erstellen.",
+            "options": [
+              "Wahr",
+              "Falsch"
+            ],
+            "correct": [
+              0
+            ],
+            "type": "tf",
+            "explanation": "Richtig! Da Duplikate dauerhaft gelöscht werden, ist eine Sicherungskopie sehr empfehlenswert."
+          }
+        ]
+      },
+      "instructions": "Beantworten Sie die Fragen zum Entfernen von Duplikaten.",
+      "order": 37,
+      "formulaHint": null,
+      "hint1": "Die Funktion finden Sie im Ribbon unter Daten → Datentools.",
+      "hint2": "Strg+Z macht das Entfernen rückgängig — aber nur solange die Datei nicht geschlossen wurde.",
+      "hint3": "Bedingte Formatierung kann Duplikate auch farblich hervorheben, ohne sie zu löschen.",
+      "learningObjectives": [
+        "Duplikate mit dem Ribbon-Befehl entfernen",
+        "Spalten für den Duplikatvergleich auswählen",
+        "Sicherheitsvorkehrungen vor dem Löschen treffen"
+      ],
+      "estimated_minutes": 5,
+      "prerequisites": [],
+      "theoryTitle": "Duplikate entfernen",
+      "theory": "Daten → Datentools → Duplikate entfernen: Wählen Sie die Spalten, die auf Duplikate geprüft werden sollen. Die erste gefundene Zeile bleibt erhalten, alle weiteren werden gelöscht. Tipp: Vorher Sicherungskopie erstellen! Alternative: Bedingte Formatierung → Doppelte Werte hervorheben.",
+      "moduleId": "m5",
+      "moduleSection": "5.2",
+      "moduleTitle": "Modul 5: Datenbereinigung und -validierung",
+      "sectionTitle": "Duplikate",
+      "solution": {
+        "type": "quiz",
+        "answers": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "title": "Blitzschnelles Ausfüllen (Flash Fill)",
+      "description": "Lernen Sie die Flash Fill-Funktion kennen, die automatisch Muster in Ihren Daten erkennt und vervollständigt.",
+      "template": {
+        "type": "quiz",
+        "questions": [
+          {
+            "question": "Flash Fill (Blitzschnelles Ausfüllen) erkennt automatisch Muster in Ihren Daten und füllt die restlichen Zellen entsprechend aus.",
+            "options": [
+              "Wahr",
+              "Falsch"
+            ],
+            "correct": [
+              0
+            ],
+            "type": "tf",
+            "explanation": "Richtig! Flash Fill analysiert Ihre Eingabe und schlägt vor, das erkannte Muster auf alle Zeilen anzuwenden."
+          },
+          {
+            "question": "Wie aktivieren Sie Flash Fill?",
+            "options": [
+              "Daten → Datentools → Blitzschnelles Ausfüllen",
+              "Strg+E",
+              "Start → Ausfüllen → Blitzschnelles Ausfüllen",
+              "Alle genannten Wege"
+            ],
+            "correct": [
+              3
+            ],
+            "type": "single",
+            "explanation": "Alle drei Wege funktionieren! Strg+E ist die schnellste Methode. Alternativ: Ribbon Daten → Blitzschnelles Ausfüllen."
+          },
+          {
+            "question": "Wofür eignet sich Flash Fill besonders gut?",
+            "options": [
+              "Vor- und Nachnamen aus einer Spalte trennen",
+              "E-Mail-Adressen aus Namen generieren",
+              "Datumswerte vereinheitlichen",
+              "Komplexe Formeln ersetzen"
+            ],
+            "correct": [
+              0,
+              1,
+              2
+            ],
+            "type": "multiple",
+            "explanation": "Flash Fill eignet sich für Textmuster, nicht für Formeln. Es ersetzt keine Formeln, sondern ergänzt sie."
+          },
+          {
+            "question": "Flash Fill benötigt mindestens 5 Beispielzeilen, um ein Muster zu erkennen.",
+            "options": [
+              "Wahr",
+              "Falsch"
+            ],
+            "correct": [
+              1
+            ],
+            "type": "tf",
+            "explanation": "Falsch! Flash Fill erkennt Muster oft schon nach 1-2 Beispielen. Mehr Beispiele können aber die Genauigkeit erhöhen."
+          }
+        ]
+      },
+      "instructions": "Beantworten Sie die Fragen zu Flash Fill.",
+      "order": 38,
+      "formulaHint": null,
+      "hint1": "Flash Fill ist seit Excel 2013 verfügbar und eine der nützlichsten Funktionen zur Datenbereinigung.",
+      "hint2": "Strg+E ist die Tastenkombination für Flash Fill.",
+      "hint3": "Flash Fill eignet sich perfekt zum Trennen von Vor- und Nachnamen oder zum Formatieren von Telefonnummern.",
+      "learningObjectives": [
+        "Flash Fill-Konzept verstehen",
+        "Flash Fill mit Strg+E aktivieren",
+        "Anwendungsfälle für Flash Fill identifizieren"
+      ],
+      "estimated_minutes": 5,
+      "prerequisites": [],
+      "theoryTitle": "Flash Fill",
+      "theory": "Flash Fill (Strg+E oder Daten → Blitzschnelles Ausfüllen) erkennt Muster in Ihren Daten: Vor-/Nachnamen trennen, E-Mails generieren, Nummern formatieren. Tipp: Geben Sie das gewünschte Ergebnis in der ersten Zeile ein, dann Strg+E.",
+      "moduleId": "m5",
+      "moduleSection": "5.2",
+      "moduleTitle": "Modul 5: Datenbereinigung und -validierung",
+      "sectionTitle": "Flash Fill",
+      "solution": {
+        "type": "quiz",
+        "answers": [
+          [
+            0
+          ],
+          [
+            3
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1
           ]
         ]
       }
@@ -4071,7 +5726,7 @@
         ]
       },
       "instructions": "1. B12: =ZÄHLENWENN(A2:A11;\"Vertrieb\").\n2. B13: =ZÄHLENWENN(A2:A11;\"Marketing\").\n3. B14: =ZÄHLENWENN(A2:A11;\"IT\").",
-      "order": 27,
+      "order": 39,
       "formulaHint": "=ZÄHLENWENN(A2:A11;\"Vertrieb\")",
       "hint1": "ZÄHLENWENN prüft jede Zelle und zählt nur Treffer.",
       "hint2": "Das Kriterium muss in Anführungszeichen: \"Vertrieb\".",
@@ -4232,7 +5887,7 @@
         ]
       },
       "instructions": "1. C10: =SUMMEWENN(B2:B9;\"Elektronik\";C2:C9).\n2. C11: =SUMMEWENN(B2:B9;\"Medien\";C2:C9).\n3. C12: =SUMME(C2:C9).",
-      "order": 28,
+      "order": 40,
       "formulaHint": "=SUMMEWENN(B2:B9;\"Elektronik\";C2:C9)",
       "hint1": "SUMMEWENN hat 3 Argumente: Prüfbereich, Kriterium, Summenbereich.",
       "hint2": "Prüfbereich = Kategorie (B), Summenbereich = Umsatz (C).",
@@ -4443,7 +6098,7 @@
         ]
       },
       "instructions": "1. B9: =SVERWEIS(B8;A2:E6;2;FALSCH) für Produktname.\n2. B10: =SVERWEIS(B8;A2:E6;3;FALSCH) für Preis.\n3. B11: =SVERWEIS(B8;A2:E6;4;FALSCH) für Bestand.\n4. B12: =SVERWEIS(B8;A2:E6;5;FALSCH) für Kategorie.",
-      "order": 29,
+      "order": 41,
       "formulaHint": "=SVERWEIS(B8;A2:E6;2;FALSCH)",
       "hint1": "SVERWEIS sucht in der ersten Spalte und gibt Wert aus anderer Spalte zurück.",
       "hint2": "Suchkriterium in B8 (P003). Tabelle A2:E6.",
@@ -4651,7 +6306,7 @@
         "Exakte Suche ohne FALSCH-Parameter"
       ],
       "estimated_minutes": 10,
-      "order": 30,
+      "order": 42,
       "moduleId": "m5",
       "moduleSection": "5.4",
       "moduleTitle": "Modul 5: Datenbereinigung und -validierung",
@@ -4767,7 +6422,7 @@
         ]
       },
       "instructions": "1. C7: Notieren Sie =HEUTE() als Formel für das heutige Datum.\n2. D7: Notieren Sie =JAHR(HEUTE())-JAHR(B2) als Formel zur Altersberechnung.",
-      "order": 31,
+      "order": 43,
       "formulaHint": "=JAHR(HEUTE())-JAHR(B2)",
       "hint1": "HEUTE() liefert das aktuelle Datum — ohne Argumente.",
       "hint2": "JAHR() extrahiert das Jahr aus einem Datum.",
@@ -4881,7 +6536,7 @@
         ]
       },
       "instructions": "1. Preis pro Stück = Umsatz ÷ Stückzahl.\n2. D2: =WENNFEHLER(B2/C2;\"Keine Stück\").\n3. Ohne WENNFEHLER würde #DIV/0! erscheinen.",
-      "order": 32,
+      "order": 44,
       "formulaHint": "=WENNFEHLER(B2/C2;\"Keine Stück\")",
       "hint1": "Division durch 0 ergibt #DIV/0!.",
       "hint2": "WENNFEHLER fängt Fehler ab und zeigt Ersatzwert.",

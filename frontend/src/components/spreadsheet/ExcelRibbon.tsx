@@ -18,10 +18,12 @@ interface ExcelRibbonProps {
   onFreeze?: (type: 'row' | 'column' | 'both' | 'none') => void;
   onConditionalFormat?: () => void;
   onAutoSum?: (type?: 'sum' | 'avg' | 'count' | 'max' | 'min' | 'fx') => void;
-  onInsertChart?: (type: 'bar' | 'line') => void;
+  onInsertChart?: (type: 'bar' | 'line' | 'combo', trendlineKey?: string) => void;
   onInsertTable?: () => void;
   onDataValidation?: () => void;
   onPivotTable?: () => void;
+  onSparkline?: () => void;
+  onGoalSeek?: () => void;
   onExport?: () => void;
   // Exam mode
   examTimeString?: string;
@@ -89,6 +91,8 @@ export default function ExcelRibbon({
   onInsertTable,
   onDataValidation,
   onPivotTable,
+  onSparkline,
+  onGoalSeek,
   onExport,
   examTimeString,
   isExamUrgent,
@@ -442,6 +446,13 @@ export default function ExcelRibbon({
                 <RibbonBtn icon={<ChartIcon />} label="Empfohlen" w={48} h={48} onClick={() => onInsertChart?.('bar')} />
                 <RibbonBtn icon={<LineIcon />} label="Linie" w={48} h={48} onClick={() => onInsertChart?.('line')} />
                 <RibbonBtn icon={<BarIcon />} label="Balken" w={48} h={48} onClick={() => onInsertChart?.('bar')} />
+                <RibbonBtn icon={<LineIcon />} label="Kombi" w={48} h={48} onClick={() => onInsertChart?.('combo')} title="Kombidiagramm (Säulen + Linie)" />
+              </div>
+            </RibbonGroupBox>
+            <RibbonSeparator />
+            <RibbonGroupBox label="Minigramme">
+              <div className="ribbon-group-row">
+                <RibbonBtn icon={<ChartIcon />} label="Sparkline" w={52} h={48} onClick={() => onSparkline?.()} />
               </div>
             </RibbonGroupBox>
           </div>
@@ -502,6 +513,12 @@ export default function ExcelRibbon({
               <div className="ribbon-group-row">
                 <RibbonBtn icon={<CheckIcon />} label="Datenüberprüfung" w={64} h={28} onClick={() => onDataValidation?.()} />
                 <RibbonBtn icon={<PivotIcon />} label="PivotTable" w={52} h={28} onClick={() => onPivotTable?.()} />
+              </div>
+            </RibbonGroupBox>
+            <RibbonSeparator />
+            <RibbonGroupBox label="Was-wäre-wenn">
+              <div className="ribbon-group-row">
+                <RibbonBtn icon={<CheckIcon />} label="Zielwertsuche" w={64} h={28} onClick={() => onGoalSeek?.()} />
               </div>
             </RibbonGroupBox>
             <RibbonSeparator />

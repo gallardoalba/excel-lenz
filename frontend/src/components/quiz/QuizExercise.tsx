@@ -66,17 +66,8 @@ export default function QuizExercise({ questions, onSubmit, submitting, score }:
 
   return (
     <div style={{ maxWidth: 780, margin: '0 auto', padding: '8px 0' }}>
-      {/* ── Subtitle ── */}
-      <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textAlign: 'center', marginBottom: 12 }}>
-        {questions.length} Fragen · {
-          questions.some(q => q.type === 'multiple')
-            ? 'Bei Mehrfachauswahl sind mehrere Antworten möglich'
-            : 'Eine Antwort pro Frage'
-        }
-      </p>
-
       {/* ── Horizontal Question Nav Strip ── */}
-      <div className="quiz-nav-strip" ref={navStripRef} style={{ marginBottom: 20 }}>
+      <div className="quiz-nav-strip" ref={navStripRef} style={{ marginBottom: 4 }}>
         {questions.map((_, qIdx) => {
           const ok = submitted && isCorrect(qIdx);
           const answered = submitted && answers[qIdx].length > 0;
@@ -106,9 +97,6 @@ export default function QuizExercise({ questions, onSubmit, submitting, score }:
           <div className={`quiz-card${correct ? ' correct' : ''}${answeredWrong ? ' wrong' : ''}${missed ? ' wrong' : ''}`}>
             {/* Header */}
             <div className="quiz-card-header">
-              <div className={`quiz-card-number${correct ? ' correct' : ''}${(answeredWrong || missed) ? ' wrong' : ''}`}>
-                {activeQ + 1}
-              </div>
               <div style={{ flex: 1 }}>
                 <p className="quiz-question-text">{q.question}</p>
                 <span className="quiz-type-badge">

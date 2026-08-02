@@ -31,6 +31,10 @@ import ContextMenu from './ContextMenu';
 import ChartDialog from './ChartDialog';
 import DataValidationDialog from './DataValidationDialog';
 import PivotTableDialog from './PivotTableDialog';
+import Sparkline, { resolveSparklineData, colLetterToIndex as sparkColToIdx } from './Sparkline';
+import type { SparklineDef } from './Sparkline';
+import SparklineDialog from './SparklineDialog';
+import GoalSeekDialog from './GoalSeekDialog';
 import type { CellPosition, CellRange, CellFormat, CellFormats, StatusBarInfo, ContextMenuAction, ContextMenuState } from './types';
 import { positionToRef, colToLetter, refToRange, rangeToRef, EXCEL_FUNCTIONS_DE } from './types';
 
@@ -51,6 +55,74 @@ function createHF(): HyperFormula {
   return hf;
 }
 
+// Build SVG string for a sparkline (used in afterRender DOM injection)
+function buildSparklineSvg(def: SparklineDef, data: number[]): string {
+  const w = 100, h = 20, pad = 2;
+  const nums = data.filter(n => !isNaN(n));
+  if (nums.length === 0) return '';
+
+  const min = Math.min(...nums);
+  const max = Math.max(...nums);
+  const range = max - min || 1;
+
+  switch (def.type) {
+    case 'line': {
+      if (nums.length < 2) return '';
+      const points = nums.map((v, i) => {
+        const x = pad + (i / (nums.length - 1)) * (w - 2 * pad);
+        const y = h - pad - ((v - min) / range) * (h - 2 * pad);
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(' ');
+      const lastX = pad + ((nums.length - 1) / (nums.length - 1)) * (w - 2 * pad);
+      const lastY = h - pad - ((nums[nums.length - 1] - min) / range) * (h - 2 * pad);
+      let svg = `<svg width="${w}" height="${h}" style="display:block"><polyline points="${points}" fill="none" stroke="${def.color || '#4472C4'}" stroke-width="1.5" stroke-linejoin="round"/>`;
+      if (def.highPoint) {
+        const hi = nums.indexOf(max);
+        const hx = pad + (hi / (nums.length - 1)) * (w - 2 * pad);
+        const hy = h - pad - ((max - min) / range) * (h - 2 * pad);
+        svg += `<circle cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="2.5" fill="${def.color || '#4472C4'}" stroke="white" stroke-width="0.5"/>`;
+      }
+      if (def.lowPoint) {
+        const li = nums.indexOf(min);
+        const lx = pad + (li / (nums.length - 1)) * (w - 2 * pad);
+        const ly = h - pad;
+        svg += `<circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="2.5" fill="${def.color || '#4472C4'}" stroke="white" stroke-width="0.5"/>`;
+      }
+      svg += `<circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="2" fill="${def.color || '#4472C4'}"/></svg>`;
+      return svg;
+    }
+    case 'column': {
+      const barW = Math.max(1, (w - 4) / nums.length - 2);
+      let svg = `<svg width="${w}" height="${h}" style="display:block">`;
+      for (let i = 0; i < nums.length; i++) {
+        const barH = Math.max(1, ((nums[i] - min) / range) * (h - 4));
+        const x = 2 + i * ((w - 4) / nums.length) + ((w - 4) / nums.length - barW) / 2;
+        const y = h - 2 - barH;
+        const fill = (def.highPoint && nums[i] === max) ? '#FF8C00' : (def.lowPoint && nums[i] === min) ? '#FF4444' : (def.color || '#4472C4');
+        svg += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${barH.toFixed(1)}" fill="${fill}" rx="0.5"/>`;
+      }
+      svg += '</svg>';
+      return svg;
+    }
+    case 'winloss': {
+      const midY = h / 2;
+      const segW = Math.max(2, (w - 4) / nums.length);
+      let svg = `<svg width="${w}" height="${h}" style="display:block">`;
+      for (let i = 0; i < nums.length; i++) {
+        const x = 2 + i * segW + segW / 2;
+        const barH = Math.abs(nums[i]) > 0 ? 4 : 0;
+        const y = nums[i] >= 0 ? midY - barH : midY + 0.5;
+        const fill = nums[i] > 0 ? (def.color || '#4472C4') : nums[i] < 0 ? (def.negativeColor || '#FF4444') : '#999';
+        svg += `<rect x="${(x - 2).toFixed(1)}" y="${y.toFixed(1)}" width="4" height="${barH || 1}" fill="${fill}"/>`;
+      }
+      svg += '</svg>';
+      return svg;
+    }
+    default:
+      return '';
+  }
+}
+
 interface SpreadsheetHandsontableProps {
   headers: string[];
   data: (string | number | null)[][];
@@ -67,6 +139,9 @@ interface SpreadsheetHandsontableProps {
   solution?: { evaluatedData: (string | number | null)[][] };
   /** Pre-populated sheets for multi-sheet exercises */
   initialSheets?: { name: string; headers: string[]; data: (string | number | null)[][] }[];
+  /** Sparkline definitions for mini-chart exercises */
+  sparklines?: SparklineDef[];
+  onSparklinesChange?: (sparklines: SparklineDef[]) => void;
 }
 
 export default function SpreadsheetHandsontable({
@@ -82,6 +157,8 @@ export default function SpreadsheetHandsontable({
   mode = 'exam',
   solution,
   initialSheets,
+  sparklines: externalSparklines,
+  onSparklinesChange,
 }: SpreadsheetHandsontableProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const hotRef = useRef<Handsontable | null>(null);
@@ -160,13 +237,28 @@ export default function SpreadsheetHandsontable({
   const [isMerged, setIsMerged] = useState(false);
   // Chart dialog state
   const [showChartDialog, setShowChartDialog] = useState(false);
-  const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
+  const [chartType, setChartType] = useState<'bar' | 'line' | 'combo'>('bar');
   const [chartData, setChartData] = useState<Record<string, string | number>[]>([]);
+  const [chartBarSeries, setChartBarSeries] = useState<string[] | undefined>(undefined);
+  const [chartTrendlineSeries, setChartTrendlineSeries] = useState<string | undefined>(undefined);
   // Data validation
   const [validationRules, setValidationRules] = useState<{ col: number; type: string; min?: number; max?: number; list?: string; errorMessage: string }[]>([]);
   const validationRulesRef = useRef(validationRules);
   useEffect(() => { validationRulesRef.current = validationRules; }, [validationRules]);
   const [showValidationDialog, setShowValidationDialog] = useState(false);
+  // Sparklines
+  const [sparklines, setSparklines] = useState<SparklineDef[]>(externalSparklines || []);
+  const sparklinesRef = useRef(sparklines);
+  useEffect(() => { sparklinesRef.current = sparklines; }, [sparklines]);
+  // Sync external sparklines when prop changes (e.g., new exercise loaded)
+  useEffect(() => {
+    if (externalSparklines) {
+      setSparklines(externalSparklines);
+    }
+  }, [externalSparklines]);
+  const [showSparklineDialog, setShowSparklineDialog] = useState(false);
+  // Goal Seek
+  const [showGoalSeekDialog, setShowGoalSeekDialog] = useState(false);
   // Format Cells dialog (Ctrl+1)
   const [showFormatCellsDialog, setShowFormatCellsDialog] = useState(false);
   // Pivot table
@@ -857,7 +949,74 @@ export default function SpreadsheetHandsontable({
       mergeCells: true,
       customBorders: true,
       fillHandle: !readOnly,
-      rowHeights: 23,
+      // Excel-like series autofill: return custom data for months/weekdays/numbers
+      beforeAutofill(_start: unknown, _sourceRange: unknown, _targetRange: unknown, _direction: unknown) {
+        const hot = hotRef.current;
+        if (!hot) return;
+        const sr = _sourceRange as { from: { row: number; col: number }; to: { row: number; col: number } };
+        const tr = _targetRange as { from: { row: number; col: number }; to: { row: number; col: number } };
+        const srcFromRow = sr.from.row;
+        const srcFromCol = sr.from.col;
+        const srcToRow = sr.to.row;
+        const srcToCol = sr.to.col;
+        const srcRows = srcToRow - srcFromRow + 1;
+        const srcCols = srcToCol - srcFromCol + 1;
+
+        // Only handle single-column vertical fills with 2+ source cells
+        if (srcCols !== 1 || srcRows < 2) return;
+
+        // Read source values from HOT
+        const srcValues: string[] = [];
+        for (let r = srcFromRow; r <= srcToRow; r++) {
+          const v = hot.getDataAtCell(r, srcFromCol);
+          srcValues.push(v != null ? String(v).trim() : '');
+        }
+
+        const MONTHS = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+        const MONTHS_SHORT = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+        const WEEKDAYS = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
+        const WEEKDAYS_SHORT = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+
+        let extendFn: ((idx: number) => string | number) | null = null;
+        for (const list of [MONTHS, MONTHS_SHORT, WEEKDAYS, WEEKDAYS_SHORT]) {
+          const idx0 = list.indexOf(srcValues[0]);
+          if (idx0 >= 0) {
+            let ok = true;
+            for (let i = 1; i < srcValues.length; i++) {
+              if (list[(idx0 + i) % list.length] !== srcValues[i]) { ok = false; break; }
+            }
+            if (ok) { extendFn = (i) => list[(idx0 + i) % list.length]; break; }
+          }
+        }
+        if (!extendFn) {
+          const n0 = Number(srcValues[0]);
+          const n1 = Number(srcValues[1]);
+          if (!isNaN(n0) && !isNaN(n1) && n0 !== n1) {
+            const step = n1 - n0;
+            let ok = true;
+            for (let i = 2; i < srcValues.length; i++) {
+              if (Number(srcValues[i]) !== n0 + step * i) { ok = false; break; }
+            }
+            if (ok) extendFn = (i) => n0 + step * i;
+          }
+        }
+
+        if (!extendFn) return; // Let HT handle normal copy
+
+        // Build custom fill data
+        const tgtRows = tr.to.row - tr.from.row + 1;
+        const tgtCols = tr.to.col - tr.from.col + 1;
+        const fillData: unknown[][] = [];
+        for (let r = 0; r < tgtRows; r++) {
+          const row: unknown[] = [];
+          for (let c = 0; c < tgtCols; c++) {
+            const idx = srcRows + r;
+            row.push(extendFn(idx));
+          }
+          fillData.push(row);
+        }
+        return fillData;
+      },
       autoRowSize: false,
       // columnSorting re-enabled: HT v18 native sort works with HyperFormula
       columnSorting: true,
@@ -880,6 +1039,54 @@ export default function SpreadsheetHandsontable({
       textEllipsis: true,
       exportFile: {
         engines: { xlsx: ExcelJS },
+      },
+
+      // Sparkline rendering: inject SVG mini-charts into cells after each render
+      afterRender() {
+        const sparkDefs = sparklinesRef.current;
+        if (!sparkDefs || sparkDefs.length === 0) return;
+        const hot = hotRef.current;
+        if (!hot || hot.isDestroyed) return;
+
+        for (const def of sparkDefs) {
+          const match = def.cell.match(/^([A-Z]+)(\d+)$/i);
+          if (!match) continue;
+          const col = sparkColToIdx(match[1]);
+          const excelRow = parseInt(match[2], 10);
+          // HOT visual row: row 0 = header row, row 1 = first data row, ...
+          // Excel row 1 → HOT visual row 0 (header), Excel row 2 → HOT visual row 1, ...
+          const visualRow = excelRow - 1;
+          const visualCol = col;
+          const td = hot.getCell(visualRow, visualCol);
+          if (!td) continue;
+
+          const resolvedData = resolveSparklineData(def, dataRef.current, headersRef.current);
+          if (resolvedData.length === 0) continue;
+
+          // Clear existing sparkline content
+          const existingSvg = td.querySelector('.sparkline-svg');
+          if (existingSvg) existingSvg.remove();
+
+          // Build SVG string and inject
+          const svgStr = buildSparklineSvg(def, resolvedData);
+          if (!svgStr) continue;
+
+          const wrapper = document.createElement('span');
+          wrapper.className = 'sparkline-svg';
+          wrapper.style.display = 'flex';
+          wrapper.style.alignItems = 'center';
+          wrapper.style.justifyContent = 'center';
+          wrapper.style.width = '100%';
+          wrapper.style.height = '100%';
+          wrapper.innerHTML = svgStr;
+
+          // Replace the text content with the sparkline SVG
+          // Keep the original data value in a data attribute
+          const sourceVal = hot.getSourceDataAtCell(visualRow - 1 < 0 ? 0 : visualRow - 1, visualCol);
+          // Actually use the visual indices directly since HOT getCell uses visual positions
+          td.innerHTML = '';
+          td.appendChild(wrapper);
+        }
       },
 
       beforePaste(data: unknown[][], _coords: unknown[]) {
@@ -1669,9 +1876,10 @@ export default function SpreadsheetHandsontable({
         const tgtFromCol = targetRange.from.col ?? 0;
         const tgtToRow = targetRange.to.row ?? 0;
         const tgtToCol = targetRange.to.col ?? 0;
+
+        // Copy native cell metadata (existing logic)
         const srcRows = srcToRow - srcFromRow + 1;
         const srcCols = srcToCol - srcFromCol + 1;
-        // Copy native cell metadata from source to target (HT handles undo natively)
         for (let r = 0; r <= tgtToRow - tgtFromRow; r++) {
           for (let c = 0; c <= tgtToCol - tgtFromCol; c++) {
             const srcRow = srcFromRow + (r % srcRows);
@@ -2234,7 +2442,7 @@ export default function SpreadsheetHandsontable({
   }, [activeCell]);
 
   // Chart insertion handler
-  const handleInsertChart = useCallback((type: 'bar' | 'line') => {
+  const handleInsertChart = useCallback((type: 'bar' | 'line' | 'combo', trendlineKey?: string) => {
     const hot = hotRef.current;
     if (!hot || !selectedRange) return;
     const sr = selectedRange;
@@ -2251,6 +2459,17 @@ export default function SpreadsheetHandsontable({
     });
     setChartData(parsedData);
     setChartType(type);
+    // For combo: first numeric column = bars, rest = lines
+    if (type === 'combo' && headers.length > 2) {
+      setChartBarSeries([headers[1]]);
+      if (trendlineKey) setChartTrendlineSeries(trendlineKey);
+    } else if (trendlineKey) {
+      setChartTrendlineSeries(trendlineKey);
+      setChartBarSeries(undefined);
+    } else {
+      setChartBarSeries(undefined);
+      setChartTrendlineSeries(undefined);
+    }
     setShowChartDialog(true);
   }, [selectedRange]);
 
@@ -2283,6 +2502,92 @@ export default function SpreadsheetHandsontable({
     setPivotData(parsed);
     setShowPivotDialog(true);
   }, [selectedRange]);
+
+  // Sparkline handler
+  const handleInsertSparkline = useCallback((def: {
+    type: SparklineDef['type'];
+    dataRange: string;
+    targetCell: string;
+    color?: string;
+    negativeColor?: string;
+    highPoint?: boolean;
+    lowPoint?: boolean;
+  }) => {
+    const newSparkline: SparklineDef = {
+      cell: def.targetCell,
+      type: def.type,
+      range: def.dataRange,
+      color: def.color,
+      negativeColor: def.negativeColor,
+      highPoint: def.highPoint,
+      lowPoint: def.lowPoint,
+    };
+    setSparklines(prev => {
+      const updated = [...prev.filter(s => s.cell !== def.targetCell), newSparkline];
+      if (onSparklinesChange) onSparklinesChange(updated);
+      return updated;
+    });
+    hotRef.current?.render();
+  }, [onSparklinesChange]);
+
+  // Goal Seek: evaluate a formula with a trial variable value using HyperFormula
+  const handleGoalSeekEvaluate = useCallback((formulaCell: string, variableCell: string, trialValue: number): number => {
+    const hf = hfRef.current;
+    const hot = hotRef.current;
+    if (!hf || !hot || hot.isDestroyed) return NaN;
+
+    try {
+      const activeSheetId = 0; // Use sheet 0 for now
+
+      // Parse cell references
+      const fcMatch = formulaCell.match(/^([A-Z]+)(\d+)$/i);
+      const vcMatch = variableCell.match(/^([A-Z]+)(\d+)$/i);
+      if (!fcMatch || !vcMatch) return NaN;
+
+      const fcCol = sparkColToIdx(fcMatch[1]);
+      const fcRow = parseInt(fcMatch[2], 10) - 1;
+      const vcCol = sparkColToIdx(vcMatch[1]);
+      const vcRow = parseInt(vcMatch[2], 10) - 1;
+
+      // Get the formula from the formula cell
+      const formula = hot.getSourceDataAtCell(fcRow, fcCol);
+      if (typeof formula !== 'string' || !formula.startsWith('=')) return NaN;
+
+      // Temporarily set the variable cell value in HF
+      const vcRef = positionToRef({ row: vcRow, col: vcCol });
+      const fcRef = positionToRef({ row: fcRow, col: fcCol });
+
+      // Set the trial value
+      hf.setCellContents({ sheet: activeSheetId, row: vcRow, col: vcCol }, [[trialValue]]);
+
+      // Evaluate the formula cell
+      const result = hf.getCellValue({ sheet: activeSheetId, row: fcRow, col: fcCol });
+
+      // Restore original value from source data (dataRef excludes headers, so offset by 1)
+      const originalVal = dataRef.current[vcRow - 1]?.[vcCol];
+      hf.setCellContents({ sheet: activeSheetId, row: vcRow, col: vcCol }, [[originalVal ?? null]]);
+
+      if (typeof result === 'number' && isFinite(result)) {
+        return result;
+      }
+      return NaN;
+    } catch {
+      return NaN;
+    }
+  }, []);
+
+  // Goal Seek: apply result to variable cell
+  const handleGoalSeekResult = useCallback((variableCell: string, result: number) => {
+    const hot = hotRef.current;
+    if (!hot || hot.isDestroyed) return;
+
+    const vcMatch = variableCell.match(/^([A-Z]+)(\d+)$/i);
+    if (!vcMatch) return;
+    const vcCol = sparkColToIdx(vcMatch[1]);
+    const vcRow = parseInt(vcMatch[2], 10) - 1;
+
+    hot.setDataAtCell(vcRow, vcCol, result, 'internalUpdate');
+  }, []);
 
   // AutoSum handler — extracted from keyboard shortcut for ribbon button use
   const handleAutoSum = useCallback((type?: 'sum' | 'avg' | 'count' | 'max' | 'min' | 'fx') => {
@@ -2392,6 +2697,8 @@ export default function SpreadsheetHandsontable({
           onInsertTable={() => handleContextMenuAction('formatAsTable')}
           onDataValidation={() => setShowValidationDialog(true)}
           onPivotTable={handleOpenPivot}
+          onSparkline={() => setShowSparklineDialog(true)}
+          onGoalSeek={() => setShowGoalSeekDialog(true)}
           onSort={handleSort}
           onFilter={handleFilter}
           onFormatPainter={handleFormatPainter}
@@ -2503,7 +2810,23 @@ export default function SpreadsheetHandsontable({
         visible={showChartDialog}
         chartType={chartType}
         data={chartData}
+        barSeries={chartBarSeries}
+        trendlineSeries={chartTrendlineSeries}
         onClose={() => setShowChartDialog(false)}
+      />
+      {/* Sparkline Dialog */}
+      <SparklineDialog
+        isOpen={showSparklineDialog}
+        selectedRange={selectedRange ? rangeToRef(selectedRange) : ''}
+        onClose={() => setShowSparklineDialog(false)}
+        onInsert={handleInsertSparkline}
+      />
+      {/* Goal Seek Dialog */}
+      <GoalSeekDialog
+        isOpen={showGoalSeekDialog}
+        evaluate={handleGoalSeekEvaluate}
+        onResult={handleGoalSeekResult}
+        onClose={() => setShowGoalSeekDialog(false)}
       />
       {/* Format Cells Dialog (Ctrl+1) */}
       {showFormatCellsDialog && (

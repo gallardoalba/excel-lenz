@@ -31,6 +31,25 @@ interface TemplateData {
   theoryTitle?: string;
   /** Multi-sheet exercises: pre-populated sheets */
   sheets?: { name: string; headers: string[]; data: (string | number | null)[][] }[];
+  /** Quiz exercise: question list */
+  type?: 'quiz';
+  questions?: {
+    question: string;
+    options: string[];
+    correct: number[];
+    type: 'tf' | 'single' | 'multiple';
+    explanation: string;
+  }[];
+  /** Format scoring: expected cell formats */
+  formatSolution?: Record<string, Record<string, unknown>>;
+  /** Validation hints for data validation exercises */
+  validationHints?: Record<string, string>;
+  /** Lookup tables for VLOOKUP/INDEX exercises */
+  lookupTables?: Record<string, { range: string; data: (string | number | null)[][] }>;
+  /** Named ranges hint for user reference */
+  namedRanges?: Record<string, string>;
+  /** Summary table for aggregation exercises */
+  summary?: { cols: number; rows: number; headers: string[]; data: (string | number | null)[][] };
 }
 
 interface ExerciseData {
@@ -84,22 +103,15 @@ export default function Exercise() {
   const { increment: incrementGoal } = useDailyGoal();
   const scoreRef = useRef<HTMLDivElement>(null);
   const leftPanelRef = useRef<HTMLElement>(null);
-  const [gridHeight, setGridHeight] = useState(320);
-  // Bug #13 fix: throttle resize handler via requestAnimationFrame
+  const [gridHeight, setGridHeight] = useState(360);
+
+  // Sync spreadsheet height: fill available viewport space below header
   useEffect(() => {
-    let rafId: number | null = null;
-    const update = () => {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        setGridHeight(Math.max(280, window.innerHeight - 520));
-      });
-    };
+    const update = () => setGridHeight(Math.max(280, window.innerHeight - 520));
+    update();
     window.addEventListener('resize', update);
-    return () => {
-      window.removeEventListener('resize', update);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
+    return () => window.removeEventListener('resize', update);
+  }, [exercise?.id]);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const abortRef = useRef<AbortController | null>(null);
   const [nextExercise, setNextExercise] = useState<{ id: string; title: string; estimated_minutes?: number } | null>(null);
@@ -129,7 +141,7 @@ export default function Exercise() {
   const isDirtyRef = useRef(false);
   const originalDataRef = useRef<string>('');
   useEffect(() => {
-    if (exercise && !originalDataRef.current) {
+    if (exercise && !originalDataRef.current && exercise.template_data?.data) {
       originalDataRef.current = JSON.stringify(exercise.template_data.data);
     }
   }, [exercise]);
@@ -194,17 +206,18 @@ export default function Exercise() {
             const saved = JSON.parse(data.progress.submitted_data);
             setSpreadsheetData(saved);
           } catch {
-            setSpreadsheetData(JSON.parse(JSON.stringify(data.template_data.data)));
+            setSpreadsheetData(JSON.parse(JSON.stringify(data.template_data.data || [])));
           }
           setScore(data.progress.score);
         } else {
           // Bug #28 fix: deep clone template data to prevent reference sharing
-          setSpreadsheetData(JSON.parse(JSON.stringify(data.template_data.data)));
+          setSpreadsheetData(JSON.parse(JSON.stringify(data.template_data.data || [])));
           // Bug #25 fix: reset attemptCount on new exercise load
           setAttemptCount(0);
         }
-        // Fetch next exercise in course sequence
-        apiFetch(`/courses/${data.course_id}`, { signal })
+        // Fetch next exercise in course sequence (independent of signal to survive StrictMode aborts)
+        const courseCtrl = new AbortController();
+        apiFetch(`/courses/${data.course_id}`, { signal: courseCtrl.signal })
           .then((course: { exercises: { id: string; title: string; estimated_minutes?: number }[] }) => {
             if (signal.aborted) return;
             const currentIdx = course.exercises.findIndex((e: { id: string }) => e.id === id);
@@ -351,26 +364,36 @@ export default function Exercise() {
     return (
       <div className="exercise-page">
         <div className="flex items-center gap-sm" style={{ marginBottom: 12 }}>
-          <Link to="/courses" className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
+          <Link to={`/courses/${exercise?.course_id}`} className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
             <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
           </Link>
           {/* Prev/Next navigation */}
           <div style={{ display: 'flex', gap: 4, marginLeft: 4 }}>
-            {prevExercise && (
+            {prevExercise ? (
               <Link to={`/exercises/${prevExercise.id}`} className="btn btn-outline btn-sm"
                 style={{ padding: '6px 10px' }} title={`Vorherige: ${prevExercise.title}`}>
                 <ArrowLeft size={14} />
               </Link>
+            ) : (
+              <span className="btn btn-outline btn-sm"
+                style={{ padding: '6px 10px', opacity: 0.3, cursor: 'default' }} title="Keine vorherige Übung">
+                <ArrowLeft size={14} />
+              </span>
             )}
-            {nextExercise && (
+            {nextExercise ? (
               <Link to={`/exercises/${nextExercise.id}`} className="btn btn-outline btn-sm"
                 style={{ padding: '6px 10px' }} title={`Nächste: ${nextExercise.title}`}>
                 <ArrowRight size={14} />
               </Link>
+            ) : (
+              <span className="btn btn-outline btn-sm"
+                style={{ padding: '6px 10px', opacity: 0.3, cursor: 'default' }} title="Keine weitere Übung">
+                <ArrowRight size={14} />
+              </span>
             )}
           </div>
           <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>
-            <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</Link> › <Link to="/courses" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link> › Übung
+            <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</Link> › <Link to={`/courses/${exercise?.course_id}`} style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link> › Übung
           </span>
         </div>
         <h1 style={{ marginBottom: 6 }}>{exercise.title}</h1>
@@ -400,28 +423,38 @@ export default function Exercise() {
   return (
     <div className="exercise-page">
       <div className="flex items-center gap-sm" style={{ marginBottom: 12 }}>
-        <Link to="/courses" className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
+          <Link to={`/courses/${exercise?.course_id}`} className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
           <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
         </Link>
         {/* Prev/Next navigation */}
         <div style={{ display: 'flex', gap: 4, marginLeft: 4 }}>
-          {prevExercise && (
+          {prevExercise ? (
             <Link to={`/exercises/${prevExercise.id}`} className="btn btn-outline btn-sm"
               style={{ padding: '6px 10px' }} title={`Vorherige: ${prevExercise.title}`}>
               <ArrowLeft size={14} />
             </Link>
+          ) : (
+            <span className="btn btn-outline btn-sm"
+              style={{ padding: '6px 10px', opacity: 0.3, cursor: 'default' }} title="Keine vorherige Übung">
+              <ArrowLeft size={14} />
+            </span>
           )}
-          {nextExercise && (
+          {nextExercise ? (
             <Link to={`/exercises/${nextExercise.id}`} className="btn btn-outline btn-sm"
               style={{ padding: '6px 10px' }} title={`Nächste: ${nextExercise.title}`}>
               <ArrowRight size={14} />
             </Link>
+          ) : (
+            <span className="btn btn-outline btn-sm"
+              style={{ padding: '6px 10px', opacity: 0.3, cursor: 'default' }} title="Keine weitere Übung">
+              <ArrowRight size={14} />
+            </span>
           )}
         </div>
         <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>
           <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</Link>
           <span style={{ margin: '0 4px' }}>›</span>
-          <Link to="/courses" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link>
+          <Link to={`/courses/${exercise?.course_id}`} style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link>
           <span style={{ margin: '0 4px' }}>›</span>
           <span style={{ color: 'var(--text)' }}>Übung</span>
         </span>
@@ -749,7 +782,7 @@ export default function Exercise() {
                 isDirtyRef.current = true;
                 setSpreadsheetData(newData);
               }}
-              externalFormats={cellFormats}
+              cellFormats={cellFormats}
               onCellFormatsChange={(fmts) => setCellFormats(fmts)}
               taskCols={template.taskCols}
               gridHeight={gridHeight}
