@@ -1,13 +1,15 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo, lazy, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Lightbulb, Trophy, CheckCircle, ThumbsUp, BookOpen, Award, HelpCircle, Search, Sprout, ThumbsDown, Bike, Loader2, LogIn, ArrowRight, ArrowLeft, Star, Target, ListChecks, Clock, MessageCircle, Eye } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
-import SpreadsheetHandsontable from '../components/spreadsheet/SpreadsheetHandsontable';
 import { BadgeModal, XPFlying, ExcelSpinner } from '../components/animations/Celebrations';
 import { announce } from '../components/a11y/Accessibility';
 import { useTour, EXERCISE_TOUR } from '../components/tour/OnboardingTour';
 import Comments from '../components/community/Comments';
 import KeyboardHelp from '../components/help/KeyboardHelp';
+
+// Lazy-load heavy spreadsheet component (Handsontable + HyperFormula ~4.5MB)
+const SpreadsheetHandsontable = lazy(() => import('../components/spreadsheet/SpreadsheetHandsontable'));
 import { useDailyGoal } from '../context/DailyGoalContext';
 import { useExerciseTimer } from '../hooks/useAnalytics';
 
@@ -667,6 +669,7 @@ export default function Exercise() {
 
         <section aria-label="Excel-Arbeitsblatt" style={{ display: 'flex', flexDirection: 'column' }}>
           <div className="spreadsheet-container" style={{ flex: 1 }}>
+            <Suspense fallback={<ExcelSpinner text="Tabelle wird geladen..." />}>
             <SpreadsheetHandsontable
               key={id}
               headers={template.headers}
@@ -679,6 +682,7 @@ export default function Exercise() {
               gridHeight={gridHeight}
               errorCells={errorCellsProp}
             />
+            </Suspense>
           </div>
         </section>
       </div>

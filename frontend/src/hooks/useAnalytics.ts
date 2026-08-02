@@ -40,10 +40,11 @@ const flushQueue = () => {
   });
 };
 
-// Flush every 5 seconds
-setInterval(flushQueue, 5000);
+// Flush every 30 seconds (was 5s — reduced frequency to avoid triggering React re-renders)
+// TEMPORARILY DISABLED for debugging infinite loop
+// setInterval(flushQueue, 30000);
 // Flush on page unload
-window.addEventListener('beforeunload', flushQueue);
+// window.addEventListener('beforeunload', flushQueue);
 
 // ── Public API ──────────────────────────────────────────────
 

@@ -86,7 +86,7 @@ export default function SpreadsheetHandsontable({
   const dataRef = useRef(data);
   const headersRef = useRef(headers);
   const taskColsRef = useRef(taskCols);
-  const isInternalChange = useRef(false);
+  const internalChangeDepth = useRef(0); // Counter-based guard: prevents afterChange loops
   const lastLoadedDataRef = useRef<string>(''); // Bug #16: signature-based data reload guard
   const dataIdRef = useRef<number>(0);
   // Excel-like range selection refs: track formula editing to insert range references
@@ -895,10 +895,7 @@ export default function SpreadsheetHandsontable({
 
       cells(row: number, col: number) {
         const cellMeta: Record<string, unknown> = {};
-        // Protect header row from editing (Excel-like: headers are read-only)
-        if (row === 0) {
-          cellMeta.readOnly = true;
-        }
+        // Header row is protected via beforeChange (not readOnly) to avoid grey styling
         // Bug #7 fix: use refs for taskCols and headers to avoid stale closure
         const isTask = taskColsRef.current.includes(col) && col < headersRef.current.length;
         // Read from REFS (not state) to avoid stale closure
@@ -936,6 +933,14 @@ export default function SpreadsheetHandsontable({
         // Renderer
         cellMeta.renderer = (instance: any, td: HTMLTableCellElement, _r: number, _c: number, _p: any, v: any, _cp: any) => {
           textRenderer(instance, td, _r, _c, _p, v, _cp);
+          // Header row styling: subtle blue-grey instead of readOnly grey
+          if (_r === 0) {
+            td.style.background = '#e8edf2';
+            td.style.fontWeight = '600';
+            td.style.fontSize = '0.85rem';
+            td.style.color = '#444';
+            td.style.borderBottom = '2px solid #c0c8d0';
+          }
           // Bug #1 fix: apply Excel number formatting in renderer (visual only, text bypasses format)
           const meta = instance.getCellMeta(_r, _c);
           const excelFmt: string | undefined = (meta as any)._excelFormat;
@@ -1125,7 +1130,7 @@ export default function SpreadsheetHandsontable({
               rangeSafetyTimer2Ref.current = setTimeout(() => {
                 isAppendingRangeRef.current = false;
                 isRangeSelecting.current = false;
-                isInternalChange.current = false;
+                internalChangeDepth.current = 0;
               }, 2000);
             }
           }
@@ -1472,7 +1477,7 @@ export default function SpreadsheetHandsontable({
         // 'contextmenuCopyPaste', 'skipTheme' and other internal sources
         const SKIP_SOURCES = ['loadData', 'internalUpdate', 'auto',
           'dateFix', 'contextmenuCopyPaste', 'skipTheme'];
-        if (!changes || SKIP_SOURCES.includes(source) || isInternalChange.current) {
+        if (!changes || SKIP_SOURCES.includes(source) || internalChangeDepth.current > 0) {
           // Clear format history on full data reload (sheet switch, etc.)
           if (source === 'loadData') {
             formatHistoryRef.current = [];
@@ -1506,11 +1511,12 @@ export default function SpreadsheetHandsontable({
             practiceTimerRef.current = setTimeout(() => checkCellPractice(pr, pc), 300);
           }
         }
-        isInternalChange.current = true;
+        internalChangeDepth.current++;
         onChange(nd);
-        // Bug #16 fix: use setTimeout(0) instead of requestAnimationFrame
-        // to ensure isInternalChange stays true through the full async React update cycle
-        setTimeout(() => { isInternalChange.current = false; }, 0);
+        // Defer reset to protect against async React re-render cycle
+        setTimeout(() => {
+          if (internalChangeDepth.current > 0) internalChangeDepth.current--;
+        }, 100);
         const lastChange = changes[changes.length - 1];
         if (lastChange && !isSyncingFormulaRef.current) {
           setFormulaBarValue(lastChange[3] ?? '');
@@ -1575,6 +1581,7 @@ export default function SpreadsheetHandsontable({
 
       // Sync cell formats when rows are inserted/removed (use amount for multi-row ops)
       afterCreateRow(row: number, amount: number) {
+        if (internalChangeDepth.current > 0) return; // Block during internal operations
         setCellFormats((prev: CellFormats) => {
           const next: CellFormats = {};
           for (const [key, fmt] of Object.entries(prev)) {
@@ -1604,6 +1611,7 @@ export default function SpreadsheetHandsontable({
         }, 0);
       },
       afterRemoveRow(row: number, amount: number) {
+        if (internalChangeDepth.current > 0) return; // Block during internal operations
         setCellFormats((prev: CellFormats) => {
           const next: CellFormats = {};
           for (const [key, fmt] of Object.entries(prev)) {
@@ -1626,6 +1634,7 @@ export default function SpreadsheetHandsontable({
         }, 0);
       },
       afterCreateCol(col: number, amount: number) {
+        if (internalChangeDepth.current > 0) return; // Block during internal operations
         setCellFormats((prev: CellFormats) => {
           const next: CellFormats = {};
           for (const [key, fmt] of Object.entries(prev)) {
@@ -1671,6 +1680,7 @@ export default function SpreadsheetHandsontable({
         }, 0);
       },
       afterRemoveCol(col: number, amount: number) {
+        if (internalChangeDepth.current > 0) return; // Block during internal operations
         setCellFormats((prev: CellFormats) => {
           const next: CellFormats = {};
           for (const [key, fmt] of Object.entries(prev)) {
@@ -1813,10 +1823,13 @@ export default function SpreadsheetHandsontable({
     // Only reload if the data signature truly changed vs. what we last loaded
     if (signature !== lastLoadedDataRef.current) {
       lastLoadedDataRef.current = signature;
-      isInternalChange.current = true;
+      internalChangeDepth.current++;
       hot.loadData(targetData);
-      // Bug #16 fix: use setTimeout(0) to keep isInternalChange true through the full update cycle
-      setTimeout(() => { isInternalChange.current = false; }, 0);
+      setTimeout(() => {
+        if (internalChangeDepth.current > 0) internalChangeDepth.current--;
+      }, 100);
+    } else {
+      console.log('[SS] ✅ signature MATCHED, skipping reload');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
@@ -2068,9 +2081,11 @@ export default function SpreadsheetHandsontable({
       editor.finishEditing(); // Native: triggers HyperFormula, undo/redo, and afterChange
     } else {
       // Fallback: direct setDataAtCell when editor is not open
-      isInternalChange.current = true;
+      internalChangeDepth.current++;
       hot.setDataAtCell(activeCell.row, activeCell.col, val);
-      requestAnimationFrame(() => { isInternalChange.current = false; });
+      setTimeout(() => {
+        if (internalChangeDepth.current > 0) internalChangeDepth.current--;
+      }, 100);
     }
   }, [activeCell]);
 
@@ -2188,7 +2203,7 @@ export default function SpreadsheetHandsontable({
       } else {
         // Step 2 fix: Excel behavior — no adjacent numbers → insert empty function, open editor
         const formula = `=${fnName}()`;
-        // Bug #1.2 fix: use source param instead of isInternalChange + RAF
+        // Bug #1.2 fix: use source param instead of internalChangeDepth + RAF
         hot.setDataAtCell(row, col, formula, 'internalUpdate');
         requestAnimationFrame(() => {
           hot.selectCell(row, col);

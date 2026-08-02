@@ -11,6 +11,18 @@ export default defineConfig({
       'handsontable/styles': path.resolve(__dirname, 'node_modules/handsontable/styles'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split heavy spreadsheet libraries into separate cacheable chunks
+          handsontable: ['handsontable'],
+          hyperformula: ['hyperformula'],
+          exceljs: ['exceljs'],
+        },
+      },
+    },
+  },
   server: {
     port: 5173,
     headers: {

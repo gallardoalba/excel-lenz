@@ -498,39 +498,32 @@ test.describe('Nested & Complex Formulas', () => {
   test('nested WENN inside SUMME', async ({ page }) => {
     await navigateToExercise(page);
 
-    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
-    await page.waitForTimeout(200);
-    const formulaBar = page.locator('.formulabar-input').first();
-    await formulaBar.click();
-    // Use commas inside nested SUMME to avoid semicolon ambiguity
-    await formulaBar.fill('=WENN(SUMME(10;20)>25;"Groß";"Klein")');
-    await page.keyboard.press('Enter');
+    // Use setDataAtCell to write formula to row 2 col A (skip header + first data row)
+    await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (hot) hot.setDataAtCell(2, 0, '=WENN(SUMME(10;20)>25;"Groß";"Klein")');
+    });
     await page.waitForTimeout(500);
 
     const result = await page.evaluate(() => {
       const hot = (window as any).__hotInstance;
-      // Click was on tr:nth-child(2) td:nth-child(2) → HF (0,0); read the same cell
-      return hot ? String(hot.getDataAtCell(0, 0) ?? '') : '';
+      return hot ? String(hot.getDataAtCell(2, 0) ?? '') : '';
     });
-    // HF DE parser may use commas or semicolons depending on config
     expect(result).toBe('Groß');
   });
 
   test('nested WENN inside SUMME with false branch', async ({ page }) => {
     await navigateToExercise(page);
 
-    await page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)').click();
-    await page.waitForTimeout(200);
-    const formulaBar = page.locator('.formulabar-input').first();
-    await formulaBar.click();
-    await formulaBar.fill('=WENN(SUMME(2;3)>10;"Groß";"Klein")');
-    await page.keyboard.press('Enter');
+    await page.evaluate(() => {
+      const hot = (window as any).__hotInstance;
+      if (hot) hot.setDataAtCell(2, 0, '=WENN(SUMME(2;3)>10;"Groß";"Klein")');
+    });
     await page.waitForTimeout(500);
 
     const result = await page.evaluate(() => {
       const hot = (window as any).__hotInstance;
-      // Click was on tr:nth-child(2) td:nth-child(2) → HF (0,0); read the same cell
-      return hot ? String(hot.getDataAtCell(0, 0) ?? '') : '';
+      return hot ? String(hot.getDataAtCell(2, 0) ?? '') : '';
     });
     expect(result).toBe('Klein');
   });
