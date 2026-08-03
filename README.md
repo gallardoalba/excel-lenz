@@ -1,5 +1,3 @@
-# Excel-lenz
-
 [![Version](https://img.shields.io/badge/version-1.0.0-34C759)](https://github.com) [![Tests](https://img.shields.io/badge/tests-198%20%7C%2081%20%7C%2079-34C759)](https://github.com) [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178c6)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-19-087ea4)](https://react.dev/) [![Express](https://img.shields.io/badge/Express-4.21-000000)](https://expressjs.com/) [![Docker](https://img.shields.io/badge/Docker-ready-2496ed)](https://www.docker.com/) [![License](https://img.shields.io/badge/License-AGPLv3-3178c6)](LICENSE) [![Docs](https://img.shields.io/badge/Docs-DE%2FES-8B5CF6)](docs/ARCHITECTURE.md)
 
 <p align="center">
