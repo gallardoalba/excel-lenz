@@ -25,8 +25,8 @@
   --primary-lighter: #FAFAFA;
   --accent: #C5A065;
   --accent-light: #FBF7F0;
-  --tertiary: #0071E3;
-  --tertiary-light: #F0F6FF;
+  --tertiary: #2d2d33;
+  --tertiary-light: #F0F0F5;
 
   /* ── Semantic Colors ── */
   --success: #34C759;
@@ -107,8 +107,8 @@ body.dark {
   --primary-lighter: #0A0A0A;
   --accent: #E2B96F;
   --accent-light: #2D2410;
-  --tertiary: #64D2FF;
-  --tertiary-light: #0A1A2E;
+  --tertiary: #3a3a40;
+  --tertiary-light: #1C1C1E;
   --bg: #000000;
   --bg-alt: #0A0A0A;
   --bg-alt2: #141414;
@@ -391,7 +391,7 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--text); }
   white-space: nowrap;
 }
 .navbar-continue-btn:hover {
-  background: #1D4ED8;
+  background: var(--primary);
   color: white;
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
@@ -2570,13 +2570,91 @@ body.dark .cf-rule-range { color: #ddd; }
 .stats-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 36px; }
 .stat-card {
   text-align: left;
-  padding: 24px;
+  padding: 24px 28px;
   background: var(--surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
-.stat-card .stat-value { font-size: 2.5rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
-.stat-card .stat-label { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+.stat-card:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--primary);
+}
+.stat-card .stat-value { font-size: 2.5rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; line-height: 1.1; }
+.stat-card .stat-label { color: var(--text-muted); font-size: 0.82rem; margin-top: 6px; display: flex; align-items: center; gap: 4px; }
+
+/* ── Dashboard ── */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+/* Dashboard page title */
+.dashboard-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+.dashboard-subtitle {
+  color: var(--text-secondary);
+  margin: 0 0 28px 0;
+  font-size: 0.95rem;
+}
+
+/* Badge cards in dashboard */
+.dashboard-badge {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  min-width: 90px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.dashboard-badge:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--primary);
+}
+
+/* History card */
+.dashboard-history-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.15s;
+}
+.dashboard-history-item:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Score badge pill */
+.score-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+/* Focus recommendation */
+.dashboard-focus {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--warning);
+  font-size: 0.84rem;
+  background: var(--surface);
+}
 
 /* ============================================================
    PROGRESS BARS — thin, elegant, elastic transition
@@ -4433,13 +4511,6 @@ body.focus-mode .main-content { padding-top: 0; }
     padding: 14px 16px;
   }
 }
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px 20px;
-  text-align: center;
-}
 
 /* Client logos section (Home) */
 .client-logos-grid {
@@ -4682,11 +4753,43 @@ body.focus-mode .exercise-spreadsheet {
   margin: 0 auto;
 }
 
-/* Left-border review cards */
-.card.border-left-warning {
-  border: none;
-  background: var(--bg-alt);
-  border-radius: var(--radius);
+/* ── Student Dashboard ── */
+.student-panel {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+/* Welcome Hero */
+.student-hero {
+  background: linear-gradient(135deg, #1D1D1F 0%, #2d2d33 100%);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 32px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+body.dark .student-hero {
+  background: linear-gradient(135deg, #1C1C1E 0%, #000000 100%);
+}
+.student-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.student-hero-avatar {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.student-hero-title {
+  font-size: 1.5rem; font-weight: 700; margin: 0 0 4px 0; color: #fff;
 }
 .student-hero-subtitle {
   font-size: 0.95rem; opacity: 0.8; margin: 0; color: rgba(255,255,255,0.85);
@@ -4695,11 +4798,14 @@ body.focus-mode .exercise-spreadsheet {
 /* Quick Stats */
 .student-quick-stats {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  min-width: 0;
 }
 .student-stat {
   display: flex; align-items: center; gap: 10px;
   background: rgba(255,255,255,0.1); border-radius: 10px;
   padding: 14px 16px;
+  min-width: 0;
+  white-space: nowrap;
 }
 .student-stat > div {
   display: flex; flex-direction: column;
@@ -4725,20 +4831,21 @@ body.focus-mode .exercise-spreadsheet {
 
 /* Course cards */
 .student-course-list {
-  display: flex; flex-direction: column; gap: 10px;
+  display: flex; flex-direction: column; gap: 12px;
 }
 .student-course-card {
   display: flex; align-items: center; gap: 16px;
-  padding: 18px 20px;
+  padding: 20px 24px;
   border-radius: 12px;
   background: var(--surface);
   border: 1px solid var(--border);
   text-decoration: none; color: var(--text);
-  transition: box-shadow 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
 }
 .student-course-card:hover {
   box-shadow: var(--shadow);
   border-color: var(--primary);
+  transform: translateY(-1px);
 }
 .student-course-icon {
   width: 44px; height: 44px; border-radius: 10px;
@@ -4777,6 +4884,7 @@ body.focus-mode .exercise-spreadsheet {
 .student-reviews, .student-badges {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 .student-empty {
   color: var(--text-secondary); font-size: 0.85rem; margin: 0;
@@ -4824,21 +4932,30 @@ body.focus-mode .exercise-spreadsheet {
   border: 1px solid transparent;
   transition: all 0.2s;
 }
+.student-badge-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 .student-badge-item:hover {
   background: var(--surface);
   border-color: var(--border);
   box-shadow: var(--shadow-xs);
 }
 .student-badge-icon {
-  font-size: 1.2rem;
-  width: 40px;
-  height: 40px;
+  font-size: 0.75rem;
+  width: 44px;
+  height: 44px;
   background: var(--surface);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .student-badge-name {
   font-size: 0.82rem; font-weight: 600; display: block;
@@ -4859,14 +4976,19 @@ body.focus-mode .exercise-spreadsheet {
 
 /* Responsive */
 @media (max-width: 900px) {
+  .student-hero { padding: 24px; flex-direction: column; align-items: flex-start; }
+  .student-hero-content { flex-direction: row; text-align: left; }
+  .student-hero-title { font-size: 1.25rem; }
   .student-grid { grid-template-columns: 1fr; }
   .student-quick-stats { grid-template-columns: repeat(2, 1fr); }
-  .student-hero { padding: 24px; }
-  .student-hero-content { flex-direction: column; text-align: center; }
-  .student-hero-title { font-size: 1.2rem; }
 }
 @media (max-width: 500px) {
+  .student-hero { padding: 20px; }
+  .student-hero-content { flex-direction: column; text-align: center; align-items: center; }
+  .student-hero-title { font-size: 1.1rem; }
   .student-quick-stats { grid-template-columns: 1fr; }
+  .student-stat { padding: 10px 14px; }
+  .student-course-card { padding: 16px; }
 }
 
 /* ============================================================

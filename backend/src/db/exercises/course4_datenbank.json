@@ -629,7 +629,7 @@
       "order": 5,
       "formulaHint": "=SUMMEWENNS, =MITTELWERTWENNS, =ZÄHLENWENNS",
       "hint1": "SUMMEWENNS summiert mit mehreren Kriterien",
-      "hint2": "=SUMMEWENNS(D2:D6; C2:C6; \"IT\"; B2:B6; \"Berlin\")",
+      "hint2": "=SUMMEWENNS(SummeBereich; KriterienBereich1; \"Kriterium1\"; KriterienBereich2; \"Kriterium2\") — ersetzen Sie Bereiche und Kriterien entsprechend.",
       "hint3": "MITTELWERTWENNS für Durchschnitt mit Bedingungen",
       "learningObjectives": [
         "SUMMEWENNS für Mehrfachkriterien",
@@ -1555,7 +1555,7 @@
           ]
         ]
       },
-      "instructions": "1. Kriterien in UNTERSCHIEDLICHEN Zeilen = ODER.\n2. Zeile 8=\"IT\", Zeile 9=\"HR\" → IT ODER HR.\n3. =DZÄHLEN(A1:C6;3;A7:B9) = 4 Mitarbeiter (Anna, Ben, Clara, David).",
+      "instructions": "1. Kriterien in UNTERSCHIEDLICHEN Zeilen = ODER.\n2. Zeile 9=\"IT\", Zeile 10=\"HR\" → IT ODER HR.\n3. =DZÄHLEN(A1:C6;3;A7:B9) = 4 Mitarbeiter (Anna, Ben, Clara, David).",
       "order": 11,
       "formulaHint": "=DZÄHLEN(A1:C6;3;A7:B9)",
       "hint1": "Gleiche Zeile = UND, verschiedene Zeilen = ODER",
@@ -2625,8 +2625,8 @@
       "instructions": "1. Absatz = (Fixkosten+Zielgewinn)/(Preis-Kosten).\n2. =(B3+B4)/(B1-B2) = 75.000/40 = 1.875 Stück.\n3. Probe: Gewinn = (100-60)×1875 − 25000 = 50.000 €.",
       "order": 20,
       "formulaHint": "=(B3+B4)/(B1-B2)",
-      "hint1": "Break-Even-Formel umgestellt auf Zielgewinn",
-      "hint2": "(Fixkosten + Zielgewinn) / Deckungsbeitrag = Menge",
+      "hint1": "Break-Even-Formel für Zielgewinn: (Fixkosten + Zielgewinn) / Deckungsbeitrag = benötigte Menge.",
+      "hint2": "Deckungsbeitrag = Preis pro Stück − variable Kosten pro Stück.",
       "learningObjectives": [
         "Zielwertsuche-Konzept",
         "Break-Even umstellen",

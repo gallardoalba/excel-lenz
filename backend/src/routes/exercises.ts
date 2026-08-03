@@ -134,16 +134,26 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
       res.status(400).json({ error: 'Ungültiges Datenformat' });
       return;
     }
-    const taskCols: number[] = JSON.parse(exercise.template_data || '{}').taskCols || [];
+    const templateData = JSON.parse(exercise.template_data || '{}');
+    const taskCols: number[] = templateData.taskCols || [];
+    const templateGrid: any[][] = templateData.data || [];
 
     if (solution.data && data) {
-      totalCells = solution.data.length * taskCols.length;
-
+      // Only count cells that the user actually needs to fill:
+      // Exclude cells where the template already had the correct answer
+      let scoreableCells = 0;
       for (const taskCol of taskCols) {
         for (let row = 0; row < solution.data.length; row++) {
-          const userVal = data[row]?.[taskCol];
+          const templateVal = templateGrid[row]?.[taskCol];
           const solVal = solution.data[row]?.[taskCol];
 
+          // Skip cells that were already correct in the template
+          if (templateVal !== null && templateVal !== undefined && isCorrectAnswer(templateVal, solVal)) {
+            continue;
+          }
+          scoreableCells++;
+
+          const userVal = data[row]?.[taskCol];
           if (isCorrectAnswer(userVal, solVal)) {
             correctCells++;
           } else {
@@ -151,11 +161,11 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
           }
         }
       }
+      totalCells = scoreableCells;
       score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
     }
 
     // ── Format scoring (optional, additive) ─────────────────
-    const templateData = JSON.parse(exercise.template_data || '{}');
     const formatSolution: Record<string, Record<string, unknown>> = templateData.formatSolution || {};
     const userFormats: Record<string, Record<string, unknown>> = formats || {};
     const formatKeys = Object.keys(formatSolution);

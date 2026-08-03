@@ -564,20 +564,23 @@ Am Ende des Kurses erstellt der Lehrende einen kurzen Bericht mit:
 2. Beobachtungen zur Angemessenheit der Inhalte für das Profil des Lernenden
 3. Verbesserungsvorschläge für zukünftige Kursdurchführungen
 
-## Anhang: Zuordnung zu den Übungen der Excel-lenz-Plattform
+## Anhang: Zuordnung Sitzungen → Module → Übungen
 
-Die Excel-lenz-Plattform bietet **44 interaktive Übungen** auf Anfängerniveau. Ihre Verwendung als ergänzende Praxis zwischen den Sitzungen wird gemäß folgender Verteilung empfohlen:
+Der Lehrplan **Excel für Anfänger** umfasst 13 Module mit insgesamt **54 Übungen**,
+die in 8 Sitzungen à 90 Minuten unterrichtet werden. Alle Übungen liegen als
+Excel-Dateien (`.xlsx`) im Ordner `exercises/anfaenger/` vor.
 
-| Sitzung | Modul auf der Plattform | Übungen | Typ |
-|---------|------------------------|---------|------|
-| 1 | M1: Einführung in Excel + M2: Dateneingabe | 9 Übungen | Quiz + Spreadsheet |
-| 2 | M3: Format und Stil | 5 Übungen | Spreadsheet |
-| 3 | M4: Formeln und Funktionen | 10 Übungen | Spreadsheet |
-| 4 | M5: Datenbereinigung | 8 Übungen | Spreadsheet + Quiz |
-| 5 | M6: Tabellen & Filter | 6 Übungen | Spreadsheet |
-| 6 | M7: Erweiterte Funktionen | 6 Übungen | Spreadsheet |
-| 7-8 | M8-M13 | In Entwicklung | — |
+| Sitzung | Module | Übungen | Übungsdateien |
+|---------|--------|:-------:|---------------|
+| 1 | M1 + M2 | 8 | `M1_1` bis `M1_4`, `M2_1` bis `M2_4` |
+| 2 | M3 | 4 | `M3_1` bis `M3_4` |
+| 3 | M4 | 5 | `M4_1` bis `M4_5` |
+| 4 | M5 | 4 | `M5_1` bis `M5_4` |
+| 5 | M6 + M7 | 10 | `M6_1` bis `M6_6`, `M7_1` bis `M7_4` |
+| 6 | M7 (Forts.) + M8 | 8 | `M7_1`–`M7_4`, `M8_1`–`M8_4` |
+| 7 | M9 + M10 | 8 | `M9_1` bis `M9_4`, `M10_1` bis `M10_4` |
+| 8 | M11 + M12 + M13 | 11 | `M11_1`–`M11_4`, `M12_1`–`M12_3`, `M13_1`–`M13_4` |
 
-*Hinweis: Die Übungen der Module 8 bis 13 befinden sich auf der Plattform in der Entwicklungsphase. In der Zwischenzeit stellt der Lehrende gleichwertige Übungen im Excel-Format zur Verfügung.*
-
-*Didaktischer Leitfaden, erstellt gemäß den Prinzipien der Andragogik (Knowles, 1980) und dem europäischen Rahmen für digitale Kompetenzen DigComp 2.2 (Vuorikari et al., 2022).*
+*Didaktischer Leitfaden, erstellt gemäß den Prinzipien der Andragogik (Knowles,
+1980) und dem europäischen Rahmen für digitale Kompetenzen DigComp 2.2 (Vuorikari
+et al., 2022).*

@@ -96,7 +96,7 @@ export function StreakCalendar() {
       // Group by date
       const dayMap: Record<string, number> = {};
       data.forEach((p: any) => {
-        const d = p.completed_at?.split('T')[0];
+        const d = (p.completed_at || '').substring(0, 10);
         if (d) dayMap[d] = (dayMap[d] || 0) + 1;
       });
 
@@ -156,14 +156,14 @@ export function StreakCalendar() {
       <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 10 }}>
         Letzte 12 Wochen
       </div>
-      <svg viewBox="0 0 700 130" style={{ width: '100%', height: 'auto', maxHeight: 130 }}>
+      <svg viewBox="0 0 470 68" style={{ width: '100%', height: 'auto' }}>
         {/* Month labels */}
         {monthLabels.map((ml, i) => (
-          <text key={i} x={ml.col * 14 + 5} y={10} fontSize={10} fill="#9ca3af">{ml.label}</text>
+          <text key={i} x={ml.col * 34 + 52} y={10} fontSize={7} fill="#9ca3af">{ml.label}</text>
         ))}
         {/* Day labels */}
         {['Mo','','Mi','','Fr','','So'].map((d, i) => (
-          <text key={i} x={0} y={22 + i * 14 + 5} fontSize={9} fill="#9ca3af">
+          <text key={i} x={20} y={19 + i * 7 + 3} fontSize={7} fill="#9ca3af">
             {i % 2 === 0 ? d : ''}
           </text>
         ))}
@@ -172,7 +172,7 @@ export function StreakCalendar() {
           const col = Math.floor(i / 7);
           const row = i % 7;
           return (
-            <rect key={i} x={col * 14 + 22} y={row * 14 + 16} width={12} height={12} rx={2}
+            <rect key={i} x={col * 34 + 52} y={row * 7 + 16} width={17} height={6} rx={1}
               fill={levelColors[c.level]}
               style={{ cursor: 'pointer' }}
             >
@@ -181,10 +181,10 @@ export function StreakCalendar() {
           );
         })}
       </svg>
-      <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 8, fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
+      <div style={{ display: 'flex', gap: 6, alignItems: 'center', justifyContent: 'center', marginTop: 8, fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
         Weniger
         {levelColors.map((lc, i) => (
-          <div key={i} style={{ width: 12, height: 12, borderRadius: 2, background: lc }}/>
+          <div key={i} style={{ width: 14, height: 10, borderRadius: 2, background: lc }}/>
         ))}
         Mehr
       </div>

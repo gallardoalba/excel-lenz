@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Generate Spanish Lehrplan PDF
+# Generate Spanish Advanced Lehrplan PDF
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HEADER_TEX="${SCRIPT_DIR}/header.tex"
 TEMPLATE_TEX="${SCRIPT_DIR}/excellenz-template.tex"
 ORPHAN_FILTER="${SCRIPT_DIR}/heading-orphans.lua"
-INPUT_MD="${SCRIPT_DIR}/../lehrplan/Plan_de_Estudios_Excel_Principiantes.md"
-OUTPUT_PDF="${SCRIPT_DIR}/../lehrplan/Plan_de_Estudios_Excel_Principiantes.pdf"
+INPUT_MD="${SCRIPT_DIR}/../lehrplan/Plan_de_Estudios_Excel_Avanzado.md"
+OUTPUT_PDF="${SCRIPT_DIR}/../lehrplan/Plan_de_Estudios_Excel_Avanzado.pdf"
 
-echo "→ Plan_de_Estudios_Excel_Principiantes.md"
+echo "→ Plan_de_Estudios_Excel_Avanzado.md"
 if pandoc "$INPUT_MD" -o "$OUTPUT_PDF" --pdf-engine=pdflatex --template="$TEMPLATE_TEX" --include-in-header="$HEADER_TEX" --lua-filter="$ORPHAN_FILTER" --lua-filter="${SCRIPT_DIR}/promote-module-headings.lua" 2>&1 | grep -E "Error|Warning" || true; then
     echo "✓ Generated"
 else

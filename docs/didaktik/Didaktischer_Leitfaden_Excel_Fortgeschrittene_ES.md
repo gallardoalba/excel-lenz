@@ -504,40 +504,45 @@ Al concluir el curso, el docente elaborará un informe con:
 3. Propuestas de mejora para futuras ediciones
 
 
-## Anexo: Correspondencia con ejercicios de la plataforma Excel-lenz
+## Anexo: Correspondencia sesiones → módulos → ejercicios
 
-La plataforma Excel-lenz dispone de **25 ejercicios de nivel avanzado**. Se recomienda su uso como práctica complementaria:
+El plan de estudios **Excel para usuarios avanzados** consta de 10 módulos con un total de
+**39 ejercicios**, impartidos en 8 sesiones de 90 minutos. Todos los ejercicios están
+disponibles como archivos Excel (`.xlsx`) en la carpeta `exercises/fortgeschrittene/`.
 
-| Sesión | Módulo en plataforma | Ejercicios | Tipo |
-|--------|---------------------|------------|------|
-| 1 | M1: Formatos avanzados | 3 | Spreadsheet + Quiz |
-| 2 | M2: Funciones avanzadas | 6 | Spreadsheet |
-| 3 | M3: Referencias + M4: Bases de datos | 5 | Spreadsheet |
-| 4 | M5: Tablas dinámicas | 1 (quiz) | Quiz |
-| 5 | M6: Análisis de datos | 4 | Quiz |
-| 6 | M7: Gráficos | — | En desarrollo |
-| 7 | M8: Macros | 2 | Quiz |
-| 8 | M9: VBA + M10: Colaboración | 4 | Quiz |
+| Sesión | Módulos | Ejercicios | Archivos de ejercicios |
+|--------|---------|:----------:|------------------------|
+| 1 | M1 | 4 | `M1_1` a `M1_4` |
+| 2 | M2 | 6 | `M2_1` a `M2_6` |
+| 3 | M3 + M4 | 8 | `M3_1`–`M3_4`, `M4_1`–`M4_4` |
+| 4 | M5 | 4 | `M5_1` a `M5_4` |
+| 5 | M6 | 4 | `M6_1` a `M6_4` |
+| 6 | M7 | 3 | `M7_1` a `M7_3` |
+| 7 | M8 | 3 | `M8_1` a `M8_3` |
+| 8 | M9 + M10 | 7 | `M9_1`–`M9_4`, `M10_1`–`M10_4` |
 
-*Nota: Los ejercicios del módulo 7 (Gráficos) se encuentran en fase de desarrollo. Mientras tanto, el docente proporcionará ejercicios equivalentes en formato Excel.*
-
-
+**Nota:** Power Pivot (M5.5), Buenas prácticas de VBA (M9.5) y Complementos/Power Query
+(M10.3) están concebidos como temas de perspectiva y no tienen archivos de ejercicios propios.
 
 ---
 
 ## Referencias
 
-Knowles, M. S. (1980). *The Modern Practice of Adult Education: From Pedagogy to Andragogy* (Revised ed.). Cambridge Adult Education.
+Knowles, M. S. (1980). *The Modern Practice of Adult Education: From Pedagogy to
+Andragogy* (Revised ed.). Cambridge Adult Education.
 
 Mezirow, J. (1991). *Transformative Dimensions of Adult Learning*. Jossey-Bass.
 
-Mishra, P. & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. *Teachers College Record*, 108(6), 1017–1054.
+Mishra, P. & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge:
+A Framework for Teacher Knowledge. *Teachers College Record*, 108(6), 1017–1054.
 
-Siemens, G. (2005). Connectivism: A Learning Theory for the Digital Age. *International Journal of Instructional Technology and Distance Learning*, 2(1), 3–10.
+Siemens, G. (2005). Connectivism: A Learning Theory for the Digital Age.
+*International Journal of Instructional Technology and Distance Learning*, 2(1), 3–10.
 
-Vuorikari, R., Kluzer, S. & Punie, Y. (2022). *DigComp 2.2: The Digital Competence Framework for Citizens*. Publications Office of the European Union. doi:10.2760/115376
+Vuorikari, R., Kluzer, S. & Punie, Y. (2022). *DigComp 2.2: The Digital Competence
+Framework for Citizens*. Publications Office of the European Union. doi:10.2760/115376
 
 ---
 
-
-*Guía didáctica elaborada conforme a los principios de la andragogía (Knowles, 1980) y el marco europeo de competencias digitales DigComp 2.2 (Vuorikari et al., 2022).*
+*Guía didáctica elaborada según los principios de la andragogía (Knowles, 1980) y el
+marco europeo de competencias digitales DigComp 2.2 (Vuorikari et al., 2022).*

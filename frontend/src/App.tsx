@@ -86,8 +86,8 @@ export default function App() {
           <NavLink to="/courses" end>Kurse</NavLink>
           {user ? (
             <>
-              <NavLink to="/student">Mein Lernpanel</NavLink>
-              <NavLink to="/dashboard">Statistiken</NavLink>
+              <NavLink to="/student">Lehrpanel</NavLink>
+              <NavLink to="/dashboard">Dashboard</NavLink>
               {user.role === 'teacher' && (
                 <NavLink to="/teacher"><ClipboardList size={16} style={{marginRight:4}} />Lehrer-Panel</NavLink>
               )}

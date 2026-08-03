@@ -242,6 +242,33 @@ export default function Exercise() {
     return () => controller.abort();
   }, [id]);
 
+  // ── Exam mode: clear taskCols cells so student starts with empty template ──
+  const examTemplateRef = useRef<boolean>(false);
+  useEffect(() => {
+    if (!exercise?.template_data?.data || !originalDataRef.current) return;
+    const taskCols: number[] = exercise.template_data.taskCols || [];
+    const originalData: (string | number | null)[][] = JSON.parse(originalDataRef.current);
+
+    if (mode === 'exam' && !examTemplateRef.current && score === null) {
+      // Switching to exam mode: clear all taskCols cells
+      const examData = originalData.map(row =>
+        row.map((cell, colIdx) => (taskCols.includes(colIdx) ? '' : cell))
+      );
+      examTemplateRef.current = true;
+      isDirtyRef.current = false;
+      setSpreadsheetData(examData);
+      setAttemptCount(0);
+      setHintLevel(1);
+    } else if (mode === 'practice' && examTemplateRef.current && score === null) {
+      // Switching back to practice: restore original template
+      examTemplateRef.current = false;
+      isDirtyRef.current = false;
+      setSpreadsheetData(JSON.parse(JSON.stringify(originalData)));
+      setAttemptCount(0);
+      setHintLevel(1);
+    }
+  }, [mode, exercise, score]);
+
   const handleSubmit = async () => {
     if (!exercise) return;
     setSubmitting(true);

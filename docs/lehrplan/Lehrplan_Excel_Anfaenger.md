@@ -36,6 +36,7 @@ geometry: margin=2.5cm
 
 \tableofcontents
 
+\newpage
 ## Einleitung
 
 Dieser Lehrplan bietet eine vollständige Einführung in Microsoft Excel für Erwachsene
@@ -59,6 +60,7 @@ Dieser Lehrplan richtet sich an **Erwachsene ohne Vorkenntnisse** in Excel.
 - Microsoft Excel 2019 oder Microsoft 365 installiert
 
 
+\newpage
 ## Modul 1: Einführung in Excel und die Arbeitsumgebung
 
 **Lernziel:** Vertrautwerden mit der Excel-Oberfläche, den Grundkonzepten und der Dateiverwaltung.
@@ -145,9 +147,27 @@ Speichern Sie als `Inventar_2026.xlsx`, exportieren Sie als PDF.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Excel öffnen, eine neue Arbeitsmappe erstellen und speichern
+- [ ] Die wichtigsten Elemente der Oberfläche benennen (Menüband, Bearbeitungsleiste, Statusleiste)
+- [ ] Zwischen Zellen und Tabellenblättern navigieren (Pfeiltasten, Strg+Pos1, Strg+Ende)
+- [ ] Eine Arbeitsmappe als .xlsx und .pdf speichern
+- [ ] Die Schnellzugriff-Leiste anpassen
+
+\newpage
 ## Modul 2: Dateneingabe und -bearbeitung
 
 **Lernziel:** Daten verschiedener Typen effizient eingeben, bearbeiten und mit AutoAusfüllen organisieren.
+
+### Was wissen Sie bereits?
+
+Bevor Sie starten, überlegen Sie kurz:
+- Welche Arten von Daten haben Sie schon in Excel eingegeben?
+- Haben Sie schon einmal das Ausfüllkästchen (kleines Quadrat rechts unten) benutzt?
+- Wissen Sie, was beim Kopieren einer Formel mit den Zellbezügen passiert?
+
+**Keine Sorge, wenn Sie etwas nicht wissen** — genau dafür ist dieses Modul da.
 
 ## 2.1. Datentypen in Excel
 
@@ -284,10 +304,28 @@ Die folgende Übungstabelle **Modul 2 4 Kopieren** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Die fünf Datentypen (Text, Zahl, Datum, Uhrzeit, Währung) unterscheiden
+- [ ] Zellen auf drei Arten bearbeiten (Doppelklick, F2, Bearbeitungsleiste)
+- [ ] Das Ausfüllkästchen für Reihen (Wochentage, Monate, Zahlenfolgen) nutzen
+- [ ] Inhalte mit „Werte einfügen" und „Transponieren" gezielt kopieren
+- [ ] Rückgängig (Strg+Z) und Wiederherstellen (Strg+Y) sicher anwenden
+
+\newpage
 ## Modul 3: Format und Zellstil
 
 **Lernziel:** Tabellen professionell formatieren, Zahlen korrekt darstellen und bedingte
 Formatierung einsetzen.
+
+### Was wissen Sie bereits?
+
+Denken Sie an eine Tabelle, die Sie kürzlich gesehen haben (Rechnung, Liste, Bericht):
+- Was hat Ihnen an der Formatierung gefallen? Was nicht?
+- Haben Sie schon einmal eine Zahl als Prozent oder Währung formatiert?
+- Wissen Sie, wie man Spalten automatisch an die Textbreite anpasst?
+
+In diesem Modul machen Sie aus rohen Daten eine professionell aussehende Tabelle.
 
 ## 3.1. Grundlegende Formatierung
 
@@ -427,10 +465,27 @@ Die folgende Übungstabelle **Modul 3 4 Bedingte Formatierung** ist bereits gela
 
 
 
+### Das können Sie jetzt
+
+- [ ] Eine Tabelle professionell formatieren (Schrift, Rahmen, Farben, Ausrichtung)
+- [ ] Zahlen korrekt als Währung, Prozent oder Datum formatieren
+- [ ] Spaltenbreite und Zeilenhöhe automatisch und manuell anpassen
+- [ ] Zeilen/Spalten einfügen, löschen und ausblenden
+- [ ] Bedingte Formatierung (Datenbalken, Farbskalen, Regeln) anwenden
+
+\newpage
 ## Modul 4: Formeln und Grundfunktionen
 
 **Lernziel:** Berechnungen mit Formeln durchführen, Zellbezüge verstehen und grundlegende
 Funktionen wie SUMME und WENN einsetzen.
+
+### Was wissen Sie bereits?
+
+- Haben Sie schon einmal in Excel etwas berechnet? Auch einfache Additionen zählen!
+- Wissen Sie, was passiert, wenn Sie eine Formel mit =B2*C2 nach unten kopieren?
+- Haben Sie eine Idee, wofür das Dollarzeichen $ in $A$1 stehen könnte?
+
+Formeln sind das Herz von Excel — in diesem Modul lernen Sie, sie zu beherrschen.
 
 ## 4.1. Grundlagen der Formeln
 
@@ -454,6 +509,13 @@ Die mathematischen Operatoren folgen der aus der Schule bekannten Regel
 
  **Wichtig:** Ohne Klammern gilt Punkt vor Strich: `=2+3*4` ergibt `14`, denn
 `3*4=12` wird zuerst berechnet. Mit Klammern: `=(2+3)*4` ergibt `20`.
+
+
+### Typische Fehler
+
+- **Vergessen des `=`:** Eine Eingabe wie `A1+A2` ohne `=` wird als Text behandelt.
+- **Punkt vor Strich missachtet:** `=2+3*4` ergibt 14, nicht 20. Mit Klammern: `=(2+3)*4` ergibt 20.
+- **Falsches Trennzeichen:** In der deutschen Excel-Version ist das Semikolon `;` das Trennzeichen, nicht das Komma: `=SUMME(A1;A2)`.
 
 **Übung 4.1 — Erste Formeln schreiben**
 
@@ -503,6 +565,14 @@ Zelle `B1`, der für alle Berechnungen gleich ist. Dafür setzen Sie Dollarzeich
 
  **Tipp:** Die Taste `F4` schaltet beim Bearbeiten einer Formel zwischen den vier
 Bezugstypen durch: `A1` → `$A$1` → `A$1` → `$A1` → `A1`. Ein unverzichtbarer Shortcut!
+
+
+### Typische Fehler
+
+- **Vergessen der $-Zeichen:** Wenn Sie `=B2*F1` nach unten kopieren, wird F1 zu F2, F3... — die Formel wird falsch. Nutzen Sie `$F$1`!
+- **Falscher Bezugstyp:** Absolut (`$A$1`) fixiert beides, gemischt (`$A1` oder `A$1`) nur einen Teil. Überlegen Sie vor dem Kopieren: Was soll gleich bleiben?
+
+**Merkhilfe:** `F4` schaltet durch die vier Bezugstypen — die wichtigste Taste beim Formelschreiben!
 
 **Übung 4.2 — Zellbezüge verstehen**
 
@@ -607,6 +677,13 @@ Automatisierung.
 WENN-Funktion sein — das nennt man „verschachtelte WENN". Ab Excel 2019 gibt es
 dafür die einfachere `WENNS()`-Funktion.
 
+
+### Typische Fehler
+
+- **Text in Anführungszeichen vergessen:** `=WENN(A2="Ja";...` — Text muss in `""` stehen.
+- **Kein Sonst-Wert angegeben:** `=WENN(A2>10;"Groß")` ohne Sonst-Teil zeigt FALSCH an. Besser: `=WENN(A2>10;"Groß";"")`.
+- **Semikolon als Trennzeichen:** Deutsch: `=WENN(Bedingung; Dann; Sonst)`, Englisch: `=IF(condition, then, else)`.
+
 **Übung 4.5 — Die WENN-Funktion einsetzen**
 
 Die folgende Übungstabelle **Modul 4 5 WENN** ist bereits geladen.
@@ -621,10 +698,29 @@ Die folgende Übungstabelle **Modul 4 5 WENN** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Formeln mit +, -, *, /, ^ und Klammern schreiben (Punkt vor Strich!)
+- [ ] Relative ($A1), absolute ($A$1) und gemischte ($A1/A$1) Bezüge unterscheiden
+- [ ] Mit F4 zwischen den Bezugstypen wechseln
+- [ ] SUMME, MITTELWERT, MIN, MAX und ANZAHL anwenden
+- [ ] Namen für Zellen und Bereiche definieren und in Formeln verwenden
+- [ ] Die WENN-Funktion für einfache Entscheidungen einsetzen
+- [ ] WENN mit UND/ODER für mehrere Bedingungen kombinieren
+
+\newpage
 ## Modul 5: Datenbereinigung und Validierung
 
 **Lernziel:** Datenqualität durch Validierung sichern und importierte Daten professionell
 bereinigen.
+
+### Was wissen Sie bereits?
+
+- Haben Sie schon einmal falsche Daten in einer Tabelle entdeckt (Tippfehler, doppelte Einträge)?
+- Wissen Sie, woher die Daten in Ihren Excel-Dateien ursprünglich stammen?
+- Können Sie sich vorstellen, wie man falsche Eingaben von vornherein verhindert?
+
+Saubere Daten sind die Grundlage für alles Weitere. Dieses Modul macht Sie zum Daten-Detektiv.
 
 ## 5.1. Datenvalidierung
 
@@ -742,9 +838,28 @@ Die folgende Übungstabelle **Modul 5 4 Import** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Dropdown-Listen für fehlerfreie Dateneingabe erstellen
+- [ ] Eingabemeldungen und Fehlermeldungen für Validierungen konfigurieren
+- [ ] Doppelte Einträge mit „Duplikate entfernen" bereinigen
+- [ ] Text mit „Text in Spalten" anhand von Trennzeichen aufteilen
+- [ ] Blitzschnelles Ausfüllen (Strg+E) für Mustererkennung nutzen
+- [ ] Daten aus mehreren Blättern konsolidieren
+- [ ] CSV-Dateien korrekt importieren (Trennzeichen, Kodierung)
+
+\newpage
 ## Modul 6: Tabellen und Filter
 
 **Lernziel:** Daten sortieren, filtern und in Excel-Tabellen professionell organisieren.
+
+### Was wissen Sie bereits?
+
+- Haben Sie schon einmal eine lange Liste alphabetisch sortiert?
+- Was tun Sie, wenn Sie in einer Tabelle mit 500 Zeilen nur die Einträge aus Berlin sehen wollen?
+- Wissen Sie, wie Sie verhindern, dass Überschriften beim Scrollen verschwinden?
+
+In diesem Modul bringen Sie Ordnung in große Datenmengen — schnell und elegant.
 
 ## 6.1. Suchen und Ersetzen
 
@@ -914,9 +1029,28 @@ Die folgende Übungstabelle **Modul 6 6 Teilergebnisse** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] „Suchen und Ersetzen" für schnelle Korrekturen nutzen (Strg+F)
+- [ ] Überschriften mit „Fenster einfrieren" fixieren
+- [ ] Einfach und mehrstufig sortieren (nach Name, Wert, Farbe)
+- [ ] Mit Autofilter (Strg+Shift+L) Daten nach Kriterien filtern
+- [ ] Einen Bereich mit Strg+T in eine intelligente Excel-Tabelle umwandeln
+- [ ] Strukturierte Verweise wie [@Preis] statt Zelladressen verwenden
+- [ ] Automatische Teilergebnisse mit Gruppierung und Gliederung einfügen
+
+\newpage
 ## Modul 7: Erweiterte Funktionen
 
 **Lernziel:** Bedingte Berechnungen, Suchfunktionen und Textverarbeitung beherrschen.
+
+### Was wissen Sie bereits?
+
+- Sie kennen SUMME() — aber wie summiert man nur die Umsätze für eine bestimmte Region?
+- Haben Sie schon einmal einen Wert in einer großen Tabelle gesucht (wie im Telefonbuch)?
+- Wissen Sie, wie man Vor- und Nachnamen aus einer Zelle in zwei Spalten aufteilt?
+
+Dieses Modul erweitert Ihr Funktions-Repertoire um die mächtigsten Excel-Funktionen.
 
 ## 7.1. Bedingte mathematische Funktionen
 
@@ -976,6 +1110,14 @@ INDEX+VERGLEICH oder XVERWEIS.
 Suchspalte **aufsteigend sortiert** sein — sonst liefert SVERWEIS falsche
 Ergebnisse. Bei `Bereich_Verweis=0` (exakte Übereinstimmung) ist keine
 Sortierung erforderlich.
+
+
+### Typische Fehler
+
+- **#NV-Fehler:** Der Suchbegriff existiert nicht in der ersten Spalte der Suchmatrix. Lösung: mit WENNFEHLER() abfangen.
+- **Spaltenindex zu groß:** Wenn die Suchmatrix nur 3 Spalten hat, darf der Spaltenindex nicht 4 sein.
+- **Bereich_Verweis vergessen:** Ohne `0` (exakt) sucht SVERWEIS ungefähr, was zu falschen Ergebnissen führt.
+- **Suchbegriff steht rechts:** SVERWEIS sucht immer in der ersten Spalte — wenn der Suchbegriff rechts steht, brauchen Sie INDEX+VERGLEICH.
 
 **Übung 7.2 — SVERWEIS anwenden**
 
@@ -1077,10 +1219,29 @@ Die folgende Übungstabelle **Modul 7 4 Text Datum** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] SUMMEWENN und SUMMEWENNS für bedingte Summen anwenden
+- [ ] ZÄHLENWENN und ZÄHLENWENNS für bedingte Zählungen einsetzen
+- [ ] SVERWEIS für exakte und ungefähre Suche nutzen
+- [ ] WVERWEIS für horizontale Daten anwenden
+- [ ] INDEX+VERGLEICH für flexible Suche in jede Richtung kombinieren
+- [ ] Text mit LINKS, RECHTS, TEIL, GLÄTTEN und & bearbeiten
+- [ ] Alter und Fristen mit HEUTE() und Datumsfunktionen berechnen
+
+\newpage
 ## Modul 8: Diagramme und Visualisierung
 
 **Lernziel:** Den richtigen Diagrammtyp wählen, professionelle Diagramme erstellen und
 formatieren.
+
+### Was wissen Sie bereits?
+
+- Welche Arten von Diagrammen haben Sie schon einmal gesehen oder erstellt?
+- Was macht ein gutes Diagramm aus? (Denken Sie an Titel, Achsen, Farben.)
+- Haben Sie schon einmal zwei verschiedene Datenskalen in einem Diagramm darstellen wollen?
+
+Ein gutes Diagramm sagt mehr als tausend Zahlen — hier lernen Sie, wie das geht.
 
 ## 8.1. Welches Diagramm für welche Daten?
 
@@ -1200,6 +1361,15 @@ Die folgende Übungstabelle **Modul 8 4 Dashboard** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Den richtigen Diagrammtyp für Ihre Daten wählen (Säule, Linie, Kreis, Balken)
+- [ ] Diagrammelemente gezielt anpassen (Titel, Achsen, Legende, Datenbeschriftungen)
+- [ ] Ein Verbunddiagramm mit Sekundärachse erstellen (z.B. Umsatz + Wachstumsrate)
+- [ ] Ein einfaches Dashboard mit mehreren Diagrammen auf einem Blatt aufbauen
+- [ ] Diagramme professionell formatieren (Farben, Gitternetzlinien, Beschriftungen)
+
+\newpage
 ## Modul 9: Pivot-Tabellen
 
 **Lernziel:** Große Datenmengen mit Pivot-Tabellen gruppieren, zusammenfassen und
@@ -1210,6 +1380,14 @@ Excel. Auf der Plattform stehen Quiz-Fragen zu Pivot-Tabellen-Konzepten zur
 Verfügung.
 
 analysieren.
+
+### Was wissen Sie bereits?
+
+- Haben Sie schon einmal Daten nach Kategorien gruppiert (z.B. Umsatz pro Region)?
+- Wie lange würde das manuell bei 10.000 Zeilen dauern?
+- Können Sie sich vorstellen, eine Tabelle per Knopfdruck umzustrukturieren?
+
+Pivot-Tabellen sind das Schweizer Taschenmesser der Datenanalyse — und einfacher, als Sie denken.
 
 ## 9.1. Was ist eine Pivot-Tabelle?
 
@@ -1326,10 +1504,29 @@ Die folgende Übungstabelle **Modul 9 4 PivotChart** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Eine Pivot-Tabelle aus Quelldaten erstellen (Einfügen → PivotTable)
+- [ ] Felder in Zeilen, Spalten, Werte und Filter ziehen und kombinieren
+- [ ] Die Zusammenfassungsfunktion ändern (Summe, Mittelwert, Anzahl, %)
+- [ ] Datumsangaben in Pivot-Tabellen nach Monaten/Quartalen gruppieren
+- [ ] Berechnete Felder hinzufügen (z.B. Bonus = Umsatz × 5%)
+- [ ] Slicer für visuelle Filterung einsetzen und mit mehreren Tabellen verknüpfen
+- [ ] Ein PivotChart erstellen, das mit der Pivot-Tabelle verbunden ist
+
+\newpage
 ## Modul 10: Analyse und Finanzfunktionen
 
 **Lernziel:** Was-wäre-wenn-Analysen durchführen und grundlegende Finanzfunktionen
 einsetzen.
+
+### Was wissen Sie bereits?
+
+- Haben Sie schon einmal rückwärts gerechnet? („Welcher Preis ergibt 100.000 € Umsatz?")
+- Wissen Sie, wie man einen Kredit mit monatlicher Rate berechnet?
+- Können Sie sich vorstellen, mehrere Szenarien auf einmal durchzurechnen?
+
+Was-wäre-wenn-Analysen zeigen Ihnen die Zukunft — bevor Sie Entscheidungen treffen.
 
 ## 10.1. Zielwertsuche (Goal Seek)
 
@@ -1343,6 +1540,12 @@ besonders nützlich für Planung und Budgetierung.
  **Tipp:** Die Zielwertsuche finden Sie unter „Daten → Was-wäre-wenn-Analyse →
 Zielwertsuche". Sie benötigen drei Angaben: Zielzelle (mit Formel), Zielwert und
 veränderbare Zelle.
+
+
+### Typische Fehler
+
+- **Zielzelle muss eine Formel enthalten:** Die Zielwertsuche funktioniert nur, wenn in der Zielzelle eine Formel steht.
+- **Keine Lösung gefunden:** Wenn der Zielwert mathematisch nicht erreichbar ist, zeigt Excel eine Meldung. Überprüfen Sie, ob Ihre Formel die veränderbare Zelle tatsächlich verwendet.
 
 **Übung 10.1 — Zielwertsuche anwenden**
 
@@ -1437,6 +1640,15 @@ Die folgende Übungstabelle **Modul 10 4 Finanzanalyse** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Die Zielwertsuche anwenden („Welcher Preis ergibt 100.000 € Umsatz?")
+- [ ] Eindimensionale Datentabellen für eine Variable erstellen
+- [ ] Zweidimensionale Datentabellen für zwei Variablen erstellen
+- [ ] RMZ() für Kreditraten, ZW() für Sparpläne und NBW() für Investitionen nutzen
+- [ ] Alle drei Werkzeuge (Zielwertsuche, Datentabelle, Finanzfunktionen) kombinieren
+
+\newpage
 ## Modul 11: Druck und Zusammenarbeit
 
 **Lernziel:** Tabellen professionell für den Druck aufbereiten und mit anderen
@@ -1446,6 +1658,14 @@ Web-Simulator nicht verfügbar. Die folgenden Übungen erfordern Microsoft
 Excel. Auf der Plattform stehen Quiz-Fragen zu Druckkonzepten zur Verfügung.
 
 zusammenarbeiten.
+
+### Was wissen Sie bereits?
+
+- Haben Sie schon einmal eine Excel-Tabelle ausgedruckt und das Ergebnis war enttäuschend?
+- Wissen Sie, warum manche Spalten auf dem Ausdruck fehlen?
+- Was erwarten Sie in einer professionellen Kopfzeile (z.B. auf einer Rechnung)?
+
+Der Unterschied zwischen Bildschirm und Papier ist größer als Sie denken. Dieses Modul schließt die Lücke.
 
 ## 11.1. Seitenlayout konfigurieren
 
@@ -1545,10 +1765,27 @@ Die folgende Übungstabelle **Modul 11 4 Zusammenarbeit** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Seitenlayout professionell konfigurieren (Querformat, Skalierung, Ränder)
+- [ ] Einen Druckbereich festlegen und Seitenumbrüche kontrollieren
+- [ ] Kopf- und Fußzeilen mit Seitenzahlen, Datum und Dateinamen erstellen
+- [ ] Wiederholungszeilen für Tabellenüberschriften auf jeder Seite einrichten
+- [ ] Eine Arbeitsmappe als .pdf exportieren und Kommentare einfügen
+
+\newpage
 ## Modul 12: Schutz und Sicherheit
 
 **Lernziel:** Arbeitsmappen und Zellen schützen sowie die Produktivität durch
 Tastenkombinationen steigern.
+
+### Was wissen Sie bereits?
+
+- Haben Sie schon einmal eine Datei an Kollegen geschickt und befürchtet, dass jemand Formeln überschreibt?
+- Welche Tastenkombinationen nutzen Sie bereits täglich?
+- Was könnte eine Excel-Datei über Sie verraten, wenn Sie sie extern weitergeben?
+
+Schutz und Effizienz — zwei Seiten derselben Medaille für den professionellen Excel-Anwender.
 
 ## 12.1. Zellen und Blätter schützen
 
@@ -1648,6 +1885,14 @@ Die folgende Übungstabelle **Modul 12 3 Inspektion** ist bereits geladen.
 
 
 
+### Das können Sie jetzt
+
+- [ ] Zellen entsperren und Blattschutz aktivieren (mit/ohne Passwort)
+- [ ] Die wichtigsten 10 Tastenkombinationen auswendig anwenden
+- [ ] Den Unterschied zwischen Zellsperre, Blattschutz und Arbeitsmappenschutz erklären
+- [ ] Die Dokumentinspektion durchführen und persönliche Metadaten entfernen
+
+\newpage
 ## Modul 13: Automatisierung mit Makros
 
 **Lernziel:** Das Konzept der Makros verstehen und einfache Automatisierungen aufzeichnen.
@@ -1657,6 +1902,14 @@ nicht verfügbar. Die folgenden Übungen erfordern Microsoft Excel (Desktop-Vers
 mit `.xlsm`-Dateien). Auf der Plattform stehen Quiz-Fragen zu Makro-Konzepten
 zur Verfügung.
 
+
+### Was wissen Sie bereits?
+
+- Gibt es eine Aufgabe in Excel, die Sie regelmäßig wiederholen (z.B. Formatierung eines Berichts)?
+- Wie viel Zeit könnten Sie sparen, wenn Excel diese Aufgabe automatisch erledigt?
+- Haben Sie schon einmal von „Programmieren" gehört und dachten: „Das ist nichts für mich"?
+
+Makros sind einfacher als Sie denken — dieses Modul ist Ihre Eintrittskarte in die Automatisierung.
 
 ## 13.1. Was sind Makros?
 
@@ -1774,3 +2027,17 @@ Die folgende Übungstabelle **Modul 13 4 VBA Programmieren** ist bereits geladen
 
    formatiert werden.
 3. Führen Sie das Makro aus und prüfen Sie das Ergebnis.
+
+### Das können Sie jetzt
+
+- [ ] Die Registerkarte Entwicklertools aktivieren und als .xlsm speichern
+- [ ] Ein Makro aufzeichnen, ausführen und einer Schaltfläche zuweisen
+- [ ] Den Unterschied zwischen absoluter und relativer Aufzeichnung erklären
+- [ ] Den VBA-Editor (Alt+F11) öffnen und einfache Code-Änderungen vornehmen
+- [ ] Eine einfache For-Schleife und If-Bedingung in VBA schreiben
+- [ ] Die Grundbegriffe Variable, Bedingung und Schleife verstehen
+
+---
+
+*Lehrplan erstellt nach den Grundsätzen der Andragogik (Knowles, 1980) und dem
+europäischen Rahmen für digitale Kompetenzen DigComp 2.2 (Vuorikari et al., 2022).*

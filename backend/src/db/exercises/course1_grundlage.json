@@ -505,7 +505,7 @@
           ]
         ]
       },
-      "instructions": "1. Klicken Sie auf D2 und geben Sie 'München' ein. Mit Tab → nächste Zelle.\n2. Vervollständigen Sie Zeile 2 (Ben Müller): Eintrittsjahr = 2023, Standort = Hamburg.\n3. Zeile 3: Name = 'Clara Weber' (in A3 eintragen).\n4. Zeile 4: Abteilung = 'Finanzen', Standort = 'München'.\n5. Zeile 5: Name = 'Eva Klein', Eintrittsjahr = 2019.",
+      "instructions": "1. Klicken Sie auf D2 und geben Sie 'München' ein. Mit Tab → nächste Zelle.\n2. Vervollständigen Sie Zeile 3 (Ben Müller): Eintrittsjahr = 2023, Standort = Hamburg.\n3. Zeile 4: Name = 'Clara Weber' (in A4 eintragen).\n4. Zeile 5: Abteilung = 'Finanzen', Standort = 'München'.\n5. Zeile 6: Name = 'Eva Klein', Eintrittsjahr = 2019.",
       "order": 3,
       "formulaHint": null,
       "hint1": "Klicken Sie einfach in die gewünschte Zelle und tippen Sie los. Mit Enter springen Sie eine Zeile nach unten.",
@@ -1200,8 +1200,8 @@
       "instructions": "1. Vervollständigen Sie die fehlenden Monatsnamen in Spalte A.\n2. Die Monate müssen in der richtigen Reihenfolge und mit korrekter deutscher Schreibweise eingetragen werden.\n3. Januar bis März sind bereits vorgegeben. Fahren Sie mit April fort.",
       "order": 8,
       "formulaHint": null,
-      "hint1": "Nach März kommt April — die deutsche Schreibweise ist wie im Kalender.",
-      "hint2": "Die Monate auf Deutsch: Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember.",
+      "hint1": "Excel erkennt Muster: Monatsnamen, Wochentage oder Zahlenfolgen werden automatisch fortgesetzt.",
+      "hint2": "Tippen Sie den ersten Monat der Reihe ein, markieren Sie die Zelle und ziehen Sie am kleinen Quadrat (Ausfüllkästchen) nach unten.",
       "hint3": "In Excel können Sie 'Januar' in eine Zelle schreiben und am Ausfüllkästchen ziehen.",
       "learningObjectives": [
         "Die AutoAusfüllen-Funktion von Excel verstehen",
@@ -1610,7 +1610,7 @@
           ]
         ]
       },
-      "instructions": "1. Markieren Sie Zeile 2 (Müller) — diese Zeile ist bereits fertig formatiert.\n2. Klicken Sie im Ribbon 'Start' auf den Formatpinsel-Button (Pinsel-Symbol).\n3. Markieren Sie die Zeilen 3-6 (Schmidt bis Wagner), um das Format zu übertragen.\n4. Füllen Sie Spalte C mit 15000 und Spalte D mit 'Genehmigt'.",
+      "instructions": "1. Markieren Sie Zeile 2 (Müller) — diese Zeile ist bereits fertig formatiert.\n2. Klicken Sie im Ribbon 'Start' auf den Formatpinsel-Button (Pinsel-Symbol).\n3. Markieren Sie die Zeilen 3-7 (Schmidt bis Wagner), um das Format zu übertragen.\n4. Füllen Sie Spalte C mit 15000 und Spalte D mit 'Genehmigt'.",
       "order": 11,
       "formulaHint": null,
       "hint1": "Der Formatpinsel befindet sich im Ribbon 'Start' in der Gruppe 'Zwischenablage'.",
@@ -1802,7 +1802,7 @@
       "formulaHint": null,
       "hint1": "Der Fett-Button (F) ist im Ribbon unter 'Start' → 'Schriftart' zu finden.",
       "hint2": "Den Zentrieren-Button finden Sie unter 'Start' → 'Ausrichtung'.",
-      "hint3": "Schreiben Sie 'Aktiv' in D2 und ziehen Sie am Ausfüllkästchen nach unten.",
+      "hint3": "Tippen Sie den Statuswert in die erste Zelle der Spalte und nutzen Sie das Ausfüllkästchen (kleines Quadrat rechts unten) zum Kopieren nach unten.",
       "learningObjectives": [
         "Schriftformatierung anwenden (Fett, Schriftart)",
         "Zellausrichtung ändern (zentrieren)",
@@ -3001,7 +3001,7 @@
       "order": 20,
       "formulaHint": "=B2*C2",
       "hint1": "Multiplikation in Excel verwendet den *-Operator.",
-      "hint2": "Gesamtpreis = Preis × Menge. Für Bleistift: =1,5*10 oder besser =B2*C2.",
+      "hint2": "Gesamtpreis = Preis × Menge. Verwenden Sie Zellbezüge statt fester Zahlen: =B2*C2 statt =1,5*10.",
       "hint3": "Zellbezüge sind besser als feste Zahlen, weil Excel dann automatisch aktualisiert.",
       "learningObjectives": [
         "Grundoperatoren anwenden",
@@ -3691,7 +3691,7 @@
           ]
         ]
       },
-      "instructions": "1. Zeile 7: Durchschnitt mit =MITTELWERT(B2:B6) für Temperatur, dann für C und D.\n2. Zeile 8: Maximum mit =MAX(B2:B6), dann für C und D.",
+      "instructions": "1. Zeile 8: Durchschnitt mit =MITTELWERT(B2:B6) für Temperatur, dann für C und D.\n2. Zeile 9: Maximum mit =MAX(B2:B6), dann für C und D.",
       "order": 25,
       "formulaHint": "=MITTELWERT(B2:B6) und =MAX(B2:B6)",
       "hint1": "MITTELWERT addiert alle Werte und teilt durch die Anzahl.",
@@ -3862,7 +3862,7 @@
           ]
         ]
       },
-      "instructions": "1. Zeile 8: =ANZAHL(B2:B7) — zählt nur Zahlen (Punkte, Noten).\n2. Zeile 9: =ANZAHL2(B2:B7) — zählt alle nicht-leeren Zellen.",
+      "instructions": "1. Zeile 9: =ANZAHL(B2:B7) — zählt nur Zahlen (Punkte, Noten).\n2. Zeile 10: =ANZAHL2(B2:B7) — zählt alle nicht-leeren Zellen.",
       "order": 26,
       "formulaHint": "=ANZAHL(B2:B7) und =ANZAHL2(B2:B7)",
       "hint1": "ANZAHL ignoriert Text und Leere. Zählt nur Zahlen.",
@@ -4168,8 +4168,8 @@
       "order": 28,
       "formulaHint": "=WENN(B2>=50;\"Bestanden\";\"Nicht bestanden\")",
       "hint1": "WENN hat 3 Teile: =WENN(Bedingung; Wert_wenn_wahr; Wert_wenn_falsch).",
-      "hint2": "Für Spalte C: Bedingung ist B2>=50. 'Bestanden' bei Wahr, 'Nicht bestanden' bei Falsch.",
-      "hint3": "Verschachteltes WENN: =WENN(B2>=80;\"Sehr gut\";WENN(B2>=60;\"Gut\";...)).",
+      "hint2": "Für Spalte C: Die Bedingung prüft, ob die Punktzahl den Schwellenwert erreicht. Verwenden Sie aussagekräftige Texte für die beiden möglichen Ergebnisse.",
+      "hint3": "Verschachteltes WENN für Notenstufen: =WENN(B2>=höchste_Schwelle;\"Beste_Note\";WENN(B2>=mittlere_Schwelle;\"Mittlere_Note\";...))",
       "learningObjectives": [
         "WENN-Funktion anwenden",
         "Verschachtelte WENN erstellen",
@@ -4496,7 +4496,7 @@
           ]
         ]
       },
-      "instructions": "1. D2: =B2-C2 (Netto).\n2. E2: =WENN(D2>170;\"Ja\";\"Nein\") (Ziel).\n3. F2: =WENN(E2=\"Ja\";D2*0,05;0) (Provision).\n4. Zeile 8: SUMME für D und F.",
+      "instructions": "1. D2: =B2-C2 (Netto).\n2. E2: =WENN(D2>170;\"Ja\";\"Nein\") (Ziel).\n3. F2: =WENN(E2=\"Ja\";D2*0,05;0) (Provision).\n4. Zeile 9: SUMME für D und F.",
       "order": 30,
       "formulaHint": "Netto=B2-C2 | Ziel=WENN(D2>170;\"Ja\";\"Nein\") | Provision=WENN(E2=\"Ja\";D2*0,05;0)",
       "hint1": "Netto = Verkäufe − Retouren.",
@@ -4722,12 +4722,12 @@
           ]
         ]
       },
-      "instructions": "1. E2: =SUMME(B2:D2) — Summe Q1.\n2. F2: =MITTELWERT(B2:D2) — Durchschnitt.\n3. G2: =WENN(D2>B2;\"Steigend\";\"Schwankend\") — Trend.\n4. Zeile 7: SUMME für jede Spalte.\n5. Zeile 8: MAX für jede Spalte.\n6. C10: Name des besten Monats (März).",
+      "instructions": "1. E2: =SUMME(B2:D2) — Summe Q1.\n2. F2: =MITTELWERT(B2:D2) — Durchschnitt.\n3. G2: =WENN(D2>B2;\"Steigend\";\"Schwankend\") — Trend.\n4. Zeile 8: SUMME für jede Spalte.\n5. Zeile 9: MAX für jede Spalte.\n6. C11: Name des besten Monats (März).",
       "order": 31,
       "formulaHint": "Summe=SUMME(B2:D2) | Schnitt=MITTELWERT(B2:D2) | Trend=WENN(D2>B2;\"Steigend\";\"Schwankend\")",
       "hint1": "Beginnen Sie mit Spalte E: =SUMME(B2:D2).",
       "hint2": "Spalte F: =MITTELWERT(B2:D2).",
-      "hint3": "Spalte G: Steigend wenn März > Januar.",
+      "hint3": "Vergleichen Sie den letzten Monat mit dem ersten: Steigend wenn der letzte Wert größer ist als der erste.",
       "learningObjectives": [
         "Alle Grundfunktionen in realistischer Aufgabe anwenden",
         "SUMME, MITTELWERT, MAX, WENN kombinieren",
@@ -4874,12 +4874,12 @@
           ]
         ]
       },
-      "instructions": "1. Spalte B (Abteilung): Wählen Sie B2:B6 → Daten → Datenüberprüfung → Liste → Quelle: =$B$7:$D$7\n2. Spalte C (Status): Wählen Sie C2:C6 → Datenüberprüfung → Liste → Quelle: =$B$8:$D$8\n3. Füllen Sie die Dropdowns aus (siehe Lösung unten).\n4. Spalte D: Tragen Sie Beispiel-Gehälter ein (z.B. 45000, 52000, 48000, 44000, 51000).",
+      "instructions": "1. Spalte B (Abteilung): Wählen Sie B2:B6 → Daten → Datenüberprüfung → Liste → Quelle: =$B$8:$D$8\n2. Spalte C (Status): Wählen Sie C2:C6 → Datenüberprüfung → Liste → Quelle: =$B$9:$D$9\n3. Füllen Sie die Dropdowns aus (siehe Lösung unten).\n4. Spalte D: Tragen Sie Beispiel-Gehälter ein (z.B. 45000, 52000, 48000, 44000, 51000).",
       "order": 32,
       "formulaHint": null,
       "hint1": "Datenüberprüfung finden Sie im Ribbon unter 'Daten' → 'Datenüberprüfung'.",
       "hint2": "Bei 'Zulassen' wählen Sie 'Liste'. Die Quelle kann ein Zellbereich sein (z.B. =$B$7:$D$7).",
-      "hint3": "Die Hilfstabellen in Zeilen 7-8 enthalten die gültigen Werte für die Dropdowns.",
+      "hint3": "Die Hilfstabellen in Zeilen 8-9 enthalten die gültigen Werte für die Dropdowns.",
       "learningObjectives": [
         "Dropdown-Listen mit Datenüberprüfung erstellen",
         "Zellbereiche als Quelle für Auswahllisten nutzen",
@@ -5729,7 +5729,7 @@
       "order": 39,
       "formulaHint": "=ZÄHLENWENN(A2:A11;\"Vertrieb\")",
       "hint1": "ZÄHLENWENN prüft jede Zelle und zählt nur Treffer.",
-      "hint2": "Das Kriterium muss in Anführungszeichen: \"Vertrieb\".",
+      "hint2": "Das Kriterium muss in Anführungszeichen stehen, z.B. \"Kriterium\".",
       "hint3": "Bereich A2:A11 enthält alle 10 Einträge.",
       "learningObjectives": [
         "ZÄHLENWENN anwenden",
@@ -6101,7 +6101,7 @@
       "order": 41,
       "formulaHint": "=SVERWEIS(B8;A2:E6;2;FALSCH)",
       "hint1": "SVERWEIS sucht in der ersten Spalte und gibt Wert aus anderer Spalte zurück.",
-      "hint2": "Suchkriterium in B8 (P003). Tabelle A2:E6.",
+      "hint2": "Das Suchkriterium steht in der Eingabezelle. Die Suchtabelle umfasst alle Datenzeilen mit Produktinformationen.",
       "hint3": "Spaltenindex: 2=Name, 3=Preis, 4=Bestand, 5=Kategorie. FALSCH=exakte Suche.",
       "learningObjectives": [
         "SVERWEIS anwenden",
@@ -6540,7 +6540,7 @@
       "formulaHint": "=WENNFEHLER(B2/C2;\"Keine Stück\")",
       "hint1": "Division durch 0 ergibt #DIV/0!.",
       "hint2": "WENNFEHLER fängt Fehler ab und zeigt Ersatzwert.",
-      "hint3": "Formel: =WENNFEHLER(B2/C2;\"Keine Stück\").",
+      "hint3": "Formel: =WENNFEHLER(B2/C2;\"Ersatztext\") — der Ersatztext wird bei Fehlern wie #DIV/0! angezeigt.",
       "learningObjectives": [
         "WENNFEHLER anwenden",
         "#DIV/0! abfangen",

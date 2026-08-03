@@ -311,7 +311,7 @@
       "order": 3,
       "formulaHint": "=ZÄHLENWENN($B$2:$B$6;A8)",
       "hint1": "ZÄHLENWENN zählt, wie oft ein Wert vorkommt",
-      "hint2": "=ZÄHLENWENN($B$2:$B$6;\"Sehr gut\")",
+      "hint2": "=ZÄHLENWENN($Bereich;\"Kriterium\") — ersetzen Sie Bereich und Kriterium durch Ihre Werte.",
       "hint3": "Nutze absolute Referenz $B$2:$B$6 und verweise auf A8",
       "learningObjectives": [
         "ZÄHLENWENN für Häufigkeiten",
@@ -423,11 +423,11 @@
           ]
         ]
       },
-      "instructions": "1. Hole Q2-Daten aus Zeile 8-10: =B8 für Laptop.\n2. Berechne Jahressumme: =B2+C2.\n3. Stelle dir vor, Q1 und Q2 wären separate Tabellenblätter.",
+      "instructions": "1. Hole Q2-Daten aus Zeile 9-11: =B8 für Laptop.\n2. Berechne Jahressumme: =B2+C2.\n3. Stelle dir vor, Q1 und Q2 wären separate Tabellenblätter.",
       "order": 3,
       "formulaHint": "=B8 für Q2-Wert, =B2+C2 für Summe",
-      "hint1": "Q2-Daten stehen in Zeile 8-10",
-      "hint2": "=B8 holt den Q2-Wert für Laptop",
+      "hint1": "Q2-Daten stehen in Zeile 9-11",
+      "hint2": "=B8 holt den Q2-Wert für das erste Produkt aus der Tabelle.",
       "hint3": "Jahressumme = Q1 + Q2: =B2+C2",
       "learningObjectives": [
         "Daten aus anderen Bereichen referenzieren",
@@ -534,7 +534,7 @@
       "order": 4,
       "formulaHint": "=MITTELWERT(B2:B6), =WENN(B2>B7;\"▲ Über Ø\";\"▼ Unter Ø\")",
       "hint1": "Durchschnitt: =MITTELWERT(B2:B6)",
-      "hint2": "Trend: =WENN(B2>$B$7;\"▲ Über Ø\";\"▼ Unter Ø\")",
+      "hint2": "Formel für Trend: =WENN(B2>$B$7;\"Symbol_Über_Ø\";\"Symbol_Unter_Ø\") — verwenden Sie aussagekräftige Pfeil-Symbole.",
       "hint3": "Verwende $B$7 als absolute Referenz auf den Durchschnitt",
       "learningObjectives": [
         "WENN mit Vergleichsoperator",
@@ -883,7 +883,7 @@
       "order": 5,
       "formulaHint": "=SUMMEWENN(A2:A6;\"Büro\";C2:C6), =SUMMEWENN(C2:C6;\">100\")",
       "hint1": "SUMMEWENN(Bereich; Kriterium; Summe_Bereich)",
-      "hint2": "=SUMMEWENN(A2:A6;\"Büro\";C2:C6) summiert Büro-Artikel",
+      "hint2": "=SUMMEWENN(Bereich;\"Kriterium\";Summe_Bereich) — die Anführungszeichen um Textkriterien sind wichtig.",
       "hint3": "Ohne Summe_Bereich wird der erste Bereich summiert: =SUMMEWENN(C2:C6;\">100\")",
       "learningObjectives": [
         "SUMMEWENN für bedingte Summen",
@@ -1129,7 +1129,7 @@
       "order": 10,
       "formulaHint": "=MEDIAN(B2:B7)",
       "hint1": "MEDIAN = mittlerer Wert (50% darüber, 50% darunter)",
-      "hint2": "MITTELWERT=123 aber MEDIAN=53,5 → April verzerrt den Mittelwert!",
+      "hint2": "Mittelwert und Median können stark voneinander abweichen, wenn ein einzelner Ausreißer den Mittelwert verzerrt — der Median bleibt davon unbeeinflusst.",
       "learningObjectives": [
         "MEDIAN vs MITTELWERT",
         "Ausreißer erkennen",
@@ -2926,7 +2926,7 @@
       "order": 25,
       "formulaHint": "=MITTELWERT(B2:B4)",
       "hint1": "Zentriert = der Ø steht in der MITTE des Fensters",
-      "hint2": "Fensterbreite 3: Feb = Ø(Jan+Feb+Mär)",
+      "hint2": "Fensterbreite 3: Der zweite Wert im Fenster = Durchschnitt aus Vormonat, aktuellem Monat und Folgemonat.",
       "learningObjectives": [
         "Gleitender Durchschnitt",
         "Zeitreihen glätten",

@@ -768,7 +768,7 @@
       "instructions": "1. Spalte B (Abteilung): Erstellen Sie eine Dropdown-Liste mit: Vertrieb, Marketing, IT, HR, Finanzen.\n2. Spalte C (Standort): Erstellen Sie eine Dropdown-Liste mit: Berlin, München, Hamburg, Köln, Frankfurt.\n3. Spalte D (Eintrittsjahr): Validierung als ganze Zahl zwischen 2015 und 2025.\n4. Geben Sie die korrekten Daten wie in der Lösung ein.",
       "order": 3,
       "formulaHint": null,
-      "hint1": "Markieren Sie Spalte B → Daten → Datenüberprüfung → Zulassen: Liste → Quelle: Vertrieb;Marketing;IT;HR;Finanzen",
+      "hint1": "Markieren Sie Spalte B → Daten → Datenüberprüfung → Zulassen: Liste → Quelle: Geben Sie die gültigen Werte durch Semikolon getrennt ein (z.B. Wert1;Wert2;Wert3).",
       "hint2": "Für das Eintrittsjahr: Zulassen: Ganze Zahl → Minimum: 2015 → Maximum: 2025",
       "hint3": "Die Datenüberprüfung verhindert ungültige Eingaben und zeigt bei Bedarf eine Fehlermeldung an.",
       "learningObjectives": [
@@ -1005,7 +1005,7 @@
       "formulaHint": "=SVERWEIS(C2;Provisionsstufen;2;WAHR)",
       "hint1": "SVERWEIS mit WAHR sucht die nächstkleinere Übereinstimmung (Daten müssen aufsteigend sortiert sein).",
       "hint2": "SVERWEIS mit FALSCH sucht eine exakte Übereinstimmung (Daten müssen nicht sortiert sein).",
-      "hint3": "Die Provisionsstufen-Tabelle: 0→Keine, 10000→Bronze, 25000→Silber, 50000→Gold, 75000→Platin",
+      "hint3": "Die Provisionsstufen-Tabelle folgt dem Muster: aufsteigende Schwellenwerte mit zugeordneten Stufenbezeichnungen — erstellt aus den Angaben in der Aufgabenstellung.",
       "learningObjectives": [
         "SVERWEIS mit exakter Übereinstimmung (FALSCH) anwenden",
         "SVERWEIS mit ungefährer Übereinstimmung (WAHR) für gestaffelte Werte nutzen",
@@ -1324,12 +1324,12 @@
           ]
         ]
       },
-      "instructions": "1. Zeile 3 (Gewinn): =B1-B2 für jeden Monat.\n2. Spalte H (Letzte 3M): Verwenden Sie BEREICH.VERSCHIEBEN um die letzten N Monate zu summieren.\n   Hinweis: B5 enthält die Anzahl der Monate (3).\n3. Zelle B6: Gleiche Formel, bezogen auf Zeile 1.",
+      "instructions": "1. Zeile 4 (Gewinn): =B1-B2 für jeden Monat.\n2. Spalte H (Letzte 3M): Verwenden Sie BEREICH.VERSCHIEBEN um die letzten N Monate zu summieren.\n   Hinweis: B5 enthält die Anzahl der Monate (3).\n3. Zelle B6: Gleiche Formel, bezogen auf Zeile 2.",
       "order": 6,
       "formulaHint": "=SUMME(BEREICH.VERSCHIEBEN(B1;0;ANZAHL(B1:G1)-$B$5;1;$B$5))",
       "hint1": "BEREICH.VERSCHIEBEN(Bezug; Zeilen; Spalten; [Höhe]; [Breite]) verschiebt einen Bezug.",
       "hint2": "ANZAHL() zählt die numerischen Werte im Bereich — damit finden Sie die Anzahl der belegten Monate.",
-      "hint3": "Die Formel für Zeile 3: =B1-B2. Für Spalte H: =SUMME(BEREICH.VERSCHIEBEN(B1;0;ANZAHL(B1:G1)-$B$5;1;$B$5))",
+      "hint3": "Die Formel für Zeile 4: =B1-B2. Für Spalte H: =SUMME(BEREICH.VERSCHIEBEN(B1;0;ANZAHL(B1:G1)-$B$5;1;$B$5))",
       "learningObjectives": [
         "BEREICH.VERSCHIEBEN für dynamische Bereichsreferenzen einsetzen",
         "ANZAHL zur Bestimmung der Datenspaltenanzahl verwenden",
@@ -1711,7 +1711,7 @@
       "order": 8,
       "formulaHint": "=SUMMEWENNS(G2:G9;B2:B9;\"Laptop\")",
       "hint1": "SUMMEWENNS(Summe_Bereich; Kriterien_Bereich1; Kriterium1; ...) summiert nur Zeilen, die ALLE Kriterien erfüllen.",
-      "hint2": "ZÄHLENWENNS zählt Zeilen mit mehreren Kriterien — perfekt für 'Anzahl Verkäufe in Region Nord'.",
+      "hint2": "ZÄHLENWENNS zählt Zeilen mit mehreren Kriterien — ideal für kombinierte Auswertungen wie 'Anzahl Verkäufe in einer bestimmten Region'.",
       "hint3": "MITTELWERTWENNS und MAXWENNS funktionieren analog zu SUMMEWENNS mit mehreren Kriterien.",
       "learningObjectives": [
         "SUMMEWENNS mit mehreren Kriterien anwenden",
@@ -2203,7 +2203,7 @@
       "formulaHint": "=DBSUMME(A1:F7;3;A10:B11)",
       "hint1": "DBSUMME(Datenbank; Spaltenindex; Kriterienbereich) — Spaltenindex kann Nummer (3=Gehalt) oder Spaltenname sein.",
       "hint2": "Der Kriterienbereich muss die Spaltenüberschriften und darunter die Kriterien enthalten.",
-      "hint3": "IT + Berlin: Schmidt (65000) + Weber (72000) = 137000. DBMITTELWERT = 68500.",
+      "hint3": "Die Datenbankfunktion summiert automatisch alle Einträge, die beide Kriterien erfüllen. Sie können das Ergebnis durch manuelles Nachrechnen überprüfen.",
       "learningObjectives": [
         "Datenbankfunktionen (DBSUMME, DBMITTELWERT) mit Kriterienbereich anwenden",
         "Kriterienbereiche korrekt aufbauen (UND in gleicher Zeile, ODER in verschiedenen Zeilen)",
@@ -3006,7 +3006,7 @@
       "order": 17,
       "formulaHint": "=SUMME(Q1:Q4!B2)",
       "hint1": "Ein 3D-Bezug hat die Form: =SUMME(ErstesBlatt:LetztesBlatt!Zelle).",
-      "hint2": "Die Blattnamen sind Q1, Q2, Q3, Q4. Ein Bezug auf Q1!B2 holt den Laptop-Umsatz aus Q1.",
+      "hint2": "Die Blattnamen sind Q1, Q2, Q3, Q4. Ein Bezug auf Q1!B2 holt den Umsatz des ersten Produkts aus dem ersten Quartal.",
       "hint3": "Mit 3D-Bezügen können Sie dieselbe Zelle über mehrere Blätter hinweg summieren, ohne jedes Blatt einzeln zu referenzieren.",
       "learningObjectives": [
         "3D-Bezüge für tabellenübergreifende Berechnungen einsetzen",

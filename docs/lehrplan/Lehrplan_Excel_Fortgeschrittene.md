@@ -38,6 +38,7 @@ geometry: margin=2.5cm
 
 \tableofcontents
 
+\newpage
 ## Einleitung
 
 Dieser Lehrplan bietet eine vollständige Vertiefung in Microsoft Excel für
@@ -64,10 +65,21 @@ Datenmengen Erkenntnisse gewinnen möchten.
 3. **Übungen**  Praktische Aufgaben zur Vertiefung
 
 
+\newpage
 ## Modul 1: Erweiterte Formate, bedingte Formatierung und Datenüberprüfung
 
 **Lernziel:** Benutzerdefinierte Zahlenformate entwerfen, formelbasierte bedingte
 Formatierung anwenden und erweiterte Datenvalidierung mit Schutz kombinieren.
+
+### Was wissen Sie bereits?
+
+Bevor Sie starten, reflektieren Sie kurz:
+- Haben Sie schon einmal ein benutzerdefiniertes Zahlenformat erstellt?
+- Kennen Sie den Unterschied zwischen „relativen" und „absoluten" Zellbezügen?
+- Haben Sie Erfahrung mit SVERWEIS und einfachen Pivot-Tabellen?
+
+Diese Grundlagen werden in diesem Lehrplan vorausgesetzt. Falls Sie bei einem Begriff unsicher sind,
+werfen Sie einen Blick in den **Excel für Anfänger**-Lehrplan oder fragen Sie einfach nach.
 
 ## 1.1. Pädagogische Grundlagen
 
@@ -171,6 +183,12 @@ landen. Für fortgeschrittene Anwender sind besonders nützlich:
 **Tipp:** Verwenden Sie **Namen** für Validierungslisten statt direkter
 Zellbezüge  das macht die Arbeitsmappe wartbarer und verständlicher.
 
+
+### Typische Fehler
+
+- **Falsche aktive Zelle:** Bei formelbasierter bedingter Formatierung muss die Formel auf die aktive Zelle der Markierung bezogen sein. Wenn A1 aktiv ist: `=$F1="TX"`, nicht `=$F5`.
+- **$-Zeichen in der Formel:** Für zeilenweise Hervorhebung muss die Zeile relativ sein: `$F1`, nicht `$F$1`.
+
 **Übung 1.3  Datenüberprüfung einrichten**
 
 Die folgende Übungstabelle **Modul 1 3 Validierung** ist bereits geladen.
@@ -207,10 +225,26 @@ Die folgende Übungstabelle **Modul 1 4 Schutz** ist bereits geladen.
 > 4. Testen Sie: Eingabezellen sind bearbeitbar, Formelzellen nicht.
 
 
+### Das können Sie jetzt
+
+- [ ] Benutzerdefinierte Zahlenformate mit bis zu vier Abschnitten erstellen
+- [ ] Formelbasierte bedingte Formatierung für ganze Zeilen, Fälligkeiten und Duplikate anwenden
+- [ ] Erweiterte Datenüberprüfung mit benutzerdefinierten Formeln und eigenen Fehlermeldungen einrichten
+- [ ] Gezielten Blattschutz mit entsperrten Eingabezellen und ausgeblendeten Formeln konfigurieren
+
+\newpage
 ## Modul 2: Erweiterte Funktionen und komplexe Formeln
 
 **Lernziel:** Mehrdimensionale Suchfunktionen, verschachtelte Logik,
 Finanzfunktionen und Matrixformeln beherrschen.
+
+### Was wissen Sie bereits?
+
+- Nutzen Sie bereits SVERWEIS? Wo stoßen Sie an Grenzen?
+- Haben Sie schon einmal eine Formel geschrieben, die je nach Bedingung unterschiedliche Ergebnisse liefert?
+- Wissen Sie, wie Excel Datumsangaben intern speichert (01.01.1900 = 1)?
+
+Dieses Modul erweitert Ihr Funktions-Repertoire auf professionelles Niveau.
 
 ## 2.1. INDEX + VERGLEICH: Die flexible Alternative zu SVERWEIS
 
@@ -238,6 +272,12 @@ auch INDEX+VERGLEICH mit einer einfacheren Syntax:
 `=XVERWEIS(Suchwert; Suchspalte; Rückgabespalte; [Wenn_nicht_gefunden]; [Vergleichsmodus])`.
 XVERWEIS sucht in beide Richtungen und benötigt keinen Spaltenindex mehr.
 und bricht nicht, wenn Spalten eingefügt werden.
+
+
+### Typische Fehler
+
+- **Vergleichstyp vergessen:** Ohne `0` als drittes Argument sucht VERGLEICH ungefähr — das führt zu falschen Ergebnissen, wenn die Liste nicht sortiert ist.
+- **Bereichsgröße bei INDEX+VERGLEICH:** Der INDEX-Bereich und der VERGLEICH-Bereich müssen die gleiche Zeilenanzahl haben.
 
 **Übung 2.1  INDEX + VERGLEICH anwenden**
 
@@ -324,6 +364,12 @@ Die folgende Übungstabelle **Modul 2 3 Logik** ist bereits geladen.
 Zahlen anzugeben. Der Zinssatz muss zur Periode passen: Jahreszins durch 12
 für monatliche Raten.
 
+
+### Typische Fehler
+
+- **Zinssatz nicht angepasst:** Jahreszins muss durch 12 geteilt werden, wenn Sie monatliche Raten berechnen: `RMZ(4,5%/12; 30*12; -250000)`.
+- **Vorzeichen:** Zahlungen, die Sie leisten (Kreditrate, Sparrate), sind negativ. Der Kreditbetrag ist positiv.
+
 **Übung 2.4  Finanzfunktionen anwenden**
 
 Die folgende Übungstabelle **Modul 2 4 Finanzfunktionen** ist bereits geladen.
@@ -402,10 +448,28 @@ Die folgende Übungstabelle **Modul 2 6 Datum_Zeit** ist bereits geladen.
 > 4. Berechnen Sie die Anzahl Arbeitstage zwischen zwei Daten mit
 >    `NETTOARBEITSTAGE`.
 
+### Das können Sie jetzt
+
+- [ ] INDEX+VERGLEICH für bidirektionale Suche (auch rechts→links) einsetzen
+- [ ] Dynamische Bereichsnamen mit BEREICH.VERSCHIEBEN erstellen
+- [ ] Verschachtelte Logik mit WENNS, WENNFEHLER und WAHL eleganter als tiefe WENN-Schachtelungen formulieren
+- [ ] RMZ, NBW, IKV und ZW für finanzielle Berechnungen anwenden
+- [ ] Matrixformeln (klassisch mit Strg+Shift+Enter und dynamisch in Excel 365) schreiben
+- [ ] Datums- und Zeitberechnungen mit MONATSENDE, ARBEITSTAG und NETTOARBEITSTAGE durchführen
+
+\newpage
 ## Modul 3: Referenzen 3D, Namen und externe Verknüpfungen
 
 **Lernziel:** Definierte Namen professionell einsetzen, Daten über mehrere Blätter
 mit 3D-Bezügen konsolidieren und externe Arbeitsmappen verknüpfen.
+
+### Was wissen Sie bereits?
+
+- Arbeiten Sie mit mehreren Tabellenblättern in einer Arbeitsmappe?
+- Haben Sie schon einmal Daten aus einer anderen Excel-Datei verknüpft?
+- Nutzen Sie bereits benannte Bereiche (z.B. =Umsatz statt =B2:B50)?
+
+Dieses Modul bringt Struktur in Ihre Arbeitsmappen — und spart Zeit bei der Fehlersuche.
 
 ## 3.1. Definierte Namen für Fortgeschrittene
 
@@ -524,10 +588,26 @@ Die folgende Übungstabelle **Modul 3 4 Konsolidierung** ist bereits geladen.
 > 3. Aktivieren Sie die Verknüpfung mit den Quelldaten und ändern Sie einen Wert
 >    in Q1 — aktualisiert sich die Konsolidierung?
 
+### Das können Sie jetzt
+
+- [ ] Definierte Namen für Konstanten, Bereiche und dynamische Formeln professionell einsetzen
+- [ ] 3D-Bezüge (Januar:Dezember!B2) für blattübergreifende Berechnungen nutzen
+- [ ] Externe Verknüpfungen zu anderen Arbeitsmappen erstellen und verwalten
+- [ ] Datenkonsolidierung nach Position und Kategorie mit Verknüpfung zu Quelldaten durchführen
+
+\newpage
 ## Modul 4: Datenbanken in Excel  Spezialfilter und Datenbankfunktionen
 
 **Lernziel:** Spezialfilter mit komplexen Kriterien anwenden, Datenbankfunktionen
 (DBSUMME, DBMITTELWERT) einsetzen und mehrstufige Teilergebnisse berechnen.
+
+### Was wissen Sie bereits?
+
+- Wie filtern Sie derzeit Daten mit mehreren Bedingungen?
+- Können Sie sich vorstellen, Excel wie eine kleine Datenbank zu nutzen?
+- Wissen Sie, was Strg+T mit einem Datenbereich macht?
+
+Datenbanktechniken in Excel — ohne SQL und ohne Access.
 
 ## 4.1. Spezialfilter mit Kriterienbereich
 
@@ -645,10 +725,26 @@ Die folgende Übungstabelle **Modul 4 4 Tabellen** ist bereits geladen.
 > 4. Fügen Sie neue Datenzeilen hinzu — werden Formatierung und Formeln
 >    automatisch übernommen?
 
+### Das können Sie jetzt
+
+- [ ] Spezialfilter mit mehrstufigen UND/ODER-Kriterienbereichen anwenden
+- [ ] Datenbankfunktionen (DBSUMME, DBMITTELWERT, DBANZAHL, DBAUSZUG) für flexible Auswertungen einsetzen
+- [ ] Mehrstufige Teilergebnisse mit Gruppierung und Gliederung erstellen
+- [ ] Excel-Tabellen mit strukturierten Verweisen ([@Spaltenname]) professionell nutzen
+
+\newpage
 ## Modul 5: Erweiterte Pivot-Tabellen
 
 **Lernziel:** Komplexe Pivot-Tabellen mit Gruppierungen, Datenschnitten,
 berechneten Feldern und Pivot-Charts erstellen.
+
+### Was wissen Sie bereits?
+
+- Erstellen Sie regelmäßig Pivot-Tabellen? Wenn ja: Was fehlt Ihnen?
+- Haben Sie schon einmal Daten in einer Pivot-Tabelle nach Monaten gruppiert?
+- Können mehrere Pivot-Tabellen gleichzeitig gefiltert werden?
+
+Fortgeschrittene Pivot-Techniken machen aus einfachen Zusammenfassungen interaktive Dashboards.
 
 ## 5.1. Pivot-Tabellen für Fortgeschrittene
 
@@ -692,6 +788,12 @@ Gewinnmarge = Gewinn / Umsatz
 **Wichtig:** Berechnete Felder arbeiten mit den **aggregierten** Werten, nicht mit
 den Rohdaten. `Gewinn / Umsatz` teilt die Summe der Gewinne durch die Summe der
 Umsätze  nicht zeilenweise.
+
+
+### Typische Fehler
+
+- **Berechnete Felder arbeiten mit aggregierten Werten**, nicht mit Rohdaten. `Gewinn/Umsatz` teilt die Summe der Gewinne durch die Summe der Umsätze — nicht zeilenweise.
+- **Gruppierung nur bei Datumsfeldern möglich:** Zahlenfelder können nicht gruppiert werden, nur Datumsangaben.
 
 **Übung 5.2  Gruppieren und berechnete Felder**
 
@@ -756,10 +858,27 @@ für Mac oder Excel Online). Für diesen Kurs ist es ein Ausblick — die
 grundlegenden Pivot-Kenntnisse aus 5.1–5.4 sind die Basis.
 
 
+### Das können Sie jetzt
+
+- [ ] Komplexe Pivot-Tabellen mit mehreren Feldern in Zeilen, Spalten und Werten erstellen
+- [ ] Datumsgruppierungen und berechnete Felder (z.B. Marge) in Pivot-Tabellen anwenden
+- [ ] Slicer und Zeitachsen für interaktive Dashboards einsetzen und mit mehreren Pivot-Tabellen verknüpfen
+- [ ] Pivot-Charts erstellen, die sich automatisch mit der Pivot-Tabelle aktualisieren
+- [ ] Die Möglichkeiten von Power Pivot und DAX für große Datenmodelle verstehen
+
+\newpage
 ## Modul 6: Datenanalyse, Szenarien und Solver
 
 **Lernziel:** Was-wäre-wenn-Analyse mit Zielwertsuche, Szenarien und Solver
 durchführen sowie Sparklines und Trendlinien einsetzen.
+
+### Was wissen Sie bereits?
+
+- Haben Sie schon einmal „rückwärts gerechnet" (vom gewünschten Ergebnis zur Eingabe)?
+- Wie modellieren Sie derzeit verschiedene Zukunftsszenarien?
+- Wissen Sie, wie man optimale Werte unter Nebenbedingungen findet?
+
+Was-wäre-wenn ist die Königsdisziplin der Excel-Analyse — hier lernen Sie alle Werkzeuge.
 
 ## 6.1. Zielwertsuche und Datentabellen
 
@@ -825,6 +944,13 @@ hinausgeht. Er findet optimale Werte unter **mehreren Nebenbedingungen**.
 | Veränderbare Zellen | Was darf Excel anpassen? | $B$2:$B$5 (Produktionsmengen) |
 | Nebenbedingungen | Einschränkungen | $B$2:$B$5 <= $C$2:$C$5 (max. Kapazität) |
 
+
+### Typische Fehler
+
+- **Solver nicht aktiviert:** Der Solver muss erst unter Datei → Optionen → Add-Ins aktiviert werden.
+- **Unrealistische Nebenbedingungen:** Wenn die Nebenbedingungen zu restriktiv sind, findet der Solver keine Lösung. Beginnen Sie mit weiten Grenzen.
+- **Ganzzahligkeit:** Wenn Sie ganze Zahlen benötigen (z.B. Anzahl Produkte), fügen Sie eine Ganzzahligkeits-Nebenbedingung hinzu.
+
 **Übung 6.3  Solver einsetzen**
 
 Die folgende Übungstabelle **Modul 6 3 Solver** ist bereits geladen.
@@ -861,10 +987,27 @@ Die folgende Übungstabelle **Modul 6 4 Sparklines** ist bereits geladen.
 > 3. Interpretieren Sie R = 0,87: Ist das ein starker Zusammenhang?
 
 
+### Das können Sie jetzt
+
+- [ ] Die Zielwertsuche für Rückwärtsrechnungen einsetzen
+- [ ] Ein- und zweidimensionale Datentabellen für Szenarioanalysen erstellen
+- [ ] Den Szenario-Manager für optimistische/pessimistische/neutrale Prognosen nutzen
+- [ ] Den Solver für Optimierungsprobleme mit mehreren Nebenbedingungen konfigurieren
+- [ ] Sparklines und Trendlinien mit R² für Miniatur-Trendanalysen einsetzen
+
+\newpage
 ## Modul 7: Erweiterte Diagramme und Dashboards
 
 **Lernziel:** Kombinierte Diagramme mit Sekundärachse, Wasserfalldiagramme und
 professionelle Executive Dashboards erstellen.
+
+### Was wissen Sie bereits?
+
+- Welche Diagrammtypen nutzen Sie regelmäßig?
+- Haben Sie schon einmal zwei unterschiedliche Datenskalen (z.B. € und %) in einem Diagramm dargestellt?
+- Was macht ein gutes Dashboard Ihrer Meinung nach aus?
+
+Visualisierung auf professionellem Niveau — Charts, die Entscheider überzeugen.
 
 ## 7.1. Erweiterte Diagrammtypen
 
@@ -930,9 +1073,25 @@ Die folgende Übungstabelle **Modul 7 3 Dashboard** ist bereits geladen.
 >    professionelles Erscheinungsbild.
 
 
+### Das können Sie jetzt
+
+- [ ] Kombidiagramme mit Sekundärachse für unterschiedliche Skalen erstellen
+- [ ] Wasserfalldiagramme für kumulierte Effekte (z.B. Gewinn- und Verlustrechnung) aufbauen
+- [ ] Ein professionelles Dashboard mit mehreren Diagrammen, Slicern und Sparklines designen
+- [ ] Dashboard-Design-Prinzipien anwenden (max. 4-6 Elemente, konsistente Farben, Raster)
+
+\newpage
 ## Modul 8: Automatisierung mit Makros
 
 **Lernziel:** Makros aufzeichnen, ausführen und grundlegend in VBA bearbeiten.
+
+### Was wissen Sie bereits?
+
+- Gibt es wiederkehrende Aufgaben in Ihrem Excel-Alltag (immer gleiche Formatierung, gleicher Import)?
+- Wie viel Zeit verbringen Sie wöchentlich mit solchen Routineaufgaben?
+- Haben Sie schon einmal den Begriff „Makro" gehört und wussten nicht, was das ist?
+
+Automatisierung beginnt mit einem Klick auf „Aufzeichnen" — Sie müssen kein Programmierer sein.
 
 ## 8.1. Makros verstehen und aufzeichnen
 
@@ -1001,10 +1160,26 @@ Die folgende Übungstabelle **Modul 8 3 VBA_Editor** ist bereits geladen.
 > 3. Ändern Sie eine Farbe im Code (z.B. `.Color = RGB(0, 0, 255)` für Blau).
 
 
+### Das können Sie jetzt
+
+- [ ] Makros absolut und relativ aufzeichnen
+- [ ] Makros über Schaltflächen, Tastenkombinationen und den Makro-Dialog ausführen
+- [ ] Den VBA-Editor (Alt+F11) öffnen und aufgezeichneten Code lesen und verstehen
+- [ ] Einfache Code-Änderungen (z.B. Farben) im VBA-Editor vornehmen
+
+\newpage
 ## Modul 9: VBA-Programmierung (Grundlagen)
 
 **Lernziel:** Grundlegende VBA-Konzepte verstehen, einfache Prozeduren schreiben
 und Excel-Ereignisse nutzen.
+
+### Was wissen Sie bereits?
+
+- Sie haben in Modul 8 Makros aufgezeichnet — möchten Sie verstehen, was der Code bedeutet?
+- Können Sie sich vorstellen, dass ein Makro automatisch reagiert, wenn Sie eine Zelle ändern?
+- Wünschen Sie sich eigene Excel-Funktionen, die es standardmäßig nicht gibt?
+
+Vom Aufzeichnen zum Programmieren — der natürliche nächste Schritt.
 
 ## 9.1. Variablen und Datentypen
 
@@ -1130,10 +1305,27 @@ Die folgende Übungstabelle **Modul 9 4 VBA_UDF** ist bereits geladen.
 **Tipp:** `Option Explicit` am Anfang des VBA-Moduls schützt vor Tippfehlern in
 Variablennamen — die häufigste Fehlerquelle bei Makros.
 
+### Das können Sie jetzt
+
+- [ ] Variablen mit korrekten Datentypen (Integer, Double, String, Range) deklarieren
+- [ ] If-Then-Else-Bedingungen und For-Schleifen in VBA schreiben
+- [ ] Worksheet_Change- und Workbook_Open-Ereignisse für automatische Reaktionen programmieren
+- [ ] Benutzerdefinierte Funktionen (UDF) schreiben und in Excel-Formeln verwenden
+- [ ] Best Practices (Option Explicit, sprechende Namen, Kommentare, Fehlerbehandlung) anwenden
+
+\newpage
 ## Modul 10: Zusammenarbeit, Vorlagen und Produktivität
 
 **Lernziel:** Arbeitsmappen für die Zusammenarbeit optimieren, professionelle
 Vorlagen erstellen und Produktivitätstechniken beherrschen.
+
+### Was wissen Sie bereits?
+
+- Geben Sie Excel-Dateien regelmäßig an Kollegen oder Kunden weiter?
+- Wie stellen Sie sicher, dass der Empfänger die Datei wie vorgesehen nutzt?
+- Welche Tastenkombinationen nutzen Sie täglich — und welche könnten Sie noch lernen?
+
+Professionalität zeigt sich nicht nur in Formeln, sondern auch in der Weitergabe und Effizienz.
 
 ## 10.1. Professionelle Vorlagen
 
@@ -1235,6 +1427,13 @@ Die folgende Übungstabelle **Modul 10 4 Tastenkombinationen** ist bereits gelad
 >    formatieren, eine Summe zu bilden und einen Filter zu setzen.
 > 2. Nutzen Sie `Strg+[` und `Strg+]` zur Formelanalyse.
 > 3. Wechseln Sie mit F4 zwischen Bezugstypen beim Bearbeiten einer Formel.
+
+### Das können Sie jetzt
+
+- [ ] Professionelle Excel-Vorlagen (.xltx) mit geschützten Formelzellen und Dropdown-Listen erstellen
+- [ ] Arbeitsmappen für die Zusammenarbeit vorbereiten (Kommentare, PDF-Export, Blattschutz)
+- [ ] Die Möglichkeiten von Power Query für Datenimport und -transformation verstehen
+- [ ] Die wichtigsten erweiterten Tastenkombinationen (Strg+[, F9, Alt+=) beherrschen
 
 ---
 

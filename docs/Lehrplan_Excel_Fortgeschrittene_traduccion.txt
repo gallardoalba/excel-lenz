@@ -1,15 +1,15 @@
 ---
-pdftitle: "Programa de estudios: Excel para usuarios avanzados"
-author: "Cristóbal Gallardo"
-date: "agosto de 2026"
-location: "Friburgo de Brisgovia"
-lang: es
+pdftitle: «Programa de estudios: Excel para usuarios avanzados»
+author: «Cristbal Gallardo»
+date: «agosto de 2026»
+location: «Friburgo de Brisgovia»
+lang: de
 colorlinks: true
 linkcolor: blue
 urlcolor: blue
 fontsize: 11pt
 documentclass: article
-geometry: margin=2.5cm
+geometry: margin=2,5 cm
 ---
 
 \thispagestyle{empty}
@@ -38,7 +38,6 @@ geometry: margin=2.5cm
 
 \tableofcontents
 
-\newpage
 ## Introducción
 
 Este programa de formación ofrece una formación completa y en profundidad en Microsoft Excel para
@@ -48,7 +47,7 @@ clases presenciales individuales.
 
 **Conocimientos previos necesarios:**
 - Manejo seguro de fórmulas y referencias (relativas, absolutas, mixtas)
-- Funciones básicas: SUMME, MITTELWERT, WENN, SVERWEIS
+- Funciones básicas: SUMA, MEDIA, SI, BUSCARV
 - Formato básico y creación de gráficos
 - Experiencia con tablas dinámicas sencillas
 
@@ -65,22 +64,10 @@ volúmenes de datos.
 3. **Ejercicios**  Tareas prácticas para afianzar los conocimientos
 
 
-\newpage
-\newpage
 ## Módulo 1: Formatos avanzados, formato condicional y validación de datos
 
 **Objetivo de aprendizaje:** Diseñar formatos numéricos personalizados, aplicar el formato condicional basado en fórmulas
 y combinar la validación avanzada de datos con la protección.
-
-### ¿Qué sabes ya?
-
-Antes de empezar, reflexiona un momento:
-- ¿Has creado alguna vez un formato numérico personalizado?
-- ¿Conoces la diferencia entre referencias «relativas» y «absolutas»?
-- ¿Tienes experiencia con SVERWEIS y tablas dinámicas sencillas?
-
-Estos conocimientos básicos se presuponen en este plan de estudios. Si no estás seguro de algún concepto,
-consulta el plan de estudios **Excel para principiantes** o simplemente pregunta.
 
 ## 1.1. Fundamentos pedagógicos
 
@@ -147,9 +134,9 @@ formato se adapta en tiempo real.
 | Caso de uso | Fórmula | Efecto |
 |---------------|--------|--------|
 | Resaltar toda la fila | `=$F5="TX"` | Se resalta la fila si la columna F contiene «TX» |
-| Avisar de fechas vencidas | `=UND(B4>HOUND();B4<=HOUND()+30)` | Fechas en los próximos 30 días |
+| Avisar de fechas vencidas | `=Y(B4>HOY();B4<=HOY()+30)` | Fechas en los próximos 30 días |
 | Detectar discrepancias | `=$B4<>$C4` | Diferencias entre las columnas B y C |
-| Valores duplicados | `=ZÄHLENWENN(A:A;A1)>1` | Duplicados en la columna A |
+| Valores duplicados | `=CONTAE(A:A;A1)>1` | Duplicados en la columna A |
 
 **Importante:** En las reglas basadas en fórmulas, hay que referirse siempre a la
 **celda activa** de la selección. Si selecciona A1:D100 y A1 es la celda activa,
@@ -162,7 +149,7 @@ La siguiente tabla de ejercicios **Módulo 1 2 Formato_condicional** ya está ca
 > 1. Resalte todas las filas cuyo importe sea > 10 000 (fórmula: `=$C2>10000`).
 > 2. Resalte con fondo amarillo las filas cuyo estado sea «Pendiente».
 > 3. Cree una regla que resalte en rojo la fecha de vencimiento si
->    queda a menos de 7 días en el futuro: `=UND($D2>HOUND();$D2<=HOUND()+7)`.
+>    queda a menos de 7 días en el futuro: `=Y($D2>HOY();$D2<=HOY()+7)`.
 
 ## 1.4. Validación avanzada de datos
 ### Concepto: garantizar la calidad de los datos desde el momento de la introducción
@@ -177,18 +164,12 @@ incorporen a la tabla. Para los usuarios avanzados resultan especialmente útile
 | Tipo de validación | Ejemplo | Evita |
 |----------------|---------|------------|
 | Lista | `=Departamentos` (rango nombrado) | Errores tipográficos, entrada libre |
-| Definido por el usuario | `=UND(A1>=18;A1<=65)` | Valores fuera del rango de edad |
+| Definido por el usuario | `=Y(A1>=18;A1<=65)` | Valores fuera del rango de edad |
 | Definido por el usuario | `=LONG(B1)=5` | ID con longitud incorrecta |
-| Fecha | entre HOUND() y HOUND()+90 | Fechas pasadas o demasiado lejanas |
+| Fecha | entre HOY() y HOY()+90 | Fechas pasadas o demasiado lejanas |
 
 **Consejo:** Utilice **nombres** para las listas de validación en lugar de referencias directas
 a celdas; esto hace que el libro sea más fácil de mantener y más comprensible.
-
-
-### Errores típicos
-
-- **Celda activa incorrecta:** En el formato condicional basado en fórmulas, la fórmula debe referirse a la celda activa de la selección. Si A1 está activa: `=$F1="TX"`, no `=$F5`.
-- **Símbolos $ en la fórmula:** Para resaltar filas completas, la fila debe ser relativa: `$F1`, no `$F$1`.
 
 **Ejercicio 1.3:  Configurar la validación de datos**
 
@@ -226,40 +207,24 @@ La siguiente hoja de ejercicios **Módulo 1.4 Protección** ya está cargada.
 > 4. Compruébelo: las celdas de entrada se pueden editar, las celdas de fórmula no.
 
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Crear formatos numéricos personalizados con hasta cuatro secciones
-- [ ] Aplicar formato condicional basado en fórmulas para filas completas, vencimientos y duplicados
-- [ ] Configurar validación de datos avanzada con fórmulas personalizadas y mensajes de error propios
-- [ ] Configurar protección de hoja selectiva con celdas de entrada desbloqueadas y fórmulas ocultas
-
-\newpage
 ## Módulo 2: Funciones avanzadas y fórmulas complejas
 
 **Objetivo de aprendizaje:** Dominar las funciones de búsqueda multidimensionales, la lógica anidada,
 las funciones financieras y las fórmulas matriciales.
 
-### ¿Qué sabes ya?
-
-- ¿Ya usas SVERWEIS? ¿Dónde encuentras sus limitaciones?
-- ¿Has escrito alguna vez una fórmula que devuelva resultados diferentes según una condición?
-- ¿Sabes cómo almacena Excel internamente las fechas (01/01/1900 = 1)?
-
-Este módulo amplía tu repertorio de funciones a nivel profesional.
-
-## 2.1. INDEX + VERGLEICH: la alternativa flexible a SVERWEIS
+## 2.1. ÍNDICE + COMPARAR: la alternativa flexible a BUSCARV
 
 ### Concepto: buscar en cualquier dirección
 
-SVERWEIS solo puede buscar de izquierda a derecha. INDEX + VERGLEICH elimina esta
+BUSCARV solo puede buscar de izquierda a derecha. ÍNDICE + COMPARAR elimina esta
 restricción y, además, es más resistente a los cambios en las tablas.
 
 ```
-=INDEX(rango; número de fila; [número de columna])
-=VERGLEICH(criterio de búsqueda; rango de búsqueda; [tipo de comparación])
+=ÍNDICE(rango; número de fila; [número de columna])
+=COMPARAR(criterio de búsqueda; rango de búsqueda; [tipo de comparación])
 ```
 
-**Búsqueda bidimensional:** `=INDEX(B3:E9; VERGLEICH(B13; B3:B9; 0); VERGLEICH(B14; B3:E3; 0))`
+**Búsqueda bidimensional:** `=ÍNDICE(B3:E9; COMPARAR(B13; B3:B9; 0); COMPARAR(B14; B3:E3; 0))`
 
 | Tipo de comparación | Significado |
 |--------------|-----------|
@@ -267,59 +232,53 @@ restricción y, además, es más resistente a los cambios en las tablas.
 | `1` | Valor mayor &lt;= criterio de búsqueda (ordenado de menor a mayor) |
 | `-1` | Valor menor &gt;= criterio de búsqueda (ordenado de mayor a menor) |
 
-**Consejo:** INDEX+VERGLEICH también es más rápido que SVERWEIS en tablas grandes
-**Consejo:** En Excel 365/2021, `XVERWEIS` (XLOOKUP) sustituye tanto a SVERWEIS como
-a INDEX+VERGLEICH con una sintaxis más sencilla:
+**Consejo:** ÍNDICE+COMPARACIÓN también es más rápido que BUSCARV en tablas grandes
+**Consejo:** En Excel 365/2021, `XVERWEIS` (XLOOKUP) sustituye tanto a BUSCARV como
+a ÍNDICE+COMPARACIÓN con una sintaxis más sencilla:
 `=XVERWEIS(valor_buscado; columna_de_búsqueda; columna_de_resultado; [si_no_se_encuentra]; [modo_de_comparación])`.
 XVERWEIS busca en ambas direcciones y ya no necesita un índice de columna,
 ni se interrumpe si se insertan columnas.
 
+**Ejercicio 2.1: Aplicar ÍNDICE + COMPARAR**
 
-### Errores típicos
+La siguiente tabla de ejercicios **Módulo 2.1 ÍNDICE_COMPARAR** ya está cargada.
 
-- **Olvidar el tipo de coincidencia:** Sin `0` como tercer argumento, VERGLEICH busca de forma aproximada, lo que da resultados incorrectos si la lista no está ordenada.
-- **Tamaño del rango en INDEX+VERGLEICH:** El rango de INDEX y el rango de VERGLEICH deben tener el mismo número de filas.
-
-**Ejercicio 2.1: Aplicar INDEX + VERGLEICH**
-
-La siguiente tabla de ejercicios **Módulo 2.1 INDEX_VERGLEICH** ya está cargada.
-
-> 1. Busque el precio de un producto con INDEX + VERGLEICH, teniendo en cuenta que la
+> 1. Busque el precio de un producto con ÍNDICE + COMPARAR, teniendo en cuenta que la
 >    columna del producto se encuentra **a la derecha** del precio (CONVERSIÓN no puede hacerlo).
 > 2. Crea una búsqueda bidireccional: producto (fila)  mes (columna).
-> 3. Compara la fórmula con una variante de SVERWEIS. ¿Cuál es más flexible?
+> 3. Compara la fórmula con una variante de BUSCARV. ¿Cuál es más flexible?
 
-## 2.2. Referencias dinámicas con BEREICH.VERSCHIEBEN
+## 2.2. Referencias dinámicas con DESPLAZAR.RANGO
 
 ### Concepto: rangos que «respiran»
 
-BEREICH.VERSCHIEBEN (OFFSET) devuelve una referencia desplazada un número determinado
+DESPLAZAR.ÁREA (OFFSET) devuelve una referencia desplazada un número determinado
 de filas/columnas desde una celda inicial, con altura
 y anchura variables.
 
-**Sintaxis:** `=BEREICH.VERSCHIEBEN(referencia; filas; columnas; [altura]; [anchura])`
+**Sintaxis:** `=DESPLAZAR.RANGO(referencia; filas; columnas; [altura]; [anchura])`
 
 ```
-=SUMME(BEREICH.VERSCHIEBEN(A1;0;0;E2;1))
+=SUMA(DESPLAZAR.RANGO(A1;0;0;E2;1))
  Suma desde A1 hasta A[E2] (tamaño dinámico del rango)
 ```
 
 | Aplicación | Fórmula |
 |-----------|--------|
-| Suma dinámica | `=SUMME(BEREICH.VERSCHIEBEN(B1;0;0;ANZAHL2(B:B);1))` |
-| Últimos 3 meses | `=MITTELWERT(BEREICH.VERSCHIEBEN(B1;ANZAHL(B:B)-3;0;3))` |
-| Media móvil | En combinación con ZÄHLENWENN para ventanas móviles |
+| Suma dinámica | `=SUMA(DESPLAZAR.RANGO(B1;0;0;CONTO2(B:B);1))` |
+| Últimos 3 meses | `=MEDIA(DESPLAZAR.RANGO(B1;NÚMERO(B:B)-3;0;3))` |
+| Media móvil | En combinación con CONTAR.SI para ventanas móviles |
 
-**Importante:** BEREICH.VERSCHIEBEN es una **función volátil**, es decir,
-se vuelve a calcular cada vez que se modifica el libro. Si hay muchas fórmulas con BEREICH.VERSCHIEBEN,
+**Importante:** DESPLAZAR.RANGO es una **función volátil**, es decir,
+se vuelve a calcular cada vez que se modifica el libro. Si hay muchas fórmulas con DESPLAZAR.RANGO,
 el rendimiento puede verse afectado.
 
 **Ejercicio 2.2  Referencias dinámicas**
 
-La siguiente tabla de ejercicios **Módulo 2 2 BEREICH_VERSCHIEBEN** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 2 2 DESPLAZAR_ÁREA** ya está cargada.
 
 > 1. Crea una fórmula de suma dinámica que tenga en cuenta automáticamente las nuevas filas
->    (utilizando ANZAHL2 para el número de filas).
+>    (utilizando CONTAR2 para el número de filas).
 > 2. Crea una fórmula para calcular la media de los últimos 6 meses que
 >    se ajuste automáticamente cuando se añadan nuevos datos.
 
@@ -327,13 +286,13 @@ La siguiente tabla de ejercicios **Módulo 2 2 BEREICH_VERSCHIEBEN** ya está ca
 
 ### Concepto: encadenar varias condiciones de forma elegante
 
-En lugar de anidamientos profundos de funciones WENN, Excel ofrece varias alternativas:
+En lugar de anidamientos profundos de funciones SI, Excel ofrece varias alternativas:
 
 | Función | Sintaxis | Aplicación |
 |----------|--------|-----------|
-| SI (Excel 2019+) | `=WENN(B2>=90;"A";B2>=80;"B";B2>=70;"C";VERD;"F")` | Varias condiciones sin anidamiento |
-| SIERRO | `=SIERRODER(SVERWEIS(A2;Lista;2;0);"No encontrado")` | Capturar #NV y otros errores |
-| WAHL | `=WAHL(B2;"Pequeño";"Mediano";"Grande")` | Valor de una lista basado en el índice |
+| SI (Excel 2019+) | `=SI(B2>=90;"A";B2>=80;"B";B2>=70;"C";VERD;"F")` | Varias condiciones sin anidamiento |
+| SIERRO | `=SIERRO(BUSCARV(A2;Lista;2;0);"No encontrado")` | Capturar #NV y otros errores |
+| ELEGIR | `=ELEGIR(B2;"Pequeño";"Mediano";"Grande")` | Valor de una lista basado en el índice |
 
 **Consejo:** ERROR.SI detecta TODOS los errores. Para un tratamiento de errores más preciso,
 existe ERROR.SI.NV (solo #NV) en Excel 2013 y versiones posteriores.
@@ -365,12 +324,6 @@ La siguiente tabla de ejercicios **Módulo 2.3 Lógica** ya está cargada.
 El tipo de interés debe ajustarse al período: el tipo de interés anual dividido entre 12
 para cuotas mensuales.
 
-
-### Errores típicos
-
-- **Tasa de interés no ajustada:** El interés anual debe dividirse entre 12 para cuotas mensuales: `RMZ(4,5%/12; 30*12; -250000)`.
-- **Signo:** Los pagos que realizas (cuota de préstamo, cuota de ahorro) son negativos. El importe del préstamo es positivo.
-
 **Ejercicio 2.4: Aplicar funciones financieras**
 
 La siguiente tabla de ejercicios **Módulo 2.4 Funciones financieras** ya está cargada.
@@ -391,12 +344,12 @@ devolver toda una serie de resultados.
 
 **Fórmula matricial clásica (Ctrl+Mayús+Intro):**
 ```
-{=SUMME(SI(A1:A10>10; B1:B10; 0))}
+{=SUMA(SI(A1:A10>10; B1:B10; 0))}
 ```
 
 **Fórmulas matriciales dinámicas (Excel 365/2021):**
 ```
-=SORTIEREN(FILTERN(A1:C100; C1:C100>1000))
+=ORDENAR(FILTRAR(A1:C100; C1:C100>1000))
 ```
 
 **Consejo:** En Excel 365, las fórmulas matriciales se tratan automáticamente como matrices dinámicas;
@@ -408,9 +361,9 @@ automáticamente a todas las celdas afectadas.
 La siguiente tabla de ejercicios **Módulo 2.5 Fórmulas matriciales** ya está cargada.
 
 > 1. Crea una fórmula matricial que sume todas las ventas > 1.000:
->    `{=SUMME(SI(C2:C20>1000; C2:C20; 0))}`
+>    `{=SUMA(SI(C2:C20>1000; C2:C20; 0))}`
 > 2. Crea una fórmula matricial que encuentre la venta más alta por región.
-> 3. Pruebe (Excel 365): `=SORTIEREN(ÚNICODER(A2:A50))` para obtener valores únicos.
+> 3. Pruebe (Excel 365): `=ORDENAR(ÚNICO(A2:A50))` para obtener valores únicos.
 
 
 ## 2.6. Funciones de fecha y hora
@@ -423,12 +376,12 @@ cálculos de tiempo precisos.
 
 | Función | Sintaxis | Ejemplo | Resultado |
 |----------|--------|----------|----------|
-| HOY | `=HOUND()` | `=HOUND()` | Fecha actual |
-| AHORA | `=JETZT()` | `=JETZT()` | Fecha + hora |
-| AÑO | `=AÑODER(fecha)` | `=AÑODER(B2)` | Extraer el año |
-| MES | `=MONAT(fecha)` | `=MONAT(B2)` | Mes (1-12) |
+| HOY | `=HOY()` | `=HOY()` | Fecha actual |
+| AHORA | `=AHORA()` | `=AHORA()` | Fecha + hora |
+| AÑO | `=AÑO(fecha)` | `=AÑO(B2)` | Extraer el año |
+| MES | `=MES(fecha)` | `=MES(B2)` | Mes (1-12) |
 | DÍA | `=DÍA(fecha)` | `=DÍA(B2)` | Día (1-31) |
-| FIN DE MES | `=FIN DE MONAT(Fecha; Meses)` | `=FIN DE MONAT(B2;0)` | Último día del mes |
+| FIN DE MES | `=FIN DE MES(Fecha; Meses)` | `=FIN DE MES(B2;0)` | Último día del mes |
 | AÑOS PARCIALES | `=AÑOS PARCIALES(Inicio; Fin)` | `=AÑOS PARCIALES(B2;C2)` | Años entre fechas |
 | DÍA LABORABLE | `=DÍA LABORABLE(fecha; días)` | `=DÍA LABORABLE(B2;10)` | Fecha tras X días laborables |
 | DÍAS LABORABLES NETOS | `=DÍAS LABORABLES NETOS(inicio; fin)` | `=DÍAS LABORABLES NETOS(B2;C2)` | Días laborables entre fechas |
@@ -442,35 +395,17 @@ está disponible en todas las versiones de Excel.
 La siguiente tabla de ejercicios **Módulo 2.6 Fecha_Hora** ya está cargada.
 
 > 1. Calcula la edad de las personas a partir de la fecha de nacimiento con
->    `=AÑOS(B2;HOUND())`.
+>    `=AÑOS(B2;HOY())`.
 > 2. Determina con `FINAL_MES` el último día del mes actual.
 > 3. Calcule la fecha de vencimiento 30 días laborables después de la fecha del pedido con
 >    `DÍAS_LABORABLES`.
 > 4. Calcule el número de días laborables entre dos fechas con
 >    `DÍAS_LABORABLES_NETOS`.
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Usar INDEX+VERGLEICH para búsquedas bidireccionales (también derecha→izquierda)
-- [ ] Crear nombres de rango dinámicos con BEREICH.VERSCHIEBEN
-- [ ] Formular lógica anidada con WENNS, WENNFEHLER y WAHL de forma más elegante que con WENN anidados profundos
-- [ ] Aplicar RMZ, NBW, IKV y ZW para cálculos financieros
-- [ ] Escribir fórmulas matriciales (clásicas con Ctrl+Mayús+Enter y dinámicas en Excel 365)
-- [ ] Realizar cálculos de fecha y hora con MONATSENDE, ARBEITSTAG y NETTOARBEITSTAGE
-
-\newpage
 ## Módulo 3: Referencias 3D, nombres y vínculos externos
 
 **Objetivo de aprendizaje:** Utilizar de forma profesional los nombres definidos, consolidar datos de varias hojas
 mediante referencias 3D y vincular libros de trabajo externos.
-
-### ¿Qué sabes ya?
-
-- ¿Trabajas con varias hojas de cálculo en un mismo libro?
-- ¿Has vinculado alguna vez datos de otro archivo de Excel?
-- ¿Ya utilizas rangos con nombre (p. ej., =Ventas en lugar de =B2:B50)?
-
-Este módulo aporta estructura a tus libros de trabajo y te ahorra tiempo en la búsqueda de errores.
 
 ## 3.1. Nombres definidos para usuarios avanzados
 
@@ -481,9 +416,9 @@ Los nombres hacen que las fórmulas sean legibles y fáciles de mantener. En lug
 
 | Tipo de nombre | Ejemplo | Uso |
 |----------|---------|------------|
-| Nombre de rango | `=SUMME(Ventas)` | Suma el rango nombrado |
+| Nombre de rango | `=SUMA(Ventas)` | Suma el rango nombrado |
 | Nombre de fórmula | `IVA = 0,19` | Constante en cálculos |
-| Nombre dinámico | `Datos = BEREICH.VERSCHIEBEN(Tabla1!$A$1;0;0;ANZAHL2(Tabla1!$A:$A);5)` | Crece automáticamente |
+| Nombre dinámico | `Datos = DESPLAZAR.RANGO(Tabla1!$A$1;0;0;CONTO2(Tabla1!$A:$A);5)` | Crece automáticamente |
 
 **El Administrador de nombres** (`Ctrl+F3`) muestra todos los nombres definidos con su
 ámbito de validez (libro o hoja individual).
@@ -494,7 +429,7 @@ La siguiente tabla de ejercicios **Módulo 3.1 Nombres** ya está cargada.
 
 > 1. Defina nombres para: Tipo_IVA (19 %), Impuesto sobre la renta (25 %),
 >    Cotizaciones sociales (15 %).
-> 2. Cree un nombre dinámico `TodosLosDatos` con BEREICH.VERSCHIEBEN,
+> 2. Cree un nombre dinámico `TodosLosDatos` con DESPLAZAR.RANGO,
 >    que incluya automáticamente las nuevas filas.
 > 3. Utilice los nombres en una fórmula de nómina.
 
@@ -505,14 +440,14 @@ La siguiente tabla de ejercicios **Módulo 3.1 Nombres** ya está cargada.
 Una referencia 3D hace referencia a la misma celda o al mismo rango a lo largo de varias
 hojas de cálculo.
 
-**Sintaxis:** `=SUMME(Enero:Diciembre!B2)`
+**Sintaxis:** `=SUMA(Enero:Diciembre!B2)`
 
 | Función | ¿Compatible con 3D? | Ejemplo |
 |----------|:---------:|----------|
-| SUMME |  | `=SUMME(Q1:Q4!B5)` |
-| MITTELWERT |  | `=MITTELWERT(2019:2026!C10)` |
-| MAX / MIN |  | `=MAX(Región1:Región5!D20)` |
-| SVERWEIS |  | No es posible en referencias 3D |
+| SUMA |  | `=SUMA(Q1:Q4!B5)` |
+| MEDIA |  | `=MEDIA(2019:2026!C10)` |
+| MÁX / MÍN |  | `=MÁX(Región1:Región5!D20)` |
+| BUSCARV |  | No es posible en referencias 3D |
 
 **Importante:** Todas las hojas deben tener la misma estructura (los mismos datos en
 las mismas posiciones). Las hojas que se inserten entre la primera y la última hoja
@@ -522,7 +457,7 @@ se incluyen automáticamente en la referencia 3D.
 
 La siguiente tabla de ejercicios **Módulo 3 2 Referencias 3D** ya está cargada.
 
-> 1. Crea un resumen anual que, con `=SUMME(Enero:Diciembre!B2)`,
+> 1. Crea un resumen anual que, con `=SUMA(Enero:Diciembre!B2)`,
 >    calcule el total de todas las hojas mensuales.
 > 2. Inserta una nueva hoja entre enero y febrero; comprueba
 >    si la referencia 3D incluye automáticamente la nueva hoja.
@@ -589,26 +524,10 @@ La siguiente tabla de ejercicios **Módulo 3.4 Consolidación** ya está cargada
 > 3. Active el vínculo con los datos de origen y modifique un valor
 >    en Q1: ¿se actualiza la consolidación?
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Usar nombres definidos para constantes, rangos y fórmulas dinámicas de forma profesional
-- [ ] Utilizar referencias 3D (Enero:Diciembre!B2) para cálculos entre hojas
-- [ ] Crear y gestionar vínculos externos a otros libros de trabajo
-- [ ] Realizar consolidación de datos por posición y categoría con vínculo a los datos de origen
-
-\newpage
 ## Módulo 4: Bases de datos en Excel. Filtros especiales y funciones de base de datos
 
 **Objetivo de aprendizaje:** aplicar filtros especiales con criterios complejos, utilizar funciones de base de datos
-(DBSUMME, DBMITTELWERT) y calcular resultados parciales en varias etapas.
-
-### ¿Qué sabes ya?
-
-- ¿Cómo filtras actualmente los datos con varias condiciones?
-- ¿Te imaginas poder usar Excel como una pequeña base de datos?
-- ¿Sabes qué hace Ctrl+T con un rango de datos?
-
-Técnicas de bases de datos en Excel, sin SQL y sin Access.
+(SUMA.BASE, MEDIA.BASE) y calcular resultados parciales en varias etapas.
 
 ## 4.1. Filtros especiales con rango de criterios
 
@@ -644,17 +563,17 @@ La siguiente tabla de ejercicios **Módulo 4.1 Filtros especiales** ya está car
 
 ### Concepto: cálculos condicionales a nivel de tabla
 
-Las funciones de base de datos funcionan como SUMMEWENN, pero con un
+Las funciones de base de datos funcionan como SUMASII, pero con un
 rango de criterios independiente, lo que resulta ideal para condiciones complejas de varios niveles.
 
 | Función | Equivalente | Sintaxis |
 |----------|-------------|--------|
-| DBSUMME | SUMME con criterios | `=DBSUMME(base de datos; «Volumen de negocio»; criterios)` |
-| DBMITTELWERT | MITTELWERT con criterios | `=DBMITTELWERT(base de datos; «Edad»; criterios)` |
-| DBANZAHL | ANZAHL con criterios | `=DBANZAHLDER(base de datos; «ID»; criterios)` |
+| DBSUMME | SUMA con criterios | `=DBSUMME(base de datos; «Volumen de negocio»; criterios)` |
+| DBMITTELWERT | MEDIA con criterios | `=DBMITTELWERT(base de datos; «Edad»; criterios)` |
+| DBCONTO | CONTO con criterios | `=DBCONTO(base de datos; «ID»; criterios)` |
 | DBEXTRACCIÓN | Extraer un valor individual | `=DBEXTRACCIÓN(base de datos; «Nombre»; criterios)` |
 
-**Ventaja frente a SUMMEWENNS:** los criterios se pueden gestionar en un rango
+**Ventaja frente a SUMAS.SI:** los criterios se pueden gestionar en un rango
 y modificarse rápidamente sin tener que modificar las fórmulas.
 
 **Ejercicio 4.2  Funciones de base de datos**
@@ -706,8 +625,8 @@ una estructura de datos inteligente con sus propias reglas y referencias.
 
 **Las referencias estructuradas** utilizan nombres de tablas y columnas en lugar de direcciones de celda:
 ```
-=SUMME(Tabla1[Volumen de negocio])
-=SVERWEIS(A2;Lista de precios;2;0)
+=SUMA(Tabla1[Volumen de negocio])
+=BUSCARV(A2;Lista de precios;2;0)
 =[@Volumen de negocio]-[@Costes]
 ```
 
@@ -725,26 +644,10 @@ La siguiente tabla de ejercicios **Módulo 4.4 Tablas** ya está cargada.
 > 4. Añada nuevas filas de datos: ¿se aplican automáticamente el formato y las fórmulas
 >    ?
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Aplicar filtros especiales con rangos de criterios multinivel Y/O
-- [ ] Usar funciones de base de datos (DBSUMME, DBMITTELWERT, DBANZAHL, DBAUSZUG) para evaluaciones flexibles
-- [ ] Crear subtotales multinivel con agrupación y esquema
-- [ ] Utilizar tablas de Excel con referencias estructuradas ([@NombreColumna]) de forma profesional
-
-\newpage
 ## Módulo 5: Tablas dinámicas avanzadas
 
 **Objetivo de aprendizaje:** Crear tablas dinámicas complejas con agrupaciones, filtrados,
 campos calculados y gráficos dinámicos.
-
-### ¿Qué sabes ya?
-
-- ¿Creas tablas dinámicas con regularidad? Si es así: ¿qué te falta?
-- ¿Has agrupado alguna vez datos en una tabla dinámica por meses?
-- ¿Se pueden filtrar varias tablas dinámicas simultáneamente?
-
-Las técnicas avanzadas de tablas dinámicas convierten simples resúmenes en paneles interactivos.
 
 ## 5.1. Tablas dinámicas para usuarios avanzados
 
@@ -788,12 +691,6 @@ Margen de beneficio = Beneficio / Facturación
 **Importante:** Los campos calculados trabajan con los valores **agregados**, no con
 los datos brutos. `Beneficio / Facturación` divide la suma de los beneficios entre la suma de la
 facturación,  no fila por fila.
-
-
-### Errores típicos
-
-- **Los campos calculados trabajan con valores agregados**, no con datos sin procesar. `Beneficio/Ventas` divide la suma de beneficios entre la suma de ventas, no fila por fila.
-- **La agrupación solo es posible en campos de fecha:** Los campos numéricos no se pueden agrupar, solo las fechas.
 
 **Ejercicio 5.2: Agrupación y campos calculados**
 
@@ -858,27 +755,10 @@ para Mac ni en Excel Online). Para este curso, se trata de una visión general: 
 conocimientos básicos sobre tablas dinámicas de los apartados 5.1 a 5.4 constituyen la base.
 
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Crear tablas dinámicas complejas con varios campos en filas, columnas y valores
-- [ ] Aplicar agrupaciones de fechas y campos calculados (p. ej., margen) en tablas dinámicas
-- [ ] Usar segmentaciones y escalas de tiempo para paneles interactivos y vincularlas con varias tablas dinámicas
-- [ ] Crear gráficos dinámicos que se actualizan automáticamente con la tabla dinámica
-- [ ] Comprender las posibilidades de Power Pivot y DAX para modelos de datos grandes
-
-\newpage
 ## Módulo 6: Análisis de datos, escenarios y Solver
 
 **Objetivo de aprendizaje:** Realizar análisis de «qué pasaría si» con la búsqueda de valor objetivo, escenarios y Solver,
 así como utilizar minigráficos y líneas de tendencia.
-
-### ¿Qué sabes ya?
-
-- ¿Has «calculado hacia atrás» alguna vez (del resultado deseado a la entrada necesaria)?
-- ¿Cómo modelas actualmente diferentes escenarios de futuro?
-- ¿Sabes cómo encontrar valores óptimos bajo restricciones?
-
-El análisis condicional es la disciplina suprema del análisis en Excel: aquí aprendes todas las herramientas.
 
 ## 6.1. Búsqueda de valores objetivo y tablas de datos
 
@@ -944,13 +824,6 @@ El Solver es una herramienta de optimización que va mucho más allá de la bús
 | Celdas modificables | ¿Qué puede ajustar Excel? | $B$2:$B$5 (cantidades de producción) |
 | Restricciones | Limitaciones | $B$2:$B$5 <= $C$2:$C$5 (capacidad máxima) |
 
-
-### Errores típicos
-
-- **Solver no activado:** Solver debe activarse primero en Archivo → Opciones → Complementos.
-- **Restricciones poco realistas:** Si las restricciones son demasiado estrictas, Solver no encuentra solución. Empieza con límites amplios.
-- **Integridad:** Si necesitas números enteros (p. ej., cantidad de productos), añade una restricción de integridad.
-
 **Ejercicio 6.3: Utilizar el Solver**
 
 La siguiente tabla de ejercicios **Módulo 6.3 Solver** ya está cargada.
@@ -987,27 +860,10 @@ La siguiente tabla de ejercicios **Módulo 6.4 Sparklines** ya está cargada.
 > 3. Interpreta R = 0,87: ¿se trata de una correlación fuerte?
 
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Usar la búsqueda de objetivo para cálculos inversos
-- [ ] Crear tablas de datos unidimensionales y bidimensionales para análisis de escenarios
-- [ ] Utilizar el administrador de escenarios para previsiones optimistas/pesimistas/neutras
-- [ ] Configurar Solver para problemas de optimización con múltiples restricciones
-- [ ] Usar minigráficos y líneas de tendencia con R² para análisis de tendencias en miniatura
-
-\newpage
 ## Módulo 7: Gráficos avanzados y paneles de control
 
 **Objetivo de aprendizaje:** Crear gráficos combinados con eje secundario, gráficos en cascada y
 cuadros de mando ejecutivos profesionales.
-
-### ¿Qué sabes ya?
-
-- ¿Qué tipos de gráficos usas habitualmente?
-- ¿Has mostrado alguna vez dos escalas de datos diferentes (p. ej., € y %) en un mismo gráfico?
-- En tu opinión, ¿qué hace que un panel de control sea bueno?
-
-Visualización a nivel profesional: gráficos que convencen a los responsables de la toma de decisiones.
 
 ## 7.1. Tipos de gráficos avanzados
 
@@ -1073,25 +929,9 @@ La siguiente tabla de ejercicios **Módulo 7.3: Panel de control** ya está carg
 >    aspecto profesional.
 
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Crear gráficos combinados con eje secundario para diferentes escalas
-- [ ] Construir gráficos de cascada para efectos acumulados (p. ej., cuenta de pérdidas y ganancias)
-- [ ] Diseñar un panel de control profesional con varios gráficos, segmentaciones y minigráficos
-- [ ] Aplicar principios de diseño de paneles (máx. 4-6 elementos, colores uniformes, cuadrícula)
-
-\newpage
 ## Módulo 8: Automatización con macros
 
 **Objetivo de aprendizaje:** Grabar, ejecutar y editar macros de forma básica en VBA.
-
-### ¿Qué sabes ya?
-
-- ¿Hay tareas recurrentes en tu día a día con Excel (siempre el mismo formato, la misma importación)?
-- ¿Cuánto tiempo dedicas semanalmente a estas tareas rutinarias?
-- ¿Has oído alguna vez el término «macro» y no sabías qué era?
-
-La automatización empieza con un clic en «Grabar»: no necesitas ser programador.
 
 ## 8.1. Comprender y grabar macros
 
@@ -1160,26 +1000,10 @@ La siguiente tabla de ejercicios **Módulo 8.3 Editor de VBA** ya está cargada.
 > 3. Cambia un color en el código (por ejemplo, `.Color = RGB(0, 0, 255)` para el azul).
 
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Grabar macros de forma absoluta y relativa
-- [ ] Ejecutar macros mediante botones, combinaciones de teclas y el cuadro de diálogo de macros
-- [ ] Abrir el editor de VBA (Alt+F11) y leer y comprender el código grabado
-- [ ] Realizar modificaciones sencillas de código (p. ej., colores) en el editor de VBA
-
-\newpage
 ## Módulo 9: Programación en VBA (conceptos básicos)
 
 **Objetivo de aprendizaje:** comprender los conceptos básicos de VBA, escribir procedimientos sencillos
 y utilizar los eventos de Excel.
-
-### ¿Qué sabes ya?
-
-- Has grabado macros en el Módulo 8. ¿Te gustaría entender qué significa el código?
-- ¿Te imaginas que una macro reaccione automáticamente al modificar una celda?
-- ¿Te gustaría tener tus propias funciones de Excel que no existen por defecto?
-
-De la grabación a la programación: el siguiente paso natural.
 
 ## 9.1. Variables y tipos de datos
 
@@ -1305,27 +1129,10 @@ La siguiente tabla de ejercicios **Módulo 9.4 VBA_UDF** ya está cargada.
 **Consejo:** `Option Explicit` al principio del módulo VBA protege contra errores tipográficos en
 los nombres de las variables, la fuente de errores más habitual en las macros.
 
-### Esto es lo que sabes hacer ahora
-
-- [ ] Declarar variables con tipos de datos correctos (Integer, Double, String, Range)
-- [ ] Escribir condiciones If-Then-Else y bucles For en VBA
-- [ ] Programar eventos Worksheet_Change y Workbook_Open para reacciones automáticas
-- [ ] Escribir funciones definidas por el usuario (UDF) y usarlas en fórmulas de Excel
-- [ ] Aplicar buenas prácticas (Option Explicit, nombres descriptivos, comentarios, manejo de errores)
-
-\newpage
 ## Módulo 10: Colaboración, plantillas y productividad
 
 **Objetivo de aprendizaje:** Optimizar los libros de trabajo para la colaboración, crear
 plantillas profesionales y dominar técnicas de productividad.
-
-### ¿Qué sabes ya?
-
-- ¿Compartes archivos de Excel regularmente con compañeros o clientes?
-- ¿Cómo te aseguras de que el destinatario use el archivo como está previsto?
-- ¿Qué combinaciones de teclas usas a diario y cuáles podrías aprender todavía?
-
-La profesionalidad no solo se refleja en las fórmulas, sino también en la colaboración y la eficiencia.
 
 ## 10.1. Plantillas profesionales
 
@@ -1427,13 +1234,6 @@ La siguiente tabla de ejercicios **Módulo 10.4 Atajos de teclado** ya está car
 >    dar formato a una tabla, calcular una suma y aplicar un filtro.
 > 2. Utiliza `Ctrl+[` y `Ctrl+]` para analizar fórmulas.
 > 3. Utiliza la tecla F4 para cambiar entre los tipos de referencia al editar una fórmula.
-
-### Esto es lo que sabes hacer ahora
-
-- [ ] Crear plantillas profesionales de Excel (.xltx) con celdas de fórmula protegidas y listas desplegables
-- [ ] Preparar libros de trabajo para la colaboración (comentarios, exportación a PDF, protección de hoja)
-- [ ] Comprender las posibilidades de Power Query para la importación y transformación de datos
-- [ ] Dominar las combinaciones de teclas avanzadas más importantes (Ctrl+[, F9, Alt+=)
 
 ---
 

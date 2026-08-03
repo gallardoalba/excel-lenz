@@ -36,6 +36,7 @@ geometry: margin=2.5cm
 
 \tableofcontents
 
+\newpage
 ## Introducción
 
 Este plan de estudios ofrece una introducción completa a Microsoft Excel para adultos
@@ -59,6 +60,8 @@ Este plan de estudios está dirigido a **adultos sin conocimientos previos** de 
 - Tener instalado Microsoft Excel 2019 o Microsoft 365
 
 
+\newpage
+\newpage
 ## Módulo 1: Introducción a Excel y al entorno de trabajo
 
 **Objetivo de aprendizaje:** Familiarizarse con la interfaz de Excel, los conceptos básicos y la gestión de archivos.
@@ -145,9 +148,27 @@ Guárdelo como `Inventario_2026.xlsx` y expórtelo a PDF.
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Abrir Excel, crear un nuevo libro y guardarlo
+- [ ] Nombrar los elementos principales de la interfaz (cinta de opciones, barra de fórmulas, barra de estado)
+- [ ] Navegar entre celdas y hojas de cálculo (teclas de dirección, Ctrl+Inicio, Ctrl+Fin)
+- [ ] Guardar un libro como .xlsx y .pdf
+- [ ] Personalizar la barra de herramientas de acceso rápido
+
+\newpage
 ## Módulo 2: Introducción y edición de datos
 
 **Objetivo de aprendizaje:** Introducir y editar de forma eficiente datos de distintos tipos, y organizarlos con la función de autocompletar.
+
+### ¿Qué sabes ya?
+
+Antes de empezar, reflexiona un momento:
+- ¿Qué tipos de datos has introducido ya en Excel?
+- ¿Has usado alguna vez el controlador de relleno (el cuadradito de la esquina inferior derecha)?
+- ¿Sabes qué ocurre con las referencias de celda al copiar una fórmula?
+
+**No te preocupes si no sabes algo** — para eso está este módulo.
 
 ## 2.1. Tipos de datos en Excel
 
@@ -284,10 +305,28 @@ La siguiente tabla de ejercicios **Módulo 2.4 Copiar** ya está cargada.
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Distinguir los cinco tipos de datos (texto, número, fecha, hora, moneda)
+- [ ] Editar celdas de tres formas (doble clic, F2, barra de fórmulas)
+- [ ] Usar el controlador de relleno para series (días de la semana, meses, secuencias numéricas)
+- [ ] Copiar contenido de forma selectiva con «Pegado especial — valores» y «Transponer»
+- [ ] Aplicar deshacer (Ctrl+Z) y rehacer (Ctrl+Y) con seguridad
+
+\newpage
 ## Módulo 3: Formato y estilo de celda
 
 **Objetivo de aprendizaje:** dar formato a las tablas de forma profesional, representar correctamente los números y aplicar el
 formato condicional.
+
+### ¿Qué sabes ya?
+
+Piensa en una tabla que hayas visto recientemente (factura, lista, informe):
+- ¿Qué te gustó del formato? ¿Qué no?
+- ¿Has formateado alguna vez un número como porcentaje o moneda?
+- ¿Sabes cómo ajustar automáticamente las columnas al ancho del texto?
+
+En este módulo convertirás datos en crudo en una tabla de aspecto profesional.
 
 ## 3.1. Formato básico
 
@@ -427,10 +466,27 @@ La siguiente tabla de ejercicios **Módulo 3.4 Formato condicional** ya está ca
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Formatear una tabla de forma profesional (fuente, bordes, colores, alineación)
+- [ ] Formatear números correctamente como moneda, porcentaje o fecha
+- [ ] Ajustar el ancho de columna y el alto de fila de forma automática y manual
+- [ ] Insertar, eliminar y ocultar filas/columnas
+- [ ] Aplicar formato condicional (barras de datos, escalas de color, reglas)
+
+\newpage
 ## Módulo 4: Fórmulas y funciones básicas
 
 **Objetivo de aprendizaje:** Realizar cálculos con fórmulas, comprender las referencias de celdas y utilizar funciones básicas
-como SUMA y SI.
+como SUMME y WENN.
+
+### ¿Qué sabes ya?
+
+- ¿Has hecho algún cálculo en Excel? ¡Incluso las sumas simples cuentan!
+- ¿Sabes qué ocurre al copiar hacia abajo una fórmula como =B2*C2?
+- ¿Tienes una idea de para qué sirve el símbolo del dólar $ en $A$1?
+
+Las fórmulas son el corazón de Excel: en este módulo aprenderás a dominarlas.
 
 ## 4.1. Conceptos básicos de las fórmulas
 
@@ -454,6 +510,13 @@ Los operadores matemáticos siguen la regla conocida de la escuela
 
  **Importante:** Sin paréntesis, se aplica la regla de "primero lo punto, luego lo raya": `=2+3*4` da como resultado `14`, ya que
 `3*4=12` se calcula primero. Con paréntesis: `=(2+3)*4` da como resultado `20`.
+
+
+### Errores típicos
+
+- **Olvidar el `=`:** Una entrada como `A1+A2` sin `=` se trata como texto.
+- **No respetar la prioridad de operaciones:** `=2+3*4` da 14, no 20. Con paréntesis: `=(2+3)*4` da 20.
+- **Separador incorrecto:** En la versión alemana de Excel, el punto y coma `;` es el separador, no la coma: `=SUMME(A1;A2)`.
 
 **Ejercicio 4.1 — Escribir las primeras fórmulas**
 
@@ -504,6 +567,14 @@ la celda `B1`, que es el mismo para todos los cálculos—. Para ello, utilice e
  **Consejo:** La tecla `F4` alterna entre los cuatro
 tipos de referencia al editar una fórmula: `A1` → `$A$1` → `A$1` → `$A1` → `A1`. ¡Un atajo imprescindible!
 
+
+### Errores típicos
+
+- **Olvidar los símbolos $:** Si copias `=B2*F1` hacia abajo, F1 se convierte en F2, F3... — la fórmula falla. ¡Usa `$F$1`!
+- **Tipo de referencia incorrecto:** Absoluta (`$A$1`) fija ambas, mixta (`$A1` o `A$1`) solo una parte. Antes de copiar, pregúntate: ¿qué debe permanecer igual?
+
+**Regla mnemotécnica:** `F4` alterna entre los cuatro tipos de referencia: ¡la tecla más importante al escribir fórmulas!
+
 **Ejercicio 4.2 — Comprender las referencias de celda**
 
 La siguiente tabla de ejercicios **Módulo 4.2 Referencias de celdas** ya está cargada.
@@ -538,7 +609,7 @@ incluso semanas después, seguirá sabiendo qué es lo que se está calculando.
 Allí podrá ver, editar y eliminar todos los nombres definidos.
 
 **Consejo:** Los nombres son válidos para todo el libro, no solo para una
-hoja de cálculo. Si escribe `=SUMA(Volumen de negocio)`, no es necesario que sepa
+hoja de cálculo. Si escribe `=SUMME(Volumen de negocio)`, no es necesario que sepa
 en qué hoja se encuentran los datos de volumen de negocio.
 
 **Ejercicio 4.3 — Definir nombres**
@@ -548,37 +619,37 @@ en qué hoja se encuentran los datos de volumen de negocio.
 > 1. Defina el nombre `IVA` para la celda que contiene el tipo de IVA.
 > 2. En la fórmula del precio bruto, sustituya `$F$1` por `IVA`.
 > 3. Defina el nombre `Lista de precios` para toda la tabla de precios.
-> 4. Utilice el nombre en una fórmula: `=BUSCARV(A2;Lista de precios;2;0)`.
+> 4. Utilice el nombre en una fórmula: `=SVERWEIS(A2;Lista de precios;2;0)`.
 
 ## 4.4. Funciones estadísticas básicas
 
 ###  Concepto: módulos de cálculo predefinidos
 
 Las funciones son fórmulas predefinidas que incluye Excel. En lugar de escribir `=A1+A2+A3+...+A100`,
-basta con utilizar `=SUMA(A1:A100)`. Cada función tiene un nombre, seguido
+basta con utilizar `=SUMME(A1:A100)`. Cada función tiene un nombre, seguido
 de paréntesis con los argumentos. Las cinco funciones estadísticas más importantes cubren
 el 90 % de las necesidades de los principiantes:
 
 | Función | Inglés | Qué hace | Ejemplo |
 |----------|----------|---------------|----------|
-| `SUMA()` | `SUM()` | Suma todos los valores | `=SUMA(B2:B50)` |
-| `MEDIA()` | `AVERAGE()` | Calcula la media | `=MEDIA(C2:C50)` |
+| `SUMME()` | `SUM()` | Suma todos los valores | `=SUMME(B2:B50)` |
+| `METAG()` | `AVERAGE()` | Calcula la media | `=METAG(C2:C50)` |
 | `MIN()` | `MIN()` | Busca el valor más pequeño | `=MIN(D2:D50)` |
 | `MAX()` | `MAX()` | Busca el valor más grande | `=MAX(D2:D50)` |
 | `ANZAHL()` | `COUNT()` | ¿Cuántos números hay? | `=ANZAHL(E2:E50)` |
 | `CONTA2()` | `COUNTA()` | ¿Cuántas celdas no vacías? | `=CONTA2(A2:A50)` |
 
  **Consejo:** El botón de suma automática (`Alt+=`) de la pestaña "Inicio" inserta
-automáticamente `=SUMA()` para el rango seleccionado. ¡Incluso reconoce tus rangos de datos!
+automáticamente `=SUMME()` para el rango seleccionado. ¡Incluso reconoce tus rangos de datos!
 
-**Ejercicio 4.3 — Aplicar funciones estadísticas**
+**Ejercicio 4.4 — Aplicar funciones estadísticas**
 
-La siguiente tabla de ejercicios **Módulo 4.3 Estadística** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 4.4 Estadística** ya está cargada.
 
-1. Calcula con `SUMA` el total de las ventas.
-2. Calcula la `MEDIA`, el pedido más pequeño (`MÍN`) y el más grande (`MÁX`).
-3. Cuenta con `CONTAE` el número de entradas de ventas.
-4. Con la función `CONTAE2`, cuenta todas las celdas no vacías de la columna A (nombres de clientes).
+1. Calcula con `SUMME` el total de las ventas.
+2. Calcula la `MITTELWERT`, el pedido más pequeño (`MIN`) y el más grande (`MAX`).
+3. Cuenta con `ZÄHLENWENN` el número de entradas de ventas.
+4. Con la función `ZÄHLENWENN2`, cuenta todas las celdas no vacías de la columna A (nombres de clientes).
 5. Prueba el botón de Autosuma: haz clic debajo de una columna de números y
 
    luego en "Suma".
@@ -592,7 +663,7 @@ tomar decisiones: "SI esta condición es verdadera, ENTONCES haz esto; SI NO, ha
 Es como una regla "si... entonces" automatizada y constituye la base de cualquier
 automatización inteligente.
 
-**Sintaxis:** `=SI(condición; valor_si; valor_si_no)`
+**Sintaxis:** `=WENN(condición; valor_si; valor_si_no)`
 
 | Operador de comparación | Significado | Ejemplo |
 |-------------------|-----------|----------|
@@ -603,28 +674,47 @@ automatización inteligente.
 | `=` | Igual a | `E5="Sí"` |
 | `<>` | Diferente de | `F6<>0` |
 
- **Consejo:** En una función SI, la parte "si no" puede ser a su vez otra
+ **Consejo:** En una función WENN, la parte "si no" puede ser a su vez otra
 función SI; esto se denomina "función SI anidada". A partir de Excel 2019 existe
 la función `SIJS()`, que resulta más sencilla.
 
-**Ejercicio 4.4 — Utilizar la función SI**
+**Ejercicio 4.5 — Utilizar la función SI**
 
-La siguiente tabla de ejercicios **Módulo 4 4 SI** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 4 5 SI** ya está cargada.
 
-1. Escribe en D2: `=SI(C2>1000; "Pedido grande"; "Estándar")` y copia
+1. Escribe en D2: `=WENN(C2>1000; "Pedido grande"; "Estándar")` y copia
 
    la fórmula hacia abajo.
-2. En E2: `=SI(C2>5000; C2*0,1; 0)` para un 10 % de bonificación a partir de 5.000 €.
-3. En F2: `=SI(Y(B2="Norte"; C2>2000); "Prioridad"; "")` — combina
+2. En E2: `=WENN(C2>5000; C2*0,1; 0)` para un 10 % de bonificación a partir de 5.000 €.
+3. En F2: `=WENN(UND(B2="Norte"; C2>2000); "Prioridad"; "")` — combina
 
    SI con Y para dos condiciones.
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Escribir fórmulas con +, -, *, /, ^ y paréntesis (¡multiplicación antes que suma!)
+- [ ] Distinguir referencias relativas ($A1), absolutas ($A$1) y mixtas ($A1/A$1)
+- [ ] Cambiar entre tipos de referencia con F4
+- [ ] Aplicar SUMME, MITTELWERT, MIN, MAX y ANZAHL
+- [ ] Definir nombres para celdas y rangos, y usarlos en fórmulas
+- [ ] Usar la función WENN para decisiones simples
+- [ ] Combinar WENN con UND/ODER para condiciones múltiples
+
+\newpage
 ## Módulo 5: Limpieza y validación de datos
 
 **Objetivo de aprendizaje:** garantizar la calidad de los datos mediante la validación y limpiar de forma profesional
 los datos importados.
+
+### ¿Qué sabes ya?
+
+- ¿Has descubierto alguna vez datos erróneos en una tabla (erratas, entradas duplicadas)?
+- ¿Sabes de dónde provienen originalmente los datos de tus archivos de Excel?
+- ¿Te imaginas cómo evitar de antemano las entradas incorrectas?
+
+Unos datos limpios son la base de todo lo demás. Este módulo te convertirá en detective de datos.
 
 ## 5.1. Validación de datos
 
@@ -645,7 +735,7 @@ qué valores están permitidos —y bloquea todo lo demás—.
 | Número decimal | entre 0 y 1 | Valores negativos, valores > 1 |
 | Fecha | entre el 01/01/2026 y el 31/12/2026 | Fechas no válidas |
 | Longitud del texto | máximo 50 caracteres | Entradas demasiado largas |
-| Definida por el usuario | `=Y(A1>0; A1<1000)` | Todo lo que no se ajuste a la lógica de la fórmula |
+| Definida por el usuario | `=UND(A1>0; A1<1000)` | Todo lo que no se ajuste a la lógica de la fórmula |
 
  **Consejo:** Utilice el "Mensaje de entrada" y el "Mensaje de error" en la
 configuración de validación. El mensaje de entrada aparece como una indicación amable al
@@ -698,7 +788,7 @@ La siguiente tabla de ejercicios **Módulo 5.2 Limpiar** ya está cargada.
 Cuando los datos están dispersos en varias hojas de cálculo (p. ej., "Enero", "Febrero", "Marzo")
 , a menudo se desea ver un resumen en una sola hoja: una visión general anual.
 La **consolidación** agrupa datos de varios rangos por categorías y les aplica
-una función (normalmente SUMA).
+una función (normalmente SUMME).
 
  **Consejo:** Antes de consolidar, asegúrate de que todos los rangos de origen
 tengan la misma estructura: los mismos nombres de categorías en el mismo orden.
@@ -742,9 +832,28 @@ La siguiente tabla de ejercicios **Módulo 5_4 Importación** ya está cargada.
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Crear listas desplegables para una entrada de datos sin errores
+- [ ] Configurar mensajes de entrada y de error para validaciones
+- [ ] Eliminar duplicados con «Quitar duplicados»
+- [ ] Dividir texto con «Texto en columnas» según separadores
+- [ ] Usar el relleno rápido (Ctrl+E) para el reconocimiento de patrones
+- [ ] Consolidar datos de varias hojas
+- [ ] Importar archivos CSV correctamente (separador, codificación)
+
+\newpage
 ## Módulo 6: Hojas de cálculo y filtros
 
 **Objetivo de aprendizaje:** Ordenar, filtrar y organizar datos de forma profesional en hojas de cálculo de Excel.
+
+### ¿Qué sabes ya?
+
+- ¿Has ordenado alfabéticamente alguna vez una lista larga?
+- ¿Qué haces cuando en una tabla de 500 filas solo quieres ver las entradas de Madrid?
+- ¿Sabes cómo evitar que los encabezados desaparezcan al desplazarte?
+
+En este módulo pondrás orden en grandes volúmenes de datos, de forma rápida y elegante.
 
 ## 6.1. Buscar y sustituir
 
@@ -823,9 +932,9 @@ dentro de cada región por volumen de ventas, y todo ello con un solo clic.
 automáticamente todo el rango contiguo para ordenarlo. ¡No es necesario seleccionarlo todo
 manualmente!
 
-**Ejercicio 6.1 — Practicar la ordenación**
+**Ejercicio 6.3 — Practicar la ordenación**
 
-La siguiente tabla de ejercicios **Módulo 6.1 Ordenar** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 6.3 Ordenar** ya está cargada.
 
 1. Ordena la tabla de clientes alfabéticamente por apellido (A→Z).
 2. Ordena por valor del pedido en orden descendente (el más alto primero).
@@ -853,9 +962,9 @@ sino que solo quedan temporalmente invisibles.
 hay un filtro activo. Se pueden aplicar varios filtros a la vez, lo cual es fundamental
 para trabajar con grandes volúmenes de datos.
 
-**Ejercicio 6.2 — Aplicar filtros**
+**Ejercicio 6.4 — Aplicar filtros**
 
-La siguiente tabla de ejercicios **Módulo 6.2 Filtros** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 6.4 Filtros** ya está cargada.
 
 1. Active el filtro automático (`Ctrl+Mayús+L`).
 2. Filtre solo los pedidos procedentes de "Berlín".
@@ -881,9 +990,9 @@ Un rango de celdas normal (`A1:D100`) es un conjunto disperso de celdas. Una **t
  **Consejo:** Las referencias estructuradas como `=[@Volumen de negocio]` en lugar de `=D2` hacen que las fórmulas
 sean más legibles y robustas. Se ve al instante qué se está calculando, incluso semanas después.
 
-**Ejercicio 6.3 — Utilizar hojas de cálculo de Excel**
+**Ejercicio 6.5 — Utilizar hojas de cálculo de Excel**
 
-La siguiente hoja de ejercicios **Módulo 6.3 Hojas de cálculo** ya está cargada.
+La siguiente hoja de ejercicios **Módulo 6.5 Hojas de cálculo** ya está cargada.
 
 1. Convierte el rango de datos en una tabla de Excel con `Ctrl+T`.
 2. Elige un formato de tabla con colores de fila alternos.
@@ -902,9 +1011,9 @@ te permite alternar entre la vista detallada y la vista general.
  **Consejo:** Antes de utilizar los subtotales, **es imprescindible** que los datos estén ordenados según el
 criterio de agrupación; de lo contrario, obtendrá subtotales sin sentido.
 
-**Ejercicio 6.4 — Calcular subtotales**
+**Ejercicio 6.6 — Calcular subtotales**
 
-La siguiente tabla de ejercicios **Módulo 6.4 Resultados parciales** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 6.6 Resultados parciales** ya está cargada.
 
 1. Ordena primero la tabla por "Región".
 2. Añade totales automáticos para cada región mediante "Datos → Subtotal".
@@ -914,15 +1023,34 @@ La siguiente tabla de ejercicios **Módulo 6.4 Resultados parciales** ya está c
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Usar «Buscar y reemplazar» para correcciones rápidas (Ctrl+B)
+- [ ] Fijar encabezados con «Inmovilizar paneles»
+- [ ] Ordenar de forma simple y multinivel (por nombre, valor, color)
+- [ ] Filtrar datos por criterios con Autofiltro (Ctrl+Mayús+L)
+- [ ] Convertir un rango en una tabla inteligente de Excel con Ctrl+T
+- [ ] Usar referencias estructuradas como [@Precio] en lugar de direcciones de celda
+- [ ] Insertar subtotales automáticos con agrupación y esquema
+
+\newpage
 ## Módulo 7: Funciones avanzadas
 
 **Objetivo de aprendizaje:** Dominar los cálculos condicionales, las funciones de búsqueda y el procesamiento de texto.
+
+### ¿Qué sabes ya?
+
+- Conoces SUMME(), pero ¿cómo se suman solo las ventas de una región concreta?
+- ¿Has buscado alguna vez un valor en una tabla grande (como en una guía telefónica)?
+- ¿Sabes cómo dividir nombres y apellidos de una celda en dos columnas?
+
+Este módulo amplía tu repertorio de funciones con las más potentes de Excel.
 
 ## 7.1. Funciones matemáticas condicionales
 
 ###  Concepto: realizar cálculos solo bajo determinadas condiciones
 
-Mientras que `SUMA()` suma todo, `SUMA.SI()` solo suma los valores que cumplen una condición
+Mientras que `SUMME()` suma todo, `SUMMEWENN()` solo suma los valores que cumplen una condición
 . El concepto es sencillo: "Suma todas las ventas, PERO SOLO de la región Norte".
 Esta es la estructura de casi todas las funciones: `=NOMBRE(Argumento1; Argumento2; ...)` con
 un punto y coma como separador.
@@ -931,13 +1059,13 @@ un punto y coma como separador.
 
 | Función | Estructura | Ejemplo |
 |----------|--------|----------|
-| `SUMA.SI()` | Rango, criterio, [rango de suma] | `=SUMA.SI(A:A;"Norte";C:C)` |
-| `SUMA.SI.OTRA()` | Rango de suma, Rango1, Criterio1, ... | `=SUMA.SI.OTRA(C:C;A:A;"Norte";B:B;"Q1")` |
-| `CONTAR.SI()` | Rango, criterio | `=CONTAR.SI(C:C;">1000")` |
-| `CONTAR.SI.SI()` | Rango1, criterio1, rango2, criterio2... | `=CONTAR.SI(A:A;"Norte";C:C;">1000")` |
-| `MEDIA.SI()` | Rango, criterio, [rango de la media] | `=MEDIA.SI(A:A;"Sur";C:C)` |
+| `SUMMEWENN()` | Rango, criterio, [rango de suma] | `=SUMMEWENN(A:A;"Norte";C:C)` |
+| `SUMMEWENNS()` | Rango de suma, Rango1, Criterio1, ... | `=SUMMEWENNS(C:C;A:A;"Norte";B:B;"Q1")` |
+| `ZÄHLENWENN()` | Rango, criterio | `=ZÄHLENWENN(C:C;">1000")` |
+| `ZÄHLENWENN.SI()` | Rango1, criterio1, rango2, criterio2... | `=ZÄHLENWENN(A:A;"Norte";C:C;">1000")` |
+| `MITTELWERTWENN()` | Rango, criterio, [rango de la media] | `=MITTELWERTWENN(A:A;"Sur";C:C)` |
 
- **Consejo:** `SUMA.SI` para UNA condición, `SUMA.SI.CONDICIONES` para VARIAS condiciones.
+ **Consejo:** `SUMMEWENN` para UNA condición, `SUMMEWENNS` para VARIAS condiciones.
 Fíjate en el orden diferente de los argumentos: en `SI`, el
 rango de suma va primero.
 
@@ -945,12 +1073,12 @@ rango de suma va primero.
 
 La siguiente tabla de ejercicios **Módulo 7.1 Sumas condicionales** ya está cargada.
 
-1. Calcula con `SUMA.SI` la facturación total de la región "Norte".
-2. Calcula con `SUMA.SI.SI` la facturación de "Norte" Y del producto "Portátil".
+1. Calcula con `SUMMEWENN` la facturación total de la región "Norte".
+2. Calcula con `SUMMEWENN.SI` la facturación de "Norte" Y del producto "Portátil".
 3. Cuenta con `CONTA.SI` todos los pedidos superiores a 1.000 €.
 4. Con la función `CONTABLE.SI`, cuente los pedidos grandes (> 1.000 €) en la región "Sur".
 
-## 7.2. La función BUSCARV
+## 7.2. La función SVERWEIS
 
 ###  Concepto: como una guía telefónica: buscar y encontrar
 
@@ -970,18 +1098,26 @@ La "S" significa "vertical": la búsqueda se realiza de arriba abajo.
 
  **Importante:** LAVERSO busca **siempre en la primera columna** de la matriz de búsqueda, nunca
 en el centro ni al final. Si su término de búsqueda se encuentra a la derecha, necesitará
-ÍNDICE+COMPARAR o BUSCARV.
+INDEX+VERGLEICH o SVERWEIS.
 
 **Importante:** Si `referencia_rango=1` (coincidencia aproximada), la
-columna de búsqueda **debe** estar **ordenada de menor a mayor**; de lo contrario, BUSCARV devolverá resultados
+columna de búsqueda **debe** estar **ordenada de menor a mayor**; de lo contrario, SVERWEIS devolverá resultados
 erróneos. Si `referencia_rango=0` (coincidencia exacta), no es necesario
 ordenarla.
 
-**Ejercicio 7.2 — Aplicar la función BUSCARV**
 
-La siguiente tabla de ejercicios **Módulo 7.2 BUSCARV** ya está cargada.
+### Errores típicos
 
-1. Utilice la función BUSCARV para encontrar el nombre del producto correspondiente a un ID de producto
+- **Error #N/A:** El criterio de búsqueda no existe en la primera columna de la matriz de búsqueda. Solución: capturar con WENNFEHLER().
+- **Índice de columna demasiado grande:** Si la matriz de búsqueda solo tiene 3 columnas, el índice de columna no puede ser 4.
+- **Olvidar el tipo de coincidencia:** Sin `0` (exacta), SVERWEIS busca de forma aproximada, lo que da resultados incorrectos.
+- **El criterio de búsqueda está a la derecha:** SVERWEIS siempre busca en la primera columna; si el criterio está a la derecha, necesitas INDEX+VERGLEICH.
+
+**Ejercicio 7.2 — Aplicar la función SVERWEIS**
+
+La siguiente tabla de ejercicios **Módulo 7.2 SVERWEIS** ya está cargada.
+
+1. Utilice la función SVERWEIS para encontrar el nombre del producto correspondiente a un ID de producto
 
    una lista de precios (coincidencia exacta).
 2. Busca la calificación correspondiente ("muy bien", "bien"...) a partir de una puntuación, utilizando
@@ -989,31 +1125,31 @@ La siguiente tabla de ejercicios **Módulo 7.2 BUSCARV** ya está cargada.
    una coincidencia aproximada.
 3. Comprueba qué ocurre si el término de búsqueda no existe (error #NV).
 
-## 7.3. ÍNDICE y COMPARAR
+## 7.3. INDEX y VERGLEICH
 
-###  Concepto: la alternativa flexible a BUSCARV
+###  Concepto: la alternativa flexible a SVERWEIS
 
-ÍNDICE + COMPARAR es la combinación más potente: ÍNDICE devuelve el valor en una posición determinada
-de un rango, mientras que COMPARAR encuentra la posición de un término de búsqueda. Juntas
+INDEX + VERGLEICH es la combinación más potente: INDEX devuelve el valor en una posición determinada
+de un rango, mientras que VERGLEICH encuentra la posición de un término de búsqueda. Juntas
 pueden buscar en cualquier dirección, no solo de izquierda a derecha como VLOOKUP.
 
 ```
-=ÍNDICE(rango; número de fila; [número de columna])
-=COMPARAR(criterio de búsqueda; rango de búsqueda; [tipo de comparación])
+=INDEX(rango; número de fila; [número de columna])
+=VERGLEICH(criterio de búsqueda; rango de búsqueda; [tipo de comparación])
      → devuelve la POSICIÓN (número de fila), no el valor
 
-Combinado: =ÍNDICE(columna de resultados; BUSCAR.VALOR(término de búsqueda; columna de búsqueda; 0))
+Combinado: =INDEX(columna de resultados; BUSCAR.VALOR(término de búsqueda; columna de búsqueda; 0))
 ```
 
- **Consejo:** ÍNDICE + COMPARAR busca en cualquier dirección (también de derecha a izquierda), es
+ **Consejo:** INDEX + VERGLEICH busca en cualquier dirección (también de derecha a izquierda), es
 más rápido con tablas grandes y no falla si se insertan columnas.
 Para los usuarios de Excel 365, XVERWEIS (`XLOOKUP`) es la alternativa más sencilla.
 
-**Ejercicio 7.3 — Combinar ÍNDICE y COMPARAR**
+**Ejercicio 7.3 — Combinar INDEX y VERGLEICH**
 
-La siguiente tabla de ejercicios **Módulo 7.3 ÍNDICE COMPARAR** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 7.3 INDEX VERGLEICH** ya está cargada.
 
-1. Utiliza ÍNDICE + COMPARAR para hallar el precio de un producto, teniendo en cuenta que la
+1. Utiliza INDEX + VERGLEICH para hallar el precio de un producto, teniendo en cuenta que la
 
    columna del producto se encuentra a la derecha del precio (algo que VLOOKUP no puede hacer).
 2. Crea una búsqueda bidireccional: producto (fila) × mes (columna).
@@ -1031,18 +1167,18 @@ y es necesario convertir "Dr. Max Müller, MBA" en "Müller, Max".
 
 | Función | Efecto | Ejemplo | Resultado |
 |----------|---------|----------|----------|
-| `IZQUIERDA(texto; n)` | Primeros n caracteres | `=IZQUIERDA("Excel";2)` | `Ex` |
-| `DERECHA(texto; n)` | Los últimos n caracteres | `=DERECHA("Excel";2)` | `el` |
+| `LINKS(texto; n)` | Primeros n caracteres | `=LINKS("Excel";2)` | `Ex` |
+| `RECHTS(texto; n)` | Los últimos n caracteres | `=RECHTS("Excel";2)` | `el` |
 | `PARTE(texto; inicio; n)` | n caracteres a partir de la posición | `=PARTE("Excel";2;3)` | `xce` |
 | `LONGITUD(texto)` | Número de caracteres | `=LONGITUD("Excel")` | `5` |
 | `SUAVIZAR(texto)` | Elimina los espacios en blanco innecesarios | `=SUAVIZAR("  Hola  ")` | `Hola` |
 | `MAYÚSCULAS2(texto)` | Primera letra de cada palabra en mayúscula | `=MAYÚSCULAS2("max mustermann")` | `Max Mustermann` |
 | `MAYÚSCULAS(texto)` | Todo en mayúsculas | `=MAYÚSCULAS("excel")` | `EXCEL` |
 | `MINÚSCULAS(texto)` | Todo en minúsculas | `=MINÚSCULAS("EXCEL")` | `excel` |
-| `CONCATENAR()` / `&` | Unir textos | `=A2&" "&B2` | `Max Müller` |
+| `VERKETTEN()` / `&` | Unir textos | `=A2&" "&B2` | `Max Müller` |
 
- **Consejo:** Con `HOY()` siempre obtendrás la fecha actual, ideal para
-calcular edades o controlar plazos: `=AÑOS(HOY())-AÑOS(fecha de nacimiento)`.
+ **Consejo:** Con `HOUND()` siempre obtendrás la fecha actual, ideal para
+calcular edades o controlar plazos: `=AÑOS(HOUND())-AÑOS(fecha de nacimiento)`.
 
 **Ejercicio 7.4 — Aplicar funciones de texto y fecha**
 
@@ -1050,17 +1186,36 @@ La siguiente tabla de ejercicios **Módulo 7.4 Texto y fecha** ya está cargada.
 
 1. Extrae el apellido de una columna "Apellido, nombre" con
 
-   `IZQUIERDA()` y `BUSCAR()`.
+   `LINKS()` y `BUSCAR()`.
 2. Elimina los espacios superfluos del texto importado con `ALISAR()`.
 3. Combina el nombre y los apellidos de dos columnas con `&` en una sola columna.
-4. Calcula la edad de las personas a partir de la fecha de nacimiento con `HOY()`.
+4. Calcula la edad de las personas a partir de la fecha de nacimiento con `HOUND()`.
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Aplicar SUMMEWENN y SUMMEWENNS para sumas condicionales
+- [ ] Usar ZÄHLENWENN y ZÄHLENWENNS para conteos condicionales
+- [ ] Utilizar SVERWEIS para búsquedas exactas y aproximadas
+- [ ] Aplicar WVERWEIS para datos horizontales
+- [ ] Combinar INDEX+VERGLEICH para búsquedas flexibles en cualquier dirección
+- [ ] Manipular texto con LINKS, RECHTS, TEIL, GLÄTTEN y &
+- [ ] Calcular edad y plazos con HEUTE() y funciones de fecha
+
+\newpage
 ## Módulo 8: Gráficos y visualización
 
 **Objetivo de aprendizaje:** Elegir el tipo de gráfico adecuado, crear gráficos profesionales y
 darles formato.
+
+### ¿Qué sabes ya?
+
+- ¿Qué tipos de gráficos has visto o creado alguna vez?
+- ¿Qué hace que un gráfico sea bueno? (Piensa en títulos, ejes, colores).
+- ¿Has querido mostrar dos escalas de datos diferentes en un mismo gráfico?
+
+Un buen gráfico dice más que mil números: aquí aprenderás cómo hacerlo.
 
 ## 8.1. ¿Qué gráfico para qué datos?
 
@@ -1180,6 +1335,15 @@ La siguiente tabla de ejercicios **Módulo 8.4: Panel de control** ya está carg
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Elegir el tipo de gráfico adecuado para tus datos (columna, línea, circular, barra)
+- [ ] Personalizar elementos del gráfico (título, ejes, leyenda, etiquetas de datos)
+- [ ] Crear un gráfico combinado con eje secundario (p. ej., ventas + tasa de crecimiento)
+- [ ] Construir un panel de control sencillo con varios gráficos en una misma hoja
+- [ ] Formatear gráficos de forma profesional (colores, líneas de cuadrícula, etiquetas)
+
+\newpage
 ## Módulo 9: Tablas dinámicas
 
 **Objetivo de aprendizaje:** Agrupar, resumir y analizar grandes volúmenes de datos con tablas dinámicas
@@ -1190,6 +1354,14 @@ Excel. En la plataforma hay preguntas de cuestionario sobre conceptos de tablas 
 disponibles.
 
 analizar.
+
+### ¿Qué sabes ya?
+
+- ¿Has agrupado datos alguna vez por categorías (p. ej., ventas por región)?
+- ¿Cuánto tiempo llevaría hacerlo manualmente con 10.000 filas?
+- ¿Te imaginas poder reestructurar una tabla con solo pulsar un botón?
+
+Las tablas dinámicas son la navaja suiza del análisis de datos, y son más fáciles de lo que crees.
 
 ## 9.1. ¿Qué es una tabla dinámica?
 
@@ -1229,7 +1401,7 @@ La siguiente tabla de ejercicios **Módulo 9 1 Pivot** ya está cargada.
 
 ## 9.2. Personalizar la tabla dinámica
 
-###  Concepto: No solo SUMA — diversos resúmenes
+###  Concepto: No solo SUMME — diversos resúmenes
 
 Por defecto, una tabla dinámica muestra la **suma** de los valores numéricos. Pero puede
 cambiar la función de resumen en cualquier momento: media, recuento, máximo, mínimo,
@@ -1306,10 +1478,29 @@ La siguiente tabla de ejercicios **Módulo 9.4 Gráfico dinámico** ya está car
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Crear una tabla dinámica a partir de datos de origen (Insertar → Tabla dinámica)
+- [ ] Arrastrar y combinar campos en filas, columnas, valores y filtros
+- [ ] Cambiar la función de resumen (Suma, Promedio, Contar, %)
+- [ ] Agrupar fechas en tablas dinámicas por meses/trimestres
+- [ ] Agregar campos calculados (p. ej., Bonus = Ventas × 5%)
+- [ ] Usar segmentaciones para filtrado visual y vincularlas con varias tablas
+- [ ] Crear un gráfico dinámico vinculado a la tabla dinámica
+
+\newpage
 ## Módulo 10: Análisis y funciones financieras
 
 **Objetivo de aprendizaje:** Realizar análisis de "qué pasaría si" y utilizar funciones financieras básicas
 .
+
+### ¿Qué sabes ya?
+
+- ¿Has calculado alguna vez «hacia atrás»? («¿Qué precio genera 100.000 € de ventas?»)
+- ¿Sabes cómo calcular un préstamo con cuota mensual?
+- ¿Te imaginas poder calcular varios escenarios a la vez?
+
+Los análisis condicionales te muestran el futuro, antes de que tomes decisiones.
 
 ## 10.1. Búsqueda de objetivo (Goal Seek)
 
@@ -1323,6 +1514,12 @@ especialmente útil para la planificación y la elaboración de presupuestos.
  **Consejo:** La función "Búsqueda de valor objetivo" se encuentra en "Datos → Análisis hipotético →
 Búsqueda de valor objetivo". Necesitas tres datos: la celda de destino (con fórmula), el valor objetivo y
 la celda variable.
+
+
+### Errores típicos
+
+- **La celda objetivo debe contener una fórmula:** La búsqueda de objetivo solo funciona si la celda objetivo contiene una fórmula.
+- **No se encuentra solución:** Si el valor objetivo no se puede alcanzar matemáticamente, Excel muestra un mensaje. Comprueba que la fórmula realmente use la celda variable.
 
 **Ejercicio 10.1 — Aplicar la búsqueda de valor objetivo**
 
@@ -1371,6 +1568,60 @@ La siguiente tabla de ejercicios **Módulo 10.2 Funciones financieras** ya está
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Aplicar la búsqueda de objetivo («¿Qué precio genera 100.000 € de ventas?»)
+- [ ] Crear tablas de datos unidimensionales para una variable
+- [ ] Crear tablas de datos bidimensionales para dos variables
+- [ ] Usar RMZ() para cuotas de préstamos, ZW() para planes de ahorro y NBW() para inversiones
+- [ ] Combinar las tres herramientas (búsqueda de objetivo, tabla de datos, funciones financieras)
+
+\newpage
+
+## 10.3. Tablas de datos
+
+###  Concepto: Calcular muchos escenarios a la vez
+
+Una tabla de datos (Datos → Análisis de hipótesis → Tabla de datos) calcula
+automáticamente varios resultados para diferentes valores de entrada.
+
+**Tabla de datos unidimensional:** Variar una variable de entrada (p. ej., tipo de interés).
+**Tabla de datos bidimensional:** Variar dos variables (p. ej., tipo de interés × plazo).
+
+**Consejo:** La tabla de datos utiliza la fórmula matricial `{=TABELLE(;)}` — no
+puedes editar ni eliminar celdas individuales de la tabla.
+
+**Ejercicio 10.3 — Crear una tabla de datos**
+
+La siguiente tabla de ejercicios **Módulo 10 3 Datentabelle** ya está cargada.
+
+> 1. Crea una tabla de datos unidimensional: cuota RMZ para tipos de interés
+>    del 2% al 8% (en incrementos del 0,5%) con 250.000 € y 30 años.
+> 2. Crea una tabla de datos bidimensional: cuota RMZ para tipos de interés
+>    (3%–7%) × plazos (10–30 años).
+> 3. Interpreta: ¿A partir de qué tipo de interés la cuota supera los 1.500 €?
+
+## 10.4. Análisis financiero integrado
+
+###  Concepto: Usar todas las herramientas combinadas
+
+En la práctica, la búsqueda de objetivo, las funciones financieras y las tablas de datos se
+combinan para tomar decisiones financieras fundamentadas.
+
+**Ejercicio 10.4 — Análisis financiero integrado**
+
+La siguiente tabla de ejercicios **Módulo 10 4 Finanzanalyse** ya está cargada.
+
+> Una empresa planea una inversión de 500.000 € con flujos de caja anuales
+> esperados de 80.000 € durante 10 años.
+>
+> 1. Calcula el valor actual neto (NBW) con un tipo de interés del 6%. ¿Es
+>    rentable la inversión?
+> 2. Utiliza la búsqueda de objetivo: ¿Qué tipo de interés da NBW = 0 (IKV)?
+> 3. Crea una tabla de datos: NBW para tipos de interés del 2%–12%.
+> 4. ¿A partir de qué tipo de interés la inversión deja de ser rentable (NBW < 0)?
+
+
 ## Módulo 11: Impresión y colaboración
 
 **Objetivo de aprendizaje:** Preparar hojas de cálculo de forma profesional para su impresión y colaborar con otros
@@ -1380,6 +1631,14 @@ disponibles en el simulador web. Los siguientes ejercicios requieren Microsoft
 Excel. En la plataforma hay preguntas de test sobre conceptos de impresión.
 
 colaborar.
+
+### ¿Qué sabes ya?
+
+- ¿Has impreso alguna vez una tabla de Excel y el resultado fue decepcionante?
+- ¿Sabes por qué a veces faltan columnas en la impresión?
+- ¿Qué esperas encontrar en un encabezado profesional (por ejemplo, en una factura)?
+
+La diferencia entre pantalla y papel es mayor de lo que crees. Este módulo cierra esa brecha.
 
 ## 11.1. Configurar el diseño de página
 
@@ -1479,10 +1738,27 @@ La siguiente tabla de ejercicios **Módulo 11.4 Colaboración** ya está cargada
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Configurar el diseño de página de forma profesional (horizontal, escalado, márgenes)
+- [ ] Definir un área de impresión y controlar los saltos de página
+- [ ] Crear encabezados y pies de página con números de página, fecha y nombre de archivo
+- [ ] Configurar filas repetidas para encabezados de tabla en cada página impresa
+- [ ] Exportar un libro como .pdf e insertar comentarios
+
+\newpage
 ## Módulo 12: Protección y seguridad
 
 **Objetivo de aprendizaje:** Proteger libros y celdas, así como aumentar la productividad mediante
 combinaciones de teclas.
+
+### ¿Qué sabes ya?
+
+- ¿Has enviado alguna vez un archivo a tus compañeros con miedo a que alguien sobrescriba las fórmulas?
+- ¿Qué combinaciones de teclas usas ya a diario?
+- ¿Qué podría revelar un archivo de Excel sobre ti si lo compartes externamente?
+
+Protección y eficiencia: dos caras de la misma moneda para el usuario profesional de Excel.
 
 ## 12.1. Proteger celdas y hojas
 
@@ -1582,6 +1858,14 @@ La siguiente tabla de ejercicios **Módulo 12.3 Inspección** ya está cargada.
 
 
 
+### Esto es lo que sabes hacer ahora
+
+- [ ] Desbloquear celdas y activar la protección de hoja (con/sin contraseña)
+- [ ] Aplicar de memoria las 10 combinaciones de teclas más importantes
+- [ ] Explicar la diferencia entre bloqueo de celda, protección de hoja y protección de libro
+- [ ] Ejecutar la inspección de documento y eliminar metadatos personales
+
+\newpage
 ## Módulo 13: Automatización con macros
 
 **Objetivo de aprendizaje:** Comprender el concepto de las macros y grabar automatizaciones sencillas.
@@ -1591,6 +1875,14 @@ La siguiente tabla de ejercicios **Módulo 12.3 Inspección** ya está cargada.
 con archivos `.xlsm`). En la plataforma hay disponibles preguntas de cuestionario sobre conceptos de macros
 .
 
+
+### ¿Qué sabes ya?
+
+- ¿Hay alguna tarea en Excel que repitas con regularidad (por ejemplo, formatear un informe)?
+- ¿Cuánto tiempo podrías ahorrar si Excel realizara esa tarea automáticamente?
+- ¿Has oído hablar de «programar» y has pensado: «Eso no es para mí»?
+
+Las macros son más fáciles de lo que crees: este módulo es tu billete de entrada a la automatización.
 
 ## 13.1. ¿Qué son las macros?
 
@@ -1708,3 +2000,17 @@ La siguiente tabla de ejercicios **Módulo 13.4 Programación en VBA** ya está 
 
    .
 3. Ejecute la macro y compruebe el resultado.
+
+### Esto es lo que sabes hacer ahora
+
+- [ ] Activar la pestaña Programador y guardar como .xlsm
+- [ ] Grabar una macro, ejecutarla y asignarla a un botón
+- [ ] Explicar la diferencia entre grabación absoluta y relativa
+- [ ] Abrir el editor de VBA (Alt+F11) y realizar modificaciones sencillas de código
+- [ ] Escribir un bucle For y una condición If simples en VBA
+- [ ] Comprender los conceptos básicos: variable, condición y bucle
+
+---
+
+*Plan de estudios creado según los principios de la andragogía (Knowles, 1980) y el
+marco europeo de competencias digitales DigComp 2.2 (Vuorikari et al., 2022).*

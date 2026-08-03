@@ -55,7 +55,7 @@ if pandoc "$INPUT_MD" \
     --pdf-engine=pdflatex \
     --template="$TEMPLATE_TEX" \
     --include-in-header="$HEADER_TEX" \
-    --lua-filter="$ORPHAN_FILTER" \
+    --lua-filter="$ORPHAN_FILTER" --lua-filter="${SCRIPT_DIR}/promote-module-headings.lua" \
     --verbose 2>&1 | while IFS= read -r line; do
         if [[ "$line" =~ [Ww]arning|[Ee]rror|!|Fatal ]]; then
             echo -e "    ${RED}${line}${NC}"
