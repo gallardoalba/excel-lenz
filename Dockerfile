@@ -12,6 +12,7 @@ RUN npm run build
 
 # ── Stage 2: Backend Build ──────────────────────────────
 FROM node:25-alpine AS backend-build
+RUN apk add --no-cache python3 make g++
 WORKDIR /app/backend
 COPY backend/package*.json ./
 RUN npm ci
