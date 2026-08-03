@@ -23,7 +23,7 @@ Traditionelles Excel-Lernen leidet unter drei Problemen: **kein direktes Feedbac
 
 <br>
 
-![Excel-lenz Plattform](docs/screen.jpg)
+![Excel-lenz Plattform](docs/img/screen.jpg)
 
 ### Für wen ist Excel-lenz?
 
