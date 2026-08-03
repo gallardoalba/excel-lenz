@@ -152,7 +152,11 @@ export default function CourseDetail() {
         });
       })
       .catch(err => { console.error(err); setError('Der Kurs konnte nicht geladen werden. Bitte versuchen Sie es später erneut.'); })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        // Re-scroll to top after content renders (prevents mid-page jumps from layout shifts)
+        window.scrollTo(0, 0);
+      });
   }, [id, user]);
 
   // ── Derived data (must be before any conditional return — Rules of Hooks) ──

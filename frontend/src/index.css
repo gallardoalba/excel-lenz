@@ -3639,6 +3639,11 @@ body.dark .excel-dialog { background: #161B22; border-color: #21262D; }
   border: 1px solid var(--ht-selection-border-color) !important;
 }
 
+/* Keep selection border fully visible when table loses focus (e.g., clicking ribbon) */
+.handsontable .wtBorder {
+  opacity: 1 !important;
+}
+
 .htMaster .wtBorder.corner {
   border-color: #217346 !important;
   background: #217346 !important;

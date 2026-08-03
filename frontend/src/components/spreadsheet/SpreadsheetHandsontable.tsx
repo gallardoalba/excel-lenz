@@ -1029,6 +1029,8 @@ export default function SpreadsheetHandsontable({
       stretchH: 'last',
       readOnly,
       selectionMode: 'multiple',
+      // Keep selection visible when clicking ribbon buttons / format dialogs
+      outsideClickDeselects: false,
       enterBeginsEditing: false,
       enterMoves: { row: 1, col: 0 },
       tabMoves: { row: 0, col: 1 },
@@ -1191,6 +1193,18 @@ export default function SpreadsheetHandsontable({
         // Renderer
         cellMeta.renderer = (instance: any, td: HTMLTableCellElement, _r: number, _c: number, _p: any, v: any, _cp: any) => {
           textRenderer(instance, td, _r, _c, _p, v, _cp);
+          // ── Excel-default alignment: numbers right, text left, booleans center ──
+          // Only applied when no explicit user format overrides it (checked after format styles below)
+          let defaultHAlign: string | null = null;
+          if (_r > 0) { // Skip header row
+            if (typeof v === 'number' && isFinite(v)) {
+              defaultHAlign = 'right';
+            } else if (typeof v === 'boolean') {
+              defaultHAlign = 'center';
+            } else {
+              defaultHAlign = 'left';
+            }
+          }
           // Header row styling: subtle blue-grey instead of readOnly grey
           if (_r === 0) {
             td.style.background = '#e8edf2';
@@ -1222,7 +1236,8 @@ export default function SpreadsheetHandsontable({
             }
             td.textContent = formatted;
           }
-          // Safe class cleanup: only remove our format classes, never destroy HT internals
+          // Safe class cleanup: only remove user-set format classes, preserve
+          // Handsontable's built-in htLeft/htRight/htCenter (default alignment)
           td.className = td.className.replace(/\bht(Bold|Italic|Underline|Align(Left|Center|Right|Top|Middle|Bottom)|Wrap)\b/g, '').trim();
           // Clean up stale error classes and indicators
           td.classList.remove('has-excel-error');
@@ -1274,6 +1289,10 @@ export default function SpreadsheetHandsontable({
                 if (match) { td.style.background = rule.color; break; }
               }
             }
+          }
+          // Apply Excel-default alignment (only if no explicit user format set)
+          if (defaultHAlign && !fmt?.hAlign) {
+            td.style.textAlign = defaultHAlign;
           }
           // Task column styling
           if (isTask) {
@@ -1484,6 +1503,8 @@ export default function SpreadsheetHandsontable({
           endRow: Math.max(_r, _r2),
           endCol: Math.max(_c, _c2),
         };
+        // Instantly re-render so active-cell highlight moves without delay
+        hot.render();
       },
 
       // Format Painter + Status Bar aggregation (moved here for performance)
