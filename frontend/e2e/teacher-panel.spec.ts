@@ -65,7 +65,7 @@ test.describe('Teacher Panel', () => {
     await page.getByRole('button', { name: 'Registrieren', exact: true }).click();
 
     // Should show success or the new student appears
-    await expect(page.locator('text=erfolgreich').or(page.locator('text=E2E Student'))).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('text=erfolgreich').or(page.locator('text=E2E Student')).first()).toBeVisible({ timeout: 5000 });
   });
 
   test('teacher can view student detail', async ({ page }) => {
