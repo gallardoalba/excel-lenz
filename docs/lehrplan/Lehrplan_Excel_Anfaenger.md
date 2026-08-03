@@ -543,12 +543,12 @@ in welchem Blatt die Umsatzdaten stehen.
 
 **Übung 4.3 — Namen definieren**
 
-> Die folgende Übungstabelle **Modul 4 3 Namen** ist bereits geladen.
->
-> 1. Definieren Sie für die Zelle mit dem MwSt-Satz den Namen `MwSt`.
-> 2. Ersetzen Sie in der Bruttopreis-Formel `$F$1` durch `MwSt`.
-> 3. Definieren Sie für die gesamte Preistabelle den Namen `Preisliste`.
-> 4. Verwenden Sie den Namen in einer Formel: `=SVERWEIS(A2;Preisliste;2;0)`.
+Die folgende Übungstabelle **Modul 4 3 Namen** ist bereits geladen.
+
+1. Definieren Sie für die Zelle mit dem MwSt-Satz den Namen `MwSt`.
+2. Ersetzen Sie in der Bruttopreis-Formel `$F$1` durch `MwSt`.
+3. Definieren Sie für die gesamte Preistabelle den Namen `Preisliste`.
+4. Verwenden Sie den Namen in einer Formel: `=SVERWEIS(A2;Preisliste;2;0)`.
 
 ## 4.4. Statistische Grundfunktionen
 
@@ -766,12 +766,12 @@ Berücksichtigung der Groß-/Kleinschreibung.
 
 **Übung 6.1 — Suchen und Ersetzen**
 
-> Die folgende Übungstabelle **Modul 6 1 Suchen Ersetzen** ist bereits geladen.
->
-> 1. Suchen Sie mit `Strg+F` alle Vorkommen von „München".
-> 2. Ersetzen Sie mit `Strg+H` alle „München" durch „München (Zentrale)".
-> 3. Suchen Sie mit Option „Ganze Zellinhalte" nach „500" und beobachten
->    Sie den Unterschied zur Suche ohne diese Option.
+Die folgende Übungstabelle **Modul 6 1 Suchen Ersetzen** ist bereits geladen.
+
+1. Suchen Sie mit `Strg+F` alle Vorkommen von „München".
+2. Ersetzen Sie mit `Strg+H` alle „München" durch „München (Zentrale)".
+3. Suchen Sie mit Option „Ganze Zellinhalte" nach „500" und beobachten
+   Sie den Unterschied zur Suche ohne diese Option.
 
 ## 6.2. Fenster einfrieren
 
@@ -794,12 +794,12 @@ So bleiben sowohl Zeile 1 als auch Spalte A fixiert.
 
 **Übung 6.2 — Fenster einfrieren**
 
-> Die folgende Übungstabelle **Modul 6 2 Fenster fixieren** ist bereits geladen.
->
-> 1. Fixieren Sie die oberste Zeile und scrollen Sie nach unten.
-> 2. Heben Sie die Fixierung auf (Ansicht → Fenster einfrieren → Fixierung aufheben).
-> 3. Fixieren Sie Zeile 1 UND Spalte A gleichzeitig.
-> 4. Scrollen Sie diagonal und beobachten Sie, was fixiert bleibt.
+Die folgende Übungstabelle **Modul 6 2 Fenster fixieren** ist bereits geladen.
+
+1. Fixieren Sie die oberste Zeile und scrollen Sie nach unten.
+2. Heben Sie die Fixierung auf (Ansicht → Fenster einfrieren → Fixierung aufheben).
+3. Fixieren Sie Zeile 1 UND Spalte A gleichzeitig.
+4. Scrollen Sie diagonal und beobachten Sie, was fixiert bleibt.
 
 ## 6.3. Daten sortieren
 

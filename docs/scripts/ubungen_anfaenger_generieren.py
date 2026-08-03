@@ -318,6 +318,30 @@ def mod4_2():
     save(wb, 'M4_2_Zellbezuege')
 
 
+def mod4_3_namen():
+    wb, ws = create_workbook('Übung 4.3 — Namen definieren')
+    headers = ['Produkt', 'Preis', 'MwSt-Satz']
+    data = [
+        ['Laptop', 1200, None],
+        ['Monitor', 350, None],
+        ['Tastatur', 80, None],
+        ['Maus', 45, None],
+        ['Drucker', 280, None],
+    ]
+    row = write_table(ws, headers, data, 7)
+    # MwSt cell
+    ws.cell(row=row, column=2, value='19%').font = Font(name='Calibri', bold=True, size=11)
+    ws.cell(row=row, column=1, value='MwSt-Satz:').font = Font(name='Calibri', bold=True, size=11)
+    row += 2
+    write_instructions(ws, [
+        '1. Definieren Sie für die Zelle mit 19% den Namen „MwSt_Satz" über das Namensfeld.',
+        '2. Berechnen Sie in Spalte C den Bruttopreis: =B8*(1+MwSt_Satz)',
+        '3. Definieren Sie den Namen „Preisliste" für den gesamten Datenbereich A7:A11.',
+        '4. Prüfen Sie im Namens-Manager (Formeln → Namens-Manager) alle definierten Namen.',
+    ], row)
+    save(wb, 'M4_3_Namen')
+
+
 def mod4_3():
     wb, ws = create_workbook('Übung 4.3 — Statistische Funktionen')
     headers = ['Produkt', 'Verkäufe']
@@ -464,6 +488,50 @@ def mod5_4():
 # ============================================================
 # MODUL 6
 # ============================================================
+
+def mod6_1_suchen():
+    wb, ws = create_workbook('Übung 6.1 — Suchen und Ersetzen')
+    headers = ['Name', 'Abteilung', 'Stadt', 'Eintrittsdatum']
+    data = [
+        ['Anna', 'Vertrieb', 'Berlin', '15.03.2020'],
+        ['Tom', 'IT', 'München', '01.06.2019'],
+        ['Lisa', 'Marketing', 'München', '10.01.2021'],
+        ['Max', 'IT', 'Hamburg', '20.09.2018'],
+        ['Sara', 'HR', 'München', '05.04.2022'],
+        ['Paul', 'Vertrieb', 'Berlin', '12.11.2023'],
+    ]
+    write_table(ws, headers, data, 7)
+    write_instructions(ws, [
+        '1. Suchen Sie mit Strg+F alle Vorkommen von „München".',
+        '2. Ersetzen Sie mit Strg+H alle „München" durch „München (Zentrale)".',
+        '3. Suchen Sie mit der Option „Ganze Zellinhalte" nach „500" und',
+        '   beobachten Sie den Unterschied zur normalen Suche.',
+    ])
+    save(wb, 'M6_1_Suchen_Ersetzen')
+
+
+def mod6_2_fenster():
+    wb, ws = create_workbook('Übung 6.2 — Fenster einfrieren')
+    headers = ['Monat', 'Umsatz', 'Kosten', 'Gewinn', 'Marge %']
+    data = [
+        ['Januar', 5000, 3200, None, None],
+        ['Februar', 4800, 3100, None, None],
+        ['März', 5200, 3300, None, None],
+        ['April', 6100, 3500, None, None],
+        ['Mai', 5800, 3400, None, None],
+        ['Juni', 6300, 3600, None, None],
+        ['Juli', 5900, 3450, None, None],
+        ['August', 6200, 3550, None, None],
+    ]
+    write_table(ws, headers, data, 7)
+    write_instructions(ws, [
+        '1. Fixieren Sie die oberste Zeile (Ansicht → Fenster einfrieren).',
+        '2. Scrollen Sie nach unten — die Kopfzeile sollte sichtbar bleiben.',
+        '3. Heben Sie die Fixierung auf und fixieren Sie dann Zeile 1 UND Spalte A.',
+        '4. Scrollen Sie diagonal — Zeile 1 und Spalte A bleiben fixiert.',
+    ])
+    save(wb, 'M6_2_Fenster_fixieren')
+
 
 def mod6_1():
     wb, ws = create_workbook('Übung 6.1 — Daten sortieren')
@@ -1127,13 +1195,13 @@ if __name__ == '__main__':
     mod3_1(); mod3_2(); mod3_3(); mod3_4()
 
     print('Modul 4: Formeln...')
-    mod4_1(); mod4_2(); mod4_3(); mod4_4()
+    mod4_1(); mod4_2(); mod4_3_namen(); mod4_3(); mod4_4()
 
     print('Modul 5: Validierung...')
     mod5_1(); mod5_2(); mod5_3(); mod5_4()
 
     print('Modul 6: Tabellen & Filter...')
-    mod6_1(); mod6_2(); mod6_3(); mod6_4()
+    mod6_1_suchen(); mod6_2_fenster(); mod6_1(); mod6_2(); mod6_3(); mod6_4()
 
     print('Modul 7: Erweiterte Funktionen...')
     mod7_1(); mod7_2(); mod7_3(); mod7_4()

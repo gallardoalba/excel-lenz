@@ -1,8 +1,8 @@
 ---
-pdftitle: "Plan de Estudios: Excel para Principiantes"
+pdftitle: "Programa de estudios: Excel para principiantes"
 author: "Cristóbal Gallardo"
-date: "August 2026"
-location: "Freiburg im Breisgau"
+date: "agosto de 2026"
+location: "Friburgo de Brisgovia"
 lang: es
 colorlinks: true
 linkcolor: blue
@@ -14,22 +14,22 @@ geometry: margin=2.5cm
 
 \thispagestyle{empty}
 \begin{center}
-{\Huge\bfseries\sffamily\color{excelblue}Plan de Estudios\par}
+{\Huge\bfseries\sffamily\color{excelblue}Programa de estudios\par}
 \vspace{0.3em}
-{\Large\sffamily Excel para Principiantes\par}
+{\Large\sffamily Excel para principiantes\par}
 \vspace{1.5em}
-{\large\sffamily Vollständiger Plan de Estudios mit Theorie und praktischen Übungen\par}
+{\large\sffamily Programa de estudios completo con teoría y ejercicios prácticos\par}
 \vspace{2.5em}
 {\normalsize\sffamily\color{excelgray}
 \textbf{Autor:} Cristóbal Gallardo\par
 \vspace{0.2em}
-\textbf{Datum:} August 2026\par
+\textbf{Fecha:} agosto de 2026\par
 \vspace{0.2em}
-\textbf{Ort:} Freiburg im Breisgau\par
+\textbf{Lugar:} Friburgo de Brisgovia\par
 \vspace{0.2em}
-\textbf{Dauer:} 12 Stunden (8 Sitzungen $\times$ 90 Minuten)\par
+\textbf{Duración:} 12 horas (8 sesiones de 90 minutos cada una)\par
 \vspace{0.2em}
-\textbf{Nivel:} Principiante (sin conocimientos previos)\par
+\textbf{Nivel:} Principiante (no se requieren conocimientos previos)\par
 }
 \end{center}
 \vfill
@@ -38,1673 +38,1673 @@ geometry: margin=2.5cm
 
 ## Introducción
 
-Dieser Plan de Estudios bietet eine vollständige Einführung in Microsoft Excel für Erwachsene
-ohne Vorkenntnisse. Er kombiniert verständliche Theorie mit praktischen Übungen und
-wurde speziell für den Einzel-Präsenzunterricht konzipiert.
+Este plan de estudios ofrece una introducción completa a Microsoft Excel para adultos
+sin conocimientos previos. Combina teoría fácil de entender con ejercicios prácticos y
+ha sido diseñado específicamente para clases presenciales individuales.
 
-## Für wen ist dieser Plan de Estudios?
+## ¿A quién va dirigido este plan de estudios?
 
-Dieser Plan de Estudios richtet sich an **Erwachsene ohne Vorkenntnisse** in Excel.
+Este plan de estudios está dirigido a **adultos sin conocimientos previos** de Excel.
 
-## Wie ist der Plan de Estudios aufgebaut?
+## ¿Cómo está estructurado el plan de estudios?
 
-1. **Lernziel** — Lo que podrá hacer después de este módulo
-2. **Theorie** — Explicaciones comprensibles para principiantes
-3. **Ejercicioen** — Tareas prácticas con archivos de Excel
+1. **Objetivo de aprendizaje** — Lo que serás capaz de hacer tras completar este módulo
+2. **Teoría** — Explicaciones claras para principiantes
+3. **Ejercicios** — Tareas prácticas con archivos de Excel
 
-## Lo que debe saber previamente
+## Qué debes saber antes
 
-- Manejo básico de un ordenador
+- Conocimientos básicos sobre el manejo de un ordenador
 - No se requieren conocimientos previos de Excel
-- Microsoft Excel 2019 o Microsoft 365 instalado
+- Tener instalado Microsoft Excel 2019 o Microsoft 365
 
 
-## Módulo 1: Introducción a Excel y el entorno de trabajo
+## Módulo 1: Introducción a Excel y al entorno de trabajo
 
-**Objetivo de aprendizaje:** Vertrautwerden mit der Excel-Oberfläche, den Grundkonzepten und der Dateiverwaltung.
+**Objetivo de aprendizaje:** Familiarizarse con la interfaz de Excel, los conceptos básicos y la gestión de archivos.
 
 ## 1.1. ¿Qué es Excel y para qué sirve?
 
-### Konzept: Die Tabellenkalkulation
+### Concepto: la hoja de cálculo
 
-Excel ist eine **Tabellenkalkulation**. Jedes Kästchen heißt **Zelle** und hat eine Adresse wie A1, B5 oder Z100.
+Excel es una **hoja de cálculo**. Cada recuadro se denomina **celda** y tiene una dirección como A1, B5 o Z100.
 
-| Begriff | Bedeutung | Beispiel |
+| Término | Significado | Ejemplo |
 |---------|-----------|----------|
-| **Arbeitsmappe** | Die gesamte Excel-Datei | `Budget_2026.xlsx` |
-| **Tabellenblatt** | Eine Seite innerhalb der Arbeitsmappe | `Januar` |
-| **Zeile** | Horizontale Reihe (1, 2, 3...) | Zeile 5 |
-| **Spalte** | Vertikale Reihe (A, B, C...) | Spalte D |
-| **Zelle** | Schnittpunkt Zeile + Spalte | B5 |
+| **Libro** | El archivo completo de Excel | `Presupuesto_2026.xlsx` |
+| **Hoja de cálculo** | Una página dentro del libro | `Enero` |
+| **Fila** | Serie horizontal (1, 2, 3...) | Fila 5 |
+| **Columna** | Serie vertical (A, B, C...) | Columna D |
+| **Celdilla** | Punto de intersección entre fila y columna | B5 |
 
-### Wo wird Excel eingesetzt?
+### ¿Para qué se utiliza Excel?
 
-- **Buchhaltung:** Rechnungen, Budgets
-- **Projektmanagement:** Zeitpläne, Ressourcen
-- **Vertrieb:** Kundenlisten, Analysen
-- **Privat:** Haushaltsbudget, Planung
+- **Contabilidad:** facturas, presupuestos
+- **Gestión de proyectos:** calendarios, recursos
+- **Ventas:** listas de clientes, análisis
+- **Uso personal:** presupuesto doméstico, planificación
 
-**Ejercicio 1.1 — Erste Schritte**
+**Ejercicio 1.1 — Primeros pasos**
 
-Abra Excel, cree un nuevo libro de trabajo. Identifizieren Sie Registerkarten,
-Namensfeld, Bearbeitungsleiste und Statusleiste. Guarde como `Meine_Erste_Mappe.xlsx`.
+Abre Excel y crea un nuevo libro. Identifica las pestañas,
+el cuadro de nombre, la barra de edición y la barra de estado. Guárdalo como `Mi_primer_libro.xlsx`.
 
 ## 1.2. La interfaz de usuario
 
-### Konzept: Das Menüband (Ribbon)
+### Concepto: la cinta de opciones (Ribbon)
 
-| Registerkarte | Funktionen |
+| Pestaña | Funciones |
 |--------------|-----------|
-| **Start** | Schriftart, Ausrichtung, Zahlenformat |
-| **Einfügen** | Tabellen, Diagramme |
-| **Seitenlayout** | Druckbereiche, Ränder |
-| **Formeln** | Funktionsbibliothek |
-| **Daten** | Sortieren, Filtern |
+| **Inicio** | Fuente, alineación, formato numérico |
+| **Insertar** | Tablas, gráficos |
+| **Diseño de página** | Áreas de impresión, márgenes |
+| **Fórmulas** | Biblioteca de funciones |
+| **Datos** | Ordenar, filtrar |
 
-**Consejo:** Passen Sie die Schnellzugriff-Leiste mit häufig genutzten Befehlen an.
+**Consejo:** Personaliza la barra de acceso rápido con los comandos que utilices con más frecuencia.
 
-**Ejercicio 1.2 — Die Oberfläche erkunden**
+**Ejercicio 1.2 — Explorar la interfaz**
 
-Fügen Sie „Neu", „Öffnen" und „Schnelldruck" zur Schnellzugriff-Leiste hinzu.
+Añade "Nuevo", "Abrir" e "Impresión rápida" a la barra de acceso rápido.
 
 ## 1.3. Navegación básica
 
-### Konzept: Bewegung in der Tabelle
+### Concepto: desplazamiento por la hoja de cálculo
 
-| Taste | Wirkung |
+| Tecla | Efecto |
 |-------|---------|
-| Pfeiltasten | Eine Zelle weiter |
-| Strg+Pfeil | Zum Rand springen |
-| Strg+Pos1 | Zur Zelle A1 |
-| Strg+Ende | Zur letzten Zelle |
+| Teclas de flecha | Avanzar una celda |
+| Ctrl+Flecha | Saltar al borde |
+| Ctrl+Pos1 | Ir a la celda A1 |
+| Ctrl+Fin | Ir a la última celda |
 
-**Consejo:** `Strg+Leertaste` = ganze Spalte, `Umschalt+Leertaste` = ganze Zeile.
+**Consejo:** `Ctrl+Barra espaciadora` = columna completa, `Mayús+Barra espaciadora` = fila completa.
 
-**Ejercicio 1.3 — Navigation üben**
+**Ejercicio 1.3 — Practicar la navegación**
 
-Erstellen Sie drei Blätter: Januar, Februar, März. Üben Sie Strg+Pos1, Strg+Ende.
+Crea tres hojas: enero, febrero, marzo. Practica con Ctrl+Pos1 y Ctrl+Fin.
 
 ## 1.4. Gestión de archivos
 
-### Konzept: Dateiformate
+### Concepto: formatos de archivo
 
-| Format | Endung | Verwendung |
+| Formato | Extensión | Uso |
 |--------|--------|------------|
-| Standard | `.xlsx` | Seit Excel 2007 |
-| Mit Makros | `.xlsm` | Für VBA |
-| PDF | `.pdf` | Weitergabe |
-| CSV | `.csv` | Datenaustausch |
+| Estándar | `.xlsx` | Desde Excel 2007 |
+| Con macros | `.xlsm` | Para VBA |
+| PDF | `.pdf` | Para compartir |
+| CSV | `.csv` | Intercambio de datos |
 
-**Importante:** In allen Tastenkombinationen dieses Plan de Estudioss steht `Umschalt` für die Umschalt-Taste (Shift), die auf manchen Tastaturen auch als `Shift` beschriftet ist.
+**Importante:** En todas las combinaciones de teclas de este plan de estudios, `Mayús` hace referencia a la tecla Mayús (Shift), que en algunos teclados también aparece etiquetada como `Shift`.
 
-**Importante:** Regelmäßig speichern mit `Strg+S`!
+**Importante:** ¡Guarda regularmente con `Ctrl+S`!
 
-**Ejercicio 1.4 — Dateien verwalten**
+**Ejercicio 1.4 — Gestionar archivos**
 
-Guarde como `Inventar_2026.xlsx`, exportieren Sie als PDF.
+Guárdelo como `Inventario_2026.xlsx` y expórtelo a PDF.
 
 
 
-## Módulo 2: Entrada y edición de datos
+## Módulo 2: Introducción y edición de datos
 
-**Objetivo de aprendizaje:** Daten verschiedener Typen effizient eingeben, bearbeiten und mit AutoAusfüllen organisieren.
+**Objetivo de aprendizaje:** Introducir y editar de forma eficiente datos de distintos tipos, y organizarlos con la función de autocompletar.
 
 ## 2.1. Tipos de datos en Excel
 
-###  Konzept: Warum Excel Datentypen unterscheidet
+###  Concepto: ¿Por qué Excel distingue entre tipos de datos?
 
-Excel ist kein einfaches Textprogramm — es erkennt automatisch, ob Sie einen Text, eine Zahl
-oder ein Datum eingeben. Diese Unterscheidung ist grundlegend, denn sie bestimmt, **was Excel
-mit den Daten machen kann**: Mit Zahlen kann es rechnen, mit Datumsangaben kann es Zeiträume
-berechnen, und Text dient als Beschriftung. Die automatische Ausrichtung verrät Ihnen sofort,
-wie Excel Ihre Eingabe interpretiert hat: Text steht linksbündig, Zahlen und Datumsangaben
-stehen rechtsbündig.
+Excel no es un simple programa de texto: reconoce automáticamente si introduces texto, un número
+o una fecha. Esta distinción es fundamental, ya que determina **lo que Excel
+puede hacer con los datos**: con los números puede realizar cálculos, con las fechas puede calcular intervalos
+de tiempo y el texto sirve como etiqueta. La alineación automática te indica de inmediato
+cómo ha interpretado Excel lo que has introducido: el texto se alinea a la izquierda, mientras que los números y las fechas
+se alinean a la derecha.
 
-| Datentyp | Ausrichtung | Beispiel | Was Excel damit machen kann |
+| Tipo de datos | Alineación | Ejemplo | Qué puede hacer Excel con ello |
 |----------|-------------|---------|----------------------------|
-| **Text** (Label) | Linksbündig | `Müller`, `Berlin`, `Produkt A` | Sortieren, Filtern, Suchen |
-| **Zahl** (Wert) | Rechtsbündig | `42`, `19,99`, `-150` | Rechnen, Summieren, Durchschnitt |
-| **Datum** | Rechtsbündig | `15.03.2026` | Tage berechnen, Alter ermitteln |
-| **Uhrzeit** | Rechtsbündig | `14:30`, `09:15:00` | Zeitdifferenzen, Stundenabrechnung |
-| **Prozent** | Rechtsbündig | `19%`, `0,05` | Prozentuale Berechnungen |
-| **Währung** | Rechtsbündig | `29,99 €`, `45,00 €` | Finanzielle Berechnungen |
+| **Texto** (etiqueta) | Alineado a la izquierda | `Müller`, `Berlín`, `Producto A` | Ordenar, filtrar, buscar |
+| **Número** (valor) | Alineado a la derecha | `42`, `19,99`, `-150` | Realizar cálculos, sumar, calcular la media |
+| **Fecha** | Alineado a la derecha | `15/03/2026` | Calcular días, determinar la edad |
+| **Hora** | Alineado a la derecha | `14:30`, `09:15:00` | Diferencias horarias, cálculo de horas |
+| **Porcentaje** | Alineado a la derecha | `19 %`, `0,05` | Cálculos porcentuales |
+| **Moneda** | Alineado a la derecha | `29,99 €`, `45,00 €` | Cálculos financieros |
 
- **Consejo:** Wenn Excel ein Datum nicht erkennt (z.B. `2026.03.15`), versuchen Sie das
-Format `TT.MM.JJJJ`. Excel orientiert sich an den Ländereinstellungen Ihres Systems.
+ **Consejo:** Si Excel no reconoce una fecha (p. ej., `2026.03.15`), prueba con el
+formato `DD.MM.AAAA`. Excel se basa en la configuración regional de tu sistema.
 
-**Ejercicio 2.1 — Datentypen erkennen**
+**Ejercicio 2.1 — Reconocer tipos de datos**
 
-La siguiente tabla de ejercicios **Modul 2 1 Datentypen** ya está cargada. Geben Sie in verschiedene Zellen ein:
+La siguiente tabla de ejercicios **Módulo 2.1 Tipos de datos** ya está cargada. Introduzca en diferentes celdas:
 
-- Ihren Namen (Text)
+- Su nombre (texto)
 
-- Die Zahl 1500 (Zahl)
+- El número 1500 (número)
 
-- Das heutige Datum
+- La fecha de hoy
 
-- Einen Geldbetrag wie `49,99 €`
+- Una cantidad de dinero, por ejemplo, `49,99 €`
 
-Beobachten Sie die automatische Ausrichtung. Ändern Sie dann das Zahlenformat
-einer Zelle über `Start → Zahl → Format auswählen`.
+Observe la alineación automática. A continuación, cambie el formato numérico
+de una celda mediante `Inicio → Número → Seleccionar formato`.
 
 ## 2.2. Editar celdas
 
-###  Konzept: Inhalte ändern ohne neu tippen
+###  Concepto: cambiar el contenido sin tener que volver a escribirlo
 
-Stellen Sie sich vor, Sie haben eine lange Liste geschrieben und bemerken einen Tippfehler in
-Zelle D47. Müssen Sie alles neu schreiben? Nein! Excel bietet mehrere Wege, Zellinhalte zu
-bearbeiten: Doppelklick auf die Zelle, die Taste `F2`, oder direkt in der Bearbeitungsleiste
-über dem Gitternetz. Die Befehle Rückgängig (`Strg+Z`) und Wiederherstellen (`Strg+Y`) sind
-Ihre Sicherheitsnetze — Sie können bis zu 100 Schritte zurückgehen.
+Imagina que has escrito una lista larga y detectas un error tipográfico en
+la celda D47. ¿Tienes que volver a escribirlo todo? ¡No! Excel ofrece varias formas de editar el contenido de las celdas:
+haciendo doble clic en la celda, pulsando la tecla `F2` o directamente en la barra de edición
+situada sobre la cuadrícula. Los comandos "Deshacer" (Ctrl+Z) y "Hacer" (Ctrl+Y) son
+su red de seguridad: puede retroceder hasta 100 pasos.
 
-**Die drei Bearbeitungsmethoden im Vergleich:**
+**Comparación de los tres métodos de edición:**
 
-| Methode | Tastenkürzel | Am besten für |
+| Método | Atajo de teclado | Ideal para |
 |---------|-------------|---------------|
-| Doppelklick in die Zelle | — | Schnelle Korrektur direkt im Blatt |
-| Taste `F2` | F2 | Bearbeitung ohne Maus |
-| Bearbeitungsleiste | — | Lange Formeln oder Texte überschauen |
+| Doble clic en la celda | — | Corrección rápida directamente en la hoja |
+| Tecla `F2` | F2 | Edición sin ratón |
+| Barra de edición | — | Visión general de fórmulas o textos largos |
 
- **Importante:** Wenn Sie eine Zelle auswählen und einfach losschreiben, wird der gesamte
-Inhalt ersetzt — nicht ergänzt! Zum Ändern immer zuerst `F2` drücken oder doppelklicken.
+ **Importante:** Si seleccionas una celda y empiezas a escribir directamente, se sustituirá todo el
+contenido, ¡no se añadirá nada! Para realizar cambios, pulsa siempre primero `F2` o haz doble clic.
 
-**Ejercicio 2.2 — Zellen bearbeiten**
+**Ejercicio 2.2 — Editar celdas**
 
-La siguiente tabla de ejercicios **Modul 2 2 Bearbeiten** ya está cargada. Die Tabelle enthält absichtlich
-Rechtschreibfehler. Korrigieren Sie jede fehlerhafte Zelle auf drei Arten:
+La siguiente tabla de ejercicios **Módulo 2.2 Edición** ya está cargada. La tabla contiene, a propósito,
+errores ortográficos. Corrija cada celda con error de tres formas diferentes:
 
-1. Mit Doppelklick in die Zelle
-2. Mit der Taste `F2`
-3. Über die Bearbeitungsleiste
+1. Haciendo doble clic en la celda
+2. Con la tecla `F2`
+3. A través de la barra de edición
 
-Machen Sie eine Korrektur mit `Strg+Z` rückgängig, dann mit `Strg+Y` wiederherstellen.
+Deshaga una corrección con `Ctrl+Z` y, a continuación, restáurela con `Ctrl+Y`.
 
-## 2.3. Autocompletar y series
+## 2.3. Autocompletar y filas
 
-###  Konzept: Muster erkennen und automatisch fortsetzen
+###  Concepto: reconocer patrones y continuarlos automáticamente
 
-Das **Ausfüllkästchen** (das kleine Quadrat rechts unten in einer markierten Zelle) ist eines
-der mächtigsten Werkzeuge in Excel. Wenn Sie daran ziehen, erkennt Excel Muster und setzt sie
-automatisch fort. Schreiben Sie `Montag` in eine Zelle, ziehen Sie am Ausfüllkästchen — und
-Excel füllt `Dienstag`, `Mittwoch`, `Donnerstag`... aus. Das Gleiche funktioniert mit Monaten,
-Quartalen, Zahlenreihen und sogar benutzerdefinierten Mustern wie `Kunde 1`, `Kunde 2`...
+El **cuadro de autocompletado** (el pequeño cuadrado situado en la esquina inferior derecha de una celda seleccionada) es una
+de las herramientas más potentes de Excel. Al arrastrarlo, Excel reconoce patrones y los
+continúa automáticamente. Escribe "Lunes" en una celda, arrastra el cuadro de relleno y
+Excel completará "Martes", "Miércoles", "Jueves"... Lo mismo funciona con meses,
+trimestres, series numéricas e incluso patrones definidos por el usuario como "Cliente 1", "Cliente 2"...
 
-Excel erkennt folgende eingebaute Reihen:
-- Wochentage (Montag, Dienstag...)
-- Monate (Januar, Februar...)
-- Quartale (Q1, Q2...)
-- Zahlenfolgen (1, 2, 3... oder 2, 4, 6...)
+Excel reconoce las siguientes series integradas:
+- Días de la semana (lunes, martes...)
+- Meses (enero, febrero...)
+- Trimestres (T1, T2...)
+- Secuencias numéricas (1, 2, 3... o 2, 4, 6...)
 
- **Consejo:** Wenn Sie zwei Werte markieren (z.B. `1` und `3`) und dann ziehen, erkennt
-Excel das Schrittmuster und setzt es fort: 1, 3, 5, 7, 9... Das funktioniert auch mit
-Datumsangaben!
+ **Consejo:** Si seleccionas dos valores (por ejemplo, "1" y "3") y luego arrastras,
+Excel reconoce el patrón de incrementos y lo continúa: 1, 3, 5, 7, 9... ¡Esto también funciona con
+fechas!
 
-**Ejercicio 2.3 — AutoAusfüllen verwenden**
+**Ejercicio 2.3 — Usar el Autocompletar**
 
-La siguiente tabla de ejercicios **Modul 2 3 AutoAusfuellen** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 2.3 Autocompletar** ya está cargada.
 
-1. Schreiben Sie `Januar` in Zelle A1 und ziehen Sie am Ausfüllkästchen bis A12.
-2. Schreiben Sie `1` in B1, `3` in B2, markieren Sie beide und ziehen Sie bis B10.
-3. Schreiben Sie das heutige Datum in C1 und erstellen Sie eine fortlaufende
+1. Escribe "enero" en la celda A1 y arrastra el punto de relleno hasta A12.
+2. Escribe "1" en B1, "3" en B2, selecciona ambas y arrastra hasta B10.
+3. Escribe la fecha de hoy en C1 y crea una
 
-   Datumsreihe für 30 Tage.
+   para 30 días.
 
 ## 2.4. Copiar, cortar y pegar
 
-###  Konzept: Die Inhalte-einfügen-Optionen
+###  Concepto: las opciones de pegado de contenido
 
-Jeder kennt `Strg+C` und `Strg+V` — aber Excel kann viel mehr als nur einfaches Kopieren.
-Mit **Inhalte einfügen** (erreichbar über Rechtsklick oder `Strg+Alt+V`) können Sie gezielt
-nur bestimmte Aspekte einer Zelle übertragen: nur die Werte ohne Formeln, nur die Formatierung,
-oder sogar die Tabelle transponieren (Zeilen und Spalten vertauschen).
+Todo el mundo conoce `Ctrl+C` y `Ctrl+V`, pero Excel puede hacer mucho más que una simple copia.
+Con **Pegar contenido** (accesible mediante clic con el botón derecho o `Ctrl+Alt+V`) puedes transferir de forma selectiva
+solo determinados aspectos de una celda: solo los valores sin fórmulas, solo el formato,
+o incluso transponer la tabla (intercambiar filas y columnas).
 
-**Die wichtigsten Einfügeoptionen:**
+**Las opciones de pegado más importantes:**
 
-| Option | Tastenkürzel (nach Strg+Alt+V) | Wirkung |
+| Opción | Atajo de teclado (después de Ctrl+Alt+V) | Efecto |
 |--------|-------------------------------|---------|
-| Alles | — | Standard: Formeln + Formatierung |
-| Werte | `W` | Nur das sichtbare Ergebnis, keine Formel |
-| Formeln | `F` | Nur die Formel, ohne Formatierung |
-| Formatierung | `R` | Nur das Aussehen, nicht den Inhalt |
-| Transponieren | (Haken setzen) | Zeilen  Spalten vertauschen |
+| Todo | — | Predeterminado: fórmulas + formato |
+| Valores | `W` | Solo el resultado visible, sin fórmula |
+| Fórmulas | `F` | Solo la fórmula, sin formato |
+| Formato | `R` | Solo el aspecto, no el contenido |
+| Transponer | (marcar la casilla) | Intercambiar filas y columnas |
 
- **Consejo:** Wenn Sie Formelergebnisse kopieren möchten, ohne dass sich die Bezüge
-verschieben, nutzen Sie „Inhalte einfügen → Werte". Das ist besonders nützlich, wenn
-Sie Berechnungen in eine andere Tabelle übertragen.
+ **Consejo:** Si desea copiar los resultados de las fórmulas sin que se desplacen las referencias,
+utilice "Pegar contenido → Valores". Esto resulta especialmente útil cuando
+se transfieren cálculos a otra hoja de cálculo.
 
-**Ejercicio 2.4 — Kopieren und Einfügen**
+**Ejercicio 2.4 — Copiar y pegar**
 
-La siguiente tabla de ejercicios **Modul 2 4 Kopieren** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 2.4 Copiar** ya está cargada.
 
-1. Kopieren Sie die Tabelle `A1:D10` und fügen Sie sie ab `F1` ein.
-2. Kopieren Sie dieselbe Tabelle und fügen Sie sie mit „Transponieren" ab `F15` ein.
-3. Kopieren Sie eine Zelle mit Formel und fügen Sie mit „Werte" ein — beobachten
+1. Copie la tabla `A1:D10` y péguela a partir de `F1`.
+2. Copie la misma tabla y péguela con "Transponer" a partir de `F15`.
+3. Copie una celda con fórmula y péguela con "Valores"; observe
 
-   Sie den Unterschied.
+   la diferencia.
 
 
 
-## Módulo 3: Formato y estilo de celdas
+## Módulo 3: Formato y estilo de celda
 
-**Objetivo de aprendizaje:** Tabellen professionell formatieren, Zahlen korrekt darstellen und bedingte
-Formatierung einsetzen.
+**Objetivo de aprendizaje:** dar formato a las tablas de forma profesional, representar correctamente los números y aplicar el
+formato condicional.
 
 ## 3.1. Formato básico
 
-###  Konzept: Warum Formatierung über Ästhetik hinausgeht
+###  Concepto: por qué el formato va más allá de la estética
 
-Eine gut formatierte Tabelle ist nicht nur schöner — sie ist **verständlicher**. Studien zeigen,
-dass formatierte Daten schneller erfasst und korrekter interpretiert werden. Die drei
-Grundprinzipien professioneller Formatierung sind:
+Una tabla bien formateada no solo es más atractiva, sino que también resulta **más comprensible**. Los estudios demuestran
+que los datos formateados se asimilan más rápidamente y se interpretan con mayor precisión. Los tres
+principios básicos del formateo profesional son:
 
-1. **Kontrast**: Überschriften heben sich deutlich von Daten ab (fett, größer, farbig)
-2. **Ausrichtung**: Gleichartige Daten stehen einheitlich (Zahlen rechts, Text links)
-3. **Zurückhaltung**: Weniger ist mehr — maximal 2-3 Farben, keine grellen Kombinationen
+1. **Contraste**: los encabezados destacan claramente sobre los datos (negrita, tamaño mayor, color)
+2. **Alineación**: los datos del mismo tipo se alinean de forma uniforme (números a la derecha, texto a la izquierda)
+3. **Discreción**: menos es más — un máximo de 2-3 colores, sin combinaciones llamativas
 
-**Die Formatierungswerkzeuge in der Gruppe „Schriftart" und „Ausrichtung":**
+**Las herramientas de formato de los grupos "Fuente" y "Alineación":**
 
-| Werkzeug | Tastenkürzel | Wirkung |
+| Herramienta | Atajo de teclado | Efecto |
 |----------|-------------|---------|
-| Fett | `Strg+Umschalt+F` (Schriftart-Dialog) | Text hervorheben (Überschriften) |
-| Kursiv | `Strg+Umschalt+K` (Schriftart-Dialog) | Hervorhebung im Fließtext |
-| Unterstrichen | `Strg+Umschalt+U` (Schriftart-Dialog) | Besonders wichtige Werte |
-| Rahmen | — | Zellen visuell voneinander trennen |
-| Füllfarbe | — | Hintergrundfarbe für Zellen |
-| Schriftfarbe | — | Textfarbe ändern |
-| Verbinden und zentrieren | — | Mehrere Zellen zu einer kombinieren |
-| Zeilenumbruch | — | Langer Text in einer Zelle umbrechen |
+| Negrita | `Ctrl+Mayús+F` (cuadro de diálogo "Fuente") | Resaltar el texto (encabezados) |
+| Cursiva | `Ctrl+Mayús+K` (cuadro de diálogo "Fuente") | Resaltar en el texto corrido |
+| Subrayado | `Ctrl+Mayús+U` (cuadro de diálogo "Fuente") | Valores especialmente importantes |
+| Marco | — | Separar visualmente las celdas entre sí |
+| Color de relleno | — | Color de fondo para las celdas |
+| Color de la fuente | — | Cambiar el color del texto |
+| Unir y centrar | — | Combinar varias celdas en una sola |
+| Salto de línea | — | Dividir texto largo en una celda |
 
- **Consejo:** Das Dialogfeld „Zellen formatieren" (`Strg+1`) ist die Kommandozentrale
-für alle Formatierungsoptionen. Hier finden Sie alles an einem Ort — von Rahmen über
-Ausrichtung bis zu Schriftart.
+ **Consejo:** El cuadro de diálogo "Formato de celdas" (`Ctrl+1`) es el centro de control
+de todas las opciones de formato. Aquí encontrarás todo en un mismo lugar: desde los bordes hasta
+la alineación y la fuente.
 
-**Ejercicio 3.1 — Grundformatierung anwenden**
+**Ejercicio 3.1 — Aplicar el formato básico**
 
-La siguiente tabla de ejercicios **Modul 3 1 Grundformatierung** ya está cargada. Formatieren Sie die Tabelle so:
+La siguiente tabla de ejercicios **Módulo 3.1 Formato básico** ya está cargada. Da formato a la tabla de la siguiente manera:
 
-1. Überschriftenzeile: fett, dunkelblauer Hintergrund, weiße Schrift
-2. Datenzellen: dünne graue Rahmen, wechselnde Zeilenfarbe (weiß/hellgrau)
-3. Titel: über die gesamte Tabellenbreite verbinden und zentrieren
-4. Lange Textzellen: Zeilenumbruch aktivieren
+1. Fila de encabezados: negrita, fondo azul oscuro, letra blanca
+2. Celdas de datos: bordes finos grises, color de fila alterno (blanco/gris claro)
+3. Título: extenderlo a lo ancho de la tabla y centrarlo
+4. Celdas de texto largo: activar el salto de línea
 
 ## 3.2. Formatos numéricos
 
-###  Konzept: Die Bedeutung der korrekten Zahlenformatierung
+###  Concepto: la importancia de un formato numérico correcto
 
-Die Zahl `0,25` kann vieles bedeuten: 25 Cent, 25%, oder einfach eine kleine Zahl. Das
-**Zahlenformat** legt fest, wie Excel den Wert *darstellt*, ohne den tatsächlichen Wert
-in der Zelle zu ändern. Das ist ein wichtiger Unterschied: Die Anzeige ist nur die
-Präsentation, der gespeicherte Wert bleibt für Berechnungen erhalten.
+El número `0,25` puede significar muchas cosas: 25 céntimos, el 25 % o, simplemente, un número pequeño. El
+**formato numérico** determina cómo Excel *muestra* el valor, sin modificar el valor real
+de la celda. Esta es una diferencia importante: la visualización es solo la
+presentación, mientras que el valor almacenado se mantiene para los cálculos.
 
-**Die wichtigsten Zahlenformate:**
+**Los formatos numéricos más importantes:**
 
-| Format | Beispiel (eingegeben) | Beispiel (angezeigt) | Verwendung |
+| Formato | Ejemplo (introducido) | Ejemplo (mostrado) | Uso |
 |--------|----------------------|---------------------|------------|
-| Standard | `1500,5` | `1500,5` | Keine spezielle Formatierung |
-| Zahl | `1500,5` | `1.500,50` | Tausendertrennzeichen, Dezimalstellen |
-| Währung | `1500,5` | `1.500,50 €` | Finanzielle Beträge |
-| Prozent | `0,19` | `19%` | Anteile, Steuersätze |
-| Datum | `45300` | `15.03.2026` | Kalenderdaten |
-| Benutzerdefiniert | — | `KG 42` | Eigene Formate wie `"KG "0` |
+| Estándar | `1500,5` | `1500,5` | Sin formato específico |
+| Número | `1500,5` | `1.500,50` | Separador de miles, decimales |
+| Moneda | `1500,5` | `1.500,50 €` | Importes financieros |
+| Porcentaje | `0,19` | `19 %` | Proporciones, tipos impositivos |
+| Fecha | `45300` | `15/03/2026` | Fechas del calendario |
+| Definido por el usuario | — | `KG 42` | Formatos propios como `"KG "0` |
 
- **Importante:** Prozentwerte sind in Excel Dezimalzahlen: `19%` wird als `0,19`
-gespeichert. Wenn Sie `19` eingeben und dann % formatieren, zeigt Excel `1900%` an!
+ **Importante:** En Excel, los valores porcentuales son números decimales: `19 %` se guarda como `0,19`.
+Si introduce `19` y luego le aplica el formato %, ¡Excel mostrará `1900 %`!
 
-**Ejercicio 3.2 — Zahlen formatieren**
+**Ejercicio 3.2 — Dar formato a los números**
 
-La siguiente tabla de ejercicios **Modul 3 2 Zahlenformat** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 3.2 Formato de números** ya está cargada.
 
-1. Formatieren Sie Spalte B als „Währung" mit €-Symbol und 2 Dezimalstellen.
-2. Formatieren Sie Spalte C als „Prozent" mit 1 Dezimalstelle.
-3. Formatieren Sie Spalte D als „Zahl" mit Tausendertrennzeichen.
-4. Experimentieren Sie mit der Schaltfläche „Dezimalstelle hinzufügen/entfernen".
+1. Formatea la columna B como "Moneda" con el símbolo € y 2 decimales.
+2. Formatea la columna C como "Porcentaje" con 1 decimal.
+3. Formatea la columna D como "Número" con separador de miles.
+4. Experimenta con el botón "Añadir/eliminar decimal".
 
 ## 3.3. Ajustar filas y columnas
 
-###  Konzept: Struktur in die Tabelle bringen
+###  Concepto: dar estructura a la tabla
 
-Standardmäßig sind alle Spalten gleich breit (ca. 64 Pixel) und alle Zeilen gleich hoch.
-Das passt selten zu Ihren Daten: Ein Nachname braucht mehr Platz als eine Altersangabe,
-und eine Adresse mehr als eine Postleitzahl. Sie können Spaltenbreite und Zeilenhöhe
-manuell per Drag & Drop oder automatisch per Doppelklick anpassen.
+Por defecto, todas las columnas tienen el mismo ancho (aprox. 64 píxeles) y todas las filas la misma altura.
+Esto rara vez se ajusta a sus datos: un apellido necesita más espacio que una edad,
+y una dirección, más que un código postal. Puede ajustar el ancho de las columnas y la altura de las filas
+manualmente mediante arrastrar y soltar, o automáticamente haciendo doble clic.
 
-**Methoden zum Anpassen:**
+**Métodos de ajuste:**
 
-| Aktion | Wie | Wann verwenden |
+| Acción | Cómo | Cuándo utilizarla |
 |--------|-----|----------------|
-| Automatisch anpassen | Doppelklick auf Spaltenrand | Spalte soll genau zum längsten Inhalt passen |
-| Manuell ziehen | Spaltenrand per Drag | Bestimmte Breite vorgeben |
-| Mehrere gleichzeitig | Spalten markieren, dann Rand ziehen | Einheitliche Breite für mehrere Spalten |
-| Zeilen/Spalten ausblenden | Rechtsklick → Ausblenden | Temporär nicht benötigte Daten verstecken |
-| Einfügen/Löschen | Rechtsklick → Zellen einfügen/löschen | Nachträglich Platz schaffen |
+| Ajustar automáticamente | Hacer doble clic en el borde de la columna | Cuando la columna debe ajustarse exactamente al contenido más largo |
+| Arrastrar manualmente | Arrastrar el borde de la columna | Para especificar un ancho concreto |
+| Varias a la vez | Seleccionar columnas y arrastrar el borde | Ancho uniforme para varias columnas |
+| Ocultar filas/columnas | Clic con el botón derecho → Ocultar | Ocultar datos que no se necesitan temporalmente |
+| Insertar/Eliminar | Clic con el botón derecho → Insertar/eliminar celdas | Crear espacio posteriormente |
 
- **Consejo:** Mit `Strg+Leertaste` markieren Sie die gesamte Spalte, mit
-`Umschalt+Leertaste` die gesamte Zeile. Dann können Sie mit Rechtsklick schnell
-einfügen, löschen oder ausblenden.
+ **Consejo:** Con `Ctrl+Barra espaciadora` se selecciona toda la columna; con
+`Mayús+Barra espaciadora`, toda la fila. A continuación, con un clic con el botón derecho del ratón, puede
+insertar, eliminar u ocultar rápidamente.
 
-**Ejercicio 3.3 — Layout anpassen**
+**Ejercicio 3.3 — Ajustar el diseño**
 
-La siguiente tabla de ejercicios **Modul 3 3 Layout** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 3.3 Diseño** ya está cargada.
 
-1. Passen Sie alle Spalten mit Doppelklick automatisch an den Inhalt an.
-2. Blenden Sie Spalte C („Interne Notiz") aus und wieder ein.
-3. Fügen Sie zwischen Zeile 3 und 4 eine neue leere Zeile ein.
-4. Ändern Sie die Höhe von Zeile 1 (Titelzeile) manuell auf 30.
+1. Ajusta automáticamente todas las columnas al contenido haciendo doble clic.
+2. Oculta la columna C ("Nota interna") y vuelve a mostrarla.
+3. Inserta una nueva fila vacía entre las filas 3 y 4.
+4. Cambia manualmente la altura de la fila 1 (fila de título) a 30.
 
 ## 3.4. Formato condicional
 
-###  Konzept: Werte automatisch hervorheben
+###  Concepto: resaltar valores automáticamente
 
-Die bedingte Formatierung ist wie ein automatischer Textmarker: Sie definieren Regeln
-(z.B. „alle Werte über 1000"), und Excel formatiert die entsprechenden Zellen automatisch.
-Das Besondere: Wenn sich die Werte ändern, passt sich die Formatierung sofort an — ohne
-dass Sie erneut formatieren müssen.
+El formato condicional es como un resaltador automático: usted define reglas
+(por ejemplo, "todos los valores superiores a 1000") y Excel aplica el formato a las celdas correspondientes de forma automática.
+Lo especial es que, cuando los valores cambian, el formato se adapta inmediatamente, sin
+que tenga que volver a aplicarlo.
 
-**Die wichtigsten Arten der bedingten Formatierung:**
+**Los tipos más importantes de formato condicional:**
 
-| Art | Beispiel | Einsatz |
+| Tipo | Ejemplo | Uso |
 |-----|---------|---------|
-| Regeln zum Hervorheben | „Größer als 1000" → rot | Ausreißer identifizieren |
-| Oben/unten-Regeln | „Obere 10%" → grün | Beste/schlechteste Werte |
-| Datenbalken | Farbiger Balken innerhalb der Zelle | Größenverhältnisse visualisieren |
-| Farbskalen | Verlauf von rot über gelb zu grün | Temperaturdiagramm-Effekt |
-| Symbolsätze | Ampeln, Pfeile, Häkchen | Status sofort erkennen |
+| Reglas de resaltado | "Mayor que 1000" → rojo | Identificar valores atípicos |
+| Reglas de máximo/mínimo | "10 % superior" → verde | Mejores/peores valores |
+| Barras de datos | Barra de color dentro de la celda | Visualizar proporciones |
+| Escalas de color | Degradado de rojo a amarillo a verde | Efecto de gráfico de temperatura |
+| Conjuntos de símbolos | Semáforos, flechas, marcas de verificación | Reconocer el estado al instante |
 
- **Consejo:** Beginnen Sie mit einer einfachen Regel wie „Größer als" und erkunden Sie
-dann die Datenbalken. Diese Mini-Balkendiagramme in den Zellen sind eine der
-eindrucksvollsten Funktionen für Anfänger!
+ **Consejo:** Empieza con una regla sencilla como "Mayor que" y, a continuación, explora
+las barras de datos. ¡Estos minigráficos de barras en las celdas son una de las
+funciones más impresionantes para los principiantes!
 
-**Ejercicio 3.4 — Bedingte Formatierung anwenden**
+**Ejercicio 3.4 — Aplicar formato condicional**
 
-La siguiente tabla de ejercicios **Modul 3 4 Bedingte Formatierung** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 3.4 Formato condicional** ya está cargada.
 
-1. Markieren Sie die Umsatzzahlen und wenden Sie „Datenbalken" an (Start → Bedingte
+1. Selecciona las cifras de facturación y aplica "Barras de datos" (Inicio → Formato condicional
 
-   Formatierung → Datenbalken).
-2. Heben Sie alle Werte über 10.000 € mit roter Füllung hervor.
-3. Wenden Sie eine Farbskala (grün-weiß-rot) auf die Rabattspalte an.
-4. Ändern Sie einen Wert auf 15.000 € und beobachten Sie die automatische Anpassung.
+   → Barras de datos).
+2. Resalte todos los valores superiores a 10 000 € con un relleno rojo.
+3. Aplique una escala de colores (verde-blanco-rojo) a la columna de descuentos.
+4. Cambie un valor a 15 000 € y observe el ajuste automático.
 
 
 
 ## Módulo 4: Fórmulas y funciones básicas
 
-**Objetivo de aprendizaje:** Berechnungen mit Formeln durchführen, Zellbezüge verstehen und grundlegende
-Funktionen wie SUMME und WENN einsetzen.
+**Objetivo de aprendizaje:** Realizar cálculos con fórmulas, comprender las referencias de celdas y utilizar funciones básicas
+como SUMA y SI.
 
-## 4.1. Grundlagen der Formeln
+## 4.1. Conceptos básicos de las fórmulas
 
-###  Konzept: Eine Formel ist wie ein Kochrezept
+###  Concepto: una fórmula es como una receta de cocina
 
-Eine Excel-Formel ist eine Anweisung, die Excel sagt: „Nimm diese Zutaten (Zellwerte),
-führe diese Operationen aus und zeige mir das Ergebnis." Jede Formel beginnt mit einem
-Gleichheitszeichen `=` — das ist das Signal an Excel: „Jetzt kommt eine Berechnung!"
+Una fórmula de Excel es una instrucción que le dice a Excel: "Toma estos ingredientes (valores de celda),
+realiza estas operaciones y muéstrame el resultado". Cada fórmula comienza con un
+signo de igualdad `=` —esa es la señal para Excel: "¡Ahora viene un cálculo!"
 
-Die mathematischen Operatoren folgen der aus der Schule bekannten Regel
-**„Punkt vor Strich"**:
+Los operadores matemáticos siguen la regla conocida de la escuela
+**"el punto antes de la raya"**:
 
-| Operator | Bedeutung | Beispiel | Ergebnis |
+| Operador | Significado | Ejemplo | Resultado |
 |----------|-----------|----------|----------|
-| `+` | Addition | `=5+3` | `8` |
-| `-` | Subtraktion | `=10-4` | `6` |
-| `*` | Multiplikation | `=6*7` | `42` |
-| `/` | Division | `=100/4` | `25` |
-| `^` | Potenz | `=2^10` | `1024` |
-| `()` | Klammern | `=(2+3)*4` | `20` (nicht 14!) |
+| `+` | Suma | `=5+3` | `8` |
+| `-` | Resta | `=10-4` | `6` |
+| `*` | Multiplicación | `=6*7` | `42` |
+| `/` | División | `=100/4` | `25` |
+| `^` | Potencia | `=2^10` | `1024` |
+| `()` | Paréntesis | `=(2+3)*4` | `20` (¡no 14!) |
 
- **Importante:** Ohne Klammern gilt Punkt vor Strich: `=2+3*4` ergibt `14`, denn
-`3*4=12` wird zuerst berechnet. Mit Klammern: `=(2+3)*4` ergibt `20`.
+ **Importante:** Sin paréntesis, se aplica la regla de "primero lo punto, luego lo raya": `=2+3*4` da como resultado `14`, ya que
+`3*4=12` se calcula primero. Con paréntesis: `=(2+3)*4` da como resultado `20`.
 
-**Ejercicio 4.1 — Erste Formeln schreiben**
+**Ejercicio 4.1 — Escribir las primeras fórmulas**
 
-La siguiente tabla de ejercicios **Modul 4 1 Erste Formeln** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 4.1 Primeras fórmulas** ya está cargada.
 
-1. Berechnen Sie in Zelle D2 die Summe von B2 und C2 mit `=B2+C2`.
-2. Berechnen Sie in D3 das Produkt: `=B3*C3`.
-3. In D4: `=(B4+C4)/2` für den Durchschnitt.
-4. In D5: `=B5^2` für das Quadrat.
-5. Testen Sie den Unterschied zwischen `=10+5*2` und `=(10+5)*2`.
+1. En la celda D2, calcula la suma de B2 y C2 con `=B2+C2`.
+2. En D3, calcula el producto: `=B3*C3`.
+3. En D4: `=(B4+C4)/2` para la media.
+4. En D5: `=B5^2` para el cuadrado.
+5. Comprueba la diferencia entre `=10+5*2` y `=(10+5)*2`.
 
 
-**Häufige Formelfehler und ihre Bedeutung:**
+**Errores frecuentes en las fórmulas y su significado:**
 
-| Fehler | Bedeutung | Typische Ursache |
+| Error | Significado | Causa típica |
 |--------|-----------|-----------------|
-| `#DIV/0!` | Division durch Null | Formel teilt durch eine leere Zelle oder 0 |
-| `#WERT!` | Falscher Wertetyp | Text statt Zahl in einer Berechnung |
-| `#BEZUG!` | Ungültiger Bezug | Formel verweist auf gelöschte Zelle |
-| `#NAME?` | Name nicht erkannt | Tippfehler im Funktionsnamen (z.B. `SUME` statt `SUMME`) |
-| `#NV` | Nicht verfügbar | SVERWEIS findet den Suchbegriff nicht |
-| `#NULL!` | Falscher Bereichsoperator | Leerzeichen statt Doppelpunkt im Bereich |
+| `#DIV/0!` | División por cero | La fórmula divide entre una celda vacía o 0 |
+| `#VALOR!` | Tipo de valor incorrecto | Texto en lugar de un número en un cálculo |
+| `#REFERENCIA!` | Referencia no válida | La fórmula hace referencia a una celda eliminada |
+| `#NAME?` | Nombre no reconocido | Error tipográfico en el nombre de la función (p. ej., `SUME` en lugar de `SUMME`) |
+| `#NV` | No disponible | LABUSCA no encuentra el término de búsqueda |
+| `#NULL!` | Operador de rango incorrecto | Espacio en blanco en lugar de dos puntos en el rango |
 
-**Consejo:** Wenn ein Fehler auftritt, klicken Sie auf das kleine
-Ausrufezeichen-Symbol neben der Zelle. Excel schlägt mögliche Korrekturen vor.
+**Consejo:** Si se produce un error, haz clic en el pequeño
+símbolo de exclamación situado junto a la celda. Excel te sugerirá posibles correcciones.
 
-## 4.2. Zellbezüge: Relativ, Absolut und Gemischt
+## 4.2. Referencias de celda: relativas, absolutas y mixtas
 
-###  Konzept: Der Unterschied zwischen A1, $A$1 und $A1
+###  Concepto: la diferencia entre A1, $A$1 y $A1
 
-Wenn Sie eine Formel kopieren, passt Excel die Bezüge automatisch an. Aus `=A1+B1` in
-Zeile 1 wird beim Kopieren nach unten `=A2+B2` in Zeile 2. Das nennt man **relative
-Bezüge** — sie sind standardmäßig aktiv und in den meisten Fällen genau das, was Sie
-wollen.
+Cuando copias una fórmula, Excel ajusta automáticamente las referencias. De `=A1+B1` en
+la fila 1, al copiar hacia abajo se convierte en `=A2+B2` en la fila 2. A esto se le llama **referencias relativas**
+: están activadas por defecto y, en la mayoría de los casos, son exactamente lo que
+quieres.
 
-Manchmal soll ein Bezug aber *fest* bleiben — zum Beispiel ein Mehrwertsteuersatz in
-Zelle `B1`, der für alle Berechnungen gleich ist. Dafür setzen Sie Dollarzeichen:
-`$B$1` bleibt immer `$B$1`, egal wohin Sie die Formel kopieren. Das ist ein
-**absoluter Bezug**.
+Sin embargo, a veces es necesario que una referencia permanezca *fija* —por ejemplo, un tipo de IVA en
+la celda `B1`, que es el mismo para todos los cálculos—. Para ello, utilice el signo de dólar:
+`$B$1` siempre seguirá siendo `$B$1`, independientemente de dónde copie la fórmula. Esto es una
+**referencia absoluta**.
 
-| Bezugstyp | Schreibweise | Beim Kopieren | Merkhilfe |
+| Tipo de referencia | Sintaxis | Al copiar | Nota |
 |-----------|-------------|---------------|-----------|
-| Relativ | `A1` | Passt sich an | Kein $ = flexibel |
-| Absolut | `$A$1` | Bleibt fixiert | $ wie „festgeschraubt" |
-| Gemischt (Spalte fix) | `$A1` | Spalte A bleibt, Zeile verschiebt | $ vor dem Buchstaben |
-| Gemischt (Zeile fix) | `A$1` | Zeile 1 bleibt, Spalte verschiebt | $ vor der Zahl |
+| Relativa | `A1` | Se adapta | Sin $ = flexible |
+| Absoluta | `$A$1` | Se mantiene fija | $ como "atornillada" |
+| Mixta (columna fija) | `$A1` | La columna A se mantiene, la fila se desplaza | $ delante de la letra |
+| Mixta (fila fija) | `A$1` | La fila 1 se mantiene, la columna se desplaza | $ delante del número |
 
- **Consejo:** Die Taste `F4` schaltet beim Bearbeiten einer Formel zwischen den vier
-Bezugstypen durch: `A1` → `$A$1` → `A$1` → `$A1` → `A1`. Ein unverzichtbarer Shortcut!
+ **Consejo:** La tecla `F4` alterna entre los cuatro
+tipos de referencia al editar una fórmula: `A1` → `$A$1` → `A$1` → `$A1` → `A1`. ¡Un atajo imprescindible!
 
-**Ejercicio 4.2 — Zellbezüge verstehen**
+**Ejercicio 4.2 — Comprender las referencias de celda**
 
-La siguiente tabla de ejercicios **Modul 4 2 Zellbezuege** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 4.2 Referencias de celdas** ya está cargada.
 
-1. Berechnen Sie in C2 den Bruttopreis mit `=B2*(1+$F$1)`, wobei F1 den MwSt-Satz
+1. Calcula en C2 el precio bruto con `=B2*(1+$F$1)`, donde F1 contiene el tipo de IVA
 
-   (19%) enthält. Kopieren Sie die Formel nach unten. Der Bezug auf F1 muss absolut sein!
-2. Erstellen Sie eine kleine Einmaleins-Tabelle (1×1 bis 10×10) mit gemischten Bezügen.
-3. Testen Sie mit F4, wie sich der Bezugstyp ändert.
+   (19 %). Copie la fórmula hacia abajo. ¡La referencia a F1 debe ser absoluta!
+2. Cree una pequeña tabla de tablas de multiplicar (de 1×1 a 10×10) con referencias mixtas.
+3. Pruebe con F4 cómo cambia el tipo de referencia.
 
-## 4.3. Namen definieren und verwenden
+## 4.3. Definir y utilizar nombres
 
-### Konzept: Zellen beim Namen nennen statt bei der Adresse
+### Concepto: referirse a las celdas por su nombre en lugar de por su dirección
 
-Statt `=B2*$F$1` (MwSt-Satz in F1) können Sie der Zelle F1 einen Namen wie
-`MwSt` geben und schreiben: `=B2*MwSt`. Das macht Formeln sofort verständlich —
-auch Wochen später wissen Sie noch, was berechnet wird.
+En lugar de `=B2*$F$1` (tipo de IVA en F1), puede asignar a la celda F1 un nombre como
+`IVA` y escribir: `=B2*IVA`. Esto hace que las fórmulas sean comprensibles de inmediato;
+incluso semanas después, seguirá sabiendo qué es lo que se está calculando.
 
-**Einen Namen definieren:**
-1. Markieren Sie die Zelle oder den Bereich
-2. Klicken Sie in das **Namensfeld** (links neben der Bearbeitungsleiste)
-3. Geben Sie den Namen ein (z.B. `MwSt`, `Preisliste`, `Daten`)
-4. Drücken Sie Enter
+**Definir un nombre:**
+1. Seleccione la celda o el rango
+2. Haga clic en el **campo de nombre** (a la izquierda de la barra de edición)
+3. Introduzca el nombre (p. ej., `IVA`, `Lista de precios`, `Datos`)
+4. Pulse Intro
 
-**Regeln für Namen:**
-- Keine Leerzeichen (verwenden Sie `_` oder Großbuchstaben: `MwSt_Satz`)
-- Muss mit Buchstaben oder Unterstrich beginnen
-- Keine Zelladressen als Namen (z.B. nicht `A1`)
-- Groß-/Kleinschreibung wird ignoriert
+**Reglas para los nombres:**
+- Sin espacios (utilice `_` o mayúsculas: `IVA_tipo`)
+- Debe comenzar con letras o un guión bajo
+- No se pueden utilizar direcciones de celda como nombres (p. ej., no `A1`)
+- No se distingue entre mayúsculas y minúsculas
 
-**Den Namens-Manager** finden Sie unter `Formeln → Namens-Manager`.
-Dort können Sie alle definierten Namen sehen, bearbeiten und löschen.
+**El Gestor de nombres** se encuentra en `Fórmulas → Gestor de nombres`.
+Allí podrá ver, editar y eliminar todos los nombres definidos.
 
-**Consejo:** Namen gelten für die gesamte Arbeitsmappe, nicht nur für ein
-Tabellenblatt. Wenn Sie `=SUMME(Umsatz)` schreiben, müssen Sie nicht wissen,
-in welchem Blatt die Umsatzdaten stehen.
+**Consejo:** Los nombres son válidos para todo el libro, no solo para una
+hoja de cálculo. Si escribe `=SUMA(Volumen de negocio)`, no es necesario que sepa
+en qué hoja se encuentran los datos de volumen de negocio.
 
-**Ejercicio 4.3 — Namen definieren**
+**Ejercicio 4.3 — Definir nombres**
 
-> La siguiente tabla de ejercicios **Modul 4 3 Namen** ya está cargada.
+> La siguiente hoja de ejercicios **Módulo 4.3 Nombres** ya está cargada.
 >
-> 1. Definieren Sie für die Zelle mit dem MwSt-Satz den Namen `MwSt`.
-> 2. Ersetzen Sie in der Bruttopreis-Formel `$F$1` durch `MwSt`.
-> 3. Definieren Sie für die gesamte Preistabelle den Namen `Preisliste`.
-> 4. Verwenden Sie den Namen in einer Formel: `=SVERWEIS(A2;Preisliste;2;0)`.
+> 1. Defina el nombre `IVA` para la celda que contiene el tipo de IVA.
+> 2. En la fórmula del precio bruto, sustituya `$F$1` por `IVA`.
+> 3. Defina el nombre `Lista de precios` para toda la tabla de precios.
+> 4. Utilice el nombre en una fórmula: `=BUSCARV(A2;Lista de precios;2;0)`.
 
-## 4.4. Statistische Grundfunktionen
+## 4.4. Funciones estadísticas básicas
 
-###  Konzept: Vordefinierte Berechnungsbausteine
+###  Concepto: módulos de cálculo predefinidos
 
-Funktionen sind fertige Formeln, die Excel mitbringt. Statt `=A1+A2+A3+...+A100` zu
-schreiben, nutzen Sie einfach `=SUMME(A1:A100)`. Jede Funktion hat einen Namen, gefolgt
-von Klammern mit den Argumenten. Die fünf wichtigsten statistischen Funktionen decken
-90% aller Anfängerbedürfnisse ab:
+Las funciones son fórmulas predefinidas que incluye Excel. En lugar de escribir `=A1+A2+A3+...+A100`,
+basta con utilizar `=SUMA(A1:A100)`. Cada función tiene un nombre, seguido
+de paréntesis con los argumentos. Las cinco funciones estadísticas más importantes cubren
+el 90 % de las necesidades de los principiantes:
 
-| Funktion | Englisch | Was sie macht | Beispiel |
+| Función | Inglés | Qué hace | Ejemplo |
 |----------|----------|---------------|----------|
-| `SUMME()` | `SUM()` | Alle Werte addieren | `=SUMME(B2:B50)` |
-| `MITTELWERT()` | `AVERAGE()` | Durchschnitt berechnen | `=MITTELWERT(C2:C50)` |
-| `MIN()` | `MIN()` | Kleinsten Wert finden | `=MIN(D2:D50)` |
-| `MAX()` | `MAX()` | Größten Wert finden | `=MAX(D2:D50)` |
-| `ANZAHL()` | `COUNT()` | Wie viele Zahlen? | `=ANZAHL(E2:E50)` |
-| `ANZAHL2()` | `COUNTA()` | Wie viele nicht-leere Zellen? | `=ANZAHL2(A2:A50)` |
+| `SUMA()` | `SUM()` | Suma todos los valores | `=SUMA(B2:B50)` |
+| `MEDIA()` | `AVERAGE()` | Calcula la media | `=MEDIA(C2:C50)` |
+| `MIN()` | `MIN()` | Busca el valor más pequeño | `=MIN(D2:D50)` |
+| `MAX()` | `MAX()` | Busca el valor más grande | `=MAX(D2:D50)` |
+| `ANZAHL()` | `COUNT()` | ¿Cuántos números hay? | `=ANZAHL(E2:E50)` |
+| `CONTA2()` | `COUNTA()` | ¿Cuántas celdas no vacías? | `=CONTA2(A2:A50)` |
 
- **Consejo:** Die AutoSumme-Schaltfläche (`Alt+=`) auf der Registerkarte „Start" fügt
-automatisch `=SUMME()` für den markierten Bereich ein. Sie erkennt sogar Ihre Datenbereiche!
+ **Consejo:** El botón de suma automática (`Alt+=`) de la pestaña "Inicio" inserta
+automáticamente `=SUMA()` para el rango seleccionado. ¡Incluso reconoce tus rangos de datos!
 
-**Ejercicio 4.3 — Statistische Funktionen anwenden**
+**Ejercicio 4.3 — Aplicar funciones estadísticas**
 
-La siguiente tabla de ejercicios **Modul 4 3 Statistik** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 4.3 Estadística** ya está cargada.
 
-1. Berechnen Sie mit `SUMME` die Gesamtsumme der Verkäufe.
-2. Ermitteln Sie den `MITTELWERT`, die kleinste (`MIN`) und größte (`MAX`) Bestellung.
-3. Zählen Sie mit `ANZAHL` die Anzahl der Verkaufseinträge.
-4. Zählen Sie mit `ANZAHL2` alle nicht-leeren Zellen in Spalte A (Kundennamen).
-5. Testen Sie die AutoSumme-Schaltfläche: Klicken Sie unter eine Zahlenspalte und
+1. Calcula con `SUMA` el total de las ventas.
+2. Calcula la `MEDIA`, el pedido más pequeño (`MÍN`) y el más grande (`MÁX`).
+3. Cuenta con `CONTAE` el número de entradas de ventas.
+4. Con la función `CONTAE2`, cuenta todas las celdas no vacías de la columna A (nombres de clientes).
+5. Prueba el botón de Autosuma: haz clic debajo de una columna de números y
 
-   dann auf Summe.
+   luego en "Suma".
 
-## 4.5. Die WENN-Funktion
+## 4.5. La función SI
 
-###  Konzept: Entscheidungen automatisieren
+###  Concepto: automatizar decisiones
 
-Die WENN-Funktion ist die grundlegendste aller logischen Funktionen. Sie erlaubt Excel,
-Entscheidungen zu treffen: „WENN diese Bedingung wahr ist, DANN tue dies, SONST tue das."
-Das ist wie eine computergestützte Wenn-Dann-Regel und die Basis für jede intelligente
-Automatisierung.
+La función SI es la más básica de todas las funciones lógicas. Permite a Excel
+tomar decisiones: "SI esta condición es verdadera, ENTONCES haz esto; SI NO, haz aquello".
+Es como una regla "si... entonces" automatizada y constituye la base de cualquier
+automatización inteligente.
 
-**Syntax:** `=WENN(Bedingung; Dann_Wert; Sonst_Wert)`
+**Sintaxis:** `=SI(condición; valor_si; valor_si_no)`
 
-| Vergleichsoperator | Bedeutung | Beispiel |
+| Operador de comparación | Significado | Ejemplo |
 |-------------------|-----------|----------|
-| `>` | Größer als | `A1>100` |
-| `<` | Kleiner als | `B2<0` |
-| `>=` | Größer oder gleich | `C3>=50` |
-| `<=` | Kleiner oder gleich | `D4<=18` |
-| `=` | Gleich | `E5="Ja"` |
-| `<>` | Ungleich | `F6<>0` |
+| `>` | Mayor que | `A1>100` |
+| `<` | Menor que | `B2<0` |
+| `>=` | Mayor o igual que | `C3>=50` |
+| `<=` | Menor o igual que | `D4<=18` |
+| `=` | Igual a | `E5="Sí"` |
+| `<>` | Diferente de | `F6<>0` |
 
- **Consejo:** In einer WENN-Funktion kann der „Sonst"-Teil selbst wieder eine
-WENN-Funktion sein — das nennt man „verschachtelte WENN". Ab Excel 2019 gibt es
-dafür die einfachere `WENNS()`-Funktion.
+ **Consejo:** En una función SI, la parte "si no" puede ser a su vez otra
+función SI; esto se denomina "función SI anidada". A partir de Excel 2019 existe
+la función `SIJS()`, que resulta más sencilla.
 
-**Ejercicio 4.4 — Die WENN-Funktion einsetzen**
+**Ejercicio 4.4 — Utilizar la función SI**
 
-La siguiente tabla de ejercicios **Modul 4 4 WENN** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 4 4 SI** ya está cargada.
 
-1. Schreiben Sie in D2: `=WENN(C2>1000; "Großauftrag"; "Standard")` und kopieren
+1. Escribe en D2: `=SI(C2>1000; "Pedido grande"; "Estándar")` y copia
 
-   Sie die Formel nach unten.
-2. In E2: `=WENN(C2>5000; C2*0,1; 0)` für 10% Bonus ab 5.000 €.
-3. In F2: `=WENN(UND(B2="Nord"; C2>2000); "Priorität"; "")` — kombinieren Sie
+   la fórmula hacia abajo.
+2. En E2: `=SI(C2>5000; C2*0,1; 0)` para un 10 % de bonificación a partir de 5.000 €.
+3. En F2: `=SI(Y(B2="Norte"; C2>2000); "Prioridad"; "")` — combina
 
-   WENN mit UND für zwei Bedingungen.
+   SI con Y para dos condiciones.
 
 
 
-## Módulo 5: Limpieza de datos y validación
+## Módulo 5: Limpieza y validación de datos
 
-**Objetivo de aprendizaje:** Datenqualität durch Validierung sichern und importierte Daten professionell
-bereinigen.
+**Objetivo de aprendizaje:** garantizar la calidad de los datos mediante la validación y limpiar de forma profesional
+los datos importados.
 
-## 5.1. Datenvalidierung
+## 5.1. Validación de datos
 
-###  Konzept: Das GIGO-Prinzip — Garbage In, Garbage Out
+###  Concepto: el principio GIGO — Garbage In, Garbage Out
 
-In der Datenverarbeitung gilt ein eisernes Gesetz: **Schlechte Eingabe führt zu schlechten
-Ergebnissen**, egal wie perfekt Ihre Formeln sind. Wenn jemand `abcd` in ein Zahlenfeld
-schreibt oder `999` statt `9,99` als Preis, werden alle darauf aufbauenden Berechnungen
-falsch. Die **Datenvalidierung** ist Ihr Schutzschild: Sie legt schon vor der Eingabe fest,
-welche Werte erlaubt sind — und blockiert alles andere.
+En el procesamiento de datos se aplica una ley inquebrantable: **una entrada errónea conduce a resultados erróneos
+**, por muy perfectas que sean tus fórmulas. Si alguien escribe "abcd" en un campo numérico
+o "999" en lugar de "9,99" como precio, todos los cálculos basados en ello
+serán erróneos. La **validación de datos** es tu escudo protector: establece, antes incluso de que se introduzcan los datos,
+qué valores están permitidos —y bloquea todo lo demás—.
 
-**Die wichtigsten Validierungsarten:**
+**Los tipos de validación más importantes:**
 
-| Validierungstyp | Beispiel | Verhindert |
+| Tipo de validación | Ejemplo | Impide |
 |----------------|---------|------------|
-| Dropdown-Liste | `=Kategorien!A1:A10` | Freie Texteingabe, nur Auswahl |
-| Ganze Zahl | zwischen 1 und 100 | Kommazahlen, Text, zu große Werte |
-| Dezimalzahl | zwischen 0 und 1 | Negative Werte, Werte > 1 |
-| Datum | zwischen 01.01.2026 und 31.12.2026 | Ungültige Datumsangaben |
-| Textlänge | maximal 50 Zeichen | Zu lange Eingaben |
-| Benutzerdefiniert | `=UND(A1>0; A1<1000)` | Alles außerhalb der Formel-Logik |
+| Lista desplegable | `=Categorías!A1:A10` | Introducción de texto libre, solo selección |
+| Número entero | entre 1 y 100 | Números decimales, texto, valores demasiado grandes |
+| Número decimal | entre 0 y 1 | Valores negativos, valores > 1 |
+| Fecha | entre el 01/01/2026 y el 31/12/2026 | Fechas no válidas |
+| Longitud del texto | máximo 50 caracteres | Entradas demasiado largas |
+| Definida por el usuario | `=Y(A1>0; A1<1000)` | Todo lo que no se ajuste a la lógica de la fórmula |
 
- **Consejo:** Nutzen Sie die „Eingabemeldung" und „Fehlermeldung" in den
-Validierungseinstellungen. Die Eingabemeldung erscheint als freundlicher Hinweis beim
-Anklicken der Zelle, die Fehlermeldung als Stoppschild bei falscher Eingabe.
+ **Consejo:** Utilice el "Mensaje de entrada" y el "Mensaje de error" en la
+configuración de validación. El mensaje de entrada aparece como una indicación amable al
+hacer clic en la celda, mientras que el mensaje de error aparece como una señal de stop cuando se introduce un dato incorrecto.
 
-**Ejercicio 5.1 — Datenvalidierung einrichten**
+**Ejercicio 5.1 — Configurar la validación de datos**
 
-La siguiente tabla de ejercicios **Modul 5 1 Validierung** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 5.1 Validación** ya está cargada.
 
-1. Erstellen Sie eine Dropdown-Liste in Spalte B („Abteilung") mit den Optionen:
+1. Crea una lista desplegable en la columna B ("Departamento") con las opciones:
 
-   „Vertrieb", „Marketing", „IT", „Personal", „Finanzen".
-2. Begrenzen Sie Spalte C („Gehalt") auf ganze Zahlen zwischen 30.000 und 120.000.
-3. Fügen Sie eine Eingabemeldung hinzu: „Bitte wählen Sie eine Abteilung aus."
-4. Fügen Sie eine Fehlermeldung bei ungültigem Gehalt hinzu.
+   "Ventas", "Marketing", "TI", "Recursos Humanos", "Finanzas".
+2. Limite la columna C ("Salario") a números enteros comprendidos entre 30 000 y 120 000.
+3. Añada un mensaje de entrada: "Seleccione un departamento, por favor".
+4. Añada un mensaje de error en caso de que el salario no sea válido.
 
-## 5.2. Werkzeuge zur Datenbereinigung
+## 5.2. Herramientas para la limpieza de datos
 
-###  Konzept: Aufräumen wie nach einer Party
+###  Concepto: limpiar como después de una fiesta
 
-Daten kommen selten perfekt an — besonders wenn sie aus anderen Systemen stammen. Namen
-stehen mal in Groß-, mal in Kleinbuchstaben, Datumsangaben folgen unterschiedlichen
-Formaten, und Duplikate verfälschen jede Statistik. Excel bietet drei mächtige Werkzeuge,
-um solches Datenchaos zu bändigen:
+Los datos rara vez llegan en perfectas condiciones, sobre todo cuando proceden de otros sistemas. Los nombres
+a veces están en mayúsculas y otras en minúsculas, las fechas siguen diferentes
+formatos y los duplicados distorsionan cualquier estadística. Excel ofrece tres potentes herramientas
+para poner orden en ese caos de datos:
 
-| Werkzeug | Was es tut | Typischer Einsatz |
+| Herramienta | Qué hace | Uso típico |
 |----------|-----------|-------------------|
-| **Duplikate entfernen** | Identische Zeilen finden und löschen | Doppelte Bestellungen, Kunden, Einträge |
-| **Text in Spalten** | Eine Textspalte anhand Trennzeichen aufteilen | „Müller, Berlin" → Spalte A, Spalte B |
-| **Blitzschnelles Ausfüllen** (Flash Fill) | Muster erkennen und automatisch fortsetzen | Aus „Max Müller" → Vorname + Nachname extrahieren |
+| **Eliminar duplicados** | Busca y elimina filas idénticas | Pedidos, clientes o entradas duplicadas |
+| **Texto en columnas** | Dividir una columna de texto en función de separadores | "Müller, Berlín" → columna A, columna B |
+| **Relleno rápido** (Flash Fill) | Reconocer un patrón y continuarlo automáticamente | A partir de "Max Müller" → extraer nombre + apellidos |
 
- **Consejo:** Blitzschnelles Ausfüllen (`Strg+E`) ist Magie für Anfänger: Tippen Sie
-in die Nachbarzelle das gewünschte Muster (z.B. nur den Vornamen), drücken Sie
-`Strg+E` — und Excel erledigt den Rest!
+ **Consejo:** El Relleno rápido (`Ctrl+E`) es mágico para los principiantes: escribe
+en la celda contigua el patrón deseado (por ejemplo, solo el nombre), pulsa
+`Ctrl+E` y ¡Excel se encarga del resto!
 
-**Ejercicio 5.2 — Daten bereinigen**
+**Ejercicio 5.2 — Limpiar datos**
 
-La siguiente tabla de ejercicios **Modul 5 2 Bereinigen** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 5.2 Limpiar** ya está cargada.
 
-1. Entfernen Sie alle doppelten Einträge mit „Daten → Duplikate entfernen".
-2. Trennen Sie die Spalte „Name, Vorname" mit „Text in Spalten" in zwei Spalten.
-3. Testen Sie das Blitzschnelle Ausfüllen: Extrahieren Sie die Initialen aus
+1. Elimina todas las entradas duplicadas con "Datos → Eliminar duplicados".
+2. Divide la columna "Apellidos, nombre" en dos columnas con "Texto en columnas".
+3. Prueba el relleno rápido: extrae las iniciales de
 
-   einer Namensliste.
+   una lista de nombres.
 
-## 5.3. Datenkonsolidierung
+## 5.3. Consolidación de datos
 
-###  Konzept: Aus vielen Quellen eine Wahrheit
+###  Concepto: una única verdad a partir de muchas fuentes
 
-Wenn Daten über mehrere Tabellenblätter (z.B. `Januar`, `Februar`, `März`) verstreut
-sind, möchten Sie oft eine Zusammenfassung auf einem Blatt sehen — einen Jahresüberblick.
-Die **Konsolidierung** vereint Daten aus mehreren Bereichen nach Kategorien und wendet
-eine Funktion (meist SUMME) darauf an.
+Cuando los datos están dispersos en varias hojas de cálculo (p. ej., "Enero", "Febrero", "Marzo")
+, a menudo se desea ver un resumen en una sola hoja: una visión general anual.
+La **consolidación** agrupa datos de varios rangos por categorías y les aplica
+una función (normalmente SUMA).
 
- **Consejo:** Bevor Sie konsolidieren, stellen Sie sicher, dass alle Quellbereiche
-dieselbe Struktur haben — gleiche Kategorienamen in derselben Reihenfolge.
+ **Consejo:** Antes de consolidar, asegúrate de que todos los rangos de origen
+tengan la misma estructura: los mismos nombres de categorías en el mismo orden.
 
-**Ejercicio 5.3 — Daten konsolidieren**
+**Ejercicio 5.3 — Consolidar datos**
 
-La siguiente tabla de ejercicios **Modul 5 3 Konsolidierung** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 5.3 Consolidación** ya está cargada.
 
-1. Nutzen Sie „Daten → Konsolidieren", um die drei Monatsblätter zu einem
+1. Utilice "Datos → Consolidar" para agrupar las tres hojas mensuales en un
 
-   Jahresüberblick zusammenzufassen.
-2. Verlinken Sie die konsolidierten Werte mit den Quelldaten, sodass Änderungen
+   resumen anual.
+2. Vincula los valores consolidados con los datos de origen, de modo que los cambios
 
-   automatisch übernommen werden.
+   se apliquen automáticamente.
 
-## 5.4. Datenimport aus externen Quellen
+## 5.4. Importación de datos desde fuentes externas
 
-###  Konzept: Die Brücke zur Außenwelt
+###  Concepto: el puente con el mundo exterior
 
-Nicht alle Daten entstehen in Excel. Oft erhalten Sie `.csv`- oder `.txt`-Dateien aus
-anderen Programmen (Buchhaltung, Warenwirtschaft, Webshops). Excel kann diese direkt
-öffnen oder importieren — mit dem Vorteil, dass Sie schon beim Import Trennzeichen,
-Datumsformat und Kodierung festlegen können.
+No todos los datos se generan en Excel. A menudo se reciben archivos `.csv` o `.txt` procedentes de
+otros programas (contabilidad, gestión de existencias, tiendas online). Excel puede abrirlos
+o importarlos directamente, con la ventaja de que ya durante la importación se pueden definir los separadores,
+el formato de fecha y la codificación.
 
-| Importformat | Typische Quelle | Besonderheit |
+| Formato de importación | Fuente típica | Característica |
 |-------------|-----------------|--------------|
-| `.csv` (Comma-Separated) | Webshops, Datenbank-Export | Einfachster Austausch |
-| `.txt` (Text mit Trennzeichen) | Altsysteme, Logdateien | Flexibles Trennzeichen |
-| Aus dem Web | Webseiten mit Tabellen | Daten bleiben aktuell (aktualisierbar) |
+| `.csv` (separado por comas) | Tiendas online, exportación de bases de datos | Intercambio más sencillo |
+| `.txt` (texto con separador) | Sistemas antiguos, archivos de registro | Separador flexible |
+| De la web | Páginas web con tablas | Los datos se mantienen actualizados (actualizables) |
 
- **Importante:** Achten Sie beim CSV-Import auf das richtige Trennzeichen (Komma oder
-Semikolon — je nach Ländereinstellung) und die korrekte Kodierung (UTF-8 für Umlaute).
+ **Importante:** Al importar archivos CSV, asegúrese de utilizar el separador correcto (coma o
+punto y coma, según la configuración regional) y la codificación adecuada (UTF-8 para las diéresis).
 
-**Ejercicio 5.4 — Daten importieren**
+**Ejercicio 5.4 — Importar datos**
 
-La siguiente tabla de ejercicios **Modul 5_4 Import** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 5_4 Importación** ya está cargada.
 
-1. Importieren Sie eine bereitgestellte `.csv`-Datei über „Daten → Aus Text/CSV".
-2. Prüfen Sie die Vorschau und passen Sie Trennzeichen und Kodierung an.
-3. Laden Sie die Daten in ein neues Tabellenblatt und aktualisieren Sie die Verbindung.
+1. Importe un archivo `.csv` facilitado a través de "Datos → Desde texto/CSV".
+2. Compruebe la vista previa y ajuste el separador y la codificación.
+3. Cargue los datos en una nueva hoja de cálculo y actualice la conexión.
 
 
 
-## Módulo 6: Tablas y filtros
+## Módulo 6: Hojas de cálculo y filtros
 
-**Objetivo de aprendizaje:** Daten sortieren, filtern und in Excel-Tabellen professionell organisieren.
+**Objetivo de aprendizaje:** Ordenar, filtrar y organizar datos de forma profesional en hojas de cálculo de Excel.
 
-## 6.1. Suchen und Ersetzen
+## 6.1. Buscar y sustituir
 
-### Konzept: Nicht manuell durch Zeilen scrollen
+### Concepto: No desplazarse manualmente por las filas
 
-Bei großen Tabellen ist es mühsam, einen bestimmten Wert zu finden —
-oder gar alle Vorkommen eines Begriffs zu ändern. Die Suchfunktion
-erledigt das in Sekunden.
+En tablas grandes, resulta tedioso encontrar un valor concreto —
+o incluso modificar todas las apariciones de un término. La función de búsqueda
+lo hace en segundos.
 
-| Aktion | Tastenkürzel | Verwendung |
+| Acción | Atajo de teclado | Uso |
 |--------|-------------|------------|
-| **Suchen** | `Strg+F` | Einen Begriff in der Tabelle finden |
-| **Ersetzen** | `Strg+H` | Begriff finden und durch anderen ersetzen |
-| **Weitersuchen** | `Shift+F4` | Nächsten Treffer ohne Dialog finden |
+| **Buscar** | `Ctrl+F` | Buscar un término en la hoja |
+| **Reemplazar** | `Ctrl+H` | Buscar un término y sustituirlo por otro |
+| **Buscar siguiente** | `Mayús+F4` | Buscar la siguiente coincidencia sin cuadro de diálogo |
 
-**Consejo:** Im Ersetzen-Dialog können Sie über „Optionen" die Suche
-einschränken: nur im aktuellen Blatt, nur ganze Zellen, oder mit
-Berücksichtigung der Groß-/Kleinschreibung.
+**Consejo:** En el cuadro de diálogo "Reemplazar", puede utilizar "Opciones" para limitar la búsqueda
+: solo en la hoja actual, solo en celdas completas o
+distinguiendo entre mayúsculas y minúsculas.
 
-**Ejercicio 6.1 — Suchen und Ersetzen**
+**Ejercicio 6.1 — Buscar y sustituir**
 
-> La siguiente tabla de ejercicios **Modul 6 1 Suchen Ersetzen** ya está cargada.
+> La siguiente tabla de ejercicios **Módulo 6.1 Buscar y sustituir** ya está cargada.
 >
-> 1. Suchen Sie mit `Strg+F` alle Vorkommen von „München".
-> 2. Ersetzen Sie mit `Strg+H` alle „München" durch „München (Zentrale)".
-> 3. Suchen Sie mit Option „Ganze Zellinhalte" nach „500" und beobachten
->    Sie den Unterschied zur Suche ohne diese Option.
+> 1. Busque con `Ctrl+F` todas las apariciones de "Múnich".
+> 2. Sustituya con `Ctrl+H` todas las apariciones de "Múnich" por "Múnich (sede central)".
+> 3. Busque "500" con la opción "Contenido completo de la celda" y observe
+>    la diferencia con respecto a la búsqueda sin esta opción.
 
-## 6.2. Fenster einfrieren
+## 6.2. Congelar la ventana
 
-### Konzept: Überschriften immer im Blick behalten
+### Concepto: mantener siempre a la vista los encabezados
 
-Wenn Sie in einer großen Tabelle nach unten scrollen, verschwindet die
-Kopfzeile aus dem Bild — Sie sehen nur noch Zahlen, ohne zu wissen, was
-sie bedeuten. **Fenster einfrieren** fixiert Zeilen oder Spalten, sodass
-sie beim Scrollen sichtbar bleiben.
+Cuando se desplaza hacia abajo en una tabla grande, la
+línea de encabezado desaparece de la pantalla; solo ve números, sin saber qué
+significan. La función **Congelar ventana** fija filas o columnas para que
+permanezcan visibles al desplazarse.
 
-| Aktion | Menüpfad | Effekt |
+| Acción | Ruta del menú | Efecto |
 |--------|----------|--------|
-| **Oberste Zeile fixieren** | Ansicht → Fenster einfrieren → Oberste Zeile fixieren | Zeile 1 bleibt immer sichtbar |
-| **Erste Spalte fixieren** | Ansicht → Fenster einfrieren → Erste Spalte fixieren | Spalte A bleibt immer sichtbar |
-| **Beliebigen Bereich fixieren** | Zelle unter/rechts des zu fixierenden Bereichs markieren → Fenster einfrieren | Zeilen + Spalten fixiert |
+| **Fijar la fila superior** | Ver → Congelar ventana → Fijar la fila superior | La fila 1 permanece siempre visible |
+| **Fijar la primera columna** | Ver → Congelar ventana → Fijar la primera columna | La columna A permanece siempre visible |
+| **Fijar cualquier área** | Seleccionar una celda situada debajo o a la derecha del área que se desea fijar → Congelar ventana | Se fijan filas y columnas |
 
-**Consejo:** Bei Tabellen mit Kopfzeile UND linker Beschriftungsspalte:
-Markieren Sie die Zelle B2 und wählen Sie „Fenster einfrieren".
-So bleiben sowohl Zeile 1 als auch Spalte A fixiert.
+**Consejo:** En tablas con fila de encabezado Y columna de etiquetas a la izquierda:
+Seleccione la celda B2 y elija "Congelar ventana".
+De este modo, tanto la fila 1 como la columna A permanecerán congeladas.
 
-**Ejercicio 6.2 — Fenster einfrieren**
+**Ejercicio 6.2 — Congelar ventanas**
 
-> La siguiente tabla de ejercicios **Modul 6 2 Fenster fixieren** ya está cargada.
+> La siguiente tabla de ejercicios **Módulo 6.2: Congelar ventanas** ya está cargada.
 >
-> 1. Fixieren Sie die oberste Zeile und scrollen Sie nach unten.
-> 2. Heben Sie die Fixierung auf (Ansicht → Fenster einfrieren → Fixierung aufheben).
-> 3. Fixieren Sie Zeile 1 UND Spalte A gleichzeitig.
-> 4. Scrollen Sie diagonal und beobachten Sie, was fixiert bleibt.
+> 1. Congele la fila superior y desplácese hacia abajo.
+> 2. Desactive la congelación (Ver → Congelar ventanas → Descongelar).
+> 3. Congele la fila 1 Y la columna A al mismo tiempo.
+> 4. Desplácese en diagonal y observe qué permanece congelado.
 
-## 6.3. Daten sortieren
+## 6.3. Ordenar datos
 
-###  Konzept: Ordnung als Grundlage der Analyse
+###  Concepto: el orden como base del análisis
 
-Sortieren ist mehr als alphabetische Ordnung — es ist der erste Schritt jeder Datenanalyse.
-Eine sortierte Liste zeigt sofort die höchsten Umsätze, die neuesten Bestellungen oder die
-produktivsten Mitarbeiter. Excel kann **mehrstufig** sortieren: zuerst nach Region, dann
-innerhalb jeder Region nach Umsatz — und das mit einem Klick.
+Ordenar es más que un orden alfabético: es el primer paso de cualquier análisis de datos.
+Una lista ordenada muestra de inmediato las ventas más altas, los pedidos más recientes o los
+empleados más productivos. Excel puede ordenar **en varios niveles**: primero por región y, a continuación,
+dentro de cada región por volumen de ventas, y todo ello con un solo clic.
 
-**Sortieroptionen im Überblick:**
+**Resumen de las opciones de ordenación:**
 
-| Sortierart | Beispiel | Einsatz |
+| Tipo de ordenación | Ejemplo | Uso |
 |-----------|---------|---------|
-| Einfach (A→Z) | Namen alphabetisch | Adresslisten, Produktkataloge |
-| Einfach (Z→A) | Höchster Umsatz zuerst | Ranglisten, Top-10 |
-| Mehrstufig | 1. Region, 2. Umsatz | Gruppierte Vergleichsanalyse |
-| Nach Farbe | Zellen mit roter Formatierung oben | Ausreißer priorisieren |
+| Simple (A→Z) | Nombres por orden alfabético | Listas de direcciones, catálogos de productos |
+| Simple (Z→A) | Mayor volumen de ventas primero | Clasificaciones, top 10 |
+| Por niveles | 1. Región, 2. Volumen de ventas | Análisis comparativo agrupado |
+| Por color | Celdas con formato rojo arriba | Dar prioridad a los valores atípicos |
 
- **Consejo:** Markieren Sie **eine** Zelle innerhalb Ihrer Datentabelle — Excel erkennt
-automatisch den gesamten zusammenhängenden Bereich zum Sortieren. Sie müssen nicht alles
-manuell auswählen!
+ **Consejo:** Seleccione **una** celda dentro de su tabla de datos; Excel detectará
+automáticamente todo el rango contiguo para ordenarlo. ¡No es necesario seleccionarlo todo
+manualmente!
 
-**Ejercicio 6.1 — Sortieren üben**
+**Ejercicio 6.1 — Practicar la ordenación**
 
-La siguiente tabla de ejercicios **Modul 6 1 Sortieren** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 6.1 Ordenar** ya está cargada.
 
-1. Sortieren Sie die Kundentabelle alphabetisch nach Nachname (A→Z).
-2. Sortieren Sie nach Bestellwert absteigend (höchster zuerst).
-3. Führen Sie eine mehrstufige Sortierung durch: zuerst nach Land, dann nach
+1. Ordena la tabla de clientes alfabéticamente por apellido (A→Z).
+2. Ordena por valor del pedido en orden descendente (el más alto primero).
+3. Realiza una ordenación en varios niveles: primero por país, luego por
 
-   Bestellwert innerhalb jedes Landes.
+   valor del pedido dentro de cada país.
 
-## 6.4. Daten filtern
+## 6.4. Filtrar datos
 
-###  Konzept: Den Scheinwerfer auf relevante Daten richten
+###  Concepto: centrar la atención en los datos relevantes
 
-Ein Filter blendet alle Zeilen aus, die ein bestimmtes Kriterium *nicht* erfüllen — wie
-eine Suchmaschine innerhalb Ihrer Tabelle. Anders als beim Sortieren bleiben die Daten
-in ihrer ursprünglichen Reihenfolge, und ausgeblendete Zeilen sind nicht gelöscht,
-sondern nur temporär unsichtbar.
+Un filtro oculta todas las filas que *no* cumplen un criterio determinado, como
+un motor de búsqueda dentro de su tabla. A diferencia de la ordenación, los datos
+permanecen en su orden original, y las filas ocultas no se eliminan,
+sino que solo quedan temporalmente invisibles.
 
-| Filtertyp | Was Sie filtern können |
+| Tipo de filtro | Qué se puede filtrar |
 |-----------|----------------------|
-| Textfilter | Enthält, beginnt mit, endet mit... |
-| Zahlenfilter | Größer als, zwischen, Top 10... |
-| Datumsfilter | Heute, diese Woche, dieses Quartal... |
-| Nach Farbe | Alle Zellen mit gelber Füllung |
+| Filtro de texto | Contiene, empieza por, termina por... |
+| Filtro numérico | Mayor que, entre, Top 10... |
+| Filtro de fecha | Hoy, esta semana, este trimestre... |
+| Por color | Todas las celdas con relleno amarillo |
 
- **Consejo:** Das Filtersymbol (Trichter) in der Spaltenüberschrift zeigt an, dass
-ein Filter aktiv ist. Mehrere Filter gleichzeitig sind möglich — und grundlegend
-für die Arbeit mit großen Datenmengen.
+ **Consejo:** El icono de filtro (embudo) en el encabezado de la columna indica que
+hay un filtro activo. Se pueden aplicar varios filtros a la vez, lo cual es fundamental
+para trabajar con grandes volúmenes de datos.
 
-**Ejercicio 6.2 — Filtern anwenden**
+**Ejercicio 6.2 — Aplicar filtros**
 
-La siguiente tabla de ejercicios **Modul 6 2 Filtern** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 6.2 Filtros** ya está cargada.
 
-1. Aktivieren Sie den Autofilter (`Strg+Umschalt+L`).
-2. Filtern Sie nur Bestellungen aus „Berlin".
-3. Filtern Sie Bestellwerte über 500 €.
-4. Kombinieren Sie beide Filter und zählen Sie die sichtbaren Zeilen.
+1. Active el filtro automático (`Ctrl+Mayús+L`).
+2. Filtre solo los pedidos procedentes de "Berlín".
+3. Filtre los pedidos con un importe superior a 500 €.
+4. Combine ambos filtros y cuente las filas visibles.
 
-## 6.5. Excel-Tabellen (Strg+T)
+## 6.5. Hojas de cálculo de Excel (Ctrl+T)
 
-###  Konzept: Vom einfachen Bereich zur intelligenten Tabelle
+###  Concepto: de un rango sencillo a una tabla inteligente
 
-Ein normaler Zellbereich (`A1:D100`) ist eine lose Sammlung von Zellen. Eine **Excel-Tabelle**
-(`Strg+T`) hingegen ist eine intelligente Datenstruktur mit klaren Vorteilen:
+Un rango de celdas normal (`A1:D100`) es un conjunto disperso de celdas. Una **tabla de Excel**
+(`Ctrl+T`), en cambio, es una estructura de datos inteligente con claras ventajas:
 
-| Eigenschaft | Normaler Bereich | Excel-Tabelle (Strg+T) |
+| Característica | Rango normal | Tabla de Excel (Ctrl+T) |
 |------------|-----------------|----------------------|
-| Formatierung | Manuell, statisch | Automatisch, wechselnde Zeilenfarben |
-| Neue Zeilen | Manuell formatiert | Formatierung wird automatisch übernommen |
-| Formeln | Werden einzeln kopiert | Werden automatisch auf alle Zeilen angewendet |
-| Filter | Müssen manuell gesetzt werden | Sind automatisch in der Kopfzeile |
-| Bezüge | `=B2*C2` | `=[@Preis]*[@Menge]` (strukturierte Verweise) |
-| Diagramme/Pivots | Manuell anpassen bei neuen Daten | Erweitern sich automatisch |
+| Formato | Manual, estático | Automático, colores de fila cambiantes |
+| Nuevas filas | Formateadas manualmente | El formato se aplica automáticamente |
+| Fórmulas | Se copian una a una | Se aplican automáticamente a todas las filas |
+| Filtros | Deben configurarse manualmente | Están automáticamente en el encabezado |
+| Referencias | `=B2*C2` | `=[@Precio]*[@Cantidad]` (referencias estructuradas) |
+| Gráficos/tablas dinámicas | Se deben ajustar manualmente con los nuevos datos | Se amplían automáticamente |
 
- **Consejo:** Strukturierte Verweise wie `=[@Umsatz]` statt `=D2` machen Formeln
-lesbarer und robuster. Sie sehen sofort, was berechnet wird — auch Wochen später.
+ **Consejo:** Las referencias estructuradas como `=[@Volumen de negocio]` en lugar de `=D2` hacen que las fórmulas
+sean más legibles y robustas. Se ve al instante qué se está calculando, incluso semanas después.
 
-**Ejercicio 6.3 — Excel-Tabellen verwenden**
+**Ejercicio 6.3 — Utilizar hojas de cálculo de Excel**
 
-La siguiente tabla de ejercicios **Modul 6 3 Tabellen** ya está cargada.
+La siguiente hoja de ejercicios **Módulo 6.3 Hojas de cálculo** ya está cargada.
 
-1. Wandeln Sie den Datenbereich mit `Strg+T` in eine Excel-Tabelle um.
-2. Wählen Sie ein Tabellenformat mit wechselnden Zeilenfarben.
-3. Fügen Sie eine neue Zeile hinzu und beobachten Sie die automatische Formatierung.
-4. Nutzen Sie einen strukturierten Verweis: `=[@Menge]*[@Preis]` in der Spalte „Summe".
+1. Convierte el rango de datos en una tabla de Excel con `Ctrl+T`.
+2. Elige un formato de tabla con colores de fila alternos.
+3. Añade una nueva fila y observa el formato automático.
+4. Utiliza una referencia estructurada: `=[@Cantidad]*[@Precio]` en la columna "Suma".
 
-## 6.6. Teilergebnisse und Gliederung
+## 6.6. Resultados parciales y estructura
 
-###  Konzept: Zusammenfassungen auf Knopfdruck
+###  Concepto: resúmenes con solo pulsar un botón
 
-Stellen Sie sich eine Vertriebstabelle mit 5.000 Zeilen vor, sortiert nach Region und
-Produkt. Die **Teilergebnis**-Funktion fügt automatisch Summen-, Mittelwert- oder
-Anzahl-Zeilen nach jedem Gruppenwechsel ein — und erstellt eine Gliederung, mit der
-Sie zwischen Detail- und Übersichtsansicht umschalten können.
+Imagina una tabla de ventas con 5.000 filas, ordenada por región y
+producto. La función **Resultados parciales** inserta automáticamente filas de sumas, medias o
+recuentos después de cada cambio de grupo, y crea una estructura que
+te permite alternar entre la vista detallada y la vista general.
 
- **Consejo:** Bevor Sie Teilergebnisse einsetzen, **müssen** die Daten nach dem
-Gruppierungsmerkmal sortiert sein — sonst erhalten Sie sinnlose Zwischensummen.
+ **Consejo:** Antes de utilizar los subtotales, **es imprescindible** que los datos estén ordenados según el
+criterio de agrupación; de lo contrario, obtendrá subtotales sin sentido.
 
-**Ejercicio 6.4 — Teilergebnisse berechnen**
+**Ejercicio 6.4 — Calcular subtotales**
 
-La siguiente tabla de ejercicios **Modul 6 4 Teilergebnisse** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 6.4 Resultados parciales** ya está cargada.
 
-1. Sortieren Sie die Tabelle zuerst nach „Region".
-2. Fügen Sie über „Daten → Teilergebnis" automatische Summen für jede Region ein.
-3. Nutzen Sie die Gliederungssymbole (1, 2, 3 am linken Rand), um zwischen
+1. Ordena primero la tabla por "Región".
+2. Añade totales automáticos para cada región mediante "Datos → Subtotal".
+3. Utiliza los símbolos de expansión (1, 2, 3 en el margen izquierdo) para alternar entre
 
-   Detail- und Übersichtsansicht zu wechseln.
+   la vista detallada y la vista general.
 
 
 
 ## Módulo 7: Funciones avanzadas
 
-**Objetivo de aprendizaje:** Bedingte Berechnungen, Suchfunktionen und Textverarbeitung beherrschen.
+**Objetivo de aprendizaje:** Dominar los cálculos condicionales, las funciones de búsqueda y el procesamiento de texto.
 
-## 7.1. Bedingte mathematische Funktionen
+## 7.1. Funciones matemáticas condicionales
 
-###  Konzept: Rechnen nur unter bestimmten Bedingungen
+###  Concepto: realizar cálculos solo bajo determinadas condiciones
 
-Während `SUMME()` alles addiert, summiert `SUMMEWENN()` nur die Werte, die eine Bedingung
-erfüllen. Das Konzept ist einfach: „Addiere alle Umsätze, ABER NUR für die Region Nord."
-Das ist die Anatomie fast aller Funktionen: `=NAME(Argument1; Argument2; ...)` mit
-Semikolon als Trennzeichen.
+Mientras que `SUMA()` suma todo, `SUMA.SI()` solo suma los valores que cumplen una condición
+. El concepto es sencillo: "Suma todas las ventas, PERO SOLO de la región Norte".
+Esta es la estructura de casi todas las funciones: `=NOMBRE(Argumento1; Argumento2; ...)` con
+un punto y coma como separador.
 
-**Die Familie der Bedingungsfunktionen:**
+**La familia de funciones condicionales:**
 
-| Funktion | Aufbau | Beispiel |
+| Función | Estructura | Ejemplo |
 |----------|--------|----------|
-| `SUMMEWENN()` | Bereich, Kriterium, [Summe-Bereich] | `=SUMMEWENN(A:A;"Nord";C:C)` |
-| `SUMMEWENNS()` | Summe-Bereich, Bereich1, Kriterium1, ... | `=SUMMEWENNS(C:C;A:A;"Nord";B:B;"Q1")` |
-| `ZÄHLENWENN()` | Bereich, Kriterium | `=ZÄHLENWENN(C:C;">1000")` |
-| `ZÄHLENWENNS()` | Bereich1, Kriterium1, Bereich2, Kriterium2... | `=ZÄHLENWENNS(A:A;"Nord";C:C;">1000")` |
-| `MITTELWERTWENN()` | Bereich, Kriterium, [Mittelwert-Bereich] | `=MITTELWERTWENN(A:A;"Süd";C:C)` |
+| `SUMA.SI()` | Rango, criterio, [rango de suma] | `=SUMA.SI(A:A;"Norte";C:C)` |
+| `SUMA.SI.OTRA()` | Rango de suma, Rango1, Criterio1, ... | `=SUMA.SI.OTRA(C:C;A:A;"Norte";B:B;"Q1")` |
+| `CONTAR.SI()` | Rango, criterio | `=CONTAR.SI(C:C;">1000")` |
+| `CONTAR.SI.SI()` | Rango1, criterio1, rango2, criterio2... | `=CONTAR.SI(A:A;"Norte";C:C;">1000")` |
+| `MEDIA.SI()` | Rango, criterio, [rango de la media] | `=MEDIA.SI(A:A;"Sur";C:C)` |
 
- **Consejo:** `SUMMEWENN` für EINE Bedingung, `SUMMEWENNS` für MEHRERE Bedingungen.
-Beachten Sie die unterschiedliche Reihenfolge der Argumente — bei `WENNS` steht der
-Summenbereich zuerst!
+ **Consejo:** `SUMA.SI` para UNA condición, `SUMA.SI.CONDICIONES` para VARIAS condiciones.
+Fíjate en el orden diferente de los argumentos: en `SI`, el
+rango de suma va primero.
 
-**Ejercicio 7.1 — Bedingte Summen und Zählungen**
+**Ejercicio 7.1 — Sumas y recuentos condicionales**
 
-La siguiente tabla de ejercicios **Modul 7 1 Bedingte Summen** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 7.1 Sumas condicionales** ya está cargada.
 
-1. Berechnen Sie mit `SUMMEWENN` den Gesamtumsatz für die Region „Nord".
-2. Berechnen Sie mit `SUMMEWENNS` den Umsatz für „Nord" UND Produkt „Laptop".
-3. Zählen Sie mit `ZÄHLENWENN` alle Bestellungen über 1.000 €.
-4. Zählen Sie mit `ZÄHLENWENNS` Großbestellungen (> 1.000 €) in der Region „Süd".
+1. Calcula con `SUMA.SI` la facturación total de la región "Norte".
+2. Calcula con `SUMA.SI.SI` la facturación de "Norte" Y del producto "Portátil".
+3. Cuenta con `CONTA.SI` todos los pedidos superiores a 1.000 €.
+4. Con la función `CONTABLE.SI`, cuente los pedidos grandes (> 1.000 €) en la región "Sur".
 
-## 7.2. Die SVERWEIS-Funktion
+## 7.2. La función BUSCARV
 
-###  Konzept: Wie ein Telefonbuch — suchen und finden
+###  Concepto: como una guía telefónica: buscar y encontrar
 
-SVERWEIS (senkrechter Verweis) sucht einen Wert in der linken Spalte einer Tabelle und
-gibt den Wert aus einer anderen Spalte derselben Zeile zurück. Wie ein Telefonbuch:
-Sie schlagen einen Namen nach (linke Spalte) und lesen die Telefonnummer (rechte Spalte).
-Das „S" steht für „senkrecht" — es wird von oben nach unten gesucht.
+VLOOKUP (búsqueda vertical) busca un valor en la columna de la izquierda de una tabla y
+devuelve el valor de otra columna de la misma fila. Como en una guía telefónica:
+buscas un nombre (columna de la izquierda) y lees el número de teléfono (columna de la derecha).
+La "S" significa "vertical": la búsqueda se realiza de arriba abajo.
 
-**Syntax:** `=SVERWEIS(Suchkriterium; Suchmatrix; Spaltenindex; Bereich_Verweis)`
+**Sintaxis:** `=VLOOKUP(criterio_búsqueda; matriz_búsqueda; índice_columna; referencia_rango)`
 
-| Argument | Bedeutung | Beispiel |
+| Argumento | Significado | Ejemplo |
 |----------|-----------|----------|
-| Suchkriterium | Was suchen Sie? | `"Laptop"` oder `A2` |
-| Suchmatrix | Wo suchen Sie? | `Produkte!A:D` |
-| Spaltenindex | Welche Spalte soll zurückgegeben werden? | `2` (für Spalte B) |
-| Bereich_Verweis | Exakte (0) oder ungefähre (1) Übereinstimmung? | `0` = exakt |
+| Criterio de búsqueda | ¿Qué buscas? | `"Portátil"` o `A2` |
+| Matriz de búsqueda | ¿Dónde buscas? | `Productos!A:D` |
+| Índice de columna | ¿Qué columna se debe devolver? | `2` (para la columna B) |
+| Referencia_al_rango | ¿Coincidencia exacta (0) o aproximada (1)? | `0` = exacta |
 
- **Importante:** SVERWEIS sucht **immer in der ersten Spalte** der Suchmatrix — nie
-in der Mitte oder am Ende. Wenn Ihr Suchbegriff rechts steht, brauchen Sie
-INDEX+VERGLEICH oder XVERWEIS.
+ **Importante:** LAVERSO busca **siempre en la primera columna** de la matriz de búsqueda, nunca
+en el centro ni al final. Si su término de búsqueda se encuentra a la derecha, necesitará
+ÍNDICE+COMPARAR o BUSCARV.
 
-**Importante:** Bei `Bereich_Verweis=1` (ungefähre Übereinstimmung) **muss** die
-Suchspalte **aufsteigend sortiert** sein — sonst liefert SVERWEIS falsche
-Ergebnisse. Bei `Bereich_Verweis=0` (exakte Übereinstimmung) ist keine
-Sortierung erforderlich.
+**Importante:** Si `referencia_rango=1` (coincidencia aproximada), la
+columna de búsqueda **debe** estar **ordenada de menor a mayor**; de lo contrario, BUSCARV devolverá resultados
+erróneos. Si `referencia_rango=0` (coincidencia exacta), no es necesario
+ordenarla.
 
-**Ejercicio 7.2 — SVERWEIS anwenden**
+**Ejercicio 7.2 — Aplicar la función BUSCARV**
 
-La siguiente tabla de ejercicios **Modul 7 2 SVERWEIS** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 7.2 BUSCARV** ya está cargada.
 
-1. Nutzen Sie SVERWEIS, um zu einer Produkt-ID den passenden Produktnamen aus
+1. Utilice la función BUSCARV para encontrar el nombre del producto correspondiente a un ID de producto
 
-   einer Preisliste zu finden (exakte Übereinstimmung).
-2. Finden Sie zu einer Punktzahl die passende Note („sehr gut", „gut"...) mit
+   una lista de precios (coincidencia exacta).
+2. Busca la calificación correspondiente ("muy bien", "bien"...) a partir de una puntuación, utilizando
 
-   ungefährer Übereinstimmung.
-3. Testen Sie, was passiert, wenn der Suchbegriff nicht existiert (#NV-Fehler).
+   una coincidencia aproximada.
+3. Comprueba qué ocurre si el término de búsqueda no existe (error #NV).
 
-## 7.3. INDEX und VERGLEICH
+## 7.3. ÍNDICE y COMPARAR
 
-###  Konzept: Die flexible Alternative zu SVERWEIS
+###  Concepto: la alternativa flexible a BUSCARV
 
-INDEX+VERGLEICH ist die mächtigere Kombination: INDEX liefert den Wert an einer bestimmten
-Position in einem Bereich, VERGLEICH findet die Position eines Suchbegriffs. Zusammen
-können sie in jede Richtung suchen — nicht nur von links nach rechts wie SVERWEIS.
+ÍNDICE + COMPARAR es la combinación más potente: ÍNDICE devuelve el valor en una posición determinada
+de un rango, mientras que COMPARAR encuentra la posición de un término de búsqueda. Juntas
+pueden buscar en cualquier dirección, no solo de izquierda a derecha como VLOOKUP.
 
 ```
-=INDEX(Bereich; Zeilennummer; [Spaltennummer])
-=VERGLEICH(Suchkriterium; Suchbereich; [Vergleichstyp])
-     → liefert die POSITION (Zeilennummer), nicht den Wert
+=ÍNDICE(rango; número de fila; [número de columna])
+=COMPARAR(criterio de búsqueda; rango de búsqueda; [tipo de comparación])
+     → devuelve la POSICIÓN (número de fila), no el valor
 
-Kombiniert: =INDEX(Ergebnisspalte; VERGLEICH(Suchbegriff; Suchspalte; 0))
+Combinado: =ÍNDICE(columna de resultados; BUSCAR.VALOR(término de búsqueda; columna de búsqueda; 0))
 ```
 
- **Consejo:** INDEX+VERGLEICH sucht in jede Richtung (auch rechts→links), ist
-schneller bei großen Tabellen und bricht nicht, wenn Spalten eingefügt werden.
-Für Excel 365-Nutzer ist XVERWEIS (`XLOOKUP`) die einfachste Alternative.
+ **Consejo:** ÍNDICE + COMPARAR busca en cualquier dirección (también de derecha a izquierda), es
+más rápido con tablas grandes y no falla si se insertan columnas.
+Para los usuarios de Excel 365, XVERWEIS (`XLOOKUP`) es la alternativa más sencilla.
 
-**Ejercicio 7.3 — INDEX und VERGLEICH kombinieren**
+**Ejercicio 7.3 — Combinar ÍNDICE y COMPARAR**
 
-La siguiente tabla de ejercicios **Modul 7 3 INDEX VERGLEICH** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 7.3 ÍNDICE COMPARAR** ya está cargada.
 
-1. Finden Sie mit INDEX+VERGLEICH den Preis eines Produkts, wobei die
+1. Utiliza ÍNDICE + COMPARAR para hallar el precio de un producto, teniendo en cuenta que la
 
-   Produktspalte rechts vom Preis steht (was SVERWEIS nicht kann).
-2. Erstellen Sie eine bidirektionale Suche: Produkt (Zeile) × Monat (Spalte).
-3. Vergleichen Sie die Formel mit der SVERWEIS-Variante aus der vorherigen Übung.
+   columna del producto se encuentra a la derecha del precio (algo que VLOOKUP no puede hacer).
+2. Crea una búsqueda bidireccional: producto (fila) × mes (columna).
+3. Compara la fórmula con la variante de VLOOKUP del ejercicio anterior.
 
-## 7.4. Text- und Datumsfunktionen
+## 7.4. Funciones de texto y fecha
 
-###  Konzept: Texte nicht nur anzeigen, sondern bearbeiten
+###  Concepto: no solo mostrar textos, sino también editarlos
 
-Excel kann mehr als nur Texte speichern — es kann Texte zerlegen, zusammensetzen,
-bereinigen und transformieren. Das ist besonders wertvoll, wenn Daten aus Fremdsystemen
-kommen und „Herr Dr. Max Müller, MBA" zu „Müller, Max" werden soll.
+Excel puede hacer mucho más que simplemente almacenar texto: puede descomponerlo, recomponerlo,
+limpiarlo y transformarlo. Esto resulta especialmente útil cuando los datos proceden de sistemas externos
+y es necesario convertir "Dr. Max Müller, MBA" en "Müller, Max".
 
-**Die wichtigsten Textfunktionen:**
+**Las funciones de texto más importantes:**
 
-| Funktion | Wirkung | Beispiel | Ergebnis |
+| Función | Efecto | Ejemplo | Resultado |
 |----------|---------|----------|----------|
-| `LINKS(Text; n)` | Erste n Zeichen | `=LINKS("Excel";2)` | `Ex` |
-| `RECHTS(Text; n)` | Letzte n Zeichen | `=RECHTS("Excel";2)` | `el` |
-| `TEIL(Text; Start; n)` | n Zeichen ab Position | `=TEIL("Excel";2;3)` | `xce` |
-| `LÄNGE(Text)` | Anzahl Zeichen | `=LÄNGE("Excel")` | `5` |
-| `GLÄTTEN(Text)` | Überflüssige Leerzeichen entfernen | `=GLÄTTEN("  Hallo  ")` | `Hallo` |
-| `GROSS2(Text)` | Erster Buchstabe jedes Wortes groß | `=GROSS2("max mustermann")` | `Max Mustermann` |
-| `GROSS(Text)` | Alles in Großbuchstaben | `=GROSS("excel")` | `EXCEL` |
-| `KLEIN(Text)` | Alles in Kleinbuchstaben | `=KLEIN("EXCEL")` | `excel` |
-| `VERKETTEN()` / `&` | Texte verbinden | `=A2&" "&B2` | `Max Müller` |
+| `IZQUIERDA(texto; n)` | Primeros n caracteres | `=IZQUIERDA("Excel";2)` | `Ex` |
+| `DERECHA(texto; n)` | Los últimos n caracteres | `=DERECHA("Excel";2)` | `el` |
+| `PARTE(texto; inicio; n)` | n caracteres a partir de la posición | `=PARTE("Excel";2;3)` | `xce` |
+| `LONGITUD(texto)` | Número de caracteres | `=LONGITUD("Excel")` | `5` |
+| `SUAVIZAR(texto)` | Elimina los espacios en blanco innecesarios | `=SUAVIZAR("  Hola  ")` | `Hola` |
+| `MAYÚSCULAS2(texto)` | Primera letra de cada palabra en mayúscula | `=MAYÚSCULAS2("max mustermann")` | `Max Mustermann` |
+| `MAYÚSCULAS(texto)` | Todo en mayúsculas | `=MAYÚSCULAS("excel")` | `EXCEL` |
+| `MINÚSCULAS(texto)` | Todo en minúsculas | `=MINÚSCULAS("EXCEL")` | `excel` |
+| `CONCATENAR()` / `&` | Unir textos | `=A2&" "&B2` | `Max Müller` |
 
- **Consejo:** Mit `HEUTE()` erhalten Sie immer das aktuelle Datum — ideal für
-Altersberechnungen oder Fristenüberwachung: `=JAHR(HEUTE())-JAHR(Geburtsdatum)`.
+ **Consejo:** Con `HOY()` siempre obtendrás la fecha actual, ideal para
+calcular edades o controlar plazos: `=AÑOS(HOY())-AÑOS(fecha de nacimiento)`.
 
-**Ejercicio 7.4 — Text- und Datumsfunktionen anwenden**
+**Ejercicio 7.4 — Aplicar funciones de texto y fecha**
 
-La siguiente tabla de ejercicios **Modul 7 4 Text Datum** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 7.4 Texto y fecha** ya está cargada.
 
-1. Extrahieren Sie aus einer Spalte „Nachname, Vorname" den Nachnamen mit
+1. Extrae el apellido de una columna "Apellido, nombre" con
 
-   `LINKS()` und `FINDEN()`.
-2. Bereinigen Sie importierte Texte mit `GLÄTTEN()` von überflüssigen Leerzeichen.
-3. Verbinden Sie Vor- und Nachname aus zwei Spalten mit `&` zu einer Spalte.
-4. Berechnen Sie das Alter von Personen aus dem Geburtsdatum mit `HEUTE()`.
+   `IZQUIERDA()` y `BUSCAR()`.
+2. Elimina los espacios superfluos del texto importado con `ALISAR()`.
+3. Combina el nombre y los apellidos de dos columnas con `&` en una sola columna.
+4. Calcula la edad de las personas a partir de la fecha de nacimiento con `HOY()`.
 
 
 
 ## Módulo 8: Gráficos y visualización
 
-**Objetivo de aprendizaje:** Den richtigen Diagrammtyp wählen, professionelle Diagramme erstellen und
-formatieren.
+**Objetivo de aprendizaje:** Elegir el tipo de gráfico adecuado, crear gráficos profesionales y
+darles formato.
 
-## 8.1. Welches Diagramm für welche Daten?
+## 8.1. ¿Qué gráfico para qué datos?
 
-###  Konzept: Visuelle Kommunikation als Sprache
+###  Concepto: la comunicación visual como lenguaje
 
-Ein Diagramm übersetzt Zahlen in Bilder — und das menschliche Gehirn verarbeitet Bilder
-60.000-mal schneller als Text. Aber nicht jedes Diagramm passt zu jedem Datentyp. Die
-Kunst liegt in der **richtigen Wahl**: Ein Tortendiagramm für 50 Datenpunkte ist Unsinn,
-ein Liniendiagramm für Produktnamen ebenso. Hier ist Ihr Auswahlleitfaden:
+Un gráfico traduce los números en imágenes, y el cerebro humano procesa las imágenes
+60 000 veces más rápido que el texto. Pero no todos los gráficos son adecuados para todos los tipos de datos. El
+arte reside en la **elección correcta**: un gráfico circular para 50 puntos de datos no tiene sentido,
+al igual que un gráfico de líneas para nombres de productos. Aquí tienes tu guía de selección:
 
-| Datentyp | Empfohlenes Diagramm | Beispiel |
+| Tipo de datos | Gráfico recomendado | Ejemplo |
 |----------|---------------------|----------|
-| Vergleich von Werten | **Säulendiagramm** | Umsatz pro Region |
-| Zeitliche Entwicklung | **Liniendiagramm** | Aktienkurs über 12 Monate |
-| Anteile eines Ganzen | **Kreisdiagramm** | Marktanteile (max. 5-7 Segmente!) |
-| Rangfolge | **Balkendiagramm** | Top-10 Produkte |
-| Beziehung zweier Variablen | **Punktdiagramm (XY)** | Werbeausgaben vs. Umsatz |
-| Häufigkeitsverteilung | **Histogramm** | Altersverteilung der Kunden |
+| Comparación de valores | **Gráfico de columnas** | Facturación por región |
+| Evolución temporal | **Gráfico de líneas** | Cotización bursátil a lo largo de 12 meses |
+| Proporciones de un todo | **Gráfico circular** | Cuotas de mercado (¡máx. 5-7 segmentos!) |
+| Clasificación | **Gráfico de barras** | Los 10 productos más vendidos |
+| Relación entre dos variables | **Gráfico de puntos (XY)** | Gasto publicitario frente a facturación |
+| Distribución de frecuencias | **Histograma** | Distribución por edades de los clientes |
 
- **Importante:** Ein Kreisdiagramm sollte nie mehr als 5-7 Segmente haben — sonst wird
-es unleserlich. Fassen Sie kleine Anteile zu „Sonstige" zusammen.
+ **Importante:** Un diagrama circular nunca debe tener más de 5-7 segmentos; de lo contrario,
+resultará ilegible. Agrupe las proporciones pequeñas en "Otros".
 
-**Ejercicio 8.1 — Ihr erstes Diagramm**
+**Ejercicio 8.1 — Tu primer gráfico**
 
-La siguiente tabla de ejercicios **Modul 8 1 Erste Diagramme** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 8.1 Primeros gráficos** ya está cargada.
 
-1. Markieren Sie die Umsatztabelle (Produkte + Werte) und erstellen Sie ein
+1. Seleccione la tabla de ventas (productos + valores) y cree un
 
-   Säulendiagramm über „Einfügen → Säulendiagramm".
-2. Erstellen Sie ein Kreisdiagramm aus denselben Daten. Welches ist
+   gráfico de columnas mediante "Insertar → Gráfico de columnas".
+2. Crea un gráfico circular a partir de los mismos datos. ¿Cuál es
 
-   aussagekräftiger und warum?
-3. Erstellen Sie ein Liniendiagramm aus den monatlichen Umsatzzahlen.
+   más revelador y por qué?
+3. Crea un gráfico de líneas a partir de las cifras de facturación mensuales.
 
-## 8.2. Diagrammelemente formatieren
+## 8.2. Dar formato a los elementos de los gráficos
 
-###  Konzept: Vom Standard-Diagramm zum professionellen Bericht
+###  Concepto: del gráfico estándar al informe profesional
 
-Das Standard-Diagramm von Excel ist funktional, aber selten präsentationsreif. Erst durch
-gezielte Anpassung wird ein Diagramm zum Kommunikationswerkzeug: aussagekräftiger Titel,
-korrekte Achsenbeschriftung, passende Datenbeschriftungen und eine Legende, die erklärt,
-ohne zu verwirren.
+El gráfico predeterminado de Excel es funcional, pero rara vez está listo para una presentación. Solo mediante
+una personalización específica un gráfico se convierte en una herramienta de comunicación: un título significativo,
+etiquetas correctas en los ejes, etiquetas de datos adecuadas y una leyenda que explique
+sin confundir.
 
-**Die Elemente eines Diagramms:**
+**Los elementos de un gráfico:**
 
-| Element | Zweck | Empfehlung |
+| Elemento | Finalidad | Recomendación |
 |---------|-------|------------|
-| Diagrammtitel | Was zeigt das Diagramm? | Immer setzen, präzise beschreiben |
-| Achsentitel | Was bedeuten X- und Y-Achse? | Bei unbekannten Einheiten angeben |
-| Legende | Welche Farbe = welche Datenreihe? | Bei mehreren Datenreihen erforderlich |
-| Datenbeschriftungen | Konkrete Zahlen direkt am Punkt | Bei Präsentationen hilfreich |
-| Gitternetzlinien | Orientierung auf der Y-Achse | Dezente Farbe, nicht zu viele |
+| Título del gráfico | ¿Qué muestra el gráfico? | Incluirlo siempre, describirlo con precisión |
+| Título de los ejes | ¿Qué significan los ejes X e Y? | Indícalo si las unidades son desconocidas |
+| Leyenda | ¿Qué color corresponde a cada serie de datos? | Imprescindible si hay varias series de datos |
+| Etiquetas de datos | Cifras concretas directamente en el punto | Útil en presentaciones |
+| Líneas de cuadrícula | Orientación en el eje Y | Color discreto, no demasiadas |
 
- **Consejo:** Mit dem Plus-Symbol (+) rechts neben einem markierten Diagramm können
-Sie alle Diagrammelemente mit einem Klick ein- und ausblenden. Das ist der schnellste
-Weg zur Anpassung.
+ **Consejo:** Con el símbolo más (+) situado a la derecha de un gráfico seleccionado,
+puedes mostrar u ocultar todos los elementos del gráfico con un solo clic. Es la forma más rápida
+de personalizarlo.
 
-**Ejercicio 8.2 — Diagramm formatieren**
+**Ejercicio 8.2 — Dar formato a un gráfico**
 
-La siguiente tabla de ejercicios **Modul 8 2 Diagrammformat** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 8.2 Formato de gráficos** ya está cargada.
 
-1. Fügen Sie einen aussagekräftigen Diagrammtitel hinzu („Quartalsumsatz 2026").
-2. Beschriften Sie die Achsen („Quartal" und „Umsatz in €").
-3. Fügen Sie Datenbeschriftungen zu den Säulen hinzu.
-4. Ändern Sie die Farben der Säulen mit einer professionellen Farbpalette.
+1. Añada un título significativo al gráfico ("Volumen de negocio trimestral 2026").
+2. Etiquete los ejes ("Trimestre" y "Volumen de negocio en €").
+3. Añada etiquetas de datos a las columnas.
+4. Cambie los colores de las columnas utilizando una paleta de colores profesional.
 
-## 8.3. Verbund- und Spezialdiagramme
+## 8.3. Gráficos combinados y especiales
 
-###  Konzept: Zwei Datenskalen in einem Diagramm
+###  Concepto: dos escalas de datos en un gráfico
 
-Manchmal wollen Sie Umsatz (in Tausend Euro) und Wachstumsrate (in Prozent) in einem
-Diagramm zeigen — aber die Wertebereiche sind extrem unterschiedlich. Ein
-**Verbunddiagramm** (Kombi-Diagramm) mit **Sekundärachse** löst dieses Problem:
-Säulen für den Umsatz auf der linken Achse, eine Linie für die Wachstumsrate auf
-der rechten.
+A veces se quiere representar el volumen de negocio (en miles de euros) y la tasa de crecimiento (en porcentaje) en un
+gráfico, pero los rangos de valores son muy dispares. Un
+**gráfico combinado** (gráfico mixto) con **eje secundario** resuelve este problema:
+columnas para el volumen de negocio en el eje izquierdo y una línea para la tasa de crecimiento en
+el derecho.
 
- **Consejo:** Ein Verbunddiagramm eignet sich hervorragend für Soll-Ist-Vergleiche,
-Budget vs. tatsächliche Ausgaben oder Umsatz vs. Gewinnmarge.
+ **Consejo:** Un gráfico combinado resulta ideal para comparaciones entre valores previstos y reales,
+como presupuesto frente a gastos reales o facturación frente a margen de beneficio.
 
-**Ejercicio 8.3 — Verbunddiagramm erstellen**
+**Ejercicio 8.3 — Crear un gráfico combinado**
 
-La siguiente tabla de ejercicios **Modul 8 3 Verbunddiagramm** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 8.3 Gráfico combinado** ya está cargada.
 
-1. Erstellen Sie ein Kombi-Diagramm: Umsatz als Säulen, Wachstumsrate als Linie.
-2. Fügen Sie eine Sekundärachse für die Wachstumsrate ein.
-3. Formatieren Sie beide Achsen mit passenden Einheiten (€ und %).
+1. Crea un gráfico combinado: volumen de negocio en columnas y tasa de crecimiento en línea.
+2. Añade un eje secundario para la tasa de crecimiento.
+3. Aplica el formato adecuado a ambos ejes con las unidades correspondientes (€ y %).
 
-## 8.4. Dashboard-Grundlagen
+## 8.4. Conceptos básicos de los paneles de control
 
-###  Konzept: Alle wichtigen Kennzahlen auf einen Blick
+###  Concepto: todas las métricas importantes de un vistazo
 
-Ein Dashboard ist eine Übersichtsseite, die mehrere Diagramme, Kennzahlen und Tabellen
-auf einem Bildschirm vereint — wie das Armaturenbrett eines Autos. Alle wichtigen
-Informationen sind auf einen Blick erfassbar, ohne dass der Betrachter zwischen
-Tabellenblättern wechseln muss.
+Un panel de control es una página de resumen que reúne varios gráficos, indicadores y tablas
+en una sola pantalla, como el salpicadero de un coche. Toda la información importante
+se puede ver de un vistazo, sin que el usuario tenga que
+cambiar de hoja de cálculo.
 
-**Die Bestandteile eines einfachen Dashboards:**
+**Los componentes de un panel de control sencillo:**
 
-| Element | Funktion | Beispiel |
+| Elemento | Función | Ejemplo |
 |---------|----------|----------|
-| KPI-Karten | Einzelne Kennzahl groß darstellen | „Gesamtumsatz: 1,2 Mio. €" |
-| Trenddiagramm | Entwicklung über Zeit zeigen | Liniendiagramm letzte 12 Monate |
-| Vergleichsdiagramm | Kategorien vergleichen | Säulendiagramm nach Region |
-| Anteilsdiagramm | Zusammensetzung zeigen | Kreisdiagramm nach Produktgruppe |
+| Tarjetas de KPI | Mostrar un indicador concreto en grande | "Facturación total: 1,2 millones de €" |
+| Gráfico de tendencias | Mostrar la evolución a lo largo del tiempo | Gráfico de líneas de los últimos 12 meses |
+| Gráfico comparativo | Comparar categorías | Gráfico de barras por región |
+| Gráfico de porcentajes | Mostrar la composición | Gráfico circular por grupo de productos |
 
-**Ejercicio 8.4 — Einfaches Dashboard erstellen**
+**Ejercicio 8.4 — Crear un panel de control sencillo**
 
-La siguiente tabla de ejercicios **Modul 8 4 Dashboard** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 8.4: Panel de control** ya está cargada.
 
-1. Erstellen Sie auf einem neuen Blatt drei Diagramme aus den Quelldaten:
+1. En una hoja nueva, crea tres gráficos a partir de los datos de origen:
 
-   ein Säulendiagramm (nach Region), ein Liniendiagramm (nach Monat) und
+   un gráfico de barras (por región), un gráfico de líneas (por mes) y
 
-   ein Kreisdiagramm (nach Produktkategorie).
-2. Ordnen Sie die Diagramme übersichtlich auf dem Blatt an.
-3. Fügen Sie über jedem Diagramm einen erklärenden Text ein.
+   un gráfico circular (por categoría de producto).
+2. Organice los gráficos de forma clara en la hoja.
+3. Añada un texto explicativo encima de cada gráfico.
 
 
 
 ## Módulo 9: Tablas dinámicas
 
-**Objetivo de aprendizaje:** Große Datenmengen mit Pivot-Tabellen gruppieren, zusammenfassen und
+**Objetivo de aprendizaje:** Agrupar, resumir y analizar grandes volúmenes de datos con tablas dinámicas
 
-**Hinweis zur Excel-lenz-Plattform:** Die Erstellung von Pivot-Tabellen ist
-im Web-Simulator nicht verfügbar. Die folgenden Übungen erfordern Microsoft
-Excel. Auf der Plattform stehen Quiz-Fragen zu Pivot-Tabellen-Konzepten zur
-Verfügung.
+**Nota sobre la plataforma Excel-lenz:** La creación de tablas dinámicas no está
+disponible en el simulador web. Los siguientes ejercicios requieren Microsoft
+Excel. En la plataforma hay preguntas de cuestionario sobre conceptos de tablas dinámicas
+disponibles.
 
-analysieren.
+analizar.
 
-## 9.1. Was ist eine Pivot-Tabelle?
+## 9.1. ¿Qué es una tabla dinámica?
 
-###  Konzept: Daten drehen und wenden wie einen Zauberwürfel
+###  Concepto: girar y voltear los datos como si fuera un cubo de Rubik
 
-Eine Pivot-Tabelle ist eines der revolutionärsten Werkzeuge in Excel. Stellen Sie sich
-vor, Sie haben 10.000 Verkaufsdatensätze und möchten wissen: „Wie hoch war der Umsatz pro
-Region und pro Quartal?" Eine Pivot-Tabelle beantwortet diese Frage in Sekunden — und Sie
-können die Perspektive jederzeit ändern („pivotieren"), ohne eine einzige Formel zu
-schreiben.
+Una tabla dinámica es una de las herramientas más revolucionarias de Excel. Imagínese
+que tiene 10 000 registros de ventas y quiere saber: "¿Cuál fue el volumen de negocio por
+región y por trimestre?". Una tabla dinámica responde a esta pregunta en segundos, y usted
+puede cambiar la perspectiva ("girar") en cualquier momento sin tener que escribir ni una sola fórmula
+.
 
-Das Grundprinzip ist einfach: **Gruppieren und Zusammenfassen**. Sie ziehen Felder in
-vier Bereiche und Excel erledigt den Rest — keine Formeln, keine manuelle Sortierung.
+El principio básico es sencillo: **agrupar y resumir**. Solo tienes que arrastrar los campos a
+cuatro áreas y Excel se encarga del resto: sin fórmulas, sin ordenar manualmente.
 
-**Die vier Bereiche einer Pivot-Tabelle:**
+**Las cuatro áreas de una tabla dinámica:**
 
-| Bereich | Funktion | Beispiel |
+| Área | Función | Ejemplo |
 |---------|----------|----------|
-| **Zeilen** | Was steht links in der Tabelle? | Region, Produkt, Monat |
-| **Spalten** | Was steht oben in der Tabelle? | Quartal, Jahr, Kategorie |
-| **Werte** | Was soll berechnet werden? | Summe Umsatz, Anzahl Bestellungen |
-| **Filter** | Welche Daten sollen ausgeschlossen werden? | Nur Jahr 2026, nur Region Nord |
+| **Filas** | ¿Qué aparece a la izquierda de la tabla? | Región, producto, mes |
+| **Columnas** | ¿Qué aparece en la parte superior de la tabla? | Trimestre, año, categoría |
+| **Valores** | ¿Qué se debe calcular? | Suma de la facturación, número de pedidos |
+| **Filtro** | ¿Qué datos se deben excluir? | Solo el año 2026, solo la región Norte |
 
- **Consejo:** Sie können jederzeit Felder zwischen den Bereichen verschieben — die
-Tabelle aktualisiert sich sofort. Experimentieren Sie! Es gibt kein „Falsch" beim
-Erkunden von Daten mit Pivot-Tabellen.
+ **Consejo:** Puedes mover campos entre las áreas en cualquier momento; la
+tabla se actualiza al instante. ¡Experimenta! No hay nada "incorrecto" a la hora de
+explorar datos con tablas dinámicas.
 
-**Ejercicio 9.1 — Erste Pivot-Tabelle**
+**Ejercicio 9.1 — Primera tabla dinámica**
 
-La siguiente tabla de ejercicios **Modul 9 1 Pivot** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 9 1 Pivot** ya está cargada.
 
-1. Markieren Sie eine Zelle in der Datentabelle und wählen Sie
+1. Selecciona una celda de la tabla de datos y elige
 
-   „Einfügen → PivotTable".
-2. Ziehen Sie „Region" in den Zeilenbereich und „Umsatz" in den Wertebereich.
-3. Beobachten Sie, wie Excel automatisch die Summe pro Region berechnet.
+   "Insertar → Tabla dinámica".
+2. Arrastra "Región" al área de filas y "Volumen de negocio" al área de valores.
+3. Observa cómo Excel calcula automáticamente la suma por región.
 
-## 9.2. Pivot-Tabelle anpassen
+## 9.2. Personalizar la tabla dinámica
 
-###  Konzept: Nicht nur SUMME — vielfältige Zusammenfassungen
+###  Concepto: No solo SUMA — diversos resúmenes
 
-Standardmäßig zeigt eine Pivot-Tabelle die **Summe** numerischer Werte. Aber Sie können
-die Zusammenfassungsfunktion jederzeit ändern: Mittelwert, Anzahl, Maximum, Minimum,
-Prozentanteil... und sogar „Differenz zum Vorjahr" oder „% des Gesamtergebnisses".
-Das macht die Pivot-Tabelle zu einem flexiblen Analysewerkzeug.
+Por defecto, una tabla dinámica muestra la **suma** de los valores numéricos. Pero puede
+cambiar la función de resumen en cualquier momento: media, recuento, máximo, mínimo,
+porcentaje... e incluso "diferencia respecto al año anterior" o "% del resultado total".
+Esto convierte a la tabla dinámica en una herramienta de análisis flexible.
 
-**Verfügbare Zusammenfassungsfunktionen:**
+**Funciones de resumen disponibles:**
 
-| Funktion | Frage, die sie beantwortet |
+| Función | Pregunta a la que responde |
 |----------|---------------------------|
-| Summe | Wie viel insgesamt? |
-| Anzahl | Wie viele Einträge? |
-| Mittelwert | Was ist der Durchschnitt? |
-| Maximum / Minimum | Höchster / niedrigster Wert? |
-| % des Gesamtergebnisses | Welchen Anteil hat dieser Wert? |
-| Differenz zum Vormonat | Wie hat sich der Wert verändert? |
+| Suma | ¿A cuánto asciende el total? |
+| Recuento | ¿Cuántas entradas hay? |
+| Media | ¿Cuál es la media? |
+| Máximo / Mínimo | ¿Cuál es el valor más alto / más bajo? |
+| % del resultado total | ¿Qué porcentaje representa este valor? |
+| Diferencia respecto al mes anterior | ¿Cómo ha variado el valor? |
 
-**Ejercicio 9.2 — Pivot-Tabelle anpassen**
+**Ejercicio 9.2 — Personalizar una tabla dinámica**
 
-La siguiente tabla de ejercicios **Modul 9 2 Pivot Anpassung** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 9.2: Personalización de la tabla dinámica** ya está cargada.
 
-1. Ändern Sie die Zusammenfassung von „Summe" auf „Mittelwert".
-2. Gruppieren Sie die Datumsangaben nach Monaten und Quartalen
+1. Cambia el resumen de "Suma" a "Media".
+2. Agrupa las fechas por meses y trimestres
 
-   (Rechtsklick → Gruppieren).
-3. Zeigen Sie die Werte als „% des Gesamtergebnisses" an.
-4. Fügen Sie ein berechnetes Feld hinzu: „Bonus" = Umsatz × 5%.
+   (clic con el botón derecho → Agrupar).
+3. Muestra los valores como "% del resultado total".
+4. Añade un campo calculado: "Bonificación" = Facturación × 5 %.
 
-## 9.3. Mit Slicern filtern
+## 9.3. Filtrar con segmentadores
 
-###  Konzept: Visuelle Filter für Pivot-Tabellen
+###  Concepto: filtros visuales para tablas dinámicas
 
-Slicer sind interaktive Schaltflächen, mit denen Sie Pivot-Tabellen filtern — aber
-viel eleganter als herkömmliche Dropdown-Filter. Ein Klick auf „Nord" im Slicer,
-und alle verbundenen Pivot-Tabellen und Diagramme zeigen nur die Daten dieser Region.
-Das macht Slicer zum perfekten Werkzeug für Dashboards und Präsentationen.
+Los segmentadores son botones interactivos que permiten filtrar tablas dinámicas, pero
+de una forma mucho más elegante que los filtros desplegables convencionales. Al hacer clic en "Norte" en el segmentador,
+todas las tablas dinámicas y gráficos vinculados mostrarán únicamente los datos de esa región.
+Esto convierte a los segmentadores en la herramienta perfecta para paneles de control y presentaciones.
 
- **Consejo:** Ein Slicer kann mit mehreren Pivot-Tabellen gleichzeitig verbunden
-werden (Rechtsklick → Berichtsverbindungen). So steuern Sie ein ganzes Dashboard
-mit einem Klick.
+ **Consejo:** Un filtro se puede vincular a varias tablas dinámicas a la vez
+(clic con el botón derecho → Vínculos de informe). De este modo, puedes controlar todo un panel de control
+con un solo clic.
 
-**Ejercicio 9.3 — Slicer einsetzen**
+**Ejercicio 9.3 — Uso de los segmentadores**
 
-La siguiente tabla de ejercicios **Modul 9 3 Slicer** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 9.3 Filtros** ya está cargada.
 
-1. Fügen Sie einen Slicer für das Feld „Region" ein
+1. Inserta un filtro para el campo "Región"
 
-   (PivotTable-Analyse → Slicer einfügen).
-2. Filtern Sie mit dem Slicer auf eine bestimmte Region.
-3. Fügen Sie einen zweiten Slicer für „Produktkategorie" hinzu und kombinieren
+   (Análisis de tabla dinámica → Insertar filtro).
+2. Filtra con el filtro una región concreta.
+3. Añade un segundo filtro para "Categoría de producto" y combina
 
-   Sie beide Filter.
+   ambos filtros.
 
-## 9.4. PivotCharts
+## 9.4. Gráficos dinámicos
 
-###  Konzept: Diagramme, die mit der Pivot-Tabelle leben
+###  Concepto: gráficos vinculados a la tabla dinámica
 
-Ein PivotChart ist ein Diagramm, das direkt mit einer Pivot-Tabelle verbunden ist.
-Wenn Sie die Pivot-Tabelle verändern (andere Gruppierung, anderer Filter), passt
-sich das Diagramm automatisch an. Das ist die perfekte Kombination aus Analyse
-(Pivot) und Präsentation (Chart).
+Un gráfico dinámico es un gráfico que está directamente vinculado a una tabla dinámica.
+Si modificas la tabla dinámica (cambio de agrupación, cambio de filtro),
+el gráfico se adapta automáticamente. Es la combinación perfecta entre análisis
+(tabla dinámica) y presentación (gráfico).
 
-**Ejercicio 9.4 — PivotChart erstellen**
+**Ejercicio 9.4 — Crear un gráfico dinámico**
 
-La siguiente tabla de ejercicios **Modul 9 4 PivotChart** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 9.4 Gráfico dinámico** ya está cargada.
 
-1. Erstellen Sie aus Ihrer Pivot-Tabelle ein PivotChart
+1. Crea un gráfico dinámico a partir de tu tabla dinámica
 
-   (PivotTable-Analyse → PivotChart).
-2. Wählen Sie einen passenden Diagrammtyp.
-3. Testen Sie die Interaktivität: Ändern Sie die Pivot-Tabelle und beobachten
+   (Análisis de tabla dinámica → Gráfico dinámico).
+2. Seleccione un tipo de gráfico adecuado.
+3. Pruebe la interactividad: modifique la tabla dinámica y observe
 
-   Sie, wie das Diagramm folgt.
+   cómo se adapta el gráfico.
 
 
 
 ## Módulo 10: Análisis y funciones financieras
 
-**Objetivo de aprendizaje:** Was-wäre-wenn-Analysen durchführen und grundlegende Finanzfunktionen
-einsetzen.
+**Objetivo de aprendizaje:** Realizar análisis de "qué pasaría si" y utilizar funciones financieras básicas
+.
 
-## 10.1. Zielwertsuche (Goal Seek)
+## 10.1. Búsqueda de objetivo (Goal Seek)
 
-###  Konzept: Vom Ergebnis zur Ursache zurückrechnen
+###  Concepto: calcular a la inversa, del resultado a la causa
 
-Normalerweise geben Sie Werte ein und Excel berechnet das Ergebnis (z.B. Menge × Preis =
-Umsatz). Die **Zielwertsuche** macht das Gegenteil: Sie sagen „Ich will 100.000 €
-Umsatz erreichen", und Excel findet den notwendigen Preis oder die Menge. Das ist
-besonders nützlich für Planung und Budgetierung.
+Normalmente, se introducen valores y Excel calcula el resultado (p. ej., cantidad × precio =
+volumen de negocio). La función **Búsqueda de objetivo** hace lo contrario: usted dice "Quiero alcanzar un volumen de negocio de 100 000 €",
+y Excel calcula el precio o la cantidad necesarios. Esto resulta
+especialmente útil para la planificación y la elaboración de presupuestos.
 
- **Consejo:** Die Zielwertsuche finden Sie unter „Daten → Was-wäre-wenn-Analyse →
-Zielwertsuche". Sie benötigen drei Angaben: Zielzelle (mit Formel), Zielwert und
-veränderbare Zelle.
+ **Consejo:** La función "Búsqueda de valor objetivo" se encuentra en "Datos → Análisis hipotético →
+Búsqueda de valor objetivo". Necesitas tres datos: la celda de destino (con fórmula), el valor objetivo y
+la celda variable.
 
-**Ejercicio 10.1 — Zielwertsuche anwenden**
+**Ejercicio 10.1 — Aplicar la búsqueda de valor objetivo**
 
-La siguiente tabla de ejercicios **Modul 10 1 Zielwertsuche** ya está cargada.
+La siguiente hoja de ejercicios **Módulo 10.1 Búsqueda de valor objetivo** ya está cargada.
 
-1. Sie möchten einen Gesamtumsatz von 100.000 € erreichen. Nutzen Sie die
+1. Desea alcanzar una facturación total de 100 000 €. Utilice la
 
-   Zielwertsuche, um den erforderlichen Stückpreis zu ermitteln.
-2. Ein Kredit über 200.000 € soll eine monatliche Rate von 1.500 € haben.
+   búsqueda de valor objetivo para determinar el precio unitario necesario.
+2. Un crédito de 200 000 € debe tener una cuota mensual de 1 500 €.
 
-   Welcher Zinssatz ist dafür maximal zulässig?
+   ¿Cuál es el tipo de interés máximo admisible para ello?
 
-## 10.2. Finanzfunktionen
+## 10.2. Funciones financieras
 
-###  Konzept: Der Zeitwert des Geldes — vereinfacht
+###  Concepto: el valor temporal del dinero — simplificado
 
-Geld heute ist mehr wert als Geld morgen. Warum? Weil Sie Geld heute anlegen können und
-es durch Zinsen wächst (Opportunitätsprinzip). Excel bildet dieses Grundprinzip der
-Finanzmathematik mit speziellen Funktionen ab — Sie müssen nur die Parameter kennen.
+El dinero de hoy vale más que el dinero de mañana. ¿Por qué? Porque hoy puede invertir el dinero y
+este se multiplica gracias a los intereses (principio de oportunidad). Excel reproduce este principio básico de las
+matemáticas financieras mediante funciones especiales; solo tiene que conocer los parámetros.
 
-**Die wichtigsten Finanzfunktionen für Anfänger:**
+**Las funciones financieras más importantes para principiantes:**
 
-| Funktion | Was sie berechnet | Beispiel |
+| Función | Qué calcula | Ejemplo |
 |----------|------------------|----------|
-| `RMZ()` (Rate) | Monatliche Rate eines Kredits | `=RMZ(Zins/12; Monate; -Kreditbetrag)` |
-| `ZW()` (Zukunftswert) | Endkapital einer Sparanlage | `=ZW(Zins; Jahre; -Rate; -Startkapital)` |
-| `NBW()` (Kapitalwert) | Heutiger Wert zukünftiger Zahlungen | `=NBW(Zins; Zahlung1; Zahlung2...)` |
-| `IKV()` (Interner Zinsfuß) | Rendite einer Investition | `=IKV(Wertebereich)` |
+| `RMZ()` (cuota) | Cuota mensual de un préstamo | `=RMZ(tipo de interés/12; meses; -importe del préstamo)` |
+| `ZW()` (valor futuro) | Capital final de un plan de ahorro | `=ZW(tipo de interés; años; -cuota; -capital inicial)` |
+| `NBW()` (valor actual neto) | Valor actual de los pagos futuros | `=NBW(tipo de interés; pago1; pago2...)` |
+| `IKV()` (tasa interna de rendimiento) | Rentabilidad de una inversión | `=IKV(rango de valores)` |
 
- **Consejo:** Bei RMZ und ZW sind Zahlungen, die Sie leisten (Kreditrate, Sparrate),
-als negative Zahlen anzugeben. Der Kreditbetrag ist positiv aus Sicht der Bank.
+ **Consejo:** En las funciones RMZ y ZW, los pagos que realizas (cuota de crédito, cuota de ahorro)
+deben indicarse como números negativos. El importe del crédito es positivo desde el punto de vista del banco.
 
-**Ejercicio 10.2 — Finanzfunktionen anwenden**
+**Ejercicio 10.2 — Aplicar funciones financieras**
 
-La siguiente tabla de ejercicios **Modul 10 2 Finanzfunktionen** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 10.2 Funciones financieras** ya está cargada.
 
-1. Berechnen Sie mit `RMZ()` die monatliche Rate für einen Kredit über 250.000 €
+1. Calcula con `RMZ()` la cuota mensual de un préstamo de 250 000 €
 
-   bei 4,5% Zins und 30 Jahren Laufzeit.
-2. Berechnen Sie mit `ZW()` das Endkapital nach 20 Jahren, wenn Sie monatlich
+   con un tipo de interés del 4,5 % y un plazo de 30 años.
+2. Calcula con `ZW()` el capital final al cabo de 20 años si ahorras mensualmente
 
-   200 € bei 3% Zins ansparen.
-3. Vergleichen Sie zwei Investitionen mit `NBW()` und entscheiden Sie, welche
+   200 € al mes con un interés del 3 %.
+3. Compara dos inversiones con `NBW()` y decide cuál
 
-   vorteilhafter ist.
+   es más ventajosa.
 
 
 
 ## Módulo 11: Impresión y colaboración
 
-**Objetivo de aprendizaje:** Tabellen professionell für den Druck aufbereiten und mit anderen
+**Objetivo de aprendizaje:** Preparar hojas de cálculo de forma profesional para su impresión y colaborar con otros
 
-**Hinweis zur Excel-lenz-Plattform:** Die Druckfunktionen sind im
-Web-Simulator nicht verfügbar. Die folgenden Übungen erfordern Microsoft
-Excel. Auf der Plattform stehen Quiz-Fragen zu Druckkonzepten zur Verfügung.
+**Nota sobre la plataforma Excel-lenz:** Las funciones de impresión no están
+disponibles en el simulador web. Los siguientes ejercicios requieren Microsoft
+Excel. En la plataforma hay preguntas de test sobre conceptos de impresión.
 
-zusammenarbeiten.
+colaborar.
 
-## 11.1. Seitenlayout konfigurieren
+## 11.1. Configurar el diseño de página
 
-###  Konzept: Vom Bildschirm zum Papier — die andere Denkweise
+###  Concepto: De la pantalla al papel: una forma diferente de pensar
 
-Eine Tabelle, die am Bildschirm perfekt aussieht, kann gedruckt ein Desaster sein:
-abgeschnittene Spalten, fehlende Überschriften, kein Seitenrand. Der Druck erfordert
-eine andere Denkweise — Sie müssen Excel sagen, was auf eine Seite passt, wie die
-Ränder sein sollen und ob Hoch- oder Querformat besser ist.
+Una hoja de cálculo que se ve perfecta en pantalla puede ser un desastre al imprimirla:
+columnas cortadas, encabezados que faltan, sin márgenes. La impresión requiere
+una forma diferente de pensar: hay que indicarle a Excel qué cabe en una página, cómo
+deben ser los márgenes y si es mejor el formato vertical u horizontal.
 
-**Die wichtigsten Druckeinstellungen:**
+**Los ajustes de impresión más importantes:**
 
-| Einstellung | Optionen | Empfehlung |
+| Configuración | Opciones | Recomendación |
 |-------------|----------|------------|
-| Ausrichtung | Hochformat / Querformat | Breite Tabellen → Querformat |
-| Skalierung | An Seite anpassen / % | „Alle Spalten auf eine Seite" |
-| Seitenränder | Normal / Schmal / Benutzerdefiniert | Bei vielen Spalten: „Schmal" |
-| Papierformat | A4, Letter... | Mittel-/Nordeuropa: A4 |
+| Orientación | Vertical / Horizontal | Tablas anchas → Horizontal |
+| Escala | Ajustar a la página / % | "Todas las columnas en una página" |
+| Márgenes | Normal / Estrecho / Personalizado | Si hay muchas columnas: "Estrecho" |
+| Tamaño del papel | A4, Carta... | Europa Central y del Norte: A4 |
 
- **Consejo:** Rufen Sie vor jedem Druck die **Seitenumbruchvorschau** auf
-(Ansicht → Seitenumbruchvorschau). Sie sehen sofort, wo die Seitenumbrüche
-liegen und können sie per Drag & Drop verschieben.
+ **Consejo:** Antes de cada impresión, acceda a la **vista previa de saltos de página**
+(Ver → Vista previa de saltos de página). Verá inmediatamente dónde se encuentran los saltos de página
+y podrá moverlos arrastrando y soltando.
 
-**Ejercicio 11.1 — Seitenlayout einrichten**
+**Ejercicio 11.1 — Configurar el diseño de página**
 
-La siguiente tabla de ejercicios **Modul 11 1 Drucklayout** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 11.1 Diseño de impresión** ya está cargada.
 
-1. Ändern Sie die Ausrichtung auf Querformat.
-2. Skalieren Sie die Tabelle so, dass alle Spalten auf eine Seite passen.
-3. Setzen Sie die Seitenränder auf „Schmal".
-4. Zentrieren Sie die Tabelle horizontal und vertikal auf der Seite.
+1. Cambie la orientación a apaisada.
+2. Ajuste el tamaño de la tabla para que todas las columnas quepan en una página.
+3. Establezca los márgenes en "Estrechos".
+4. Centre la tabla horizontal y verticalmente en la página.
 
-## 11.2. Druckbereich und Seitenumbrüche
+## 11.2. Área de impresión y saltos de página
 
-###  Konzept: Nicht alles muss gedruckt werden
+###  Concepto: no es necesario imprimirlo todo
 
-Oft enthält ein Tabellenblatt Hilfsberechnungen, Zwischenergebnisse oder Notizen,
-die nicht gedruckt werden sollen. Mit dem **Druckbereich** legen Sie exakt fest,
-welcher Teil des Blattes gedruckt wird — der Rest wird ignoriert. Mit manuellen
-**Seitenumbrüchen** steuern Sie, wo eine neue Seite beginnt.
+A menudo, una hoja de cálculo contiene cálculos auxiliares, resultados provisionales o notas
+que no deben imprimirse. Con el **área de impresión** se define exactamente
+qué parte de la hoja se imprime; el resto se ignora. Mediante
+**saltos de página** manuales se controla dónde comienza una nueva página.
 
-**Ejercicio 11.2 — Druckbereich festlegen**
+**Ejercicio 11.2 — Definir el rango de presión**
 
-La siguiente tabla de ejercicios **Modul 11 2 Druckbereich** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 11.2 Rango de impresión** ya está cargada.
 
-1. Definieren Sie einen Druckbereich, der nur die Haupttabelle (ohne Hilfsspalten)
+1. Define un rango de impresión que incluya únicamente la tabla principal (sin columnas auxiliares)
 
-   umfasst.
-2. Fügen Sie einen manuellen Seitenumbruch nach Zeile 30 ein.
-3. Nutzen Sie die Seitenumbruchvorschau, um die Umbrüche zu kontrollieren.
+   .
+2. Inserte un salto de página manual después de la línea 30.
+3. Utilice la vista previa de saltos de página para comprobar los saltos.
 
-## 11.3. Kopf- und Fußzeilen
+## 11.3. Encabezados y pies de página
 
-###  Konzept: Professionelle Dokumente brauchen Metadaten
+###  Concepto: los documentos profesionales necesitan metadatos
 
-Eine gedruckte Excel-Tabelle ohne Kopfzeile wirkt unprofessionell. Kopf- und Fußzeilen
-enthalten Seitennummern, Datum, Dateinamen oder Firmenlogos — Informationen, die dem
-Leser Orientierung geben. Einmal eingerichtet, erscheinen sie automatisch auf jeder
-Seite.
+Una hoja de Excel impresa sin encabezado da una impresión poco profesional. Los encabezados y pies de página
+contienen números de página, la fecha, nombres de archivo o logotipos de empresa, es decir, información que
+sirve de orientación al lector. Una vez configurados, aparecen automáticamente en cada
+página.
 
- **Consejo:** Nutzen Sie die vordefinierten Elemente (Seitenzahl, Anzahl der Seiten,
-aktuelles Datum, Dateipfad) über die Schaltflächen im Kopf-/Fußzeilen-Dialog.
-Das spart Tipparbeit und bleibt automatisch aktuell.
+ **Consejo:** Utilice los elementos predefinidos (número de página, número total de páginas,
+fecha actual, ruta del archivo) mediante los botones del cuadro de diálogo de encabezados y pies de página.
+Esto le ahorra tener que escribir y se mantiene actualizado automáticamente.
 
-**Ejercicio 11.3 — Kopf- und Fußzeilen erstellen**
+**Ejercicio 11.3 — Crear encabezados y pies de página**
 
-La siguiente tabla de ejercicios **Modul 11 3 Kopfzeilen** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 11.3 Encabezados** ya está cargada.
 
-1. Fügen Sie eine Kopfzeile mit dem Firmennamen (links) und dem Datum (rechts) ein.
-2. Fügen Sie eine Fußzeile mit „Seite X von Y" (mittig) ein.
-3. Aktivieren Sie „Wiederholungszeilen oben", damit die Tabellenüberschrift auf
+1. Inserta un encabezado con el nombre de la empresa (a la izquierda) y la fecha (a la derecha).
+2. Inserta un pie de página con "Página X de Y" (centrado).
+3. Activa "Repetir filas en la parte superior" para que el encabezado de la tabla aparezca en
 
-   jeder gedruckten Seite erscheint.
+   cada página impresa.
 
-## 11.4. Zusammenarbeit und Export
+## 11.4. Colaboración y exportación
 
-###  Konzept: Excel-Dateien weitergeben wie ein Profi
+###  Concepto: compartir archivos de Excel como un profesional
 
-Bevor Sie eine Excel-Datei per E-Mail versenden, stellen Sie sicher, dass der Empfänger
-sie öffnen und lesen kann. Nicht jeder hat Excel — eine PDF-Version als Alternative ist
-professioneller Standard. Kommentare erlauben Rückfragen direkt in der Tabelle, ohne
-die Daten zu verändern.
+Antes de enviar un archivo de Excel por correo electrónico, asegúrate de que el destinatario
+pueda abrirlo y leerlo. No todo el mundo tiene Excel; una versión en PDF como alternativa es
+el estándar profesional. Los comentarios permiten realizar consultas directamente en la hoja de cálculo sin
+modificar los datos.
 
-| Exportformat | Wann verwenden? |
+| Formato de exportación | ¿Cuándo utilizarlo? |
 |-------------|-----------------|
-| `.xlsx` | Empfänger soll weiterarbeiten können |
-| `.pdf` | Endgültige Version, nicht bearbeitbar |
-| `.csv` | Rohdaten für andere Programme |
+| `.xlsx` | El destinatario debe poder seguir trabajando con el archivo |
+| `.pdf` | Versión definitiva, no editable |
+| `.csv` | Datos sin procesar para otros programas |
 
-**Ejercicio 11.4 — Für die Weitergabe vorbereiten**
+**Ejercicio 11.4 — Preparar para compartir**
 
-La siguiente tabla de ejercicios **Modul 11 4 Zusammenarbeit** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 11.4 Colaboración** ya está cargada.
 
-1. Exportieren Sie die Tabelle als PDF.
-2. Fügen Sie einen Kommentar in eine Zelle ein (Überprüfen → Neuer Kommentar).
-3. Speichern Sie die Datei sowohl als `.xlsx` als auch als `.pdf`.
+1. Exporte la tabla como PDF.
+2. Inserte un comentario en una celda (Revisar → Nuevo comentario).
+3. Guarde el archivo tanto como `.xlsx` como `.pdf`.
 
 
 
 ## Módulo 12: Protección y seguridad
 
-**Objetivo de aprendizaje:** Arbeitsmappen und Zellen schützen sowie die Produktivität durch
-Tastenkombinationen steigern.
+**Objetivo de aprendizaje:** Proteger libros y celdas, así como aumentar la productividad mediante
+combinaciones de teclas.
 
-## 12.1. Zellen und Blätter schützen
+## 12.1. Proteger celdas y hojas
 
-###  Konzept: Nicht jeder soll alles ändern dürfen
+###  Concepto: no todo el mundo debe poder modificarlo todo
 
-Stellen Sie sich eine Budgettabelle vor, die an mehrere Abteilungsleiter geht. Die
-Formeln sollen geschützt sein, aber jeder soll seine eigenen Zahlen eintragen können.
-Der **Blattschutz** in Excel macht genau das: Sie legen fest, welche Zellen bearbeitbar
-sind und welche gesperrt. Optional mit Passwort — für vertrauliche Daten.
+Imagina una hoja de cálculo con el presupuesto que se envía a varios jefes de departamento. Las
+fórmulas deben estar protegidas, pero cada uno debe poder introducir sus propias cifras.
+La **protección de hojas** en Excel hace precisamente eso: tú determinas qué celdas se pueden editar
+y cuáles están bloqueadas. Opcionalmente, con contraseña, para datos confidenciales.
 
-**Die Schutzebenen in Excel:**
+**Los niveles de protección en Excel:**
 
-| Ebene | Was sie schützt | Typischer Einsatz |
+| Nivel | Qué protege | Uso habitual |
 |-------|----------------|-------------------|
-| Zellsperre | Einzelne Zellen vor Änderung | Formeln, Referenzwerte |
-| Blattschutz | Gesamtes Tabellenblatt | Vor versehentlichem Löschen |
-| Arbeitsmappenschutz | Struktur (Blätter löschen/einfügen) | Verhindert Umstrukturierung |
-| Passwort zum Öffnen | Gesamte Datei | Vertrauliche Daten |
+| Bloqueo de celdas | Celdas individuales contra modificaciones | Fórmulas, valores de referencia |
+| Protección de hoja | Hoja completa | Contra el borrado accidental |
+| Protección de libro | Estructura (borrar/insertar hojas) | Impide la reestructuración |
+| Contraseña de apertura | Archivo completo | Datos confidenciales |
 
- **Importante:** Alle Zellen sind standardmäßig gesperrt — aber die Sperre wirkt
-erst, wenn Sie den Blattschutz aktivieren! Entsperren Sie zuerst die Zellen, die
-bearbeitbar bleiben sollen (Strg+1 → Schutz → Gesperrt abwählen).
+ **Importante:** Todas las celdas están bloqueadas de forma predeterminada, pero el bloqueo solo
+se aplica cuando se activa la protección de la hoja. Desbloquee primero las celdas que
+deben seguir siendo editables (Ctrl+1 → Protección → Desmarcar "Bloqueado").
 
-**Ejercicio 12.1 — Schutz einrichten**
+**Ejercicio 12.1 — Configurar la protección**
 
-La siguiente tabla de ejercicios **Modul 12 1 Schutz** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 12.1 Protección** ya está cargada.
 
-1. Entsperren Sie die Eingabezellen (B2:B10), lassen Sie die Formelzellen gesperrt.
-2. Aktivieren Sie den Blattschutz und testen Sie: Eingabezellen sind bearbeitbar,
+1. Desbloquee las celdas de entrada (B2:B10) y deje bloqueadas las celdas con fórmulas.
+2. Active la protección de la hoja y compruebe que las celdas de entrada se pueden editar,
 
-   andere Zellen nicht.
-3. Schützen Sie die Arbeitsmappenstruktur, sodass keine Blätter gelöscht werden
+   las demás no.
+3. Protege la estructura del libro para que no se puedan eliminar hojas
 
-   können.
+   .
 
-## 12.2. Die wichtigsten Tastenkombinationen
+## 12.2. Los atajos de teclado más importantes
 
-###  Konzept: Maus spart Zeit — Tastatur spart mehr
+###  Concepto: el ratón ahorra tiempo, pero el teclado ahorra aún más
 
-Jedes Mal, wenn Ihre Hand die Tastatur verlässt, verlieren Sie rund 2 Sekunden. Bei
-hunderten Aktionen pro Stunde summiert sich das dramatisch. Die wichtigsten
-Tastenkombinationen zu beherrschen, macht Sie nicht nur schneller, sondern auch
-präziser — denn Muscle Memory ist fehlerresistenter als Mausklicks.
+Cada vez que la mano se aleja del teclado, se pierden unos 2 segundos. Con
+cientos de acciones por hora, esto supone una suma considerable. Dominar los
+atajos de teclado más importantes no solo te hace más rápido, sino también
+más preciso, ya que la memoria muscular es menos propensa a cometer errores que los clics del ratón.
 
-**Die unverzichtbaren Top-10-Shortcuts:**
+**Los 10 atajos imprescindibles:**
 
-| Tastenkombination | Aktion | Merkhilfe |
+| Atajo de teclado | Acción | Ayuda para recordarlo |
 |-------------------|--------|-----------|
-| `Strg+C` / `Strg+V` / `Strg+X` | Kopieren / Einfügen / Ausschneiden | Wie überall |
-| `Strg+Z` / `Strg+Y` | Rückgängig / Wiederherstellen | Ihr Sicherheitsnetz |
-| `Strg+S` | Speichern | Alle 5 Minuten! |
-| `Strg+1` | Zellen formatieren (Dialog) | Alles an einem Ort |
-| `Strg+Umschalt+L` | Autofilter an/aus | L wie „Liste" |
-| `Strg+Pos1` / `Strg+Ende` | Zum Anfang / Ende springen | Navigation |
-| `Strg+Pfeiltasten` | Zum Rand des Datenbereichs | Große Tabellen |
-| `F4` | Letzte Aktion wiederholen / Bezugstyp wechseln | Zwei Funktionen, eine Taste |
-| `Alt+=` | AutoSumme | Schnelle Summierung |
-| `Strg+T` | Als Tabelle formatieren | T wie Tabelle |
+| `Ctrl+C` / `Ctrl+V` / `Ctrl+X` | Copiar / Pegar / Cortar | Como en todas partes |
+| `Ctrl+Z` / `Ctrl+Y` | Deshacer / Rehacer | Tu red de seguridad |
+| `Ctrl+S` | Guardar | ¡Cada 5 minutos! |
+| `Ctrl+1` | Dar formato a las celdas (cuadro de diálogo) | Todo en un solo lugar |
+| `Ctrl+Mayús+L` | Activar/desactivar el filtro automático | L de "lista" |
+| `Ctrl+Inicio` / `Ctrl+Fin` | Saltar al principio / al final | Navegación |
+| `Ctrl+teclas de flecha` | Ir al borde del rango de datos | Tablas grandes |
+| `F4` | Repetir la última acción / Cambiar el tipo de referencia | Dos funciones, una tecla |
+| `Alt+=` | Autosuma | Suma rápida |
+| `Ctrl+T` | Dar formato de tabla | T de "tabla" |
 
-**Ejercicio 12.2 — Tastenkombinationen üben**
+**Ejercicio 12.2 — Practicar atajos de teclado**
 
-La siguiente tabla de ejercicios **Modul 12_2 Tastenkombinationen** ya está cargada. Bearbeiten Sie sie
-ausschließlich mit Tastenkombinationen:
+La siguiente tabla de ejercicios **Módulo 12_2 Atajos de teclado** ya está cargada. Edítala
+utilizando exclusivamente atajos de teclado:
 
-1. `Strg+Umschalt+L` für Filter, dann mit Pfeiltasten navigieren.
-2. `F4` zum Wiederholen einer Formatierung.
-3. `Strg+1` zum Öffnen des Formatierungsdialogs.
-4. `Alt+=` für automatische Summierung.
+1. `Ctrl+Mayús+L` para aplicar un filtro; a continuación, navega con las teclas de flecha.
+2. `F4` para repetir un formato.
+3. `Ctrl+1` para abrir el cuadro de diálogo de formato.
+4. `Alt+=` para la suma automática.
 
-## 12.3. Dokumentinspektion
+## 12.3. Inspección del documento
 
-###  Konzept: Was Ihre Excel-Datei über Sie verrät
+###  Concepto: lo que tu archivo de Excel revela sobre ti
 
-Excel-Dateien enthalten oft versteckte Informationen: den Namen des Autors,
-Kommentare, ausgeblendete Zeilen oder Spalten und sogar frühere Versionen von
-Daten. Bevor Sie eine Datei extern weitergeben, sollten Sie diese Metadaten
-entfernen — genau wie Sie Ihren Namen von einem Geschenk abziehen, bevor Sie
-es weiterverschenken.
+Los archivos de Excel suelen contener información oculta: el nombre del autor,
+comentarios, filas o columnas ocultas e incluso versiones anteriores de
+los datos. Antes de compartir un archivo con terceros, debes eliminar estos metadatos,
+del mismo modo que borras tu nombre de un regalo antes de
+regalarlo a otra persona.
 
-**Die Dokumentinspektion prüft auf:**
+**La inspección de documentos comprueba lo siguiente:**
 
-- Kommentare und Anmerkungen
-- Dokumenteigenschaften (Autor, Firma, Erstelldatum)
-- Ausgeblendete Zeilen, Spalten und Tabellenblätter
-- Kopf- und Fußzeilen
-- Externe Verknüpfungen zu anderen Dateien
+- Comentarios y notas
+- Propiedades del documento (autor, empresa, fecha de creación)
+- Filas, columnas y hojas ocultas
+- Encabezados y pies de página
+- Vínculos externos a otros archivos
 
-**Ejercicio 12.3 — Dokument inspizieren**
+**Ejercicio 12.3 — Inspeccionar un documento**
 
-La siguiente tabla de ejercicios **Modul 12 3 Inspektion** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 12.3 Inspección** ya está cargada.
 
-1. Führen Sie die Dokumentinspektion durch (Datei → Informationen → Auf Probleme
+1. Realice la inspección del documento (Archivo → Información → Buscar problemas
 
-   überprüfen → Dokument prüfen).
-2. Entfernen Sie alle gefundenen persönlichen Informationen.
-3. Speichern Sie die bereinigte Version.
+   → Comprobar documento).
+2. Elimina toda la información personal que encuentres.
+3. Guarda la versión depurada.
 
 
 
 ## Módulo 13: Automatización con macros
 
-**Objetivo de aprendizaje:** Das Konzept der Makros verstehen und einfache Automatisierungen aufzeichnen.
+**Objetivo de aprendizaje:** Comprender el concepto de las macros y grabar automatizaciones sencillas.
 
-**Hinweis zur Excel-lenz-Plattform:** Makros und VBA sind im Web-Simulator
-nicht verfügbar. Die folgenden Übungen erfordern Microsoft Excel (Desktop-Version
-mit `.xlsm`-Dateien). Auf der Plattform stehen Quiz-Fragen zu Makro-Konzepten
-zur Verfügung.
+**Nota sobre la plataforma Excel-lenz:** Las macros y VBA no están disponibles en el simulador web
+. Los siguientes ejercicios requieren Microsoft Excel (versión de escritorio
+con archivos `.xlsm`). En la plataforma hay disponibles preguntas de cuestionario sobre conceptos de macros
+.
 
 
-## 13.1. Was sind Makros?
+## 13.1. ¿Qué son las macros?
 
-###  Konzept: Wiederkehrende Aufgaben nur einmal erledigen
+###  Concepto: realizar tareas recurrentes una sola vez
 
-Ein Makro ist ein **aufgezeichneter Arbeitsschritt**, den Excel auf Knopfdruck
-wiederholen kann. Stellen Sie sich vor, Sie müssten jeden Morgen dieselben fünf
-Formatierungsschritte an einem Tagesbericht ausführen. Mit einem Makro erledigen
-Sie alle fünf Schritte mit einem Klick — nachdem Sie sie einmal aufgezeichnet haben.
+Una macro es un **paso de trabajo grabado** que Excel puede repetir con solo pulsar un botón
+. Imagínese que tuviera que realizar cada mañana los mismos cinco
+pasos de formato en un informe diario. Con una macro,
+puede realizar los cinco pasos con un solo clic, una vez que los haya grabado.
 
-Makros werden in der Programmiersprache **VBA** (Visual Basic for Applications)
-gespeichert. Die gute Nachricht: Zum Aufzeichnen müssen Sie kein VBA können —
-Excel schreibt den Code automatisch.
+Las macros se guardan en el lenguaje de programación **VBA** (Visual Basic for Applications)
+. La buena noticia es que no es necesario saber VBA para grabarlas:
+Excel escribe el código automáticamente.
 
- **Importante:** Makros funktionieren nur in `.xlsm`-Dateien (Excel-Arbeitsmappe
-mit Makros), nicht in normalen `.xlsx`-Dateien. Speichern Sie Makro-Arbeitsmappen
-immer im `.xlsm`-Format.
+ **Importante:** Las macros solo funcionan en archivos `.xlsm` (libretas de Excel
+con macros), no en archivos normales `.xlsx`. Guarde siempre las libretas con macros
+en formato `.xlsm`.
 
-**Ejercicio 13.1 — Entwicklertools aktivieren**
+**Ejercicio 13.1 — Activar las herramientas de desarrollo**
 
-La siguiente tabla de ejercicios **Modul 13 1 Entwicklertools** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 13.1 Herramientas de desarrollo** ya está cargada.
 
-1. Aktivieren Sie die Registerkarte „Entwicklertools"
+1. Activa la pestaña "Herramientas de desarrollo"
 
-   (Datei → Optionen → Menüband anpassen → Entwicklertools).
-2. Speichern Sie die Datei als `.xlsm` (Excel-Arbeitsmappe mit Makros).
-3. Erkunden Sie die neue Registerkarte und identifizieren Sie die
+   (Archivo → Opciones → Personalizar cinta → Herramientas de desarrollo).
+2. Guarda el archivo como `.xlsm` (libro de Excel con macros).
+3. Explora la nueva pestaña e identifica el
 
-   Schaltfläche „Makro aufzeichnen".
+   botón "Grabar macro".
 
-## 13.2. Makros aufzeichnen
+## 13.2. Grabar macros
 
-###  Konzept: Excel schaut Ihnen zu und merkt sich jeden Schritt
+###  Concepto: Excel te observa y recuerda cada paso
 
-Das Aufzeichnen eines Makros ist denkbar einfach: Sie klicken auf „Aufzeichnen",
-führen Ihre Arbeitsschritte normal aus und klicken auf „Aufzeichnung beenden".
-Excel hat jeden Mausklick und jede Tastatureingabe in VBA-Code übersetzt und
-gespeichert.
+Grabar una macro es muy sencillo: haz clic en "Grabar",
+realiza los pasos de tu trabajo con normalidad y haz clic en "Detener grabación".
+Excel ha traducido cada clic del ratón y cada pulsación del teclado a código VBA y
+lo ha guardado.
 
-Wichtig ist die Unterscheidung zwischen **absoluten** und **relativen** Bezügen
-bei der Aufzeichnung:
-- **Absolute Aufzeichnung**: Das Makro arbeitet immer in denselben Zellen (z.B. A1)
-- **Relative Aufzeichnung**: Das Makro arbeitet relativ zur aktuellen Position
+Es importante distinguir entre referencias **absolutas** y **relativas**
+durante la grabación:
+- **Grabación absoluta**: la macro siempre opera en las mismas celdas (p. ej., A1)
+- **Grabación relativa**: la macro opera en relación con la posición actual
 
- **Consejo:** Für formatierende Makros, die Sie auf verschiedene Tabellen anwenden
-wollen, nutzen Sie **relative Bezüge** bei der Aufzeichnung.
+ **Consejo:** Para las macros de formato que desee aplicar a diferentes hojas de cálculo,
+utilice **referencias relativas** durante la grabación.
 
-**Ejercicio 13.2 — Makro aufzeichnen**
+**Ejercicio 13.2 — Grabar una macro**
 
-La siguiente tabla de ejercicios **Modul 13 2 Makro Aufzeichnen** ya está cargada.
+La siguiente hoja de ejercicios **Módulo 13.2 Grabar macro** ya está cargada.
 
-1. Zeichnen Sie ein Makro auf, das die Überschriftenzeile fett formatiert,
+1. Graba una macro que aplique negrita a la fila de encabezados,
 
-   einen grauen Hintergrund gibt und Rahmen um den Datenbereich zieht.
-2. Speichern Sie das Makro mit dem Namen „FormatBericht".
-3. Führen Sie das Makro auf einem zweiten Tabellenblatt aus.
-4. Weisen Sie das Makro einer Schaltfläche oder Form zu.
+   le aplique un fondo gris y dibuje un borde alrededor del área de datos.
+2. Guarde la macro con el nombre "FormatoInforme".
+3. Ejecute la macro en una segunda hoja de cálculo.
+4. Asigne la macro a un botón o a un objeto.
 
-## 13.3. Der VBA-Editor
+## 13.3. El editor de VBA
 
-###  Konzept: Einen Blick unter die Motorhaube werfen
+###  Concepto: echar un vistazo "bajo el capó"
 
-Nach der Aufzeichnung können Sie den erzeugten VBA-Code im **VBA-Editor** (`Alt+F11`)
-ansehen und verstehen lernen. Der Editor zeigt den Code, den Excel automatisch
-generiert hat — oft ausführlicher, als ein Programmierer ihn schreiben würde, aber
-eine hervorragende Lernquelle.
+Tras la grabación, puede ver el código VBA generado en el **editor de VBA** (`Alt+F11`)
+y aprender a entenderlo. El editor muestra el código que Excel ha generado automáticamente
+—a menudo con más detalle del que escribiría un programador, pero
+es una excelente fuente de aprendizaje.
 
-**Die wichtigsten Bereiche des VBA-Editors:**
+**Las áreas más importantes del editor de VBA:**
 
-| Bereich | Funktion |
+| Área | Función |
 |---------|----------|
-| Projekt-Explorer | Alle geöffneten Arbeitsmappen und ihre Bestandteile |
-| Code-Fenster | Der eigentliche VBA-Code |
-| Eigenschaften-Fenster | Eigenschaften von Blättern und Steuerelementen |
-| Direktbereich | Befehle direkt testen (Strg+G zum Anzeigen) |
+| Explorador de proyectos | Todos los libros abiertos y sus componentes |
+| Ventana de código | El código VBA propiamente dicho |
+| Ventana de propiedades | Propiedades de hojas y controles |
+| Área de ejecución | Probar comandos directamente (Ctrl+G para mostrarla) |
 
-**Ejercicio 13.3 — VBA-Editor erkunden**
+**Ejercicio 13.3 — Explorar el editor de VBA**
 
-La siguiente tabla de ejercicios **Modul 13 3 VBA Editor** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 13.3 Editor de VBA** ya está cargada.
 
-1. Öffnen Sie den VBA-Editor mit `Alt+F11`.
-2. Finden Sie im Projekt-Explorer das aufgezeichnete Makro aus der
+1. Abre el editor de VBA con `Alt+F11`.
+2. En el Explorador de proyectos, busca la macro grabada en el
 
-   vorherigen Übung.
-3. Lesen Sie den Code und identifizieren Sie Zeilen, die Formatierungen
+   ejercicio anterior.
+3. Lee el código e identifica las líneas que realizan cambios de formato
 
-   (`.Font.Bold = True`, `.Interior.Color`) vornehmen.
+   (`.Font.Bold = True`, `.Interior.Color`).
 
-## 13.4. Grundbegriffe der VBA-Programmierung
+## 13.4. Conceptos básicos de la programación en VBA
 
-###  Konzept: Vom Aufzeichnen zum Programmieren
+###  Concepto: de la grabación a la programación
 
-Aufgezeichnete Makros arbeiten stur nach Schema — sie können keine Entscheidungen
-treffen. Echte Automatisierung beginnt mit einfachen Programmierkonzepten:
+Las macros grabadas funcionan de forma rígida según un esquema; no pueden tomar decisiones
+. La verdadera automatización comienza con conceptos básicos de programación:
 
-| Konzept | Bedeutung | Beispiel |
+| Concepto | Significado | Ejemplo |
 |---------|-----------|----------|
-| **Variable** | Ein benannter Speicherplatz für Werte | `Dim anzahl As Integer` |
-| **Bedingung** | Code nur unter bestimmten Umständen ausführen | `If wert > 100 Then...` |
-| **Schleife** | Code mehrmals wiederholen | `For i = 1 To 10... Next i` |
-| **Sub** | Ein benanntes Makro (Unterprogramm) | `Sub MeinMakro()... End Sub` |
+| **Variable** | Un espacio de memoria con nombre para almacenar valores | `Dim anzahl As Integer` |
+| **Condición** | Ejecutar código solo en determinadas circunstancias | `If valor > 100 Then...` |
+| **Bucle** | Repetir código varias veces | `For i = 1 To 10... Next i` |
+| **Sub** | Una macro con nombre (subprograma) | `Sub MiMacro()... End Sub` |
 
- **Consejo:** Auch wenn Sie nicht vorhaben, VBA-Programmierer zu werden — das
-Verständnis dieser Grundbegriffe hilft Ihnen, aufgezeichnete Makros zu lesen,
-anzupassen und Fehler zu beheben.
+ **Consejo:** Aunque no tenga intención de convertirse en programador de VBA,
+comprender estos conceptos básicos le ayudará a leer,
+adaptar y corregir errores en las macros grabadas.
 
-**Ejercicio 13.4 — Einfaches VBA programmieren**
+**Ejercicio 13.4 — Programación sencilla en VBA**
 
-La siguiente tabla de ejercicios **Modul 13 4 VBA Programmieren** ya está cargada.
+La siguiente tabla de ejercicios **Módulo 13.4 Programación en VBA** ya está cargada.
 
-1. Schreiben Sie im VBA-Editor (`Alt+F11`) ein Makro, das mit einer `For`-Schleife
+1. Escribe en el editor de VBA (`Alt+F11`) una macro que, mediante un bucle `For`,
 
-   die Zahlen 1 bis 10 in die Zellen A1 bis A10 schreibt.
-2. Erweitern Sie das Makro um eine `If`-Bedingung: Zahlen über 5 sollen fett
+   escriba los números del 1 al 10 en las celdas A1 a A10.
+2. Amplíe la macro con una condición `If`: los números superiores a 5 deben
 
-   formatiert werden.
-3. Führen Sie das Makro aus und prüfen Sie das Ergebnis.
+   .
+3. Ejecute la macro y compruebe el resultado.
