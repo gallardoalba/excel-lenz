@@ -1,14 +1,14 @@
 # Excel-lenz — Dokumentation der Webseitenstruktur & Architektur
 
-> **Version**: 5.2 — Aktuell  
-> **Stand**: 1. August 2026  
+> **Version**: 5.3 — Aktuell  
+> **Stand**: 3. August 2026  
 > **Status**: Beta — Produktionsbereit für kontrollierte Umgebungen  
 > **Sprache**: Deutsch (primär), Spanisch (Code of Conduct)  
 > **Stack**: React 19 + Vite 6 | Express 4 + SQLite | Handsontable 18 + HyperFormula 3  
 > **Design**: Enterprise SaaS — Lucide Icons, CSS Utilities, Dark Mode, Focus Mode, Exam Mode  
 > **Lizenz**: AGPLv3 (GNU Affero General Public License)  
-> **Tests**: 167 Tests in 13 Suiten (Jest + Supertest)  
-> **CI/CD**: GitHub Actions (Backend Tests + Frontend Build + Security Audit)  
+> **Tests**: 198 Backend (15 Suiten) + 81 Frontend (Vitest) + 79 E2E (Playwright)  
+> **CI/CD**: GitHub Actions (Backend Tests + Frontend Build + Security Audit + E2E)  
 > **Monitoring**: Sentry, Prometheus, Redis-Cache
 
 ---
@@ -45,7 +45,7 @@
 
 | Kategorie | Funktionen |
 |-----------|-----------|
-| **Interaktive Übungen** | Handsontable + HyperFormula, ExcelRibbon (3 Tabs), FormulaBar mit Autocomplete, Error-Highlighting (rot + grünes Dreieck), Guided Steps |
+| **Interaktive Übungen** | Handsontable + HyperFormula, ExcelRibbon (4 Tabs), FormulaBar mit Autocomplete, Error-Highlighting (rot + grünes Dreieck), Guided Steps |
 | **Automatische Korrektur** | Server-Zellvergleich, Error-Highlighting in Zellen, Progressive Hints (4 Stufen), Cell Feedback |
 | **Prüfungsmodus** | Countdown-Timer im Ribbon, Automatische Abgabe, Practice/Exam Toggle |
 | **Daten-Tools** | SVG-Diagramme (Balken/Linie), Datenvalidierung (Min/Max/Liste), Pivot-Tabellen (react-pivottable) |
@@ -61,10 +61,10 @@
 | **Dark Mode** | CSS-Variablen, vollständig |
 | **Responsive** | Ribbon Mobile-Collapse (☰), Grids adaptiv |
 | **Deployment** | Docker + Compose, Nginx Reverse Proxy, Production-Build |
-| **Auth-Flows** | Registrierung, Login, Passwort-Reset, E-Mail-Verifikation |
+| **Auth-Flows** | Registrierung, Login, Passwort-Reset, E-Mail-Verifikation (funktional mit DB-Update) |
 | **Analytics** | Nutzungs-Tracking, Lernmetriken, Engagement-Analyse |
 | **API-Dokumentation** | Swagger/OpenAPI unter `/api/docs` |
-| **Testing** | 158 Tests (13 Suiten), Jest + Supertest, CI/CD via GitHub Actions |
+| **Testing** | 198 Tests (15 Suiten, Jest + Supertest) + 81 Frontend-Tests (Vitest) + 79 E2E (Playwright), CI/CD via GitHub Actions |
 | **Lizenz** | AGPLv3 — Copyleft stark, Verbesserungen fließen zurück ins Gemeingut |
 | **Analytics** | Session-Tracking, Batching, sendBeacon, node-cache, Indizes, Validation |
 | **Monitoring** | Sentry (Error-Tracking), Prometheus (Metriken), Redis-Cache (optional) |
@@ -117,7 +117,7 @@
 |---------|------------|---------|------------|
 | **Frontend** | React | 19 | Komponentenbasiert |
 | **Build-Tool** | Vite | 6.4 | Schnelle HMR, TypeScript-nativ |
-| **Sprache** | TypeScript | 5.6 | Typensicherheit |
+| **Sprache** | TypeScript | 7.0 | Typensicherheit |
 | **Routing** | React Router | 6.28 | Client-seitiges Routing |
 | **Icons** | lucide-react | 0.x | SVG-Icons, konsistent |
 | **Spreadsheet** | Handsontable | 18 | Excel-ähnliche UI |
@@ -125,7 +125,7 @@
 | **Confetti** | canvas-confetti | 1.x | Feier-Animationen |
 | **Backend** | Express | 4.21 | Bewährt, minimalistisch |
 | **Runtime** | tsx | 4.x | TypeScript ohne Build-Step |
-| **Datenbank** | better-sqlite3 | 11.x | Synchron, embedded, WAL-Mode |
+| **Datenbank** | better-sqlite3 | 13.x | Synchron, embedded, WAL-Mode |
 | **Auth** | jsonwebtoken + bcryptjs | 9.x / 2.x | JWT-Stateless-Auth |
 
 ---
@@ -157,8 +157,8 @@ Express App
 |--------|-------|-----------|
 | Auth | `routes/auth.ts` | 6 (Register, Login, Me, ForgotPassword, ResetPassword, VerifyEmail) |
 | Courses | `routes/courses.ts` | 2 (Liste, Detail) |
-| Exercises | `routes/exercises.ts` | 3 (Detail, Submit, Progress) |
-| Teacher | `routes/teacher.ts` | 8 (CRUD Kurse/Übungen, Schüler) |
+| Exercises | `routes/exercises.ts` | 7 (Detail, Submit, Progress, GoalSeek, LastExercise, Mastery, UserProgress) |
+| Teacher | `routes/teacher.ts` | 8 (CRUD Kurse/Übungen, Schüler, Analytics mit Paginierung) |
 | Gamification | `routes/gamification.ts` | 2 (Stats, Leaderboard) |
 | Enterprise | `routes/enterprise.ts` | 8 (Pricing, Subs, API Keys, SCORM) |
 | Adaptive | `routes/adaptive.ts` | 2 (Review-Due, Skills) |

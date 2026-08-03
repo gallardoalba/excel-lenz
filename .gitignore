@@ -31,4 +31,8 @@ Thumbs.db
 # Temp / debug files (keep out of repo)
 *.tmp
 
+# E2E test artifacts
+playwright-report/
+test-results/
+
 extra_files/
