@@ -78,13 +78,29 @@ describe('Seed Validation', () => {
       // template_data should be valid JSON
       let template: any;
       expect(() => { template = JSON.parse(ex.template_data); }).not.toThrow();
-      expect(template).toHaveProperty('data');
-      expect(Array.isArray(template.data)).toBe(true);
 
       // solution_data should be valid JSON
       let solution: any;
       expect(() => { solution = JSON.parse(ex.solution_data); }).not.toThrow();
-      expect(solution).toHaveProperty('data');
+
+      const isQuiz = solution.type === 'quiz' || template.type === 'quiz';
+      if (isQuiz) {
+        // Quiz exercises: answer key + questions instead of a spreadsheet grid
+        expect(Array.isArray(solution.answers)).toBe(true);
+        expect(solution.answers.length).toBeGreaterThan(0);
+        expect(Array.isArray(template.questions)).toBe(true);
+        expect(template.questions.length).toBeGreaterThan(0);
+        // Some quiz exercises also embed a reference grid; when present it must be valid
+        if (template.data !== undefined) {
+          expect(Array.isArray(template.data)).toBe(true);
+        }
+        continue;
+      }
+
+      // Spreadsheet exercises: template grid + solution grid
+      expect(Array.isArray(template.data)).toBe(true);
+      expect(template.data.length).toBeGreaterThan(0);
+      expect(Array.isArray(solution.data)).toBe(true);
     }
   });
 

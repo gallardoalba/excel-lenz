@@ -43,6 +43,32 @@ describe('Exercise Data Integrity & Scoring', () => {
     }
   });
 
+  // ── Helpers ────────────────────────────────────────────────
+
+  /**
+   * Find the first spreadsheet exercise (has a data grid + taskCols, and is not
+   * a quiz exercise). Optionally scoped to a specific course.
+   * Quiz exercises score via `answers`, so they are excluded from grid-based tests.
+   */
+  async function getSpreadsheetExercise(courseId?: string): Promise<{ exerciseId: string; template: any }> {
+    for (const ex of allExercises) {
+      if (courseId && ex.courseId !== courseId) continue;
+      const exRes = await supertest(app)
+        .get(`/api/exercises/${ex.exerciseId}`)
+        .set('Authorization', `Bearer ${token}`);
+      const td = exRes.body.template_data;
+      if (
+        td &&
+        td.type !== 'quiz' &&
+        Array.isArray(td.data) && td.data.length > 0 &&
+        Array.isArray(td.taskCols) && td.taskCols.length > 0
+      ) {
+        return { exerciseId: ex.exerciseId, template: td };
+      }
+    }
+    throw new Error('No spreadsheet exercise found in seed data');
+  }
+
   // ── Structural validation for ALL exercises ────────────────
 
   it(`all exercises (${allExercises.length}) have valid template_data with taskCols`, async () => {
@@ -56,10 +82,21 @@ describe('Exercise Data Integrity & Scoring', () => {
       expect(res.status).toBe(200);
       const td = res.body.template_data;
       expect(td).toBeDefined();
+
+      if (td.type === 'quiz') {
+        // Quiz exercises: validate question structure (score via answers, not grid)
+        expect(Array.isArray(td.questions)).toBe(true);
+        expect(td.questions.length).toBeGreaterThan(0);
+        // Pure quiz exercises have no embedded grid / taskCols
+        if (!Array.isArray(td.data)) continue;
+      }
+
       expect(Array.isArray(td.taskCols)).toBe(true);
-      expect(td.taskCols.length).toBeGreaterThan(0);
       expect(Array.isArray(td.data)).toBe(true);
       expect(td.data.length).toBeGreaterThan(0);
+
+      // Format-only exercises (e.g. borders/colors) have no value cells to grade
+      if (td.taskCols.length === 0) continue;
 
       // taskCols should be valid non-negative integers
       for (const col of td.taskCols) {
@@ -72,15 +109,11 @@ describe('Exercise Data Integrity & Scoring', () => {
   // ── Scoring pipeline tests ──────────────────────────────────
 
   it('submitting exact solution data yields score 100', async () => {
-    // Pick first exercise
-    const ex = allExercises[0];
-    const exRes = await supertest(app)
-      .get(`/api/exercises/${ex.exerciseId}`)
-      .set('Authorization', `Bearer ${token}`);
+    // Use a spreadsheet exercise (quiz exercises score via answers, not a grid)
+    const ex = await getSpreadsheetExercise();
+    const template = ex.template;
 
-    // Get solution (only available for teachers — we use template as approximation)
     // Submit template data (many exercises have template == solution for text exercises)
-    const template = exRes.body.template_data;
     const res = await supertest(app)
       .post(`/api/exercises/${ex.exerciseId}/submit`)
       .set('Authorization', `Bearer ${token}`)
@@ -94,17 +127,12 @@ describe('Exercise Data Integrity & Scoring', () => {
   });
 
   it('submitting empty data yields score 0 (all courses)', async () => {
-    // Test one exercise from each course
-    const courseMap = new Map<string, typeof allExercises[0]>();
-    for (const ex of allExercises) {
-      if (!courseMap.has(ex.courseId)) courseMap.set(ex.courseId, ex);
-    }
+    // Test one spreadsheet exercise from each course
+    const courseIds = [...new Set(allExercises.map(ex => ex.courseId))];
 
-    for (const [, ex] of courseMap) {
-      const exRes = await supertest(app)
-        .get(`/api/exercises/${ex.exerciseId}`)
-        .set('Authorization', `Bearer ${token}`);
-      const template = exRes.body.template_data;
+    for (const courseId of courseIds) {
+      const ex = await getSpreadsheetExercise(courseId);
+      const template = ex.template;
 
       const emptyData = template.data.map((row: any[]) => row.map(() => ''));
       const res = await supertest(app)
@@ -121,11 +149,8 @@ describe('Exercise Data Integrity & Scoring', () => {
   });
 
   it('scoring is deterministic — same data yields same score twice', async () => {
-    const ex = allExercises[0];
-    const exRes = await supertest(app)
-      .get(`/api/exercises/${ex.exerciseId}`)
-      .set('Authorization', `Bearer ${token}`);
-    const data = exRes.body.template_data.data;
+    const ex = await getSpreadsheetExercise();
+    const data = ex.template.data;
 
     const res1 = await supertest(app)
       .post(`/api/exercises/${ex.exerciseId}/submit`)
@@ -145,39 +170,32 @@ describe('Exercise Data Integrity & Scoring', () => {
   // ── Cell feedback accuracy ──────────────────────────────────
 
   it('cell feedback details match score (wrong = details count)', async () => {
-    const ex = allExercises[0];
-    const exRes = await supertest(app)
-      .get(`/api/exercises/${ex.exerciseId}`)
-      .set('Authorization', `Bearer ${token}`);
-    const template = exRes.body.template_data;
+    const ex = await getSpreadsheetExercise();
+    const template = ex.template;
 
-    // Submit all empty — every task cell should be wrong
+    // Submit all empty — task cells with non-null solutions are wrong.
+    // Some exercises have null solution cells where empty == correct, so the
+    // absolute score may be > 0; the details/correctCells accounting must still
+    // be consistent.
     const emptyData = template.data.map((row: any[]) => row.map(() => ''));
     const res = await supertest(app)
       .post(`/api/exercises/${ex.exerciseId}/submit`)
       .set('Authorization', `Bearer ${token}`)
       .send({ data: emptyData });
 
-    expect(res.body.score).toBe(0);
-    expect(res.body.details.length).toBe(res.body.totalCells);
-    expect(res.body.correctCells).toBe(0);
+    expect(res.status).toBe(200);
+    // Every task cell is either correct or reported in details
+    expect(res.body.details.length).toBe(res.body.totalCells - res.body.correctCells);
+    // Score reflects the correct/total ratio
+    expect(res.body.score).toBe(Math.round((res.body.correctCells / res.body.totalCells) * 100));
   });
 
   // ── Number comparison tolerance ─────────────────────────────
 
   it('numeric comparison uses 0.01 tolerance', async () => {
-    // Find an exercise with numeric taskCols
-    const numericEx = allExercises.find(ex => {
-      // We'll test the first one and accept if it has numbers
-      return true;
-    });
-
-    if (!numericEx) return; // Safety guard
-
-    const exRes = await supertest(app)
-      .get(`/api/exercises/${numericEx.exerciseId}`)
-      .set('Authorization', `Bearer ${token}`);
-    const template = exRes.body.template_data;
+    // Find an exercise with numeric taskCols (first spreadsheet exercise)
+    const ex = await getSpreadsheetExercise();
+    const template = ex.template;
 
     // If first taskCol cell is numeric, test tolerance
     const data = template.data.map((row: any[]) =>
@@ -191,7 +209,7 @@ describe('Exercise Data Integrity & Scoring', () => {
     );
 
     const res = await supertest(app)
-      .post(`/api/exercises/${numericEx.exerciseId}/submit`)
+      .post(`/api/exercises/${ex.exerciseId}/submit`)
       .set('Authorization', `Bearer ${token}`)
       .send({ data });
 
@@ -204,11 +222,8 @@ describe('Exercise Data Integrity & Scoring', () => {
   // ── Edge cases ──────────────────────────────────────────────
 
   it('handles null cells correctly', async () => {
-    const ex = allExercises[0];
-    const exRes = await supertest(app)
-      .get(`/api/exercises/${ex.exerciseId}`)
-      .set('Authorization', `Bearer ${token}`);
-    const template = exRes.body.template_data;
+    const ex = await getSpreadsheetExercise();
+    const template = ex.template;
 
     // Replace every cell with null
     const nullData = template.data.map((row: any[]) => row.map(() => null));
@@ -222,11 +237,8 @@ describe('Exercise Data Integrity & Scoring', () => {
   });
 
   it('handles mixed string/number data correctly', async () => {
-    const ex = allExercises[0];
-    const exRes = await supertest(app)
-      .get(`/api/exercises/${ex.exerciseId}`)
-      .set('Authorization', `Bearer ${token}`);
-    const template = exRes.body.template_data;
+    const ex = await getSpreadsheetExercise();
+    const template = ex.template;
 
     // Mix numbers and strings
     const mixedData = template.data.map((row: any[], ri: number) =>
@@ -290,7 +302,7 @@ describe('Exercise Data Integrity & Scoring', () => {
       .send({ email: `fresh${Date.now()}@ex.com`, password: 'test1234', name: 'Fresh' });
     const freshToken = freshRes.body.token;
 
-    const ex = allExercises[0];
+    const ex = await getSpreadsheetExercise();
     const exRes = await supertest(app)
       .get(`/api/exercises/${ex.exerciseId}`)
       .set('Authorization', `Bearer ${freshToken}`);
