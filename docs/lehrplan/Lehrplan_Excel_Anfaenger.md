@@ -571,9 +571,9 @@ von Klammern mit den Argumenten. Die fünf wichtigsten statistischen Funktionen 
  **Tipp:** Die AutoSumme-Schaltfläche (`Alt+=`) auf der Registerkarte „Start" fügt
 automatisch `=SUMME()` für den markierten Bereich ein. Sie erkennt sogar Ihre Datenbereiche!
 
-**Übung 4.3 — Statistische Funktionen anwenden**
+**Übung 4.4 — Statistische Funktionen anwenden**
 
-Die folgende Übungstabelle **Modul 4 3 Statistik** ist bereits geladen.
+Die folgende Übungstabelle **Modul 4 4 Statistik** ist bereits geladen.
 
 1. Berechnen Sie mit `SUMME` die Gesamtsumme der Verkäufe.
 2. Ermitteln Sie den `MITTELWERT`, die kleinste (`MIN`) und größte (`MAX`) Bestellung.
@@ -607,9 +607,9 @@ Automatisierung.
 WENN-Funktion sein — das nennt man „verschachtelte WENN". Ab Excel 2019 gibt es
 dafür die einfachere `WENNS()`-Funktion.
 
-**Übung 4.4 — Die WENN-Funktion einsetzen**
+**Übung 4.5 — Die WENN-Funktion einsetzen**
 
-Die folgende Übungstabelle **Modul 4 4 WENN** ist bereits geladen.
+Die folgende Übungstabelle **Modul 4 5 WENN** ist bereits geladen.
 
 1. Schreiben Sie in D2: `=WENN(C2>1000; "Großauftrag"; "Standard")` und kopieren
 
@@ -734,7 +734,7 @@ Semikolon — je nach Ländereinstellung) und die korrekte Kodierung (UTF-8 für
 
 **Übung 5.4 — Daten importieren**
 
-Die folgende Übungstabelle **Modul 5_4 Import** ist bereits geladen.
+Die folgende Übungstabelle **Modul 5 4 Import** ist bereits geladen.
 
 1. Importieren Sie eine bereitgestellte `.csv`-Datei über „Daten → Aus Text/CSV".
 2. Prüfen Sie die Vorschau und passen Sie Trennzeichen und Kodierung an.
@@ -823,9 +823,9 @@ innerhalb jeder Region nach Umsatz — und das mit einem Klick.
 automatisch den gesamten zusammenhängenden Bereich zum Sortieren. Sie müssen nicht alles
 manuell auswählen!
 
-**Übung 6.1 — Sortieren üben**
+**Übung 6.3 — Sortieren üben**
 
-Die folgende Übungstabelle **Modul 6 1 Sortieren** ist bereits geladen.
+Die folgende Übungstabelle **Modul 6 3 Sortieren** ist bereits geladen.
 
 1. Sortieren Sie die Kundentabelle alphabetisch nach Nachname (A→Z).
 2. Sortieren Sie nach Bestellwert absteigend (höchster zuerst).
@@ -853,9 +853,9 @@ sondern nur temporär unsichtbar.
 ein Filter aktiv ist. Mehrere Filter gleichzeitig sind möglich — und grundlegend
 für die Arbeit mit großen Datenmengen.
 
-**Übung 6.2 — Filtern anwenden**
+**Übung 6.4 — Filtern anwenden**
 
-Die folgende Übungstabelle **Modul 6 2 Filtern** ist bereits geladen.
+Die folgende Übungstabelle **Modul 6 4 Filtern** ist bereits geladen.
 
 1. Aktivieren Sie den Autofilter (`Strg+Umschalt+L`).
 2. Filtern Sie nur Bestellungen aus „Berlin".
@@ -881,9 +881,9 @@ Ein normaler Zellbereich (`A1:D100`) ist eine lose Sammlung von Zellen. Eine **E
  **Tipp:** Strukturierte Verweise wie `=[@Umsatz]` statt `=D2` machen Formeln
 lesbarer und robuster. Sie sehen sofort, was berechnet wird — auch Wochen später.
 
-**Übung 6.3 — Excel-Tabellen verwenden**
+**Übung 6.5 — Excel-Tabellen verwenden**
 
-Die folgende Übungstabelle **Modul 6 3 Tabellen** ist bereits geladen.
+Die folgende Übungstabelle **Modul 6 5 Tabellen** ist bereits geladen.
 
 1. Wandeln Sie den Datenbereich mit `Strg+T` in eine Excel-Tabelle um.
 2. Wählen Sie ein Tabellenformat mit wechselnden Zeilenfarben.
@@ -902,9 +902,9 @@ Sie zwischen Detail- und Übersichtsansicht umschalten können.
  **Tipp:** Bevor Sie Teilergebnisse einsetzen, **müssen** die Daten nach dem
 Gruppierungsmerkmal sortiert sein — sonst erhalten Sie sinnlose Zwischensummen.
 
-**Übung 6.4 — Teilergebnisse berechnen**
+**Übung 6.6 — Teilergebnisse berechnen**
 
-Die folgende Übungstabelle **Modul 6 4 Teilergebnisse** ist bereits geladen.
+Die folgende Übungstabelle **Modul 6 6 Teilergebnisse** ist bereits geladen.
 
 1. Sortieren Sie die Tabelle zuerst nach „Region".
 2. Fügen Sie über „Daten → Teilergebnis" automatische Summen für jede Region ein.
@@ -988,6 +988,26 @@ Die folgende Übungstabelle **Modul 7 2 SVERWEIS** ist bereits geladen.
 
    ungefährer Übereinstimmung.
 3. Testen Sie, was passiert, wenn der Suchbegriff nicht existiert (#NV-Fehler).
+
+###  Konzept: WVERWEIS — die horizontale Variante
+
+WVERWEIS (waagerechter Verweis) funktioniert genau wie SVERWEIS, aber statt von oben nach
+unten sucht er von **links nach rechts** in der **ersten Zeile** einer Tabelle.
+Nützlich, wenn Ihre Daten horizontal angeordnet sind — z.B. Monatsnamen in Zeile 1
+und Umsatzzahlen darunter.
+
+**Syntax:** `=WVERWEIS(Suchkriterium; Suchmatrix; Zeilenindex; Bereich_Verweis)`
+
+| Argument | Bedeutung | Beispiel |
+|----------|-----------|----------|
+| Suchkriterium | Was suchen Sie? | `"März"` oder `B1` |
+| Suchmatrix | Wo suchen Sie? | `A1:M5` (Daten horizontal) |
+| Zeilenindex | Welche Zeile soll zurückgegeben werden? | `2` (für Zeile 2) |
+| Bereich_Verweis | Exakte (0) oder ungefähre (1) Übereinstimmung? | `0` = exakt |
+
+**Tipp:** In der Praxis wird WVERWEIS seltener verwendet als SVERWEIS, da
+Tabellen meist vertikal (mit Überschriften in Spalten) organisiert sind.
+Für horizontale Daten ist es jedoch die richtige Wahl.
 
 ## 7.3. INDEX und VERGLEICH
 
@@ -1371,6 +1391,52 @@ Die folgende Übungstabelle **Modul 10 2 Finanzfunktionen** ist bereits geladen.
 
 
 
+## 10.3. Datentabellen
+
+###  Konzept: Viele Szenarien auf einmal berechnen
+
+Eine Datentabelle (Daten → Was-wäre-wenn-Analyse → Datentabelle) berechnet
+automatisch mehrere Ergebnisse für verschiedene Eingabewerte.
+
+**Eindimensionale Datentabelle:** Eine Eingabevariable variieren (z.B. Zinssatz).
+**Zweidimensionale Datentabelle:** Zwei Variablen variieren (z.B. Zinssatz × Laufzeit).
+
+**Tipp:** Die Datentabelle verwendet die Matrixformel `{=TABELLE(;)}` — Sie
+können einzelne Zellen der Tabelle nicht bearbeiten oder löschen.
+
+**Übung 10.3 — Datentabelle erstellen**
+
+Die folgende Übungstabelle **Modul 10 3 Datentabelle** ist bereits geladen.
+
+> 1. Erstellen Sie eine eindimensionale Datentabelle: RMZ-Rate für Zinssätze
+>    von 2% bis 8% (in 0,5%-Schritten) bei 250.000 € und 30 Jahren.
+> 2. Erstellen Sie eine zweidimensionale Datentabelle: RMZ-Rate für Zinssätze
+>    (3%–7%) × Laufzeiten (10–30 Jahre).
+> 3. Interpretieren Sie: Bei welchem Zinssatz übersteigt die Rate 1.500 €?
+
+## 10.4. Integrierte Finanzanalyse
+
+###  Konzept: Alle Werkzeuge kombiniert einsetzen
+
+In der Praxis werden Zielwertsuche, Finanzfunktionen und Datentabellen
+kombiniert, um fundierte finanzielle Entscheidungen zu treffen.
+
+**Übung 10.4 — Integrierte Finanzanalyse**
+
+Die folgende Übungstabelle **Modul 10 4 Finanzanalyse** ist bereits geladen.
+
+> Ein Unternehmen plant eine Investition von 500.000 € mit erwarteten jährlichen
+> Rückflüssen von 80.000 € über 10 Jahre.
+>
+> 1. Berechnen Sie den Kapitalwert (NBW) bei 6% Zinssatz. Ist die Investition
+>    vorteilhaft?
+> 2. Nutzen Sie die Zielwertsuche: Welcher Zinssatz ergibt NBW = 0 (IKV)?
+> 3. Erstellen Sie eine Datentabelle: NBW für Zinssätze 2%–12%.
+> 4. Ab welchem Zinssatz wird die Investition unvorteilhaft (NBW < 0)?
+
+
+
+
 ## Modul 11: Druck und Zusammenarbeit
 
 **Lernziel:** Tabellen professionell für den Druck aufbereiten und mit anderen
@@ -1544,7 +1610,7 @@ präziser — denn Muscle Memory ist fehlerresistenter als Mausklicks.
 
 **Übung 12.2 — Tastenkombinationen üben**
 
-Die folgende Übungstabelle **Modul 12_2 Tastenkombinationen** ist bereits geladen. Bearbeiten Sie sie
+Die folgende Übungstabelle **Modul 12 2 Tastenkombinationen** ist bereits geladen. Bearbeiten Sie sie
 ausschließlich mit Tastenkombinationen:
 
 1. `Strg+Umschalt+L` für Filter, dann mit Pfeiltasten navigieren.

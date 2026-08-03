@@ -466,7 +466,7 @@ def mod10_3():
         '1. Strg+Shift+L: Filter aktivieren. Alt+=: Summe einfügen.',
         '2. Strg+1: Zellen formatieren. F4: Letzte Aktion wiederholen.',
         '3. Strg+[: Vorgängerzellen anzeigen. Strg+]: Nachfolger anzeigen.'])
-    save(wb, 'M10_3_Tastenkombinationen')
+    save(wb, 'M10_4_Tastenkombinationen')
 
 if __name__ == '__main__':
     print('Modul 1: Erweiterte Formate...')

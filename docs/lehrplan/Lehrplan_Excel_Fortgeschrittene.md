@@ -390,7 +390,7 @@ Zeitberechnungen.
 Daten — ideal für Altersberechnungen. Die Funktion ist nicht dokumentiert, aber
 in allen Excel-Versionen verfügbar.
 
-**Übung 2.6 — Datums- und Zeitfunktionen**
+**Übung 2.6  Datums- und Zeitfunktionen**
 
 Die folgende Übungstabelle **Modul 2 6 Datum_Zeit** ist bereits geladen.
 
@@ -513,7 +513,7 @@ stehen.
 **Tipp:** Aktivieren Sie "Verknüpfung mit den Quelldaten", damit sich die
 Konsolidierung automatisch aktualisiert, wenn sich Quelldaten ändern.
 
-**Übung 3.4 — Daten konsolidieren**
+**Übung 3.4  Daten konsolidieren**
 
 Die folgende Übungstabelle **Modul 3 4 Konsolidierung** ist bereits geladen.
 
@@ -635,7 +635,7 @@ eine intelligente Datenstruktur mit eigenen Regeln und Verweisen.
 später wissen Sie sofort, was berechnet wird. Sie passen sich automatisch an,
 wenn die Tabelle wächst.
 
-**Übung 4.4 — Excel-Tabellen verwenden**
+**Übung 4.4  Excel-Tabellen verwenden**
 
 Die folgende Übungstabelle **Modul 4 4 Tabellen** ist bereits geladen.
 
@@ -722,22 +722,6 @@ Die folgende Übungstabelle **Modul 5 3 Slicer** ist bereits geladen.
 >    Sie beide Tabellen mit denselben Slicern.
 > 3. Fügen Sie eine Zeitachse für das Bestelldatum hinzu.
 
-## 5.5. Power Pivot und das Datenmodell (Ausblick)
-
-### Konzept: Millionen Zeilen, mehrere Tabellen
-
-Power Pivot ist ein Add-In für Excel, das das Datenmodell erweitert:
-
-- **Mehrere Millionen Zeilen** verarbeiten (weit über die 1-Mio-Zeilen-Grenze)
-- **Mehrere Tabellen verknüpfen** (wie in einer Datenbank)
-- **DAX-Formeln** (Data Analysis Expressions) für komplexe Berechnungen
-
-**Aktivierung:** Datei → Optionen → Add-Ins → Verwalten: COM-Add-Ins → Power Pivot.
-
-**Wichtig:** Power Pivot ist nur in Excel für Windows verfügbar (nicht in Excel
-für Mac oder Excel Online). Für diesen Kurs ist es ein Ausblick — die
-grundlegenden Pivot-Kenntnisse aus M5.1–5.4 sind die Basis.
-
 ## 5.4. Pivot-Charts
 
 ### Konzept: Diagramme, die mit der Pivot-Tabelle leben
@@ -754,6 +738,22 @@ Die folgende Übungstabelle **Modul 5 4 PivotChart** ist bereits geladen.
 > 2. Fügen Sie einen zweiten Slicer hinzu und beobachten Sie, wie sich das
 >    Diagramm automatisch anpasst.
 > 3. Ändern Sie den Diagrammtyp zu einem gestapelten Säulendiagramm.
+
+## 5.5. Power Pivot und das Datenmodell (Ausblick)
+
+### Konzept: Millionen Zeilen, mehrere Tabellen
+
+Power Pivot ist ein Add-In für Excel, das das Datenmodell erweitert:
+
+- **Mehrere Millionen Zeilen** verarbeiten (weit über die 1-Mio-Zeilen-Grenze)
+- **Mehrere Tabellen verknüpfen** (wie in einer Datenbank)
+- **DAX-Formeln** (Data Analysis Expressions) für komplexe Berechnungen
+
+**Aktivierung:** Datei → Optionen → Add-Ins → Verwalten: COM-Add-Ins → Power Pivot.
+
+**Wichtig:** Power Pivot ist nur in Excel für Windows verfügbar (nicht in Excel
+für Mac oder Excel Online). Für diesen Kurs ist es ein Ausblick — die
+grundlegenden Pivot-Kenntnisse aus 5.1–5.4 sind die Basis.
 
 
 ## Modul 6: Datenanalyse, Szenarien und Solver
@@ -1227,9 +1227,9 @@ sollte für alle Datenimport-Aufgaben verwendet werden.
 | `Alt+=` | AutoSumme |
 | `F9` | Alle Formeln neu berechnen (bei manueller Berechnung) |
 
-**Übung 10.3  Tastenkombinationen üben**
+**Übung 10.4  Tastenkombinationen üben**
 
-Die folgende Übungstabelle **Modul 10 3 Tastenkombinationen** ist bereits geladen.
+Die folgende Übungstabelle **Modul 10 4 Tastenkombinationen** ist bereits geladen.
 
 > 1. Verwenden Sie ausschließlich Tastenkombinationen, um eine Tabelle zu
 >    formatieren, eine Summe zu bilden und einen Filter zu setzen.

@@ -363,7 +363,7 @@ def mod4_3():
     add_result_row(ws, 'Maximum:', '=MAX(B8:B17)', row + 2)
     add_result_row(ws, 'Minimum:', '=MIN(B8:B17)', row + 3)
     add_result_row(ws, 'Anzahl:', '=ANZAHL(B8:B17)', row + 4)
-    save(wb, 'M4_3_Statistik')
+    save(wb, 'M4_4_Statistik')
 
 
 def mod4_4():
@@ -383,7 +383,7 @@ def mod4_4():
         '   =WENN(B2>=80;"Mit Auszeichnung";WENN(B2>=60;"Bestanden";"Nicht bestanden"))',
         '   Ziehen Sie die Formel nach unten.'
     ])
-    save(wb, 'M4_4_WENN')
+    save(wb, 'M4_5_WENN')
 
 
 # ============================================================
@@ -549,7 +549,7 @@ def mod6_1():
         '2. Sortieren Sie zuerst nach Abteilung, dann nach Gehalt (absteigend).',
         '3. Sortieren Sie nach Eintrittsdatum (älteste zuerst).'
     ])
-    save(wb, 'M6_1_Sortieren')
+    save(wb, 'M6_3_Sortieren')
 
 
 def mod6_2():
@@ -570,7 +570,7 @@ def mod6_2():
         '3. Mitarbeiter, die nach dem 01.01.2020 eingetreten sind.',
         '4. Kombination: IT-Abteilung UND Gehalt > 50.000 €.'
     ])
-    save(wb, 'M6_2_Filtern')
+    save(wb, 'M6_4_Filtern')
 
 
 def mod6_3():
@@ -590,7 +590,7 @@ def mod6_3():
         '3. Fügen Sie eine Ergebniszeile hinzu → Summe der Gehälter.',
         '4. Neue Zeile anhängen — Tabelle erweitert sich automatisch.'
     ])
-    save(wb, 'M6_3_Tabellen')
+    save(wb, 'M6_5_Tabellen')
 
 
 def mod6_4():
@@ -613,7 +613,7 @@ def mod6_4():
         '2. Berechnen Sie Teilergebnisse: Summe Gehalt pro Abteilung.',
         '3. Nutzen Sie die Gliederungssymbole (1, 2, 3) zum Ein-/Ausblenden.'
     ])
-    save(wb, 'M6_4_Teilergebnisse')
+    save(wb, 'M6_6_Teilergebnisse')
 
 
 # ============================================================
@@ -979,6 +979,34 @@ def mod10_2():
 # MODUL 11
 # ============================================================
 
+
+def mod10_3():
+    wb, ws = create_workbook('Übung 10.3 — Datentabelle')
+    write_instructions(ws, [
+        '1. Eindimensionale Datentabelle: Berechnen Sie die RMZ-Rate für',
+        '   Zinssätze von 2% bis 8% (in 0,5%-Schritten).',
+        '   Kredit: 250.000 €, Laufzeit: 30 Jahre.',
+        '   Markieren Sie den Bereich und wählen Sie:',
+        '   Daten → Was-wäre-wenn-Analyse → Datentabelle.',
+        '2. Zweidimensionale Datentabelle: RMZ-Rate für Zinssätze (3%-7%)',
+        '   als Zeilen-Eingabezelle und Laufzeiten (10-30 Jahre) als',
+        '   Spalten-Eingabezelle.',
+    ])
+    save(wb, 'M10_3_Datentabelle')
+
+
+def mod10_4():
+    wb, ws = create_workbook('Übung 10.4 — Integrierte Finanzanalyse')
+    write_instructions(ws, [
+        'Investition: 500.000 €, jährliche Rückflüsse: 80.000 €, Dauer: 10 Jahre.',
+        '1. Berechnen Sie NBW bei 6% Zinssatz.',
+        '2. Zielwertsuche: Welcher Zinssatz ergibt NBW = 0? (=IKV)',
+        '3. Datentabelle: NBW für Zinssätze 2%-12% (1%-Schritte).',
+        '4. Ab welchem Zinssatz wird NBW negativ?',
+    ])
+    save(wb, 'M10_4_Finanzanalyse')
+
+
 def mod11_1():
     wb, ws = create_workbook('Übung 11.1 — Drucklayout')
     headers = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug']
@@ -1214,6 +1242,9 @@ if __name__ == '__main__':
 
     print('Modul 10: Finanzfunktionen...')
     mod10_1(); mod10_2()
+
+    print('Modul 10: Analyse...')
+    mod10_3(); mod10_4()
 
     print('Modul 11: Druck...')
     mod11_1(); mod11_2(); mod11_3(); mod11_4()
