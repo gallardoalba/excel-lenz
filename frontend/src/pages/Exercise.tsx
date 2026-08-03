@@ -98,6 +98,63 @@ export default function Exercise() {
       : undefined,
     [cellFeedback]
   );
+
+  // ── Step validation: map instruction steps to cells, check vs solution ──
+  const stepResults = useMemo(() => {
+    if (score === null || !exercise) return null;
+    const solutionData: any[][] = (exercise as any)?.solution_data?.data;
+    if (!solutionData) return null;
+
+    const headers: string[] = exercise.template_data?.headers || [];
+    const steps = (exercise.instructions || '')
+      .split(/\n+/)
+      .filter((s: string) => s.trim().length > 0);
+
+    return steps.map((step: string) => {
+      // Extract all cell references from the step
+      const cells: [number, number][] = [];
+
+      // 1. Direct cell refs: D2, A4, C10 → col letter + row number
+      for (const m of step.matchAll(/\b([A-Z])(\d+)\b/g)) {
+        const col = m[1].charCodeAt(0) - 65; // A=0, B=1, ...
+        const displayRow = parseInt(m[2]);
+        const dataRow = displayRow - 2; // header occupies row 1, data starts at row 2
+        cells.push([dataRow, col]);
+      }
+
+      // 2. "Zeile N" with column names from headers
+      const zeileMatch = step.match(/Zeile\s+(\d+)/);
+      if (zeileMatch) {
+        const displayRow = parseInt(zeileMatch[1]);
+        const dataRow = displayRow - 2;
+        const stepLower = step.toLowerCase();
+        for (let c = 0; c < headers.length; c++) {
+          if (headers[c] && stepLower.includes(headers[c].toLowerCase())) {
+            if (!cells.some(([r, col]) => r === dataRow && col === c)) {
+              cells.push([dataRow, c]);
+            }
+          }
+        }
+      }
+
+      // Check each cell against solution
+      if (cells.length === 0) return { ok: null as boolean | null, cells: [] as [number, number][] };
+      const allOk = cells.every(([r, c]) => {
+        const submitted = spreadsheetData[r]?.[c];
+        const expected = solutionData[r]?.[c];
+        // Use same logic as backend: null→'' normalization, numeric tolerance
+        const s = submitted ?? '';
+        const e = expected ?? '';
+        const sNum = s !== '' ? Number(s) : null;
+        const eNum = e !== '' ? Number(e) : null;
+        if (sNum !== null && eNum !== null && !isNaN(sNum) && !isNaN(eNum)) {
+          return Math.abs(sNum - eNum) < 0.01;
+        }
+        return String(s).trim().toLowerCase() === String(e).trim().toLowerCase();
+      });
+      return { ok: allOk, cells };
+    });
+  }, [score, exercise, spreadsheetData]);
   const [focusMode, setFocusMode] = useState(false);
   const { startTour } = useTour();
   const { increment: incrementGoal } = useDailyGoal();
@@ -242,33 +299,6 @@ export default function Exercise() {
     return () => controller.abort();
   }, [id]);
 
-  // ── Exam mode: clear taskCols cells so student starts with empty template ──
-  const examTemplateRef = useRef<boolean>(false);
-  useEffect(() => {
-    if (!exercise?.template_data?.data || !originalDataRef.current) return;
-    const taskCols: number[] = exercise.template_data.taskCols || [];
-    const originalData: (string | number | null)[][] = JSON.parse(originalDataRef.current);
-
-    if (mode === 'exam' && !examTemplateRef.current && score === null) {
-      // Switching to exam mode: clear all taskCols cells
-      const examData = originalData.map(row =>
-        row.map((cell, colIdx) => (taskCols.includes(colIdx) ? '' : cell))
-      );
-      examTemplateRef.current = true;
-      isDirtyRef.current = false;
-      setSpreadsheetData(examData);
-      setAttemptCount(0);
-      setHintLevel(1);
-    } else if (mode === 'practice' && examTemplateRef.current && score === null) {
-      // Switching back to practice: restore original template
-      examTemplateRef.current = false;
-      isDirtyRef.current = false;
-      setSpreadsheetData(JSON.parse(JSON.stringify(originalData)));
-      setAttemptCount(0);
-      setHintLevel(1);
-    }
-  }, [mode, exercise, score]);
-
   const handleSubmit = async () => {
     if (!exercise) return;
     setSubmitting(true);
@@ -318,10 +348,12 @@ export default function Exercise() {
         setShowXpFly(true);
         safeTimeout(() => setShowXpFly(false), 2000);
 
-        // Only show badge if a new one was earned
+        // Only show badge if a new one was earned — delay so user sees feedback first
         if (gami?.badges?.length && gami.badges.length > previousBadgeCount) {
           const lastBadge = gami.badges[gami.badges.length - 1];
-          setNewBadge({ icon: lastBadge.icon, name: lastBadge.name, description: lastBadge.description });
+          safeTimeout(() => {
+            setNewBadge({ icon: lastBadge.icon, name: lastBadge.name, description: lastBadge.description });
+          }, 2500);
           setPreviousBadgeCount(gami.badges.length);
         }
 
@@ -549,18 +581,24 @@ export default function Exercise() {
                     </div>
                   );
                 }
-                const completedCount = score !== null ? (score >= 80 ? steps.length : Math.floor(steps.length * (score / 100))) : 0;
+                const results = stepResults;
+                const completedCount = results ? results.filter(r => r.ok === true).length : 0;
                 return (
                   <div className="mb-3">
-                    {steps.map((step: string, i: number) => (
-                      <div key={i} className={`exercise-step ${i < completedCount ? 'completed' : ''}`}>
-                        <span className={`exercise-step-num ${i < completedCount ? 'done' : ''}`}>
-                          {i < completedCount ? '✓' : i + 1}
-                        </span>
-                        <span>{step}</span>
-                      </div>
-                    ))}
-                    {score !== null && completedCount < steps.length && (
+                    {steps.map((step: string, i: number) => {
+                      const result = results?.[i];
+                      const isDone = result?.ok === true;
+                      const isFailed = result?.ok === false;
+                      return (
+                        <div key={i} className={`exercise-step ${isDone ? 'completed' : ''}`}>
+                          <span className={`exercise-step-num ${isDone ? 'done' : isFailed ? 'failed' : ''}`}>
+                            {isDone ? '✓' : isFailed ? '✗' : i + 1}
+                          </span>
+                          <span>{step}</span>
+                        </div>
+                      );
+                    })}
+                    {score !== null && score < 100 && (
                       <p className="text-xs text-center mt-2" style={{ color: 'var(--text-muted)' }}>
                         {completedCount}/{steps.length} Schritte erfüllt — weiter üben!
                       </p>
@@ -569,8 +607,8 @@ export default function Exercise() {
                 );
               })()}
 
-              {/* Initial Tipp — always visible */}
-              {mode === 'practice' && score === null && (template.formulaHint || hints[0]) && (
+              {/* Initial Tipp — always visible in practice mode */}
+              {mode === 'practice' && (template.formulaHint || hints[0]) && (
                 <div className="hint-box">
                   <Lightbulb size={14} style={{marginRight:4, color: 'var(--accent)'}} />
                   <strong>Tipp:</strong> {template.formulaHint || hints[0]}
@@ -601,24 +639,28 @@ export default function Exercise() {
                             </pre>
                           )}
                         </span>
-                      ) : hints[hints.length - 1]}
+                      ) : (
+                        <span>
+                          <button className="btn btn-sm btn-outline" style={{ marginLeft: 8 }}
+                            onClick={() => {
+                              const solData = (exercise as any)?.solution_data?.data;
+                              if (solData && !showSolution) {
+                                setSpreadsheetData(solData.map((row: any[]) => row.map((c: any) => c ?? '')));
+                                isDirtyRef.current = true;
+                              }
+                              setShowSolution(!showSolution);
+                            }}>
+                            {showSolution ? 'Ausblenden' : 'Tabelle ausfüllen'}
+                          </button>
+                        </span>
+                      )}
                     </div>
-                  )}
-                  {hintLevel > 0 && score !== null && (
-                    <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 8, textAlign: 'center' }}>
-                      War dieser Hinweis hilfreich?{' '}
-                      <button className="btn btn-sm" style={{ fontSize: '0.72rem', padding: '2px 8px', background: 'var(--success-light)', color: 'var(--success)', border: 'none' }}
-                        onClick={() => announce('Danke für dein Feedback!', 'polite')}><ThumbsUp size={11} /> Ja</button>
-                      {' '}
-                      <button className="btn btn-sm" style={{ fontSize: '0.72rem', padding: '2px 8px', background: 'var(--danger-light)', color: 'var(--danger)', border: 'none' }}
-                        onClick={() => announce('Danke! Wir verbessern die Hinweise.', 'polite')}><ThumbsDown size={11} /> Nein</button>
-                    </p>
                   )}
                 </div>
               )}
 
               {/* Tipp button — more hints */}
-              {mode === 'practice' && hintLevel < hints.length + 1 && hintLevel >= 1 && score === null && hints.length > 1 && (
+              {mode === 'practice' && hintLevel < hints.length + 1 && hintLevel >= 1 && hints.length > 1 && (
                 <button className="btn btn-sm btn-outline mt-2"
                   onClick={() => setHintLevel((h) => Math.min(h + 1, hints.length + 1))}>
                   <Lightbulb size={14} style={{marginRight:4}} />{hintLevel >= hints.length ? 'Lösung anzeigen' : 'Weitere Tipps'}

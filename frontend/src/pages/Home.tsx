@@ -131,9 +131,9 @@ export default function Home() {
       {/* BOTTOM CTA */}
       <section className="cta-section">
         <h2>Bereit für Ihren Excel-Vorsprung?</h2>
-        <p>Starten Sie noch heute mit unseren kostenlosen Übungen und entdecken Sie, wie einfach Excel lernen sein kann.</p>
+        <p>Starten Sie noch heute mit unseren offenen Übungen und entdecken Sie, wie einfach Excel lernen sein kann.</p>
         <Link to="/register" className="btn btn-white btn-lg">
-          Jetzt kostenlos starten
+          Jetzt starten
         </Link>
       </section>
     </>

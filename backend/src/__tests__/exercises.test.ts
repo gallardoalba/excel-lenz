@@ -36,7 +36,7 @@ describe('Exercise Routes', () => {
         Array.isArray(td.data) && td.data.length > 0 &&
         Array.isArray(td.taskCols) && td.taskCols.length > 0
       ) {
-        return { id: ex.id, template: td, solution: exRes.body.solution_data ? JSON.parse(exRes.body.solution_data) : null };
+        return { id: ex.id, template: td, solution: exRes.body.solution_data || null };
       }
     }
     throw new Error('No spreadsheet exercise found in course');

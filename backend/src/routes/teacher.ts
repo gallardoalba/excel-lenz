@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import crypto from 'node:crypto';
 import { getDb } from '../db/database';
 import { authMiddleware, AuthPayload } from '../middleware/auth';
@@ -6,7 +6,7 @@ import { authMiddleware, AuthPayload } from '../middleware/auth';
 const router = Router();
 
 // Middleware: only teachers
-function teacherOnly(req: Request, res: Response, next: Function) {
+function teacherOnly(req: Request, res: Response, next: NextFunction) {
   const user = (req as any).user as AuthPayload;
   if (user?.role !== 'teacher') {
     res.status(403).json({ error: 'Nur für Lehrer zugänglich' });
@@ -144,6 +144,39 @@ router.get('/students/:id', (req: Request, res: Response) => {
   res.json({ ...student as object, progress });
 });
 
+// ── CREATE STUDENT ─────────────────────────────────────────
+router.post('/students', (req: Request, res: Response) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    res.status(400).json({ error: 'Name, Email und Passwort sind erforderlich' });
+    return;
+  }
+  const db = getDb();
+  const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
+  if (existing) {
+    res.status(409).json({ error: 'Ein Benutzer mit dieser Email existiert bereits' });
+    return;
+  }
+  const bcrypt = require('bcryptjs');
+  const hash = bcrypt.hashSync(password, 10);
+  const id = crypto.randomUUID();
+  db.prepare(
+    'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
+  ).run(id, email, hash, name, 'student');
+  res.status(201).json({ id, name, email });
+});
+
+// ── DELETE STUDENT ─────────────────────────────────────────
+router.delete('/students/:id', (req: Request, res: Response) => {
+  const db = getDb();
+  const student = db.prepare('SELECT id FROM users WHERE id = ? AND role = ?').get(req.params.id, 'student');
+  if (!student) { res.status(404).json({ error: 'Student nicht gefunden' }); return; }
+  // Delete all progress, then delete user
+  db.prepare('DELETE FROM progress WHERE user_id = ?').run(req.params.id);
+  db.prepare('DELETE FROM users WHERE id = ?').run(req.params.id);
+  res.json({ success: true });
+});
+
 // ── ANALYTICS ───────────────────────────────────────────────
 
 // Get aggregated analytics across all students
@@ -153,7 +186,7 @@ router.get('/analytics', (_req: Request, res: Response) => {
     SELECT e.id, e.title, c.title as course_title,
            COUNT(p.id) as attempts,
            ROUND(AVG(p.score), 1) as avg_score,
-           ROUND(SUM(CASE WHEN p.score < 50 THEN 1 ELSE 0 END) * 100.0 / MAX(COUNT(p.id), 1), 1) as fail_rate
+           ROUND(SUM(CASE WHEN p.score < 50 THEN 1 ELSE 0 END) * 100.0 / NULLIF(COUNT(p.id), 0), 1) as fail_rate
     FROM exercises e
     JOIN courses c ON c.id = e.course_id
     LEFT JOIN progress p ON p.exercise_id = e.id

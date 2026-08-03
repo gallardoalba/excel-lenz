@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Cristóbal Gallardo" />
-  <title>Lehrplan: Excel für Anfänger</title>
+  <title>Lehrplan_Excel_Anfaenger</title>
   <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -174,11 +174,6 @@
   </style>
 </head>
 <body>
-<header id="title-block-header">
-<h1 class="title">Lehrplan: Excel für Anfänger</h1>
-<p class="author">Cristóbal Gallardo</p>
-<p class="date">August 2026</p>
-</header>
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#einleitung" id="toc-einleitung">Einleitung</a></li>
@@ -236,10 +231,13 @@ id="toc-grundlagen-der-formeln">4.1. Grundlagen der Formeln</a></li>
 <li><a href="#zellbezüge-relativ-absolut-und-gemischt"
 id="toc-zellbezüge-relativ-absolut-und-gemischt">4.2. Zellbezüge:
 Relativ, Absolut und Gemischt</a></li>
+<li><a href="#namen-definieren-und-verwenden"
+id="toc-namen-definieren-und-verwenden">4.3. Namen definieren und
+verwenden</a></li>
 <li><a href="#statistische-grundfunktionen"
-id="toc-statistische-grundfunktionen">4.3. Statistische
+id="toc-statistische-grundfunktionen">4.4. Statistische
 Grundfunktionen</a></li>
-<li><a href="#die-wenn-funktion" id="toc-die-wenn-funktion">4.4. Die
+<li><a href="#die-wenn-funktion" id="toc-die-wenn-funktion">4.5. Die
 WENN-Funktion</a></li>
 <li><a href="#modul-5-datenbereinigung-und-validierung"
 id="toc-modul-5-datenbereinigung-und-validierung">Modul 5:
@@ -257,14 +255,18 @@ Quellen</a></li>
 <li><a href="#modul-6-tabellen-und-filter"
 id="toc-modul-6-tabellen-und-filter">Modul 6: Tabellen und
 Filter</a></li>
-<li><a href="#daten-sortieren" id="toc-daten-sortieren">6.1. Daten
+<li><a href="#suchen-und-ersetzen" id="toc-suchen-und-ersetzen">6.1.
+Suchen und Ersetzen</a></li>
+<li><a href="#fenster-einfrieren" id="toc-fenster-einfrieren">6.2.
+Fenster einfrieren</a></li>
+<li><a href="#daten-sortieren" id="toc-daten-sortieren">6.3. Daten
 sortieren</a></li>
-<li><a href="#daten-filtern" id="toc-daten-filtern">6.2. Daten
+<li><a href="#daten-filtern" id="toc-daten-filtern">6.4. Daten
 filtern</a></li>
-<li><a href="#excel-tabellen-strgt" id="toc-excel-tabellen-strgt">6.3.
+<li><a href="#excel-tabellen-strgt" id="toc-excel-tabellen-strgt">6.5.
 Excel-Tabellen (Strg+T)</a></li>
 <li><a href="#teilergebnisse-und-gliederung"
-id="toc-teilergebnisse-und-gliederung">6.4. Teilergebnisse und
+id="toc-teilergebnisse-und-gliederung">6.6. Teilergebnisse und
 Gliederung</a></li>
 <li><a href="#modul-7-erweiterte-funktionen"
 id="toc-modul-7-erweiterte-funktionen">Modul 7: Erweiterte
@@ -312,6 +314,11 @@ id="toc-zielwertsuche-goal-seek">10.1. Zielwertsuche (Goal
 Seek)</a></li>
 <li><a href="#finanzfunktionen" id="toc-finanzfunktionen">10.2.
 Finanzfunktionen</a></li>
+<li><a href="#datentabellen" id="toc-datentabellen">10.3.
+Datentabellen</a></li>
+<li><a href="#integrierte-finanzanalyse"
+id="toc-integrierte-finanzanalyse">10.4. Integrierte
+Finanzanalyse</a></li>
 <li><a href="#modul-11-druck-und-zusammenarbeit"
 id="toc-modul-11-druck-und-zusammenarbeit">Modul 11: Druck und
 Zusammenarbeit</a></li>
@@ -431,11 +438,9 @@ Z100.</p>
 <li><strong>Privat:</strong> Haushaltsbudget, Planung</li>
 </ul>
 <p><strong>Übung 1.1 — Erste Schritte</strong></p>
-<blockquote>
 <p>Öffnen Sie Excel, erstellen Sie eine neue Arbeitsmappe.
 Identifizieren Sie Registerkarten, Namensfeld, Bearbeitungsleiste und
 Statusleiste. Speichern Sie als <code>Meine_Erste_Mappe.xlsx</code>.</p>
-</blockquote>
 <h2 id="die-benutzeroberfläche">1.2. Die Benutzeroberfläche</h2>
 <h3 id="konzept-das-menüband-ribbon">Konzept: Das Menüband (Ribbon)</h3>
 <table>
@@ -468,15 +473,11 @@ Statusleiste. Speichern Sie als <code>Meine_Erste_Mappe.xlsx</code>.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Passen Sie die Schnellzugriff-Leiste mit
 häufig genutzten Befehlen an.</p>
-</blockquote>
 <p><strong>Übung 1.2 — Die Oberfläche erkunden</strong></p>
-<blockquote>
 <p>Fügen Sie „Neu”, „Öffnen” und „Schnelldruck” zur
 Schnellzugriff-Leiste hinzu.</p>
-</blockquote>
 <h2 id="grundlegende-navigation">1.3. Grundlegende Navigation</h2>
 <h3 id="konzept-bewegung-in-der-tabelle">Konzept: Bewegung in der
 Tabelle</h3>
@@ -506,15 +507,11 @@ Tabelle</h3>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> <code>Strg+Leertaste</code> = ganze Spalte,
-<code>Shift+Leertaste</code> = ganze Zeile.</p>
-</blockquote>
+<code>Umschalt+Leertaste</code> = ganze Zeile.</p>
 <p><strong>Übung 1.3 — Navigation üben</strong></p>
-<blockquote>
 <p>Erstellen Sie drei Blätter: Januar, Februar, März. Üben Sie
 Strg+Pos1, Strg+Ende.</p>
-</blockquote>
 <h2 id="dateiverwaltung">1.4. Dateiverwaltung</h2>
 <h3 id="konzept-dateiformate">Konzept: Dateiformate</h3>
 <table>
@@ -548,19 +545,40 @@ Strg+Pos1, Strg+Ende.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
+<p><strong>Wichtig:</strong> In allen Tastenkombinationen dieses
+Lehrplans steht <code>Umschalt</code> für die Umschalt-Taste (Shift),
+die auf manchen Tastaturen auch als <code>Shift</code> beschriftet
+ist.</p>
 <p><strong>Wichtig:</strong> Regelmäßig speichern mit
 <code>Strg+S</code>!</p>
-</blockquote>
 <p><strong>Übung 1.4 — Dateien verwalten</strong></p>
-<blockquote>
 <p>Speichern Sie als <code>Inventar_2026.xlsx</code>, exportieren Sie
 als PDF.</p>
-</blockquote>
+<h3 id="das-können-sie-jetzt">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Excel öffnen, eine neue Arbeitsmappe
+erstellen und speichern</label></li>
+<li><label><input type="checkbox" />Die wichtigsten Elemente der
+Oberfläche benennen (Menüband, Bearbeitungsleiste,
+Statusleiste)</label></li>
+<li><label><input type="checkbox" />Zwischen Zellen und Tabellenblättern
+navigieren (Pfeiltasten, Strg+Pos1, Strg+Ende)</label></li>
+<li><label><input type="checkbox" />Eine Arbeitsmappe als .xlsx und .pdf
+speichern</label></li>
+<li><label><input type="checkbox" />Die Schnellzugriff-Leiste
+anpassen</label></li>
+</ul>
 <h2 id="modul-2-dateneingabe-und--bearbeitung">Modul 2: Dateneingabe und
 -bearbeitung</h2>
 <p><strong>Lernziel:</strong> Daten verschiedener Typen effizient
 eingeben, bearbeiten und mit AutoAusfüllen organisieren.</p>
+<h3 id="was-wissen-sie-bereits">Was wissen Sie bereits?</h3>
+<p>Bevor Sie starten, überlegen Sie kurz: - Welche Arten von Daten haben
+Sie schon in Excel eingegeben? - Haben Sie schon einmal das
+Ausfüllkästchen (kleines Quadrat rechts unten) benutzt? - Wissen Sie,
+was beim Kopieren einer Formel mit den Zellbezügen passiert?</p>
+<p><strong>Keine Sorge, wenn Sie etwas nicht wissen</strong> — genau
+dafür ist dieses Modul da.</p>
 <h2 id="datentypen-in-excel">2.1. Datentypen in Excel</h2>
 <h3 id="konzept-warum-excel-datentypen-unterscheidet">Konzept: Warum
 Excel Datentypen unterscheidet</h3>
@@ -622,21 +640,18 @@ stehen rechtsbündig.</p>
 <tr>
 <td><strong>Währung</strong></td>
 <td>Rechtsbündig</td>
-<td><code>29,99 €</code>, <code>$45,00</code></td>
+<td><code>29,99 €</code>, <code>45,00 €</code></td>
 <td>Finanzielle Berechnungen</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Wenn Excel ein Datum nicht erkennt (z.B.
 <code>2026.03.15</code>), versuchen Sie das Format
 <code>TT.MM.JJJJ</code>. Excel orientiert sich an den
 Ländereinstellungen Ihres Systems.</p>
-</blockquote>
 <p><strong>Übung 2.1 — Datentypen erkennen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M2_1_Datentypen.xlsx</code>. Geben Sie in
-verschiedene Zellen ein:</p>
+<p>Die folgende Übungstabelle <strong>Modul 2 1 Datentypen</strong> ist
+bereits geladen. Geben Sie in verschiedene Zellen ein:</p>
 <ul>
 <li><p>Ihren Namen (Text)</p></li>
 <li><p>Die Zahl 1500 (Zahl)</p></li>
@@ -646,7 +661,6 @@ verschiedene Zellen ein:</p>
 <p>Beobachten Sie die automatische Ausrichtung. Ändern Sie dann das
 Zahlenformat einer Zelle über
 <code>Start → Zahl → Format auswählen</code>.</p>
-</blockquote>
 <h2 id="zellen-bearbeiten">2.2. Zellen bearbeiten</h2>
 <h3 id="konzept-inhalte-ändern-ohne-neu-tippen">Konzept: Inhalte ändern
 ohne neu tippen</h3>
@@ -684,16 +698,13 @@ Ihre Sicherheitsnetze — Sie können bis zu 100 Schritte zurückgehen.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Wichtig:</strong> Wenn Sie eine Zelle auswählen und einfach
 losschreiben, wird der gesamte Inhalt ersetzt — nicht ergänzt! Zum
 Ändern immer zuerst <code>F2</code> drücken oder doppelklicken.</p>
-</blockquote>
 <p><strong>Übung 2.2 — Zellen bearbeiten</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M2_2_Bearbeiten.xlsx</code>. Die Tabelle
-enthält absichtlich Rechtschreibfehler. Korrigieren Sie jede fehlerhafte
-Zelle auf drei Arten:</p>
+<p>Die folgende Übungstabelle <strong>Modul 2 2 Bearbeiten</strong> ist
+bereits geladen. Die Tabelle enthält absichtlich Rechtschreibfehler.
+Korrigieren Sie jede fehlerhafte Zelle auf drei Arten:</p>
 <ol type="1">
 <li>Mit Doppelklick in die Zelle</li>
 <li>Mit der Taste <code>F2</code></li>
@@ -701,7 +712,6 @@ Zelle auf drei Arten:</p>
 </ol>
 <p>Machen Sie eine Korrektur mit <code>Strg+Z</code> rückgängig, dann
 mit <code>Strg+Y</code> wiederherstellen.</p>
-</blockquote>
 <h2 id="autoausfüllen-und-reihen">2.3. AutoAusfüllen und Reihen</h2>
 <h3 id="konzept-muster-erkennen-und-automatisch-fortsetzen">Konzept:
 Muster erkennen und automatisch fortsetzen</h3>
@@ -717,15 +727,13 @@ benutzerdefinierten Mustern wie <code>Kunde 1</code>,
 <p>Excel erkennt folgende eingebaute Reihen: - Wochentage (Montag,
 Dienstag…) - Monate (Januar, Februar…) - Quartale (Q1, Q2…) -
 Zahlenfolgen (1, 2, 3… oder 2, 4, 6…)</p>
-<blockquote>
 <p><strong>Tipp:</strong> Wenn Sie zwei Werte markieren (z.B.
 <code>1</code> und <code>3</code>) und dann ziehen, erkennt Excel das
 Schrittmuster und setzt es fort: 1, 3, 5, 7, 9… Das funktioniert auch
 mit Datumsangaben!</p>
-</blockquote>
 <p><strong>Übung 2.3 — AutoAusfüllen verwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M2_3_AutoAusfuellen.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 2 3 AutoAusfuellen</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li><p>Schreiben Sie <code>Januar</code> in Zelle A1 und ziehen Sie am
 Ausfüllkästchen bis A12.</p></li>
@@ -735,7 +743,6 @@ markieren Sie beide und ziehen Sie bis B10.</p></li>
 fortlaufende</p>
 <p>Datumsreihe für 30 Tage.</p></li>
 </ol>
-</blockquote>
 <h2 id="kopieren-ausschneiden-und-einfügen">2.4. Kopieren, Ausschneiden
 und Einfügen</h2>
 <h3 id="konzept-die-inhalte-einfügen-optionen">Konzept: Die
@@ -783,15 +790,13 @@ sogar die Tabelle transponieren (Zeilen und Spalten vertauschen).</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Wenn Sie Formelergebnisse kopieren möchten,
 ohne dass sich die Bezüge verschieben, nutzen Sie „Inhalte einfügen →
 Werte”. Das ist besonders nützlich, wenn Sie Berechnungen in eine andere
 Tabelle übertragen.</p>
-</blockquote>
 <p><strong>Übung 2.4 — Kopieren und Einfügen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M2_4_Kopieren.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 2 4 Kopieren</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Kopieren Sie die Tabelle <code>A1:D10</code> und fügen Sie sie ab
 <code>F1</code> ein.</p></li>
@@ -801,10 +806,30 @@ Tabelle übertragen.</p>
 — beobachten</p>
 <p>Sie den Unterschied.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-1">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Die fünf Datentypen (Text, Zahl,
+Datum, Uhrzeit, Währung) unterscheiden</label></li>
+<li><label><input type="checkbox" />Zellen auf drei Arten bearbeiten
+(Doppelklick, F2, Bearbeitungsleiste)</label></li>
+<li><label><input type="checkbox" />Das Ausfüllkästchen für Reihen
+(Wochentage, Monate, Zahlenfolgen) nutzen</label></li>
+<li><label><input type="checkbox" />Inhalte mit „Werte einfügen” und
+„Transponieren” gezielt kopieren</label></li>
+<li><label><input type="checkbox" />Rückgängig (Strg+Z) und
+Wiederherstellen (Strg+Y) sicher anwenden</label></li>
+</ul>
 <h2 id="modul-3-format-und-zellstil">Modul 3: Format und Zellstil</h2>
 <p><strong>Lernziel:</strong> Tabellen professionell formatieren, Zahlen
 korrekt darstellen und bedingte Formatierung einsetzen.</p>
+<h3 id="was-wissen-sie-bereits-1">Was wissen Sie bereits?</h3>
+<p>Denken Sie an eine Tabelle, die Sie kürzlich gesehen haben (Rechnung,
+Liste, Bericht): - Was hat Ihnen an der Formatierung gefallen? Was
+nicht? - Haben Sie schon einmal eine Zahl als Prozent oder Währung
+formatiert? - Wissen Sie, wie man Spalten automatisch an die Textbreite
+anpasst?</p>
+<p>In diesem Modul machen Sie aus rohen Daten eine professionell
+aussehende Tabelle.</p>
 <h2 id="grundlegende-formatierung">3.1. Grundlegende Formatierung</h2>
 <h3 id="konzept-warum-formatierung-über-ästhetik-hinausgeht">Konzept:
 Warum Formatierung über Ästhetik hinausgeht</h3>
@@ -823,6 +848,11 @@ Farben, keine grellen Kombinationen</li>
 <p><strong>Die Formatierungswerkzeuge in der Gruppe „Schriftart” und
 „Ausrichtung”:</strong></p>
 <table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 40%" />
+<col style="width: 28%" />
+</colgroup>
 <thead>
 <tr>
 <th>Werkzeug</th>
@@ -833,17 +863,17 @@ Farben, keine grellen Kombinationen</li>
 <tbody>
 <tr>
 <td>Fett</td>
-<td><code>Strg+Shift+F</code></td>
+<td><code>Strg+Umschalt+F</code> (Schriftart-Dialog)</td>
 <td>Text hervorheben (Überschriften)</td>
 </tr>
 <tr>
 <td>Kursiv</td>
-<td><code>Strg+Shift+K</code></td>
+<td><code>Strg+Umschalt+K</code> (Schriftart-Dialog)</td>
 <td>Hervorhebung im Fließtext</td>
 </tr>
 <tr>
 <td>Unterstrichen</td>
-<td><code>Strg+Shift+U</code></td>
+<td><code>Strg+Umschalt+U</code> (Schriftart-Dialog)</td>
 <td>Besonders wichtige Werte</td>
 </tr>
 <tr>
@@ -873,16 +903,14 @@ Farben, keine grellen Kombinationen</li>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Das Dialogfeld „Zellen formatieren”
 (<code>Strg+1</code>) ist die Kommandozentrale für alle
 Formatierungsoptionen. Hier finden Sie alles an einem Ort — von Rahmen
 über Ausrichtung bis zu Schriftart.</p>
-</blockquote>
 <p><strong>Übung 3.1 — Grundformatierung anwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M3_1_Grundformatierung.xlsx</code>.
-Formatieren Sie die Tabelle so:</p>
+<p>Die folgende Übungstabelle <strong>Modul 3 1
+Grundformatierung</strong> ist bereits geladen. Formatieren Sie die
+Tabelle so:</p>
 <ol type="1">
 <li>Überschriftenzeile: fett, dunkelblauer Hintergrund, weiße
 Schrift</li>
@@ -891,7 +919,6 @@ Schrift</li>
 <li>Titel: über die gesamte Tabellenbreite verbinden und zentrieren</li>
 <li>Lange Textzellen: Zeilenumbruch aktivieren</li>
 </ol>
-</blockquote>
 <h2 id="zahlenformate">3.2. Zahlenformate</h2>
 <h3 id="konzept-die-bedeutung-der-korrekten-zahlenformatierung">Konzept:
 Die Bedeutung der korrekten Zahlenformatierung</h3>
@@ -950,15 +977,13 @@ erhalten.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Wichtig:</strong> Prozentwerte sind in Excel Dezimalzahlen:
 <code>19%</code> wird als <code>0,19</code> gespeichert. Wenn Sie
 <code>19</code> eingeben und dann % formatieren, zeigt Excel
 <code>1900%</code> an!</p>
-</blockquote>
 <p><strong>Übung 3.2 — Zahlen formatieren</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M3_2_Zahlenformat.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 3 2 Zahlenformat</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li>Formatieren Sie Spalte B als „Währung” mit €-Symbol und 2
 Dezimalstellen.</li>
@@ -967,7 +992,6 @@ Dezimalstellen.</li>
 <li>Experimentieren Sie mit der Schaltfläche „Dezimalstelle
 hinzufügen/entfernen”.</li>
 </ol>
-</blockquote>
 <h2 id="zeilen-und-spalten-anpassen">3.3. Zeilen und Spalten
 anpassen</h2>
 <h3 id="konzept-struktur-in-die-tabelle-bringen">Konzept: Struktur in
@@ -1019,15 +1043,13 @@ Postleitzahl. Sie können Spaltenbreite und Zeilenhöhe manuell per Drag
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Mit <code>Strg+Leertaste</code> markieren Sie
-die gesamte Spalte, mit <code>Shift+Leertaste</code> die gesamte Zeile.
-Dann können Sie mit Rechtsklick schnell einfügen, löschen oder
+die gesamte Spalte, mit <code>Umschalt+Leertaste</code> die gesamte
+Zeile. Dann können Sie mit Rechtsklick schnell einfügen, löschen oder
 ausblenden.</p>
-</blockquote>
 <p><strong>Übung 3.3 — Layout anpassen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M3_3_Layout.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 3 3 Layout</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li>Passen Sie alle Spalten mit Doppelklick automatisch an den Inhalt
 an.</li>
@@ -1035,7 +1057,6 @@ an.</li>
 <li>Fügen Sie zwischen Zeile 3 und 4 eine neue leere Zeile ein.</li>
 <li>Ändern Sie die Höhe von Zeile 1 (Titelzeile) manuell auf 30.</li>
 </ol>
-</blockquote>
 <h2 id="bedingte-formatierung">3.4. Bedingte Formatierung</h2>
 <h3 id="konzept-werte-automatisch-hervorheben">Konzept: Werte
 automatisch hervorheben</h3>
@@ -1087,16 +1108,13 @@ Formatierung:</strong></p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Beginnen Sie mit einer einfachen Regel wie
 „Größer als” und erkunden Sie dann die Datenbalken. Diese
 Mini-Balkendiagramme in den Zellen sind eine der eindrucksvollsten
 Funktionen für Anfänger!</p>
-</blockquote>
 <p><strong>Übung 3.4 — Bedingte Formatierung anwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei
-<code>M3_4_Bedingte_Formatierung.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 3 4 Bedingte
+Formatierung</strong> ist bereits geladen.</p>
 <ol type="1">
 <li><p>Markieren Sie die Umsatzzahlen und wenden Sie „Datenbalken” an
 (Start → Bedingte</p>
@@ -1108,12 +1126,35 @@ an.</p></li>
 <li><p>Ändern Sie einen Wert auf 15.000 € und beobachten Sie die
 automatische Anpassung.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-2">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Eine Tabelle professionell
+formatieren (Schrift, Rahmen, Farben, Ausrichtung)</label></li>
+<li><label><input type="checkbox" />Zahlen korrekt als Währung, Prozent
+oder Datum formatieren</label></li>
+<li><label><input type="checkbox" />Spaltenbreite und Zeilenhöhe
+automatisch und manuell anpassen</label></li>
+<li><label><input type="checkbox" />Zeilen/Spalten einfügen, löschen und
+ausblenden</label></li>
+<li><label><input type="checkbox" />Bedingte Formatierung (Datenbalken,
+Farbskalen, Regeln) anwenden</label></li>
+</ul>
 <h2 id="modul-4-formeln-und-grundfunktionen">Modul 4: Formeln und
 Grundfunktionen</h2>
 <p><strong>Lernziel:</strong> Berechnungen mit Formeln durchführen,
 Zellbezüge verstehen und grundlegende Funktionen wie SUMME und WENN
 einsetzen.</p>
+<h3 id="was-wissen-sie-bereits-2">Was wissen Sie bereits?</h3>
+<ul>
+<li>Haben Sie schon einmal in Excel etwas berechnet? Auch einfache
+Additionen zählen!</li>
+<li>Wissen Sie, was passiert, wenn Sie eine Formel mit =B2*C2 nach unten
+kopieren?</li>
+<li>Haben Sie eine Idee, wofür das Dollarzeichen $ in $A$1 stehen
+könnte?</li>
+</ul>
+<p>Formeln sind das Herz von Excel — in diesem Modul lernen Sie, sie zu
+beherrschen.</p>
 <h2 id="grundlagen-der-formeln">4.1. Grundlagen der Formeln</h2>
 <h3 id="konzept-eine-formel-ist-wie-ein-kochrezept">Konzept: Eine Formel
 ist wie ein Kochrezept</h3>
@@ -1172,15 +1213,23 @@ Regel <strong>„Punkt vor Strich”</strong>:</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Wichtig:</strong> Ohne Klammern gilt Punkt vor Strich:
 <code>=2+3*4</code> ergibt <code>14</code>, denn <code>3*4=12</code>
 wird zuerst berechnet. Mit Klammern: <code>=(2+3)*4</code> ergibt
 <code>20</code>.</p>
-</blockquote>
+<h3 id="typische-fehler">Typische Fehler</h3>
+<ul>
+<li><strong>Vergessen des <code>=</code>:</strong> Eine Eingabe wie
+<code>A1+A2</code> ohne <code>=</code> wird als Text behandelt.</li>
+<li><strong>Punkt vor Strich missachtet:</strong> <code>=2+3*4</code>
+ergibt 14, nicht 20. Mit Klammern: <code>=(2+3)*4</code> ergibt 20.</li>
+<li><strong>Falsches Trennzeichen:</strong> In der deutschen
+Excel-Version ist das Semikolon <code>;</code> das Trennzeichen, nicht
+das Komma: <code>=SUMME(A1;A2)</code>.</li>
+</ul>
 <p><strong>Übung 4.1 — Erste Formeln schreiben</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M4_1_Erste_Formeln.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 4 1 Erste Formeln</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li>Berechnen Sie in Zelle D2 die Summe von B2 und C2 mit
 <code>=B2+C2</code>.</li>
@@ -1190,7 +1239,57 @@ wird zuerst berechnet. Mit Klammern: <code>=(2+3)*4</code> ergibt
 <li>Testen Sie den Unterschied zwischen <code>=10+5*2</code> und
 <code>=(10+5)*2</code>.</li>
 </ol>
-</blockquote>
+<p><strong>Häufige Formelfehler und ihre Bedeutung:</strong></p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 30%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr>
+<th>Fehler</th>
+<th>Bedeutung</th>
+<th>Typische Ursache</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#DIV/0!</code></td>
+<td>Division durch Null</td>
+<td>Formel teilt durch eine leere Zelle oder 0</td>
+</tr>
+<tr>
+<td><code>#WERT!</code></td>
+<td>Falscher Wertetyp</td>
+<td>Text statt Zahl in einer Berechnung</td>
+</tr>
+<tr>
+<td><code>#BEZUG!</code></td>
+<td>Ungültiger Bezug</td>
+<td>Formel verweist auf gelöschte Zelle</td>
+</tr>
+<tr>
+<td><code>#NAME?</code></td>
+<td>Name nicht erkannt</td>
+<td>Tippfehler im Funktionsnamen (z.B. <code>SUME</code> statt
+<code>SUMME</code>)</td>
+</tr>
+<tr>
+<td><code>#NV</code></td>
+<td>Nicht verfügbar</td>
+<td>SVERWEIS findet den Suchbegriff nicht</td>
+</tr>
+<tr>
+<td><code>#NULL!</code></td>
+<td>Falscher Bereichsoperator</td>
+<td>Leerzeichen statt Doppelpunkt im Bereich</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> Wenn ein Fehler auftritt, klicken Sie auf das
+kleine Ausrufezeichen-Symbol neben der Zelle. Excel schlägt mögliche
+Korrekturen vor.</p>
 <h2 id="zellbezüge-relativ-absolut-und-gemischt">4.2. Zellbezüge:
 Relativ, Absolut und Gemischt</h2>
 <h3 id="konzept-der-unterschied-zwischen-a1-a1-und-a1">Konzept: Der
@@ -1247,15 +1346,25 @@ immer <code>$B$1</code>, egal wohin Sie die Formel kopieren. Das ist ein
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Die Taste <code>F4</code> schaltet beim
 Bearbeiten einer Formel zwischen den vier Bezugstypen durch:
 <code>A1</code> → <code>$A$1</code> → <code>A$1</code> →
 <code>$A1</code> → <code>A1</code>. Ein unverzichtbarer Shortcut!</p>
-</blockquote>
+<h3 id="typische-fehler-1">Typische Fehler</h3>
+<ul>
+<li>**Vergessen der <span class="math inline">$-Zeichen:** Wenn Sie
+`=B2*F1` nach unten kopieren, wird F1 zu F2, F3... — die Formel wird
+falsch. Nutzen Sie `$</span>F$1`!</li>
+<li><strong>Falscher Bezugstyp:</strong> Absolut (<code>$A$1</code>)
+fixiert beides, gemischt (<code>$A1</code> oder <code>A$1</code>) nur
+einen Teil. Überlegen Sie vor dem Kopieren: Was soll gleich
+bleiben?</li>
+</ul>
+<p><strong>Merkhilfe:</strong> <code>F4</code> schaltet durch die vier
+Bezugstypen — die wichtigste Taste beim Formelschreiben!</p>
 <p><strong>Übung 4.2 — Zellbezüge verstehen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M4_2_Zellbezuege.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 4 2 Zellbezuege</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Berechnen Sie in C2 den Bruttopreis mit
 <code>=B2*(1+$F$1)</code>, wobei F1 den MwSt-Satz</p>
@@ -1265,8 +1374,44 @@ muss absolut sein!</p></li>
 gemischten Bezügen.</p></li>
 <li><p>Testen Sie mit F4, wie sich der Bezugstyp ändert.</p></li>
 </ol>
-</blockquote>
-<h2 id="statistische-grundfunktionen">4.3. Statistische
+<h2 id="namen-definieren-und-verwenden">4.3. Namen definieren und
+verwenden</h2>
+<h3 id="konzept-zellen-beim-namen-nennen-statt-bei-der-adresse">Konzept:
+Zellen beim Namen nennen statt bei der Adresse</h3>
+<p>Statt <code>=B2*$F$1</code> (MwSt-Satz in F1) können Sie der Zelle F1
+einen Namen wie <code>MwSt</code> geben und schreiben:
+<code>=B2*MwSt</code>. Das macht Formeln sofort verständlich — auch
+Wochen später wissen Sie noch, was berechnet wird.</p>
+<p><strong>Einen Namen definieren:</strong> 1. Markieren Sie die Zelle
+oder den Bereich 2. Klicken Sie in das <strong>Namensfeld</strong>
+(links neben der Bearbeitungsleiste) 3. Geben Sie den Namen ein (z.B.
+<code>MwSt</code>, <code>Preisliste</code>, <code>Daten</code>) 4.
+Drücken Sie Enter</p>
+<p><strong>Regeln für Namen:</strong> - Keine Leerzeichen (verwenden Sie
+<code>_</code> oder Großbuchstaben: <code>MwSt_Satz</code>) - Muss mit
+Buchstaben oder Unterstrich beginnen - Keine Zelladressen als Namen
+(z.B. nicht <code>A1</code>) - Groß-/Kleinschreibung wird ignoriert</p>
+<p><strong>Den Namens-Manager</strong> finden Sie unter
+<code>Formeln → Namens-Manager</code>. Dort können Sie alle definierten
+Namen sehen, bearbeiten und löschen.</p>
+<p><strong>Tipp:</strong> Namen gelten für die gesamte Arbeitsmappe,
+nicht nur für ein Tabellenblatt. Wenn Sie <code>=SUMME(Umsatz)</code>
+schreiben, müssen Sie nicht wissen, in welchem Blatt die Umsatzdaten
+stehen.</p>
+<p><strong>Übung 4.3 — Namen definieren</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 4 3 Namen</strong> ist
+bereits geladen.</p>
+<ol type="1">
+<li>Definieren Sie für die Zelle mit dem MwSt-Satz den Namen
+<code>MwSt</code>.</li>
+<li>Ersetzen Sie in der Bruttopreis-Formel <code>$F$1</code> durch
+<code>MwSt</code>.</li>
+<li>Definieren Sie für die gesamte Preistabelle den Namen
+<code>Preisliste</code>.</li>
+<li>Verwenden Sie den Namen in einer Formel:
+<code>=SVERWEIS(A2;Preisliste;2;0)</code>.</li>
+</ol>
+<h2 id="statistische-grundfunktionen">4.4. Statistische
 Grundfunktionen</h2>
 <h3 id="konzept-vordefinierte-berechnungsbausteine">Konzept:
 Vordefinierte Berechnungsbausteine</h3>
@@ -1329,15 +1474,13 @@ Funktionen decken 90% aller Anfängerbedürfnisse ab:</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Die AutoSumme-Schaltfläche
 (<code>Alt+=</code>) auf der Registerkarte „Start” fügt automatisch
 <code>=SUMME()</code> für den markierten Bereich ein. Sie erkennt sogar
 Ihre Datenbereiche!</p>
-</blockquote>
-<p><strong>Übung 4.3 — Statistische Funktionen anwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M4_3_Statistik.xlsx</code>.</p>
+<p><strong>Übung 4.4 — Statistische Funktionen anwenden</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 4 4 Statistik</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Berechnen Sie mit <code>SUMME</code> die Gesamtsumme der
 Verkäufe.</p></li>
@@ -1351,8 +1494,7 @@ Spalte A (Kundennamen).</p></li>
 Zahlenspalte und</p>
 <p>dann auf Summe.</p></li>
 </ol>
-</blockquote>
-<h2 id="die-wenn-funktion">4.4. Die WENN-Funktion</h2>
+<h2 id="die-wenn-funktion">4.5. Die WENN-Funktion</h2>
 <h3 id="konzept-entscheidungen-automatisieren">Konzept: Entscheidungen
 automatisieren</h3>
 <p>Die WENN-Funktion ist die grundlegendste aller logischen Funktionen.
@@ -1402,15 +1544,25 @@ Wenn-Dann-Regel und die Basis für jede intelligente Automatisierung.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> In einer WENN-Funktion kann der „Sonst”-Teil
 selbst wieder eine WENN-Funktion sein — das nennt man „verschachtelte
 WENN”. Ab Excel 2019 gibt es dafür die einfachere
 <code>WENNS()</code>-Funktion.</p>
-</blockquote>
-<p><strong>Übung 4.4 — Die WENN-Funktion einsetzen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M4_4_WENN.xlsx</code>.</p>
+<h3 id="typische-fehler-2">Typische Fehler</h3>
+<ul>
+<li><strong>Text in Anführungszeichen vergessen:</strong>
+<code>=WENN(A2="Ja";...</code> — Text muss in <code>""</code>
+stehen.</li>
+<li><strong>Kein Sonst-Wert angegeben:</strong>
+<code>=WENN(A2&gt;10;"Groß")</code> ohne Sonst-Teil zeigt FALSCH an.
+Besser: <code>=WENN(A2&gt;10;"Groß";"")</code>.</li>
+<li><strong>Semikolon als Trennzeichen:</strong> Deutsch:
+<code>=WENN(Bedingung; Dann; Sonst)</code>, Englisch:
+<code>=IF(condition, then, else)</code>.</li>
+</ul>
+<p><strong>Übung 4.5 — Die WENN-Funktion einsetzen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 4 5 WENN</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Schreiben Sie in D2:
 <code>=WENN(C2&gt;1000; "Großauftrag"; "Standard")</code> und
@@ -1423,11 +1575,40 @@ kopieren</p>
 kombinieren Sie</p>
 <p>WENN mit UND für zwei Bedingungen.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-3">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Formeln mit +, -, *, /, ^ und
+Klammern schreiben (Punkt vor Strich!)</label></li>
+<li><label><input type="checkbox" />Relative (<span
+class="math inline"><em>A</em>1), <em>a</em><em>b</em><em>s</em><em>o</em><em>l</em><em>u</em><em>t</em><em>e</em>(</span>A<span
+class="math inline">1)<em>u</em><em>n</em><em>d</em><em>g</em><em>e</em><em>m</em><em>i</em><em>s</em><em>c</em><em>h</em><em>t</em><em>e</em>(</span>A1/A$1)
+Bezüge unterscheiden</label></li>
+<li><label><input type="checkbox" />Mit F4 zwischen den Bezugstypen
+wechseln</label></li>
+<li><label><input type="checkbox" />SUMME, MITTELWERT, MIN, MAX und
+ANZAHL anwenden</label></li>
+<li><label><input type="checkbox" />Namen für Zellen und Bereiche
+definieren und in Formeln verwenden</label></li>
+<li><label><input type="checkbox" />Die WENN-Funktion für einfache
+Entscheidungen einsetzen</label></li>
+<li><label><input type="checkbox" />WENN mit UND/ODER für mehrere
+Bedingungen kombinieren</label></li>
+</ul>
 <h2 id="modul-5-datenbereinigung-und-validierung">Modul 5:
 Datenbereinigung und Validierung</h2>
 <p><strong>Lernziel:</strong> Datenqualität durch Validierung sichern
 und importierte Daten professionell bereinigen.</p>
+<h3 id="was-wissen-sie-bereits-3">Was wissen Sie bereits?</h3>
+<ul>
+<li>Haben Sie schon einmal falsche Daten in einer Tabelle entdeckt
+(Tippfehler, doppelte Einträge)?</li>
+<li>Wissen Sie, woher die Daten in Ihren Excel-Dateien ursprünglich
+stammen?</li>
+<li>Können Sie sich vorstellen, wie man falsche Eingaben von vornherein
+verhindert?</li>
+</ul>
+<p>Saubere Daten sind die Grundlage für alles Weitere. Dieses Modul
+macht Sie zum Daten-Detektiv.</p>
 <h2 id="datenvalidierung">5.1. Datenvalidierung</h2>
 <h3 id="konzept-das-gigo-prinzip-garbage-in-garbage-out">Konzept: Das
 GIGO-Prinzip — Garbage In, Garbage Out</h3>
@@ -1486,15 +1667,13 @@ andere.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Nutzen Sie die „Eingabemeldung” und
 „Fehlermeldung” in den Validierungseinstellungen. Die Eingabemeldung
 erscheint als freundlicher Hinweis beim Anklicken der Zelle, die
 Fehlermeldung als Stoppschild bei falscher Eingabe.</p>
-</blockquote>
 <p><strong>Übung 5.1 — Datenvalidierung einrichten</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M5_1_Validierung.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 5 1 Validierung</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Erstellen Sie eine Dropdown-Liste in Spalte B („Abteilung”) mit
 den Optionen:</p>
@@ -1506,7 +1685,6 @@ Abteilung aus.”</p></li>
 <li><p>Fügen Sie eine Fehlermeldung bei ungültigem Gehalt
 hinzu.</p></li>
 </ol>
-</blockquote>
 <h2 id="werkzeuge-zur-datenbereinigung">5.2. Werkzeuge zur
 Datenbereinigung</h2>
 <h3 id="konzept-aufräumen-wie-nach-einer-party">Konzept: Aufräumen wie
@@ -1547,15 +1725,13 @@ solches Datenchaos zu bändigen:</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Blitzschnelles Ausfüllen (<code>Strg+E</code>)
 ist Magie für Anfänger: Tippen Sie in die Nachbarzelle das gewünschte
 Muster (z.B. nur den Vornamen), drücken Sie <code>Strg+E</code> — und
 Excel erledigt den Rest!</p>
-</blockquote>
 <p><strong>Übung 5.2 — Daten bereinigen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M5_2_Bereinigen.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 5 2 Bereinigen</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Entfernen Sie alle doppelten Einträge mit „Daten → Duplikate
 entfernen”.</p></li>
@@ -1565,7 +1741,6 @@ zwei Spalten.</p></li>
 Initialen aus</p>
 <p>einer Namensliste.</p></li>
 </ol>
-</blockquote>
 <h2 id="datenkonsolidierung">5.3. Datenkonsolidierung</h2>
 <h3 id="konzept-aus-vielen-quellen-eine-wahrheit">Konzept: Aus vielen
 Quellen eine Wahrheit</h3>
@@ -1574,14 +1749,12 @@ Quellen eine Wahrheit</h3>
 eine Zusammenfassung auf einem Blatt sehen — einen Jahresüberblick. Die
 <strong>Konsolidierung</strong> vereint Daten aus mehreren Bereichen
 nach Kategorien und wendet eine Funktion (meist SUMME) darauf an.</p>
-<blockquote>
 <p><strong>Tipp:</strong> Bevor Sie konsolidieren, stellen Sie sicher,
 dass alle Quellbereiche dieselbe Struktur haben — gleiche Kategorienamen
 in derselben Reihenfolge.</p>
-</blockquote>
 <p><strong>Übung 5.3 — Daten konsolidieren</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M5_3_Konsolidierung.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 5 3 Konsolidierung</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li><p>Nutzen Sie „Daten → Konsolidieren”, um die drei Monatsblätter zu
 einem</p>
@@ -1590,7 +1763,6 @@ einem</p>
 Änderungen</p>
 <p>automatisch übernommen werden.</p></li>
 </ol>
-</blockquote>
 <h2 id="datenimport-aus-externen-quellen">5.4. Datenimport aus externen
 Quellen</h2>
 <h3 id="konzept-die-brücke-zur-außenwelt">Konzept: Die Brücke zur
@@ -1631,15 +1803,12 @@ Trennzeichen, Datumsformat und Kodierung festlegen können.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Wichtig:</strong> Achten Sie beim CSV-Import auf das richtige
 Trennzeichen (Komma oder Semikolon — je nach Ländereinstellung) und die
 korrekte Kodierung (UTF-8 für Umlaute).</p>
-</blockquote>
 <p><strong>Übung 5.4 — Daten importieren</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M5_4_Import.xlsx</code> als
-Ausgangspunkt.</p>
+<p>Die folgende Übungstabelle <strong>Modul 5 4 Import</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li>Importieren Sie eine bereitgestellte <code>.csv</code>-Datei über
 „Daten → Aus Text/CSV”.</li>
@@ -1648,11 +1817,135 @@ an.</li>
 <li>Laden Sie die Daten in ein neues Tabellenblatt und aktualisieren Sie
 die Verbindung.</li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-4">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Dropdown-Listen für fehlerfreie
+Dateneingabe erstellen</label></li>
+<li><label><input type="checkbox" />Eingabemeldungen und Fehlermeldungen
+für Validierungen konfigurieren</label></li>
+<li><label><input type="checkbox" />Doppelte Einträge mit „Duplikate
+entfernen” bereinigen</label></li>
+<li><label><input type="checkbox" />Text mit „Text in Spalten” anhand
+von Trennzeichen aufteilen</label></li>
+<li><label><input type="checkbox" />Blitzschnelles Ausfüllen (Strg+E)
+für Mustererkennung nutzen</label></li>
+<li><label><input type="checkbox" />Daten aus mehreren Blättern
+konsolidieren</label></li>
+<li><label><input type="checkbox" />CSV-Dateien korrekt importieren
+(Trennzeichen, Kodierung)</label></li>
+</ul>
 <h2 id="modul-6-tabellen-und-filter">Modul 6: Tabellen und Filter</h2>
 <p><strong>Lernziel:</strong> Daten sortieren, filtern und in
 Excel-Tabellen professionell organisieren.</p>
-<h2 id="daten-sortieren">6.1. Daten sortieren</h2>
+<h3 id="was-wissen-sie-bereits-4">Was wissen Sie bereits?</h3>
+<ul>
+<li>Haben Sie schon einmal eine lange Liste alphabetisch sortiert?</li>
+<li>Was tun Sie, wenn Sie in einer Tabelle mit 500 Zeilen nur die
+Einträge aus Berlin sehen wollen?</li>
+<li>Wissen Sie, wie Sie verhindern, dass Überschriften beim Scrollen
+verschwinden?</li>
+</ul>
+<p>In diesem Modul bringen Sie Ordnung in große Datenmengen — schnell
+und elegant.</p>
+<h2 id="suchen-und-ersetzen">6.1. Suchen und Ersetzen</h2>
+<h3 id="konzept-nicht-manuell-durch-zeilen-scrollen">Konzept: Nicht
+manuell durch Zeilen scrollen</h3>
+<p>Bei großen Tabellen ist es mühsam, einen bestimmten Wert zu finden —
+oder gar alle Vorkommen eines Begriffs zu ändern. Die Suchfunktion
+erledigt das in Sekunden.</p>
+<table>
+<thead>
+<tr>
+<th>Aktion</th>
+<th>Tastenkürzel</th>
+<th>Verwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Suchen</strong></td>
+<td><code>Strg+F</code></td>
+<td>Einen Begriff in der Tabelle finden</td>
+</tr>
+<tr>
+<td><strong>Ersetzen</strong></td>
+<td><code>Strg+H</code></td>
+<td>Begriff finden und durch anderen ersetzen</td>
+</tr>
+<tr>
+<td><strong>Weitersuchen</strong></td>
+<td><code>Shift+F4</code></td>
+<td>Nächsten Treffer ohne Dialog finden</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> Im Ersetzen-Dialog können Sie über „Optionen”
+die Suche einschränken: nur im aktuellen Blatt, nur ganze Zellen, oder
+mit Berücksichtigung der Groß-/Kleinschreibung.</p>
+<p><strong>Übung 6.1 — Suchen und Ersetzen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 1 Suchen Ersetzen</strong>
+ist bereits geladen.</p>
+<ol type="1">
+<li>Suchen Sie mit <code>Strg+F</code> alle Vorkommen von
+„München”.</li>
+<li>Ersetzen Sie mit <code>Strg+H</code> alle „München” durch „München
+(Zentrale)“.</li>
+<li>Suchen Sie mit Option „Ganze Zellinhalte” nach „500” und beobachten
+Sie den Unterschied zur Suche ohne diese Option.</li>
+</ol>
+<h2 id="fenster-einfrieren">6.2. Fenster einfrieren</h2>
+<h3 id="konzept-überschriften-immer-im-blick-behalten">Konzept:
+Überschriften immer im Blick behalten</h3>
+<p>Wenn Sie in einer großen Tabelle nach unten scrollen, verschwindet
+die Kopfzeile aus dem Bild — Sie sehen nur noch Zahlen, ohne zu wissen,
+was sie bedeuten. <strong>Fenster einfrieren</strong> fixiert Zeilen
+oder Spalten, sodass sie beim Scrollen sichtbar bleiben.</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 38%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>Aktion</th>
+<th>Menüpfad</th>
+<th>Effekt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oberste Zeile fixieren</strong></td>
+<td>Ansicht → Fenster einfrieren → Oberste Zeile fixieren</td>
+<td>Zeile 1 bleibt immer sichtbar</td>
+</tr>
+<tr>
+<td><strong>Erste Spalte fixieren</strong></td>
+<td>Ansicht → Fenster einfrieren → Erste Spalte fixieren</td>
+<td>Spalte A bleibt immer sichtbar</td>
+</tr>
+<tr>
+<td><strong>Beliebigen Bereich fixieren</strong></td>
+<td>Zelle unter/rechts des zu fixierenden Bereichs markieren → Fenster
+einfrieren</td>
+<td>Zeilen + Spalten fixiert</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> Bei Tabellen mit Kopfzeile UND linker
+Beschriftungsspalte: Markieren Sie die Zelle B2 und wählen Sie „Fenster
+einfrieren”. So bleiben sowohl Zeile 1 als auch Spalte A fixiert.</p>
+<p><strong>Übung 6.2 — Fenster einfrieren</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 2 Fenster
+fixieren</strong> ist bereits geladen.</p>
+<ol type="1">
+<li>Fixieren Sie die oberste Zeile und scrollen Sie nach unten.</li>
+<li>Heben Sie die Fixierung auf (Ansicht → Fenster einfrieren →
+Fixierung aufheben).</li>
+<li>Fixieren Sie Zeile 1 UND Spalte A gleichzeitig.</li>
+<li>Scrollen Sie diagonal und beobachten Sie, was fixiert bleibt.</li>
+</ol>
+<h2 id="daten-sortieren">6.3. Daten sortieren</h2>
 <h3 id="konzept-ordnung-als-grundlage-der-analyse">Konzept: Ordnung als
 Grundlage der Analyse</h3>
 <p>Sortieren ist mehr als alphabetische Ordnung — es ist der erste
@@ -1698,15 +1991,13 @@ Klick.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Markieren Sie <strong>eine</strong> Zelle
 innerhalb Ihrer Datentabelle — Excel erkennt automatisch den gesamten
 zusammenhängenden Bereich zum Sortieren. Sie müssen nicht alles manuell
 auswählen!</p>
-</blockquote>
-<p><strong>Übung 6.1 — Sortieren üben</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M6_1_Sortieren.xlsx</code>.</p>
+<p><strong>Übung 6.3 — Sortieren üben</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 3 Sortieren</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Sortieren Sie die Kundentabelle alphabetisch nach Nachname
 (A→Z).</p></li>
@@ -1716,8 +2007,7 @@ zuerst).</p></li>
 dann nach</p>
 <p>Bestellwert innerhalb jedes Landes.</p></li>
 </ol>
-</blockquote>
-<h2 id="daten-filtern">6.2. Daten filtern</h2>
+<h2 id="daten-filtern">6.4. Daten filtern</h2>
 <h3 id="konzept-den-scheinwerfer-auf-relevante-daten-richten">Konzept:
 Den Scheinwerfer auf relevante Daten richten</h3>
 <p>Ein Filter blendet alle Zeilen aus, die ein bestimmtes Kriterium
@@ -1751,24 +2041,21 @@ temporär unsichtbar.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Das Filtersymbol (Trichter) in der
 Spaltenüberschrift zeigt an, dass ein Filter aktiv ist. Mehrere Filter
 gleichzeitig sind möglich — und grundlegend für die Arbeit mit großen
 Datenmengen.</p>
-</blockquote>
-<p><strong>Übung 6.2 — Filtern anwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M6_2_Filtern.xlsx</code>.</p>
+<p><strong>Übung 6.4 — Filtern anwenden</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 4 Filtern</strong> ist
+bereits geladen.</p>
 <ol type="1">
-<li>Aktivieren Sie den Autofilter (<code>Strg+Shift+L</code>).</li>
+<li>Aktivieren Sie den Autofilter (<code>Strg+Umschalt+L</code>).</li>
 <li>Filtern Sie nur Bestellungen aus „Berlin”.</li>
 <li>Filtern Sie Bestellwerte über 500 €.</li>
 <li>Kombinieren Sie beide Filter und zählen Sie die sichtbaren
 Zeilen.</li>
 </ol>
-</blockquote>
-<h2 id="excel-tabellen-strgt">6.3. Excel-Tabellen (Strg+T)</h2>
+<h2 id="excel-tabellen-strgt">6.5. Excel-Tabellen (Strg+T)</h2>
 <h3
 id="konzept-vom-einfachen-bereich-zur-intelligenten-tabelle">Konzept:
 Vom einfachen Bereich zur intelligenten Tabelle</h3>
@@ -1822,15 +2109,13 @@ klaren Vorteilen:</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Strukturierte Verweise wie
 <code>=[@Umsatz]</code> statt <code>=D2</code> machen Formeln lesbarer
 und robuster. Sie sehen sofort, was berechnet wird — auch Wochen
 später.</p>
-</blockquote>
-<p><strong>Übung 6.3 — Excel-Tabellen verwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M6_3_Tabellen.xlsx</code>.</p>
+<p><strong>Übung 6.5 — Excel-Tabellen verwenden</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 5 Tabellen</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li>Wandeln Sie den Datenbereich mit <code>Strg+T</code> in eine
 Excel-Tabelle um.</li>
@@ -1840,8 +2125,7 @@ Formatierung.</li>
 <li>Nutzen Sie einen strukturierten Verweis:
 <code>=[@Menge]*[@Preis]</code> in der Spalte „Summe”.</li>
 </ol>
-</blockquote>
-<h2 id="teilergebnisse-und-gliederung">6.4. Teilergebnisse und
+<h2 id="teilergebnisse-und-gliederung">6.6. Teilergebnisse und
 Gliederung</h2>
 <h3 id="konzept-zusammenfassungen-auf-knopfdruck">Konzept:
 Zusammenfassungen auf Knopfdruck</h3>
@@ -1850,14 +2134,12 @@ nach Region und Produkt. Die <strong>Teilergebnis</strong>-Funktion fügt
 automatisch Summen-, Mittelwert- oder Anzahl-Zeilen nach jedem
 Gruppenwechsel ein — und erstellt eine Gliederung, mit der Sie zwischen
 Detail- und Übersichtsansicht umschalten können.</p>
-<blockquote>
 <p><strong>Tipp:</strong> Bevor Sie Teilergebnisse einsetzen,
 <strong>müssen</strong> die Daten nach dem Gruppierungsmerkmal sortiert
 sein — sonst erhalten Sie sinnlose Zwischensummen.</p>
-</blockquote>
-<p><strong>Übung 6.4 — Teilergebnisse berechnen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M6_4_Teilergebnisse.xlsx</code>.</p>
+<p><strong>Übung 6.6 — Teilergebnisse berechnen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 6 Teilergebnisse</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li><p>Sortieren Sie die Tabelle zuerst nach „Region”.</p></li>
 <li><p>Fügen Sie über „Daten → Teilergebnis” automatische Summen für
@@ -1866,11 +2148,39 @@ jede Region ein.</p></li>
 zwischen</p>
 <p>Detail- und Übersichtsansicht zu wechseln.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-5">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />„Suchen und Ersetzen” für schnelle
+Korrekturen nutzen (Strg+F)</label></li>
+<li><label><input type="checkbox" />Überschriften mit „Fenster
+einfrieren” fixieren</label></li>
+<li><label><input type="checkbox" />Einfach und mehrstufig sortieren
+(nach Name, Wert, Farbe)</label></li>
+<li><label><input type="checkbox" />Mit Autofilter (Strg+Shift+L) Daten
+nach Kriterien filtern</label></li>
+<li><label><input type="checkbox" />Einen Bereich mit Strg+T in eine
+intelligente Excel-Tabelle umwandeln</label></li>
+<li><label><input type="checkbox" />Strukturierte Verweise wie <span
+class="citation" data-cites="Preis">[@Preis]</span> statt Zelladressen
+verwenden</label></li>
+<li><label><input type="checkbox" />Automatische Teilergebnisse mit
+Gruppierung und Gliederung einfügen</label></li>
+</ul>
 <h2 id="modul-7-erweiterte-funktionen">Modul 7: Erweiterte
 Funktionen</h2>
 <p><strong>Lernziel:</strong> Bedingte Berechnungen, Suchfunktionen und
 Textverarbeitung beherrschen.</p>
+<h3 id="was-wissen-sie-bereits-5">Was wissen Sie bereits?</h3>
+<ul>
+<li>Sie kennen SUMME() — aber wie summiert man nur die Umsätze für eine
+bestimmte Region?</li>
+<li>Haben Sie schon einmal einen Wert in einer großen Tabelle gesucht
+(wie im Telefonbuch)?</li>
+<li>Wissen Sie, wie man Vor- und Nachnamen aus einer Zelle in zwei
+Spalten aufteilt?</li>
+</ul>
+<p>Dieses Modul erweitert Ihr Funktions-Repertoire um die mächtigsten
+Excel-Funktionen.</p>
 <h2 id="bedingte-mathematische-funktionen">7.1. Bedingte mathematische
 Funktionen</h2>
 <h3 id="konzept-rechnen-nur-unter-bestimmten-bedingungen">Konzept:
@@ -1923,15 +2233,13 @@ Trennzeichen.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> <code>SUMMEWENN</code> für EINE Bedingung,
 <code>SUMMEWENNS</code> für MEHRERE Bedingungen. Beachten Sie die
 unterschiedliche Reihenfolge der Argumente — bei <code>WENNS</code>
 steht der Summenbereich zuerst!</p>
-</blockquote>
 <p><strong>Übung 7.1 — Bedingte Summen und Zählungen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M7_1_Bedingte_Summen.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 7 1 Bedingte Summen</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li>Berechnen Sie mit <code>SUMMEWENN</code> den Gesamtumsatz für die
 Region „Nord”.</li>
@@ -1942,7 +2250,6 @@ Produkt „Laptop”.</li>
 <li>Zählen Sie mit <code>ZÄHLENWENNS</code> Großbestellungen (&gt; 1.000
 €) in der Region „Süd”.</li>
 </ol>
-</blockquote>
 <h2 id="die-sverweis-funktion">7.2. Die SVERWEIS-Funktion</h2>
 <h3 id="konzept-wie-ein-telefonbuch-suchen-und-finden">Konzept: Wie ein
 Telefonbuch — suchen und finden</h3>
@@ -1989,15 +2296,30 @@ Spalte) und lesen die Telefonnummer (rechte Spalte). Das „S” steht für
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Wichtig:</strong> SVERWEIS sucht <strong>immer in der ersten
 Spalte</strong> der Suchmatrix — nie in der Mitte oder am Ende. Wenn Ihr
 Suchbegriff rechts steht, brauchen Sie INDEX+VERGLEICH oder
 XVERWEIS.</p>
-</blockquote>
+<p><strong>Wichtig:</strong> Bei <code>Bereich_Verweis=1</code>
+(ungefähre Übereinstimmung) <strong>muss</strong> die Suchspalte
+<strong>aufsteigend sortiert</strong> sein — sonst liefert SVERWEIS
+falsche Ergebnisse. Bei <code>Bereich_Verweis=0</code> (exakte
+Übereinstimmung) ist keine Sortierung erforderlich.</p>
+<h3 id="typische-fehler-3">Typische Fehler</h3>
+<ul>
+<li><strong>#NV-Fehler:</strong> Der Suchbegriff existiert nicht in der
+ersten Spalte der Suchmatrix. Lösung: mit WENNFEHLER() abfangen.</li>
+<li><strong>Spaltenindex zu groß:</strong> Wenn die Suchmatrix nur 3
+Spalten hat, darf der Spaltenindex nicht 4 sein.</li>
+<li><strong>Bereich_Verweis vergessen:</strong> Ohne <code>0</code>
+(exakt) sucht SVERWEIS ungefähr, was zu falschen Ergebnissen führt.</li>
+<li><strong>Suchbegriff steht rechts:</strong> SVERWEIS sucht immer in
+der ersten Spalte — wenn der Suchbegriff rechts steht, brauchen Sie
+INDEX+VERGLEICH.</li>
+</ul>
 <p><strong>Übung 7.2 — SVERWEIS anwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M7_2_SVERWEIS.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 7 2 SVERWEIS</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Nutzen Sie SVERWEIS, um zu einer Produkt-ID den passenden
 Produktnamen aus</p>
@@ -2008,7 +2330,55 @@ Produktnamen aus</p>
 <li><p>Testen Sie, was passiert, wenn der Suchbegriff nicht existiert
 (#NV-Fehler).</p></li>
 </ol>
-</blockquote>
+<h3 id="konzept-wverweis-die-horizontale-variante">Konzept: WVERWEIS —
+die horizontale Variante</h3>
+<p>WVERWEIS (waagerechter Verweis) funktioniert genau wie SVERWEIS, aber
+statt von oben nach unten sucht er von <strong>links nach
+rechts</strong> in der <strong>ersten Zeile</strong> einer Tabelle.
+Nützlich, wenn Ihre Daten horizontal angeordnet sind — z.B. Monatsnamen
+in Zeile 1 und Umsatzzahlen darunter.</p>
+<p><strong>Syntax:</strong>
+<code>=WVERWEIS(Suchkriterium; Suchmatrix; Zeilenindex; Bereich_Verweis)</code></p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 35%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Suchkriterium</td>
+<td>Was suchen Sie?</td>
+<td><code>"März"</code> oder <code>B1</code></td>
+</tr>
+<tr>
+<td>Suchmatrix</td>
+<td>Wo suchen Sie?</td>
+<td><code>A1:M5</code> (Daten horizontal)</td>
+</tr>
+<tr>
+<td>Zeilenindex</td>
+<td>Welche Zeile soll zurückgegeben werden?</td>
+<td><code>2</code> (für Zeile 2)</td>
+</tr>
+<tr>
+<td>Bereich_Verweis</td>
+<td>Exakte (0) oder ungefähre (1) Übereinstimmung?</td>
+<td><code>0</code> = exakt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> In der Praxis wird WVERWEIS seltener verwendet
+als SVERWEIS, da Tabellen meist vertikal (mit Überschriften in Spalten)
+organisiert sind. Für horizontale Daten ist es jedoch die richtige
+Wahl.</p>
 <h2 id="index-und-vergleich">7.3. INDEX und VERGLEICH</h2>
 <h3 id="konzept-die-flexible-alternative-zu-sverweis">Konzept: Die
 flexible Alternative zu SVERWEIS</h3>
@@ -2021,15 +2391,13 @@ Position eines Suchbegriffs. Zusammen können sie in jede Richtung suchen
      → liefert die POSITION (Zeilennummer), nicht den Wert
 
 Kombiniert: =INDEX(Ergebnisspalte; VERGLEICH(Suchbegriff; Suchspalte; 0))</code></pre>
-<blockquote>
 <p><strong>Tipp:</strong> INDEX+VERGLEICH sucht in jede Richtung (auch
 rechts→links), ist schneller bei großen Tabellen und bricht nicht, wenn
 Spalten eingefügt werden. Für Excel 365-Nutzer ist XVERWEIS
 (<code>XLOOKUP</code>) die einfachste Alternative.</p>
-</blockquote>
 <p><strong>Übung 7.3 — INDEX und VERGLEICH kombinieren</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M7_3_INDEX_VERGLEICH.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 7 3 INDEX VERGLEICH</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li><p>Finden Sie mit INDEX+VERGLEICH den Preis eines Produkts, wobei
 die</p>
@@ -2040,7 +2408,6 @@ kann).</p></li>
 <li><p>Vergleichen Sie die Formel mit der SVERWEIS-Variante aus der
 vorherigen Übung.</p></li>
 </ol>
-</blockquote>
 <h2 id="text--und-datumsfunktionen">7.4. Text- und Datumsfunktionen</h2>
 <h3 id="konzept-texte-nicht-nur-anzeigen-sondern-bearbeiten">Konzept:
 Texte nicht nur anzeigen, sondern bearbeiten</h3>
@@ -2097,9 +2464,21 @@ MBA” zu „Müller, Max” werden soll.</p>
 </tr>
 <tr>
 <td><code>GROSS2(Text)</code></td>
-<td>Erster Buchstabe groß</td>
-<td><code>=GROSS2("max")</code></td>
-<td><code>Max</code></td>
+<td>Erster Buchstabe jedes Wortes groß</td>
+<td><code>=GROSS2("max mustermann")</code></td>
+<td><code>Max Mustermann</code></td>
+</tr>
+<tr>
+<td><code>GROSS(Text)</code></td>
+<td>Alles in Großbuchstaben</td>
+<td><code>=GROSS("excel")</code></td>
+<td><code>EXCEL</code></td>
+</tr>
+<tr>
+<td><code>KLEIN(Text)</code></td>
+<td>Alles in Kleinbuchstaben</td>
+<td><code>=KLEIN("EXCEL")</code></td>
+<td><code>excel</code></td>
 </tr>
 <tr>
 <td><code>VERKETTEN()</code> / <code>&amp;</code></td>
@@ -2109,14 +2488,12 @@ MBA” zu „Müller, Max” werden soll.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Mit <code>HEUTE()</code> erhalten Sie immer
 das aktuelle Datum — ideal für Altersberechnungen oder
 Fristenüberwachung: <code>=JAHR(HEUTE())-JAHR(Geburtsdatum)</code>.</p>
-</blockquote>
 <p><strong>Übung 7.4 — Text- und Datumsfunktionen anwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M7_4_Text_Datum.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 7 4 Text Datum</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Extrahieren Sie aus einer Spalte „Nachname, Vorname” den
 Nachnamen mit</p>
@@ -2128,11 +2505,38 @@ Nachnamen mit</p>
 <li><p>Berechnen Sie das Alter von Personen aus dem Geburtsdatum mit
 <code>HEUTE()</code>.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-6">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />SUMMEWENN und SUMMEWENNS für
+bedingte Summen anwenden</label></li>
+<li><label><input type="checkbox" />ZÄHLENWENN und ZÄHLENWENNS für
+bedingte Zählungen einsetzen</label></li>
+<li><label><input type="checkbox" />SVERWEIS für exakte und ungefähre
+Suche nutzen</label></li>
+<li><label><input type="checkbox" />WVERWEIS für horizontale Daten
+anwenden</label></li>
+<li><label><input type="checkbox" />INDEX+VERGLEICH für flexible Suche
+in jede Richtung kombinieren</label></li>
+<li><label><input type="checkbox" />Text mit LINKS, RECHTS, TEIL,
+GLÄTTEN und &amp; bearbeiten</label></li>
+<li><label><input type="checkbox" />Alter und Fristen mit HEUTE() und
+Datumsfunktionen berechnen</label></li>
+</ul>
 <h2 id="modul-8-diagramme-und-visualisierung">Modul 8: Diagramme und
 Visualisierung</h2>
 <p><strong>Lernziel:</strong> Den richtigen Diagrammtyp wählen,
 professionelle Diagramme erstellen und formatieren.</p>
+<h3 id="was-wissen-sie-bereits-6">Was wissen Sie bereits?</h3>
+<ul>
+<li>Welche Arten von Diagrammen haben Sie schon einmal gesehen oder
+erstellt?</li>
+<li>Was macht ein gutes Diagramm aus? (Denken Sie an Titel, Achsen,
+Farben.)</li>
+<li>Haben Sie schon einmal zwei verschiedene Datenskalen in einem
+Diagramm darstellen wollen?</li>
+</ul>
+<p>Ein gutes Diagramm sagt mehr als tausend Zahlen — hier lernen Sie,
+wie das geht.</p>
 <h2 id="welches-diagramm-für-welche-daten">8.1. Welches Diagramm für
 welche Daten?</h2>
 <h3 id="konzept-visuelle-kommunikation-als-sprache">Konzept: Visuelle
@@ -2189,14 +2593,12 @@ Auswahlleitfaden:</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Wichtig:</strong> Ein Kreisdiagramm sollte nie mehr als 5-7
 Segmente haben — sonst wird es unleserlich. Fassen Sie kleine Anteile zu
 „Sonstige” zusammen.</p>
-</blockquote>
 <p><strong>Übung 8.1 — Ihr erstes Diagramm</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M8_1_Erste_Diagramme.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 8 1 Erste Diagramme</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li><p>Markieren Sie die Umsatztabelle (Produkte + Werte) und erstellen
 Sie ein</p>
@@ -2207,7 +2609,6 @@ ist</p>
 <li><p>Erstellen Sie ein Liniendiagramm aus den monatlichen
 Umsatzzahlen.</p></li>
 </ol>
-</blockquote>
 <h2 id="diagrammelemente-formatieren">8.2. Diagrammelemente
 formatieren</h2>
 <h3
@@ -2260,14 +2661,12 @@ erklärt, ohne zu verwirren.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Mit dem Plus-Symbol (+) rechts neben einem
 markierten Diagramm können Sie alle Diagrammelemente mit einem Klick
 ein- und ausblenden. Das ist der schnellste Weg zur Anpassung.</p>
-</blockquote>
 <p><strong>Übung 8.2 — Diagramm formatieren</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M8_2_Diagrammformat.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 8 2 Diagrammformat</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li>Fügen Sie einen aussagekräftigen Diagrammtitel hinzu
 („Quartalsumsatz 2026”).</li>
@@ -2276,7 +2675,6 @@ ein- und ausblenden. Das ist der schnellste Weg zur Anpassung.</p>
 <li>Ändern Sie die Farben der Säulen mit einer professionellen
 Farbpalette.</li>
 </ol>
-</blockquote>
 <h2 id="verbund--und-spezialdiagramme">8.3. Verbund- und
 Spezialdiagramme</h2>
 <h3 id="konzept-zwei-datenskalen-in-einem-diagramm">Konzept: Zwei
@@ -2287,21 +2685,18 @@ unterschiedlich. Ein <strong>Verbunddiagramm</strong> (Kombi-Diagramm)
 mit <strong>Sekundärachse</strong> löst dieses Problem: Säulen für den
 Umsatz auf der linken Achse, eine Linie für die Wachstumsrate auf der
 rechten.</p>
-<blockquote>
 <p><strong>Tipp:</strong> Ein Verbunddiagramm eignet sich hervorragend
 für Soll-Ist-Vergleiche, Budget vs. tatsächliche Ausgaben oder Umsatz
 vs. Gewinnmarge.</p>
-</blockquote>
 <p><strong>Übung 8.3 — Verbunddiagramm erstellen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M8_3_Verbunddiagramm.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 8 3 Verbunddiagramm</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li>Erstellen Sie ein Kombi-Diagramm: Umsatz als Säulen, Wachstumsrate
 als Linie.</li>
 <li>Fügen Sie eine Sekundärachse für die Wachstumsrate ein.</li>
 <li>Formatieren Sie beide Achsen mit passenden Einheiten (€ und %).</li>
 </ol>
-</blockquote>
 <h2 id="dashboard-grundlagen">8.4. Dashboard-Grundlagen</h2>
 <h3 id="konzept-alle-wichtigen-kennzahlen-auf-einen-blick">Konzept: Alle
 wichtigen Kennzahlen auf einen Blick</h3>
@@ -2348,8 +2743,8 @@ wechseln muss.</p>
 </tbody>
 </table>
 <p><strong>Übung 8.4 — Einfaches Dashboard erstellen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M8_4_Dashboard.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 8 4 Dashboard</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Erstellen Sie auf einem neuen Blatt drei Diagramme aus den
 Quelldaten:</p>
@@ -2360,10 +2755,37 @@ und</p>
 <li><p>Fügen Sie über jedem Diagramm einen erklärenden Text
 ein.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-7">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Den richtigen Diagrammtyp für Ihre
+Daten wählen (Säule, Linie, Kreis, Balken)</label></li>
+<li><label><input type="checkbox" />Diagrammelemente gezielt anpassen
+(Titel, Achsen, Legende, Datenbeschriftungen)</label></li>
+<li><label><input type="checkbox" />Ein Verbunddiagramm mit
+Sekundärachse erstellen (z.B. Umsatz + Wachstumsrate)</label></li>
+<li><label><input type="checkbox" />Ein einfaches Dashboard mit mehreren
+Diagrammen auf einem Blatt aufbauen</label></li>
+<li><label><input type="checkbox" />Diagramme professionell formatieren
+(Farben, Gitternetzlinien, Beschriftungen)</label></li>
+</ul>
 <h2 id="modul-9-pivot-tabellen">Modul 9: Pivot-Tabellen</h2>
 <p><strong>Lernziel:</strong> Große Datenmengen mit Pivot-Tabellen
-gruppieren, zusammenfassen und analysieren.</p>
+gruppieren, zusammenfassen und</p>
+<p><strong>Hinweis zur Excel-lenz-Plattform:</strong> Die Erstellung von
+Pivot-Tabellen ist im Web-Simulator nicht verfügbar. Die folgenden
+Übungen erfordern Microsoft Excel. Auf der Plattform stehen Quiz-Fragen
+zu Pivot-Tabellen-Konzepten zur Verfügung.</p>
+<p>analysieren.</p>
+<h3 id="was-wissen-sie-bereits-7">Was wissen Sie bereits?</h3>
+<ul>
+<li>Haben Sie schon einmal Daten nach Kategorien gruppiert (z.B. Umsatz
+pro Region)?</li>
+<li>Wie lange würde das manuell bei 10.000 Zeilen dauern?</li>
+<li>Können Sie sich vorstellen, eine Tabelle per Knopfdruck
+umzustrukturieren?</li>
+</ul>
+<p>Pivot-Tabellen sind das Schweizer Taschenmesser der Datenanalyse —
+und einfacher, als Sie denken.</p>
 <h2 id="was-ist-eine-pivot-tabelle">9.1. Was ist eine
 Pivot-Tabelle?</h2>
 <h3 id="konzept-daten-drehen-und-wenden-wie-einen-zauberwürfel">Konzept:
@@ -2414,15 +2836,13 @@ erledigt den Rest — keine Formeln, keine manuelle Sortierung.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Sie können jederzeit Felder zwischen den
 Bereichen verschieben — die Tabelle aktualisiert sich sofort.
 Experimentieren Sie! Es gibt kein „Falsch” beim Erkunden von Daten mit
 Pivot-Tabellen.</p>
-</blockquote>
 <p><strong>Übung 9.1 — Erste Pivot-Tabelle</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M9_1_Pivot.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 9 1 Pivot</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Markieren Sie eine Zelle in der Datentabelle und wählen Sie</p>
 <p>„Einfügen → PivotTable”.</p></li>
@@ -2431,7 +2851,6 @@ Wertebereich.</p></li>
 <li><p>Beobachten Sie, wie Excel automatisch die Summe pro Region
 berechnet.</p></li>
 </ol>
-</blockquote>
 <h2 id="pivot-tabelle-anpassen">9.2. Pivot-Tabelle anpassen</h2>
 <h3 id="konzept-nicht-nur-summe-vielfältige-zusammenfassungen">Konzept:
 Nicht nur SUMME — vielfältige Zusammenfassungen</h3>
@@ -2476,8 +2895,8 @@ macht die Pivot-Tabelle zu einem flexiblen Analysewerkzeug.</p>
 </tbody>
 </table>
 <p><strong>Übung 9.2 — Pivot-Tabelle anpassen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M9_2_Pivot_Anpassung.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 9 2 Pivot Anpassung</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li><p>Ändern Sie die Zusammenfassung von „Summe” auf
 „Mittelwert”.</p></li>
@@ -2487,7 +2906,6 @@ macht die Pivot-Tabelle zu einem flexiblen Analysewerkzeug.</p>
 <li><p>Fügen Sie ein berechnetes Feld hinzu: „Bonus” = Umsatz ×
 5%.</p></li>
 </ol>
-</blockquote>
 <h2 id="mit-slicern-filtern">9.3. Mit Slicern filtern</h2>
 <h3 id="konzept-visuelle-filter-für-pivot-tabellen">Konzept: Visuelle
 Filter für Pivot-Tabellen</h3>
@@ -2496,14 +2914,12 @@ filtern — aber viel eleganter als herkömmliche Dropdown-Filter. Ein
 Klick auf „Nord” im Slicer, und alle verbundenen Pivot-Tabellen und
 Diagramme zeigen nur die Daten dieser Region. Das macht Slicer zum
 perfekten Werkzeug für Dashboards und Präsentationen.</p>
-<blockquote>
 <p><strong>Tipp:</strong> Ein Slicer kann mit mehreren Pivot-Tabellen
 gleichzeitig verbunden werden (Rechtsklick → Berichtsverbindungen). So
 steuern Sie ein ganzes Dashboard mit einem Klick.</p>
-</blockquote>
 <p><strong>Übung 9.3 — Slicer einsetzen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M9_3_Slicer.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 9 3 Slicer</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Fügen Sie einen Slicer für das Feld „Region” ein</p>
 <p>(PivotTable-Analyse → Slicer einfügen).</p></li>
@@ -2512,7 +2928,6 @@ steuern Sie ein ganzes Dashboard mit einem Klick.</p>
 kombinieren</p>
 <p>Sie beide Filter.</p></li>
 </ol>
-</blockquote>
 <h2 id="pivotcharts">9.4. PivotCharts</h2>
 <h3 id="konzept-diagramme-die-mit-der-pivot-tabelle-leben">Konzept:
 Diagramme, die mit der Pivot-Tabelle leben</h3>
@@ -2521,8 +2936,8 @@ verbunden ist. Wenn Sie die Pivot-Tabelle verändern (andere Gruppierung,
 anderer Filter), passt sich das Diagramm automatisch an. Das ist die
 perfekte Kombination aus Analyse (Pivot) und Präsentation (Chart).</p>
 <p><strong>Übung 9.4 — PivotChart erstellen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M9_4_PivotChart.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 9 4 PivotChart</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Erstellen Sie aus Ihrer Pivot-Tabelle ein PivotChart</p>
 <p>(PivotTable-Analyse → PivotChart).</p></li>
@@ -2531,11 +2946,38 @@ perfekte Kombination aus Analyse (Pivot) und Präsentation (Chart).</p>
 beobachten</p>
 <p>Sie, wie das Diagramm folgt.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-8">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Eine Pivot-Tabelle aus Quelldaten
+erstellen (Einfügen → PivotTable)</label></li>
+<li><label><input type="checkbox" />Felder in Zeilen, Spalten, Werte und
+Filter ziehen und kombinieren</label></li>
+<li><label><input type="checkbox" />Die Zusammenfassungsfunktion ändern
+(Summe, Mittelwert, Anzahl, %)</label></li>
+<li><label><input type="checkbox" />Datumsangaben in Pivot-Tabellen nach
+Monaten/Quartalen gruppieren</label></li>
+<li><label><input type="checkbox" />Berechnete Felder hinzufügen (z.B.
+Bonus = Umsatz × 5%)</label></li>
+<li><label><input type="checkbox" />Slicer für visuelle Filterung
+einsetzen und mit mehreren Tabellen verknüpfen</label></li>
+<li><label><input type="checkbox" />Ein PivotChart erstellen, das mit
+der Pivot-Tabelle verbunden ist</label></li>
+</ul>
 <h2 id="modul-10-analyse-und-finanzfunktionen">Modul 10: Analyse und
 Finanzfunktionen</h2>
 <p><strong>Lernziel:</strong> Was-wäre-wenn-Analysen durchführen und
 grundlegende Finanzfunktionen einsetzen.</p>
+<h3 id="was-wissen-sie-bereits-8">Was wissen Sie bereits?</h3>
+<ul>
+<li>Haben Sie schon einmal rückwärts gerechnet? („Welcher Preis ergibt
+100.000 € Umsatz?“)</li>
+<li>Wissen Sie, wie man einen Kredit mit monatlicher Rate
+berechnet?</li>
+<li>Können Sie sich vorstellen, mehrere Szenarien auf einmal
+durchzurechnen?</li>
+</ul>
+<p>Was-wäre-wenn-Analysen zeigen Ihnen die Zukunft — bevor Sie
+Entscheidungen treffen.</p>
 <h2 id="zielwertsuche-goal-seek">10.1. Zielwertsuche (Goal Seek)</h2>
 <h3 id="konzept-vom-ergebnis-zur-ursache-zurückrechnen">Konzept: Vom
 Ergebnis zur Ursache zurückrechnen</h3>
@@ -2544,14 +2986,21 @@ Ergebnis zur Ursache zurückrechnen</h3>
 das Gegenteil: Sie sagen „Ich will 100.000 € Umsatz erreichen”, und
 Excel findet den notwendigen Preis oder die Menge. Das ist besonders
 nützlich für Planung und Budgetierung.</p>
-<blockquote>
 <p><strong>Tipp:</strong> Die Zielwertsuche finden Sie unter „Daten →
 Was-wäre-wenn-Analyse → Zielwertsuche”. Sie benötigen drei Angaben:
 Zielzelle (mit Formel), Zielwert und veränderbare Zelle.</p>
-</blockquote>
+<h3 id="typische-fehler-4">Typische Fehler</h3>
+<ul>
+<li><strong>Zielzelle muss eine Formel enthalten:</strong> Die
+Zielwertsuche funktioniert nur, wenn in der Zielzelle eine Formel
+steht.</li>
+<li><strong>Keine Lösung gefunden:</strong> Wenn der Zielwert
+mathematisch nicht erreichbar ist, zeigt Excel eine Meldung. Überprüfen
+Sie, ob Ihre Formel die veränderbare Zelle tatsächlich verwendet.</li>
+</ul>
 <p><strong>Übung 10.1 — Zielwertsuche anwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M10_1_Zielwertsuche.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 10 1 Zielwertsuche</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li><p>Sie möchten einen Gesamtumsatz von 100.000 € erreichen. Nutzen
 Sie die</p>
@@ -2561,7 +3010,6 @@ ermitteln.</p></li>
 haben.</p>
 <p>Welcher Zinssatz ist dafür maximal zulässig?</p></li>
 </ol>
-</blockquote>
 <h2 id="finanzfunktionen">10.2. Finanzfunktionen</h2>
 <h3 id="konzept-der-zeitwert-des-geldes-vereinfacht">Konzept: Der
 Zeitwert des Geldes — vereinfacht</h3>
@@ -2606,14 +3054,12 @@ Funktionen ab — Sie müssen nur die Parameter kennen.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Bei RMZ und ZW sind Zahlungen, die Sie leisten
 (Kreditrate, Sparrate), als negative Zahlen anzugeben. Der Kreditbetrag
 ist positiv aus Sicht der Bank.</p>
-</blockquote>
 <p><strong>Übung 10.2 — Finanzfunktionen anwenden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M10_2_Finanzfunktionen.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 10 2
+Finanzfunktionen</strong> ist bereits geladen.</p>
 <ol type="1">
 <li><p>Berechnen Sie mit <code>RMZ()</code> die monatliche Rate für
 einen Kredit über 250.000 €</p>
@@ -2625,11 +3071,87 @@ Jahren, wenn Sie monatlich</p>
 entscheiden Sie, welche</p>
 <p>vorteilhafter ist.</p></li>
 </ol>
+<h2 id="datentabellen">10.3. Datentabellen</h2>
+<h3 id="konzept-viele-szenarien-auf-einmal-berechnen">Konzept: Viele
+Szenarien auf einmal berechnen</h3>
+<p>Eine Datentabelle (Daten → Was-wäre-wenn-Analyse → Datentabelle)
+berechnet automatisch mehrere Ergebnisse für verschiedene
+Eingabewerte.</p>
+<p><strong>Eindimensionale Datentabelle:</strong> Eine Eingabevariable
+variieren (z.B. Zinssatz). <strong>Zweidimensionale
+Datentabelle:</strong> Zwei Variablen variieren (z.B. Zinssatz ×
+Laufzeit).</p>
+<p><strong>Tipp:</strong> Die Datentabelle verwendet die Matrixformel
+<code>{=TABELLE(;)}</code> — Sie können einzelne Zellen der Tabelle
+nicht bearbeiten oder löschen.</p>
+<p><strong>Übung 10.3 — Datentabelle erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 10 3 Datentabelle</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine eindimensionale Datentabelle: RMZ-Rate für
+Zinssätze von 2% bis 8% (in 0,5%-Schritten) bei 250.000 € und 30
+Jahren.</li>
+<li>Erstellen Sie eine zweidimensionale Datentabelle: RMZ-Rate für
+Zinssätze (3%–7%) × Laufzeiten (10–30 Jahre).</li>
+<li>Interpretieren Sie: Bei welchem Zinssatz übersteigt die Rate 1.500
+€?</li>
+</ol>
 </blockquote>
+<h2 id="integrierte-finanzanalyse">10.4. Integrierte Finanzanalyse</h2>
+<h3 id="konzept-alle-werkzeuge-kombiniert-einsetzen">Konzept: Alle
+Werkzeuge kombiniert einsetzen</h3>
+<p>In der Praxis werden Zielwertsuche, Finanzfunktionen und
+Datentabellen kombiniert, um fundierte finanzielle Entscheidungen zu
+treffen.</p>
+<p><strong>Übung 10.4 — Integrierte Finanzanalyse</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 10 4 Finanzanalyse</strong>
+ist bereits geladen.</p>
+<blockquote>
+<p>Ein Unternehmen plant eine Investition von 500.000 € mit erwarteten
+jährlichen Rückflüssen von 80.000 € über 10 Jahre.</p>
+<ol type="1">
+<li>Berechnen Sie den Kapitalwert (NBW) bei 6% Zinssatz. Ist die
+Investition vorteilhaft?</li>
+<li>Nutzen Sie die Zielwertsuche: Welcher Zinssatz ergibt NBW = 0
+(IKV)?</li>
+<li>Erstellen Sie eine Datentabelle: NBW für Zinssätze 2%–12%.</li>
+<li>Ab welchem Zinssatz wird die Investition unvorteilhaft (NBW &lt;
+0)?</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt-9">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Die Zielwertsuche anwenden („Welcher
+Preis ergibt 100.000 € Umsatz?“)</label></li>
+<li><label><input type="checkbox" />Eindimensionale Datentabellen für
+eine Variable erstellen</label></li>
+<li><label><input type="checkbox" />Zweidimensionale Datentabellen für
+zwei Variablen erstellen</label></li>
+<li><label><input type="checkbox" />RMZ() für Kreditraten, ZW() für
+Sparpläne und NBW() für Investitionen nutzen</label></li>
+<li><label><input type="checkbox" />Alle drei Werkzeuge (Zielwertsuche,
+Datentabelle, Finanzfunktionen) kombinieren</label></li>
+</ul>
 <h2 id="modul-11-druck-und-zusammenarbeit">Modul 11: Druck und
 Zusammenarbeit</h2>
 <p><strong>Lernziel:</strong> Tabellen professionell für den Druck
-aufbereiten und mit anderen zusammenarbeiten.</p>
+aufbereiten und mit anderen</p>
+<p><strong>Hinweis zur Excel-lenz-Plattform:</strong> Die
+Druckfunktionen sind im Web-Simulator nicht verfügbar. Die folgenden
+Übungen erfordern Microsoft Excel. Auf der Plattform stehen Quiz-Fragen
+zu Druckkonzepten zur Verfügung.</p>
+<p>zusammenarbeiten.</p>
+<h3 id="was-wissen-sie-bereits-9">Was wissen Sie bereits?</h3>
+<ul>
+<li>Haben Sie schon einmal eine Excel-Tabelle ausgedruckt und das
+Ergebnis war enttäuschend?</li>
+<li>Wissen Sie, warum manche Spalten auf dem Ausdruck fehlen?</li>
+<li>Was erwarten Sie in einer professionellen Kopfzeile (z.B. auf einer
+Rechnung)?</li>
+</ul>
+<p>Der Unterschied zwischen Bildschirm und Papier ist größer als Sie
+denken. Dieses Modul schließt die Lücke.</p>
 <h2 id="seitenlayout-konfigurieren">11.1. Seitenlayout
 konfigurieren</h2>
 <h3 id="konzept-vom-bildschirm-zum-papier-die-andere-denkweise">Konzept:
@@ -2676,15 +3198,13 @@ oder Querformat besser ist.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Rufen Sie vor jedem Druck die
 <strong>Seitenumbruchvorschau</strong> auf (Ansicht →
 Seitenumbruchvorschau). Sie sehen sofort, wo die Seitenumbrüche liegen
 und können sie per Drag &amp; Drop verschieben.</p>
-</blockquote>
 <p><strong>Übung 11.1 — Seitenlayout einrichten</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M11_1_Drucklayout.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 11 1 Drucklayout</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li>Ändern Sie die Ausrichtung auf Querformat.</li>
 <li>Skalieren Sie die Tabelle so, dass alle Spalten auf eine Seite
@@ -2693,7 +3213,6 @@ passen.</li>
 <li>Zentrieren Sie die Tabelle horizontal und vertikal auf der
 Seite.</li>
 </ol>
-</blockquote>
 <h2 id="druckbereich-und-seitenumbrüche">11.2. Druckbereich und
 Seitenumbrüche</h2>
 <h3 id="konzept-nicht-alles-muss-gedruckt-werden">Konzept: Nicht alles
@@ -2705,8 +3224,8 @@ Blattes gedruckt wird — der Rest wird ignoriert. Mit manuellen
 <strong>Seitenumbrüchen</strong> steuern Sie, wo eine neue Seite
 beginnt.</p>
 <p><strong>Übung 11.2 — Druckbereich festlegen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M11_2_Druckbereich.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 11 2 Druckbereich</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li><p>Definieren Sie einen Druckbereich, der nur die Haupttabelle (ohne
 Hilfsspalten)</p>
@@ -2716,7 +3235,6 @@ ein.</p></li>
 <li><p>Nutzen Sie die Seitenumbruchvorschau, um die Umbrüche zu
 kontrollieren.</p></li>
 </ol>
-</blockquote>
 <h2 id="kopf--und-fußzeilen">11.3. Kopf- und Fußzeilen</h2>
 <h3 id="konzept-professionelle-dokumente-brauchen-metadaten">Konzept:
 Professionelle Dokumente brauchen Metadaten</h3>
@@ -2724,15 +3242,13 @@ Professionelle Dokumente brauchen Metadaten</h3>
 Kopf- und Fußzeilen enthalten Seitennummern, Datum, Dateinamen oder
 Firmenlogos — Informationen, die dem Leser Orientierung geben. Einmal
 eingerichtet, erscheinen sie automatisch auf jeder Seite.</p>
-<blockquote>
 <p><strong>Tipp:</strong> Nutzen Sie die vordefinierten Elemente
 (Seitenzahl, Anzahl der Seiten, aktuelles Datum, Dateipfad) über die
 Schaltflächen im Kopf-/Fußzeilen-Dialog. Das spart Tipparbeit und bleibt
 automatisch aktuell.</p>
-</blockquote>
 <p><strong>Übung 11.3 — Kopf- und Fußzeilen erstellen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M11_3_Kopfzeilen.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 11 3 Kopfzeilen</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Fügen Sie eine Kopfzeile mit dem Firmennamen (links) und dem
 Datum (rechts) ein.</p></li>
@@ -2742,7 +3258,6 @@ ein.</p></li>
 Tabellenüberschrift auf</p>
 <p>jeder gedruckten Seite erscheint.</p></li>
 </ol>
-</blockquote>
 <h2 id="zusammenarbeit-und-export">11.4. Zusammenarbeit und Export</h2>
 <h3 id="konzept-excel-dateien-weitergeben-wie-ein-profi">Konzept:
 Excel-Dateien weitergeben wie ein Profi</h3>
@@ -2774,8 +3289,8 @@ verändern.</p>
 </tbody>
 </table>
 <p><strong>Übung 11.4 — Für die Weitergabe vorbereiten</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M11_4_Zusammenarbeit.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 11 4 Zusammenarbeit</strong>
+ist bereits geladen.</p>
 <ol type="1">
 <li>Exportieren Sie die Tabelle als PDF.</li>
 <li>Fügen Sie einen Kommentar in eine Zelle ein (Überprüfen → Neuer
@@ -2783,11 +3298,33 @@ Kommentar).</li>
 <li>Speichern Sie die Datei sowohl als <code>.xlsx</code> als auch als
 <code>.pdf</code>.</li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-10">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Seitenlayout professionell
+konfigurieren (Querformat, Skalierung, Ränder)</label></li>
+<li><label><input type="checkbox" />Einen Druckbereich festlegen und
+Seitenumbrüche kontrollieren</label></li>
+<li><label><input type="checkbox" />Kopf- und Fußzeilen mit
+Seitenzahlen, Datum und Dateinamen erstellen</label></li>
+<li><label><input type="checkbox" />Wiederholungszeilen für
+Tabellenüberschriften auf jeder Seite einrichten</label></li>
+<li><label><input type="checkbox" />Eine Arbeitsmappe als .pdf
+exportieren und Kommentare einfügen</label></li>
+</ul>
 <h2 id="modul-12-schutz-und-sicherheit">Modul 12: Schutz und
 Sicherheit</h2>
 <p><strong>Lernziel:</strong> Arbeitsmappen und Zellen schützen sowie
 die Produktivität durch Tastenkombinationen steigern.</p>
+<h3 id="was-wissen-sie-bereits-10">Was wissen Sie bereits?</h3>
+<ul>
+<li>Haben Sie schon einmal eine Datei an Kollegen geschickt und
+befürchtet, dass jemand Formeln überschreibt?</li>
+<li>Welche Tastenkombinationen nutzen Sie bereits täglich?</li>
+<li>Was könnte eine Excel-Datei über Sie verraten, wenn Sie sie extern
+weitergeben?</li>
+</ul>
+<p>Schutz und Effizienz — zwei Seiten derselben Medaille für den
+professionellen Excel-Anwender.</p>
 <h2 id="zellen-und-blätter-schützen">12.1. Zellen und Blätter
 schützen</h2>
 <h3 id="konzept-nicht-jeder-soll-alles-ändern-dürfen">Konzept: Nicht
@@ -2835,15 +3372,13 @@ Passwort — für vertrauliche Daten.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Wichtig:</strong> Alle Zellen sind standardmäßig gesperrt —
 aber die Sperre wirkt erst, wenn Sie den Blattschutz aktivieren!
 Entsperren Sie zuerst die Zellen, die bearbeitbar bleiben sollen (Strg+1
 → Schutz → Gesperrt abwählen).</p>
-</blockquote>
 <p><strong>Übung 12.1 — Schutz einrichten</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M12_1_Schutz.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 12 1 Schutz</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Entsperren Sie die Eingabezellen (B2:B10), lassen Sie die
 Formelzellen gesperrt.</p></li>
@@ -2854,7 +3389,6 @@ bearbeitbar,</p>
 gelöscht werden</p>
 <p>können.</p></li>
 </ol>
-</blockquote>
 <h2 id="die-wichtigsten-tastenkombinationen">12.2. Die wichtigsten
 Tastenkombinationen</h2>
 <h3 id="konzept-maus-spart-zeit-tastatur-spart-mehr">Konzept: Maus spart
@@ -2900,7 +3434,7 @@ fehlerresistenter als Mausklicks.</p>
 <td>Alles an einem Ort</td>
 </tr>
 <tr>
-<td><code>Strg+Shift+L</code></td>
+<td><code>Strg+Umschalt+L</code></td>
 <td>Autofilter an/aus</td>
 <td>L wie „Liste”</td>
 </tr>
@@ -2932,17 +3466,16 @@ fehlerresistenter als Mausklicks.</p>
 </tbody>
 </table>
 <p><strong>Übung 12.2 — Tastenkombinationen üben</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M12_2_Tastenkombinationen.xlsx</code> und
-bearbeiten Sie sie ausschließlich mit Tastenkombinationen:</p>
+<p>Die folgende Übungstabelle <strong>Modul 12 2
+Tastenkombinationen</strong> ist bereits geladen. Bearbeiten Sie sie
+ausschließlich mit Tastenkombinationen:</p>
 <ol type="1">
-<li><code>Strg+Shift+L</code> für Filter, dann mit Pfeiltasten
+<li><code>Strg+Umschalt+L</code> für Filter, dann mit Pfeiltasten
 navigieren.</li>
 <li><code>F4</code> zum Wiederholen einer Formatierung.</li>
 <li><code>Strg+1</code> zum Öffnen des Formatierungsdialogs.</li>
 <li><code>Alt+=</code> für automatische Summierung.</li>
 </ol>
-</blockquote>
 <h2 id="dokumentinspektion">12.3. Dokumentinspektion</h2>
 <h3 id="konzept-was-ihre-excel-datei-über-sie-verrät">Konzept: Was Ihre
 Excel-Datei über Sie verrät</h3>
@@ -2960,8 +3493,8 @@ Geschenk abziehen, bevor Sie es weiterverschenken.</p>
 <li>Externe Verknüpfungen zu anderen Dateien</li>
 </ul>
 <p><strong>Übung 12.3 — Dokument inspizieren</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M12_3_Inspektion.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 12 3 Inspektion</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Führen Sie die Dokumentinspektion durch (Datei → Informationen →
 Auf Probleme</p>
@@ -2970,11 +3503,36 @@ Auf Probleme</p>
 Informationen.</p></li>
 <li><p>Speichern Sie die bereinigte Version.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-11">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Zellen entsperren und Blattschutz
+aktivieren (mit/ohne Passwort)</label></li>
+<li><label><input type="checkbox" />Die wichtigsten 10
+Tastenkombinationen auswendig anwenden</label></li>
+<li><label><input type="checkbox" />Den Unterschied zwischen Zellsperre,
+Blattschutz und Arbeitsmappenschutz erklären</label></li>
+<li><label><input type="checkbox" />Die Dokumentinspektion durchführen
+und persönliche Metadaten entfernen</label></li>
+</ul>
 <h2 id="modul-13-automatisierung-mit-makros">Modul 13: Automatisierung
 mit Makros</h2>
 <p><strong>Lernziel:</strong> Das Konzept der Makros verstehen und
 einfache Automatisierungen aufzeichnen.</p>
+<p><strong>Hinweis zur Excel-lenz-Plattform:</strong> Makros und VBA
+sind im Web-Simulator nicht verfügbar. Die folgenden Übungen erfordern
+Microsoft Excel (Desktop-Version mit <code>.xlsm</code>-Dateien). Auf
+der Plattform stehen Quiz-Fragen zu Makro-Konzepten zur Verfügung.</p>
+<h3 id="was-wissen-sie-bereits-11">Was wissen Sie bereits?</h3>
+<ul>
+<li>Gibt es eine Aufgabe in Excel, die Sie regelmäßig wiederholen (z.B.
+Formatierung eines Berichts)?</li>
+<li>Wie viel Zeit könnten Sie sparen, wenn Excel diese Aufgabe
+automatisch erledigt?</li>
+<li>Haben Sie schon einmal von „Programmieren” gehört und dachten: „Das
+ist nichts für mich”?</li>
+</ul>
+<p>Makros sind einfacher als Sie denken — dieses Modul ist Ihre
+Eintrittskarte in die Automatisierung.</p>
 <h2 id="was-sind-makros">13.1. Was sind Makros?</h2>
 <h3 id="konzept-wiederkehrende-aufgaben-nur-einmal-erledigen">Konzept:
 Wiederkehrende Aufgaben nur einmal erledigen</h3>
@@ -2986,15 +3544,13 @@ mit einem Klick — nachdem Sie sie einmal aufgezeichnet haben.</p>
 <p>Makros werden in der Programmiersprache <strong>VBA</strong> (Visual
 Basic for Applications) gespeichert. Die gute Nachricht: Zum Aufzeichnen
 müssen Sie kein VBA können — Excel schreibt den Code automatisch.</p>
-<blockquote>
 <p><strong>Wichtig:</strong> Makros funktionieren nur in
 <code>.xlsm</code>-Dateien (Excel-Arbeitsmappe mit Makros), nicht in
 normalen <code>.xlsx</code>-Dateien. Speichern Sie Makro-Arbeitsmappen
 immer im <code>.xlsm</code>-Format.</p>
-</blockquote>
 <p><strong>Übung 13.1 — Entwicklertools aktivieren</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M13_1_Entwicklertools.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 13 1
+Entwicklertools</strong> ist bereits geladen.</p>
 <ol type="1">
 <li><p>Aktivieren Sie die Registerkarte „Entwicklertools”</p>
 <p>(Datei → Optionen → Menüband anpassen → Entwicklertools).</p></li>
@@ -3004,7 +3560,6 @@ immer im <code>.xlsm</code>-Format.</p>
 die</p>
 <p>Schaltfläche „Makro aufzeichnen”.</p></li>
 </ol>
-</blockquote>
 <h2 id="makros-aufzeichnen">13.2. Makros aufzeichnen</h2>
 <h3
 id="konzept-excel-schaut-ihnen-zu-und-merkt-sich-jeden-schritt">Konzept:
@@ -3018,14 +3573,12 @@ und <strong>relativen</strong> Bezügen bei der Aufzeichnung: -
 <strong>Absolute Aufzeichnung</strong>: Das Makro arbeitet immer in
 denselben Zellen (z.B. A1) - <strong>Relative Aufzeichnung</strong>: Das
 Makro arbeitet relativ zur aktuellen Position</p>
-<blockquote>
 <p><strong>Tipp:</strong> Für formatierende Makros, die Sie auf
 verschiedene Tabellen anwenden wollen, nutzen Sie <strong>relative
 Bezüge</strong> bei der Aufzeichnung.</p>
-</blockquote>
 <p><strong>Übung 13.2 — Makro aufzeichnen</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M13_2_Makro_Aufzeichnen.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 13 2 Makro
+Aufzeichnen</strong> ist bereits geladen.</p>
 <ol type="1">
 <li><p>Zeichnen Sie ein Makro auf, das die Überschriftenzeile fett
 formatiert,</p>
@@ -3036,7 +3589,6 @@ zieht.</p></li>
 aus.</p></li>
 <li><p>Weisen Sie das Makro einer Schaltfläche oder Form zu.</p></li>
 </ol>
-</blockquote>
 <h2 id="der-vba-editor">13.3. Der VBA-Editor</h2>
 <h3 id="konzept-einen-blick-unter-die-motorhaube-werfen">Konzept: Einen
 Blick unter die Motorhaube werfen</h3>
@@ -3077,8 +3629,8 @@ hervorragende Lernquelle.</p>
 </tbody>
 </table>
 <p><strong>Übung 13.3 — VBA-Editor erkunden</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M13_3_VBA_Editor.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 13 3 VBA Editor</strong> ist
+bereits geladen.</p>
 <ol type="1">
 <li><p>Öffnen Sie den VBA-Editor mit <code>Alt+F11</code>.</p></li>
 <li><p>Finden Sie im Projekt-Explorer das aufgezeichnete Makro aus
@@ -3089,7 +3641,6 @@ Formatierungen</p>
 <p>(<code>.Font.Bold = True</code>, <code>.Interior.Color</code>)
 vornehmen.</p></li>
 </ol>
-</blockquote>
 <h2 id="grundbegriffe-der-vba-programmierung">13.4. Grundbegriffe der
 VBA-Programmierung</h2>
 <h3 id="konzept-vom-aufzeichnen-zum-programmieren">Konzept: Vom
@@ -3133,15 +3684,13 @@ Programmierkonzepten:</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
 <p><strong>Tipp:</strong> Auch wenn Sie nicht vorhaben,
 VBA-Programmierer zu werden — das Verständnis dieser Grundbegriffe hilft
 Ihnen, aufgezeichnete Makros zu lesen, anzupassen und Fehler zu
 beheben.</p>
-</blockquote>
 <p><strong>Übung 13.4 — Einfaches VBA programmieren</strong></p>
-<blockquote>
-<p>Öffnen Sie die Datei <code>M13_4_VBA_Programmieren.xlsx</code>.</p>
+<p>Die folgende Übungstabelle <strong>Modul 13 4 VBA
+Programmieren</strong> ist bereits geladen.</p>
 <ol type="1">
 <li><p>Schreiben Sie im VBA-Editor (<code>Alt+F11</code>) ein Makro, das
 mit einer <code>For</code>-Schleife</p>
@@ -3151,6 +3700,24 @@ mit einer <code>For</code>-Schleife</p>
 <p>formatiert werden.</p></li>
 <li><p>Führen Sie das Makro aus und prüfen Sie das Ergebnis.</p></li>
 </ol>
-</blockquote>
+<h3 id="das-können-sie-jetzt-12">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Die Registerkarte Entwicklertools
+aktivieren und als .xlsm speichern</label></li>
+<li><label><input type="checkbox" />Ein Makro aufzeichnen, ausführen und
+einer Schaltfläche zuweisen</label></li>
+<li><label><input type="checkbox" />Den Unterschied zwischen absoluter
+und relativer Aufzeichnung erklären</label></li>
+<li><label><input type="checkbox" />Den VBA-Editor (Alt+F11) öffnen und
+einfache Code-Änderungen vornehmen</label></li>
+<li><label><input type="checkbox" />Eine einfache For-Schleife und
+If-Bedingung in VBA schreiben</label></li>
+<li><label><input type="checkbox" />Die Grundbegriffe Variable,
+Bedingung und Schleife verstehen</label></li>
+</ul>
+<hr />
+<p><em>Lehrplan erstellt nach den Grundsätzen der Andragogik (Knowles,
+1980) und dem europäischen Rahmen für digitale Kompetenzen DigComp 2.2
+(Vuorikari et al., 2022).</em></p>
 </body>
 </html>

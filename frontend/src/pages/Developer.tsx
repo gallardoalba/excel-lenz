@@ -179,9 +179,9 @@ export default function Developer() {
       {/* CTA */}
       <section className="cta-section">
         <h2>Möchten Sie Excel-lenz ausprobieren?</h2>
-        <p>Starten Sie noch heute mit unseren kostenlosen Übungen.</p>
+        <p>Starten Sie noch heute mit unseren offenen Übungen.</p>
         <Link to="/register" className="btn btn-white btn-lg">
-          Jetzt kostenlos starten
+          Jetzt starten
         </Link>
       </section>
     </>

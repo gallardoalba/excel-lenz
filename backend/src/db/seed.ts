@@ -4,8 +4,8 @@ import bcrypt from 'bcryptjs';
 
 // ── Exercise data (edit the JSON files, not this file!) ──
 import course1Data from './exercises/course1_grundlage.json';
-// import course2Data from './exercises/course2_datenanalyse.json';
 import course3Data from './exercises/course3_fortgeschrittene.json';
+// course4 disabled: Excel für Experten (not shown in UI yet)
 // import course4Data from './exercises/course4_datenbank.json';
 
 type ExerciseJson = {
@@ -33,7 +33,8 @@ type CourseJson = {
   exercises: ExerciseJson[];
 };
 
-// Courses 2 (Datenanalyse) and 4 (Datenbank) temporarily disabled
+// Course 1: Excel-Grundlagen (13 modules, matches Lehrplan)
+// Course 3: Excel für Fortgeschrittene
 const ALL_COURSES: CourseJson[] = [course1Data, course3Data];
 
 export function seed(): void {
@@ -107,8 +108,9 @@ export function seed(): void {
     if (ex.prerequisites) template.prerequisites = ex.prerequisites;
     if (ex.theoryTitle) template.theoryTitle = ex.theoryTitle;
     if (ex.theory) template.theory = ex.theory;
-    // Module metadata for grouping
-    if ((ex as any).moduleId) template._moduleId = (ex as any).moduleId;
+    // Module metadata for grouping (supports both camelCase and snake_case)
+    const modId = (ex as any).moduleId || (ex as any).module_id;
+    if (modId) template._moduleId = modId;
     if ((ex as any).moduleSection) template._moduleSection = (ex as any).moduleSection;
     if ((ex as any).moduleTitle) template._moduleTitle = (ex as any).moduleTitle;
     if ((ex as any).sectionTitle) template._sectionTitle = (ex as any).sectionTitle;

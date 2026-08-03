@@ -14,15 +14,27 @@ const LEHRPLAENE = [
     duration: '~12 Stunden',
     level: 'Anfänger',
   },
+  {
+    type: 'fortgeschrittene',
+    title: 'Excel für Fortgeschrittene',
+    description:
+      'Lehrplan für professionelle Anwender mit 10 Modulen — erweiterte Formate, komplexe Funktionen, '
+      + 'Datenbanken, Pivot-Tabellen, Solver, Dashboards, Makros und VBA-Programmierung. '
+      + 'Konzipiert für Controller, Analysten und Power-User.',
+    modules: 10,
+    exercises: 41,
+    duration: '~12 Stunden',
+    level: 'Fortgeschrittene',
+  },
 ];
 
 export default function LehrplanList() {
   return (
-    <div style={{ maxWidth: 900, margin: '0 auto', padding: '56px 32px 80px' }}>
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 32px 80px' }}>
       <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: 8, letterSpacing: '-0.03em' }}>
         Lehrpläne
       </h1>
-      <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', marginBottom: 40, maxWidth: 600 }}>
+      <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', marginBottom: 40, maxWidth: 750 }}>
         Strukturierte Lehrpläne für den Excel-Präsenzunterricht. Jeder Lehrplan kombiniert
         verständliche Theorie mit praktischen Übungen — entwickelt von Cristóbal Gallardo
         für den Einzelunterricht in Freiburg im Breisgau.

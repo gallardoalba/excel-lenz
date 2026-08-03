@@ -188,6 +188,9 @@ export default function CourseDetail() {
     if (!course) return null;
     const map: Record<string, string> = {
       beginner: '/lehrplan/anfaenger',
+      intermediate: '/lehrplan/fortgeschrittene',
+      advanced: '/lehrplan/fortgeschrittene',
+      expert: '/lehrplan/fortgeschrittene',
     };
     return map[course.difficulty] || null;
   }, [course]);
@@ -215,13 +218,7 @@ export default function CourseDetail() {
   const pct = course.user_progress?.total ? Math.round(course.user_progress.completed / course.user_progress.total * 100) : 0;
   const sections = buildSections(course);
   const activeSection = selectedSection ? sections.find(s => s.id === selectedSection) : null;
-  const isFree = course.title === 'Excel für Anfänger';
-
-  // Module number: extract from module id like "m1" → "1"
-  function moduleNum(modId: string): string {
-    const m = modId.match(/\d+/);
-    return m ? m[0] : modId;
-  }
+  const isOpen = true; // All courses accessible
 
   return (
     <div className="course-detail-page">
@@ -258,7 +255,7 @@ export default function CourseDetail() {
                 <span className="badge" style={{ background: theme.bg, color: theme.accent, fontWeight: 600 }}>
                   {DIFFICULTY_LABELS[course.difficulty] || course.difficulty}
                 </span>
-                {isFree && <span className="badge badge-success">Kostenlos</span>}
+                {isOpen && <span className="badge badge-success">Geöffnet</span>}
               </div>
               <h1 className="hero-dashboard-title">{courseTitle}</h1>
               <p className="hero-dashboard-desc">{courseDesc}</p>
@@ -372,9 +369,6 @@ export default function CourseDetail() {
                 onKeyDown={(e) => { if (e.key === 'Enter') navigate(lehrplanUrl); }}
               >
               <div className="module-card-header">
-                <span className="module-card-num">
-                  <BookOpen size={22} />
-                </span>
                 <div className="module-card-info">
                   <h3 className="module-card-title">Vollständiger Lehrplan mit Theorie und Übungen</h3>
                   <p className="module-card-desc">
@@ -417,7 +411,6 @@ export default function CourseDetail() {
                       data-module-id={section.id}
                     >
                       <div className="module-card-header" onClick={() => setSelectedSection(section.id)}>
-                        <span className="module-card-num">{moduleNum(section.id)}</span>
                         <div className="module-card-info">
                           <h3 className="module-card-title">{section.title}</h3>
                           {section.moduleDescription && (
@@ -544,7 +537,7 @@ export default function CourseDetail() {
                       }}
                     >
                       <span className={`sidebar-toc-dot ${isComplete ? 'dot--done' : sectionPct > 0 ? 'dot--progress' : ''}`} />
-                      <span className="sidebar-toc-label">{moduleNum(section.id)}. {section.title}</span>
+                      <span className="sidebar-toc-label">{section.title}</span>
                       <span className="sidebar-toc-count">{section.completedCount}/{section.exerciseCount}</span>
                     </button>
                   );
@@ -597,8 +590,8 @@ export default function CourseDetail() {
                   <span className="sidebar-info-value">{stats.uniqueModules || sections.length}</span>
                 </div>
                 <div className="sidebar-info-item">
-                  <span className="sidebar-info-label">Kostenlos</span>
-                  <span className="sidebar-info-value">{isFree ? 'Ja ✓' : 'Premium'}</span>
+                  <span className="sidebar-info-label">Zugang</span>
+                  <span className="sidebar-info-value">{isOpen ? 'Offen' : 'Geschlossen'}</span>
                 </div>
               </div>
             </div>

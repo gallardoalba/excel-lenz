@@ -8,19 +8,19 @@ interface FunctionNode {
 
 const MAP: FunctionNode[] = [
   { name: 'SUMME', x: 50, y: 80, dependsOn: [] },
-  { name: 'MITTELWERT', x: 180, y: 30, dependsOn: ['SUMME'] },
-  { name: 'MIN/MAX', x: 180, y: 130, dependsOn: [] },
-  { name: 'ZÄHLENWENN', x: 310, y: 30, dependsOn: ['SUMME'] },
-  { name: 'WENN', x: 310, y: 80, dependsOn: [] },
-  { name: 'UND/ODER', x: 310, y: 130, dependsOn: ['WENN'] },
-  { name: 'SVERWEIS', x: 440, y: 55, dependsOn: ['WENN'] },
-  { name: 'WENNFEHLER', x: 440, y: 105, dependsOn: ['SVERWEIS'] },
-  { name: 'INDEX/VGL', x: 570, y: 55, dependsOn: ['SVERWEIS'] },
-  { name: 'WENNS', x: 570, y: 105, dependsOn: ['WENN'] },
-  { name: 'RANG', x: 440, y: 155, dependsOn: [] },
-  { name: 'KORREL', x: 310, y: 180, dependsOn: ['MITTELWERT'] },
-  { name: 'RUNDEN', x: 180, y: 185, dependsOn: [] },
-  { name: 'TEILERGEBNIS', x: 570, y: 155, dependsOn: ['SUMME'] },
+  { name: 'MITTELWERT', x: 190, y: 30, dependsOn: ['SUMME'] },
+  { name: 'MIN/MAX', x: 190, y: 130, dependsOn: [] },
+  { name: 'ZÄHLENWENN', x: 330, y: 30, dependsOn: ['SUMME'] },
+  { name: 'WENN', x: 330, y: 80, dependsOn: [] },
+  { name: 'UND/ODER', x: 330, y: 130, dependsOn: ['WENN'] },
+  { name: 'SVERWEIS', x: 470, y: 55, dependsOn: ['WENN'] },
+  { name: 'WENNFEHLER', x: 470, y: 105, dependsOn: ['SVERWEIS'] },
+  { name: 'INDEX/VGL', x: 610, y: 55, dependsOn: ['SVERWEIS'] },
+  { name: 'WENNS', x: 610, y: 105, dependsOn: ['WENN'] },
+  { name: 'RANG', x: 470, y: 155, dependsOn: [] },
+  { name: 'KORREL', x: 330, y: 180, dependsOn: ['MITTELWERT'] },
+  { name: 'RUNDEN', x: 190, y: 185, dependsOn: [] },
+  { name: 'TEILERGEBNIS', x: 610, y: 155, dependsOn: ['SUMME'] },
 ];
 
 interface Props {
@@ -29,7 +29,7 @@ interface Props {
 }
 
 export default function FunctionMap({ masteredSkills, inProgress }: Props) {
-  const w = 660, h = 230;
+  const w = 740, h = 260;
 
   const getStatus = (name: string): 'mastered' | 'progress' | 'locked' => {
     if (masteredSkills.includes(name)) return 'mastered';

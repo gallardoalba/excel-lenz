@@ -24,6 +24,7 @@ export function initDb(): void {
       password_hash TEXT NOT NULL,
       name TEXT NOT NULL,
       role TEXT NOT NULL DEFAULT 'student',
+      email_verified INTEGER NOT NULL DEFAULT 0,
       created_at TEXT NOT NULL DEFAULT (datetime('now')),
       updated_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
@@ -190,5 +191,11 @@ export function initDb(): void {
   const colInfo = db.prepare("PRAGMA table_info('analytics_events')").all() as { name: string }[];
   if (!colInfo.some(c => c.name === 'client_timestamp')) {
     db.exec('ALTER TABLE analytics_events ADD COLUMN client_timestamp TEXT');
+  }
+
+  // Migration: add email_verified column if missing (for existing databases)
+  const userColInfo = db.prepare("PRAGMA table_info('users')").all() as { name: string }[];
+  if (!userColInfo.some(c => c.name === 'email_verified')) {
+    db.exec('ALTER TABLE users ADD COLUMN email_verified INTEGER NOT NULL DEFAULT 0');
   }
 }

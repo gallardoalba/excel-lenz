@@ -228,7 +228,7 @@ export const HOME_TOUR: TourStep[] = [
   },
   {
     target: '.hero-section button, a[href="/register"]',
-    title: 'Kostenlos starten',
+    title: 'Loslegen',
     content: 'Erstelle ein Konto und beginne sofort mit deiner ersten Übung. Dein Fortschritt wird automatisch gespeichert.',
     position: 'bottom',
   },

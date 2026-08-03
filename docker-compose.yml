@@ -23,8 +23,8 @@ services:
       JWT_SECRET: ${JWT_SECRET}
     volumes:
       - appdata:/app/data
-    ports:
-      - '3001:3001'
+    expose:
+      - '3001'  # Only accessible within Docker network via nginx
 
   # ── Nginx Reverse Proxy ────────────────────────────────
   nginx:

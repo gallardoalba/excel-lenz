@@ -79,17 +79,20 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
     ).get(userId, req.params.id);
   }
 
-  // Parse JSON fields
+  // Parse JSON fields — strip solution_data from DB row to prevent leak
   let templateData: any = {};
   try { templateData = JSON.parse(exercise.template_data || '{}'); } catch { /* keep default */ }
+  const { solution_data: _rawSolution, ...safeExercise } = exercise;
   const result = {
-    ...exercise,
+    ...safeExercise,
     template_data: templateData,
     instructions: exercise.instructions,
   };
 
-  // Only send solution to teachers or after completion
-  if (req.user && (req.user as AuthPayload).role === 'teacher') {
+  // Only send solution to teachers, or if the exercise was already completed with ≥80%
+  const isTeacher = (req.user as AuthPayload)?.role === 'teacher';
+  const isCompleted = (progress as any)?.completed === 1 && (progress as any)?.score >= 80;
+  if (isTeacher || isCompleted) {
     (result as any).solution_data = JSON.parse(exercise.solution_data || '{}');
   }
 
@@ -149,6 +152,10 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
 
           // Skip cells that were already correct in the template
           if (templateVal !== null && templateVal !== undefined && isCorrectAnswer(templateVal, solVal)) {
+            continue;
+          }
+          // Also skip cells where both template and solution are intentionally empty (padding rows)
+          if ((templateVal === null || templateVal === undefined) && (solVal === null || solVal === undefined)) {
             continue;
           }
           scoreableCells++;
@@ -249,41 +256,13 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
   res.json({ score, completed: true, details, xpGained, correctCells, totalCells });
 });
 
-// Get last exercise the user was working on (for "Weitermachen" button)
-router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) => {
-  const { userId } = req.user as AuthPayload;
-  const db = getDb();
-  const last = db.prepare(`
-    SELECT e.id, e.title FROM progress p
-    JOIN exercises e ON e.id = p.exercise_id
-    WHERE p.user_id = ?
-    ORDER BY p.completed_at DESC
-    LIMIT 1
-  `).get(userId) as { id: string; title: string } | undefined;
-  res.json(last || null);
-});
-
-// Get user progress across all exercises
-router.get('/user/progress', authMiddleware, (req: Request, res: Response) => {
-  const db = getDb();
-  const { userId } = req.user as AuthPayload;
-  const progress = db.prepare(
-    `SELECT p.*, e.title as exercise_title, e.course_id, c.title as course_title
-     FROM progress p
-     JOIN exercises e ON e.id = p.exercise_id
-     JOIN courses c ON c.id = e.course_id
-     WHERE p.user_id = ?
-     ORDER BY p.completed_at DESC`
-  ).all(userId);
-  res.json(progress);
-});
-
-// Get last unfinished exercise (for "Continue where you left off")
+// Get last exercise the user was working on (for "Weitermachen" / "Continue" button)
+// Priority: 1) started-but-unfinished → 2) last completed → 3) next incomplete → 4) first exercise
 router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) => {
   const db = getDb();
   const { userId } = req.user as AuthPayload;
 
-  // First: find exercises the user started but didn't complete
+  // 1. Started but not completed
   const started = db.prepare(`
     SELECT e.id, e.title, e.course_id, c.title as course_title, p.score
     FROM progress p
@@ -292,10 +271,20 @@ router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) 
     WHERE p.user_id = ? AND p.completed = 0
     ORDER BY p.created_at DESC LIMIT 1
   `).get(userId);
-
   if (started) { res.json(started); return; }
 
-  // Second: find incomplete exercises in the user's active courses
+  // 2. Last completed (for review / "Weitermachen")
+  const lastDone = db.prepare(`
+    SELECT e.id, e.title, e.course_id, c.title as course_title
+    FROM progress p
+    JOIN exercises e ON e.id = p.exercise_id
+    JOIN courses c ON c.id = e.course_id
+    WHERE p.user_id = ? AND p.completed = 1
+    ORDER BY p.completed_at DESC LIMIT 1
+  `).get(userId);
+  if (lastDone) { res.json(lastDone); return; }
+
+  // 3. Next incomplete exercise
   const next = db.prepare(`
     SELECT e.id, e.title, e.course_id, c.title as course_title
     FROM exercises e
@@ -305,17 +294,15 @@ router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) 
     )
     ORDER BY e.order_index LIMIT 1
   `).get(userId);
-
   if (next) { res.json(next); return; }
 
-  // Third: suggest repeating the first exercise
+  // 4. Fallback: first exercise
   const review = db.prepare(`
     SELECT e.id, e.title, e.course_id, c.title as course_title
     FROM exercises e
     JOIN courses c ON c.id = e.course_id
     ORDER BY e.order_index LIMIT 1
   `).get();
-
   res.json(review || null);
 });
 
@@ -329,6 +316,14 @@ router.post('/goal-seek', authMiddleware, async (req: Request, res: Response) =>
 
   if (!Array.isArray(data)) {
     res.status(400).json({ error: 'data must be a 2D array' });
+    return;
+  }
+
+  // Validate data size to prevent DoS via oversized spreadsheets
+  const MAX_ROWS = 100;
+  const MAX_COLS = 50;
+  if (data.length > MAX_ROWS || data.some((row: any[]) => !Array.isArray(row) || row.length > MAX_COLS)) {
+    res.status(400).json({ error: `Daten zu groß. Maximal ${MAX_ROWS} Zeilen × ${MAX_COLS} Spalten erlaubt.` });
     return;
   }
 

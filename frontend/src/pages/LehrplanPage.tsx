@@ -1,10 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { BookOpen, ChevronDown } from 'lucide-react';
+import { BookOpen, ChevronDown, X } from 'lucide-react';
 import { ExcelSpinner } from '../components/animations/Celebrations';
 
 const LEHRPLAN_META: Record<string, { title: string }> = {
   anfaenger: { title: 'Lehrplan: Excel für Anfänger' },
+  fortgeschrittene: { title: 'Lehrplan: Excel für Fortgeschrittene' },
 };
 
 interface ModuleSection {
@@ -27,6 +28,19 @@ const MODULE_DESCRIPTIONS: Record<string, string> = {
   'modul-11-druck-und-zusammenarbeit': 'Seitenlayout, Druckbereiche, Kopfzeilen, PDF-Export.',
   'modul-12-schutz-und-sicherheit': 'Blattschutz, Tastenkombinationen, Dokumentinspektion.',
   'modul-13-automatisierung-mit-makros': 'Makrorekorder, VBA-Editor, erste Programmierung.',
+};
+
+const MODULE_DESCRIPTIONS_ADVANCED: Record<string, string> = {
+  'modul-1-erweiterte-formate-bedingte-formatierung-und-datenüberprüfung': 'Benutzerdefinierte Formate, komplexe bedingte Formatierung, Datenvalidierung.',
+  'modul-2-erweiterte-funktionen-und-komplexe-formeln': 'Matrixformeln, XVERWEIS, LAMBDA, LET, dynamische Arrays.',
+  'modul-3-referenzen-3d-namen-und-externe-verknüpfungen': '3D-Bezüge, benannte Bereiche, INDIREKT, externe Arbeitsmappen.',
+  'modul-4-datenbanken-in-excel-spezialfilter-und-datenbankfunktionen': 'Spezialfilter, DSUM, DAVERAGE, Kriterienbereiche.',
+  'modul-5-erweiterte-pivot-tabellen': 'Berechnete Felder, Datenschnitte, PivotCharts, GETPIVOTDATA.',
+  'modul-6-datenanalyse-szenarien-und-solver': 'Szenario-Manager, Zielwertsuche, Solver, Datentabellen.',
+  'modul-7-erweiterte-diagramme-und-dashboards': 'Wasserfall, Kombidiagramme, dynamische Diagramme, Dashboards.',
+  'modul-8-automatisierung-mit-makros': 'Makrorekorder, relative/absolute Aufzeichnung, Formularsteuerelemente.',
+  'modul-9-vba-programmierung-grundlagen': 'VBA-Editor, Variablen, Schleifen, Ereignisprozeduren.',
+  'modul-10-zusammenarbeit-vorlagen-und-produktivität': 'Gemeinsame Bearbeitung, Kommentare, Änderungsverfolgung, persönliche Vorlagen.',
 };
 
 function parseModules(html: string): ModuleSection[] {
@@ -55,8 +69,20 @@ export default function LehrplanPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const moduleRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan' };
+
+  const collapseModule = useCallback((modId: string) => {
+    setExpanded(null);
+    // Scroll back to the module header smoothly
+    setTimeout(() => {
+      const el = moduleRefs.current.get(modId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -136,31 +162,12 @@ export default function LehrplanPage() {
               return (
                 <div
                   key={mod.id}
-                  style={{
-                    border: '1px solid var(--border-light)',
-                    borderRadius: 'var(--radius)',
-                    overflow: 'hidden',
-                    background: 'var(--surface)',
-                  }}
+                  ref={(el) => { if (el) moduleRefs.current.set(mod.id, el); }}
+                  className="lehrplan-module-panel"
                 >
                   <button
                     onClick={() => setExpanded(isOpen ? null : mod.id)}
-                    style={{
-                      width: '100%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      padding: '16px 20px',
-                      background: isOpen ? 'var(--bg-alt)' : 'transparent',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontFamily: 'inherit',
-                      fontSize: '1rem',
-                      fontWeight: 600,
-                      color: isOpen ? 'var(--primary)' : 'var(--text)',
-                      textAlign: 'left',
-                      transition: 'background 0.15s',
-                    }}
+                    className={`module-toggle-btn${isOpen ? ' open' : ''}`}
                   >
                     <div>
                       <span style={{ display: 'block' }}>{mod.title}</span>
@@ -172,51 +179,23 @@ export default function LehrplanPage() {
                     </div>
                     <ChevronDown
                       size={18}
-                      style={{
-                        transition: 'transform 0.2s',
-                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                        color: 'var(--text-muted)',
-                        flexShrink: 0,
-                      }}
+                      className={`module-chevron${isOpen ? ' open' : ''}`}
                     />
                   </button>
                   {isOpen && (
-                    <div style={{ padding: '0 20px 20px' }}>
+                    <div className="module-content" style={{ padding: '0 20px 20px' }}>
                       <div dangerouslySetInnerHTML={{ __html: mod.html.replace(/^<h2[^>]*>.*?<\/h2>/, '') }} />
-                      <button
-                        onClick={() => setExpanded(null)}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: 6,
-                          marginTop: 20,
-                          padding: '8px 16px',
-                          background: 'var(--bg-alt)',
-                          border: '1px solid var(--border-light)',
-                          borderRadius: 'var(--radius)',
-                          cursor: 'pointer',
-                          fontFamily: 'inherit',
-                          fontSize: '0.85rem',
-                          color: 'var(--text-secondary)',
-                          transition: 'background 0.15s, color 0.15s',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'var(--primary)';
-                          e.currentTarget.style.color = '#fff';
-                          e.currentTarget.style.borderColor = 'var(--primary)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'var(--bg-alt)';
-                          e.currentTarget.style.color = 'var(--text-secondary)';
-                          e.currentTarget.style.borderColor = 'var(--border-light)';
-                        }}
-                      >
-                        <ChevronDown
-                          size={16}
-                          style={{ transform: 'rotate(180deg)' }}
-                        />
-                        Ausblenden
-                      </button>
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
+                        <button
+                          onClick={() => collapseModule(mod.id)}
+                          className="lehrplan-close-btn"
+                          title="Modul ausblenden"
+                          aria-label="Modul ausblenden"
+                        >
+                          <X size={16} />
+                          Ausblenden
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>

@@ -270,7 +270,7 @@ describe('Button variant rendering', () => {
     const Btn = ({ label }: { label: string }) =>
       createElement('button', { className: 'btn btn-white btn-lg', 'data-testid': 'btn' }, label);
 
-    render(createElement(Btn, { label: 'Jetzt kostenlos starten' }));
+    render(createElement(Btn, { label: 'Jetzt starten' }));
     const btn = screen.getByTestId('btn');
     expect(btn).toHaveClass('btn');
     expect(btn).toHaveClass('btn-white');

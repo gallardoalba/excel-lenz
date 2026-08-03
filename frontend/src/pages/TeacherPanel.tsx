@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, BookOpen, Plus, FileText, Edit, CheckCircle, AlertTriangle, BarChart3, Download, Eye } from 'lucide-react';
+import { Users, BookOpen, BarChart3, Eye, UserPlus, GraduationCap, ChevronDown, ChevronRight, Trash2 } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
 import { Skeleton } from '../hooks/useAutosave';
 
@@ -8,49 +8,33 @@ interface Student {
   id: string; name: string; email: string;
   exercises_attempted: number; avg_score: number; exercises_completed: number;
 }
-
 interface Course {
-  id: string; title: string; description: string; difficulty: string; exercise_count: number;
+  id: string; title: string; description: string; difficulty: string; exercise_count: number; student_count?: number; modules_count?: number;
 }
 
 export default function TeacherPanel() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [tab, setTab] = useState<'students' | 'courses' | 'analytics' | 'groups' | 'new-course' | 'new-exercise' | 'edit-exercise'>('students');
+  const [tab, setTab] = useState<'students' | 'courses' | 'analytics'>('students');
   const [students, setStudents] = useState<Student[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
-  const [editExId, setEditExId] = useState('');
-  // Student detail modal
+
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [studentDetail, setStudentDetail] = useState<any[] | null>(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(false);
   const [analytics, setAnalytics] = useState<{
-    exerciseStats: { title: string; course: string; attempts: number; avgScore: number; failRate: number }[];
+    exerciseStats: { title: string; course: string; avgScore: number; failRate: number }[];
     totalStudents: number;
   } | null>(null);
-  // Cohorts/Groups — localStorage persistence
-  const [groups, setGroups] = useState<{ name: string; studentIds: string[] }[]>(() => {
-    try { return JSON.parse(localStorage.getItem('excel-lenz_groups') || '[]'); } catch { return []; }
-  });
-  const [newGroupName, setNewGroupName] = useState('');
-  const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+  const [expandedCourses, setExpandedCourses] = useState<Set<string>>(new Set());
 
-  // New course form
-  const [ncTitle, setNcTitle] = useState('');
-  const [ncDesc, setNcDesc] = useState('');
-  const [ncDiff, setNcDiff] = useState('beginner');
-
-  // New exercise form
-  const [neCourseId, setNeCourseId] = useState('');
-  const [neTitle, setNeTitle] = useState('');
-  const [neDesc, setNeDesc] = useState('');
-  const [neInstructions, setNeInstructions] = useState('');
-  const [neCols, setNeCols] = useState(3);
-  const [neRows, setNeRows] = useState(5);
-  const [neHeaders, setNeHeaders] = useState('');
-  const [neTaskCols, setNeTaskCols] = useState('');
-  const [neHint, setNeHint] = useState('');
-  const [neMsg, setNeMsg] = useState('');
+  const [showAddStudent, setShowAddStudent] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState<Student | null>(null);
+  const [nsName, setNsName] = useState('');
+  const [nsEmail, setNsEmail] = useState('');
+  const [nsPassword, setNsPassword] = useState('');
+  const [nsMsg, setNsMsg] = useState('');
 
   useEffect(() => {
     if (user?.role !== 'teacher') { navigate('/dashboard'); return; }
@@ -67,128 +51,34 @@ export default function TeacherPanel() {
   };
 
   const loadAnalytics = async () => {
-    setLoading(true);
+    setAnalyticsLoading(true);
     try {
-      // Build analytics from student + course data
-      const [s, c] = await Promise.all([
-        apiFetch('/teacher/students').catch(() => []),
-        apiFetch('/courses').catch(() => []),
-      ]);
-      // Fetch all exercises for all courses
-      const allExercises: any[] = [];
-      for (const course of c) {
-        const detail = await apiFetch(`/courses/${course.id}`).catch(() => null);
-        if (detail?.exercises) {
-          for (const ex of detail.exercises) {
-            allExercises.push({ ...ex, courseTitle: course.title });
-          }
-        }
-      }
-      // Calculate stats per exercise
-      const exerciseStats = allExercises
-        .filter((ex: any) => (ex.user_score != null || ex.completed))
-        .map((ex: any) => ({
-          title: ex.title,
-          course: ex.courseTitle,
-          attempts: ex.completed ? 1 : 0,
-          avgScore: ex.user_score || 0,
-          failRate: (ex.user_score || 0) < 50 ? 100 : 0,
-        }));
-      setAnalytics({
-        exerciseStats: exerciseStats.slice(0, 20),
-        totalStudents: s.length,
-      });
+      const data = await apiFetch('/teacher/analytics').catch(() => []);
+      const s = await apiFetch('/teacher/students').catch(() => []);
+      const exerciseStats = (data || []).map((ex: any) => ({
+        title: ex.title, course: ex.course_title,
+        avgScore: ex.avg_score || 0,
+        failRate: ex.fail_rate || 0,
+      }));
+      setAnalytics({ exerciseStats, totalStudents: s.length });
     } catch { /* ignore */ }
-    setLoading(false);
+    setAnalyticsLoading(false);
   };
 
-  const createCourse = async () => {
-    await apiFetch('/teacher/courses', { method: 'POST', body: JSON.stringify({ title: ncTitle, description: ncDesc, difficulty: ncDiff }) });
-    setNcTitle(''); setNcDesc(''); setTab('courses');
-    loadData();
+  const addStudent = async () => {
+    if (!nsName || !nsEmail || !nsPassword) { setNsMsg('Bitte alle Felder ausfüllen'); return; }
+    try {
+      await apiFetch('/teacher/students', {
+        method: 'POST',
+        body: JSON.stringify({ name: nsName, email: nsEmail, password: nsPassword }),
+      });
+      setNsName(''); setNsEmail(''); setNsPassword('');
+      setNsMsg('Schüler erfolgreich registriert!');
+      loadData();
+      setTimeout(() => { setNsMsg(''); setShowAddStudent(false); }, 2000);
+    } catch { setNsMsg('Fehler: Email existiert möglicherweise bereits'); }
   };
 
-  const createExercise = async () => {
-    if (!neCourseId || !neTitle || !neHeaders) { setNeMsg('Bitte alle Pflichtfelder ausfüllen'); return; }
-    const headers = neHeaders.split(',').map(h => h.trim());
-    const taskCols = neTaskCols.split(',').map(c => parseInt(c.trim())).filter(n => !isNaN(n));
-    const emptyData = Array.from({ length: neRows }, () => Array(neCols).fill(null));
-    const emptySolution = Array.from({ length: neRows }, () => Array(neCols).fill(null));
-
-    const template = { cols: neCols, rows: neRows, headers, data: emptyData, taskCols, formulaHint: neHint || undefined };
-    const solution = { data: emptySolution };
-
-    await apiFetch('/teacher/exercises', {
-      method: 'POST',
-      body: JSON.stringify({
-        course_id: neCourseId, title: neTitle, description: neDesc,
-        template_data: template, solution_data: solution,
-        instructions: neInstructions,
-      }),
-    });
-
-    setNeTitle(''); setNeDesc(''); setNeInstructions(''); setNeHeaders(''); setNeTaskCols(''); setNeHint('');
-    setNeMsg('Übung erstellt!');
-    loadData();
-    setTimeout(() => setNeMsg(''), 3000);
-  };
-
-  const editExercise = async (exId: string) => {
-    // Fetch exercise data and switch to edit tab
-    const ex = await apiFetch(`/exercises/${exId}`).catch(() => null);
-    if (!ex) return;
-    setEditExId(exId);
-    setNeCourseId(ex.course_id || '');
-    setNeTitle(ex.title || '');
-    setNeDesc(ex.description || '');
-    setNeInstructions(ex.instructions || '');
-    const tpl = ex.template_data || {};
-    setNeCols(tpl.cols || 3);
-    setNeRows(tpl.rows || 5);
-    setNeHeaders((tpl.headers || []).join(', '));
-    setNeTaskCols((tpl.taskCols || []).join(', '));
-    setNeHint(tpl.formulaHint || '');
-    setTab('edit-exercise');
-  };
-
-  const saveExercise = async () => {
-    if (!editExId) return;
-    const headers = neHeaders.split(',').map(h => h.trim());
-    const taskCols = neTaskCols.split(',').map(c => parseInt(c.trim())).filter(n => !isNaN(n));
-    await apiFetch(`/teacher/exercises/${editExId}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        title: neTitle, description: neDesc, instructions: neInstructions,
-        template_data: { cols: neCols, rows: neRows, headers, taskCols, formulaHint: neHint || undefined },
-        course_id: neCourseId,
-      }),
-    });
-    setNeMsg('Übung aktualisiert!');
-    setEditExId('');
-    setTab('courses');
-    loadData();
-    setTimeout(() => setNeMsg(''), 3000);
-  };
-  const deleteCourse = async (id: string) => {
-    if (!confirm('Kurs wirklich löschen?')) return;
-    await apiFetch(`/teacher/courses/${id}`, { method: 'DELETE' });
-    loadData();
-  };
-
-  // CSV export utility
-  const exportToCSV = (data: any[], filename: string) => {
-    if (!data.length) return;
-    const headers = Object.keys(data[0]).join(';');
-    const rows = data.map(row => Object.values(row).map(v => String(v ?? '').replace(/;/g, ',')).join(';')).join('\n');
-    const csv = `\uFEFF${headers}\n${rows}`;
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-    link.click();
-  };
-
-  // Student detail viewer
   const viewStudentDetail = async (student: Student) => {
     setSelectedStudent(student);
     setStudentDetail(null);
@@ -198,437 +88,234 @@ export default function TeacherPanel() {
     } catch { setStudentDetail([]); }
   };
 
+  const kpis = useMemo(() => ({
+    total: students.length,
+    avgScore: students.length > 0 ? Math.round(students.reduce((s, st) => s + (st.avg_score || 0), 0) / students.length) : 0,
+    active: students.filter(s => s.exercises_attempted > 0).length,
+    completed: students.reduce((s, st) => s + st.exercises_completed, 0),
+  }), [students]);
+
   if (loading) return <Skeleton lines={5} />;
 
   return (
-    <div>
-      <h1 style={{ marginBottom: 4 }}><FileText size={28} style={{marginRight:8, verticalAlign:'middle'}} />Lehrer-Panel</h1>
-      <p className="text-muted mb-3">Kurse & Übungen verwalten, Schüler überblicken</p>
+    <div className="teacher-header" style={{ maxWidth: 1500, margin: '0 auto', padding: '24px 32px 0' }}>
+      <h1><GraduationCap size={28} style={{marginRight:8, verticalAlign:'middle'}} />Lehrer-Panel</h1>
+      <p>Schüleraktivität überblicken und neue Schüler registrieren</p>
 
-      <div className="teacher-layout">
-        {/* ── SIDEBAR ── */}
+      <div className="teacher-layout" style={{ marginTop: 24 }}>
         <nav className="teacher-sidebar" aria-label="Lehrer-Navigation">
           {([
-            { key: 'students', icon: <Users size={16} />, label: 'Schüler' },
-            { key: 'courses', icon: <BookOpen size={16} />, label: 'Kurse' },
-            { key: 'analytics', icon: <BarChart3 size={16} />, label: 'Analyse' },
-            { key: 'groups', icon: <Users size={16} />, label: 'Gruppen' },
-            { key: 'new-course', icon: <Plus size={16} />, label: 'Neuer Kurs' },
-            { key: 'new-exercise', icon: <FileText size={16} />, label: 'Neue Übung' },
-          ] as const).map(({ key, icon, label }) => (
-            <button
-              key={key}
-              className={`teacher-sidebar-btn ${tab === key ? 'active' : ''}`}
-              onClick={() => { setTab(key); if (key === 'analytics') loadAnalytics(); }}
-            >
+            { key: 'students' as const, icon: <Users size={16} />, label: 'Schüler' },
+            { key: 'courses' as const, icon: <BookOpen size={16} />, label: 'Kurse' },
+            { key: 'analytics' as const, icon: <BarChart3 size={16} />, label: 'Analyse' },
+          ]).map(({ key, icon, label }) => (
+            <button key={key} className={`teacher-sidebar-btn ${tab === key ? 'active' : ''}`}
+              onClick={() => { setTab(key); if (key === 'analytics') loadAnalytics(); }}>
               {icon} {label}
             </button>
           ))}
-          {tab === 'edit-exercise' && (
-            <button className="teacher-sidebar-btn active">
-              <Edit size={16} /> Übung bearbeiten
-            </button>
-          )}
         </nav>
 
-        {/* ── CONTENT ── */}
         <div className="teacher-content">
 
-      {/* ANALYTICS TAB */}
-      {tab === 'analytics' && (
-        <div className="card">
-          <h3 style={{ marginBottom: 16 }}><BarChart3 size={20} style={{marginRight:8, verticalAlign:'middle'}} />Klassen-Analyse</h3>
-          {analytics ? (
-            <>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: 20 }}>
-                {analytics.totalStudents} Schüler · {analytics.exerciseStats.length} Übungen mit Daten
-              </p>
-              {analytics.exerciseStats.filter(e => e.failRate >= 50).length > 0 && (
-                <div style={{
-                  padding: '12px 16px', marginBottom: 20,
-                  border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)',
-                  borderLeft: '3px solid var(--danger)',
-                }}>
-                  <strong style={{ color: 'var(--danger)' }}>Achtung:</strong>{' '}
-                  {analytics.exerciseStats.filter(e => e.failRate >= 50).length} Übungen haben eine hohe Fehlerquote.
-                  Diese Themen sollten im Präsenzunterricht wiederholt werden.
-                </div>
-              )}
-              <table className="data-table">
-                <thead>
-                  <tr>
-                    {['Übung', 'Kurs', '⌀ Score', 'Quote'].map(h => (
-                      <th key={h}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {analytics.exerciseStats.map((ex, i) => (
-                    <tr key={i}>
-                      <td style={{ fontWeight: 500, fontSize: '0.88rem' }}>{ex.title}</td>
-                      <td style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>{ex.course}</td>
-                      <td style={{ padding: '8px 14px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <div className="progress-bar" style={{ flex: 1, maxWidth: 80 }}>
-                            <div className="progress-bar-fill" style={{
-                              width: `${Math.round(ex.avgScore)}%`,
-                              background: ex.avgScore >= 80 ? 'var(--success)' : ex.avgScore >= 50 ? 'var(--warning)' : 'var(--danger)',
-                            }} />
-                          </div>
-                          <span style={{ fontSize: '0.82rem', fontWeight: 600 }}>{Math.round(ex.avgScore)}%</span>
-                        </div>
-                      </td>
-                      <td style={{ padding: '8px 14px' }}>
-                        <span style={{
-                          padding: '2px 10px', borderRadius: 12, fontSize: '0.78rem', fontWeight: 600,
-                          background: ex.failRate >= 50 ? 'var(--danger-light)' : 'var(--success-light)',
-                          color: ex.failRate >= 50 ? 'var(--danger)' : 'var(--success)',
-                        }}>
-                          {ex.failRate >= 50 ? 'Hoch' : 'Niedrig'}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </>
-          ) : (
-            <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: 24 }}>Lade Analyse...</p>
-          )}
-        </div>
-      )}
-
-      {/* GROUPS TAB */}
-      {tab === 'groups' && (
-        <div className="card">
-          <h3 style={{ marginBottom: 16 }}><Users size={20} style={{marginRight:8, verticalAlign:'middle'}} />Gruppen-Verwaltung</h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginBottom: 20 }}>
-            Erstellen Sie Gruppen für Ihre Präsenzklassen und weisen Sie Schüler zu.
-          </p>
-
-          {/* Create group */}
-          <div className="flex gap-sm" style={{ marginBottom: 20 }}>
-            <input
-              className="form-input"
-              value={newGroupName}
-              onChange={e => setNewGroupName(e.target.value)}
-              placeholder="Gruppenname (z.B. Klasse Dienstag)"
-              style={{ flex: 1 }}
-            />
-            <button className="btn btn-primary btn-sm" onClick={() => {
-              if (!newGroupName.trim()) return;
-              const updated = [...groups, { name: newGroupName.trim(), studentIds: [] }];
-              setGroups(updated);
-              localStorage.setItem('excel-lenz_groups', JSON.stringify(updated));
-              setNewGroupName('');
-            }}>Gruppe erstellen</button>
-          </div>
-
-          {/* Group list */}
-          {groups.length === 0 ? (
-            <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: 16 }}>Noch keine Gruppen erstellt.</p>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {groups.map((g, idx) => {
-                const groupStudents = students.filter(s => g.studentIds.includes(s.id));
-                const avgScore = groupStudents.length > 0
-                  ? Math.round(groupStudents.reduce((sum, s) => sum + s.avg_score, 0) / groupStudents.length)
-                  : 0;
-                const isSelected = selectedGroup === g.name;
-                return (
-                  <div key={idx} className="card" style={{ padding: '12px 16px' }}>
-                    <div className="flex justify-between" style={{ marginBottom: isSelected ? 12 : 0 }}>
-                      <div>
-                        <strong>{g.name}</strong>
-                        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginLeft: 12 }}>
-                          {groupStudents.length} Schüler · ⌀ {avgScore}%
-                        </span>
-                      </div>
-                      <div className="flex gap-sm">
-                        <button className="btn btn-outline btn-sm" style={{ fontSize: '0.75rem', padding: '4px 10px' }}
-                          onClick={() => setSelectedGroup(isSelected ? null : g.name)}>
-                          {isSelected ? 'Schließen' : 'Verwalten'}
-                        </button>
-                        <button className="btn btn-danger btn-sm" style={{ fontSize: '0.75rem', padding: '4px 10px' }}
-                          onClick={() => {
-                            const updated = groups.filter((_, i) => i !== idx);
-                            setGroups(updated);
-                            localStorage.setItem('excel-lenz_groups', JSON.stringify(updated));
-                          }}>Löschen</button>
-                      </div>
-                    </div>
-
-                    {isSelected && (
-                      <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: 12 }}>
-                        <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginBottom: 10 }}>
-                          Schüler zuweisen (klicken zum Hinzufügen/Entfernen):
-                        </p>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                          {students.map(s => {
-                            const isIn = g.studentIds.includes(s.id);
-                            return (
-                              <button key={s.id}
-                                onClick={() => {
-                                  const updated = [...groups];
-                                  if (isIn) {
-                                    updated[idx].studentIds = updated[idx].studentIds.filter(id => id !== s.id);
-                                  } else {
-                                    updated[idx].studentIds = [...updated[idx].studentIds, s.id];
-                                  }
-                                  setGroups(updated);
-                                  localStorage.setItem('excel-lenz_groups', JSON.stringify(updated));
-                                }}
-                                style={{
-                                  padding: '4px 12px', borderRadius: 20, border: '1px solid var(--border)',
-                                  background: isIn ? 'var(--primary-light)' : 'var(--surface)',
-                                  color: isIn ? 'var(--primary)' : 'var(--text-secondary)',
-                                  cursor: 'pointer', fontSize: '0.78rem', fontFamily: 'inherit',
-                                  fontWeight: isIn ? 600 : 400,
-                                }}
-                              >
-                                {isIn ? '✓ ' : ''}{s.name}
-                              </button>
-                            );
-                          })}
-                        </div>
-                        {/* Group progress summary */}
-                        {groupStudents.length > 0 && (
-                          <div style={{ marginTop: 14, padding: '10px 14px', background: 'var(--bg-alt)', borderRadius: 'var(--radius-sm)' }}>
-                            <strong style={{ fontSize: '0.85rem' }}>Gruppen-Fortschritt</strong>
-                            <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                              {groupStudents.map(s => (
-                                <div key={s.id} className="flex justify-between" style={{ fontSize: '0.82rem' }}>
-                                  <span>{s.name}</span>
-                                  <div className="flex items-center gap-sm">
-                                    <div className="progress-bar" style={{ width: 80 }}>
-                                      <div className="progress-bar-fill" style={{ width: `${s.avg_score || 0}%` }} />
-                                    </div>
-                                    <span style={{ fontWeight: 600, minWidth: 32, textAlign: 'right' }}>{s.avg_score || 0}%</span>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* STUDENTS TAB */}
       {tab === 'students' && (
-        <div className="card" style={{ overflow: 'auto', padding: 0 }}>
-          <div style={{ padding: '16px 20px 0' }}>
-            <button className="btn btn-outline btn-sm" onClick={() => exportToCSV(students, 'alumnos_excel-lenz.csv')}>
-              <Download size={14} style={{marginRight:6}} />Export CSV
+        <div>
+          <div className="students-tab-header">
+            <h3 style={{ margin: 0 }}><Users size={20} style={{marginRight:8, verticalAlign:'middle'}} />Schüler ({students.length})</h3>
+            <button className="btn btn-primary btn-sm desktop-only" onClick={() => setShowAddStudent(true)}>
+              <UserPlus size={14} style={{marginRight:4}} />Neuer Schüler
             </button>
           </div>
-          <table className="data-table">
-            <thead>
-              <tr>
-                {['Name', 'Email', 'Versuche', 'Score', 'Abgeschlossen', ''].map(h => (
-                  <th key={h}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {students.map((s) => {
-                const initials = s.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-                const scoreColor = (s.avg_score || 0) >= 80 ? 'var(--success)' : (s.avg_score || 0) >= 50 ? 'var(--warning)' : 'var(--danger)';
-                return (
-                <tr key={s.id}>
-                  <td>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <span style={{
-                        width: 32, height: 32, borderRadius: '50%',
-                        background: 'var(--primary-lighter)', color: 'var(--primary)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontWeight: 700, fontSize: '0.75rem', flexShrink: 0,
-                      }}>{initials}</span>
-                      <span style={{ fontWeight: 600 }}>{s.name}</span>
-                    </div>
-                  </td>
-                  <td style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>{s.email}</td>
-                  <td>{s.exercises_attempted}</td>
-                  <td>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <div className="progress-bar" style={{ flex: 1, maxWidth: 80 }}>
-                        <div className="progress-bar-fill" style={{ width: `${s.avg_score || 0}%`, background: scoreColor }} />
+          <div className="teacher-table-wrap">
+            <table className="data-table">
+              <thead><tr>
+                <th>Name</th><th>Email</th><th style={{textAlign:'center'}}>Versuche</th><th>Score</th><th style={{textAlign:'center'}}>Abgeschlossen</th><th></th>
+              </tr></thead>
+              <tbody>
+                {students.map(s => {
+                  const initials = s.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+                  const sc = (s.avg_score||0)>=80?'var(--success)':(s.avg_score||0)>=50?'var(--warning)':'var(--danger)';
+                  return (<tr key={s.id}>
+                    <td><div style={{display:'flex',alignItems:'center',gap:10}}><span style={{width:32,height:32,borderRadius:'50%',background:'var(--primary-lighter)',color:'var(--primary)',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700,fontSize:'0.75rem',flexShrink:0}}>{initials}</span><span style={{fontWeight:600}}>{s.name}</span></div></td>
+                    <td style={{color:'var(--text-secondary)',fontSize:'0.85rem',whiteSpace:'nowrap'}}>{s.email}</td>
+                    <td style={{textAlign:'center'}}>{s.exercises_attempted}</td>
+                    <td><div style={{display:'flex',alignItems:'center',gap:8}}><div className="progress-bar" style={{flex:1,maxWidth:60}}><div className="progress-bar-fill" style={{width:`${s.avg_score||0}%`,background:sc}}/></div><span style={{fontSize:'0.8rem',fontWeight:600,color:sc}}>{s.avg_score||0}%</span></div></td>
+                    <td style={{textAlign:'center'}}>{s.exercises_completed}</td>
+                    <td style={{textAlign:'right',paddingRight:16}}>
+                      <div style={{display:'inline-flex',gap:4,justifyContent:'flex-end'}}>
+                        <button className="btn btn-outline btn-sm" onClick={()=>viewStudentDetail(s)} style={{fontSize:'0.75rem',padding:'3px 8px'}}><Eye size={13} style={{marginRight:4}}/>Details</button>
+                        <button className="btn btn-outline btn-sm" onClick={()=>setShowDeleteConfirm(s)} style={{fontSize:'0.75rem',padding:'3px 8px',color:'var(--danger)',borderColor:'var(--danger)'}} title="Schüler löschen"><Trash2 size={13} /></button>
                       </div>
-                      <span style={{ fontSize: '0.8rem', fontWeight: 600, color: scoreColor }}>
-                        {s.avg_score || 0}%
-                      </span>
-                    </div>
-                  </td>
-                  <td>{s.exercises_completed}</td>
-                  <td>
-                    <button className="btn btn-outline btn-sm" onClick={() => viewStudentDetail(s)} style={{ fontSize: '0.75rem', padding: '3px 8px' }}>
-                      <Eye size={13} style={{marginRight:4}} />Details
-                    </button>
-                  </td>
-                </tr>
-                );
-              })}
-              {students.length === 0 && (
-                <tr><td colSpan={6} style={{ padding: 32, textAlign: 'center', color: 'var(--text-muted)' }}>Keine Schüler registriert</td></tr>
-              )}
-            </tbody>
-          </table>
+                    </td>
+                  </tr>);
+                })}
+                {students.length===0 && <tr><td colSpan={6} style={{padding:32,textAlign:'center',color:'var(--text-muted)'}}>Keine Schüler registriert</td></tr>}
+              </tbody>
+            </table>
+          </div>
+          <button className="btn btn-primary btn-sm mobile-only" onClick={() => setShowAddStudent(true)} style={{marginTop:12,width:'100%'}}>
+            <UserPlus size={14} style={{marginRight:4}} />Neuer Schüler
+          </button>
         </div>
       )}
 
-      {/* COURSES TAB */}
       {tab === 'courses' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {courses.map((c) => (
-            <div key={c.id} className="card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <strong>{c.title}</strong>
-                <span className={`badge badge-${c.difficulty}`} style={{ marginLeft: 10 }}>
-                  {c.difficulty === 'beginner' ? 'Anfänger' : c.difficulty === 'intermediate' ? 'Fortgeschritten' : 'Experte'}
-                </span>
-                <div className="text-muted" style={{ fontSize: '0.85rem' }}><FileText size={12} style={{marginRight:4}} />{c.exercise_count} Übungen</div>
+        <div>
+          <h3 style={{ marginBottom: 16 }}><BookOpen size={20} style={{marginRight:8,verticalAlign:'middle'}}/>Kurse ({courses.length})</h3>
+          <div className="teacher-kpis" style={{marginBottom:20}}>
+            <div className="teacher-kpi">
+              <span className="teacher-kpi-label">Schüler</span>
+              <span className="teacher-kpi-value">{kpis.total}</span>
+            </div>
+            <div className="teacher-kpi">
+              <span className="teacher-kpi-label">Aktiv</span>
+              <span className="teacher-kpi-value">{kpis.active}</span>
+            </div>
+            <div className="teacher-kpi">
+              <span className="teacher-kpi-label">⌀ Score</span>
+              <span className="teacher-kpi-value">{kpis.avgScore}%</span>
+            </div>
+            <div className="teacher-kpi">
+              <span className="teacher-kpi-label">Abgeschlossen</span>
+              <span className="teacher-kpi-value">{kpis.completed}</span>
+            </div>
+          </div>
+          <div style={{display:'flex',flexDirection:'column',gap:12}}>
+            {courses.map(c => (
+              <div key={c.id} className="teacher-course-card">
+                <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:6}}>
+                  <strong style={{fontSize:'1.05rem'}}>{c.title}</strong>
+                  <span className={`badge badge-${c.difficulty}`}>{c.difficulty==='beginner'?'Anfänger':c.difficulty==='intermediate'?'Fortgeschritten':'Experte'}</span>
+                </div>
+                <div className="text-muted" style={{fontSize:'0.85rem',marginBottom:8}}>{c.description}</div>
+                <div style={{display:'flex',gap:20,fontSize:'0.82rem',color:'var(--text-secondary)'}}>
+                  <span><strong>{c.exercise_count}</strong> Übungen</span>
+                  <span><strong>{c.student_count ?? 0}</strong> aktive Schüler</span>
+                  {(c.modules_count ?? 0) > 0 && <span><strong>{c.modules_count}</strong> Module</span>}
+                </div>
               </div>
-              <button className="btn btn-danger btn-sm" onClick={() => deleteCourse(c.id)}>Löschen</button>
-            </div>
-          ))}
+            ))}
+            {courses.length===0 && <p style={{color:'var(--text-muted)',textAlign:'center',padding:24}}>Keine Kurse vorhanden</p>}
+          </div>
         </div>
       )}
 
-      {/* NEW COURSE */}
-      {tab === 'new-course' && (
-        <div className="card" style={{ maxWidth: 500 }}>
-          <div className="form-group"><label>Kurstitel *</label>
-            <input className="form-input" value={ncTitle} onChange={e => setNcTitle(e.target.value)} placeholder="z.B. Excel für Fortgeschrittene" />
-          </div>
-          <div className="form-group"><label>Beschreibung *</label>
-            <textarea className="form-input" value={ncDesc} onChange={e => setNcDesc(e.target.value)} rows={3} placeholder="Kurzbeschreibung..." />
-          </div>
-          <div className="form-group"><label>Schwierigkeit</label>
-            <select className="form-input" value={ncDiff} onChange={e => setNcDiff(e.target.value)}>
-              <option value="beginner">Anfänger</option>
-              <option value="intermediate">Fortgeschritten</option>
-              <option value="advanced">Experte</option>
-            </select>
-          </div>
-          <button className="btn btn-primary" onClick={createCourse}>Kurs erstellen</button>
-        </div>
-      )}
-
-      {/* NEW EXERCISE */}
-      {tab === 'new-exercise' && (
-        <div className="card" style={{ maxWidth: 600 }}>
-          {neMsg && <p style={{ color: 'var(--success)', marginBottom: 16 }}>{neMsg}</p>}
-          <div className="form-group"><label>Kurs *</label>
-            <select className="form-input" value={neCourseId} onChange={e => setNeCourseId(e.target.value)}>
-              <option value="">— Kurs wählen —</option>
-              {courses.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
-            </select>
-          </div>
-          <div className="form-group"><label>Übungstitel *</label>
-            <input className="form-input" value={neTitle} onChange={e => setNeTitle(e.target.value)} placeholder="z.B. Pivot-Tabellen erstellen" />
-          </div>
-          <div className="form-group"><label>Beschreibung</label>
-            <input className="form-input" value={neDesc} onChange={e => setNeDesc(e.target.value)} placeholder="Kurzbeschreibung der Übung" />
-          </div>
-          <div className="form-group"><label>Anleitung</label>
-            <textarea className="form-input" value={neInstructions} onChange={e => setNeInstructions(e.target.value)} rows={3} placeholder="Schritt-für-Schritt Anleitung..." />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <div className="form-group"><label>Spaltenanzahl</label>
-              <input className="form-input" type="number" value={neCols} onChange={e => setNeCols(parseInt(e.target.value) || 1)} min={1} max={10} />
-            </div>
-            <div className="form-group"><label>Zeilenanzahl</label>
-              <input className="form-input" type="number" value={neRows} onChange={e => setNeRows(parseInt(e.target.value) || 1)} min={1} max={50} />
-            </div>
-          </div>
-          <div className="form-group"><label>Spaltenüberschriften * (Komma-getrennt)</label>
-            <input className="form-input" value={neHeaders} onChange={e => setNeHeaders(e.target.value)} placeholder="Name, Wert, Ergebnis" />
-          </div>
-          <div className="form-group"><label>Aufgaben-Spalten (0-basiert, Komma-getrennt)</label>
-            <input className="form-input" value={neTaskCols} onChange={e => setNeTaskCols(e.target.value)} placeholder="2" />
-          </div>
-          <div className="form-group"><label>Formel-Hinweis</label>
-            <input className="form-input" value={neHint} onChange={e => setNeHint(e.target.value)} placeholder="z.B. =SUMME(B2:D2)" />
-          </div>
-          <button className="btn btn-primary" onClick={createExercise}>Übung erstellen</button>
-        </div>
-      )}
-      {/* EDIT EXERCISE */}
-      {tab === 'edit-exercise' && (
-        <div className="card" style={{ maxWidth: 600 }}>
-          {neMsg && <p style={{ color: 'var(--success)', marginBottom: 16 }}>{neMsg}</p>}
-          <h3 className="mb-2"><Edit size={16} style={{marginRight:6, verticalAlign:'middle'}} />Übung bearbeiten</h3>
-          <div className="form-group"><label>Kurs</label>
-            <select className="form-input" value={neCourseId} onChange={e => setNeCourseId(e.target.value)}>
-              {courses.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
-            </select>
-          </div>
-          <div className="form-group"><label>Übungstitel</label>
-            <input className="form-input" value={neTitle} onChange={e => setNeTitle(e.target.value)} />
-          </div>
-          <div className="form-group"><label>Beschreibung</label>
-            <input className="form-input" value={neDesc} onChange={e => setNeDesc(e.target.value)} />
-          </div>
-          <div className="form-group"><label>Anleitung</label>
-            <textarea className="form-input" value={neInstructions} onChange={e => setNeInstructions(e.target.value)} rows={3} />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <div className="form-group"><label>Spalten</label>
-              <input className="form-input" type="number" value={neCols} onChange={e => setNeCols(parseInt(e.target.value) || 1)} />
-            </div>
-            <div className="form-group"><label>Zeilen</label>
-              <input className="form-input" type="number" value={neRows} onChange={e => setNeRows(parseInt(e.target.value) || 1)} />
-            </div>
-          </div>
-          <div className="form-group"><label>Spaltenüberschriften</label>
-            <input className="form-input" value={neHeaders} onChange={e => setNeHeaders(e.target.value)} />
-          </div>
-          <div className="form-group"><label>Aufgaben-Spalten</label>
-            <input className="form-input" value={neTaskCols} onChange={e => setNeTaskCols(e.target.value)} />
-          </div>
-          <div className="form-group"><label>Formel-Hinweis</label>
-            <input className="form-input" value={neHint} onChange={e => setNeHint(e.target.value)} />
-          </div>
-          <div style={{ display: 'flex', gap: 12 }}>
-            <button className="btn btn-primary" onClick={saveExercise}><FileText size={14} style={{marginRight:4}} />Speichern</button>
-            <button className="btn btn-outline" onClick={() => { setTab('courses'); setEditExId(''); }}>Abbrechen</button>
-          </div>
-        </div>
-      )}
-        </div>{/* teacher-content */}
-      </div>{/* teacher-layout */}
-
-      {/* STUDENT DETAIL MODAL */}
-      {selectedStudent && (
-        <div style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000}} onClick={() => setSelectedStudent(null)}>
-          <div className="card" style={{maxWidth:600,width:'90%',maxHeight:'80vh',overflow:'auto',padding:24}} onClick={e => e.stopPropagation()}>
-            <div className="flex justify-between mb-3">
-              <h3>{selectedStudent.name}</h3>
-              <button className="btn btn-outline btn-sm" onClick={() => setSelectedStudent(null)}>✕</button>
-            </div>
-            <p className="text-muted mb-3">Email: {selectedStudent.email} | ⌀ {selectedStudent.avg_score}% | {selectedStudent.exercises_completed} abgeschlossen</p>
-            <h4 className="text-md mb-2">Übungen:</h4>
-            {studentDetail === null ? <p>Wird geladen...</p> : studentDetail.length === 0 ? (
-              <p className="text-muted">Noch keine Übungen absolviert.</p>
-            ) : (
-              <div className="flex-col gap-sm">
-                {studentDetail.map((p: any) => (
-                  <div key={p.id} className="card" style={{padding:'8px 12px',fontSize:'0.85rem'}}>
-                    <div className="flex justify-between">
-                      <span>{p.exercise_title || p.title}</span>
-                      <span style={{fontWeight:600,color:p.score>=80?'var(--success)':p.score>=50?'var(--warning)':'var(--danger)'}}>{p.score}%</span>
-                    </div>
-                    <div className="text-muted text-xs">{p.course_title}</div>
-                  </div>
-                ))}
+      {tab === 'analytics' && (
+        <div>
+          <h3 style={{marginBottom:12}}><BarChart3 size={20} style={{marginRight:8,verticalAlign:'middle'}}/>Klassen-Analyse</h3>
+          {analyticsLoading ? <p style={{color:'var(--text-muted)',textAlign:'center',padding:24}}>Lade Analyse...</p>
+          : analytics ? (<>
+            <p style={{color:'var(--text-secondary)',fontSize:'0.9rem',marginBottom:16}}>{analytics.totalStudents} Schüler · {analytics.exerciseStats.length} Übungen mit Daten</p>
+            {analytics.exerciseStats.filter(e=>e.failRate>=50).length>0 && (
+              <div className="card" style={{marginBottom:16,padding:'12px 16px',borderLeft:'3px solid var(--danger)'}}>
+                <strong style={{color:'var(--danger)'}}>Achtung:</strong> {analytics.exerciseStats.filter(e=>e.failRate>=50).length} Übungen haben eine hohe Fehlerquote.
               </div>
             )}
+          </>) : <p style={{color:'var(--text-muted)',textAlign:'center',padding:24}}>Keine Analysedaten verfügbar</p>}
+          {analytics && (() => {
+            const grouped = new Map<string, typeof analytics.exerciseStats>();
+            for (const ex of analytics.exerciseStats) {
+              const list = grouped.get(ex.course) || [];
+              list.push(ex);
+              grouped.set(ex.course, list);
+            }
+            return [...grouped.entries()].map(([course, exercises]) => {
+              const isOpen = expandedCourses.has(course);
+              const failCount = exercises.filter(e => e.failRate >= 50).length;
+              return (
+                <div key={course} className="teacher-analytics-panel">
+                  <button onClick={() => {
+                    const next = new Set(expandedCourses);
+                    isOpen ? next.delete(course) : next.add(course);
+                    setExpandedCourses(next);
+                  }} className="teacher-analytics-toggle">
+                    {isOpen ? <ChevronDown size={16} style={{color:'var(--text-muted)'}}/> : <ChevronRight size={16} style={{color:'var(--text-muted)'}}/>}
+                    {course}
+                    <span className="teacher-analytics-meta" style={{marginLeft:8}}>{exercises.length} Übungen</span>
+                    {failCount > 0 && <span className="teacher-analytics-badge">{failCount} kritisch</span>}
+                  </button>
+                  {isOpen && (
+                    <table className="data-table" style={{marginBottom:0}}>
+                      <thead><tr>{['Übung','Score','Quote'].map(h=><th key={h}>{h}</th>)}</tr></thead>
+                      <tbody>{exercises.map((ex,i)=>(
+                        <tr key={i}>
+                          <td style={{fontWeight:500,fontSize:'0.88rem'}}>{ex.title}</td>
+                          <td><div style={{display:'flex',alignItems:'center',gap:8}}><div className="progress-bar" style={{flex:1,maxWidth:80}}><div className="progress-bar-fill" style={{width:`${Math.round(ex.avgScore)}%`,background:ex.avgScore>=80?'var(--success)':ex.avgScore>=50?'var(--warning)':'var(--danger)'}}/></div><span style={{fontSize:'0.82rem',fontWeight:600}}>{Math.round(ex.avgScore)}%</span></div></td>
+                          <td><span style={{padding:'2px 10px',borderRadius:12,fontSize:'0.78rem',fontWeight:600,background:ex.failRate>=50?'var(--danger-light)':'var(--success-light)',color:ex.failRate>=50?'var(--danger)':'var(--success)'}}>{ex.failRate>=50?'Hoch':'Niedrig'}</span></td>
+                        </tr>
+                      ))}</tbody>
+                    </table>
+                  )}
+                </div>
+              );
+            });
+          })()}
+        </div>
+      )}
+
+        </div>
+      </div>
+
+      {selectedStudent && (
+        <div style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000}} onClick={()=>setSelectedStudent(null)}>
+          <div className="card" style={{maxWidth:600,width:'90%',maxHeight:'80vh',overflow:'auto',padding:24}} onClick={e=>e.stopPropagation()}>
+            <div className="flex justify-between mb-3"><h3>{selectedStudent.name}</h3><button className="btn btn-outline btn-sm" onClick={()=>setSelectedStudent(null)}>✕</button></div>
+            <p className="text-muted mb-3">Email: {selectedStudent.email} | {selectedStudent.avg_score}% | {selectedStudent.exercises_completed} abgeschlossen</p>
+            <h4 className="text-md mb-2">Übungen:</h4>
+            {studentDetail===null ? <p>Wird geladen...</p> : studentDetail.length===0 ? <p className="text-muted">Noch keine Übungen absolviert.</p> : (
+              <div className="flex-col gap-sm">{studentDetail.map((p:any)=>(
+                <div key={p.id} className="card" style={{padding:'8px 12px',fontSize:'0.85rem'}}>
+                  <div className="flex justify-between"><span>{p.exercise_title||p.title}</span><span style={{fontWeight:600,color:p.score>=80?'var(--success)':p.score>=50?'var(--warning)':'var(--danger)'}}>{p.score}%</span></div>
+                  <div className="text-muted text-xs">{p.course_title}</div>
+                </div>
+              ))}</div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* STUDENT REGISTRATION MODAL */}
+      {showAddStudent && (
+        <div style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000}} onClick={() => { setShowAddStudent(false); setNsMsg(''); }}>
+          <div className="card" style={{maxWidth:440,width:'90%',padding:24}} onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between mb-3">
+              <h3 style={{margin:0}}>Schüler registrieren</h3>
+              <button className="btn btn-outline btn-sm" onClick={() => { setShowAddStudent(false); setNsMsg(''); }}>✕</button>
+            </div>
+            {nsMsg && <p style={{ color: nsMsg.includes('Fehler') ? 'var(--danger)' : 'var(--success)', marginBottom: 16, fontSize: '0.85rem' }}>{nsMsg}</p>}
+            <div className="form-group"><label>Name</label><input className="form-input" value={nsName} onChange={e => setNsName(e.target.value)} placeholder="Max Mustermann" autoFocus /></div>
+            <div className="form-group"><label>Email</label><input className="form-input" type="email" value={nsEmail} onChange={e => setNsEmail(e.target.value)} placeholder="max@example.com" /></div>
+            <div className="form-group"><label>Passwort</label><input className="form-input" type="password" value={nsPassword} onChange={e => setNsPassword(e.target.value)} placeholder="Mindestens 8 Zeichen" /></div>
+            <div className="flex gap-sm" style={{marginTop:8}}>
+              <button className="btn btn-primary" onClick={addStudent} style={{flex:1}}>Registrieren</button>
+              <button className="btn btn-outline" onClick={() => { setShowAddStudent(false); setNsMsg(''); }}>Abbrechen</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* DELETE CONFIRMATION MODAL */}
+      {showDeleteConfirm && (
+        <div style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',zIndex:1000}} onClick={() => setShowDeleteConfirm(null)}>
+          <div className="card" style={{maxWidth:400,width:'90%',padding:24}} onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between mb-3">
+              <h3 style={{margin:0}}>Schüler löschen</h3>
+              <button className="btn btn-outline btn-sm" onClick={() => setShowDeleteConfirm(null)}>✕</button>
+            </div>
+            <p style={{color:'var(--text-secondary)',marginBottom:20,lineHeight:1.5}}>
+              Möchten Sie den Schüler <strong>{showDeleteConfirm.name}</strong> ({showDeleteConfirm.email}) wirklich löschen? Alle zugehörigen Lernfortschritte werden unwiderruflich entfernt.
+            </p>
+            <div className="flex gap-sm">
+              <button className="btn btn-danger" onClick={async () => {
+                const s = showDeleteConfirm;
+                setShowDeleteConfirm(null);
+                try {
+                  await apiFetch(`/teacher/students/${s.id}`, { method: 'DELETE' });
+                  setStudents(prev => prev.filter(st => st.id !== s.id));
+                } catch { /* silently fail */ }
+              }} style={{flex:1}}>Löschen</button>
+              <button className="btn btn-outline" onClick={() => setShowDeleteConfirm(null)}>Abbrechen</button>
+            </div>
           </div>
         </div>
       )}

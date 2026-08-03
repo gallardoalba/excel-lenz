@@ -1,6 +1,6 @@
 {
-  "title": "Datenanalyse & Statistik",
-  "description": "50 Übungen: Deskriptive Statistik, Verteilungen, Regression, Zeitreihenanalyse, Hypothesentests, Datenbereinigung, Stichproben und Transformationen für Fortgeschrittene.",
+  "title": "Excel-Datenanalyse & Fortgeschrittene Funktionen",
+  "description": "Tabellen, Filter, erweiterte Funktionen, Diagramme, Pivot-Tabellen und Datenanalyse. Module 6–10 des Lehrplans.",
   "difficulty": "intermediate",
   "exercises": [
     {
@@ -109,7 +109,8 @@
       "instructions": "1. Berechne den MITTELWERT der Verkäufe.\n2. Berechne den MEDIAN.\n3. Finde MIN und MAX.\n4. Verwende =MITTELWERT(B2:B6), =MEDIAN(B2:B6), =MIN(B2:B6), =MAX(B2:B6).",
       "order": 1,
       "formulaHint": "=MITTELWERT(B2:B6)",
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "Prozentuale Verteilung",
@@ -192,7 +193,8 @@
       "instructions": "1. Berechne Gesamtumsatz mit =SUMME(B2:B5).\n2. Berechne für jede Kategorie den prozentualen Anteil: =B2/$B$6*100.\n3. Verwende absolute Referenz $B$6 damit die Formel kopiert werden kann.",
       "order": 2,
       "formulaHint": "=B2/B6*100 für Prozent",
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "ZÄHLENWENN & Häufigkeiten",
@@ -320,7 +322,8 @@
       ],
       "estimated_minutes": 7,
       "theoryTitle": "ZÄHLENWENN verstehen",
-      "theory": "ZÄHLENWENN zählt Zellen, die ein bestimmtes Kriterium erfüllen.\n\nSyntax: =ZÄHLENWENN(Bereich; Kriterium)\n\nBeispiele:\n• =ZÄHLENWENN(B2:B10;\"Gut\") — zählt \"Gut\"\n• =ZÄHLENWENN(B2:B10;\">80\") — zählt Werte >80\n• =ZÄHLENWENN(B2:B10;A1) — Kriterium aus Zelle A1\n\n💡 Tipp: Für mehrere Kriterien nutze ZÄHLENWENNS()."
+      "theory": "ZÄHLENWENN zählt Zellen, die ein bestimmtes Kriterium erfüllen.\n\nSyntax: =ZÄHLENWENN(Bereich; Kriterium)\n\nBeispiele:\n• =ZÄHLENWENN(B2:B10;\"Gut\") — zählt \"Gut\"\n• =ZÄHLENWENN(B2:B10;\">80\") — zählt Werte >80\n• =ZÄHLENWENN(B2:B10;A1) — Kriterium aus Zelle A1\n\n💡 Tipp: Für mehrere Kriterien nutze ZÄHLENWENNS().",
+      "module_id": "m7"
     },
     {
       "title": "Mehrblatt-Referenzen",
@@ -436,7 +439,8 @@
       ],
       "estimated_minutes": 10,
       "theoryTitle": "Mehrblatt-Referenzen",
-      "theory": "In Excel kannst du Daten aus anderen Tabellenblättern referenzieren:\n\nSyntax: =Tabellenblatt!Zelle\n\nBeispiele:\n• =Q2!B2 — Wert aus Blatt \"Q2\", Zelle B2\n• =SUMME(Q1:Q4!B2) — 3D-Summe über mehrere Blätter\n\n💡 Tipp: Klicke beim Formelschreiben einfach auf das andere Tabellenblatt — Excel fügt die Referenz automatisch ein."
+      "theory": "In Excel kannst du Daten aus anderen Tabellenblättern referenzieren:\n\nSyntax: =Tabellenblatt!Zelle\n\nBeispiele:\n• =Q2!B2 — Wert aus Blatt \"Q2\", Zelle B2\n• =SUMME(Q1:Q4!B2) — 3D-Summe über mehrere Blätter\n\n💡 Tipp: Klicke beim Formelschreiben einfach auf das andere Tabellenblatt — Excel fügt die Referenz automatisch ein.",
+      "module_id": "m7"
     },
     {
       "title": "Bedingte Formatierung mit WENN",
@@ -541,7 +545,8 @@
         "Absolute Referenz auf berechneten Wert",
         "Datenanalyse mit Schwellwerten"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m7"
     },
     {
       "title": "Datenüberprüfung mit WENN",
@@ -650,7 +655,8 @@
       ],
       "estimated_minutes": 10,
       "theoryTitle": "Datenüberprüfung in Excel",
-      "theory": "Excel-Datenüberprüfung verhindert falsche Eingaben:\n\nDaten > Datentools > Datenüberprüfung\n\nMögliche Regeln:\n• Ganze Zahl zwischen 1-100\n• Textlänge maximal 50 Zeichen\n• Benutzerdefinierte Formel: =UND(B2>=18;B2<=100)\n\nWir simulieren das hier mit WENN-Formeln. In echtem Excel würdest du die Datenüberprüfung nutzen."
+      "theory": "Excel-Datenüberprüfung verhindert falsche Eingaben:\n\nDaten > Datentools > Datenüberprüfung\n\nMögliche Regeln:\n• Ganze Zahl zwischen 1-100\n• Textlänge maximal 50 Zeichen\n• Benutzerdefinierte Formel: =UND(B2>=18;B2<=100)\n\nWir simulieren das hier mit WENN-Formeln. In echtem Excel würdest du die Datenüberprüfung nutzen.",
+      "module_id": "m7"
     },
     {
       "title": "KORREL: Zusammenhang prüfen",
@@ -754,7 +760,8 @@
         "KORREL-Funktion anwenden",
         "Zusammenhänge statistisch messen"
       ],
-      "estimated_minutes": 7
+      "estimated_minutes": 7,
+      "module_id": "m10"
     },
     {
       "title": "SUMMEWENN: Bedingte Summen",
@@ -892,7 +899,8 @@
       ],
       "estimated_minutes": 10,
       "theoryTitle": "SUMMEWENN & SUMIFS",
-      "theory": "SUMMEWENN summiert Zellen die ein Kriterium erfüllen:\n\nSyntax: =SUMMEWENN(Bereich; Kriterium; [Summe_Bereich])\n\nBeispiele:\n• =SUMMEWENN(A2:A10;\"Büro\";C2:C10) — Summe wo Kategorie=\"Büro\"\n• =SUMMEWENN(C2:C10;\">100\") — Summe aller Beträge >100\n\nFür mehrere Kriterien: =SUMMEWENNS(Summe; Bereich1; Krit1; Bereich2; Krit2)"
+      "theory": "SUMMEWENN summiert Zellen die ein Kriterium erfüllen:\n\nSyntax: =SUMMEWENN(Bereich; Kriterium; [Summe_Bereich])\n\nBeispiele:\n• =SUMMEWENN(A2:A10;\"Büro\";C2:C10) — Summe wo Kategorie=\"Büro\"\n• =SUMMEWENN(C2:C10;\">100\") — Summe aller Beträge >100\n\nFür mehrere Kriterien: =SUMMEWENNS(Summe; Bereich1; Krit1; Bereich2; Krit2)",
+      "module_id": "m7"
     },
     {
       "title": "Quartalsvergleich mit Prozent",
@@ -1018,7 +1026,8 @@
       ],
       "estimated_minutes": 12,
       "theoryTitle": "Prozentuale Veränderung",
-      "theory": "Die prozentuale Veränderung zeigt, wie stark sich ein Wert verändert hat:\n\nFormel: = (Neu - Alt) / Alt\n\nBeispiel:\n• Q1=100, Q2=120 → Wachstum = (120-100)/100 = 20%\n• Negatives Wachstum = Rückgang\n\nFür Prognosen: Mittelwert oder Trendfunktion nutzen."
+      "theory": "Die prozentuale Veränderung zeigt, wie stark sich ein Wert verändert hat:\n\nFormel: = (Neu - Alt) / Alt\n\nBeispiel:\n• Q1=100, Q2=120 → Wachstum = (120-100)/100 = 20%\n• Negatives Wachstum = Rückgang\n\nFür Prognosen: Mittelwert oder Trendfunktion nutzen.",
+      "module_id": "m7"
     },
     {
       "title": "MEDIAN & MODUS: Lagemaße",
@@ -1137,7 +1146,8 @@
       ],
       "theoryTitle": "Lagemaße: Mittelwert vs Median",
       "theory": "MITTELWERT ist empfindlich gegenüber Ausreißern. MEDIAN ist robust.\n\nBeispiel: Gehälter [40k, 45k, 50k, 55k, 500k]\n• Mittelwert = 138k (verzerrt durch Chef-Gehalt)\n• Median = 50k (realistischer)\n\n💡 Faustregel: Bei schiefen Verteilungen immer Median verwenden!",
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "Spannweite & IQR: Streuungsmaße",
@@ -1261,7 +1271,8 @@
         "QUARTILE-Funktion",
         "Streuungsmaße"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "Ausreißer mit IQR-Methode erkennen",
@@ -1395,7 +1406,8 @@
         "IQR-Methode",
         "Datenbereinigung"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Schiefe & Wölbung (Skewness/Kurtosis)",
@@ -1529,7 +1541,8 @@
         "Verteilungsform",
         "Statistische Kennzahlen"
       ],
-      "estimated_minutes": 7
+      "estimated_minutes": 7,
+      "module_id": "m10"
     },
     {
       "title": "Variationskoeffizient: Vergleichbarkeit",
@@ -1649,7 +1662,8 @@
         "Relative Streuung",
         "Vergleichbarkeit"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m7"
     },
     {
       "title": "Histogramm-Daten: Klassen einteilen",
@@ -1784,7 +1798,8 @@
         "HÄUFIGKEIT",
         "Klasseneinteilung"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m8"
     },
     {
       "title": "Boxplot-Werte berechnen",
@@ -1926,7 +1941,8 @@
         "Fünf-Punkte-Zusammenfassung",
         "Datenvisualisierung"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m8"
     },
     {
       "title": "Z-Transformation (Standardisierung)",
@@ -2047,7 +2063,8 @@
       ],
       "theoryTitle": "Z-Transformation (Standardisierung)",
       "theory": "Z-Scores transformieren beliebige Werte auf eine einheitliche Skala:\n\nZ = (X - μ) / σ\n\n• μ = Mittelwert\n• σ = Standardabweichung\n• Z=0 = genau Durchschnitt\n• Z=1 = eine Std.Abw. über Ø\n• Z=-2 = zwei Std.Abw. unter Ø\n\n💡 Perfekt um Testergebnisse, Gehälter oder andere Werte vergleichbar zu machen!",
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "Normalverteilung: NORM.VERT",
@@ -2159,7 +2176,8 @@
         "NORM.VERT",
         "Wahrscheinlichkeiten"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Konfidenzintervall berechnen",
@@ -2277,7 +2295,8 @@
         "Standardfehler",
         "Schätzgenauigkeit"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Kovarianz: Gemeinsame Streuung",
@@ -2382,7 +2401,8 @@
         "Gemeinsame Streuung",
         "KOVARIANZ.P/.S"
       ],
-      "estimated_minutes": 7
+      "estimated_minutes": 7,
+      "module_id": "m10"
     },
     {
       "title": "Bestimmtheitsmaß R²",
@@ -2501,7 +2521,8 @@
         "Modellgüte",
         "Korrelation²"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "Einfache lineare Regression",
@@ -2608,7 +2629,8 @@
         "STEIGUNG/ACHSENABSCHNITT",
         "Prognose mit Regressionsgerade"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Residuen: Prognosefehler analysieren",
@@ -2715,7 +2737,8 @@
         "Prognosefehler",
         "Modellvalidierung"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "RANG.KORREL: Spearman-Korrelation",
@@ -2819,7 +2842,8 @@
         "Rang-Korrelation",
         "Robuste Statistik"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Gleitender Durchschnitt (Zentriert)",
@@ -2932,7 +2956,8 @@
         "Zeitreihen glätten",
         "Saisonbereinigung"
       ],
-      "estimated_minutes": 6
+      "estimated_minutes": 6,
+      "module_id": "m10"
     },
     {
       "title": "Saisonale Zerlegung: Additives Modell",
@@ -3079,7 +3104,8 @@
         "Trend-Saison-Modell",
         "Zeitreihenanalyse"
       ],
-      "estimated_minutes": 12
+      "estimated_minutes": 12,
+      "module_id": "m10"
     },
     {
       "title": "Exponentielle Glättung (Simple)",
@@ -3172,7 +3198,8 @@
         "Prognoseverfahren",
         "Glättungsparameter α"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Saisonindex berechnen",
@@ -3282,7 +3309,8 @@
         "Saisonbereinigung",
         "Zeitreihenanalyse"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m7"
     },
     {
       "title": "Autokorrelation (Lag-1)",
@@ -3397,7 +3425,8 @@
         "Lag-Operator",
         "Muster in Zeitreihen"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "t-Test: Mittelwertvergleich (simuliert)",
@@ -3540,7 +3569,8 @@
         "Effektgröße",
         "t-Test-Konzept"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m7"
     },
     {
       "title": "Chi²-Test: Erwartete Häufigkeiten",
@@ -3665,7 +3695,8 @@
         "Erwartete Häufigkeiten",
         "Kreuztabellen-Analyse"
       ],
-      "estimated_minutes": 12
+      "estimated_minutes": 12,
+      "module_id": "m10"
     },
     {
       "title": "ANOVA: Streuungszerlegung",
@@ -3790,7 +3821,8 @@
         "Streuungszerlegung",
         "Gruppenvergleich"
       ],
-      "estimated_minutes": 15
+      "estimated_minutes": 15,
+      "module_id": "m10"
     },
     {
       "title": "Stichprobenumfang berechnen",
@@ -3873,7 +3905,8 @@
         "Power-Analyse",
         "Statistische Planung"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "p-Wert Konzept: Permutationstest",
@@ -3972,7 +4005,8 @@
         "p-Wert-Intuition",
         "Randomisierung"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Fehlende Werte: Mittelwert-Imputation",
@@ -4078,7 +4112,8 @@
         "MITTELWERTWENN",
         "Daten-Imputation"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Ausreißer durch Z-Score erkennen",
@@ -4209,7 +4244,8 @@
         "ABS-Funktion",
         "Statistische Ausreißererkennung"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m10"
     },
     {
       "title": "Min-Max-Normalisierung",
@@ -4319,7 +4355,8 @@
         "Min-Max-Skalierung",
         "Datenvorbereitung"
       ],
-      "estimated_minutes": 7
+      "estimated_minutes": 7,
+      "module_id": "m10"
     },
     {
       "title": "Log-Transformation für Schiefe",
@@ -4420,7 +4457,8 @@
         "Schiefe korrigieren",
         "Datenvorbereitung"
       ],
-      "estimated_minutes": 7
+      "estimated_minutes": 7,
+      "module_id": "m10"
     },
     {
       "title": "Daten gruppieren & aggregieren",
@@ -4567,7 +4605,8 @@
         "ZÄHLENWENN/SUMMEWENN",
         "Kategorie-Analyse"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m6"
     },
     {
       "title": "Datenprofil: Übersichtstabelle",
@@ -4676,7 +4715,8 @@
         "MIN/MAX/MITTELWERT",
         "Automatische Übersicht"
       ],
-      "estimated_minutes": 6
+      "estimated_minutes": 6,
+      "module_id": "m6"
     },
     {
       "title": "Zufallsstichprobe (Systematisch)",
@@ -4798,7 +4838,8 @@
         "REST-Funktion",
         "Stichprobenverfahren"
       ],
-      "estimated_minutes": 6
+      "estimated_minutes": 6,
+      "module_id": "m10"
     },
     {
       "title": "Geschichtete Stichprobe",
@@ -4927,7 +4968,8 @@
         "ZUFALLSZAHL+RANG",
         "Repräsentative Stichproben"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m10"
     },
     {
       "title": "Gepaarter Vergleich: Vorher-Nachher",
@@ -5049,7 +5091,8 @@
         "Vorher-Nachher",
         "Effektanalyse"
       ],
-      "estimated_minutes": 6
+      "estimated_minutes": 6,
+      "module_id": "m7"
     },
     {
       "title": "INDEX & VERGLEICH für Datensuche",
@@ -5150,7 +5193,8 @@
         "Bidirektionale Suche",
         "Flexible Lookups"
       ],
-      "estimated_minutes": 8
+      "estimated_minutes": 8,
+      "module_id": "m7"
     },
     {
       "title": "Bedingte Ränge: Rang pro Gruppe",
@@ -5244,7 +5288,8 @@
         "ZÄHLENWENNS Rang-Trick",
         "Kategorie-Analyse"
       ],
-      "estimated_minutes": 10
+      "estimated_minutes": 10,
+      "module_id": "m6"
     },
     {
       "title": "Gini-Koeffizient (Ungleichheit)",
@@ -5358,7 +5403,8 @@
         "Ungleichheitsmaß",
         "Kumulierte Anteile"
       ],
-      "estimated_minutes": 12
+      "estimated_minutes": 12,
+      "module_id": "m10"
     },
     {
       "title": "Wachstumsrate (CAGR)",
@@ -5447,7 +5493,8 @@
         "Wachstumsrate",
         "Geometrisches Mittel"
       ],
-      "estimated_minutes": 7
+      "estimated_minutes": 7,
+      "module_id": "m10"
     },
     {
       "title": "Gewichteter Mittelwert",
@@ -5548,7 +5595,8 @@
         "ECTS-Noten",
         "SUMME/SUMME-Muster"
       ],
-      "estimated_minutes": 7
+      "estimated_minutes": 7,
+      "module_id": "m10"
     },
     {
       "title": "Trend bereinigen: Differenzen-Methode",
@@ -5660,7 +5708,8 @@
         "Differenzen-Methode",
         "Stationarität"
       ],
-      "estimated_minutes": 6
+      "estimated_minutes": 6,
+      "module_id": "m10"
     },
     {
       "title": "Datenqualität: Vollständigkeits-Check",
@@ -5781,7 +5830,2377 @@
         "ANZAHLLEEREZELLEN",
         "Vollständigkeitsanalyse"
       ],
-      "estimated_minutes": 6
+      "estimated_minutes": 6,
+      "module_id": "m10"
+    },
+    {
+      "title": "Zielwertsuche: Break-Even",
+      "description": "Finde den Break-Even-Punkt durch schrittweise Annäherung (Goal Seek simuliert).",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Stückzahl",
+          "Kosten (€)",
+          "Umsatz (€)"
+        ],
+        "data": [
+          [
+            "Fixkosten",
+            5000,
+            null
+          ],
+          [
+            "Variable Kosten/Stk",
+            12,
+            null
+          ],
+          [
+            "Verkaufspreis/Stk",
+            null,
+            25
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            10,
+            null,
+            null
+          ],
+          [
+            "",
+            50,
+            null,
+            null
+          ],
+          [
+            "",
+            100,
+            null,
+            null
+          ],
+          [
+            "",
+            500,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Fixkosten",
+            5000,
+            null
+          ],
+          [
+            "Variable Kosten/Stk",
+            12,
+            null
+          ],
+          [
+            "Verkaufspreis/Stk",
+            null,
+            25
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            10,
+            5120,
+            250
+          ],
+          [
+            "",
+            50,
+            5600,
+            1250
+          ],
+          [
+            "",
+            100,
+            6200,
+            2500
+          ],
+          [
+            "",
+            500,
+            11000,
+            12500
+          ]
+        ]
+      },
+      "instructions": "1. Kosten: =$B$1+$B$2*A5.\n2. Umsatz: =$C$3*A5.\n3. Finde durch Ausprobieren die Stückzahl wo Kosten ≈ Umsatz (Break-Even).\n4. Formel: =$B$1/($C$3-$B$2) = 5000/(25-12).",
+      "order": 4,
+      "formulaHint": "Gesamtkosten = 5000 + 12*Stück, Umsatz = 25*Stück. Break-Even wenn gleich.",
+      "hint1": "Gesamtkosten = Fixkosten + Variable × Stück: =$B$1+$B$2*A5",
+      "hint2": "Umsatz = Preis × Stück: =$C$3*A5",
+      "hint3": "Break-Even: suche Stückzahl wo Kosten ≈ Umsatz. Versuche 400-500 Stück.",
+      "learningObjectives": [
+        "Break-Even-Analyse",
+        "Schrittweise Annäherung",
+        "Goal Seek Konzept"
+      ],
+      "estimated_minutes": 12,
+      "theoryTitle": "Zielwertsuche (Goal Seek)",
+      "theory": "Die Zielwertsuche findet den Eingabewert, der ein gewünschtes Ergebnis liefert.\n\nIn Excel: Daten > Was-wäre-wenn > Zielwertsuche\n\nBeispiel: \"Wie viele Stück muss ich verkaufen, damit Gewinn = 0?\"\n• Zielzelle: Gewinn\n• Zielwert: 0\n• Veränderbare Zelle: Stückzahl\n\nBreak-Even = Fixkosten / (Preis - var. Kosten) = 5000/(25-12) ≈ 385 Stück",
+      "module_id": "m10"
+    },
+    {
+      "title": "Szenario-Manager: Best/Mid/Worst Case",
+      "description": "Vergleiche drei Szenarien: optimistisch, realistisch, pessimistisch.",
+      "template": {
+        "cols": 5,
+        "rows": 9,
+        "headers": [
+          "",
+          "Optimistisch",
+          "Realistisch",
+          "Pessimistisch",
+          ""
+        ],
+        "data": [
+          [
+            "Preis pro Einheit (€)",
+            120,
+            100,
+            80,
+            ""
+          ],
+          [
+            "Absatz (Stück)",
+            1500,
+            1200,
+            900,
+            ""
+          ],
+          [
+            "Kosten pro Einheit (€)",
+            50,
+            55,
+            60,
+            ""
+          ],
+          [
+            "Fixkosten (€)",
+            30000,
+            30000,
+            30000,
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Umsatz:",
+            null,
+            null,
+            null,
+            ""
+          ],
+          [
+            "Gesamtkosten:",
+            null,
+            null,
+            null,
+            ""
+          ],
+          [
+            "Gewinn:",
+            null,
+            null,
+            null,
+            ""
+          ]
+        ],
+        "taskCols": [
+          7,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "",
+            "Optimistisch",
+            "Realistisch",
+            "Pessimistisch"
+          ],
+          [
+            "Preis pro Einheit (€)",
+            120,
+            100,
+            80
+          ],
+          [
+            "Absatz (Stück)",
+            1500,
+            1200,
+            900
+          ],
+          [
+            "Kosten pro Einheit (€)",
+            50,
+            55,
+            60
+          ],
+          [
+            "Fixkosten (€)",
+            30000,
+            30000,
+            30000
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Umsatz:",
+            180000,
+            120000,
+            72000
+          ],
+          [
+            "Gesamtkosten:",
+            105000,
+            96000,
+            84000
+          ],
+          [
+            "Gewinn:",
+            75000,
+            24000,
+            -12000
+          ]
+        ]
+      },
+      "instructions": "1. Umsatz = Preis × Absatz: =B2*B3.\n2. Kosten = (Kosten/Einheit × Absatz) + Fixkosten.\n3. Gewinn = Umsatz − Kosten.\n4. Pessimistisch macht Verlust (-12.000 €)!",
+      "order": 19,
+      "formulaHint": "Umsatz: =B2*B3, Kosten: =B4*B3+B5",
+      "learningObjectives": [
+        "Szenario-Analyse",
+        "Best/Worst Case",
+        "Gewinnplanung"
+      ],
+      "estimated_minutes": 10,
+      "module_id": "m10"
+    },
+    {
+      "title": "Zielwertsuche: Benötigten Absatz finden",
+      "description": "Berechne wie viele Einheiten verkauft werden müssen für Zielgewinn.",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Parameter",
+          "Wert",
+          "Einheit"
+        ],
+        "data": [
+          [
+            "Preis pro Einheit",
+            100,
+            "€"
+          ],
+          [
+            "Kosten pro Einheit",
+            60,
+            "€"
+          ],
+          [
+            "Fixkosten",
+            25000,
+            "€"
+          ],
+          [
+            "Zielgewinn",
+            50000,
+            "€"
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Benötigter Absatz:",
+            null,
+            "Stück"
+          ],
+          [
+            "Probe — Gewinn:",
+            null,
+            "€"
+          ]
+        ],
+        "taskCols": [
+          6,
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Preis pro Einheit",
+            100,
+            "€"
+          ],
+          [
+            "Kosten pro Einheit",
+            60,
+            "€"
+          ],
+          [
+            "Fixkosten",
+            25000,
+            "€"
+          ],
+          [
+            "Zielgewinn",
+            50000,
+            "€"
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Benötigter Absatz:",
+            1875,
+            "Stück"
+          ],
+          [
+            "Probe — Gewinn:",
+            50000,
+            "€"
+          ]
+        ]
+      },
+      "instructions": "1. Absatz = (Fixkosten+Zielgewinn)/(Preis-Kosten).\n2. =(B3+B4)/(B1-B2) = 75.000/40 = 1.875 Stück.\n3. Probe: Gewinn = (100-60)×1875 − 25000 = 50.000 €.",
+      "order": 20,
+      "formulaHint": "=(B3+B4)/(B1-B2)",
+      "hint1": "Break-Even-Formel für Zielgewinn: (Fixkosten + Zielgewinn) / Deckungsbeitrag = benötigte Menge.",
+      "hint2": "Deckungsbeitrag = Preis pro Stück − variable Kosten pro Stück.",
+      "learningObjectives": [
+        "Zielwertsuche-Konzept",
+        "Break-Even umstellen",
+        "Algebra in Excel"
+      ],
+      "estimated_minutes": 8,
+      "module_id": "m10"
+    },
+    {
+      "title": "Kreuztabelle: Umsatz nach Region+Produkt",
+      "description": "Erstelle eine Pivot-ähnliche Kreuztabelle mit SUMMEWENNS.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "",
+          "Nord",
+          "Süd",
+          "Ost"
+        ],
+        "data": [
+          [
+            "Laptop",
+            null,
+            null,
+            null
+          ],
+          [
+            "Maus",
+            null,
+            null,
+            null
+          ],
+          [
+            "Tastatur",
+            null,
+            null,
+            null
+          ],
+          [
+            "Gesamt",
+            null,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Daten:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Region",
+            "Produkt",
+            "Umsatz",
+            ""
+          ],
+          [
+            "Nord",
+            "Laptop",
+            4500
+          ],
+          [
+            "Nord",
+            "Maus",
+            800
+          ],
+          [
+            "Süd",
+            "Laptop",
+            3800
+          ],
+          [
+            "Süd",
+            "Tastatur",
+            1200
+          ],
+          [
+            "Ost",
+            "Maus",
+            600
+          ]
+        ],
+        "taskCols": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "",
+            "Nord",
+            "Süd",
+            "Ost"
+          ],
+          [
+            "Laptop",
+            4500,
+            3800,
+            0
+          ],
+          [
+            "Maus",
+            800,
+            0,
+            600
+          ],
+          [
+            "Tastatur",
+            0,
+            1200,
+            0
+          ],
+          [
+            "Gesamt",
+            5300,
+            5000,
+            600
+          ]
+        ]
+      },
+      "instructions": "1. =SUMMEWENNS($D$7:$D$12;$B$7:$B$12;B$1;$C$7:$C$12;$A2).\n2. B$1=Region (Zeile fixiert), $A2=Produkt (Spalte fixiert).\n3. Eine Formel für die ganze Tabelle!",
+      "order": 22,
+      "formulaHint": "=SUMMEWENNS($D$7:$D$12;$B$7:$B$12;B$1;$C$7:$C$12;$A2)",
+      "hint1": "SUMMEWENNS kann zwei Kriterien: Region UND Produkt",
+      "hint2": "Gemischte Bezüge: B$1 (Region fixiert), $A2 (Produkt fixiert)",
+      "learningObjectives": [
+        "PivotTable-Konzept via Formeln",
+        "SUMMEWENNS Kreuztabelle",
+        "Gemischte Bezüge"
+      ],
+      "estimated_minutes": 10,
+      "module_id": "m9"
+    },
+    {
+      "title": "GETPIVOTDATA: Gezielte Pivot-Werte abrufen",
+      "description": "Simuliere GETPIVOTDATA mit INDEX+VERGLEICH auf eine Pivot-Ergebnistabelle.",
+      "template": {
+        "cols": 4,
+        "rows": 7,
+        "headers": [
+          "",
+          "Nord",
+          "Süd",
+          "Ost"
+        ],
+        "data": [
+          [
+            "IT",
+            8500,
+            6200,
+            4100
+          ],
+          [
+            "Büro",
+            2300,
+            1800,
+            900
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Region:",
+            "Süd",
+            "",
+            ""
+          ],
+          [
+            "Kategorie:",
+            "IT",
+            "",
+            ""
+          ],
+          [
+            "Ergebnis:",
+            null,
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          6
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "",
+            "Nord",
+            "Süd",
+            "Ost"
+          ],
+          [
+            "IT",
+            8500,
+            6200,
+            4100
+          ],
+          [
+            "Büro",
+            2300,
+            1800,
+            900
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Region:",
+            "Süd"
+          ],
+          [
+            "Kategorie:",
+            "IT"
+          ],
+          [
+            "Ergebnis:",
+            6200
+          ]
+        ]
+      },
+      "instructions": "1. =INDEX(B2:D3;VERGLEICH(B5;A2:A3;0);VERGLEICH(B4;B1:D1;0)).\n2. INDEX+VERGLEICH = GETPIVOTDATA-ähnlich.\n3. Gibt den Schnittpunkt von IT und Süd: 6200.",
+      "order": 26,
+      "formulaHint": "=INDEX(B2:D3;VERGLEICH(B5;A2:A3;0);VERGLEICH(B4;B1:D1;0))",
+      "hint1": "GETPIVOTDATA extrahiert Werte aus einer PivotTable per Formel",
+      "hint2": "INDEX+VERGLEICH macht dasselbe auf unserer simulierten Pivot-Ergebnistabelle",
+      "learningObjectives": [
+        "GETPIVOTDATA-Konzept",
+        "INDEX+VERGLEICH auf Kreuztabelle",
+        "Formel-basierte Pivot-Extraktion"
+      ],
+      "estimated_minutes": 8,
+      "module_id": "m9"
+    },
+    {
+      "title": "Konsolidierung: Mehrere Bereiche summieren",
+      "description": "Summiere Daten aus drei Filial-Tabellen in einer Master-Tabelle.",
+      "template": {
+        "cols": 4,
+        "rows": 11,
+        "headers": [
+          "Produkt",
+          "Filiale A",
+          "Filiale B",
+          "Gesamt"
+        ],
+        "data": [
+          [
+            "Laptop",
+            4500,
+            null,
+            null
+          ],
+          [
+            "Maus",
+            800,
+            null,
+            null
+          ],
+          [
+            "Tastatur",
+            1200,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Filiale B:",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Produkt",
+            "Umsatz",
+            "",
+            ""
+          ],
+          [
+            "Laptop",
+            3800,
+            "",
+            ""
+          ],
+          [
+            "Maus",
+            650,
+            "",
+            ""
+          ],
+          [
+            "Tastatur",
+            1100,
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          1,
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Laptop",
+            4500,
+            3800,
+            8300
+          ],
+          [
+            "Maus",
+            800,
+            650,
+            1450
+          ],
+          [
+            "Tastatur",
+            1200,
+            1100,
+            2300
+          ]
+        ]
+      },
+      "instructions": "1. B2: =SVERWEIS(A2;$A$7:$B$9;2;FALSCH).\n2. Gesamt: =B2+C2.\n3. Excel-Konsolidierung macht das automatisch — hier simulieren wir es.",
+      "order": 27,
+      "formulaHint": "=SVERWEIS(A2;$A$7:$B$9;2;FALSCH)",
+      "hint1": "Daten > Konsolidieren fasst mehrere Bereiche zusammen",
+      "hint2": "Wir holen die Filiale-B-Daten per SVERWEIS",
+      "learningObjectives": [
+        "Datenkonsolidierung",
+        "SVERWEIS über Bereiche",
+        "Filialdaten zusammenführen"
+      ],
+      "estimated_minutes": 8,
+      "module_id": "m9"
+    },
+    {
+      "title": "Teilergebnisse: Mehrstufige Gliederung",
+      "description": "Erstelle eine mehrstufige Gliederung mit TEILERGEBNIS.",
+      "template": {
+        "cols": 4,
+        "rows": 12,
+        "headers": [
+          "Kategorie",
+          "Produkt",
+          "Umsatz",
+          ""
+        ],
+        "data": [
+          [
+            "IT",
+            "Laptop",
+            4500
+          ],
+          [
+            "IT",
+            "Maus",
+            800
+          ],
+          [
+            "IT",
+            "Tastatur",
+            1200
+          ],
+          [
+            "IT Teilergebnis",
+            "",
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Büro",
+            "Papier",
+            300
+          ],
+          [
+            "Büro",
+            "Stifte",
+            150
+          ],
+          [
+            "Büro Teilergebnis",
+            "",
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gesamtergebnis",
+            "",
+            null
+          ]
+        ],
+        "taskCols": [
+          4,
+          8,
+          10
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "IT",
+            "Laptop",
+            4500
+          ],
+          [
+            "IT",
+            "Maus",
+            800
+          ],
+          [
+            "IT",
+            "Tastatur",
+            1200
+          ],
+          [
+            "IT Teilergebnis",
+            "",
+            6500
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Büro",
+            "Papier",
+            300
+          ],
+          [
+            "Büro",
+            "Stifte",
+            150
+          ],
+          [
+            "Büro Teilergebnis",
+            "",
+            450
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gesamtergebnis",
+            "",
+            6950
+          ]
+        ]
+      },
+      "instructions": "1. IT Teilergebnis: =TEILERGEBNIS(9;C2:C4).\n2. Büro Teilergebnis: =TEILERGEBNIS(9;C6:C7).\n3. Gesamt: =TEILERGEBNIS(9;C2:C9).\n4. TEILERGEBNIS ignoriert andere TEILERGEBNIS-Formeln.",
+      "order": 28,
+      "formulaHint": "=TEILERGEBNIS(9;Bereich)",
+      "hint1": "TEILERGEBNIS(9;...) = SUMME, ignoriert andere Teilergebnisse",
+      "hint2": "Perfekt für mehrstufige Gliederungen",
+      "learningObjectives": [
+        "TEILERGEBNIS für Gliederungen",
+        "Mehrstufige Summen",
+        "Daten > Gliedern"
+      ],
+      "estimated_minutes": 8,
+      "module_id": "m9"
+    },
+    {
+      "title": "3D-Summe: Mehrere identische Tabellen summieren",
+      "description": "Summiere gleich aufgebaute Tabellen (simuliert Tabellenblätter Q1-Q4).",
+      "template": {
+        "cols": 2,
+        "rows": 3,
+        "headers": [
+          "Produkt",
+          "Q1-Q4 Summe"
+        ],
+        "data": [
+          [
+            "Laptop",
+            null
+          ],
+          [
+            "Maus",
+            null
+          ],
+          [
+            "Tastatur",
+            null
+          ]
+        ],
+        "taskCols": [
+          1
+        ],
+        "sheets": [
+          {
+            "name": "Q1",
+            "headers": [
+              "Produkt",
+              "Umsatz"
+            ],
+            "data": [
+              [
+                "Laptop",
+                4500
+              ],
+              [
+                "Maus",
+                800
+              ],
+              [
+                "Tastatur",
+                1200
+              ]
+            ]
+          },
+          {
+            "name": "Q2",
+            "headers": [
+              "Produkt",
+              "Umsatz"
+            ],
+            "data": [
+              [
+                "Laptop",
+                5200
+              ],
+              [
+                "Maus",
+                950
+              ],
+              [
+                "Tastatur",
+                1350
+              ]
+            ]
+          },
+          {
+            "name": "Q3",
+            "headers": [
+              "Produkt",
+              "Umsatz"
+            ],
+            "data": [
+              [
+                "Laptop",
+                4800
+              ],
+              [
+                "Maus",
+                870
+              ],
+              [
+                "Tastatur",
+                1100
+              ]
+            ]
+          },
+          {
+            "name": "Q4",
+            "headers": [
+              "Produkt",
+              "Umsatz"
+            ],
+            "data": [
+              [
+                "Laptop",
+                5100
+              ],
+              [
+                "Maus",
+                820
+              ],
+              [
+                "Tastatur",
+                1400
+              ]
+            ]
+          }
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Laptop",
+            19600
+          ],
+          [
+            "Maus",
+            3440
+          ],
+          [
+            "Tastatur",
+            5050
+          ]
+        ]
+      },
+      "instructions": "1. Gehe zum Blatt \"Konsolidiert\" (Tabelle1).\n2. Schreibe in B2: =SUMME(Q1:Q4!B2)\n3. Kopiere die Formel für Maus und Tastatur.\n4. 💡 3D-Referenzen summieren über mehrere Tabellenblätter.",
+      "order": 29,
+      "formulaHint": "=SUMME(Q1:Q4!B2)",
+      "hint1": "3D-Referenz: =SUMME(Q1:Q4!B2) summiert Zelle B2 über Q1 bis Q4",
+      "hint2": "Die Syntax ist =SUMME(ErstesBlatt:LetztesBlatt!Zelle)",
+      "learningObjectives": [
+        "3D-Summen",
+        "Mehrblatt-Referenzen",
+        "Quartalskonsolidierung"
+      ],
+      "estimated_minutes": 7,
+      "module_id": "m9"
+    },
+    {
+      "title": "Konsolidieren nach Kategorie",
+      "description": "Fasse Daten aus zwei Listen nach Kategorie zusammen.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Kategorie",
+          "Liste 1",
+          "Liste 2",
+          "Konsolidiert"
+        ],
+        "data": [
+          [
+            "IT",
+            8500,
+            6200,
+            null
+          ],
+          [
+            "Büro",
+            2300,
+            null,
+            null
+          ],
+          [
+            "Marketing",
+            null,
+            4100,
+            null
+          ],
+          [
+            "HR",
+            1800,
+            900,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Kategorien:",
+            "IT",
+            "Büro",
+            "Marketing",
+            "HR"
+          ],
+          [
+            "Ergebnis:",
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Kategorie",
+            "Liste 1",
+            "Liste 2",
+            "Konsolidiert"
+          ],
+          [
+            "IT",
+            8500,
+            6200,
+            14700
+          ],
+          [
+            "Büro",
+            2300,
+            0,
+            2300
+          ],
+          [
+            "Marketing",
+            0,
+            4100,
+            4100
+          ],
+          [
+            "HR",
+            1800,
+            900,
+            2700
+          ]
+        ]
+      },
+      "instructions": "1. SUMMEWENN(Liste1;\"IT\") + SUMMEWENN(Liste2;\"IT\").\n2. =SUMMEWENN($A$2:$A$5;A8;$B$2:$B$5)+SUMMEWENN($A$2:$A$5;A8;$C$2:$C$5).\n3. Ziehen für alle Kategorien.",
+      "order": 30,
+      "formulaHint": "=SUMMEWENN($A$2:$A$5;A8;$B$2:$B$5)+SUMMEWENN($A$2:$A$5;A8;$C$2:$C$5)",
+      "learningObjectives": [
+        "Konsolidierung nach Kategorie",
+        "SUMMEWENN für mehrere Listen",
+        "Datenintegration"
+      ],
+      "estimated_minutes": 10,
+      "module_id": "m9"
+    },
+    {
+      "title": "KPI-Ampel: Zielerreichung visualisieren",
+      "description": "Bewerte KPIs mit einer 3-stufigen Ampel basierend auf Schwellwerten.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "KPI",
+          "Ist",
+          "Ziel",
+          "Status"
+        ],
+        "data": [
+          [
+            "Umsatz (T€)",
+            480,
+            500,
+            null
+          ],
+          [
+            "Kundenzufriedenheit",
+            8.2,
+            8.0,
+            null
+          ],
+          [
+            "Kostenquote (%)",
+            28,
+            25,
+            null
+          ],
+          [
+            "Mitarbeiterfluktuation",
+            12,
+            10,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "🟢 = ≥100% Ziel",
+            "🟡 = 80-99%",
+            "🔴 = <80%",
+            ""
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Umsatz (T€)",
+            480,
+            500,
+            "🟡 96%"
+          ],
+          [
+            "Kundenzufriedenheit",
+            8.2,
+            8.0,
+            "🟢 103%"
+          ],
+          [
+            "Kostenquote (%)",
+            28,
+            25,
+            "🟡 89%"
+          ],
+          [
+            "Mitarbeiterfluktuation",
+            12,
+            10,
+            "🟡 83%"
+          ]
+        ]
+      },
+      "instructions": "1. % vom Ziel: =B2/C2*100.\n2. Ampel: =WENN(B2/C2>=1;\"🟢 \"&TEXT(B2/C2;\"0%\");WENN(B2/C2>=0.8;\"🟡 \"&TEXT(B2/C2;\"0%\");\"🔴 \"&TEXT(B2/C2;\"0%\"))).\n3. Bei Kostenquote: niedriger=besser → Formel umdrehen.",
+      "order": 37,
+      "formulaHint": "=WENN(B2/C2>=1;\"🟢\";WENN(B2/C2>=0.8;\"🟡\";\"🔴\"))&\" \"&TEXT(B2/C2;\"0%\")",
+      "hint1": "KPIs brauchen klare Schwellwerte (Ziel, Warnung, Kritisch)",
+      "hint2": "TEXT(B2/C2;\"0%\") formatiert als Prozent",
+      "learningObjectives": [
+        "KPI-Ampel",
+        "Schwellwertlogik",
+        "Dashboard-Visualisierung"
+      ],
+      "estimated_minutes": 10,
+      "module_id": "m8"
+    },
+    {
+      "title": "TOP 10 / BOTTOM 10 Ranking",
+      "description": "Erstelle eine Rangliste mit automatischer TOP/BOTTOM-Kennzeichnung.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Filiale",
+          "Umsatz (T€)",
+          "Rang",
+          "TOP 3?"
+        ],
+        "data": [
+          [
+            "Berlin",
+            450,
+            null,
+            null
+          ],
+          [
+            "München",
+            520,
+            null,
+            null
+          ],
+          [
+            "Hamburg",
+            380,
+            null,
+            null
+          ],
+          [
+            "Köln",
+            610,
+            null,
+            null
+          ],
+          [
+            "Frankfurt",
+            490,
+            null,
+            null
+          ],
+          [
+            "Stuttgart",
+            550,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "TOP 3 Summe:",
+            null
+          ]
+        ],
+        "taskCols": [
+          2,
+          3,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Berlin",
+            450,
+            5,
+            ""
+          ],
+          [
+            "München",
+            520,
+            3,
+            "⭐"
+          ],
+          [
+            "Hamburg",
+            380,
+            6,
+            ""
+          ],
+          [
+            "Köln",
+            610,
+            1,
+            "⭐"
+          ],
+          [
+            "Frankfurt",
+            490,
+            4,
+            ""
+          ],
+          [
+            "Stuttgart",
+            550,
+            2,
+            "⭐"
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "TOP 3 Summe:",
+            1680
+          ]
+        ]
+      },
+      "instructions": "1. Rang: =RANG(B2;$B$2:$B$7).\n2. TOP 3: =WENN(C2<=3;\"⭐\";\"\").\n3. TOP 3 Summe: =SUMMEWENN(C2:C7;\"<=3\";B2:B7).",
+      "order": 40,
+      "formulaHint": "Rang: =RANG(B2;$B$2:$B$7), TOP 3: =WENN(C2<=3;\"⭐\";\"\")",
+      "learningObjectives": [
+        "Rangliste",
+        "TOP-N Analyse",
+        "Bedingte Summierung"
+      ],
+      "estimated_minutes": 7,
+      "module_id": "m8"
+    },
+    {
+      "title": "Gemischte Bezüge: Multiplikationstabelle",
+      "description": "Erstelle eine Multiplikationstabelle mit gemischten Bezügen ($A1, A$1).",
+      "template": {
+        "cols": 6,
+        "rows": 7,
+        "headers": [
+          "×",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "data": [
+          [
+            "1",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "2",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "3",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "4",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "5",
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "1",
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            "2",
+            2,
+            4,
+            6,
+            8,
+            10
+          ],
+          [
+            "3",
+            3,
+            6,
+            9,
+            12,
+            15
+          ],
+          [
+            "4",
+            4,
+            8,
+            12,
+            16,
+            20
+          ],
+          [
+            "5",
+            5,
+            10,
+            15,
+            20,
+            25
+          ]
+        ]
+      },
+      "instructions": "1. Gib in B2 ein: =$A2*B$1.\n2. Ziehe die Formel über alle 5×5 Zellen.\n3. Beobachte wie sich die Bezüge anpassen.",
+      "order": 1,
+      "formulaHint": "=$A2*B$1 — gemischte Bezüge: Spalte A fix, Zeile 1 fix",
+      "hint1": "Multipliziere den Wert in Spalte A mit dem Wert in Zeile 1",
+      "hint2": "Fixiere A mit $A und 1 mit $1: =$A2*B$1",
+      "hint3": "Ziehe die Formel über alle 25 Zellen — sie passt sich automatisch an!",
+      "learningObjectives": [
+        "Gemischte Bezüge ($A1, B$1)",
+        "Eine Formel für ganze Tabelle",
+        "Multiplikationstabelle"
+      ],
+      "estimated_minutes": 10,
+      "theoryTitle": "Gemischte Bezüge ($A1 vs A$1)",
+      "theory": "Gemischte Bezüge fixieren entweder die Spalte ODER die Zeile:\n\n• $A1 — Spalte A bleibt fix, Zeile ändert sich\n• A$1 — Zeile 1 bleibt fix, Spalte ändert sich\n• $A$1 — Beides fix (absolut)\n\nBei einer Multiplikationstabelle:\n=$A2*B$1 — multipliziert immer Spalte-A-Wert × Zeile-1-Wert\n\n💡 Tipp: F4 drücken schaltet zwischen den Bezugstypen um!",
+      "module_id": "m7"
+    },
+    {
+      "title": "TEXT-Verkettung: Serienbrief-ID",
+      "description": "Kombiniere Textfelder zu einer strukturierten ID mit VERKETTEN oder &.",
+      "template": {
+        "cols": 4,
+        "rows": 7,
+        "headers": [
+          "Name",
+          "Abteilung",
+          "Jahr",
+          "Mitarbeiter-ID"
+        ],
+        "data": [
+          [
+            "Anna Müller",
+            "IT",
+            2024,
+            null
+          ],
+          [
+            "Ben Schmidt",
+            "HR",
+            2023,
+            null
+          ],
+          [
+            "Clara Klein",
+            "IT",
+            2024,
+            null
+          ],
+          [
+            "David Weber",
+            "MKT",
+            2022,
+            null
+          ],
+          [
+            "Eva Fischer",
+            "HR",
+            2024,
+            null
+          ],
+          [
+            "Felix Bauer",
+            "IT",
+            2023,
+            null
+          ]
+        ],
+        "taskCols": [
+          3
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Anna Müller",
+            "IT",
+            2024,
+            "AM-IT-2024"
+          ],
+          [
+            "Ben Schmidt",
+            "HR",
+            2023,
+            "BS-HR-2023"
+          ],
+          [
+            "Clara Klein",
+            "IT",
+            2024,
+            "CK-IT-2024"
+          ],
+          [
+            "David Weber",
+            "MKT",
+            2022,
+            "DW-MKT-2022"
+          ],
+          [
+            "Eva Fischer",
+            "HR",
+            2024,
+            "EF-HR-2024"
+          ],
+          [
+            "Felix Bauer",
+            "IT",
+            2023,
+            "FB-IT-2023"
+          ]
+        ]
+      },
+      "instructions": "1. Extrahiere Initialen: Vorname erster Buchstabe + Nachname erster Buchstabe.\n2. Verkette: Initialen & \"-\" & Abteilung & \"-\" & Jahr.\n3. =LINKS(A2;1)&TEIL(A2;FINDEN(\" \";A2)+1;1)&\"-\"&B2&\"-\"&C2.",
+      "order": 2,
+      "formulaHint": "=LINKS(A2;1)&RECHTS(A2;LÄNGE(A2)-FINDEN(\" \";A2))&\"-\"&B2&\"-\"&C2",
+      "hint1": "Extrahiere Initialen: LINKS(A2;1) für Vorname, Nachname nach Leerzeichen",
+      "hint2": "Verwende & zum Verketten: =\"ID-\"&B2",
+      "hint3": "Komplett: =LINKS(A2;1)&TEIL(A2;FINDEN(\" \";A2)+1;1)&\"-\"&B2&\"-\"&C2",
+      "learningObjectives": [
+        "TEXT-Verkettung mit &",
+        "LINKS/RECHTS/TEIL für Extraktion",
+        "Strukturierte IDs generieren"
+      ],
+      "estimated_minutes": 12,
+      "theoryTitle": "TEXT-Funktionen & Verkettung",
+      "theory": "Text kann in Excel zerlegt und kombiniert werden:\n\n• =LINKS(Text; n) — erste n Zeichen\n• =RECHTS(Text; n) — letzte n Zeichen\n• =TEIL(Text; Start; n) — n Zeichen ab Position\n• =FINDEN(\" \"; A2) — Position eines Zeichens\n• =A2 & \"-\" & B2 — Text verketten\n\n💡 Tipp: Mit TEXTKETTE() oder & kannst du beliebige Felder zu einer ID zusammensetzen.",
+      "module_id": "m7"
+    },
+    {
+      "title": "SVERWEIS mit Mehrfachkriterien",
+      "description": "Kombiniere SVERWEIS mit & für Lookups mit zwei Suchkriterien.",
+      "template": {
+        "cols": 5,
+        "rows": 11,
+        "headers": [
+          "Produkt",
+          "Region",
+          "",
+          "",
+          "Preis"
+        ],
+        "data": [
+          [
+            "Laptop",
+            "Nord",
+            "",
+            "",
+            null
+          ],
+          [
+            "Maus",
+            "Süd",
+            "",
+            "",
+            null
+          ],
+          [
+            "Tastatur",
+            "Nord",
+            "",
+            "",
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Produkt",
+            "Region",
+            "Preis",
+            "",
+            ""
+          ],
+          [
+            "Laptop",
+            "Nord",
+            999,
+            "",
+            ""
+          ],
+          [
+            "Laptop",
+            "Süd",
+            949,
+            "",
+            ""
+          ],
+          [
+            "Maus",
+            "Nord",
+            25,
+            "",
+            ""
+          ],
+          [
+            "Maus",
+            "Süd",
+            22,
+            "",
+            ""
+          ],
+          [
+            "Tastatur",
+            "Nord",
+            65,
+            "",
+            ""
+          ],
+          [
+            "Tastatur",
+            "Süd",
+            59,
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          5
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Laptop",
+            "Nord",
+            "",
+            "",
+            999
+          ],
+          [
+            "Maus",
+            "Süd",
+            "",
+            "",
+            22
+          ],
+          [
+            "Tastatur",
+            "Nord",
+            "",
+            "",
+            65
+          ]
+        ]
+      },
+      "instructions": "1. Erstelle Hilfsspalte in der Preistabelle: =A8&B8 in einer neuen Spalte.\n2. Suchbegriff: =A2&B2.\n3. SVERWEIS in der Hilfsspalte: =SVERWEIS(A2&B2; Hilfsspalte; 2; FALSCH).\n4. Da wir keine Hilfsspalte einfügen können, verwende: =INDEX($C$8:$C$13; VERGLEICH(A2&B2; $A$8:$A$13&$B$8:$B$13; 0)).",
+      "order": 6,
+      "formulaHint": "=SVERWEIS(A2&B2;A8:A13&B8:B13;1;FALSCH) — Array-Formel!",
+      "hint1": "Kombiniere Produkt+Region zu einem Suchbegriff: =A2&B2",
+      "hint2": "Erstelle eine Hilfsspalte in der Preistabelle: =A8&B8",
+      "hint3": "SVERWEIS sucht dann in der Hilfsspalte: =SVERWEIS(A2&B2;Hilfsspalte:Bereich;2;FALSCH)",
+      "learningObjectives": [
+        "Mehrfachkriterien mit &",
+        "Hilfsspalten-Technik",
+        "Komplexe SVERWEIS-Anwendungen"
+      ],
+      "estimated_minutes": 14,
+      "theoryTitle": "SVERWEIS mit mehreren Kriterien",
+      "theory": "SVERWEIS sucht standardmäßig nur nach EINEM Kriterium. Für mehrere:\n\nTrick 1 — Hilfsspalte:\n• =A2&B2 kombiniert beide Felder\n• In der Suchtabelle Hilfsspalte =A8&B8 einfügen\n• SVERWEIS sucht dann in der Hilfsspalte\n\nTrick 2 — Array-Formel (STRG+UMSCH+ENTER):\n=SVERWEIS(A2&B2; A8:A13&B8:B13; ...)\n\n💡 Tipp: INDEX+VERGLEICH ist für Mehrfachkriterien oft eleganter.",
+      "module_id": "m7"
+    },
+    {
+      "title": "Abweichungsanalyse: Soll-Ist-Vergleich",
+      "description": "Analysiere Abweichungen zwischen Plan und Ist mit Ampel-Logik.",
+      "template": {
+        "cols": 5,
+        "rows": 8,
+        "headers": [
+          "Position",
+          "Plan (€)",
+          "Ist (€)",
+          "Abw. (€)",
+          "Abw. (%)"
+        ],
+        "data": [
+          [
+            "Material",
+            50000,
+            48500,
+            null,
+            null
+          ],
+          [
+            "Personal",
+            80000,
+            82000,
+            null,
+            null
+          ],
+          [
+            "Marketing",
+            20000,
+            18500,
+            null,
+            null
+          ],
+          [
+            "IT",
+            15000,
+            16200,
+            null,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gesamt:",
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Material",
+            50000,
+            48500,
+            -1500,
+            -3.0
+          ],
+          [
+            "Personal",
+            80000,
+            82000,
+            2000,
+            2.5
+          ],
+          [
+            "Marketing",
+            20000,
+            18500,
+            -1500,
+            -7.5
+          ],
+          [
+            "IT",
+            15000,
+            16200,
+            1200,
+            8.0
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gesamt:",
+            165000,
+            165200,
+            200,
+            0.12
+          ]
+        ]
+      },
+      "instructions": "1. Abweichung €: =C2-B2.\n2. Abweichung %: =(C2-B2)/B2*100.\n3. Gesamt per SUMME. Leichte Überschreitung (+200 €, +0.12%).",
+      "order": 38,
+      "formulaHint": "Abweichung: =C2-B2, %: =(C2-B2)/B2*100",
+      "learningObjectives": [
+        "Soll-Ist-Vergleich",
+        "Abweichungsanalyse",
+        "Budgetkontrolle"
+      ],
+      "estimated_minutes": 8,
+      "module_id": "m7"
+    },
+    {
+      "title": "Strukturierte Verweise (Tabellen-Formeln)",
+      "description": "Nutze Tabellennamen statt Zellbezüge (simuliert).",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "Produkt",
+          "Preis",
+          "Menge",
+          "Umsatz"
+        ],
+        "data": [
+          [
+            "Laptop",
+            999,
+            5,
+            null
+          ],
+          [
+            "Maus",
+            25,
+            50,
+            null
+          ],
+          [
+            "Tastatur",
+            65,
+            30,
+            null
+          ],
+          [
+            "Monitor",
+            299,
+            8,
+            null
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gesamt:",
+            null,
+            null,
+            null
+          ]
+        ],
+        "taskCols": [
+          3,
+          6,
+          7,
+          8
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Laptop",
+            999,
+            5,
+            4995
+          ],
+          [
+            "Maus",
+            25,
+            50,
+            1250
+          ],
+          [
+            "Tastatur",
+            65,
+            30,
+            1950
+          ],
+          [
+            "Monitor",
+            299,
+            8,
+            2392
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gesamt:",
+            1388,
+            93,
+            10587
+          ]
+        ]
+      },
+      "instructions": "1. Umsatz: =[@Preis]*[@Menge] (strukturiert) → wir: =B2*C2.\n2. Gesamt: =SUMME(Tabelle1[Umsatz]) → wir: =SUMME(D2:D5).\n3. Strukturierte Verweise = lesbarer + automatisch erweiternd.",
+      "order": 43,
+      "formulaHint": "Strukturiert: =[@Preis]*[@Menge], Klassisch: =B2*C2",
+      "hint1": "Excel-Tabellen (Strg+T) verwenden Namen statt Zellbezüge",
+      "hint2": "[@Spaltenname] referenziert die aktuelle Zeile",
+      "learningObjectives": [
+        "Strukturierte Verweise",
+        "Excel-Tabellen",
+        "[@Spaltenname] Syntax"
+      ],
+      "estimated_minutes": 7,
+      "module_id": "m7"
+    },
+    {
+      "title": "INDIREKT: Dynamische Tabellenblatt-Wahl",
+      "description": "Wähle per Dropdown welches Tabellenblatt referenziert wird.",
+      "template": {
+        "cols": 3,
+        "rows": 8,
+        "headers": [
+          "Filiale",
+          "Umsatz",
+          ""
+        ],
+        "data": [
+          [
+            "Filiale A",
+            null
+          ],
+          [
+            "Filiale B",
+            null
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gewählte Filiale:",
+            "Filiale A",
+            ""
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Filiale A Daten:",
+            "",
+            ""
+          ],
+          [
+            "Monat",
+            "Umsatz",
+            ""
+          ],
+          [
+            "Jan",
+            4500
+          ],
+          [
+            "Feb",
+            5200
+          ],
+          [
+            "Mär",
+            4800
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Filiale B Daten:",
+            "",
+            ""
+          ],
+          [
+            "Monat",
+            "Umsatz",
+            ""
+          ],
+          [
+            "Jan",
+            3800
+          ],
+          [
+            "Feb",
+            4100
+          ],
+          [
+            "Mär",
+            3900
+          ]
+        ],
+        "taskCols": [
+          1
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Filiale A",
+            14500
+          ],
+          [
+            "Filiale B",
+            11800
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Gewählte Filiale:",
+            "Filiale A"
+          ]
+        ]
+      },
+      "instructions": "1. INDIREKT erstellt Referenz aus Text: wenn B4=\"Filiale A\", dann Bereich A7:B9.\n2. =SUMME(INDIREKT(\"B\"&WENN(B4=\"Filiale A\";\"8:B10\";\"14:B16\"))).\n3. Wechsle B4 auf \"Filiale B\" → Summe ändert sich.",
+      "order": 44,
+      "formulaHint": "=SUMME(INDIREKT(\"B\"&WENN(B4=\"Filiale A\";\"8:B10\";\"14:B16\")))",
+      "hint1": "INDIREKT baut Zellbezüge aus Text zusammen",
+      "hint2": "Dropdown steuert welcher Bereich summiert wird",
+      "learningObjectives": [
+        "INDIREKT für dynamische Bereiche",
+        "Dropdown-gesteuerte Analyse",
+        "Report-Auswahl"
+      ],
+      "estimated_minutes": 12,
+      "module_id": "m7"
+    },
+    {
+      "title": "SVERWEIS: Dynamische Spaltenwahl",
+      "description": "Mache SVERWEIS flexibler: wähle die Rückgabespalte per Dropdown.",
+      "template": {
+        "cols": 4,
+        "rows": 8,
+        "headers": [
+          "ID",
+          "Name",
+          "Abteilung",
+          "Gehalt"
+        ],
+        "data": [
+          [
+            "E001",
+            "Max",
+            "IT",
+            55000
+          ],
+          [
+            "E002",
+            "Lisa",
+            "HR",
+            48000
+          ],
+          [
+            "E003",
+            "Tom",
+            "IT",
+            62000
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Suche ID:",
+            "E002",
+            "",
+            ""
+          ],
+          [
+            "Ausgabe:",
+            "Gehalt",
+            "",
+            ""
+          ],
+          [
+            "Ergebnis:",
+            null,
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          7
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "E001",
+            "Max",
+            "IT",
+            55000
+          ],
+          [
+            "E002",
+            "Lisa",
+            "HR",
+            48000
+          ],
+          [
+            "E003",
+            "Tom",
+            "IT",
+            62000
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Suche ID:",
+            "E002"
+          ],
+          [
+            "Ausgabe:",
+            "Gehalt"
+          ],
+          [
+            "Ergebnis:",
+            48000
+          ]
+        ]
+      },
+      "instructions": "1. =SVERWEIS(B5;A1:D4;VERGLEICH(B6;A1:D1;0);FALSCH).\n2. VERGLEICH(B6;A1:D1;0) findet die Spaltenposition.\n3. Kein manuelles Ändern der Spaltennummer!",
+      "order": 45,
+      "formulaHint": "=SVERWEIS(B5;A1:D4;VERGLEICH(B6;A1:D1;0);FALSCH)",
+      "learningObjectives": [
+        "Dynamische Spaltenwahl",
+        "VERGLEICH in SVERWEIS",
+        "Flexible Lookups"
+      ],
+      "estimated_minutes": 8,
+      "module_id": "m7"
+    },
+    {
+      "title": "INDEX+VERGLEICH mit 2 Kriterien",
+      "description": "Löse eine 2-Kriterien-Suche mit einer Matrixformel.",
+      "template": {
+        "cols": 4,
+        "rows": 9,
+        "headers": [
+          "Region",
+          "Produkt",
+          "Umsatz",
+          ""
+        ],
+        "data": [
+          [
+            "Nord",
+            "Laptop",
+            4500
+          ],
+          [
+            "Nord",
+            "Maus",
+            800
+          ],
+          [
+            "Süd",
+            "Laptop",
+            3800
+          ],
+          [
+            "Süd",
+            "Maus",
+            650
+          ],
+          [
+            "Ost",
+            "Laptop",
+            5200
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Region:",
+            "Süd",
+            "",
+            ""
+          ],
+          [
+            "Produkt:",
+            "Maus",
+            "",
+            ""
+          ],
+          [
+            "Ergebnis:",
+            null,
+            "",
+            ""
+          ]
+        ],
+        "taskCols": [
+          9
+        ]
+      },
+      "solution": {
+        "data": [
+          [
+            "Nord",
+            "Laptop",
+            4500
+          ],
+          [
+            "Nord",
+            "Maus",
+            800
+          ],
+          [
+            "Süd",
+            "Laptop",
+            3800
+          ],
+          [
+            "Süd",
+            "Maus",
+            650
+          ],
+          [
+            "Ost",
+            "Laptop",
+            5200
+          ],
+          [
+            "",
+            "",
+            ""
+          ],
+          [
+            "Region:",
+            "Süd"
+          ],
+          [
+            "Produkt:",
+            "Maus"
+          ],
+          [
+            "Ergebnis:",
+            650
+          ]
+        ]
+      },
+      "instructions": "1. =INDEX(C2:C6;VERGLEICH(1;(A2:A6=B7)*(B2:B6=B8);0)) als Matrixformel.\n2. (A2:A6=B7)*(B2:B6=B8) = 1×1=1 nur wenn beide WAHR.\n3. Strg+Shift+Enter!",
+      "order": 46,
+      "formulaHint": "{=INDEX(C2:C6;VERGLEICH(1;(A2:A6=B7)*(B2:B6=B8);0))}",
+      "hint1": "Matrix-Multiplikation: WAHR*WAHR=1, sonst 0",
+      "hint2": "VERGLEICH(1;...) findet die Zeile wo beide Kriterien WAHR sind",
+      "learningObjectives": [
+        "Matrixformel mit 2 Kriterien",
+        "INDEX+VERGLEICH Multi-Kriterium",
+        "Boolesche Multiplikation"
+      ],
+      "estimated_minutes": 12,
+      "module_id": "m7"
+    }
+  ],
+  "modules": [
+    {
+      "id": "m6",
+      "title": "Tabellen und Filter",
+      "description": "Sortieren, Filtern, Excel-Tabellen und Teilergebnisse."
+    },
+    {
+      "id": "m7",
+      "title": "Erweiterte Funktionen",
+      "description": "SVERWEIS, INDEX+VERGLEICH, SUMMEWENN, Text- und Datumsfunktionen."
+    },
+    {
+      "id": "m8",
+      "title": "Diagramme und Visualisierung",
+      "description": "Säulen-, Linien-, Kreisdiagramme, Sparklines und Dashboards."
+    },
+    {
+      "id": "m9",
+      "title": "Pivot-Tabellen",
+      "description": "PivotTables erstellen, anpassen, Slicer und PivotCharts."
+    },
+    {
+      "id": "m10",
+      "title": "Analyse und Finanzfunktionen",
+      "description": "Zielwertsuche, Szenario-Manager, RMZ, ZW, NBW."
     }
   ]
 }

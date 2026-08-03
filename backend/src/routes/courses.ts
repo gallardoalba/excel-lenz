@@ -9,8 +9,11 @@ router.get('/', optionalAuth, (req: Request, res: Response) => {
   const db = getDb();
   const userId = (req.user as AuthPayload)?.userId;
   const courses = db.prepare(
-    `SELECT c.*, COUNT(e.id) as exercise_count
-     FROM courses c LEFT JOIN exercises e ON e.course_id = c.id
+    `SELECT c.*, COUNT(DISTINCT e.id) as exercise_count,
+            COUNT(DISTINCT p_students.user_id) as student_count
+     FROM courses c
+     LEFT JOIN exercises e ON e.course_id = c.id
+     LEFT JOIN progress p_students ON p_students.exercise_id = e.id
      GROUP BY c.id
      ORDER BY CASE c.difficulty
        WHEN 'beginner' THEN 1
@@ -80,12 +83,18 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
     delete ex.template_data;
   }
 
-  // Add user progress for each exercise
-  if (userId) {
+  // Add user progress for each exercise (single bulk query to avoid N+1)
+  if (userId && exercises.length > 0) {
+    const exerciseIds = exercises.map(e => e.id);
+    const placeholders = exerciseIds.map(() => '?').join(',');
+    const progressData = db.prepare(
+      `SELECT exercise_id, score, completed FROM progress WHERE user_id = ? AND exercise_id IN (${placeholders})`
+    ).all(userId, ...exerciseIds) as any[];
+
+    const progressMap = new Map(progressData.map((p: any) => [p.exercise_id, p]));
+
     for (const ex of exercises) {
-      const prog = db.prepare(
-        'SELECT score, completed FROM progress WHERE user_id = ? AND exercise_id = ?'
-      ).get(userId, ex.id) as any;
+      const prog = progressMap.get(ex.id);
       ex.user_score = prog?.score ?? null;
       ex.completed = prog?.completed ?? 0;
     }
@@ -101,10 +110,10 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
   const moduleMap: Record<string, { id: string; title: string; sections: Record<string, { id: string; title: string; exercises: any[] }> }> = {};
 
   for (const ex of exercises) {
-    const modId = ex.moduleId || 'default';
-    const modTitle = ex.moduleTitle || 'Übungen';
-    const secId = ex.moduleSection || '';
-    const secTitle = ex.sectionTitle || '';
+    const modId = (ex as any).moduleId || (ex as any).module_id || 'default';
+    const modTitle = (ex as any).moduleTitle || 'Übungen';
+    const secId = (ex as any).moduleSection || '';
+    const secTitle = (ex as any).sectionTitle || '';
 
     if (!moduleMap[modId]) {
       const modMeta = modules.find((m: any) => m.id === modId);
@@ -127,11 +136,17 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
     moduleMap[modId].sections[secKey].exercises.push(ex);
   }
 
-  // Convert map to ordered arrays
-  const groupedModules = Object.values(moduleMap).map(mod => ({
-    ...mod,
-    sections: Object.values(mod.sections),
-  }));
+  // Convert map to ordered arrays, sorted by module id
+  const groupedModules = Object.values(moduleMap)
+    .sort((a, b) => {
+      const aNum = parseInt((a.id.match(/\d+/) || ['99'])[0]);
+      const bNum = parseInt((b.id.match(/\d+/) || ['99'])[0]);
+      return aNum - bNum;
+    })
+    .map(mod => ({
+      ...mod,
+      sections: Object.values(mod.sections),
+    }));
 
   res.json({
     ...course as object,

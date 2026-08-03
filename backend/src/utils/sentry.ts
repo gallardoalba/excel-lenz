@@ -18,6 +18,10 @@ export function initSentry(): void {
       if (event.request?.headers?.['authorization']) {
         event.request.headers['authorization'] = '[Filtered]';
       }
+      // Strip request body to prevent password/PII leaks
+      if (event.request?.data) {
+        event.request.data = '[Filtered]';
+      }
       return event;
     },
   });
