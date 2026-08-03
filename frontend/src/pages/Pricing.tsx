@@ -60,7 +60,7 @@ export default function Pricing() {
       {current && (
         <div className="text-center mb-4">
           <span style={{ background: 'var(--primary-light)', color: 'var(--primary)', padding: '8px 20px', borderRadius: 20, fontWeight: 600 }}>
-            Aktueller Tarif: {tiers[current.subscription.tier]?.name || 'Free'}
+            Aktueller Tarif: {tiers[current.subscription.tier]?.name || 'Offen'}
           </span>
         </div>
       )}
@@ -88,7 +88,7 @@ export default function Pricing() {
               )}
               <h2 style={{ marginTop: 8 }}>{tier.name}</h2>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, margin: '12px 0' }}>
-                {tier.price === 0 ? 'Kostenlos' : `${(tier.price / 100).toFixed(2)}€`}
+                {tier.price === 0 ? 'Geöffnet' : `${(tier.price / 100).toFixed(2)}€`}
                 {tier.price > 0 && <span style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>/Monat</span>}
               </div>
               <ul style={{ listStyle: 'none', textAlign: 'left', margin: '20px 0' }}>

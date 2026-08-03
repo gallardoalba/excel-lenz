@@ -1,0 +1,118 @@
+% Professional LaTeX preamble for Excel-lenz didactic guides
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{needspace}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+
+% Prevent orphan headings and widows
+\raggedbottom
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Color palette
+\definecolor{excelblue}{RGB}{21,101,192}
+\definecolor{excelgray}{RGB}{100,100,100}
+\definecolor{tablerow}{RGB}{245,247,250}
+
+% Section formatting with colored rule
+\titleformat{\section}
+  {\Large\bfseries\sffamily\color{excelblue}}
+  {}
+  {0em}
+  {}
+  [\vspace{-0.3em}\textcolor{excelblue!40}{\rule{\textwidth}{0.5pt}}]
+
+\titleformat{name=\section,numberless}
+  {\Large\bfseries\sffamily\color{excelblue}}
+  {}
+  {0em}
+  {}
+  [\vspace{-0.3em}\textcolor{excelblue!40}{\rule{\textwidth}{0.5pt}}]
+
+\titleformat{\subsection}
+  {\large\bfseries\sffamily\color{excelblue!80!black}}
+  {}
+  {0em}
+  {}
+
+\titleformat{name=\subsection,numberless}
+  {\large\bfseries\sffamily\color{excelblue!80!black}}
+  {}
+  {0em}
+  {}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily}
+  {}
+  {0em}
+  {}
+
+\titlespacing*{\section}{0pt}{4ex plus 1ex}{2.5ex plus 0.5ex}
+\titlespacing*{\subsection}{0pt}{3ex plus 0.5ex}{1.5ex plus 0.3ex}
+\titlespacing*{\subsubsection}{0pt}{2ex plus 0.3ex}{1ex plus 0.2ex}
+
+% Generous list spacing
+\setlist{leftmargin=*,itemsep=4pt,parsep=4pt,topsep=6pt}
+
+% Generous paragraph spacing
+% Code block spacing — add space around verbatim
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{verbatim}{\vspace{8pt}}
+\AfterEndEnvironment{verbatim}{\vspace{8pt}}
+\BeforeBeginEnvironment{Shaded}{\vspace{8pt}}
+\AfterEndEnvironment{Shaded}{\vspace{8pt}}
+
+% Table spacing — alternating row colors handled by template
+\AtBeginEnvironment{tabular}{\vspace{4pt}}
+\AfterEndEnvironment{tabular}{\vspace{4pt}}
+
+% Blockquote spacing
+\BeforeBeginEnvironment{quote}{\vspace{6pt}}
+\AfterEndEnvironment{quote}{\vspace{6pt}}
+
+% Paragraph spacing
+\setlength{\parskip}{8pt plus 4pt minus 2pt}
+
+% Page headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize\color{excelgray}\leftmark}
+\fancyhead[R]{\sffamily\footnotesize\color{excelgray}Cristóbal Gallardo · Freiburg im Breisgau}
+\fancyfoot[C]{\sffamily\footnotesize\color{excelgray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Sans-serif default
+\renewcommand{\familydefault}{\sfdefault}
+
+% Table of contents customization
+% Contents name is set by pandoc via the 'lang' YAML metadata field
+\setcounter{tocdepth}{3}
+
+% Improved TOC spacing and indentation for better readability
+\makeatletter
+\renewcommand{\l@section}      {\@dottedtocline{1}{1.5em}{2.3em}}
+\renewcommand{\l@subsection}   {\@dottedtocline{2}{4.0em}{3.2em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{7.5em}{4.1em}}
+\makeatother
+
+% Info box command for highlighted content
+\newcommand{\infobox}[1]{%
+  \vspace{0.5em}
+  \begin{center}
+    \colorbox{excelblue!8}{%
+      \begin{minipage}{0.92\textwidth}
+        \small #1
+      \end{minipage}%
+    }
+  \end{center}
+  \vspace{0.5em}
+}

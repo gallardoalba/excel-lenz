@@ -35,7 +35,11 @@ async function apiFetch(path: string, options: RequestInit = {}) {
     throw new Error('Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung.');
   }
   const data = res.status === 204 ? null : await res.json();
-  if (!res.ok) throw new Error(data?.error || 'Verbindungsfehler');
+  if (!res.ok) {
+    const error = new Error(data?.error || 'Verbindungsfehler') as any;
+    error.status = res.status;
+    throw error;
+  }
   return data;
 }
 
@@ -48,7 +52,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (token) {
       apiFetch('/auth/me')
         .then((u) => setUser(u))
-        .catch(() => { localStorage.removeItem('token'); setToken(null); })
+        .catch((err) => {
+          // Only clear session on auth errors, not network failures
+          if (err.status === 401) {
+            localStorage.removeItem('token');
+            setToken(null);
+          }
+        })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);

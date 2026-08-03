@@ -16,6 +16,9 @@ export function NotificationCenter() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [notifs, setNotifs] = useState<Notification[]>([]);
+  const [dismissed, setDismissed] = useState<Set<string>>(() => {
+    try { return new Set(JSON.parse(localStorage.getItem('notif-dismissed') || '[]')); } catch { return new Set(); }
+  });
 
   useEffect(() => {
     if (!user) return;
@@ -46,11 +49,21 @@ export function NotificationCenter() {
   }, [user]);
 
   if (!user) return null;
-  const unread = notifs.length;
+  const unread = notifs.filter(n => !dismissed.has(n.id)).length;
+
+  const handleOpen = () => {
+    if (!open && unread > 0) {
+      // Mark all current notifications as read
+      const ids = new Set(notifs.map(n => n.id));
+      setDismissed(ids);
+      localStorage.setItem('notif-dismissed', JSON.stringify([...ids]));
+    }
+    setOpen(!open);
+  };
 
   return (
     <div style={{ position: 'relative' }}>
-      <button onClick={() => setOpen(!open)} className="notif-bell-btn" aria-label={`Benachrichtigungen (${unread})`}>
+      <button onClick={handleOpen} className="notif-bell-btn" aria-label={`Benachrichtigungen (${unread})`}>
         <Bell size={16} />
         {unread > 0 && <span className="notif-badge">{unread}</span>}
       </button>

@@ -1,4 +1,4 @@
-import { Routes, Route, Link, NavLink, Navigate } from 'react-router-dom';
+import { Routes, Route, Link, NavLink, Navigate, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useState, useEffect, useCallback } from 'react';
 import { BarChart3, ClipboardList, Sun, Moon, Search, Play, Menu, Target } from 'lucide-react';
 import { useAuth, apiFetch } from './context/AuthContext';
@@ -30,6 +30,10 @@ const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const VerifyEmail = lazy(() => import('./pages/VerifyEmail'));
 const Developer = lazy(() => import('./pages/Developer'));
+const DidacticGuide = lazy(() => import('./pages/DidacticGuide'));
+const DidacticGuideList = lazy(() => import('./pages/DidacticGuideList'));
+const LehrplanList = lazy(() => import('./pages/LehrplanList'));
+const LehrplanPage = lazy(() => import('./pages/LehrplanPage'));
 
 export default function App() {
   const { user, loading, logout } = useAuth();
@@ -59,6 +63,7 @@ export default function App() {
   }, [user]);
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
+  const location = useLocation();
 
   if (loading) {
     return (
@@ -82,11 +87,12 @@ export default function App() {
           <NavLink to="/courses" end>Kurse</NavLink>
           {user ? (
             <>
-              <NavLink to="/student">Mein Lernpanel</NavLink>
-              <NavLink to="/dashboard">Statistiken</NavLink>
-              {user.role === 'teacher' && (
-                <NavLink to="/teacher"><ClipboardList size={16} style={{marginRight:4}} />Lehrer-Panel</NavLink>
+              {user.role === 'teacher' ? (
+                <NavLink to="/teacher">Lehrer-Panel</NavLink>
+              ) : (
+                <NavLink to="/student">Lehrpanel</NavLink>
               )}
+              <NavLink to="/dashboard">Dashboard</NavLink>
             </>
           ) : (
             <NavLink to="/login">Anmelden</NavLink>
@@ -157,7 +163,6 @@ export default function App() {
             className="navbar-icon-btn"
             title="GitHub Repository"
             aria-label="GitHub Repository"
-            style={{ display: 'flex', alignItems: 'center' }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -189,7 +194,8 @@ export default function App() {
       <main className="main-content" id="main-content" role="main">
         <ErrorBoundary>
         <Suspense fallback={<div style={{padding:80,textAlign:'center',minHeight:'calc(100vh - 200px)'}}><ExcelSpinner text="Wird geladen..." /></div>}>
-        <Routes>
+        <div key={location.pathname} className="page-transition">
+        <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={user ? <Navigate to="/student" /> : <Login />} />
           <Route path="/register" element={user ? <Navigate to="/student" /> : <Register />} />
@@ -204,8 +210,13 @@ export default function App() {
           <Route path="/teacher" element={user?.role === 'teacher' ? <TeacherPanel /> : <Navigate to="/dashboard" />} />
           <Route path="/error" element={<ServerError />} />
           <Route path="/entwickler" element={<Developer />} />
+          <Route path="/didaktik/:type" element={<DidacticGuide />} />
+          <Route path="/didaktik" element={<DidacticGuideList />} />
+          <Route path="/lehrplan" element={<LehrplanList />} />
+          <Route path="/lehrplan/:type" element={<LehrplanPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </div>
         </Suspense>
         </ErrorBoundary>
       </main>

@@ -1,0 +1,132 @@
+/* Didaktischer Leitfaden — Professional HTML styling */
+:root {
+  --dk-primary: #1565c0;
+  --dk-primary-light: #e3f2fd;
+  --dk-text: #1a1a1a;
+  --dk-text-secondary: #555;
+  --dk-bg: #fafafa;
+  --dk-border: #e0e0e0;
+  --dk-radius: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--dk-text);
+  background: var(--dk-bg);
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+/* ── Table of Contents ── */
+nav#TOC {
+  background: white;
+  border: 1px solid var(--dk-border);
+  border-radius: var(--dk-radius);
+  padding: 24px 32px;
+  margin-bottom: 48px;
+}
+nav#TOC h2 {
+  font-size: 1.1rem;
+  color: var(--dk-primary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--dk-primary-light);
+}
+nav#TOC ul { list-style: none; padding-left: 0; }
+nav#TOC ul ul { padding-left: 20px; }
+nav#TOC li { margin: 6px 0; }
+nav#TOC a {
+  color: var(--dk-text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.15s;
+}
+nav#TOC a:hover { color: var(--dk-primary); }
+
+/* ── Headings ── */
+h1 {
+  font-size: 2rem;
+  color: var(--dk-primary);
+  margin: 48px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--dk-primary-light);
+}
+h2 {
+  font-size: 1.5rem;
+  color: var(--dk-primary);
+  margin: 40px 0 12px;
+}
+h3 {
+  font-size: 1.2rem;
+  color: #1a237e;
+  margin: 32px 0 8px;
+}
+h4 {
+  font-size: 1.05rem;
+  color: var(--dk-text);
+  margin: 24px 0 6px;
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.93rem;
+  background: white;
+  border-radius: var(--dk-radius);
+  overflow: hidden;
+  border: 1px solid var(--dk-border);
+}
+thead { background: var(--dk-primary-light); }
+th {
+  text-align: left;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: var(--dk-primary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+td {
+  padding: 10px 14px;
+  border-top: 1px solid var(--dk-border);
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #f8f9fa; }
+
+/* ── Lists ── */
+ul, ol { margin: 12px 0; padding-left: 24px; }
+li { margin: 4px 0; }
+
+/* ── Paragraphs & text ── */
+p { margin: 12px 0; }
+strong { color: var(--dk-text); }
+a { color: var(--dk-primary); }
+
+/* ── Horizontal rules ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--dk-border);
+  margin: 32px 0;
+}
+
+/* ── Page break simulation for sessions ── */
+h3[id^="sitzung"] {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 3px solid var(--dk-primary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  body { padding: 24px 16px 60px; font-size: 15px; }
+  nav#TOC { padding: 16px 20px; }
+  table { font-size: 0.82rem; }
+  th, td { padding: 8px 10px; }
+}

@@ -1,7 +1,7 @@
 // ── DataValidationDialog: Add validation rules to columns ─────────────────
 // Supports numeric range (min/max) and dropdown list validation
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
 interface ValidationRule {
@@ -27,6 +27,18 @@ export default function DataValidationDialog({ visible, headers, onApply, onClos
   const [max, setMax] = useState('');
   const [list, setList] = useState('');
   const [errorMsg, setErrorMsg] = useState('Ungültiger Wert');
+  const [error, setError] = useState('');
+
+  // Bug #32 fix: restore focus to previously active element when dialog closes
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (visible) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+    } else if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
+  }, [visible]);
 
   // Reset state when dialog opens, handle Escape key
   useEffect(() => {
@@ -44,9 +56,11 @@ export default function DataValidationDialog({ visible, headers, onApply, onClos
   const handleApply = () => {
     const hasMin = min.trim() !== '';
     const hasMax = max.trim() !== '';
+    setError('');
 
     if (type === 'number' && hasMin && hasMax && parseFloat(min) > parseFloat(max)) {
-      alert('Der Mindestwert darf nicht größer als der Höchstwert sein.');
+      // Bug #27 fix: inline error instead of blocking alert()
+      setError('Der Mindestwert darf nicht größer als der Höchstwert sein.');
       return;
     }
 
@@ -114,6 +128,7 @@ export default function DataValidationDialog({ visible, headers, onApply, onClos
           )}
 
           {/* Error message */}
+          {error && <div style={{ color: 'var(--danger, #c62828)', fontSize: '0.8rem', marginTop: 4, marginBottom: 8 }}>{error}</div>}
           <label style={{ fontSize: '0.85rem', display: 'flex', flexDirection: 'column', gap: 4 }}>
             Fehlermeldung:
             <input type="text" value={errorMsg} onChange={e => setErrorMsg(e.target.value)}

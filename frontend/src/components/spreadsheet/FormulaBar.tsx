@@ -5,7 +5,9 @@ import { useState, useEffect, useRef, useCallback, type KeyboardEvent } from 're
 import {
   EXCEL_FUNCTIONS_DE,
   positionToRef,
+  rangeToRef,
   type CellPosition,
+  type CellRange,
 } from './types';
 
 interface FormulaBarProps {
@@ -17,6 +19,8 @@ interface FormulaBarProps {
   onNavigate?: (direction: 'enter' | 'tab' | 'shiftEnter' | 'shiftTab') => void;
   onNavigateToRef?: (ref: string) => void;
   activeCell: CellPosition | null;
+  selectedRange?: CellRange | null;
+  onStartEditing?: () => void;
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────
@@ -40,6 +44,8 @@ export default function FormulaBar(props: FormulaBarProps) {
     onNavigate,
     onNavigateToRef,
     activeCell,
+    selectedRange,
+    onStartEditing,
   } = props;
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -56,9 +62,11 @@ export default function FormulaBar(props: FormulaBarProps) {
 
   const functions = EXCEL_FUNCTIONS_DE;
 
-  // Sync from parent prop — also trigger autocomplete for formula-like values
+  // Sync from parent prop — only when user is NOT actively editing
   useEffect(() => {
-    setEditValue(cellValue ?? '');
+    if (document.activeElement !== inputRef.current) {
+      setEditValue(cellValue ?? '');
+    }
     // Auto-trigger autocomplete when cell contains a partial formula
     if (cellValue && cellValue.startsWith('=')) {
       const partial = extractPartialFunction(cellValue);
@@ -83,8 +91,12 @@ export default function FormulaBar(props: FormulaBarProps) {
   }, [isFormulaMode]);
 
   // ── Name Box ──
-
-  const nameBoxValue = activeCell ? positionToRef(activeCell) : '';
+  // Show active cell ref. If a range is selected, show the range reference.
+  const nameBoxValue = selectedRange && (
+    selectedRange.startRow !== selectedRange.endRow || selectedRange.startCol !== selectedRange.endCol
+  )
+    ? rangeToRef(selectedRange)
+    : activeCell ? positionToRef(activeCell) : '';
   const [nameBoxVal, setNameBoxVal] = useState(nameBoxValue);
 
   // Sync name box when active cell changes externally
@@ -95,9 +107,21 @@ export default function FormulaBar(props: FormulaBarProps) {
   const handleNameBoxKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const ref = (e.target as HTMLInputElement).value.trim().toUpperCase();
+      const target = e.target as HTMLInputElement;
+      const ref = target.value.trim().toUpperCase();
       if (ref && onNavigateToRef) {
-        onNavigateToRef(ref);
+        const isValid = /^[A-Z]+\d+(:[A-Z]+\d+)?$/.test(ref);
+        if (isValid) {
+          onNavigateToRef(ref);
+          target.style.borderColor = ''; // Clear error
+        } else {
+          target.style.borderColor = '#ff0000'; // Show error
+          target.style.boxShadow = '0 0 0 1px #ff0000';
+          setTimeout(() => {
+            target.style.borderColor = '';
+            target.style.boxShadow = '';
+          }, 1500);
+        }
       }
     }
   }, [onNavigateToRef]);
@@ -115,7 +139,8 @@ export default function FormulaBar(props: FormulaBarProps) {
     let remaining = val.slice(1);
     let key = 0;
 
-    const regex = /([A-Za-z_ÄÖÜäöüß]+)\(|"([^"]*)"|([A-Z]+\d+(?::[A-Z]+\d+)?)|(\d+[,.]?\d*)/g;
+    // Step 1 fix: match absolute references with $ (e.g. $A$1, $A1, A$1)
+    const regex = /([A-Za-z_ÄÖÜäöüß]+)\(|"([^"]*)"|(\$?[A-Za-z]+\$?\d+(?::\$?[A-Za-z]+\$?\d+)?)|(\d+[,.]?\d*)/g;
     let lastIdx = 0;
     let match: RegExpExecArray | null;
 
@@ -132,7 +157,7 @@ export default function FormulaBar(props: FormulaBarProps) {
       } else if (match[2]) {
         parts.push(<span key={key++} className="fb-token-str">"{match[2]}"</span>);
       } else if (match[3]) {
-        parts.push(<span key={key++} className="fb-token-ref">{match[3]}</span>);
+        parts.push(<span key={key++} className="fb-token-ref">{match[3].toUpperCase()}</span>);
       } else if (match[4]) {
         parts.push(<span key={key++} className="fb-token-num">{match[4]}</span>);
       }
@@ -166,12 +191,19 @@ export default function FormulaBar(props: FormulaBarProps) {
   }, [onChange, functions]);
 
   const selectAutocomplete = useCallback((fn: typeof EXCEL_FUNCTIONS_DE[0]) => {
-    // Replace only the last partial function name fragment, preserving the rest
     const newVal = editValue.replace(/([A-Za-z_ÄÖÜäöüß]+)$/, fn.name + '(');
     setEditValue(newVal);
     onChange?.(newVal);
     setShowAutocomplete(false);
-    inputRef.current?.focus();
+    // Step 3: restore focus and position cursor after inserted function
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+      if (inputRef.current) {
+        const pos = newVal.length;
+        inputRef.current.selectionStart = pos;
+        inputRef.current.selectionEnd = pos;
+      }
+    });
   }, [onChange, editValue]);
 
   // ── Keyboard handling ────────────────────────────────────────────────
@@ -185,7 +217,9 @@ export default function FormulaBar(props: FormulaBarProps) {
     }
     if (e.key === 'Enter') { e.preventDefault(); onNavigate?.(e.shiftKey ? 'shiftEnter' : 'enter'); onConfirm?.(); }
     else if (e.key === 'Tab') { e.preventDefault(); onNavigate?.(e.shiftKey ? 'shiftTab' : 'tab'); onConfirm?.(); }
+    // Bug #10.2 fix: Escape dismisses formula bar and returns focus to the grid
     else if (e.key === 'Escape') { e.preventDefault(); onCancel?.(); }
+    else if (e.ctrlKey && e.key === 'Tab') { e.preventDefault(); onCancel?.(); }
   }, [showAutocomplete, autocompleteItems, autocompleteIndex, selectAutocomplete, onConfirm, onCancel, onNavigate]);
 
   const handleConfirm = useCallback(() => { onConfirm?.(); }, [onConfirm]);
@@ -193,8 +227,9 @@ export default function FormulaBar(props: FormulaBarProps) {
 
   const handleFocus = useCallback(() => {
     setIsEditing(true);
+    onStartEditing?.();
     if (editValue && !isFormulaMode && onChange) onChange(editValue);
-  }, [editValue, isFormulaMode, onChange]);
+  }, [editValue, isFormulaMode, onChange, onStartEditing]);
 
   // Detect if the value is a formula
   const isFormula = editValue.startsWith('=');
@@ -232,9 +267,15 @@ export default function FormulaBar(props: FormulaBarProps) {
         <button
           className="formulabar-btn"
           onClick={() => {
-            setEditValue(cellValue?.startsWith('=') ? cellValue : '=');
-            setIsEditing(true);
-            onChange?.(cellValue?.startsWith('=') ? cellValue! : '=');
+            // Step 3: preserve existing formula content, don't overwrite
+            const startVal = editValue || (cellValue && cellValue.startsWith('=') ? cellValue : '=');
+            if (!startVal.startsWith('=')) {
+              setEditValue('=');
+              onChange?.('=');
+            } else {
+              setEditValue(startVal);
+              onChange?.(startVal);
+            }
             setShowFunctionDialog(true);
             inputRef.current?.focus();
           }}
@@ -259,6 +300,17 @@ export default function FormulaBar(props: FormulaBarProps) {
           onChange={(e) => handleInput(e.target.value)}
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
+          onMouseDown={(e) => {
+            // Prevent Handsontable from stealing focus when clicking the formula bar
+            e.stopPropagation();
+            if (inputRef.current) inputRef.current.focus();
+          }}
+          onBlur={(e) => {
+            const relatedTarget = e.relatedTarget as HTMLElement;
+            if (relatedTarget?.classList.contains('formulabar-btn-cancel')) return;
+            if (isEditing && editValue !== cellValue) handleConfirm();
+            setIsEditing(false);
+          }}
           rows={expanded ? 3 : 1}
           aria-label={isFormula ? 'Formel eingeben' : 'Zellinhalt'}
           aria-autocomplete={showAutocomplete ? 'list' : undefined}
@@ -328,13 +380,31 @@ export default function FormulaBar(props: FormulaBarProps) {
                   <button
                     key={f.name}
                     onClick={() => {
-                      const formula = `=${f.name}(`;
-                      setEditValue(formula);
+                      const selectedFn = f.name + '(';
+                      const currentVal = editValue || '';
+                      const cursorPos = inputRef.current?.selectionStart ?? currentVal.length;
+
+                      let valToInsert = selectedFn;
+                      if (!currentVal.startsWith('=')) {
+                        valToInsert = '=' + selectedFn;
+                      }
+
+                      const newVal = currentVal.substring(0, cursorPos) + valToInsert + currentVal.substring(cursorPos);
+                      const newPos = cursorPos + valToInsert.length;
+
+                      setEditValue(newVal);
                       setIsEditing(true);
-                      onChange?.(formula);
-                      inputRef.current?.focus();
+                      onChange?.(newVal);
                       setShowFunctionDialog(false);
                       setFunctionSearch('');
+
+                      setTimeout(() => {
+                        inputRef.current?.focus();
+                        if (inputRef.current) {
+                          inputRef.current.selectionStart = newPos;
+                          inputRef.current.selectionEnd = newPos;
+                        }
+                      }, 0);
                     }}
                     style={{
                       display: 'block', width: '100%', textAlign: 'left', border: 'none', background: 'none',

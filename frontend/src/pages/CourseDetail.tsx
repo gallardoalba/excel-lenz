@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Lock, Clock, BookOpen, ChevronRight, Play, Target, BookMarked, GraduationCap, Trophy, BarChart3, Zap, Brain, Sprout } from 'lucide-react';
+import { CheckCircle, Lock, Clock, BookOpen, ChevronRight, Play, Target, BookMarked, GraduationCap, Trophy, BarChart3, Zap, Brain, Sprout, FileText } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
 import FunctionMap from '../components/visualizations/FunctionMap';
 import { ExcelSpinner } from '../components/animations/Celebrations';
@@ -130,6 +130,7 @@ export default function CourseDetail() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setLoading(true);
     setSelectedSection(null);
     setError(null);
@@ -151,7 +152,11 @@ export default function CourseDetail() {
         });
       })
       .catch(err => { console.error(err); setError('Der Kurs konnte nicht geladen werden. Bitte versuchen Sie es später erneut.'); })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        // Re-scroll to top after content renders (prevents mid-page jumps from layout shifts)
+        window.scrollTo(0, 0);
+      });
   }, [id, user]);
 
   // ── Derived data (must be before any conditional return — Rules of Hooks) ──
@@ -162,6 +167,36 @@ export default function CourseDetail() {
   const nextEx = useMemo(() => {
     if (!course) return null;
     return findNextExercise(course.exercises);
+  }, [course]);
+
+  // Map course difficulty to didactic guide assets
+  const didacticGuide = useMemo(() => {
+    if (!course) return null;
+    const map: Record<string, { html: string; pdf: string; label: string }> = {
+      beginner: {
+        html: '/didaktik/anfaenger',
+        pdf: '/downloads/Didaktischer_Leitfaden_Excel_Anfaenger.pdf',
+        label: 'Didaktischer Leitfaden: Excel für Anfänger',
+      },
+      advanced: {
+        html: '/didaktik/fortgeschrittene',
+        pdf: '/downloads/Didaktischer_Leitfaden_Excel_Fortgeschrittene.pdf',
+        label: 'Didaktischer Leitfaden: Excel für Fortgeschrittene',
+      },
+    };
+    return map[course.difficulty] || null;
+  }, [course]);
+
+  // Lehrplan URL mapping by difficulty
+  const lehrplanUrl = useMemo(() => {
+    if (!course) return null;
+    const map: Record<string, string> = {
+      beginner: '/lehrplan/anfaenger',
+      intermediate: '/lehrplan/fortgeschrittene',
+      advanced: '/lehrplan/fortgeschrittene',
+      expert: '/lehrplan/fortgeschrittene',
+    };
+    return map[course.difficulty] || null;
   }, [course]);
 
   if (loading) return <ExcelSpinner text="Kurse werden geladen..." />;
@@ -187,33 +222,13 @@ export default function CourseDetail() {
   const pct = course.user_progress?.total ? Math.round(course.user_progress.completed / course.user_progress.total * 100) : 0;
   const sections = buildSections(course);
   const activeSection = selectedSection ? sections.find(s => s.id === selectedSection) : null;
-  const isFree = course.title === 'Excel für Anfänger';
-
-  // Module number: extract from module id like "m1" → "1"
-  function moduleNum(modId: string): string {
-    const m = modId.match(/\d+/);
-    return m ? m[0] : modId;
-  }
+  const isOpen = true; // All courses accessible
 
   return (
     <div className="course-detail-page">
-      {/* ── HERO V2 — Clean, Tesla-style documentation layout ── */}
+      {/* ── HERO V2 ── */}
       <section className="course-hero-v2" style={{ background: 'var(--bg-alt)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="course-hero-inner">
-        {activeSection ? (
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 16 }}>
-            <Link to="/courses" className="btn btn-outline btn-sm">
-              <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
-            </Link>
-            <button className="btn btn-outline btn-sm" onClick={() => setSelectedSection(null)}>
-              <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zur Übersicht
-            </button>
-          </div>
-        ) : (
-          <Link to="/courses" className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen" style={{ display: 'inline-flex', marginBottom: 16 }}>
-            <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
-          </Link>
-        )}
         {activeSection ? (
           /* ── Section header (compact) ── */
           <div className="section-header">
@@ -244,7 +259,7 @@ export default function CourseDetail() {
                 <span className="badge" style={{ background: theme.bg, color: theme.accent, fontWeight: 600 }}>
                   {DIFFICULTY_LABELS[course.difficulty] || course.difficulty}
                 </span>
-                {isFree && <span className="badge badge-success">Kostenlos</span>}
+                {isOpen && <span className="badge badge-success">Geöffnet</span>}
               </div>
               <h1 className="hero-dashboard-title">{courseTitle}</h1>
               <p className="hero-dashboard-desc">{courseDesc}</p>
@@ -286,28 +301,48 @@ export default function CourseDetail() {
                       <div className="progress-bar-fill" style={{ width: `${pct}%`, background: theme.accent }} />
                     </div>
                   </div>
-                  {nextEx && pct < 100 && (
-                    <button
-                      className="btn btn-accent hero-cta-btn"
-                      onClick={() => navigate(`/exercises/${nextEx.id}`)}
-                    >
-                      <Play size={16} /> Weiter mit: {nextEx.title}
-                    </button>
-                  )}
-                  {pct >= 100 && (
-                    <div className="hero-complete-badge">
-                      <Trophy size={20} /> Alle Übungen abgeschlossen!
-                    </div>
-                  )}
+                  <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+                    {nextEx && pct < 100 && (
+                      <button
+                        className="btn btn-accent hero-cta-btn"
+                        onClick={() => navigate(`/exercises/${nextEx.id}`)}
+                      >
+                        <Play size={16} /> Weiter mit: {nextEx.title}
+                      </button>
+                    )}
+                    {pct >= 100 && (
+                      <div className="hero-complete-badge">
+                        <Trophy size={20} /> Alle Übungen abgeschlossen!
+                      </div>
+                    )}
+                    {didacticGuide && (
+                      <button
+                        className="btn btn-accent hero-cta-btn btn-dark-accent"
+                        onClick={() => window.open(didacticGuide.html, '_blank')}
+                      >
+                        <FileText size={16} />
+                        Didaktisches Programm
+                      </button>
+                    )}
+                  </div>
                 </div>
               ) : (
-                <div className="hero-progress-cta">
+                <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
                   {nextEx && (
                     <button
                       className="btn btn-accent btn-lg hero-cta-btn"
                       onClick={() => navigate(`/exercises/${nextEx.id}`)}
                     >
                       <Play size={18} /> Jetzt starten
+                    </button>
+                  )}
+                  {didacticGuide && (
+                    <button
+                      className="btn btn-accent btn-lg hero-cta-btn btn-dark-accent"
+                      onClick={() => window.open(didacticGuide.html, '_blank')}
+                    >
+                      <FileText size={18} />
+                      Didaktisches Programm
                     </button>
                   )}
                 </div>
@@ -322,12 +357,46 @@ export default function CourseDetail() {
       <div className={`course-body ${activeSection ? 'course-body--single' : ''}`}>
         {/* Main column */}
         <div className="course-main">
+          {/* ── LEHRPLAN ── */}
+          {!activeSection && lehrplanUrl && (
+            <>
+              <h2 className="course-section-title">
+                <BookOpen size={22} style={{marginRight:8, verticalAlign:'middle'}} />
+                Lehrplan
+              </h2>
+              <div
+                className="module-card"
+                style={{ textDecoration: 'none', color: 'inherit', display: 'block', marginBottom: 28, cursor: 'pointer' }}
+                onClick={() => navigate(lehrplanUrl)}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter') navigate(lehrplanUrl); }}
+              >
+              <div className="module-card-header">
+                <div className="module-card-info">
+                  <h3 className="module-card-title">Vollständiger Lehrplan mit Theorie und Übungen</h3>
+                  <p className="module-card-desc">
+                    13 Module mit verständlicher Theorie und 49 praktischen Excel-Übungen —
+                    von den Grundlagen bis zu Makros und VBA.
+                  </p>
+                  <div className="module-card-meta">
+                    <span><BookOpen size={12} /> 13 Module</span>
+                    <span><Clock size={12} /> ~12 Stunden</span>
+                    <span>49 Übungen</span>
+                  </div>
+                </div>
+                <ChevronRight size={20} className="module-card-chevron" />
+              </div>
+            </div>
+            </>
+          )}
+
           {/* ── SECTION OVERVIEW — Module cards ── */}
           {!activeSection && sections.length > 0 && (
             <>
               <h2 className="course-section-title">
                 <BookOpen size={22} style={{marginRight:8, verticalAlign:'middle'}} />
-                Kursinhalte
+                Interaktive Übungen
               </h2>
 
               <div className="module-cards">
@@ -346,7 +415,6 @@ export default function CourseDetail() {
                       data-module-id={section.id}
                     >
                       <div className="module-card-header" onClick={() => setSelectedSection(section.id)}>
-                        <span className="module-card-num">{moduleNum(section.id)}</span>
                         <div className="module-card-info">
                           <h3 className="module-card-title">{section.title}</h3>
                           {section.moduleDescription && (
@@ -473,7 +541,7 @@ export default function CourseDetail() {
                       }}
                     >
                       <span className={`sidebar-toc-dot ${isComplete ? 'dot--done' : sectionPct > 0 ? 'dot--progress' : ''}`} />
-                      <span className="sidebar-toc-label">{moduleNum(section.id)}. {section.title}</span>
+                      <span className="sidebar-toc-label">{section.title}</span>
                       <span className="sidebar-toc-count">{section.completedCount}/{section.exerciseCount}</span>
                     </button>
                   );
@@ -526,8 +594,8 @@ export default function CourseDetail() {
                   <span className="sidebar-info-value">{stats.uniqueModules || sections.length}</span>
                 </div>
                 <div className="sidebar-info-item">
-                  <span className="sidebar-info-label">Kostenlos</span>
-                  <span className="sidebar-info-value">{isFree ? 'Ja ✓' : 'Premium'}</span>
+                  <span className="sidebar-info-label">Zugang</span>
+                  <span className="sidebar-info-value">{isOpen ? 'Offen' : 'Geschlossen'}</span>
                 </div>
               </div>
             </div>

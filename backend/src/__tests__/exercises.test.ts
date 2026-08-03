@@ -23,6 +23,29 @@ describe('Exercise Routes', () => {
     token = res.body.token;
   });
 
+  // Find the first spreadsheet exercise in a course (grid-based scoring).
+  // Quiz exercises score via `answers` and are excluded from grid-based tests.
+  async function getSpreadsheetExercise(courseId: string): Promise<{ id: string; template: any; solution: any }> {
+    const courseRes = await supertest(app).get(`/api/courses/${courseId}`).set('Authorization', `Bearer ${token}`);
+    for (const ex of courseRes.body.exercises) {
+      const exRes = await supertest(app).get(`/api/exercises/${ex.id}`).set('Authorization', `Bearer ${token}`);
+      const td = exRes.body.template_data;
+      if (
+        td &&
+        td.type !== 'quiz' &&
+        Array.isArray(td.data) && td.data.length > 0 &&
+        Array.isArray(td.taskCols) && td.taskCols.length > 0
+      ) {
+        // Students don't get solution_data from the API — fetch it from DB directly
+        const { getDb } = await import('../db/database');
+        const raw = getDb().prepare('SELECT solution_data FROM exercises WHERE id = ?').get(ex.id) as any;
+        const solution = raw?.solution_data ? JSON.parse(raw.solution_data) : null;
+        return { id: ex.id, template: td, solution };
+      }
+    }
+    throw new Error('No spreadsheet exercise found in course');
+  }
+
   it('GET /api/courses returns course list', async () => {
     const res = await supertest(app).get('/api/courses');
     expect(res.status).toBe(200);
@@ -50,21 +73,19 @@ describe('Exercise Routes', () => {
   it('POST /api/exercises/:id/submit returns score and feedback', async () => {
     const coursesRes = await supertest(app).get('/api/courses');
     const courseId = coursesRes.body[0].id;
-    const courseRes = await supertest(app).get(`/api/courses/${courseId}`).set('Authorization', `Bearer ${token}`);
-    const exerciseId = courseRes.body.exercises[0].id;
-    const exRes = await supertest(app).get(`/api/exercises/${exerciseId}`).set('Authorization', `Bearer ${token}`);
-    const template = exRes.body.template_data;
+    const { id: exerciseId, template, solution } = await getSpreadsheetExercise(courseId);
 
-    // Submit the correct solution (use template_data.solution if available, or compute)
+    // Submit the correct solution
     const res = await supertest(app)
       .post(`/api/exercises/${exerciseId}/submit`)
       .set('Authorization', `Bearer ${token}`)
-      .send({ data: template.data.map((row: any[]) => row.map((cell: any) => cell === null ? '' : cell)) });
+      .send({ data: solution?.data || template.data.map((row: any[]) => row.map((cell: any) => cell === null ? '' : cell)) });
 
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('score');
     expect(res.body).toHaveProperty('correctCells');
     expect(res.body).toHaveProperty('totalCells');
+    expect(res.body.totalCells).toBeGreaterThan(0);
   });
 
   it('POST submit with empty data returns 200 (score 0)', async () => {
@@ -100,17 +121,20 @@ describe('Exercise Routes', () => {
   it('XP is awarded on first submission (new exercise)', async () => {
     const coursesRes = await supertest(app).get('/api/courses');
     const courseId = coursesRes.body[0].id;
-    const courseRes = await supertest(app).get(`/api/courses/${courseId}`).set('Authorization', `Bearer ${token}`);
-    // Pick a different exercise to avoid conflicts
-    const exercises = courseRes.body.exercises;
-    const exerciseId = exercises.length > 1 ? exercises[1].id : exercises[0].id;
-    const exRes = await supertest(app).get(`/api/exercises/${exerciseId}`).set('Authorization', `Bearer ${token}`);
-    const template = exRes.body.template_data;
+    // Use a spreadsheet exercise so submission produces a real grid score
+    const { id: exerciseId, template, solution } = await getSpreadsheetExercise(courseId);
+
+    // Fresh user to guarantee this is a first-time submission (other tests may
+    // have already submitted this exercise with the shared user)
+    const freshRes = await supertest(app)
+      .post('/api/auth/register')
+      .send({ email: `xpfresh${Date.now()}@ex.com`, password: 'test1234', name: 'XpTester' });
+    const freshToken = freshRes.body.token;
 
     const res = await supertest(app)
       .post(`/api/exercises/${exerciseId}/submit`)
-      .set('Authorization', `Bearer ${token}`)
-      .send({ data: template.data });
+      .set('Authorization', `Bearer ${freshToken}`)
+      .send({ data: solution?.data || template.data });
 
     expect(res.status).toBe(200);
     // First submission with correct answer should give XP > 0
@@ -120,11 +144,8 @@ describe('Exercise Routes', () => {
   it('Re-submission with improved score awards XP for improvement', async () => {
     const coursesRes = await supertest(app).get('/api/courses');
     const courseId = coursesRes.body[0].id;
-    const courseRes = await supertest(app).get(`/api/courses/${courseId}`).set('Authorization', `Bearer ${token}`);
-    // Use the first exercise (known to have matching template/solution)
-    const exerciseId = courseRes.body.exercises[0].id;
-    const exRes = await supertest(app).get(`/api/exercises/${exerciseId}`).set('Authorization', `Bearer ${token}`);
-    const template = exRes.body.template_data;
+    // Use a spreadsheet exercise with a real grid solution
+    const { id: exerciseId, template, solution } = await getSpreadsheetExercise(courseId);
 
     // First submit: empty/wrong answer (score 0)
     const emptyData = template.data.map((row: any[]) => row.map(() => ''));
@@ -135,11 +156,11 @@ describe('Exercise Routes', () => {
 
     expect(firstRes.body.score).toBeLessThan(100);
 
-    // Second submit: correct answer — should award XP for improvement
+    // Second submit: solution data — should award XP for improvement
     const secondRes = await supertest(app)
       .post(`/api/exercises/${exerciseId}/submit`)
       .set('Authorization', `Bearer ${token}`)
-      .send({ data: template.data });
+      .send({ data: solution?.data || template.data });
 
     expect(secondRes.status).toBe(200);
     // Improvement from low score → high score should give XP > 0
@@ -149,22 +170,19 @@ describe('Exercise Routes', () => {
   it('Re-submission with same score does not award full XP', async () => {
     const coursesRes = await supertest(app).get('/api/courses');
     const courseId = coursesRes.body[0].id;
-    const courseRes = await supertest(app).get(`/api/courses/${courseId}`).set('Authorization', `Bearer ${token}`);
-    const exercises = courseRes.body.exercises;
-    const exerciseId = exercises.length > 3 ? exercises[3].id : exercises[0].id;
-    const exRes = await supertest(app).get(`/api/exercises/${exerciseId}`).set('Authorization', `Bearer ${token}`);
-    const template = exRes.body.template_data;
+    const { id: exerciseId, template, solution } = await getSpreadsheetExercise(courseId);
 
     // Submit correct answer twice
+    const correctData = solution?.data || template.data;
     await supertest(app)
       .post(`/api/exercises/${exerciseId}/submit`)
       .set('Authorization', `Bearer ${token}`)
-      .send({ data: template.data });
+      .send({ data: correctData });
 
     const secondRes = await supertest(app)
       .post(`/api/exercises/${exerciseId}/submit`)
       .set('Authorization', `Bearer ${token}`)
-      .send({ data: template.data });
+      .send({ data: correctData });
 
     // Second submission with same perfect score should give ≤ 10 XP (review bonus only)
     expect(secondRes.body.xpGained).toBeLessThanOrEqual(10);
@@ -243,5 +261,36 @@ describe('Exercise Routes', () => {
       .set('Authorization', `Bearer ${token}`);
 
     expect(res.status).toBe(404);
+  });
+
+  // ── Goal Seek (DoS protection) ──────────────────────────────
+
+  it('POST /api/exercises/goal-seek rejects oversized data', async () => {
+    // Create a 101-row array (exceeds MAX_ROWS=100)
+    const bigData = Array.from({ length: 101 }, () => ['']);
+
+    const res = await supertest(app)
+      .post('/api/exercises/goal-seek')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        data: bigData,
+        formulaRow: 0,
+        formulaCol: 0,
+        inputRow: 0,
+        inputCol: 0,
+        targetValue: 100,
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body.error).toContain('Daten zu groß');
+  });
+
+  it('POST /api/exercises/goal-seek rejects non-array data', async () => {
+    const res = await supertest(app)
+      .post('/api/exercises/goal-seek')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ data: 'not-an-array' });
+
+    expect(res.status).toBe(400);
   });
 });

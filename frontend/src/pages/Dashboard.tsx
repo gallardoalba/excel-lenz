@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BarChart3, Trophy, Target, Award, TrendingUp, RefreshCw, BookOpen, Star, FileText, Crosshair, CheckCircle, Calendar, CalendarCheck, CalendarDays } from 'lucide-react';
+import { BarChart3, LineChart, Trophy, Target, Award, TrendingUp, RefreshCw, BookOpen, Star, FileText, Crosshair, CheckCircle, Calendar, CalendarCheck, CalendarDays } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
 import { Skeleton } from '../hooks/useAutosave';
 import { ExcelSpinner } from '../components/animations/Celebrations';
@@ -85,9 +85,9 @@ export default function Dashboard() {
   if (loading) return <Skeleton lines={4} />;
 
   return (
-    <div>
-      <h1 style={{ marginBottom: 8 }}><BarChart3 size={28} style={{marginRight:8, verticalAlign:'middle'}} />Mein Fortschritt</h1>
-      <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>
+    <div className="dashboard-container">
+      <h1 className="dashboard-title"><LineChart size={28} />Mein Fortschritt</h1>
+      <p className="dashboard-subtitle">
         Willkommen, {user?.name}. Hier sehen Sie Ihren Lernfortschritt.
       </p>
 
@@ -118,49 +118,31 @@ export default function Dashboard() {
         </>
       )}
 
-      {/* ── ROW 2: Weitermachen (Review + Badges) ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: reviews.length > 0 ? '1.5fr 1fr' : '1fr', gap: 24, marginBottom: 32 }}>
-        {reviews.length > 0 && (
-          <div>
-            <h3 className="text-md mb-3">
-              <RefreshCw size={18} style={{marginRight:6, verticalAlign:'middle'}} />Weitermachen
-            </h3>
-            <div className="flex-col gap-sm">
-              {reviews.slice(0, 3).map((r) => (
-                <Link key={r.exercise_id} to={`/exercises/${r.exercise_id}`} className="card border-left-warning" style={{
-                  padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                  textDecoration: 'none', color: 'inherit',
-                }}>
-                  <div>
-                    <strong className="text-base">{r.exercise_title}</strong>
-                    <div className="text-xs text-secondary mt-1">
-                      <BookOpen size={11} style={{marginRight:3}} />{r.course_title}
-                      {r.repetitions > 0 && ` · ${r.repetitions}. Wiederholung`}
-                    </div>
+      {/* ── ROW 2: Weitermachen (Review) ── */}
+      {reviews.length > 0 && (
+        <div style={{ marginBottom: 32 }}>
+          <h3 className="text-md mb-3">
+            <RefreshCw size={18} style={{marginRight:6, verticalAlign:'middle'}} />Weitermachen
+          </h3>
+          <div className="flex-col gap-sm">
+            {reviews.slice(0, 3).map((r) => (
+              <Link key={r.exercise_id} to={`/exercises/${r.exercise_id}`} className="card border-left-warning" style={{
+                padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                textDecoration: 'none', color: 'inherit',
+              }}>
+                <div>
+                  <strong className="text-base">{r.exercise_title}</strong>
+                  <div className="text-xs text-secondary mt-1">
+                    <BookOpen size={11} style={{marginRight:3}} />{r.course_title}
+                    {r.repetitions > 0 && ` · ${r.repetitions}. Wiederholung`}
                   </div>
-                  <span className="btn btn-accent btn-sm">Üben →</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {gami && gami.badges.length > 0 && (
-          <div>
-            <h3 className="text-md mb-3">
-              <Award size={18} style={{marginRight:6, verticalAlign:'middle'}} />Zertifizierungen
-            </h3>
-            <div className="flex gap-md flex-wrap">
-              {gami.badges.map((b) => (
-                <div key={b.id} className="card text-center" style={{ padding: '12px 16px', minWidth: 80 }} title={b.description}>
-                  <div style={{ color: 'var(--tertiary)' }}>{BADGE_ICONS[b.icon] || <Award size={22} />}</div>
-                  <div className="text-xs font-semibold mt-1">{b.name}</div>
                 </div>
-              ))}
-            </div>
+                <span className="btn btn-accent btn-sm">Üben →</span>
+              </Link>
+            ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* ── ROW 3: Skill Analysis ── */}
       {skills.length > 0 && (
@@ -169,31 +151,39 @@ export default function Dashboard() {
             <BarChart3 size={18} style={{marginRight:6, verticalAlign:'middle'}} />Skill-Übersicht
           </h3>
           <div className="card" style={{ padding: '18px 20px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 14 }}>
-              {skills.map((s) => (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
+              {skills.map((s) => {
+                const completionPct = s.total > 0 ? Math.round((s.completed / s.total) * 100) : 0;
+                return (
                 <div key={s.name}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                    <span style={{ fontWeight: 600, fontSize: '0.85rem' }}>{s.name}</span>
-                    <span style={{ fontSize: '0.75rem', color: s.score >= 80 ? 'var(--success)' : s.score >= 50 ? 'var(--warning)' : 'var(--danger)', fontWeight: 600 }}>
-                      {Math.round(s.score)}%
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8, gap: 12 }}>
+                    <span style={{ fontWeight: 600, fontSize: '0.88rem', flexShrink: 0 }}>{s.name}</span>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                      {completionPct}% &middot; {s.completed}/{s.total}
                     </span>
                   </div>
-                  <div className="progress-bar" style={{ height: 5 }}>
-                    <div className="progress-bar-fill" style={{ width: `${Math.round(s.score)}%` }} />
-                  </div>
-                  <div style={{ marginTop: 4, fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-                    {s.completed}/{s.total} Übungen · Niveau {s.level}/5
+                  <div className="progress-bar" style={{ height: 6 }}>
+                    <div className="progress-bar-fill" style={{ width: `${completionPct}%` }} />
                   </div>
                 </div>
-              ))}
+              )})}
             </div>
-            {weakest && weakest.score < 80 && (
+            {weakest && weakest.completed === 0 && skills.some(s => s.completed === 0) && (
+              <div style={{
+                marginTop: 14, padding: '10px 14px',
+                border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)',
+                borderLeft: '3px solid var(--primary)', fontSize: '0.84rem',
+              }}>
+                <strong><Crosshair size={14} style={{marginRight:4}} />Empfehlung:</strong> Starte mit <em>{skills.find(s => s.completed === 0)?.name || weakest.name}</em> — noch keine Übungen absolviert!
+              </div>
+            )}
+            {weakest && weakest.completed > 0 && weakest.score < 80 && (
               <div style={{
                 marginTop: 14, padding: '10px 14px',
                 border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)',
                 borderLeft: '3px solid var(--warning)', fontSize: '0.84rem',
               }}>
-                <strong><Crosshair size={14} style={{marginRight:4}} />Fokus-Empfehlung:</strong> Arbeite an <em>{weakest.name}</em> ({Math.round(weakest.score)}%) — hier gibt es noch Potenzial!
+                <strong><Crosshair size={14} style={{marginRight:4}} />Fokus-Empfehlung:</strong> Arbeite an <em>{weakest.name}</em> (Ø {Math.round(weakest.score)}%) — hier gibt es noch Potenzial!
               </div>
             )}
           </div>
@@ -212,11 +202,13 @@ export default function Dashboard() {
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {progress.slice(0, 6).map((p) => (
-                <div key={p.exercise_id} className="card" style={{ padding: '10px 14px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <strong style={{ fontSize: '0.85rem' }}>{p.exercise_title}</strong>
-                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.78rem' }}><BookOpen size={11} style={{marginRight:3}} />{p.course_title}</div>
+                <div key={p.exercise_id} className="card" style={{ padding: '14px 18px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ fontWeight: 600, fontSize: '0.88rem', marginBottom: 2 }}>{p.exercise_title}</div>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: 4 }}>
+                        <BookOpen size={11} />{p.course_title}
+                      </div>
                     </div>
                     <span style={{
                       padding: '3px 10px', borderRadius: 12, fontWeight: 600, fontSize: '0.8rem',
@@ -231,11 +223,11 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Score Progress Chart */}
-      <ScoreProgressChart />
-
-      {/* Streak Calendar */}
-      <StreakCalendar />
+      {/* ── Aktivität ── */}
+      <div style={{ marginBottom: 32 }}>
+        <ScoreProgressChart />
+        <StreakCalendar />
+      </div>
     </div>
   );
 }

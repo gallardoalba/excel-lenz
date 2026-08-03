@@ -1,0 +1,507 @@
+---
+pdftitle: "Guía para formadores: Excel para principiantes y usuarios avanzados"
+author: "Cristóbal Gallardo"
+date: "agosto de 2026"
+lang: es
+colorlinks: true
+linkcolor: blue
+urlcolor: blue
+fontsize: 11pt
+documentclass: article
+geometry: margin=2.5cm
+---
+
+\thispagestyle{empty}
+\begin{center}
+{\Huge\bfseries\sffamily\color{excelblue}Guía para formadores\par}
+\vspace{0.3em}
+{\Large\sffamily Clases particulares de Excel: principiantes y avanzados\par}
+\vspace{1.5em}
+{\large\sffamily Indicaciones didácticas, métodos y consejos prácticos\par}
+\vspace{2.5em}
+{\normalsize\sffamily\color{excelgray}
+\textbf{Autor:} Cristóbal Gallardo\par
+\vspace{0.2em}
+\textbf{Fecha:} agosto de 2026\par
+\vspace{0.2em}
+\textbf{Lugar:} Friburgo de Brisgovia\par
+}
+\end{center}
+\vfill
+
+\tableofcontents
+
+## Introducción: ¿Por qué esta guía?
+
+Esta guía complementa los dos planes de estudios **Excel para principiantes** (13 módulos, 54 ejercicios)
+y **Excel para avanzados** (10 módulos, 39 ejercicios). Mientras que los planes de estudios están
+concebidos como material de autoaprendizaje para los participantes, esta guía
+se dirige a usted como **formador en clases presenciales individuales**.
+
+Los planes de estudio siguen los principios de la **andragogía** (Knowles, 1980): los adultos aprenden
+orientándose a la resolución de problemas, aportan una amplia experiencia previa y desean aplicar lo aprendido de inmediato
+. Su papel como formador no es el de un conferenciante, sino el de un
+**facilitador del aprendizaje**: usted modera, da ideas y adapta el ritmo de forma individualizada.
+
+---
+
+\newpage
+## Parte A: Principios didácticos generales
+
+### 1. La comprensión del papel en las clases particulares
+
+En las clases individuales, usted no es un profesor, sino un **coach**. El alumno marca
+el ritmo; usted marca la dirección. En concreto, esto significa:
+
+| En lugar de... | Es mejor... |
+|----------|-----------|
+| Dar una clase magistral («Hoy vamos a aprender a usar VLOOKUP») | Plantear un problema («¿Cómo se calcula el precio a partir de un código de producto?») |
+| Dar la solución | Dejar que el alumno elabore la solución de forma conjunta |
+| Mostrar todos los pasos | Mostrar un paso y dejar que el alumno haga el siguiente por sí mismo |
+| Señalar los errores | Preguntar: «¿Qué habría que cambiar para que el resultado sea correcto?» |
+| Seguir estrictamente el plan de estudios | Profundizar si hay interés; reducir el ritmo si el alumno se siente desbordado |
+
+### 2. La sesión de 90 minutos: un marco básico de probada eficacia
+
+Cada sesión (90 minutos) sigue este ritmo, que se puede adaptar de forma flexible:
+
+| Fase | Duración | ¿Qué ocurre? | Su papel |
+|-------|-------|---------------|------------|
+| **Llegada** | 5 min. | Breve conversación, repaso de la última sesión, aclaración de dudas | Escuchar, animar |
+| **Activación** | 5 min. | «¿Qué saben ya?»: comentar preguntas del plan de estudios | Dar ideas, valorar los conocimientos previos |
+| **Concepto** | 15 min. | Explorar juntos un nuevo concepto (comentar la tabla del plan de estudios) | Explicar, encontrar analogías con la vida cotidiana |
+| **Demostración** | 10 min. | Usted muestra el proceso una vez en directo en Excel | Hacer una demostración, comentar («Ahora hago clic aquí porque...») |
+| **Ejercicio** | 30 min. | Los participantes trabajan con el archivo de ejercicios, usted les ayuda | Intervenir solo si se bloquean — dejar que se equivoquen y luego comentarlo |
+| **Reflexión** | 10 min. | «¿Qué ha sido nuevo? ¿Qué ha resultado difícil? ¿Dónde ven que se puede aplicar?» | Plantear preguntas, orientar hacia los problemas reales de los participantes |
+| **Autoevaluación** | 5 min. | Repasar juntos la lista de verificación «Esto ya lo sabes hacer» | Confirmar lo aprendido y anotar las lagunas para repasarlas |
+| **Perspectivas** | 5 min. | Avance del próximo módulo; asignar una tarea adicional opcional | Despertar la curiosidad |
+
+### 3. Cómo abordar los tres elementos de aprendizaje del plan de estudios
+
+Los planes de estudios incluyen tres nuevos elementos pedagógicos que debe utilizar de forma activa:
+
+**«¿Qué sabe ya?» (inicio del módulo)**
+- Dedique entre 3 y 5 minutos a ello
+- Deje que los participantes piensen en voz alta
+- Anote las lagunas de conocimiento: son su prioridad para este módulo
+- Valore los conocimientos previos: «Exacto, esa es la base perfecta para hoy»
+
+**«Esto es lo que ya sabe» (al final del módulo)**
+- Repasen juntos la lista de comprobación: no se limiten a marcarla, sino que dejen que los participantes lo demuestren
+- En caso de duda: repitan brevemente la tarea del módulo
+- Marquen juntos: «Esto ya lo tienen claro» frente a «Lo repetiremos la semana que viene»
+- Celebren los logros de forma consciente: «Hace dos horas aún no sabían qué era una VLOOKUP; ahora la utilizan de forma autónoma»
+
+**«Errores típicos» (en apartados seleccionados)**
+- Lea el apartado ANTES del ejercicio, no después
+- Pregunte: «¿Cuál de estos errores ya le ha pasado antes?»
+- Si el participante comete uno de estos errores: «Ah, ese es uno de los casos típicos; eche un vistazo aquí» y remítale a la lista
+- Objetivo: normalizar los errores, no castigarlos
+
+### 4. Cómo lidiar con la frustración y los bloqueos
+
+Todo proceso de aprendizaje tiene momentos bajos. Señales y soluciones:
+
+| Síntomas | ¿Qué hacer? |
+|-----------|----------|
+| «No lo entiendo» | No lo repitas, reformúlalo. Busca otra metáfora. |
+| «Esto es demasiado complicado» | Desglósalo: «¿Qué paso CONCRETO no te queda claro?» |
+| Silencio, actitud pasiva | Motivar: «Simplemente inténtalo, no tiene por qué salir perfecto» |
+| Perfeccionismo («¡Pero si tiene que salir!») | Aliviar la presión: «Excel lo complica a propósito. Incluso los profesionales buscan cosas en Google constantemente». |
+| «¿Para qué necesito esto?» | Tomarlo en serio y buscar un ejemplo concreto de SU vida cotidiana |
+
+**Regla de oro:** Si un concepto no se asimila en 10 minutos, sigue adelante.
+Mañana o la semana que viene lo entenderá por sí mismo. No fuerces nada.
+
+---
+
+\newpage
+## Parte B: Indicaciones específicas del módulo — Principiantes (M1--M13)
+
+### Módulo 1: Introducción a Excel
+
+**Lo primero es lo primero:** el alumno debe percibir Excel como una herramienta, no como
+una amenaza. Déjale jugar: que haga clic, que teclee, que pruebe.
+
+- **Ejercicio 1.1:** Deja que el participante describa la interfaz con sus propias palabras.
+  No corrijas cada término de inmediato; «la barra de arriba» está bien para empezar.
+- **Navegación (1.3):** Organiza una pequeña carrera: «¿Quién llega antes a la celda A1?»
+  (Ctrl+Pos1 frente a desplazarse). El momento de revelación llega por sí solo.
+- **Formatos de archivo (1.4):** Mencione `.xlsm` solo de pasada. Para los principiantes, lo importante es: `.xlsx`
+  para trabajar, `.pdf` para enviar.
+
+**Dificultades habituales:**
+- La cinta de opciones resulta abrumadora. Tranquiliza a los alumnos: «El 95 % de tu trabajo se desarrolla en
+  las pestañas Inicio, Insertar y Datos».
+- Es necesario repetir la diferencia entre libro, hoja de cálculo y celda.
+
+### Módulo 2: Introducción y edición de datos
+
+**Concepto clave:** Excel piensa por sí mismo: reconoce los tipos de datos automáticamente.
+
+- **Ejercicio 2.3 (Autocompletar):** ¡Este es el momento divertido! Deje que los participantes
+  experimenten con patrones: días de la semana, meses, «Cliente 1» → «Cliente 2» → ...
+- **Rellenado ultrarrápido (más adelante en M5):** Menciónelo aquí ya como avance —
+  despierta la curiosidad.
+- **Pegar contenido → Valores:** El concepto más potente de este módulo. Haga una demostración:
+  copiar el resultado de la fórmula → pegar como valor. La diferencia debe ser visible físicamente
+  (la barra de fórmulas muestra de repente un número en lugar de una fórmula).
+
+### Módulo 3: Formato
+
+**Concepto clave:** el formato sirve para facilitar la lectura, no como decoración.
+
+- **Predicar la moderación:** los principiantes tienden a crear tablas de colores chillones. Elogie
+  explícitamente la elección de colores discretos.
+- **Formato condicional (3.4):** muestre primero las barras de datos —el efecto visual «wow»
+  motiva—. Después, las escalas de colores; luego, las reglas. Este orden es óptimo desde el punto de vista didáctico.
+- **Formatos numéricos (3.2):** El clásico: el 19 % se convierte en 1900 % porque alguien ha introducido «19» en lugar de
+  «0,19». Provoca este error a propósito y ríete con ellos.
+
+### Módulo 4: Fórmulas y funciones básicas
+
+**Concepto clave:** Todo empieza con `=`. Lo primero es lo primero.
+
+- **Referencias absolutas (4.2):** El concepto más difícil para los principiantes. Tómese su tiempo.
+  Demonstre el uso de la tecla F4 un sinfín de veces: `A1` → `$A$1` → `A$1` → `$A1` → `A1`.
+- **Introducir una regla mnemotécnica:** «Sin el símbolo del dólar, la fórmula se ejecuta; con el símbolo del dólar, se detiene».
+- **SI (4.5):** Empiece con ejemplos cotidianos: «SI llueve, ENTONCES paraguas,
+  SI NO, gafas de sol». Solo después tradúzcalos a Excel.
+- **SI con Y/O:** Mencionarlo brevemente, sin profundizar. Esto se trata en el
+  curso avanzado.
+
+### Módulo 5: Limpieza y validación de datos
+
+**Concepto clave:** «Garbage In, Garbage Out» — unos datos limpios lo son todo.
+
+- **Listas desplegables (5.1):** Las favoritas de todo principiante. Deja que el alumno
+  cree él mismo una lista y la utilice como lista desplegable. La sensación de control motiva.
+- **Rellenado ultrarrápido (5.2):** Muéstralo con un ejemplo sorprendente:
+  «Max Müller, Berlín» → extrae automáticamente el nombre, apellido y ciudad extraídos automáticamente. Ctrl+E es
+  el atajo más mágico para los principiantes.
+- **Importación CSV (5.4):** De gran relevancia práctica, pero un poco árido. Relaciónalo con un
+  problema concreto del participante («¿Recibes a veces datos del
+  sistema de gestión de inventario?»).
+
+### Módulo 6: Ordenar, filtrar, tablas
+
+**Concepto clave:** Ctrl+T convierte un rango de datos en una tabla inteligente.
+
+- **Ctrl+T (6.3):** Muestre el efecto «antes y después». Formato, filtro automático,
+  referencias estructuradas… todo a la vez. Este es el mayor salto en productividad
+  para los principiantes.
+- **Resultados parciales (6.4):** Hágalo solo si el alumno lo necesita. Para muchos
+  principiantes, las tablas dinámicas (M9) son la forma más sencilla de obtener la misma información.
+- **Congelar ventanas (6.2):** Un detalle menor, pero que supone una enorme ganancia en comodidad. Deje que el
+  alumnos se desplace por una tabla larga SIN los encabezados fijos — y luego CON ellos.
+  La diferencia habla por sí sola.
+
+### Módulo 7: Funciones avanzadas
+
+**Concepto clave:** LA.BUSCAR es la puerta de entrada al uso profesional de Excel.
+
+- **SVERWEIS (7.2):** Tómate tu TIEMPO. Este es EL momento clave de todo el curso para principiantes
+  — cuando el alumno domina SVERWEIS, se siente como un profesional.
+  - Empieza con una analogía: la guía telefónica
+  - Muestra el error #NV y cómo solucionarlo con la función SIERROR
+  - Primero, búsqueda exacta (0); luego, aproximada (1) para notas o puntuaciones
+- **ÍNDICE+COMPARAR (7.3):** Opcional para principiantes. Si se corre el riesgo de que resulte demasiado complicado, remítase a
+  CONSTRUIR.VLOOKUP (365) u omítalo por completo. Se volverá a tratar en el curso avanzado.
+- **ERROR.SI vs. ERROR.SI:** Muchos principiantes confunden ERROR.SI (lógica) con ERROR.SI
+  (detección de errores). Distíngalas claramente.
+
+### Módulo 8: Gráficos
+
+**Concepto clave:** Una imagen vale más que mil cifras, pero solo la imagen ADECUADA.
+
+- **Elección del tipo de gráfico (8.1):** Deje primero que los participantes adivinen: «¿Qué gráfico
+  se adapta a estos datos?». Las respuestas incorrectas son instructivas.
+- **Límite del gráfico circular:** 5-7 segmentos como máximo. Muestre un gráfico circular de 20 segmentos
+  como ejemplo disuasorio.
+- **Cuadro de mando (8.4):** Mantén la sencillez: 2-3 gráficos en una hoja, bien
+  alineados. Nada más. La sensación de «He creado un cuadro de mando» no tiene precio.
+
+### Módulo 9: Tablas dinámicas
+
+**Concepto clave:** Sin fórmulas, solo arrastrar y soltar.
+
+- **Primera tabla dinámica (9.1):** Repásalo con ellos: seleccionar la tabla → Insertar →
+  Tabla dinámica → Campo en filas → Campo en valores. El momento en el que Excel muestra automáticamente
+  la suma por categoría es mágico.
+- **Acabar con el miedo a las tablas dinámicas:** Muchos han oído hablar de «tablas dinámicas complicadas».
+  Desmitifícalo: «Es como un juego de construcción: arrastras bloques a cuatro casillas».
+- **Cortadores (9.3):** Visualmente impresionantes. Muestra un cortador que filtra dos
+  tablas dinámicas a la vez. Es un panel de control en 5 minutos.
+
+### Módulo 10: Análisis y funciones financieras
+
+- **Búsqueda de valor objetivo (10.1):** Preséntalo como un truco de magia: «Quiero 100 000 €
+  de facturación; Excel me dice el precio».
+- **RMZ (10.2):** Muchos participantes tienen dudas financieras concretas (hipoteca, leasing de coche).
+  Deja que introduzcan SUS propias cifras. Relevancia personal = máxima atención.
+- **Tabla de datos (10.3):** Preséntala como un «sistema automático de hipótesis». El mecanismo de fórmulas de la hoja de cálculo
+  es complejo; acepta que el participante lo utilice aunque
+  no lo entienda del todo.
+
+### Módulo 11: Impresión y colaboración
+
+- **Consejo práctico:** La vista previa del salto de página es su mejor aliada. Muéstrela
+  antes de abordar cualquier otro tema relacionado con la impresión.
+- **Encabezados y pies de página:** No dedique demasiado tiempo a ello. Lo básico (número de página, fecha)
+  es suficiente para el 90 % de los casos.
+- **Exportación a PDF:** ¡Más importante que imprimir! Hoy en día, la mayoría de los documentos se envían de forma digital
+ . PDF = «Así es como lo verá el destinatario, sin duda alguna».
+
+### Módulo 12: Protección y atajos de teclado
+
+- **Protección (12.1):** Demuestre la diferencia entre «Formato de celdas →
+  Protección → Bloqueado» y «Proteger hoja». La mayoría de los principiantes piensan que basta con una de las dos
+  opciones.
+- **Los 10 atajos más útiles (12.2):** No todos a la vez. Enseñe 2 o 3 por sesión
+  y déjeles que practiquen hasta la siguiente sesión. La semana que viene: «¿Qué atajos
+  han utilizado?»
+- **Inspección del documento (12.3):** Muestre todo lo que guarda Excel (autor, empresa,
+  filas ocultas). El aspecto de la protección de datos causa buena impresión.
+
+### Módulo 13: Macros
+
+- **Gestión de expectativas:** Esto es un aperitivo, no el plato principal. Objetivo: que los participantes
+  sepan que existen las macros y cómo grabarlas, no programar en VBA.
+- **Primera grabación (13.2):** Da formato a una tabla en directo durante la grabación.
+  A continuación: «Ahora pulso este botón, y Excel lo hace todo automáticamente». El efecto sorpresa
+  es lo que cuenta.
+- **Editor de VBA (13.3):** Mostrarlo solo brevemente: «Así es como se ve el código». No hay que explicar
+  qué hace cada línea. Eso es materia para el curso avanzado.
+
+---
+
+\newpage
+## Parte C: Indicaciones específicas de los módulos — Nivel avanzado (M1--M10)
+
+### Módulo 1: Formatos avanzados y validación
+
+- **Códigos de formato numérico (1.2):** Las cuatro secciones (`positivo;negativo;cero;texto`) son
+  la columna vertebral. Muestre un ejemplo práctico: formato contable con
+  `[Rojo]` para números negativos, `-` para cero.
+- **Formato condicional basado en fórmulas (1.3):** La frustración más habitual: celda activa
+  incorrecta. Haga hincapié en: «Si A1 está activa, la fórmula debe comenzar con `$F1`». Deje
+  que el participante cometa un error y lo corrija; así se aprende mejor.
+- **Protección (1.5):** Profundice más aquí que en el curso para principiantes:
+  permisos personalizados para diferentes áreas. Ejemplo práctico: una hoja de cálculo de presupuesto en la que
+  cada jefe de departamento solo puede editar SUS propias filas.
+
+### Módulo 2: Funciones avanzadas
+
+- **ÍNDICE+COMPARAR (2.1): Paso a paso:** Primero, mostrar «COMPARAR» por separado
+  (devuelve la posición); luego, «ÍNDICE» por separado (obtiene el valor en esa posición); y, por último, combinarlas.
+  No explique ambas funciones a la vez.
+- **DESPLAZAR.RANGO (2.2):** Mencione la volatilidad (recálculo con
+  cada cambio), pero no lo dramatice. Para el 99 % de las aplicaciones, esto no tiene importancia.
+- **Fórmulas matriciales (2.5):** Distinga claramente entre
+  (Ctrl+Mayús+Intro) y las matrices dinámicas (Excel 365). Si el alumno tiene Excel 365,
+  ignora casi por completo la variante clásica.
+- **Funciones de fecha (2.6):** DÍAS LABORABLES NETOS es LA favorita en la práctica. Todo el mundo ha tenido que
+  contar alguna vez manualmente los días laborables entre dos fechas.
+
+### Módulo 3: Referencias y vínculos
+
+- **Referencias 3D (3.2):** El experimento de la hoja intercalada: insertar una hoja entre enero y
+  febrero → `SUMME(enero:diciembre!B2)` la incluye automáticamente.
+  Mostrar, no explicar.
+- **Vínculos externos (3.3):** Advertir: un exceso de enlaces externos hace que
+  el archivo se abra con una lentitud exasperante. Mencionar Power Query como una alternativa mejor.
+- **Consolidación (3.4):** La diferencia entre «por posición» y «por
+  categoría» no resulta intuitiva para muchos. Mostrarlo con un ejemplo en el que las
+  categorías estén deliberadamente en un orden diferente.
+
+### Módulo 4: Funciones de base de datos
+
+- **Filtros especiales (4.1):** La herramienta más potente de este módulo. Muestre el
+  rango de criterios en tiempo real: criterios en la misma fila = Y, en filas diferentes = O.
+- **Funciones de base de datos (4.2):** DBSUMME frente a SUMMEWENNS: ¿cuándo usar cada una? Las funciones de base de datos
+  destacan en criterios complejos y de varios niveles que hay que modificar con frecuencia.
+  SUMMEWENNS para criterios sencillos y fijos en fórmulas.
+- **Tablas de Excel (4.4):** Muchos usuarios avanzados no utilizan Ctrl+T porque «siempre
+  lo han hecho de otra manera». Convéncelos con referencias estructuradas:
+  `=[@Ingresos]-[@Costes]` seguirá siendo comprensible dentro de seis meses; `=D2-E2`, no.
+
+### Módulo 5: Tablas dinámicas avanzadas
+
+- **Campos calculados (5.2):** El error más común: los campos trabajan con valores agregados,
+  no con datos brutos. Muestre la diferencia con un ejemplo en el que la
+  suma de los márgenes individuales no sea igual al margen agregado.
+- **Power Pivot (5.5):** Solo una visión general. Mencione el límite de 1 millón de filas como
+  punto de partida: «Tabla dinámica normal: 1 millón de filas. Power Pivot: 100 millones».
+- **Vinculación de segmentadores (5.3):** Controlar varias tablas dinámicas con UN SOLO segmentador:
+  ese es el momento en el que los participantes comprenden lo que realmente significa «cuadro de mando».
+
+### Módulo 6: Análisis de datos y Solver
+
+- **Tablas de datos (6.1):** La fórmula matricial `{=TABLA(;)}` es técnicamente fascinante,
+  pero didácticamente es un callejón sin salida. Muestra el resultado, no el mecanismo.
+- **Gestor de escenarios (6.2):** Excelente para todos los participantes de Control de Gestión/Finanzas.
+  Optimista, neutral, pesimista: tres clics, un informe.
+- **Solver (6.3):** ¡Peligro de perder mucho tiempo! El Solver puede resolver optimizaciones complejas,
+  pero la configuración (función objetivo, restricciones, método de resolución) puede resultar abrumadora
+  rápidamente. Mantenga sencillo el primer ejemplo: maximizar el beneficio bajo UNA
+  única restricción.
+
+### Módulo 7: Diagramas y paneles de control
+
+- **Diagrama en cascada (7.2):** Solo funciona con datos correctamente estructurados.
+  Muestra primero la estructura de los datos (valor inicial, variaciones positivas/negativas,
+  valor final) y, solo después, el diagrama. De lo contrario, el participante se preguntará por qué Excel
+  dibuja columnas «incorrectas».
+- **Diseño de paneles de control (7.3):** Establezca reglas de diseño claras: arriba a la izquierda = información más importante,
+  un máximo de 4 a 6 elementos, colores coherentes, utilizar una cuadrícula, ocultar las líneas de la cuadrícula.
+  Muestre un panel de control mal diseñado a modo de contraste.
+- **R² de las líneas de tendencia:** Mencionarlo solo brevemente. Basta con la interpretación estadística (R² = 0,87 =
+  «fuerte correlación»).
+
+### Módulo 8: Grabar macros
+
+- **Grabación absoluta frente a relativa (8.1):** El error más común de los principiantes: grabar una macro
+  de forma absoluta y luego sorprenderse de que no funcione en otra hoja.
+  Demostrar conscientemente ambas variantes.
+- **Asignar un botón (8.2):** Explicar los controles de formulario. La diferencia
+  entre controles de formulario y controles ActiveX no es relevante para este curso.
+- **Editor de VBA (8.3):** Objetivo: que los alumnos se familiaricen con el editor y sean capaces de realizar pequeños
+  cambios (colores, valores). No se trata de aprender la sintaxis de VBA.
+
+### Módulo 9: Fundamentos de VBA
+
+- **Variables (9.1):** Empezar con `Dim` y los tipos de datos. Analogía: «Una variable es
+  como una caja etiquetada: metes algo dentro y lo sacas más tarde».
+- **Bucles (9.2):** Primero el bucle «For» con `For i = 1 To 10`, luego «If-Then-Else».
+  For-Each para usuarios avanzados (opcional).
+- **Eventos (9.3):** Worksheet_Change es EL momento revelador. Demuestre: al modificar una celda
+  , aparece automáticamente un mensaje. El concepto de «código que reacciona a eventos
+  » es fundamental.
+- **Funciones definidas por el usuario (9.4):** `Function IVA(Importe) ... End Function`. El alumno escribe
+  SU PRIMERA FUNCIÓN PROPIA en Excel. Celébralo.
+
+### Módulo 10: Colaboración y plantillas
+
+- **Plantillas (10.1):** `.xltx` frente a `.xlsx`: la diferencia es sutil, pero importante.
+  Al hacer doble clic en un archivo `.xltx` se crea un NUEVO archivo; al hacer doble clic en un archivo `.xlsx`, se abre el
+  archivo original.
+- **Power Query (10.3):** Solo una introducción. Muestre una importación sencilla desde un archivo CSV con
+  limpieza automática («Primera fila como encabezado», «Cambiar tipo de columna»).
+  Nada más: Power Query es un curso en sí mismo.
+- **Atajos de teclado (10.4):** Modo «reto»: «Realiza el siguiente ejercicio
+  ÚNICAMENTE con el teclado». El alumno fracasará, y precisamente así aprenderá
+  qué atajos le faltan.
+
+---
+
+\newpage
+## Parte D: Métodos para clases individuales
+
+### El método de las preguntas: explicar menos, preguntar más
+
+La técnica más eficaz en las clases particulares es plantear preguntas. En lugar de decir
+«Aquí debe utilizar una referencia absoluta», pregunte:
+
+1. **¿Qué observa?** — «¿Qué ocurre con la fórmula cuando la copia hacia abajo?»
+2. **¿Qué esperas?** — «¿Qué resultado habrías esperado?»
+3. **¿Qué podrías cambiar?** — «¿Qué tendría que ser diferente para obtener el resultado correcto?»
+4. **¿Por qué es así?** — «¿Por qué $F$1 se mantiene igual, pero B2 se convierte en B3?»
+
+Estas cuatro preguntas sustituyen a 10 minutos de monólogo explicativo.
+
+### El método de la celebración: hacer visible el progreso
+
+Los alumnos adultos subestiman sistemáticamente su propio progreso. Ayúdeles:
+
+- **Crear momentos «antes y después»:** «Hace 4 horas solo conocías Excel por
+  lo que habías oído. Ahora has creado una tabla dinámica. ¿Cómo te sientes?»
+- **Llevar una lista de logros:** una hoja en blanco al final del libro de trabajo en la que
+  anoten juntos: «Hoy hemos aprendido: SVERWEIS, barras de datos, Ctrl+T». Tras 8 sesiones,
+  será una lista impresionante.
+- **Elogie la aplicación práctica:** cuando el participante diga «Esto me vendría bien para mi
+  nómina mensual», ese es el momento más valioso. Aproveche la ocasión:
+  «Traiga su nómina la semana que viene y lo crearemos juntos».
+
+### El método «sándwich»: cómo presentar una corrección
+
+Si tienes que corregir un error:
+
+1. **Observación positiva:** «La estructura de la fórmula ya es muy buena».
+2. **Corrección como descubrimiento:** «¿Qué pasa si omitimos aquí el signo $?
+   Pruebe a ver...»
+3. **Conclusión con competencia:** «¿Lo ve? Ahora no solo entiende CÓMO se
+   establecen las referencias absolutas, sino también POR QUÉ. Esa es la diferencia entre
+   ejecutar y comprender».
+
+### El método de las pausas: menos es más
+
+En las clases individuales no hay posibilidad de «esconderse entre el grupo». La carga cognitiva es
+mayor. Planifique conscientemente:
+
+- Después de cada concepto nuevo: 2 minutos de «juego libre» — el alumno hace clic sin rumbo fijo,
+  prueba cosas, repite. Usted guarda silencio.
+- Después de 45 minutos: 5 minutos de descanso. Nada de Excel. Café, abrir la ventana, charla trivial.
+- Si detecta cansancio: interrumpa el ejercicio, repítalo, genere una sensación de logro.
+
+---
+
+\newpage
+## Parte E: Cómo manejar los archivos de los ejercicios
+
+### Antes de la sesión
+
+- Comprueba que estén todos los archivos de ejercicios (`M1_1_Primeros_pasos.xlsx`, etc.)
+- Abre brevemente cada archivo: ¿refleja la situación inicial esperada?
+- Piensa: ¿qué ejercicio podría querer saltarse el participante (demasiado fácil /
+  demasiado difícil / no relevante)? Ten preparada una alternativa.
+
+### Durante el ejercicio
+
+- Deje que el participante abra el archivo por sí mismo (¡para practicar la navegación!)
+- Lean juntos las instrucciones; pregunte: «¿Qué se pide exactamente aquí?»
+- Solo cuando el participante pueda reproducir las instrucciones con sus propias palabras,
+  comenzará la resolución del ejercicio
+- Si se atasca: NO le muestre la solución. Pregunte: «¿Qué ha intentado hasta ahora?»
+
+### Después del ejercicio
+
+- Haga una breve comparación: «¿Qué ha hecho? Le voy a enseñar cómo lo habría hecho yo».
+- Comente las diferencias; a menudo hay varios caminos que llevan al objetivo
+- Opcional: varíe la tarea («¿Qué pasaría si la tabla tuviera 500 filas?»)
+  — fomenta el pensamiento de transferencia
+
+---
+
+\newpage
+## Parte F: Anexo
+
+### Bibliografía recomendada para los formadores
+
+- **Knowles, M. (1980):** *The Modern Practice of Adult Education* — la
+  obra fundamental de la andragogía
+- **Siemens, G. (2005):** *Connectivism: A Learning Theory for the Digital Age* —
+  el aprendizaje en redes
+- **Mezirow, J. (1991):** *Transformative Dimensions of Adult Learning* —
+  la reflexión crítica como objetivo de aprendizaje
+- **Vuorikari, R. et al. (2022):** *DigComp 2.2* — Marco de referencia europeo
+  para las competencias digitales
+
+### Atajos de teclado para formadores
+
+Estos atajos le ayudarán a realizar demostraciones (ya que son más rápidos que los menús):
+
+| Atajo | Acción | ¿Cuándo es útil? |
+|--------|--------|----------------|
+| `Ctrl+1` | Dar formato a las celdas | Abrir inmediatamente el cuadro de diálogo de formato |
+| `Alt+=` | Suma automática | Sumar rápidamente durante una demostración |
+| `Ctrl+T` | Dar formato como tabla | Convertir un rango en una tabla de forma elegante |
+| `Ctrl+Mayús+L` | Activar/desactivar el filtro automático | Activar o desactivar el filtro |
+| `F4` | Repetir la última acción | «Y lo mismo otra vez para la columna C» |
+| `Ctrl+[` | Mostrar celdas anteriores | Auditoría de fórmulas durante la búsqueda de errores |
+| `Alt+F11` | Editor de VBA | Echar un vistazo rápido al código |
+
+---
+
+*Guía elaborada según los principios de la andragogía (Knowles, 1980), el
+conectivismo (Siemens, 2005) y el marco europeo de competencias digitales
+DigComp 2.2 (Vuorikari et al., 2022).*

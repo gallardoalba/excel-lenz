@@ -4,9 +4,9 @@ import bcrypt from 'bcryptjs';
 
 // ── Exercise data (edit the JSON files, not this file!) ──
 import course1Data from './exercises/course1_grundlage.json';
-import course2Data from './exercises/course2_datenanalyse.json';
 import course3Data from './exercises/course3_fortgeschrittene.json';
-import course4Data from './exercises/course4_datenbank.json';
+// course4 disabled: Excel für Experten (not shown in UI yet)
+// import course4Data from './exercises/course4_datenbank.json';
 
 type ExerciseJson = {
   title: string;
@@ -33,7 +33,9 @@ type CourseJson = {
   exercises: ExerciseJson[];
 };
 
-const ALL_COURSES: CourseJson[] = [course1Data, course2Data, course3Data, course4Data];
+// Course 1: Excel-Grundlagen (13 modules, matches Lehrplan)
+// Course 3: Excel für Fortgeschrittene
+const ALL_COURSES: CourseJson[] = [course1Data, course3Data];
 
 export function seed(): void {
   initDb();
@@ -53,7 +55,26 @@ export function seed(): void {
 
   // Only seed exercises if table is empty (allows updating exercises on restart)
   const exCount = db.prepare('SELECT COUNT(*) as count FROM exercises').get() as { count: number };
-  if (exCount.count > 0) return;
+
+  // Delete existing course3 exercises before re-seeding (incremental update)
+  // This allows adding new exercises to course3 without wiping the entire DB
+  const existingCourse3 = db.prepare(
+    "SELECT id FROM courses WHERE title = 'Fortgeschrittene Funktionen'"
+  ).get() as { id: string } | undefined;
+  if (existingCourse3) {
+    db.prepare('DELETE FROM exercises WHERE course_id = ?').run(existingCourse3.id);
+    db.prepare('DELETE FROM courses WHERE id = ?').run(existingCourse3.id);
+    console.log('🔄 Gelöschte alte Kurs 3 Daten für Re-Seed');
+  }
+
+  // Determine which courses need seeding
+  const existingTitles = db.prepare('SELECT title FROM courses').all() as { title: string }[];
+  const existingSet = new Set(existingTitles.map(r => r.title));
+  const coursesToSeed = ALL_COURSES.filter(c => !existingSet.has(c.title));
+  if (coursesToSeed.length === 0 && exCount.count > 0) {
+    console.log('✅ Alle Kurse bereits vorhanden — kein Seed nötig');
+    return;
+  }
 
   const insertEx = db.prepare(
     'INSERT INTO exercises (id, course_id, title, description, template_data, solution_data, instructions, order_index) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
@@ -87,8 +108,9 @@ export function seed(): void {
     if (ex.prerequisites) template.prerequisites = ex.prerequisites;
     if (ex.theoryTitle) template.theoryTitle = ex.theoryTitle;
     if (ex.theory) template.theory = ex.theory;
-    // Module metadata for grouping
-    if ((ex as any).moduleId) template._moduleId = (ex as any).moduleId;
+    // Module metadata for grouping (supports both camelCase and snake_case)
+    const modId = (ex as any).moduleId || (ex as any).module_id;
+    if (modId) template._moduleId = modId;
     if ((ex as any).moduleSection) template._moduleSection = (ex as any).moduleSection;
     if ((ex as any).moduleTitle) template._moduleTitle = (ex as any).moduleTitle;
     if ((ex as any).sectionTitle) template._sectionTitle = (ex as any).sectionTitle;
@@ -101,7 +123,7 @@ export function seed(): void {
   };
 
   let total = 0;
-  for (const data of ALL_COURSES) {
+  for (const data of coursesToSeed) {
     const courseId = crypto.randomUUID();
     const modulesMeta = (data as any).modules ? JSON.stringify((data as any).modules) : null;
     insertCourse.run(courseId, data.title, data.description, data.difficulty, modulesMeta);
@@ -111,7 +133,7 @@ export function seed(): void {
     total += data.exercises.length;
   }
 
-  console.log(`✅ Database seeded (${ALL_COURSES.length} Kurse, ${total} Übungen)`);
+  console.log(`✅ Database seeded (${coursesToSeed.length} Kurse, ${total} Übungen)`);
   console.log(`   Teacher: dozent@excel-lenz.edu / ${process.env.SEED_PASSWORD || 'devpassword'}`);
   console.log(`   Student: student@excel-lenz.edu / ${process.env.SEED_PASSWORD || 'devpassword'}`);
 

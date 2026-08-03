@@ -23,8 +23,8 @@ services:
       JWT_SECRET: ${JWT_SECRET}
     volumes:
       - appdata:/app/data
-    ports:
-      - '3001:3001'
+    expose:
+      - '3001'  # Only accessible within Docker network via nginx
 
   # ── Nginx Reverse Proxy ────────────────────────────────
   nginx:
@@ -33,9 +33,10 @@ services:
     restart: unless-stopped
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      # Mount frontend build from host (built before `docker compose up`)
+      - ./frontend/dist:/app/public:ro
     ports:
       - '80:80'
-      - '443:443'
     depends_on:
       - api
 

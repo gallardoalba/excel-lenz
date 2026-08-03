@@ -3,6 +3,7 @@ import { getDb } from '../db/database';
 import { authMiddleware, optionalAuth, AuthPayload } from '../middleware/auth';
 import { sm2Update } from '../utils/spacedRepetition';
 import { awardXP } from './gamification';
+import { goalSeek } from '../utils/goalSeek';
 import crypto from 'node:crypto';
 
 const router = Router();
@@ -78,17 +79,20 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
     ).get(userId, req.params.id);
   }
 
-  // Parse JSON fields
+  // Parse JSON fields — strip solution_data from DB row to prevent leak
   let templateData: any = {};
   try { templateData = JSON.parse(exercise.template_data || '{}'); } catch { /* keep default */ }
+  const { solution_data: _rawSolution, ...safeExercise } = exercise;
   const result = {
-    ...exercise,
+    ...safeExercise,
     template_data: templateData,
     instructions: exercise.instructions,
   };
 
-  // Only send solution to teachers or after completion
-  if (req.user && (req.user as AuthPayload).role === 'teacher') {
+  // Only send solution to teachers, or if the exercise was already completed with ≥80%
+  const isTeacher = (req.user as AuthPayload)?.role === 'teacher';
+  const isCompleted = (progress as any)?.completed === 1 && (progress as any)?.score >= 80;
+  if (isTeacher || isCompleted) {
     (result as any).solution_data = JSON.parse(exercise.solution_data || '{}');
   }
 
@@ -100,7 +104,7 @@ router.get('/:id', optionalAuth, (req: Request, res: Response) => {
 router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
   const db = getDb();
   const { userId } = req.user as AuthPayload;
-  const { data } = req.body;
+  const { data, type, answers, formats } = req.body;
 
   const exercise = db.prepare('SELECT * FROM exercises WHERE id = ?').get(req.params.id) as any;
   if (!exercise) {
@@ -108,36 +112,99 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
     return;
   }
 
-  // Validate input structure
-  if (!Array.isArray(data)) {
-    res.status(400).json({ error: 'Ungültiges Datenformat' });
-    return;
-  }
-
-  // ── Single-pass scoring + feedback ──────────────────────
-  const solution = JSON.parse(exercise.solution_data || '{}');
-  const taskCols: number[] = JSON.parse(exercise.template_data || '{}').taskCols || [];
+  // ── Quiz scoring ─────────────────────────────────────────
   let score = 0;
   let correctCells = 0;
   let totalCells = 0;
   const details: { row: number; col: number; expected: any; got: any }[] = [];
+  const solution = JSON.parse(exercise.solution_data || '{}');
 
-  if (solution.data && data) {
-    totalCells = solution.data.length * taskCols.length;
-
-    for (const taskCol of taskCols) {
-      for (let row = 0; row < solution.data.length; row++) {
-        const userVal = data[row]?.[taskCol];
-        const solVal = solution.data[row]?.[taskCol];
-
-        if (isCorrectAnswer(userVal, solVal)) {
-          correctCells++;
-        } else {
-          details.push({ row, col: taskCol, expected: solVal, got: userVal ?? null });
-        }
+  if (type === 'quiz' && answers && solution.type === 'quiz') {
+    const userAnswers: number[][] = answers;
+    const correctAnswers: number[][] = solution.answers || [];
+    for (let i = 0; i < correctAnswers.length; i++) {
+      const ua = userAnswers[i] || [];
+      const ca = correctAnswers[i] || [];
+      if (ua.length === ca.length && ua.every((x: number) => ca.includes(x)) && ca.every((x: number) => ua.includes(x))) {
+        correctCells++;
       }
     }
+    totalCells = correctAnswers.length;
     score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
+  } else {
+    // ── Spreadsheet scoring ──────────────────────────────────
+    if (!Array.isArray(data)) {
+      res.status(400).json({ error: 'Ungültiges Datenformat' });
+      return;
+    }
+    const templateData = JSON.parse(exercise.template_data || '{}');
+    const taskCols: number[] = templateData.taskCols || [];
+    const templateGrid: any[][] = templateData.data || [];
+
+    if (solution.data && data) {
+      // Only count cells that the user actually needs to fill:
+      // Exclude cells where the template already had the correct answer
+      let scoreableCells = 0;
+      for (const taskCol of taskCols) {
+        for (let row = 0; row < solution.data.length; row++) {
+          const templateVal = templateGrid[row]?.[taskCol];
+          const solVal = solution.data[row]?.[taskCol];
+
+          // Skip cells that were already correct in the template
+          if (templateVal !== null && templateVal !== undefined && isCorrectAnswer(templateVal, solVal)) {
+            continue;
+          }
+          // Also skip cells where both template and solution are intentionally empty (padding rows)
+          if ((templateVal === null || templateVal === undefined) && (solVal === null || solVal === undefined)) {
+            continue;
+          }
+          scoreableCells++;
+
+          const userVal = data[row]?.[taskCol];
+          if (isCorrectAnswer(userVal, solVal)) {
+            correctCells++;
+          } else {
+            details.push({ row, col: taskCol, expected: solVal, got: userVal ?? null });
+          }
+        }
+      }
+      totalCells = scoreableCells;
+      score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
+    }
+
+    // ── Format scoring (optional, additive) ─────────────────
+    const formatSolution: Record<string, Record<string, unknown>> = templateData.formatSolution || {};
+    const userFormats: Record<string, Record<string, unknown>> = formats || {};
+    const formatKeys = Object.keys(formatSolution);
+
+    if (formatKeys.length > 0) {
+      let formatCorrect = 0;
+      for (const key of formatKeys) {
+        const expected = formatSolution[key];
+        const actual = userFormats[key] || {};
+        let match = true;
+        for (const field of Object.keys(expected)) {
+          if (actual[field] !== expected[field]) {
+            match = false;
+            break;
+          }
+        }
+        if (match) formatCorrect++;
+      }
+      // Blend value score and format score (70% values, 30% formatting when both present)
+      if (totalCells > 0) {
+        const valueScore = correctCells / totalCells;
+        const formatScore = formatCorrect / formatKeys.length;
+        score = Math.round((valueScore * 0.7 + formatScore * 0.3) * 100);
+        correctCells = Math.round(valueScore * totalCells + formatScore * formatKeys.length);
+        totalCells = totalCells + formatKeys.length;
+      } else {
+        // Pure format scoring (no value cells to check)
+        correctCells = formatCorrect;
+        totalCells = formatKeys.length;
+        score = totalCells > 0 ? Math.round((correctCells / totalCells) * 100) : 0;
+      }
+    }
   }
 
   // ── Persist progress (query prevScore BEFORE update!) ───
@@ -189,41 +256,13 @@ router.post('/:id/submit', authMiddleware, (req: Request, res: Response) => {
   res.json({ score, completed: true, details, xpGained, correctCells, totalCells });
 });
 
-// Get last exercise the user was working on (for "Weitermachen" button)
-router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) => {
-  const { userId } = req.user as AuthPayload;
-  const db = getDb();
-  const last = db.prepare(`
-    SELECT e.id, e.title FROM progress p
-    JOIN exercises e ON e.id = p.exercise_id
-    WHERE p.user_id = ?
-    ORDER BY p.completed_at DESC
-    LIMIT 1
-  `).get(userId) as { id: string; title: string } | undefined;
-  res.json(last || null);
-});
-
-// Get user progress across all exercises
-router.get('/user/progress', authMiddleware, (req: Request, res: Response) => {
-  const db = getDb();
-  const { userId } = req.user as AuthPayload;
-  const progress = db.prepare(
-    `SELECT p.*, e.title as exercise_title, e.course_id, c.title as course_title
-     FROM progress p
-     JOIN exercises e ON e.id = p.exercise_id
-     JOIN courses c ON c.id = e.course_id
-     WHERE p.user_id = ?
-     ORDER BY p.completed_at DESC`
-  ).all(userId);
-  res.json(progress);
-});
-
-// Get last unfinished exercise (for "Continue where you left off")
+// Get last exercise the user was working on (for "Weitermachen" / "Continue" button)
+// Priority: 1) started-but-unfinished → 2) last completed → 3) next incomplete → 4) first exercise
 router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) => {
   const db = getDb();
   const { userId } = req.user as AuthPayload;
 
-  // First: find exercises the user started but didn't complete
+  // 1. Started but not completed
   const started = db.prepare(`
     SELECT e.id, e.title, e.course_id, c.title as course_title, p.score
     FROM progress p
@@ -232,10 +271,20 @@ router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) 
     WHERE p.user_id = ? AND p.completed = 0
     ORDER BY p.created_at DESC LIMIT 1
   `).get(userId);
-
   if (started) { res.json(started); return; }
 
-  // Second: find incomplete exercises in the user's active courses
+  // 2. Last completed (for review / "Weitermachen")
+  const lastDone = db.prepare(`
+    SELECT e.id, e.title, e.course_id, c.title as course_title
+    FROM progress p
+    JOIN exercises e ON e.id = p.exercise_id
+    JOIN courses c ON c.id = e.course_id
+    WHERE p.user_id = ? AND p.completed = 1
+    ORDER BY p.completed_at DESC LIMIT 1
+  `).get(userId);
+  if (lastDone) { res.json(lastDone); return; }
+
+  // 3. Next incomplete exercise
   const next = db.prepare(`
     SELECT e.id, e.title, e.course_id, c.title as course_title
     FROM exercises e
@@ -245,18 +294,92 @@ router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) 
     )
     ORDER BY e.order_index LIMIT 1
   `).get(userId);
-
   if (next) { res.json(next); return; }
 
-  // Third: suggest repeating the first exercise
+  // 4. Fallback: first exercise
   const review = db.prepare(`
     SELECT e.id, e.title, e.course_id, c.title as course_title
     FROM exercises e
     JOIN courses c ON c.id = e.course_id
     ORDER BY e.order_index LIMIT 1
   `).get();
-
   res.json(review || null);
 });
 
+// ── User Progress List ──────────────────────────────────────
+// GET /api/exercises/user/progress — all progress entries for current user
+router.get('/user/progress', authMiddleware, (req: Request, res: Response) => {
+  const db = getDb();
+  const { userId } = req.user as AuthPayload;
+
+  const progress = db.prepare(`
+    SELECT p.*, e.title as exercise_title, c.title as course_title
+    FROM progress p
+    JOIN exercises e ON e.id = p.exercise_id
+    JOIN courses c ON c.id = e.course_id
+    WHERE p.user_id = ?
+    ORDER BY p.completed_at DESC
+  `).all(userId);
+
+  res.json(progress);
+});
+
 export default router;
+
+// ── Goal Seek endpoint ─────────────────────────────────────
+// POST /api/exercises/goal-seek
+// Body: { data, formulaRow, formulaCol, inputRow, inputCol, targetValue }
+router.post('/goal-seek', authMiddleware, async (req: Request, res: Response) => {
+  const { data, formulaRow, formulaCol, inputRow, inputCol, targetValue } = req.body;
+
+  if (!Array.isArray(data)) {
+    res.status(400).json({ error: 'data must be a 2D array' });
+    return;
+  }
+
+  // Validate data size to prevent DoS via oversized spreadsheets
+  const MAX_ROWS = 100;
+  const MAX_COLS = 50;
+  if (data.length > MAX_ROWS || data.some((row: any[]) => !Array.isArray(row) || row.length > MAX_COLS)) {
+    res.status(400).json({ error: `Daten zu groß. Maximal ${MAX_ROWS} Zeilen × ${MAX_COLS} Spalten erlaubt.` });
+    return;
+  }
+
+  try {
+    // Create a lightweight HyperFormula instance for this calculation
+    const { HyperFormula } = await import('hyperformula');
+    // @ts-ignore - i18n path not in TS declarations
+    const deDE = require('hyperformula/i18n/languages/deDE').default;
+    try { HyperFormula.registerLanguage('deDE', deDE); } catch { /* already registered */ }
+    const hf = HyperFormula.buildEmpty({
+      licenseKey: 'gpl-v3',
+      language: 'deDE',
+      functionArgSeparator: ';',
+      decimalSeparator: ',',
+    });
+    hf.addSheet('Sheet1');
+    // Set cell contents via API (buildFromArray doesn't handle formulas with DE locale)
+    for (let r = 0; r < data.length; r++) {
+      for (let c = 0; c < (data[r]?.length || 0); c++) {
+        const val = data[r][c];
+        if (val !== null && val !== undefined && val !== '') {
+          hf.setCellContents({ sheet: 0, col: c, row: r }, [[val]]);
+        }
+      }
+    }
+
+    const result = goalSeek({
+      data,
+      hf,
+      formulaRow: Number(formulaRow),
+      formulaCol: Number(formulaCol),
+      inputRow: Number(inputRow),
+      inputCol: Number(inputCol),
+      targetValue: Number(targetValue),
+    });
+
+    res.json(result);
+  } catch (err: any) {
+    res.status(422).json({ error: err.message || 'Goal Seek failed' });
+  }
+});

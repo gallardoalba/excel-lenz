@@ -1,7 +1,7 @@
 // ── PivotTableDialog: Interactive pivot table overlay ────────────────────
 // Uses react-pivottable for drag-and-drop pivot table creation
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PivotTableUI from 'react-pivottable/PivotTableUI';
 import 'react-pivottable/pivottable.css';
 import { X } from 'lucide-react';
@@ -14,6 +14,17 @@ interface PivotTableDialogProps {
 
 export default function PivotTableDialog({ visible, rawData, onClose }: PivotTableDialogProps) {
   const [pivotState, setPivotState] = useState<any>({});
+
+  // Bug #32 fix: restore focus to previously active element when dialog closes
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (visible) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+    } else if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
+  }, [visible]);
 
   if (!visible) return null;
 

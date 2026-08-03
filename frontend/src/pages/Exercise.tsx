@@ -1,13 +1,17 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo, lazy, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Lightbulb, Trophy, CheckCircle, ThumbsUp, BookOpen, Award, HelpCircle, Search, Sprout, ThumbsDown, Bike, Loader2, LogIn, ArrowRight, ArrowLeft, Star, Target, ListChecks, Clock, MessageCircle, Eye } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
-import SpreadsheetHandsontable from '../components/spreadsheet/SpreadsheetHandsontable';
 import { BadgeModal, XPFlying, ExcelSpinner } from '../components/animations/Celebrations';
 import { announce } from '../components/a11y/Accessibility';
+import QuizExercise from '../components/quiz/QuizExercise';
 import { useTour, EXERCISE_TOUR } from '../components/tour/OnboardingTour';
 import Comments from '../components/community/Comments';
 import KeyboardHelp from '../components/help/KeyboardHelp';
+
+// Lazy-load heavy spreadsheet component (Handsontable + HyperFormula ~4.5MB)
+const SpreadsheetHandsontable = lazy(() => import('../components/spreadsheet/SpreadsheetHandsontable'));
+import type { CellFormats } from '../components/spreadsheet/types';
 import { useDailyGoal } from '../context/DailyGoalContext';
 import { useExerciseTimer } from '../hooks/useAnalytics';
 
@@ -25,6 +29,27 @@ interface TemplateData {
   learningObjectives?: string[];
   theory?: string;
   theoryTitle?: string;
+  /** Multi-sheet exercises: pre-populated sheets */
+  sheets?: { name: string; headers: string[]; data: (string | number | null)[][] }[];
+  /** Quiz exercise: question list */
+  type?: 'quiz';
+  questions?: {
+    question: string;
+    options: string[];
+    correct: number[];
+    type: 'tf' | 'single' | 'multiple';
+    explanation: string;
+  }[];
+  /** Format scoring: expected cell formats */
+  formatSolution?: Record<string, Record<string, unknown>>;
+  /** Validation hints for data validation exercises */
+  validationHints?: Record<string, string>;
+  /** Lookup tables for VLOOKUP/INDEX exercises */
+  lookupTables?: Record<string, { range: string; data: (string | number | null)[][] }>;
+  /** Named ranges hint for user reference */
+  namedRanges?: Record<string, string>;
+  /** Summary table for aggregation exercises */
+  summary?: { cols: number; rows: number; headers: string[]; data: (string | number | null)[][] };
 }
 
 interface ExerciseData {
@@ -45,6 +70,7 @@ export default function Exercise() {
   const [score, setScore] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [spreadsheetData, setSpreadsheetData] = useState<(string | number | null)[][]>([]);
+  const [cellFormats, setCellFormats] = useState<CellFormats>({});
   const [xpGained, setXpGained] = useState<number | null>(null);
   const [showSuccessCheck, setShowSuccessCheck] = useState(false);
   const [showXpFly, setShowXpFly] = useState(false);
@@ -55,17 +81,94 @@ export default function Exercise() {
   const [feedbackHint, setFeedbackHint] = useState<React.ReactNode>('');
   const [showReflection, setShowReflection] = useState(false);
   const [mode, setMode] = useState<'practice' | 'exam'>('practice');
-  const [exerciseTab, setExerciseTab] = useState<'instructions' | 'theory' | 'community'>('instructions');
+  const [exerciseTab, setExerciseTab] = useState<'instructions' | 'theory' | 'community'>('theory');
   const [attemptCount, setAttemptCount] = useState(0);
   const [hintLevel, setHintLevel] = useState(1); // Show first hint by default
   const [showSolution, setShowSolution] = useState(false);
   const [cellFeedback, setCellFeedback] = useState<{ row: number; col: number; expected: any; got: any }[]>([]);
+  // Bug #16 fix: memoize errorCells prop to avoid new array ref on every parent render
+  const errorCellsProp = useMemo(
+    () => cellFeedback.length > 0
+      ? cellFeedback.map(fb => ({
+          row: fb.row,
+          col: fb.col,
+          expected: String(fb.expected),
+          got: fb.got != null ? String(fb.got) : null,
+        }))
+      : undefined,
+    [cellFeedback]
+  );
+
+  // ── Step validation: map instruction steps to cells, check vs solution ──
+  const stepResults = useMemo(() => {
+    if (score === null || !exercise) return null;
+    const solutionData: any[][] = (exercise as any)?.solution_data?.data;
+    if (!solutionData) return null;
+
+    const headers: string[] = exercise.template_data?.headers || [];
+    const steps = (exercise.instructions || '')
+      .split(/\n+/)
+      .filter((s: string) => s.trim().length > 0);
+
+    return steps.map((step: string) => {
+      // Extract all cell references from the step
+      const cells: [number, number][] = [];
+
+      // 1. Direct cell refs: D2, A4, C10 → col letter + row number
+      for (const m of step.matchAll(/\b([A-Z])(\d+)\b/g)) {
+        const col = m[1].charCodeAt(0) - 65; // A=0, B=1, ...
+        const displayRow = parseInt(m[2]);
+        const dataRow = displayRow - 2; // header occupies row 1, data starts at row 2
+        cells.push([dataRow, col]);
+      }
+
+      // 2. "Zeile N" with column names from headers
+      const zeileMatch = step.match(/Zeile\s+(\d+)/);
+      if (zeileMatch) {
+        const displayRow = parseInt(zeileMatch[1]);
+        const dataRow = displayRow - 2;
+        const stepLower = step.toLowerCase();
+        for (let c = 0; c < headers.length; c++) {
+          if (headers[c] && stepLower.includes(headers[c].toLowerCase())) {
+            if (!cells.some(([r, col]) => r === dataRow && col === c)) {
+              cells.push([dataRow, c]);
+            }
+          }
+        }
+      }
+
+      // Check each cell against solution
+      if (cells.length === 0) return { ok: null as boolean | null, cells: [] as [number, number][] };
+      const allOk = cells.every(([r, c]) => {
+        const submitted = spreadsheetData[r]?.[c];
+        const expected = solutionData[r]?.[c];
+        // Use same logic as backend: null→'' normalization, numeric tolerance
+        const s = submitted ?? '';
+        const e = expected ?? '';
+        const sNum = s !== '' ? Number(s) : null;
+        const eNum = e !== '' ? Number(e) : null;
+        if (sNum !== null && eNum !== null && !isNaN(sNum) && !isNaN(eNum)) {
+          return Math.abs(sNum - eNum) < 0.01;
+        }
+        return String(s).trim().toLowerCase() === String(e).trim().toLowerCase();
+      });
+      return { ok: allOk, cells };
+    });
+  }, [score, exercise, spreadsheetData]);
   const [focusMode, setFocusMode] = useState(false);
   const { startTour } = useTour();
   const { increment: incrementGoal } = useDailyGoal();
   const scoreRef = useRef<HTMLDivElement>(null);
   const leftPanelRef = useRef<HTMLElement>(null);
-  const [gridHeight, setGridHeight] = useState(327);
+  const [gridHeight, setGridHeight] = useState(360);
+
+  // Sync spreadsheet height: fill available viewport space below header
+  useEffect(() => {
+    const update = () => setGridHeight(Math.max(280, window.innerHeight - 520));
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, [exercise?.id]);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const abortRef = useRef<AbortController | null>(null);
   const [nextExercise, setNextExercise] = useState<{ id: string; title: string; estimated_minutes?: number } | null>(null);
@@ -91,24 +194,27 @@ export default function Exercise() {
   }, []);
 
   // Prevent accidental navigation only if user has modified data (dirty check)
+  // Bug #11.1 fix: use isDirtyRef instead of JSON.stringify for beforeunload
+  const isDirtyRef = useRef(false);
   const originalDataRef = useRef<string>('');
   useEffect(() => {
-    if (exercise && !originalDataRef.current) {
+    if (exercise && !originalDataRef.current && exercise.template_data?.data) {
       originalDataRef.current = JSON.stringify(exercise.template_data.data);
     }
   }, [exercise]);
 
+  // Bug #11.1: isDirtyRef replaces spreadsheetDataRef for beforeunload check
+  // (avoids JSON.stringify on large grids blocking the main thread on tab close)
   useEffect(() => {
     const handler = (e: BeforeUnloadEvent) => {
-      const current = JSON.stringify(spreadsheetData);
-      if (exercise && !exercise.progress?.completed && current !== originalDataRef.current) {
+      if (exercise && !exercise.progress?.completed && isDirtyRef.current) {
         e.preventDefault();
         e.returnValue = '';
       }
     };
     window.addEventListener('beforeunload', handler);
     return () => window.removeEventListener('beforeunload', handler);
-  }, [exercise, spreadsheetData]);
+  }, [exercise]);
 
   const safeTimeout = useCallback((fn: () => void, ms: number) => {
     const id = setTimeout(() => {
@@ -129,6 +235,21 @@ export default function Exercise() {
   ];
 
   useEffect(() => {
+    // Bug fix: reset loading state + exercise-specific state when id changes
+    // to prevent stale data from previous exercise bleeding through
+    setLoading(true);
+    setScore(null);
+    setCellFeedback([]);
+    setShowSolution(false);
+    setHintLevel(1);
+    setAttemptCount(0);
+    setShowSuccessCheck(false);
+    setShowXpFly(false);
+    setNewBadge(null);
+    setShowReflection(false);
+    isDirtyRef.current = false;
+    originalDataRef.current = '';
+
     const controller = new AbortController();
     abortRef.current = controller;
     const signal = controller.signal;
@@ -142,14 +263,18 @@ export default function Exercise() {
             const saved = JSON.parse(data.progress.submitted_data);
             setSpreadsheetData(saved);
           } catch {
-            setSpreadsheetData(data.template_data.data);
+            setSpreadsheetData(JSON.parse(JSON.stringify(data.template_data.data || [])));
           }
           setScore(data.progress.score);
         } else {
-          setSpreadsheetData(data.template_data.data);
+          // Bug #28 fix: deep clone template data to prevent reference sharing
+          setSpreadsheetData(JSON.parse(JSON.stringify(data.template_data.data || [])));
+          // Bug #25 fix: reset attemptCount on new exercise load
+          setAttemptCount(0);
         }
-        // Fetch next exercise in course sequence
-        apiFetch(`/courses/${data.course_id}`, { signal })
+        // Fetch next exercise in course sequence (independent of signal to survive StrictMode aborts)
+        const courseCtrl = new AbortController();
+        apiFetch(`/courses/${data.course_id}`, { signal: courseCtrl.signal })
           .then((course: { exercises: { id: string; title: string; estimated_minutes?: number }[] }) => {
             if (signal.aborted) return;
             const currentIdx = course.exercises.findIndex((e: { id: string }) => e.id === id);
@@ -181,7 +306,7 @@ export default function Exercise() {
       const submitData = spreadsheetData;
       const result = await apiFetch(`/exercises/${id}/submit`, {
         method: 'POST',
-        body: JSON.stringify({ data: submitData }),
+        body: JSON.stringify({ data: submitData, formats: cellFormats }),
       });
       setScore(result.score);
       setAttemptCount(c => c + 1);
@@ -223,10 +348,12 @@ export default function Exercise() {
         setShowXpFly(true);
         safeTimeout(() => setShowXpFly(false), 2000);
 
-        // Only show badge if a new one was earned
+        // Only show badge if a new one was earned — delay so user sees feedback first
         if (gami?.badges?.length && gami.badges.length > previousBadgeCount) {
           const lastBadge = gami.badges[gami.badges.length - 1];
-          setNewBadge({ icon: lastBadge.icon, name: lastBadge.name, description: lastBadge.description });
+          safeTimeout(() => {
+            setNewBadge({ icon: lastBadge.icon, name: lastBadge.name, description: lastBadge.description });
+          }, 2500);
           setPreviousBadgeCount(gami.badges.length);
         }
 
@@ -235,7 +362,16 @@ export default function Exercise() {
           announce('Perfekt! 100 Prozent erreicht!', 'assertive');
           safeTimeout(() => setShowSuccessCheck(false), 3000);
         }
-      } catch { setXpGained(50); }
+      } catch {
+        // Bug #11.2 fix: still award XP even if gamification endpoint fails
+        setXpGained(result.xpGained || 50);
+        setShowXpFly(true);
+        safeTimeout(() => setShowXpFly(false), 2000);
+        if (result.score >= 100) {
+          setShowSuccessCheck(true);
+          safeTimeout(() => setShowSuccessCheck(false), 3000);
+        }
+      }
       // Track daily goal progress — only count meaningful attempts
       if (result.score > 0) {
         incrementGoal();
@@ -257,6 +393,82 @@ export default function Exercise() {
   );
 
   const template = exercise.template_data;
+
+  // ── Quiz exercise type: no spreadsheet, just Q&A ──────────────────────
+  if (template.type === 'quiz' && template.questions) {
+    const handleQuizSubmit = async (answers: number[][]) => {
+      setSubmitting(true);
+      try {
+        const result = await apiFetch(`/exercises/${id}/submit`, {
+          method: 'POST',
+          body: JSON.stringify({ type: 'quiz', answers }),
+        });
+        setScore(result.score);
+        setAttemptCount(c => c + 1);
+        trackSubmit(result.score);
+        try {
+          const gami = await apiFetch('/gamification/stats');
+          setXpGained(result.xpGained || 50);
+          setShowXpFly(true);
+          safeTimeout(() => setShowXpFly(false), 2000);
+        } catch { setXpGained(result.xpGained || 50); setShowXpFly(true); }
+        if (result.score > 0) incrementGoal();
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setSubmitting(false);
+      }
+    };
+
+    return (
+      <div className="exercise-page">
+        <div className="flex items-center gap-sm" style={{ marginBottom: 12 }}>
+          <Link to={`/courses/${exercise?.course_id}`} className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
+            <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
+          </Link>
+          {/* Prev/Next navigation */}
+          <div style={{ display: 'flex', gap: 4, marginLeft: 4 }}>
+            {prevExercise ? (
+              <Link to={`/exercises/${prevExercise.id}`} className="btn btn-outline btn-sm"
+                style={{ padding: '6px 10px' }} title={`Vorherige: ${prevExercise.title}`}>
+                <ArrowLeft size={14} />
+              </Link>
+            ) : (
+              <span className="btn btn-outline btn-sm"
+                style={{ padding: '6px 10px', opacity: 0.3, cursor: 'default' }} title="Keine vorherige Übung">
+                <ArrowLeft size={14} />
+              </span>
+            )}
+            {nextExercise ? (
+              <Link to={`/exercises/${nextExercise.id}`} className="btn btn-outline btn-sm"
+                style={{ padding: '6px 10px' }} title={`Nächste: ${nextExercise.title}`}>
+                <ArrowRight size={14} />
+              </Link>
+            ) : (
+              <span className="btn btn-outline btn-sm"
+                style={{ padding: '6px 10px', opacity: 0.3, cursor: 'default' }} title="Keine weitere Übung">
+                <ArrowRight size={14} />
+              </span>
+            )}
+          </div>
+          <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>
+            <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</Link> › <Link to={`/courses/${exercise?.course_id}`} style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link> › Übung
+          </span>
+        </div>
+        <h1 style={{ marginBottom: 6 }}>{exercise.title}</h1>
+        <p className="exercise-description" style={{ marginBottom: 14, fontSize: '1.05rem' }}>{exercise.description}</p>
+        <QuizExercise
+          questions={template.questions}
+          onSubmit={handleQuizSubmit}
+          submitting={submitting}
+          score={score}
+        />
+        <XPFlying xp={xpGained || 0} sourceRef={scoreRef} trigger={showXpFly} />
+        <BadgeModal show={!!newBadge} badge={newBadge} onClose={() => setNewBadge(null)} />
+      </div>
+    );
+  }
+
   const scoreClass = score === null ? '' : score >= 80 ? 'score-success' : score >= 50 ? 'score-partial' : 'score-fail';
 
   const scoreIcon = score === null ? null :
@@ -270,28 +482,38 @@ export default function Exercise() {
   return (
     <div className="exercise-page">
       <div className="flex items-center gap-sm" style={{ marginBottom: 12 }}>
-        <Link to="/courses" className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
+          <Link to={`/courses/${exercise?.course_id}`} className="btn btn-outline btn-sm" aria-label="Zurück zu den Kursen">
           <ArrowLeft size={14} style={{marginRight:6}} /> Zurück zu den Kursen
         </Link>
         {/* Prev/Next navigation */}
         <div style={{ display: 'flex', gap: 4, marginLeft: 4 }}>
-          {prevExercise && (
+          {prevExercise ? (
             <Link to={`/exercises/${prevExercise.id}`} className="btn btn-outline btn-sm"
               style={{ padding: '6px 10px' }} title={`Vorherige: ${prevExercise.title}`}>
               <ArrowLeft size={14} />
             </Link>
+          ) : (
+            <span className="btn btn-outline btn-sm"
+              style={{ padding: '6px 10px', opacity: 0.3, cursor: 'default' }} title="Keine vorherige Übung">
+              <ArrowLeft size={14} />
+            </span>
           )}
-          {nextExercise && (
+          {nextExercise ? (
             <Link to={`/exercises/${nextExercise.id}`} className="btn btn-outline btn-sm"
               style={{ padding: '6px 10px' }} title={`Nächste: ${nextExercise.title}`}>
               <ArrowRight size={14} />
             </Link>
+          ) : (
+            <span className="btn btn-outline btn-sm"
+              style={{ padding: '6px 10px', opacity: 0.3, cursor: 'default' }} title="Keine weitere Übung">
+              <ArrowRight size={14} />
+            </span>
           )}
         </div>
         <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>
           <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Home</Link>
           <span style={{ margin: '0 4px' }}>›</span>
-          <Link to="/courses" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link>
+          <Link to={`/courses/${exercise?.course_id}`} style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Kurse</Link>
           <span style={{ margin: '0 4px' }}>›</span>
           <span style={{ color: 'var(--text)' }}>Übung</span>
         </span>
@@ -328,8 +550,8 @@ export default function Exercise() {
           {/* ── TABS ── */}
           <div className="exercise-tabs">
             {[
-              { key: 'instructions' as const, icon: <ListChecks size={16} />, label: 'Anleitung' },
               { key: 'theory' as const, icon: <BookOpen size={16} />, label: 'Theorie' },
+              { key: 'instructions' as const, icon: <ListChecks size={16} />, label: 'Anleitung' },
               { key: 'community' as const, icon: <MessageCircle size={16} />, label: 'Community' },
             ].map(tab => (
               <button
@@ -359,18 +581,24 @@ export default function Exercise() {
                     </div>
                   );
                 }
-                const completedCount = score !== null ? (score >= 80 ? steps.length : Math.floor(steps.length * (score / 100))) : 0;
+                const results = stepResults;
+                const completedCount = results ? results.filter(r => r.ok === true).length : 0;
                 return (
                   <div className="mb-3">
-                    {steps.map((step: string, i: number) => (
-                      <div key={i} className={`exercise-step ${i < completedCount ? 'completed' : ''}`}>
-                        <span className={`exercise-step-num ${i < completedCount ? 'done' : ''}`}>
-                          {i < completedCount ? '✓' : i + 1}
-                        </span>
-                        <span>{step}</span>
-                      </div>
-                    ))}
-                    {score !== null && completedCount < steps.length && (
+                    {steps.map((step: string, i: number) => {
+                      const result = results?.[i];
+                      const isDone = result?.ok === true;
+                      const isFailed = result?.ok === false;
+                      return (
+                        <div key={i} className={`exercise-step ${isDone ? 'completed' : ''}`}>
+                          <span className={`exercise-step-num ${isDone ? 'done' : isFailed ? 'failed' : ''}`}>
+                            {isDone ? '✓' : isFailed ? '✗' : i + 1}
+                          </span>
+                          <span>{step}</span>
+                        </div>
+                      );
+                    })}
+                    {score !== null && score < 100 && (
                       <p className="text-xs text-center mt-2" style={{ color: 'var(--text-muted)' }}>
                         {completedCount}/{steps.length} Schritte erfüllt — weiter üben!
                       </p>
@@ -379,8 +607,8 @@ export default function Exercise() {
                 );
               })()}
 
-              {/* Initial Tipp — always visible */}
-              {mode === 'practice' && score === null && (template.formulaHint || hints[0]) && (
+              {/* Initial Tipp — always visible in practice mode */}
+              {mode === 'practice' && (template.formulaHint || hints[0]) && (
                 <div className="hint-box">
                   <Lightbulb size={14} style={{marginRight:4, color: 'var(--accent)'}} />
                   <strong>Tipp:</strong> {template.formulaHint || hints[0]}
@@ -411,24 +639,28 @@ export default function Exercise() {
                             </pre>
                           )}
                         </span>
-                      ) : hints[hints.length - 1]}
+                      ) : (
+                        <span>
+                          <button className="btn btn-sm btn-outline" style={{ marginLeft: 8 }}
+                            onClick={() => {
+                              const solData = (exercise as any)?.solution_data?.data;
+                              if (solData && !showSolution) {
+                                setSpreadsheetData(solData.map((row: any[]) => row.map((c: any) => c ?? '')));
+                                isDirtyRef.current = true;
+                              }
+                              setShowSolution(!showSolution);
+                            }}>
+                            {showSolution ? 'Ausblenden' : 'Tabelle ausfüllen'}
+                          </button>
+                        </span>
+                      )}
                     </div>
-                  )}
-                  {hintLevel > 0 && score !== null && (
-                    <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 8, textAlign: 'center' }}>
-                      War dieser Hinweis hilfreich?{' '}
-                      <button className="btn btn-sm" style={{ fontSize: '0.72rem', padding: '2px 8px', background: 'var(--success-light)', color: 'var(--success)', border: 'none' }}
-                        onClick={() => announce('Danke für dein Feedback!', 'polite')}><ThumbsUp size={11} /> Ja</button>
-                      {' '}
-                      <button className="btn btn-sm" style={{ fontSize: '0.72rem', padding: '2px 8px', background: 'var(--danger-light)', color: 'var(--danger)', border: 'none' }}
-                        onClick={() => announce('Danke! Wir verbessern die Hinweise.', 'polite')}><ThumbsDown size={11} /> Nein</button>
-                    </p>
                   )}
                 </div>
               )}
 
               {/* Tipp button — more hints */}
-              {mode === 'practice' && hintLevel < hints.length + 1 && hintLevel >= 1 && score === null && hints.length > 1 && (
+              {mode === 'practice' && hintLevel < hints.length + 1 && hintLevel >= 1 && hints.length > 1 && (
                 <button className="btn btn-sm btn-outline mt-2"
                   onClick={() => setHintLevel((h) => Math.min(h + 1, hints.length + 1))}>
                   <Lightbulb size={14} style={{marginRight:4}} />{hintLevel >= hints.length ? 'Lösung anzeigen' : 'Weitere Tipps'}
@@ -610,19 +842,23 @@ export default function Exercise() {
 
         <section aria-label="Excel-Arbeitsblatt" style={{ display: 'flex', flexDirection: 'column' }}>
           <div className="spreadsheet-container" style={{ flex: 1 }}>
+            <Suspense fallback={<ExcelSpinner text="Tabelle wird geladen..." />}>
             <SpreadsheetHandsontable
+              key={id}
               headers={template.headers}
               data={spreadsheetData}
-              onChange={setSpreadsheetData}
+              onChange={(newData) => {
+                isDirtyRef.current = true;
+                setSpreadsheetData(newData);
+              }}
+              cellFormats={cellFormats}
+              onCellFormatsChange={(fmts) => setCellFormats(fmts)}
               taskCols={template.taskCols}
               gridHeight={gridHeight}
-              errorCells={cellFeedback.length > 0 ? cellFeedback.map(fb => ({
-                row: fb.row,
-                col: fb.col,
-                expected: String(fb.expected),
-                got: fb.got != null ? String(fb.got) : null,
-              })) : undefined}
+              errorCells={errorCellsProp}
+              initialSheets={template.sheets}
             />
+            </Suspense>
           </div>
         </section>
       </div>

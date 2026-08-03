@@ -6,24 +6,10 @@ import { generateToken, authMiddleware, AuthPayload } from '../middleware/auth';
 import logger from '../utils/logger';
 import { registerSchema, loginSchema } from '../utils/validation';
 
+// Reusable password strength schema (from registerSchema)
+const passwordSchema = registerSchema.shape.password;
+
 const router = Router();
-
-// ── Simple in-memory rate limiter for login (by IP + email) ──
-const loginAttempts = new Map<string, { count: number; resetAt: number }>();
-const MAX_ATTEMPTS = 5;
-const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-
-function checkRateLimit(key: string): boolean {
-  const now = Date.now();
-  const entry = loginAttempts.get(key);
-  if (!entry || now > entry.resetAt) {
-    loginAttempts.set(key, { count: 1, resetAt: now + WINDOW_MS });
-    return true;
-  }
-  if (entry.count >= MAX_ATTEMPTS) return false;
-  entry.count++;
-  return true;
-}
 
 router.post('/register', async (req: Request, res: Response) => {
   const parsed = registerSchema.safeParse(req.body);
@@ -68,19 +54,19 @@ router.post('/login', async (req: Request, res: Response) => {
   }
   const { email, password } = parsed.data;
 
-  // Rate limiting by IP and email
-  const ip = req.ip || req.socket.remoteAddress || 'unknown';
-  if (!checkRateLimit(ip) || !checkRateLimit(`email:${email}`)) {
-    res.status(429).json({ error: 'Zu viele Anmeldeversuche. Bitte warten Sie 15 Minuten.' });
-    return;
-  }
-
   const db = getDb();
   const user = db.prepare(
     'SELECT id, email, password_hash, name, role FROM users WHERE email = ?'
   ).get(email) as { id: string; email: string; password_hash: string; name: string; role: string } | undefined;
 
-  if (!user || !(await bcrypt.compare(password, user.password_hash))) {
+  // Constant-time comparison: always run bcrypt to prevent timing-based email enumeration
+  const DUMMY_HASH = '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy';
+  const valid = user && (await bcrypt.compare(password, user.password_hash));
+  if (!user) {
+    await bcrypt.compare(password, DUMMY_HASH); // Burn CPU to match timing
+  }
+
+  if (!valid) {
     res.status(401).json({ error: 'Ungültige Anmeldedaten.' });
     return;
   }
@@ -125,18 +111,21 @@ router.post('/forgot-password', async (req: Request, res: Response) => {
     return;
   }
 
-  // Generate reset token (valid for 1 hour)
-  const token = crypto.randomBytes(32).toString('hex');
+  // Generate reset token (valid for 1 hour) — store hash, not plaintext
+  const rawToken = crypto.randomBytes(32).toString('hex');
+  const tokenHash = await bcrypt.hash(rawToken, 10);
   const expiresAt = new Date(Date.now() + 3600000).toISOString();
 
   db.prepare(
     'INSERT INTO password_reset_tokens (id, user_id, token, expires_at) VALUES (?, ?, ?, ?)'
-  ).run(crypto.randomUUID(), user.id, token, expiresAt);
+  ).run(crypto.randomUUID(), user.id, tokenHash, expiresAt);
 
   logger.info('Password reset requested', { userId: user.id });
-  // In production: send email with link containing token
-  // For now: log the reset link (would be sent via email)
-  console.log(`   🔗 Password reset link: http://localhost:5173/reset-password/${token}`);
+  // In production: send email with link containing rawToken
+  // For dev only: log the reset link (remove in production!)
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(`   🔗 Password reset link: http://localhost:5173/reset-password/${rawToken}`);
+  }
 
   res.json({ message: 'Falls ein Konto existiert, wurde eine E-Mail gesendet.' });
 });
@@ -148,16 +137,26 @@ router.post('/reset-password', async (req: Request, res: Response) => {
     return;
   }
 
-  // Validate password strength
-  if (password.length < 8 || !/[a-zA-Z]/.test(password) || !/[0-9]/.test(password)) {
-    res.status(400).json({ error: 'Passwort muss mindestens 8 Zeichen haben und Buchstaben + Zahlen enthalten' });
+  // Validate password strength (reuse Zod schema from register)
+  const passwordParse = passwordSchema.safeParse(password);
+  if (!passwordParse.success) {
+    res.status(400).json({ error: passwordParse.error.issues[0].message });
     return;
   }
 
   const db = getDb();
-  const resetToken = db.prepare(
-    'SELECT * FROM password_reset_tokens WHERE token = ? AND used = 0 AND expires_at > datetime(\'now\')'
-  ).get(token) as any;
+  // Fetch all valid unused tokens and compare with bcrypt (token is now hashed)
+  const validTokens = db.prepare(
+    'SELECT * FROM password_reset_tokens WHERE used = 0 AND expires_at > datetime(\'now\')'
+  ).all() as any[];
+
+  let resetToken: any = null;
+  for (const rt of validTokens) {
+    if (await bcrypt.compare(token, rt.token)) {
+      resetToken = rt;
+      break;
+    }
+  }
 
   if (!resetToken) {
     res.status(400).json({ error: 'Link ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.' });
@@ -193,6 +192,8 @@ router.post('/verify-email', async (req: Request, res: Response) => {
     return;
   }
 
+  db.prepare('UPDATE users SET email_verified = 1, updated_at = datetime(\'now\') WHERE id = ?')
+    .run(verifyToken.user_id);
   db.prepare('DELETE FROM email_verification_tokens WHERE user_id = ?').run(verifyToken.user_id);
   logger.info('Email verified', { userId: verifyToken.user_id });
   res.json({ verified: true, message: 'E-Mail erfolgreich bestätigt.' });

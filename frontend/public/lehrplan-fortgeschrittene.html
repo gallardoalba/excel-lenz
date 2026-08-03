@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Cristbal Gallardo" />
+  <title>Lehrplan_Excel_Fortgeschrittene</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      font-size: 11pt;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: blue;
+    }
+    a:visited {
+      color: blue;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#einleitung" id="toc-einleitung">Einleitung</a></li>
+<li><a href="#für-wen-ist-dieser-lehrplan"
+id="toc-für-wen-ist-dieser-lehrplan">Für wen ist dieser
+Lehrplan?</a></li>
+<li><a href="#wie-ist-der-lehrplan-aufgebaut"
+id="toc-wie-ist-der-lehrplan-aufgebaut">Wie ist der Lehrplan
+aufgebaut?</a></li>
+<li><a
+href="#modul-1-erweiterte-formate-bedingte-formatierung-und-datenüberprüfung"
+id="toc-modul-1-erweiterte-formate-bedingte-formatierung-und-datenüberprüfung">Modul
+1: Erweiterte Formate, bedingte Formatierung und
+Datenüberprüfung</a></li>
+<li><a href="#pädagogische-grundlagen"
+id="toc-pädagogische-grundlagen">1.1. Pädagogische Grundlagen</a></li>
+<li><a href="#benutzerdefinierte-zahlenformate"
+id="toc-benutzerdefinierte-zahlenformate">1.2. Benutzerdefinierte
+Zahlenformate</a></li>
+<li><a href="#bedingte-formatierung-mit-formeln"
+id="toc-bedingte-formatierung-mit-formeln">1.3. Bedingte Formatierung
+mit Formeln</a></li>
+<li><a href="#erweiterte-datenüberprüfung"
+id="toc-erweiterte-datenüberprüfung">1.4. Erweiterte
+Datenüberprüfung</a></li>
+<li><a href="#gezielter-schutz" id="toc-gezielter-schutz">1.5. Gezielter
+Schutz</a></li>
+<li><a href="#modul-2-erweiterte-funktionen-und-komplexe-formeln"
+id="toc-modul-2-erweiterte-funktionen-und-komplexe-formeln">Modul 2:
+Erweiterte Funktionen und komplexe Formeln</a></li>
+<li><a href="#index-vergleich-die-flexible-alternative-zu-sverweis"
+id="toc-index-vergleich-die-flexible-alternative-zu-sverweis">2.1. INDEX
++ VERGLEICH: Die flexible Alternative zu SVERWEIS</a></li>
+<li><a href="#dynamische-bezüge-mit-bereich.verschieben"
+id="toc-dynamische-bezüge-mit-bereich.verschieben">2.2. Dynamische
+Bezüge mit BEREICH.VERSCHIEBEN</a></li>
+<li><a href="#verschachtelte-logik-und-fehlerbehandlung"
+id="toc-verschachtelte-logik-und-fehlerbehandlung">2.3. Verschachtelte
+Logik und Fehlerbehandlung</a></li>
+<li><a href="#finanzfunktionen-für-die-praxis"
+id="toc-finanzfunktionen-für-die-praxis">2.4. Finanzfunktionen für die
+Praxis</a></li>
+<li><a href="#matrixformeln" id="toc-matrixformeln">2.5.
+Matrixformeln</a></li>
+<li><a href="#datums--und-zeitfunktionen"
+id="toc-datums--und-zeitfunktionen">2.6. Datums- und
+Zeitfunktionen</a></li>
+<li><a href="#modul-3-referenzen-3d-namen-und-externe-verknüpfungen"
+id="toc-modul-3-referenzen-3d-namen-und-externe-verknüpfungen">Modul 3:
+Referenzen 3D, Namen und externe Verknüpfungen</a></li>
+<li><a href="#definierte-namen-für-fortgeschrittene"
+id="toc-definierte-namen-für-fortgeschrittene">3.1. Definierte Namen für
+Fortgeschrittene</a></li>
+<li><a href="#d-bezüge-daten-über-blätter-hinweg"
+id="toc-d-bezüge-daten-über-blätter-hinweg">3.2. 3D-Bezüge: Daten über
+Blätter hinweg</a></li>
+<li><a href="#verknüpfungen-zwischen-arbeitsmappen"
+id="toc-verknüpfungen-zwischen-arbeitsmappen">3.3. Verknüpfungen
+zwischen Arbeitsmappen</a></li>
+<li><a href="#datenkonsolidierung" id="toc-datenkonsolidierung">3.4.
+Datenkonsolidierung</a></li>
+<li><a
+href="#modul-4-datenbanken-in-excel-spezialfilter-und-datenbankfunktionen"
+id="toc-modul-4-datenbanken-in-excel-spezialfilter-und-datenbankfunktionen">Modul
+4: Datenbanken in Excel Spezialfilter und Datenbankfunktionen</a></li>
+<li><a href="#spezialfilter-mit-kriterienbereich"
+id="toc-spezialfilter-mit-kriterienbereich">4.1. Spezialfilter mit
+Kriterienbereich</a></li>
+<li><a href="#datenbankfunktionen" id="toc-datenbankfunktionen">4.2.
+Datenbankfunktionen</a></li>
+<li><a href="#mehrstufige-teilergebnisse"
+id="toc-mehrstufige-teilergebnisse">4.3. Mehrstufige
+Teilergebnisse</a></li>
+<li><a href="#excel-tabellen-und-strukturierte-verweise"
+id="toc-excel-tabellen-und-strukturierte-verweise">4.4. Excel-Tabellen
+und strukturierte Verweise</a></li>
+<li><a href="#modul-5-erweiterte-pivot-tabellen"
+id="toc-modul-5-erweiterte-pivot-tabellen">Modul 5: Erweiterte
+Pivot-Tabellen</a></li>
+<li><a href="#pivot-tabellen-für-fortgeschrittene"
+id="toc-pivot-tabellen-für-fortgeschrittene">5.1. Pivot-Tabellen für
+Fortgeschrittene</a></li>
+<li><a href="#gruppierungen-und-berechnete-felder"
+id="toc-gruppierungen-und-berechnete-felder">5.2. Gruppierungen und
+berechnete Felder</a></li>
+<li><a href="#datenschnitte-und-zeitachsen"
+id="toc-datenschnitte-und-zeitachsen">5.3. Datenschnitte und
+Zeitachsen</a></li>
+<li><a href="#pivot-charts" id="toc-pivot-charts">5.4.
+Pivot-Charts</a></li>
+<li><a href="#power-pivot-und-das-datenmodell-ausblick"
+id="toc-power-pivot-und-das-datenmodell-ausblick">5.5. Power Pivot und
+das Datenmodell (Ausblick)</a></li>
+<li><a href="#modul-6-datenanalyse-szenarien-und-solver"
+id="toc-modul-6-datenanalyse-szenarien-und-solver">Modul 6:
+Datenanalyse, Szenarien und Solver</a></li>
+<li><a href="#zielwertsuche-und-datentabellen"
+id="toc-zielwertsuche-und-datentabellen">6.1. Zielwertsuche und
+Datentabellen</a></li>
+<li><a href="#szenario-manager" id="toc-szenario-manager">6.2.
+Szenario-Manager</a></li>
+<li><a href="#der-solver" id="toc-der-solver">6.3. Der Solver</a></li>
+<li><a href="#sparklines-und-trendlinien"
+id="toc-sparklines-und-trendlinien">6.4. Sparklines und
+Trendlinien</a></li>
+<li><a href="#modul-7-erweiterte-diagramme-und-dashboards"
+id="toc-modul-7-erweiterte-diagramme-und-dashboards">Modul 7: Erweiterte
+Diagramme und Dashboards</a></li>
+<li><a href="#erweiterte-diagrammtypen"
+id="toc-erweiterte-diagrammtypen">7.1. Erweiterte Diagrammtypen</a></li>
+<li><a href="#wasserfall--und-spezialdiagramme"
+id="toc-wasserfall--und-spezialdiagramme">7.2. Wasserfall- und
+Spezialdiagramme</a></li>
+<li><a href="#dashboard-design" id="toc-dashboard-design">7.3.
+Dashboard-Design</a></li>
+<li><a href="#modul-8-automatisierung-mit-makros"
+id="toc-modul-8-automatisierung-mit-makros">Modul 8: Automatisierung mit
+Makros</a></li>
+<li><a href="#makros-verstehen-und-aufzeichnen"
+id="toc-makros-verstehen-und-aufzeichnen">8.1. Makros verstehen und
+aufzeichnen</a></li>
+<li><a href="#makros-ausführen-und-zuweisen"
+id="toc-makros-ausführen-und-zuweisen">8.2. Makros ausführen und
+zuweisen</a></li>
+<li><a href="#der-vba-editor" id="toc-der-vba-editor">8.3. Der
+VBA-Editor</a></li>
+<li><a href="#modul-9-vba-programmierung-grundlagen"
+id="toc-modul-9-vba-programmierung-grundlagen">Modul 9:
+VBA-Programmierung (Grundlagen)</a></li>
+<li><a href="#variablen-und-datentypen"
+id="toc-variablen-und-datentypen">9.1. Variablen und Datentypen</a></li>
+<li><a href="#kontrollstrukturen-bedingungen-und-schleifen"
+id="toc-kontrollstrukturen-bedingungen-und-schleifen">9.2.
+Kontrollstrukturen: Bedingungen und Schleifen</a></li>
+<li><a href="#excel-ereignisse" id="toc-excel-ereignisse">9.3.
+Excel-Ereignisse</a></li>
+<li><a href="#benutzerdefinierte-funktionen-udf"
+id="toc-benutzerdefinierte-funktionen-udf">9.4. Benutzerdefinierte
+Funktionen (UDF)</a></li>
+<li><a href="#best-practices-für-makros"
+id="toc-best-practices-für-makros">9.5. Best Practices für
+Makros</a></li>
+<li><a href="#modul-10-zusammenarbeit-vorlagen-und-produktivität"
+id="toc-modul-10-zusammenarbeit-vorlagen-und-produktivität">Modul 10:
+Zusammenarbeit, Vorlagen und Produktivität</a></li>
+<li><a href="#professionelle-vorlagen"
+id="toc-professionelle-vorlagen">10.1. Professionelle Vorlagen</a></li>
+<li><a href="#zusammenarbeit-und-freigabe"
+id="toc-zusammenarbeit-und-freigabe">10.2. Zusammenarbeit und
+Freigabe</a></li>
+<li><a href="#add-ins-und-power-query-ausblick"
+id="toc-add-ins-und-power-query-ausblick">10.3. Add-Ins und Power Query
+(Ausblick)</a></li>
+<li><a href="#erweiterte-tastenkombinationen"
+id="toc-erweiterte-tastenkombinationen">10.4. Erweiterte
+Tastenkombinationen</a></li>
+</ul>
+</nav>
+<h2 id="einleitung">Einleitung</h2>
+<p>Dieser Lehrplan bietet eine vollständige Vertiefung in Microsoft
+Excel für professionelle Anwender, die bereits über operative
+Excel-Kenntnisse verfügen. Er kombiniert fortgeschrittene Theorie mit
+praxisnahen Übungen und wurde für den Einzel-Präsenzunterricht
+konzipiert.</p>
+<p><strong>Vorausgesetzte Kenntnisse:</strong> - Sicherer Umgang mit
+Formeln und Bezügen (relativ, absolut, gemischt) - Grundfunktionen:
+SUMME, MITTELWERT, WENN, SVERWEIS - Grundlegende Formatierung und
+Diagrammerstellung - Erfahrung mit einfachen Pivot-Tabellen</p>
+<h2 id="für-wen-ist-dieser-lehrplan">Für wen ist dieser Lehrplan?</h2>
+<p>Dieser Lehrplan richtet sich an <strong>Fachleute mit
+Excel-Vorkenntnissen</strong>, die Aufgaben automatisieren, komplexe
+Szenarien modellieren und aus großen Datenmengen Erkenntnisse gewinnen
+möchten.</p>
+<h2 id="wie-ist-der-lehrplan-aufgebaut">Wie ist der Lehrplan
+aufgebaut?</h2>
+<ol type="1">
+<li><strong>Lernziel</strong> Was Sie nach diesem Modul können
+werden</li>
+<li><strong>Theorie</strong> Verständliche Erklärungen auf
+fortgeschrittenem Niveau</li>
+<li><strong>Übungen</strong> Praktische Aufgaben zur Vertiefung</li>
+</ol>
+<h2
+id="modul-1-erweiterte-formate-bedingte-formatierung-und-datenüberprüfung">Modul
+1: Erweiterte Formate, bedingte Formatierung und Datenüberprüfung</h2>
+<p><strong>Lernziel:</strong> Benutzerdefinierte Zahlenformate
+entwerfen, formelbasierte bedingte Formatierung anwenden und erweiterte
+Datenvalidierung mit Schutz kombinieren.</p>
+<h3 id="was-wissen-sie-bereits">Was wissen Sie bereits?</h3>
+<p>Bevor Sie starten, reflektieren Sie kurz: - Haben Sie schon einmal
+ein benutzerdefiniertes Zahlenformat erstellt? - Kennen Sie den
+Unterschied zwischen „relativen” und „absoluten” Zellbezügen? - Haben
+Sie Erfahrung mit SVERWEIS und einfachen Pivot-Tabellen?</p>
+<p>Diese Grundlagen werden in diesem Lehrplan vorausgesetzt. Falls Sie
+bei einem Begriff unsicher sind, werfen Sie einen Blick in den
+<strong>Excel für Anfänger</strong>-Lehrplan oder fragen Sie einfach
+nach.</p>
+<h2 id="pädagogische-grundlagen">1.1. Pädagogische Grundlagen</h2>
+<p>Dieser Lehrplan folgt denselben andragogischen Prinzipien wie der
+Einsteigerkurs. Die didaktischen Entscheidungen stützen sich auf:</p>
+<ol type="1">
+<li><strong>Andragogik</strong> (Knowles, 1980): Erwachsene lernen
+problemorientiert und bringen umfangreiche Vorerfahrung ein.</li>
+<li><strong>Konnektivismus</strong> (Siemens, 2005): Die ergänzende
+Webplattform Excel-lenz dient als kontinuierliche Lernressource zwischen
+den Präsenzsitzungen.</li>
+<li><strong>Transformatives Lernen</strong> (Mezirow, 1991):
+Fortgeschrittene Techniken verändern grundlegend, wie der Teilnehmer
+Excel-Aufgaben angeht.</li>
+<li><strong>TPACK-Modell</strong> (Mishra &amp; Koehler, 2006):
+Technisches Excel-Wissen wird mit pädagogischen Strategien kombiniert,
+die an das individuelle Lerntempo angepasst sind.</li>
+</ol>
+<p>Die detaillierte didaktische Begründung findet sich im
+<strong>Didaktischen Leitfaden: Excel für Fortgeschrittene</strong>.</p>
+<h2 id="benutzerdefinierte-zahlenformate">1.2. Benutzerdefinierte
+Zahlenformate</h2>
+<h3 id="konzept-formatcodes-als-sprache">Konzept: Formatcodes als
+Sprache</h3>
+<p>Ein benutzerdefiniertes Zahlenformat besteht aus bis zu vier
+Abschnitten, getrennt durch Semikolon:
+<code>positiv;negativ;null;text</code>. Jeder Abschnitt definiert, wie
+ein Wert in der jeweiligen Kategorie dargestellt wird.</p>
+<table>
+<thead>
+<tr>
+<th>Abschnitt</th>
+<th>Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Abschnitt</td>
+<td>Positive Zahlen</td>
+<td><code>#.##0,00</code></td>
+</tr>
+<tr>
+<td>2. Abschnitt</td>
+<td>Negative Zahlen</td>
+<td><code>[Rot]-#.##0,00</code></td>
+</tr>
+<tr>
+<td>3. Abschnitt</td>
+<td>Null</td>
+<td><code>"-"</code></td>
+</tr>
+<tr>
+<td>4. Abschnitt</td>
+<td>Text</td>
+<td><code>@" (Text)"</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Die wichtigsten Formatzeichen:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Zeichen</th>
+<th>Bedeutung</th>
+<th>Beispiel (Eingabe)</th>
+<th>Anzeige</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Ziffer oder Null</td>
+<td><code>000</code> (5)</td>
+<td><code>005</code></td>
+</tr>
+<tr>
+<td><code>#</code></td>
+<td>Ziffer (keine führende Null)</td>
+<td><code>###</code> (5)</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>Platzhalter für Ausrichtung</td>
+<td><code>???.??</code> (5.1)</td>
+<td><code>5.1</code></td>
+</tr>
+<tr>
+<td><code>@</code></td>
+<td>Textplatzhalter</td>
+<td><code>"Artikel: "@</code> (Buch)</td>
+<td><code>Artikel: Buch</code></td>
+</tr>
+<tr>
+<td><code>[Farbe]</code></td>
+<td>Bedingte Farbe</td>
+<td><code>[Rot]#.##0;[Blau]-#.##0</code></td>
+<td>Rot/Blau</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> Das Prozentzeichen im Format multipliziert mit
+100: <code>0%</code> zeigt 0,19 als 19% an. Um 19 als 19% anzuzeigen:
+<code>0"%"</code>.</p>
+<p><strong>Übung 1.1 Benutzerdefinierte Formate</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 1 1 Zahlenformate</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie ein Format, das positive Zahlen in Schwarz
+(<code>#.##0,00</code>), negative in Rot (<code>[Rot]-#.##0,00</code>)
+und Null als <code>-</code> anzeigt.</li>
+<li>Erstellen Sie ein Format, das Zahlen unter 1000 normal und über 1000
+in Tausend anzeigt:
+<code>[&lt;1000]#.##0;[&gt;999]#.##0." T"</code>.</li>
+</ol>
+</blockquote>
+<h2 id="bedingte-formatierung-mit-formeln">1.3. Bedingte Formatierung
+mit Formeln</h2>
+<h3 id="konzept-regeln-die-mitdenken">Konzept: Regeln, die
+mitdenken</h3>
+<p>Formelbasierte bedingte Formatierung geht weit über die
+vordefinierten Regeln hinaus. Sie können jede Excel-Formel als Bedingung
+verwenden und die Formatierung passt sich in Echtzeit an.</p>
+<table>
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Anwendungsfall</th>
+<th>Formel</th>
+<th>Effekt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ganze Zeile hervorheben</td>
+<td><code>=$F5="TX"</code></td>
+<td>Zeile wird markiert, wenn Spalte F “TX” enthält</td>
+</tr>
+<tr>
+<td>Fällige Daten warnen</td>
+<td><code>=UND(B4&gt;HEUTE();B4&lt;=HEUTE()+30)</code></td>
+<td>Daten in den nächsten 30 Tagen</td>
+</tr>
+<tr>
+<td>Abweichungen erkennen</td>
+<td><code>=$B4&lt;&gt;$C4</code></td>
+<td>Unterschiede zwischen Spalten B und C</td>
+</tr>
+<tr>
+<td>Doppelte Werte</td>
+<td><code>=ZÄHLENWENN($A:$A;$A1)&gt;1</code></td>
+<td>Duplikate in Spalte A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig:</strong> Bei formelbasierten Regeln beziehen Sie
+sich immer auf die <strong>aktive Zelle</strong> der Markierung. Wenn
+Sie A1:D100 markieren und A1 die aktive Zelle ist, muss die Formel
+<code>=$F1="TX"</code> lauten (nicht <code>=$F5</code>).</p>
+<p><strong>Übung 1.2 Formelbasierte bedingte Formatierung</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 1 2
+Bedingte_Formatierung</strong> ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Heben Sie alle Zeilen hervor, deren Betrag &gt; 10.000 ist (Formel:
+<code>=$C2&gt;10000</code>).</li>
+<li>Markieren Sie Zeilen, deren Status “Offen” ist, mit gelbem
+Hintergrund.</li>
+<li>Erstellen Sie eine Regel, die das Fälligkeitsdatum rot markiert,
+wenn es weniger als 7 Tage in der Zukunft liegt:
+<code>=UND($D2&gt;HEUTE();$D2&lt;=HEUTE()+7)</code>.</li>
+</ol>
+</blockquote>
+<h2 id="erweiterte-datenüberprüfung">1.4. Erweiterte
+Datenüberprüfung</h2>
+<h3 id="konzept-datenqualität-schon-bei-der-eingabe-sichern">Konzept:
+Datenqualität schon bei der Eingabe sichern</h3>
+<p>Die Datenüberprüfung verhindert fehlerhafte Eingaben, bevor sie in
+der Tabelle landen. Für fortgeschrittene Anwender sind besonders
+nützlich:</p>
+<ul>
+<li><strong>Benutzerdefinierte Formeln</strong> als
+Validierungskriterium</li>
+<li><strong>Eingabemeldungen</strong>, die dem Benutzer Hinweise
+geben</li>
+<li><strong>Fehlermeldungen</strong> mit individuellen Texten und
+Stopp-/Warnstufen</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 24%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr>
+<th>Validierungstyp</th>
+<th>Beispiel</th>
+<th>Verhindert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Liste</td>
+<td><code>=Abteilungen</code> (benannter Bereich)</td>
+<td>Tippfehler, freie Eingabe</td>
+</tr>
+<tr>
+<td>Benutzerdefiniert</td>
+<td><code>=UND(A1&gt;=18;A1&lt;=65)</code></td>
+<td>Werte außerhalb des Altersbereichs</td>
+</tr>
+<tr>
+<td>Benutzerdefiniert</td>
+<td><code>=LÄNGE(B1)=5</code></td>
+<td>IDs mit falscher Länge</td>
+</tr>
+<tr>
+<td>Datum</td>
+<td>zwischen HEUTE() und HEUTE()+90</td>
+<td>Vergangene oder zu weit entfernte Daten</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> Verwenden Sie <strong>Namen</strong> für
+Validierungslisten statt direkter Zellbezüge das macht die Arbeitsmappe
+wartbarer und verständlicher.</p>
+<h3 id="typische-fehler">Typische Fehler</h3>
+<ul>
+<li><strong>Falsche aktive Zelle:</strong> Bei formelbasierter bedingter
+Formatierung muss die Formel auf die aktive Zelle der Markierung bezogen
+sein. Wenn A1 aktiv ist: <code>=$F1="TX"</code>, nicht
+<code>=$F5</code>.</li>
+<li>**<span class="math inline">$-Zeichen in der Formel:** Für
+zeilenweise Hervorhebung muss die Zeile relativ sein:
+`$</span>F1<code>, nicht</code>$F$1`.</li>
+</ul>
+<p><strong>Übung 1.3 Datenüberprüfung einrichten</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 1 3 Validierung</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine Dropdown-Liste für Abteilungen aus dem benannten
+Bereich <code>Abteilungen</code> (IT, Vertrieb, HR, Finanzen,
+Marketing).</li>
+<li>Begrenzen Sie das Gehalt auf 30.000120.000 mit benutzerdefinierter
+Formel.</li>
+<li>Fügen Sie eine Eingabemeldung Bitte Abteilung aus Liste wählen”
+hinzu.</li>
+<li>Erstellen Sie eine Stopp-Fehlermeldung Ungültiges Gehalt
+(30.000120.000)“.</li>
+</ol>
+</blockquote>
+<h2 id="gezielter-schutz">1.5. Gezielter Schutz</h2>
+<h3 id="konzept-nur-das-schützen-was-geschützt-werden-muss">Konzept: Nur
+das schützen, was geschützt werden muss</h3>
+<p>Alle Zellen sind standardmäßig <strong>gesperrt</strong> aber die
+Sperre wirkt erst, wenn der Blattschutz aktiviert wird. Der
+Arbeitsablauf ist daher:</p>
+<ol type="1">
+<li><strong>Zellen entsperren</strong>, die bearbeitbar bleiben sollen
+(<code>Strg+1</code> Schutz Gesperrt)</li>
+<li><strong>Blattschutz aktivieren</strong> (Überprüfen Blatt
+schützen)</li>
+</ol>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 35%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr>
+<th>Schutzebene</th>
+<th>Was sie schützt</th>
+<th>Typischer Einsatz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zellsperre</td>
+<td>Einzelne Zellen vor Änderung</td>
+<td>Formelzellen, Referenzwerte</td>
+</tr>
+<tr>
+<td>Blattschutz</td>
+<td>Gesamtes Tabellenblatt</td>
+<td>Eingabeformulare</td>
+</tr>
+<tr>
+<td>Arbeitsmappenschutz</td>
+<td>Struktur (Blätter löschen/einfügen)</td>
+<td>Vorlagen</td>
+</tr>
+<tr>
+<td>Formeln ausblenden</td>
+<td>Formel nicht in Bearbeitungsleiste</td>
+<td>Proprietäre Berechnungen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Übung 1.4 Schutz einrichten</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 1 4 Schutz</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Entsperren Sie die Eingabezellen (B2:B10), lassen Sie Formelzellen
+gesperrt.</li>
+<li>Aktivieren Sie den Blattschutz (ohne Passwort).</li>
+<li>Blenden Sie die Formeln in Spalte D aus (Zellen formatieren
+Schutz).</li>
+<li>Testen Sie: Eingabezellen sind bearbeitbar, Formelzellen nicht.</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Benutzerdefinierte Zahlenformate mit
+bis zu vier Abschnitten erstellen</label></li>
+<li><label><input type="checkbox" />Formelbasierte bedingte Formatierung
+für ganze Zeilen, Fälligkeiten und Duplikate anwenden</label></li>
+<li><label><input type="checkbox" />Erweiterte Datenüberprüfung mit
+benutzerdefinierten Formeln und eigenen Fehlermeldungen
+einrichten</label></li>
+<li><label><input type="checkbox" />Gezielten Blattschutz mit
+entsperrten Eingabezellen und ausgeblendeten Formeln
+konfigurieren</label></li>
+</ul>
+<h2 id="modul-2-erweiterte-funktionen-und-komplexe-formeln">Modul 2:
+Erweiterte Funktionen und komplexe Formeln</h2>
+<p><strong>Lernziel:</strong> Mehrdimensionale Suchfunktionen,
+verschachtelte Logik, Finanzfunktionen und Matrixformeln
+beherrschen.</p>
+<h3 id="was-wissen-sie-bereits-1">Was wissen Sie bereits?</h3>
+<ul>
+<li>Nutzen Sie bereits SVERWEIS? Wo stoßen Sie an Grenzen?</li>
+<li>Haben Sie schon einmal eine Formel geschrieben, die je nach
+Bedingung unterschiedliche Ergebnisse liefert?</li>
+<li>Wissen Sie, wie Excel Datumsangaben intern speichert (01.01.1900 =
+1)?</li>
+</ul>
+<p>Dieses Modul erweitert Ihr Funktions-Repertoire auf professionelles
+Niveau.</p>
+<h2 id="index-vergleich-die-flexible-alternative-zu-sverweis">2.1. INDEX
++ VERGLEICH: Die flexible Alternative zu SVERWEIS</h2>
+<h3 id="konzept-in-jede-richtung-suchen">Konzept: In jede Richtung
+suchen</h3>
+<p>SVERWEIS kann nur von links nach rechts suchen. INDEX+VERGLEICH hebt
+diese Einschränkung auf und ist zudem robuster bei
+Tabellenänderungen.</p>
+<pre><code>=INDEX(Bereich; Zeilennummer; [Spaltennummer])
+=VERGLEICH(Suchkriterium; Suchbereich; [Vergleichstyp])</code></pre>
+<p><strong>Zweidimensionale Suche:</strong>
+<code>=INDEX(B3:E9; VERGLEICH(B13; B3:B9; 0); VERGLEICH(B14; B3:E3; 0))</code></p>
+<table>
+<thead>
+<tr>
+<th>Vergleichstyp</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Exakte Übereinstimmung (unsortiert)</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Größter Wert &lt;= Suchkriterium (aufsteigend sortiert)</td>
+</tr>
+<tr>
+<td><code>-1</code></td>
+<td>Kleinster Wert &gt;= Suchkriterium (absteigend sortiert)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> INDEX+VERGLEICH ist auch schneller als
+SVERWEIS bei großen Tabellen <strong>Tipp:</strong> In Excel 365/2021
+ersetzt <code>XVERWEIS</code> (XLOOKUP) sowohl SVERWEIS als auch
+INDEX+VERGLEICH mit einer einfacheren Syntax:
+<code>=XVERWEIS(Suchwert; Suchspalte; Rückgabespalte; [Wenn_nicht_gefunden]; [Vergleichsmodus])</code>.
+XVERWEIS sucht in beide Richtungen und benötigt keinen Spaltenindex
+mehr. und bricht nicht, wenn Spalten eingefügt werden.</p>
+<h3 id="typische-fehler-1">Typische Fehler</h3>
+<ul>
+<li><strong>Vergleichstyp vergessen:</strong> Ohne <code>0</code> als
+drittes Argument sucht VERGLEICH ungefähr — das führt zu falschen
+Ergebnissen, wenn die Liste nicht sortiert ist.</li>
+<li><strong>Bereichsgröße bei INDEX+VERGLEICH:</strong> Der
+INDEX-Bereich und der VERGLEICH-Bereich müssen die gleiche Zeilenanzahl
+haben.</li>
+</ul>
+<p><strong>Übung 2.1 INDEX + VERGLEICH anwenden</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 2 1 INDEX_VERGLEICH</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Finden Sie den Preis eines Produkts mit INDEX+VERGLEICH, wobei die
+Produktspalte <strong>rechts</strong> vom Preis steht (SVERWEIS kann das
+nicht).</li>
+<li>Erstellen Sie eine bidirektionale Suche: Produkt (Zeile) Monat
+(Spalte).</li>
+<li>Vergleichen Sie die Formel mit einer SVERWEIS-Variante. Welche ist
+flexibler?</li>
+</ol>
+</blockquote>
+<h2 id="dynamische-bezüge-mit-bereich.verschieben">2.2. Dynamische
+Bezüge mit BEREICH.VERSCHIEBEN</h2>
+<h3 id="konzept-bereiche-die-atmen">Konzept: Bereiche, die atmen</h3>
+<p>BEREICH.VERSCHIEBEN (OFFSET) gibt einen Bezug zurück, der um eine
+bestimmte Anzahl Zeilen/Spalten von einer Startzelle verschoben ist mit
+variabler Höhe und Breite.</p>
+<p><strong>Syntax:</strong>
+<code>=BEREICH.VERSCHIEBEN(Bezug; Zeilen; Spalten; [Höhe]; [Breite])</code></p>
+<pre><code>=SUMME(BEREICH.VERSCHIEBEN(A1;0;0;E2;1))
+ Summiert von A1 bis A[E2] (dynamische Bereichsgröße)</code></pre>
+<table>
+<colgroup>
+<col style="width: 57%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr>
+<th>Anwendung</th>
+<th>Formel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dynamische Summe</td>
+<td><code>=SUMME(BEREICH.VERSCHIEBEN(B1;0;0;ANZAHL2(B:B);1))</code></td>
+</tr>
+<tr>
+<td>Letzte 3 Monate</td>
+<td><code>=MITTELWERT(BEREICH.VERSCHIEBEN(B1;ANZAHL(B:B)-3;0;3))</code></td>
+</tr>
+<tr>
+<td>Rollierender Durchschnitt</td>
+<td>In Kombination mit ZÄHLENWENN für gleitende Fenster</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig:</strong> BEREICH.VERSCHIEBEN ist eine
+<strong>flüchtige Funktion</strong> sie wird bei jeder
+Arbeitsmappenänderung neu berechnet. Bei vielen BEREICH.VERSCHIEBEN-
+Formeln kann die Performance leiden.</p>
+<p><strong>Übung 2.2 Dynamische Bezüge</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 2 2
+BEREICH_VERSCHIEBEN</strong> ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine dynamische Summenformel, die automatisch neue
+Zeilen berücksichtigt (mit ANZAHL2 für die Zeilenanzahl).</li>
+<li>Erstellen Sie eine Formel für den Durchschnitt der letzten 6 Monate,
+die sich automatisch anpasst, wenn neue Daten hinzukommen.</li>
+</ol>
+</blockquote>
+<h2 id="verschachtelte-logik-und-fehlerbehandlung">2.3. Verschachtelte
+Logik und Fehlerbehandlung</h2>
+<h3 id="konzept-mehrere-bedingungen-elegant-verketten">Konzept: Mehrere
+Bedingungen elegant verketten</h3>
+<p>Statt tiefer WENN-Schachtelungen bietet Excel mehrere
+Alternativen:</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 27%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Syntax</th>
+<th>Anwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WENNS (Excel 2019+)</td>
+<td><code>=WENNS(B2&gt;=90;"A";B2&gt;=80;"B";B2&gt;=70;"C";WAHR;"F")</code></td>
+<td>Mehrere Bedingungen ohne Schachtelung</td>
+</tr>
+<tr>
+<td>WENNFEHLER</td>
+<td><code>=WENNFEHLER(SVERWEIS(A2;Liste;2;0);"Nicht gefunden")</code></td>
+<td>#NV und andere Fehler abfangen</td>
+</tr>
+<tr>
+<td>WAHL</td>
+<td><code>=WAHL(B2;"Klein";"Mittel";"Groß")</code></td>
+<td>Wert aus Liste basierend auf Index</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> WENNFEHLER fängt ALLE Fehler ab. Für präzisere
+Fehlerbehandlung gibt es WENNNV (nur #NV) in Excel 2013+.</p>
+<p><strong>Übung 2.3 Verschachtelte Funktionen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 2 3 Logik</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine Provisionsberechnung mit verschachteltem WENN:
+<ul>
+<li>Umsatz &lt; 10.000: 5%</li>
+<li>Umsatz 10.00050.000: 8%</li>
+<li>Umsatz &gt; 50.000: 12%</li>
+</ul></li>
+<li>Verwenden Sie WENNFEHLER für eine SVERWEIS-Formel, die bei fehlendem
+Suchbegriff “Nicht im Katalog” anzeigt.</li>
+<li>Optional: Schreiben Sie die Provisionsformel mit WENNS (Excel 2019+)
+um.</li>
+</ol>
+</blockquote>
+<h2 id="finanzfunktionen-für-die-praxis">2.4. Finanzfunktionen für die
+Praxis</h2>
+<h3 id="konzept-den-zeitwert-des-geldes-berechnen">Konzept: Den Zeitwert
+des Geldes berechnen</h3>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 47%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Was sie berechnet</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RMZ (PMT)</td>
+<td>Regelmäßige Zahlung (Rate)</td>
+<td><code>=RMZ(4,5%/12; 30*12; -250000)</code></td>
+</tr>
+<tr>
+<td>NBW (NPV)</td>
+<td>Kapitalwert einer Investition</td>
+<td><code>=NBW(8%; B2:B6)+B1</code></td>
+</tr>
+<tr>
+<td>IKV (IRR)</td>
+<td>Interner Zinsfuß (Rendite)</td>
+<td><code>=IKV(B1:B6)</code></td>
+</tr>
+<tr>
+<td>ZW (FV)</td>
+<td>Zukunftswert einer Anlage</td>
+<td><code>=ZW(3%/12; 20*12; -200; -10000)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig:</strong> Bei RMZ und ZW sind Zahlungen, die Sie
+leisten, als <strong>negative</strong> Zahlen anzugeben. Der Zinssatz
+muss zur Periode passen: Jahreszins durch 12 für monatliche Raten.</p>
+<h3 id="typische-fehler-2">Typische Fehler</h3>
+<ul>
+<li><strong>Zinssatz nicht angepasst:</strong> Jahreszins muss durch 12
+geteilt werden, wenn Sie monatliche Raten berechnen:
+<code>RMZ(4,5%/12; 30*12; -250000)</code>.</li>
+<li><strong>Vorzeichen:</strong> Zahlungen, die Sie leisten (Kreditrate,
+Sparrate), sind negativ. Der Kreditbetrag ist positiv.</li>
+</ul>
+<p><strong>Übung 2.4 Finanzfunktionen anwenden</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 2 4
+Finanzfunktionen</strong> ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Berechnen Sie die monatliche Rate für einen Kredit über 250.000 bei
+4,5% Zins und 30 Jahren Laufzeit mit RMZ.</li>
+<li>Berechnen Sie den Kapitalwert (NBW) einer Investition:
+Anfangsinvestition 100.000 , jährliche Rückflüsse 25.000 über 6 Jahre,
+Zinssatz 8%.</li>
+<li>Berechnen Sie mit ZW das Endkapital einer monatlichen Sparrate von
+200 über 20 Jahre bei 3% Jahreszins.</li>
+</ol>
+</blockquote>
+<h2 id="matrixformeln">2.5. Matrixformeln</h2>
+<h3 id="konzept-eine-formel-viele-ergebnisse">Konzept: Eine Formel,
+viele Ergebnisse</h3>
+<p>Matrixformeln führen mehrere Berechnungen gleichzeitig durch und
+können ein ganzes Array von Ergebnissen zurückgeben.</p>
+<p><strong>Klassische Matrixformel (Strg+Umschalt+Enter):</strong></p>
+<pre><code>{=SUMME(WENN(A1:A10&gt;10; B1:B10; 0))}</code></pre>
+<p><strong>Dynamische Matrixformeln (Excel 365/2021):</strong></p>
+<pre><code>=SORTIEREN(FILTERN(A1:C100; C1:C100&gt;1000))</code></pre>
+<p><strong>Tipp:</strong> In Excel 365 werden Matrixformeln automatisch
+als dynamische Arrays behandelt Sie müssen kein Strg+Umschalt+Enter mehr
+drücken. Die Formel läuft automatisch über alle betroffenen Zellen.</p>
+<p><strong>Übung 2.5 Matrixformeln</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 2 5 Matrixformeln</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine Matrixformel, die alle Umsätze &gt; 1.000
+summiert: <code>{=SUMME(WENN(C2:C20&gt;1000; C2:C20; 0))}</code></li>
+<li>Erstellen Sie eine Matrixformel, die den größten Umsatz pro Region
+findet.</li>
+<li>Testen Sie (Excel 365): <code>=SORTIEREN(EINDEUTIG(A2:A50))</code>
+für eindeutige Werte.</li>
+</ol>
+</blockquote>
+<h2 id="datums--und-zeitfunktionen">2.6. Datums- und Zeitfunktionen</h2>
+<h3 id="konzept-mit-daten-rechnen-nicht-nur-anzeigen">Konzept: Mit Daten
+rechnen, nicht nur anzeigen</h3>
+<p>Excel speichert Datumsangaben als fortlaufende Zahlen (1 =
+01.01.1900) und Uhrzeiten als Dezimalbruch (0,5 = 12:00). Dieses System
+ermöglicht präzise Zeitberechnungen.</p>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 21%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Syntax</th>
+<th>Beispiel</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HEUTE</td>
+<td><code>=HEUTE()</code></td>
+<td><code>=HEUTE()</code></td>
+<td>Aktuelles Datum</td>
+</tr>
+<tr>
+<td>JETZT</td>
+<td><code>=JETZT()</code></td>
+<td><code>=JETZT()</code></td>
+<td>Datum + Uhrzeit</td>
+</tr>
+<tr>
+<td>JAHR</td>
+<td><code>=JAHR(Datum)</code></td>
+<td><code>=JAHR(B2)</code></td>
+<td>Jahr extrahieren</td>
+</tr>
+<tr>
+<td>MONAT</td>
+<td><code>=MONAT(Datum)</code></td>
+<td><code>=MONAT(B2)</code></td>
+<td>Monat (1-12)</td>
+</tr>
+<tr>
+<td>TAG</td>
+<td><code>=TAG(Datum)</code></td>
+<td><code>=TAG(B2)</code></td>
+<td>Tag (1-31)</td>
+</tr>
+<tr>
+<td>MONATSENDE</td>
+<td><code>=MONATSENDE(Datum; Monate)</code></td>
+<td><code>=MONATSENDE(B2;0)</code></td>
+<td>Letzter Tag des Monats</td>
+</tr>
+<tr>
+<td>BRTEILJAHRE</td>
+<td><code>=BRTEILJAHRE(Start; Ende)</code></td>
+<td><code>=BRTEILJAHRE(B2;C2)</code></td>
+<td>Jahre zwischen Daten</td>
+</tr>
+<tr>
+<td>ARBEITSTAG</td>
+<td><code>=ARBEITSTAG(Datum; Tage)</code></td>
+<td><code>=ARBEITSTAG(B2;10)</code></td>
+<td>Datum nach X Arbeitstagen</td>
+</tr>
+<tr>
+<td>NETTOARBEITSTAGE</td>
+<td><code>=NETTOARBEITSTAGE(Start; Ende)</code></td>
+<td><code>=NETTOARBEITSTAGE(B2;C2)</code></td>
+<td>Arbeitstage zwischen Daten</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> <code>=DATEDIF(Startdatum;Enddatum;"Y")</code>
+berechnet ganze Jahre zwischen Daten — ideal für Altersberechnungen. Die
+Funktion ist nicht dokumentiert, aber in allen Excel-Versionen
+verfügbar.</p>
+<p><strong>Übung 2.6 Datums- und Zeitfunktionen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 2 6 Datum_Zeit</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Berechnen Sie das Alter von Personen aus dem Geburtsdatum mit
+<code>=BRTEILJAHRE(B2;HEUTE())</code>.</li>
+<li>Ermitteln Sie mit <code>MONATSENDE</code> den letzten Tag des
+aktuellen Monats.</li>
+<li>Berechnen Sie das Fälligkeitsdatum 30 Arbeitstage nach Bestelldatum
+mit <code>ARBEITSTAG</code>.</li>
+<li>Berechnen Sie die Anzahl Arbeitstage zwischen zwei Daten mit
+<code>NETTOARBEITSTAGE</code>.</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt-1">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />INDEX+VERGLEICH für bidirektionale
+Suche (auch rechts→links) einsetzen</label></li>
+<li><label><input type="checkbox" />Dynamische Bereichsnamen mit
+BEREICH.VERSCHIEBEN erstellen</label></li>
+<li><label><input type="checkbox" />Verschachtelte Logik mit WENNS,
+WENNFEHLER und WAHL eleganter als tiefe WENN-Schachtelungen
+formulieren</label></li>
+<li><label><input type="checkbox" />RMZ, NBW, IKV und ZW für finanzielle
+Berechnungen anwenden</label></li>
+<li><label><input type="checkbox" />Matrixformeln (klassisch mit
+Strg+Shift+Enter und dynamisch in Excel 365) schreiben</label></li>
+<li><label><input type="checkbox" />Datums- und Zeitberechnungen mit
+MONATSENDE, ARBEITSTAG und NETTOARBEITSTAGE durchführen</label></li>
+</ul>
+<h2 id="modul-3-referenzen-3d-namen-und-externe-verknüpfungen">Modul 3:
+Referenzen 3D, Namen und externe Verknüpfungen</h2>
+<p><strong>Lernziel:</strong> Definierte Namen professionell einsetzen,
+Daten über mehrere Blätter mit 3D-Bezügen konsolidieren und externe
+Arbeitsmappen verknüpfen.</p>
+<h3 id="was-wissen-sie-bereits-2">Was wissen Sie bereits?</h3>
+<ul>
+<li>Arbeiten Sie mit mehreren Tabellenblättern in einer
+Arbeitsmappe?</li>
+<li>Haben Sie schon einmal Daten aus einer anderen Excel-Datei
+verknüpft?</li>
+<li>Nutzen Sie bereits benannte Bereiche (z.B. =Umsatz statt
+=B2:B50)?</li>
+</ul>
+<p>Dieses Modul bringt Struktur in Ihre Arbeitsmappen — und spart Zeit
+bei der Fehlersuche.</p>
+<h2 id="definierte-namen-für-fortgeschrittene">3.1. Definierte Namen für
+Fortgeschrittene</h2>
+<h3 id="konzept-namen-für-formeln-konstanten-und-bereiche">Konzept:
+Namen für Formeln, Konstanten und Bereiche</h3>
+<p>Namen machen Formeln lesbar und wartbar. Statt <code>=B2*$F$1</code>
+schreiben Sie <code>=B2*MwSt_Satz</code>.</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 29%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name-Typ</th>
+<th>Beispiel</th>
+<th>Verwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bereichsname</td>
+<td><code>=SUMME(Umsatz)</code></td>
+<td>Summiert den benannten Bereich</td>
+</tr>
+<tr>
+<td>Formelname</td>
+<td><code>MwSt = 0,19</code></td>
+<td>Konstante in Berechnungen</td>
+</tr>
+<tr>
+<td>Dynamischer Name</td>
+<td><code>Daten = BEREICH.VERSCHIEBEN(Tabelle1!$A$1;0;0;ANZAHL2(Tabelle1!$A:$A);5)</code></td>
+<td>Wächst automatisch</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Den Namens-Manager</strong> (<code>Strg+F3</code>) zeigt alle
+definierten Namen mit deren Gültigkeitsbereich (Arbeitsmappe oder
+einzelnes Blatt).</p>
+<p><strong>Übung 3.1 Namen definieren und verwalten</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 3 1 Namen</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Definieren Sie Namen für: MwSt_Satz (19%), Einkommensteuer (25%),
+Sozialabgaben (15%).</li>
+<li>Erstellen Sie einen dynamischen Namen <code>AlleDaten</code> mit
+BEREICH.VERSCHIEBEN, der automatisch neue Zeilen einschließt.</li>
+<li>Verwenden Sie die Namen in einer Gehaltsabrechnungs-Formel.</li>
+</ol>
+</blockquote>
+<h2 id="d-bezüge-daten-über-blätter-hinweg">3.2. 3D-Bezüge: Daten über
+Blätter hinweg</h2>
+<h3 id="konzept-gleiche-zelle-viele-blätter">Konzept: Gleiche Zelle,
+viele Blätter</h3>
+<p>Ein 3D-Bezug referenziert dieselbe Zelle oder denselben Bereich über
+mehrere Tabellenblätter hinweg.</p>
+<p><strong>Syntax:</strong> <code>=SUMME(Januar:Dezember!B2)</code></p>
+<table>
+<thead>
+<tr>
+<th>Funktion</th>
+<th style="text-align: center;">3D-fähig?</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SUMME</td>
+<td style="text-align: center;"></td>
+<td><code>=SUMME(Q1:Q4!B5)</code></td>
+</tr>
+<tr>
+<td>MITTELWERT</td>
+<td style="text-align: center;"></td>
+<td><code>=MITTELWERT(2019:2026!C10)</code></td>
+</tr>
+<tr>
+<td>MAX / MIN</td>
+<td style="text-align: center;"></td>
+<td><code>=MAX(Region1:Region5!D20)</code></td>
+</tr>
+<tr>
+<td>SVERWEIS</td>
+<td style="text-align: center;"></td>
+<td>Nicht in 3D-Bezügen möglich</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wichtig:</strong> Alle Blätter müssen dieselbe Struktur haben
+(gleiche Daten an gleichen Positionen). Blätter, die zwischen dem ersten
+und letzten Blatt eingefügt werden, sind automatisch im 3D-Bezug
+enthalten.</p>
+<p><strong>Übung 3.2 3D-Bezüge erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 3 2 3D_Bezuege</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine Jahresübersicht, die mit
+<code>=SUMME(Januar:Dezember!B2)</code> die Gesamtsumme über alle
+Monatsblätter berechnet.</li>
+<li>Fügen Sie ein neues Blatt zwischen Januar und Februar ein prüfen
+Sie, ob der 3D-Bezug das neue Blatt automatisch einschließt.</li>
+</ol>
+</blockquote>
+<h2 id="verknüpfungen-zwischen-arbeitsmappen">3.3. Verknüpfungen
+zwischen Arbeitsmappen</h2>
+<h3 id="konzept-daten-aus-anderen-dateien-live-einbinden">Konzept: Daten
+aus anderen Dateien live einbinden</h3>
+<p>Externe Verknüpfungen ziehen Daten aus anderen Excel-Dateien. Bei
+Änderungen in der Quelldatei werden die Daten in der Zieldatei
+aktualisiert.</p>
+<p><strong>Syntax:</strong>
+<code>='C:\Pfad\[Quelldatei.xlsx]Tabellenblatt'!Zelle</code></p>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr>
+<th>Aktion</th>
+<th>Menüpfad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verknüpfungen bearbeiten</td>
+<td>Daten Abfragen und Verbindungen Verknüpfungen bearbeiten</td>
+</tr>
+<tr>
+<td>Verknüpfung aktualisieren</td>
+<td>Werte aktualisieren</td>
+</tr>
+<tr>
+<td>Verknüpfung trennen</td>
+<td>Verknüpfung lösen (Werte bleiben erhalten)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> Vermeiden Sie zu viele externe Verknüpfungen
+sie verlangsamen das Öffnen der Datei erheblich. Für große Datenmengen
+ist Power Query die bessere Alternative.</p>
+<p><strong>Übung 3.3 Externe Verknüpfungen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 3 3 Verknuepfungen</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine Verknüpfung zu einer externen Arbeitsmappe
+<code>Budgetdaten.xlsx</code>, Blatt <code>Q1</code>, Zelle
+<code>B5</code>.</li>
+<li>Testen Sie: Ändern Sie den Wert in der Quelldatei und aktualisieren
+Sie die Verknüpfung (Daten Alle aktualisieren).</li>
+<li>Lösen Sie die Verknüpfung und prüfen Sie, ob die Werte erhalten
+bleiben.</li>
+</ol>
+</blockquote>
+<h2 id="datenkonsolidierung">3.4. Datenkonsolidierung</h2>
+<h3 id="konzept-aus-vielen-quellen-eine-wahrheit">Konzept: Aus vielen
+Quellen eine Wahrheit</h3>
+<p>Die Konsolidierung (Daten → Datentools → Konsolidieren) fasst Daten
+aus mehreren Bereichen zusammen — auch wenn die Kategorien in
+unterschiedlicher Reihenfolge stehen.</p>
+<p><strong>Konsolidierung nach Position:</strong> Alle Quellbereiche
+haben exakt dieselbe Struktur. <strong>Konsolidierung nach
+Kategorie:</strong> Excel ordnet gleiche Beschriftungen automatisch
+zu.</p>
+<table>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Verwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Summe</td>
+<td>Standard — addiert Werte gleicher Kategorien</td>
+</tr>
+<tr>
+<td>Mittelwert</td>
+<td>Durchschnitt aus mehreren Quellen</td>
+</tr>
+<tr>
+<td>Max / Min</td>
+<td>Extremwerte über alle Quellen</td>
+</tr>
+<tr>
+<td>Anzahl</td>
+<td>Wie viele Einträge pro Kategorie?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> Aktivieren Sie “Verknüpfung mit den
+Quelldaten”, damit sich die Konsolidierung automatisch aktualisiert,
+wenn sich Quelldaten ändern.</p>
+<p><strong>Übung 3.4 Daten konsolidieren</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 3 4 Konsolidierung</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Sie haben drei Blätter (Q1, Q2, Q3) mit Umsätzen pro Produkt.
+Konsolidieren Sie die Daten auf einem Jahresübersichtsblatt (Daten →
+Konsolidieren).</li>
+<li>Konsolidieren Sie nach Kategorie: Die Produkte stehen in
+unterschiedlicher Reihenfolge auf den Quartalsblättern.</li>
+<li>Aktivieren Sie die Verknüpfung mit den Quelldaten und ändern Sie
+einen Wert in Q1 — aktualisiert sich die Konsolidierung?</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt-2">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Definierte Namen für Konstanten,
+Bereiche und dynamische Formeln professionell einsetzen</label></li>
+<li><label><input type="checkbox" />3D-Bezüge (Januar:Dezember!B2) für
+blattübergreifende Berechnungen nutzen</label></li>
+<li><label><input type="checkbox" />Externe Verknüpfungen zu anderen
+Arbeitsmappen erstellen und verwalten</label></li>
+<li><label><input type="checkbox" />Datenkonsolidierung nach Position
+und Kategorie mit Verknüpfung zu Quelldaten durchführen</label></li>
+</ul>
+<h2
+id="modul-4-datenbanken-in-excel-spezialfilter-und-datenbankfunktionen">Modul
+4: Datenbanken in Excel Spezialfilter und Datenbankfunktionen</h2>
+<p><strong>Lernziel:</strong> Spezialfilter mit komplexen Kriterien
+anwenden, Datenbankfunktionen (DBSUMME, DBMITTELWERT) einsetzen und
+mehrstufige Teilergebnisse berechnen.</p>
+<h3 id="was-wissen-sie-bereits-3">Was wissen Sie bereits?</h3>
+<ul>
+<li>Wie filtern Sie derzeit Daten mit mehreren Bedingungen?</li>
+<li>Können Sie sich vorstellen, Excel wie eine kleine Datenbank zu
+nutzen?</li>
+<li>Wissen Sie, was Strg+T mit einem Datenbereich macht?</li>
+</ul>
+<p>Datenbanktechniken in Excel — ohne SQL und ohne Access.</p>
+<h2 id="spezialfilter-mit-kriterienbereich">4.1. Spezialfilter mit
+Kriterienbereich</h2>
+<h3 id="konzept-filtern-wie-mit-sql-aber-in-excel">Konzept: Filtern wie
+mit SQL aber in Excel</h3>
+<p>Der Spezialfilter (Daten Sortieren und Filtern Erweitert) ermöglicht
+komplexe Filterlogik mit UND/ODER-Verknüpfungen über einen separaten
+Kriterienbereich.</p>
+<p><strong>Kriterienbereich aufbauen:</strong> - Kriterien in derselben
+Zeile = <strong>UND</strong>-Verknüpfung - Kriterien in verschiedenen
+Zeilen = <strong>ODER</strong>-Verknüpfung</p>
+<table>
+<thead>
+<tr>
+<th>Produkt</th>
+<th>Umsatz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Laptop</td>
+<td>&gt;5000</td>
+</tr>
+<tr>
+<td>Monitor</td>
+<td>&gt;5000</td>
+</tr>
+</tbody>
+</table>
+<p>Zeigt alle Laptops ODER Monitore mit Umsatz &gt; 5000</p>
+<p><strong>Tipp:</strong> Sie können das Ergebnis an eine andere Stelle
+kopieren lassen (Auswahl in anderen Bereich kopieren”) und mit Nur
+eindeutige Datensätze” Duplikate eliminieren.</p>
+<p><strong>Übung 4.1 Spezialfilter anwenden</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 4 1 Spezialfilter</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie einen Kriterienbereich für: Region “Nord” UND Umsatz
+&gt; 10.000.</li>
+<li>Erweitern Sie: Region “Nord” ODER Region “Süd” (jeweils Umsatz &gt;
+10.000).</li>
+<li>Extrahieren Sie eindeutige Datensätze in einen neuen Bereich.</li>
+</ol>
+</blockquote>
+<h2 id="datenbankfunktionen">4.2. Datenbankfunktionen</h2>
+<h3 id="konzept-bedingte-berechnungen-auf-tabellenebene">Konzept:
+Bedingte Berechnungen auf Tabellenebene</h3>
+<p>Datenbankfunktionen arbeiten wie SUMMEWENN, aber mit einem separaten
+Kriterienbereich ideal für komplexe, mehrstufige Bedingungen.</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 41%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Entsprechung</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DBSUMME</td>
+<td>SUMME mit Kriterien</td>
+<td><code>=DBSUMME(Datenbank; "Umsatz"; Kriterien)</code></td>
+</tr>
+<tr>
+<td>DBMITTELWERT</td>
+<td>MITTELWERT mit Kriterien</td>
+<td><code>=DBMITTELWERT(Datenbank; "Alter"; Kriterien)</code></td>
+</tr>
+<tr>
+<td>DBANZAHL</td>
+<td>ANZAHL mit Kriterien</td>
+<td><code>=DBANZAHL(Datenbank; "ID"; Kriterien)</code></td>
+</tr>
+<tr>
+<td>DBAUSZUG</td>
+<td>Einzelwert extrahieren</td>
+<td><code>=DBAUSZUG(Datenbank; "Name"; Kriterien)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Vorteil gegenüber SUMMEWENNS:</strong> Kriterien können in
+einem Bereich verwaltet und schnell geändert werden, ohne Formeln
+anzufassen.</p>
+<p><strong>Übung 4.2 Datenbankfunktionen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 4 2
+Datenbankfunktionen</strong> ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Berechnen Sie mit DBSUMME den Gesamtumsatz für die Region
+“West”.</li>
+<li>Berechnen Sie mit DBMITTELWERT das Durchschnittsalter der Kunden aus
+“Berlin”.</li>
+<li>Extrahieren Sie mit DBAUSZUG den Namen des Kunden mit ID 1042.</li>
+</ol>
+</blockquote>
+<h2 id="mehrstufige-teilergebnisse">4.3. Mehrstufige Teilergebnisse</h2>
+<h3 id="konzept-summen-pro-gruppe-und-untergruppen">Konzept: Summen pro
+Gruppe und Untergruppen</h3>
+<p>Teilergebnisse (Daten Gliederung Teilergebnis) fügen automatisch
+Zusammenfassungszeilen nach jedem Gruppenwechsel ein.</p>
+<p><strong>Voraussetzung:</strong> Die Daten müssen nach dem
+Gruppierungsmerkmal <strong>sortiert</strong> sein.</p>
+<table>
+<thead>
+<tr>
+<th>Gliederungsebene</th>
+<th>Sichtbarkeit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ebene 1</td>
+<td>Nur Gesamtsumme</td>
+</tr>
+<tr>
+<td>Ebene 2</td>
+<td>Summen pro Hauptgruppe</td>
+</tr>
+<tr>
+<td>Ebene 3</td>
+<td>Alle Detailzeilen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Übung 4.3 Teilergebnisse berechnen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 4 3 Teilergebnisse</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Sortieren Sie die Tabelle nach Region, dann nach Produkt.</li>
+<li>Fügen Sie Teilergebnisse für die Summe des Umsatzes pro Region
+ein.</li>
+<li>Fügen Sie eine zweite Teilergebnis-Ebene für die Anzahl pro Produkt
+ein.</li>
+</ol>
+</blockquote>
+<h2 id="excel-tabellen-und-strukturierte-verweise">4.4. Excel-Tabellen
+und strukturierte Verweise</h2>
+<h3 id="konzept-intelligenz-statt-nur-formatierung">Konzept: Intelligenz
+statt nur Formatierung</h3>
+<p>Eine Excel-Tabelle (<code>Strg+T</code>) ist mehr als ein
+formatierter Bereich — sie ist eine intelligente Datenstruktur mit
+eigenen Regeln und Verweisen.</p>
+<table>
+<thead>
+<tr>
+<th>Eigenschaft</th>
+<th>Normaler Bereich</th>
+<th>Excel-Tabelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formatierung</td>
+<td>Manuell</td>
+<td>Automatisch (Bänder, Kopfzeile)</td>
+</tr>
+<tr>
+<td>Neue Zeilen</td>
+<td>Manuell formatiert</td>
+<td>Automatisch übernommen</td>
+</tr>
+<tr>
+<td>Formeln</td>
+<td>Manuell kopiert</td>
+<td>Automatisch auf alle Zeilen</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Manuell setzen</td>
+<td>Automatisch in Kopfzeile</td>
+</tr>
+<tr>
+<td>Bezüge</td>
+<td><code>=B2*C2</code></td>
+<td><code>=[@Preis]*[@Menge]</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Strukturierte Verweise</strong> verwenden Tabellen- und
+Spaltennamen statt Zelladressen:</p>
+<pre><code>=SUMME(Tabelle1[Umsatz])
+=SVERWEIS(A2;Preisliste;2;0)
+=[@Umsatz]-[@Kosten]</code></pre>
+<p><strong>Tipp:</strong> Strukturierte Verweise machen Formeln
+selbsterklärend — auch Monate später wissen Sie sofort, was berechnet
+wird. Sie passen sich automatisch an, wenn die Tabelle wächst.</p>
+<p><strong>Übung 4.4 Excel-Tabellen verwenden</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 4 4 Tabellen</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Wandeln Sie den Datenbereich mit <code>Strg+T</code> in eine
+Excel-Tabelle um.</li>
+<li>Berechnen Sie eine neue Spalte mit strukturiertem Verweis:
+<code>=[@Menge]*[@Preis]</code>.</li>
+<li>Fügen Sie eine Ergebniszeile hinzu (Tabellenentwurf →
+Ergebniszeile).</li>
+<li>Fügen Sie neue Datenzeilen hinzu — werden Formatierung und Formeln
+automatisch übernommen?</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt-3">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Spezialfilter mit mehrstufigen
+UND/ODER-Kriterienbereichen anwenden</label></li>
+<li><label><input type="checkbox" />Datenbankfunktionen (DBSUMME,
+DBMITTELWERT, DBANZAHL, DBAUSZUG) für flexible Auswertungen
+einsetzen</label></li>
+<li><label><input type="checkbox" />Mehrstufige Teilergebnisse mit
+Gruppierung und Gliederung erstellen</label></li>
+<li><label><input type="checkbox" />Excel-Tabellen mit strukturierten
+Verweisen (<span class="citation"
+data-cites="Spaltenname">[@Spaltenname]</span>) professionell
+nutzen</label></li>
+</ul>
+<h2 id="modul-5-erweiterte-pivot-tabellen">Modul 5: Erweiterte
+Pivot-Tabellen</h2>
+<p><strong>Lernziel:</strong> Komplexe Pivot-Tabellen mit Gruppierungen,
+Datenschnitten, berechneten Feldern und Pivot-Charts erstellen.</p>
+<h3 id="was-wissen-sie-bereits-4">Was wissen Sie bereits?</h3>
+<ul>
+<li>Erstellen Sie regelmäßig Pivot-Tabellen? Wenn ja: Was fehlt
+Ihnen?</li>
+<li>Haben Sie schon einmal Daten in einer Pivot-Tabelle nach Monaten
+gruppiert?</li>
+<li>Können mehrere Pivot-Tabellen gleichzeitig gefiltert werden?</li>
+</ul>
+<p>Fortgeschrittene Pivot-Techniken machen aus einfachen
+Zusammenfassungen interaktive Dashboards.</p>
+<h2 id="pivot-tabellen-für-fortgeschrittene">5.1. Pivot-Tabellen für
+Fortgeschrittene</h2>
+<h3 id="konzept-mehrere-felder-eine-tabelle">Konzept: Mehrere Felder,
+eine Tabelle</h3>
+<p>Eine Pivot-Tabelle gruppiert und aggregiert Daten dynamisch. Die vier
+Bereiche sind:</p>
+<table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>Funktion</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zeilen</strong></td>
+<td>Gruppierung nach Kategorie</td>
+<td>Region, Produkt</td>
+</tr>
+<tr>
+<td><strong>Spalten</strong></td>
+<td>Kreuztabellierung</td>
+<td>Quartal, Jahr</td>
+</tr>
+<tr>
+<td><strong>Werte</strong></td>
+<td>Aggregatfunktion</td>
+<td>Summe Umsatz, Anzahl Bestellungen</td>
+</tr>
+<tr>
+<td><strong>Filter</strong></td>
+<td>Globale Einschränkung</td>
+<td>Nur 2026, nur Region Nord</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verfügbare Zusammenfassungsfunktionen:</strong> Summe,
+Anzahl, Mittelwert, Max, Min, % des Gesamtergebnisses, Differenz zum
+Vormonat, laufende Summe.</p>
+<p><strong>Übung 5.1 Pivot-Tabelle erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 5 1 Pivot</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine Pivot-Tabelle: Region &amp; Produkt als Zeilen,
+Quartal als Spalten, Summe Umsatz als Werte.</li>
+<li>Ändern Sie die Zusammenfassung auf Mittelwert.</li>
+<li>Zeigen Sie die Werte als % des Gesamtergebnisses an.</li>
+</ol>
+</blockquote>
+<h2 id="gruppierungen-und-berechnete-felder">5.2. Gruppierungen und
+berechnete Felder</h2>
+<h3 id="konzept-daten-in-sinnvolle-kategorien-zusammenfassen">Konzept:
+Daten in sinnvolle Kategorien zusammenfassen</h3>
+<p><strong>Gruppierung nach Datum:</strong> Rechtsklick auf ein
+Datumsfeld Gruppieren Monate, Quartale, Jahre auswählen.</p>
+<p><strong>Berechnete Felder</strong> (PivotTable-Analyse Berechnetes
+Feld): Erstellen Sie neue Felder basierend auf Formeln, z.B.:</p>
+<pre><code>Gewinnmarge = Gewinn / Umsatz</code></pre>
+<p><strong>Wichtig:</strong> Berechnete Felder arbeiten mit den
+<strong>aggregierten</strong> Werten, nicht mit den Rohdaten.
+<code>Gewinn / Umsatz</code> teilt die Summe der Gewinne durch die Summe
+der Umsätze nicht zeilenweise.</p>
+<h3 id="typische-fehler-3">Typische Fehler</h3>
+<ul>
+<li><strong>Berechnete Felder arbeiten mit aggregierten Werten</strong>,
+nicht mit Rohdaten. <code>Gewinn/Umsatz</code> teilt die Summe der
+Gewinne durch die Summe der Umsätze — nicht zeilenweise.</li>
+<li><strong>Gruppierung nur bei Datumsfeldern möglich:</strong>
+Zahlenfelder können nicht gruppiert werden, nur Datumsangaben.</li>
+</ul>
+<p><strong>Übung 5.2 Gruppieren und berechnete Felder</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 5 2 Pivot_Anpassung</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Gruppieren Sie die Datumswerte nach Monaten und Quartalen.</li>
+<li>Erstellen Sie ein berechnetes Feld
+<code>Bonus = Umsatz * 0,05</code>.</li>
+<li>Erstellen Sie ein berechnetes Feld
+<code>Marge = (Umsatz - Kosten) / Umsatz</code>, formatiert als
+Prozent.</li>
+</ol>
+</blockquote>
+<h2 id="datenschnitte-und-zeitachsen">5.3. Datenschnitte und
+Zeitachsen</h2>
+<h3 id="konzept-visuelle-filter-für-dashboards">Konzept: Visuelle Filter
+für Dashboards</h3>
+<p>Datenschnitte (Slicer) sind interaktive Schaltflächen zur Filterung
+von Pivot-Tabellen. Zeitachsen filtern speziell nach
+Datumsbereichen.</p>
+<p><strong>Tipp:</strong> Ein Slicer kann mit <strong>mehreren
+Pivot-Tabellen</strong> verbunden werden (Rechtsklick
+Berichtsverbindungen). Ein Klick filtert alle verbundenen Tabellen
+gleichzeitig.</p>
+<p><strong>Übung 5.3 Slicer einsetzen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 5 3 Slicer</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Fügen Sie Slicer für Region und Produktkategorie ein.</li>
+<li>Erstellen Sie eine zweite Pivot-Tabelle (Anzahl pro Region) und
+verbinden Sie beide Tabellen mit denselben Slicern.</li>
+<li>Fügen Sie eine Zeitachse für das Bestelldatum hinzu.</li>
+</ol>
+</blockquote>
+<h2 id="pivot-charts">5.4. Pivot-Charts</h2>
+<h3 id="konzept-diagramme-die-mit-der-pivot-tabelle-leben">Konzept:
+Diagramme, die mit der Pivot-Tabelle leben</h3>
+<p>Ein Pivot-Chart ist ein Diagramm, das direkt mit einer Pivot-Tabelle
+verbunden ist. Änderungen an Feldern, Filtern oder Slicern werden sofort
+im Diagramm reflektiert.</p>
+<p><strong>Übung 5.4 Pivot-Chart erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 5 4 PivotChart</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie aus Ihrer Pivot-Tabelle ein Pivot-Chart
+(Säulendiagramm).</li>
+<li>Fügen Sie einen zweiten Slicer hinzu und beobachten Sie, wie sich
+das Diagramm automatisch anpasst.</li>
+<li>Ändern Sie den Diagrammtyp zu einem gestapelten Säulendiagramm.</li>
+</ol>
+</blockquote>
+<h2 id="power-pivot-und-das-datenmodell-ausblick">5.5. Power Pivot und
+das Datenmodell (Ausblick)</h2>
+<h3 id="konzept-millionen-zeilen-mehrere-tabellen">Konzept: Millionen
+Zeilen, mehrere Tabellen</h3>
+<p>Power Pivot ist ein Add-In für Excel, das das Datenmodell
+erweitert:</p>
+<ul>
+<li><strong>Mehrere Millionen Zeilen</strong> verarbeiten (weit über die
+1-Mio-Zeilen-Grenze)</li>
+<li><strong>Mehrere Tabellen verknüpfen</strong> (wie in einer
+Datenbank)</li>
+<li><strong>DAX-Formeln</strong> (Data Analysis Expressions) für
+komplexe Berechnungen</li>
+</ul>
+<p><strong>Aktivierung:</strong> Datei → Optionen → Add-Ins → Verwalten:
+COM-Add-Ins → Power Pivot.</p>
+<p><strong>Wichtig:</strong> Power Pivot ist nur in Excel für Windows
+verfügbar (nicht in Excel für Mac oder Excel Online). Für diesen Kurs
+ist es ein Ausblick — die grundlegenden Pivot-Kenntnisse aus 5.1–5.4
+sind die Basis.</p>
+<h3 id="das-können-sie-jetzt-4">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Komplexe Pivot-Tabellen mit mehreren
+Feldern in Zeilen, Spalten und Werten erstellen</label></li>
+<li><label><input type="checkbox" />Datumsgruppierungen und berechnete
+Felder (z.B. Marge) in Pivot-Tabellen anwenden</label></li>
+<li><label><input type="checkbox" />Slicer und Zeitachsen für
+interaktive Dashboards einsetzen und mit mehreren Pivot-Tabellen
+verknüpfen</label></li>
+<li><label><input type="checkbox" />Pivot-Charts erstellen, die sich
+automatisch mit der Pivot-Tabelle aktualisieren</label></li>
+<li><label><input type="checkbox" />Die Möglichkeiten von Power Pivot
+und DAX für große Datenmodelle verstehen</label></li>
+</ul>
+<h2 id="modul-6-datenanalyse-szenarien-und-solver">Modul 6:
+Datenanalyse, Szenarien und Solver</h2>
+<p><strong>Lernziel:</strong> Was-wäre-wenn-Analyse mit Zielwertsuche,
+Szenarien und Solver durchführen sowie Sparklines und Trendlinien
+einsetzen.</p>
+<h3 id="was-wissen-sie-bereits-5">Was wissen Sie bereits?</h3>
+<ul>
+<li>Haben Sie schon einmal „rückwärts gerechnet” (vom gewünschten
+Ergebnis zur Eingabe)?</li>
+<li>Wie modellieren Sie derzeit verschiedene Zukunftsszenarien?</li>
+<li>Wissen Sie, wie man optimale Werte unter Nebenbedingungen
+findet?</li>
+</ul>
+<p>Was-wäre-wenn ist die Königsdisziplin der Excel-Analyse — hier lernen
+Sie alle Werkzeuge.</p>
+<h2 id="zielwertsuche-und-datentabellen">6.1. Zielwertsuche und
+Datentabellen</h2>
+<h3
+id="konzept-vom-gewünschten-ergebnis-zur-benötigten-eingabe">Konzept:
+Vom gewünschten Ergebnis zur benötigten Eingabe</h3>
+<p>Die Zielwertsuche (Daten Was-wäre-wenn-Analyse Zielwertsuche) findet
+den Eingabewert, der zu einem gewünschten Formelergebnis führt.</p>
+<p><strong>Parameter:</strong> - <strong>Zielzelle:</strong> Die Zelle
+mit der Formel - <strong>Zielwert:</strong> Der gewünschte Wert -
+<strong>Veränderbare Zelle:</strong> Die Zelle, die Excel anpassen
+soll</p>
+<p><strong>Datentabellen</strong> berechnen mehrere Szenarien
+gleichzeitig: - <strong>Eindimensionale Datentabelle:</strong> Eine
+Variable variieren - <strong>Zweidimensionale Datentabelle:</strong>
+Zwei Variablen variieren (z.B. Zinssatz Laufzeit)</p>
+<p><strong>Übung 6.1 Zielwertsuche und Datentabellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 1 Zielwertsuche</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Nutzen Sie die Zielwertsuche: Welcher Stückpreis ist nötig, um
+100.000 Gesamtumsatz zu erreichen?</li>
+<li>Erstellen Sie eine Datentabelle, die die monatliche Rate für
+verschiedene Zinssätze (3%8%) und Laufzeiten (1030 Jahre) zeigt.</li>
+</ol>
+</blockquote>
+<h2 id="szenario-manager">6.2. Szenario-Manager</h2>
+<h3 id="konzept-mehrere-zukunftsbilder-vergleichen">Konzept: Mehrere
+Zukunftsbilder vergleichen</h3>
+<p>Der Szenario-Manager speichert verschiedene Wertekombinationen und
+ermöglicht das schnelle Umschalten zwischen optimistischen,
+pessimistischen und neutralen Szenarien.</p>
+<p><strong>Ablauf:</strong> 1. Daten Was-wäre-wenn-Analyse
+Szenario-Manager 2. Szenario hinzufügen: Name, veränderbare Zellen,
+Werte 3. Zwischen Szenarien wechseln oder einen Zusammenfassungsbericht
+erstellen</p>
+<p><strong>Übung 6.2 Szenarien erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 2 Szenarien</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie drei Szenarien: Optimistisch (Wachstum 10%), Neutral
+(5%), Pessimistisch (-2%).</li>
+<li>Erstellen Sie einen Szenario-Zusammenfassungsbericht.</li>
+<li>Wechseln Sie zwischen den Szenarien und beobachten Sie die
+Auswirkungen auf den Gesamtgewinn.</li>
+</ol>
+</blockquote>
+<h2 id="der-solver">6.3. Der Solver</h2>
+<h3 id="konzept-optimierung-mit-nebenbedingungen">Konzept: Optimierung
+mit Nebenbedingungen</h3>
+<p>Der Solver ist ein Optimierungswerkzeug, das weit über die
+Zielwertsuche hinausgeht. Er findet optimale Werte unter
+<strong>mehreren Nebenbedingungen</strong>.</p>
+<p><strong>Solver aktivieren:</strong> Datei Optionen Add-Ins Solver</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 34%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zielzelle</td>
+<td>Was soll maximiert/minimiert werden?</td>
+<td>$B$10 (Gewinn)</td>
+</tr>
+<tr>
+<td>Zielwert</td>
+<td>Max, Min oder bestimmter Wert</td>
+<td>Max</td>
+</tr>
+<tr>
+<td>Veränderbare Zellen</td>
+<td>Was darf Excel anpassen?</td>
+<td>$B<span class="math inline">2:</span>B$5 (Produktionsmengen)</td>
+</tr>
+<tr>
+<td>Nebenbedingungen</td>
+<td>Einschränkungen</td>
+<td>$B<span class="math inline">2:</span>B$5 &lt;= $C<span
+class="math inline">2:</span>C$5 (max. Kapazität)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="typische-fehler-4">Typische Fehler</h3>
+<ul>
+<li><strong>Solver nicht aktiviert:</strong> Der Solver muss erst unter
+Datei → Optionen → Add-Ins aktiviert werden.</li>
+<li><strong>Unrealistische Nebenbedingungen:</strong> Wenn die
+Nebenbedingungen zu restriktiv sind, findet der Solver keine Lösung.
+Beginnen Sie mit weiten Grenzen.</li>
+<li><strong>Ganzzahligkeit:</strong> Wenn Sie ganze Zahlen benötigen
+(z.B. Anzahl Produkte), fügen Sie eine Ganzzahligkeits-Nebenbedingung
+hinzu.</li>
+</ul>
+<p><strong>Übung 6.3 Solver einsetzen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 3 Solver</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Maximieren Sie den Gewinn unter folgenden Nebenbedingungen:
+<ul>
+<li>Produktionsmenge &gt;= 0 (keine negativen Mengen)</li>
+<li>Gesamtkosten &lt;= Budget (50.000 )</li>
+<li>Max. Produktionskapazität pro Produkt beachten</li>
+</ul></li>
+<li>Ändern Sie die Nebenbedingungen und vergleichen Sie die
+Ergebnisse.</li>
+</ol>
+</blockquote>
+<h2 id="sparklines-und-trendlinien">6.4. Sparklines und Trendlinien</h2>
+<h3 id="konzept-diagramme-in-miniatur-direkt-in-zellen">Konzept:
+Diagramme in Miniatur direkt in Zellen</h3>
+<p>Sparklines sind winzige Diagramme innerhalb einer Zelle, die Trends
+auf einen Blick sichtbar machen.</p>
+<table>
+<thead>
+<tr>
+<th>Sparkline-Typ</th>
+<th>Verwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linie</td>
+<td>Zeitreihen, Trends</td>
+</tr>
+<tr>
+<td>Säule</td>
+<td>Vergleiche zwischen Kategorien</td>
+</tr>
+<tr>
+<td>Gewinn/Verlust</td>
+<td>Positive/negative Entwicklung</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trendlinien</strong> in normalen Diagrammen zeigen den Trend
+und können mit R die Anpassungsgüte quantifizieren.</p>
+<p><strong>Übung 6.4 Sparklines und Trendlinien</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 6 4 Sparklines</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Fügen Sie Liniensparklines für die monatlichen Umsatzzahlen
+ein.</li>
+<li>Fügen Sie eine lineare Trendlinie zum Umsatzdiagramm hinzu und
+lassen Sie R anzeigen.</li>
+<li>Interpretieren Sie R = 0,87: Ist das ein starker Zusammenhang?</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt-5">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Die Zielwertsuche für
+Rückwärtsrechnungen einsetzen</label></li>
+<li><label><input type="checkbox" />Ein- und zweidimensionale
+Datentabellen für Szenarioanalysen erstellen</label></li>
+<li><label><input type="checkbox" />Den Szenario-Manager für
+optimistische/pessimistische/neutrale Prognosen nutzen</label></li>
+<li><label><input type="checkbox" />Den Solver für Optimierungsprobleme
+mit mehreren Nebenbedingungen konfigurieren</label></li>
+<li><label><input type="checkbox" />Sparklines und Trendlinien mit R²
+für Miniatur-Trendanalysen einsetzen</label></li>
+</ul>
+<h2 id="modul-7-erweiterte-diagramme-und-dashboards">Modul 7: Erweiterte
+Diagramme und Dashboards</h2>
+<p><strong>Lernziel:</strong> Kombinierte Diagramme mit Sekundärachse,
+Wasserfalldiagramme und professionelle Executive Dashboards
+erstellen.</p>
+<h3 id="was-wissen-sie-bereits-6">Was wissen Sie bereits?</h3>
+<ul>
+<li>Welche Diagrammtypen nutzen Sie regelmäßig?</li>
+<li>Haben Sie schon einmal zwei unterschiedliche Datenskalen (z.B. € und
+%) in einem Diagramm dargestellt?</li>
+<li>Was macht ein gutes Dashboard Ihrer Meinung nach aus?</li>
+</ul>
+<p>Visualisierung auf professionellem Niveau — Charts, die Entscheider
+überzeugen.</p>
+<h2 id="erweiterte-diagrammtypen">7.1. Erweiterte Diagrammtypen</h2>
+<h3 id="konzept-für-jede-datenart-das-richtige-diagramm">Konzept: Für
+jede Datenart das richtige Diagramm</h3>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 29%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr>
+<th>Diagrammtyp</th>
+<th>Einsatz</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kombidiagramm (Säule + Linie)</td>
+<td>Zwei verschiedene Skalen</td>
+<td>Umsatz () + Wachstumsrate (%)</td>
+</tr>
+<tr>
+<td>Wasserfall</td>
+<td>Kumulierte Effekte</td>
+<td>Gewinn- und Verlustrechnung</td>
+</tr>
+<tr>
+<td>Histogramm</td>
+<td>Häufigkeitsverteilung</td>
+<td>Altersverteilung der Kunden</td>
+</tr>
+<tr>
+<td>Kastendiagramm</td>
+<td>Statistische Verteilung</td>
+<td>Quartile, Ausreißer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> Ein Kombidiagramm mit Sekundärachse eignet
+sich hervorragend für Soll-Ist-Vergleiche: Säulen für Ist-Werte, Linie
+für Soll-Werte.</p>
+<p><strong>Übung 7.1 Verbunddiagramm erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 7 1 Verbunddiagramm</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie ein Kombidiagramm: Umsatz als Säulen, Wachstumsrate
+als Linie mit Sekundärachse.</li>
+<li>Formatieren Sie die linke Achse in , die rechte Achse in %.</li>
+<li>Fügen Sie Fehlerindikatoren hinzu (Standardabweichung).</li>
+</ol>
+</blockquote>
+<h2 id="wasserfall--und-spezialdiagramme">7.2. Wasserfall- und
+Spezialdiagramme</h2>
+<h3 id="konzept-kumulierte-effekte-visualisieren">Konzept: Kumulierte
+Effekte visualisieren</h3>
+<p>Ein Wasserfalldiagramm zeigt, wie ein Anfangswert durch eine Reihe
+positiver und negativer Veränderungen zu einem Endwert wird ideal für
+Finanzanalysen.</p>
+<p><strong>Übung 7.2 Wasserfalldiagramm</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 7 2 Wasserfall</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie ein Wasserfalldiagramm aus einer Gewinn- und
+Verlustrechnung.</li>
+<li>Formatieren Sie: Erhöhungen grün, Verminderungen rot, Gesamtwert
+blau.</li>
+<li>Fügen Sie Datenbeschriftungen zu den Säulen hinzu.</li>
+</ol>
+</blockquote>
+<h2 id="dashboard-design">7.3. Dashboard-Design</h2>
+<h3 id="konzept-alle-kpis-auf-einen-blick">Konzept: Alle KPIs auf einen
+Blick</h3>
+<p>Ein Dashboard vereint mehrere Diagramme, Sparklines und Kennzahlen
+auf einem übersichtlichen Blatt. Die Gestaltungsprinzipien:</p>
+<ol type="1">
+<li><strong>Oben links = wichtigste Info</strong>: Der Blick beginnt
+dort</li>
+<li><strong>Maximal 46 Elemente</strong>: Weniger ist mehr</li>
+<li><strong>Konsistente Farben</strong>: Gleiche Bedeutung = gleiche
+Farbe</li>
+<li><strong>Slicer für Interaktivität</strong>: Ein Klick filtert alle
+Diagramme</li>
+</ol>
+<p><strong>Übung 7.3 Dashboard erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 7 3 Dashboard</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie auf einem neuen Blatt:
+<ul>
+<li>Ein Liniendiagramm (Umsatzverlauf 12 Monate)</li>
+<li>Ein Säulendiagramm (Umsatz nach Region)</li>
+<li>Sparklines pro Produktkategorie</li>
+<li>Slicer für Region und Jahr</li>
+</ul></li>
+<li>Ordnen Sie die Elemente übersichtlich an (Raster verwenden).</li>
+<li>Blenden Sie Gitternetzlinien und Überschriften aus für ein
+professionelles Erscheinungsbild.</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt-6">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Kombidiagramme mit Sekundärachse für
+unterschiedliche Skalen erstellen</label></li>
+<li><label><input type="checkbox" />Wasserfalldiagramme für kumulierte
+Effekte (z.B. Gewinn- und Verlustrechnung) aufbauen</label></li>
+<li><label><input type="checkbox" />Ein professionelles Dashboard mit
+mehreren Diagrammen, Slicern und Sparklines designen</label></li>
+<li><label><input type="checkbox" />Dashboard-Design-Prinzipien anwenden
+(max. 4-6 Elemente, konsistente Farben, Raster)</label></li>
+</ul>
+<h2 id="modul-8-automatisierung-mit-makros">Modul 8: Automatisierung mit
+Makros</h2>
+<p><strong>Lernziel:</strong> Makros aufzeichnen, ausführen und
+grundlegend in VBA bearbeiten.</p>
+<h3 id="was-wissen-sie-bereits-7">Was wissen Sie bereits?</h3>
+<ul>
+<li>Gibt es wiederkehrende Aufgaben in Ihrem Excel-Alltag (immer gleiche
+Formatierung, gleicher Import)?</li>
+<li>Wie viel Zeit verbringen Sie wöchentlich mit solchen
+Routineaufgaben?</li>
+<li>Haben Sie schon einmal den Begriff „Makro” gehört und wussten nicht,
+was das ist?</li>
+</ul>
+<p>Automatisierung beginnt mit einem Klick auf „Aufzeichnen” — Sie
+müssen kein Programmierer sein.</p>
+<h2 id="makros-verstehen-und-aufzeichnen">8.1. Makros verstehen und
+aufzeichnen</h2>
+<h3 id="konzept-wiederkehrende-arbeit-nur-einmal-tun">Konzept:
+Wiederkehrende Arbeit nur einmal tun</h3>
+<p>Ein Makro ist eine aufgezeichnete Abfolge von Arbeitsschritten, die
+Excel auf Knopfdruck wiederholen kann. Makros werden in der
+Programmiersprache VBA (Visual Basic for Applications) gespeichert.</p>
+<p><strong>Absolute vs. relative Aufzeichnung:</strong> -
+<strong>Absolute Aufzeichnung</strong>: Makro arbeitet immer in
+denselben Zellen (z.B. A1) - <strong>Relative Aufzeichnung</strong>:
+Makro arbeitet relativ zur aktuellen Position</p>
+<p><strong>Wichtig:</strong> Makros funktionieren nur in
+<code>.xlsm</code>-Dateien, nicht in <code>.xlsx</code>. Aktivieren Sie
+zuerst die Registerkarte Entwicklertools.</p>
+<p><strong>Übung 8.1 Entwicklertools aktivieren und Makro
+aufzeichnen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 8 1
+Makro_Aufzeichnen</strong> ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Aktivieren Sie die Registerkarte Entwicklertools und speichern Sie
+als <code>.xlsm</code>.</li>
+<li>Zeichnen Sie ein Makro auf, das einen Bericht formatiert:
+Überschrift fett und zentriert, blaue Kopfzeile, Rahmen um den
+Datenbereich.</li>
+<li>Führen Sie das Makro auf einem zweiten Tabellenblatt aus.</li>
+</ol>
+</blockquote>
+<h2 id="makros-ausführen-und-zuweisen">8.2. Makros ausführen und
+zuweisen</h2>
+<h3 id="konzept-makros-per-knopfdruck-starten">Konzept: Makros per
+Knopfdruck starten</h3>
+<table>
+<colgroup>
+<col style="width: 67%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr>
+<th>Ausführungsmethode</th>
+<th>Vorteil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Makro-Dialog (Ansicht Makros)</td>
+<td>Übersicht über alle Makros</td>
+</tr>
+<tr>
+<td>Tastenkombination (bei Aufzeichnung festgelegt)</td>
+<td>Schnellster Zugriff</td>
+</tr>
+<tr>
+<td>Schaltfläche (Formularsteuerelement)</td>
+<td>Intuitiv für andere Benutzer</td>
+</tr>
+<tr>
+<td>Form (eingefügte Grafik)</td>
+<td>Flexibles Design</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Übung 8.2 Makro zuweisen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 8 2 Makro_Zuweisen</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Weisen Sie Ihr Makro einer Schaltfläche zu (Entwicklertools Einfügen
+Schaltfläche).</li>
+<li>Richten Sie eine Tastenkombination <code>Strg+Umschalt+F</code> für
+das Makro ein.</li>
+<li>Testen Sie beide Ausführungsmethoden.</li>
+</ol>
+</blockquote>
+<h2 id="der-vba-editor">8.3. Der VBA-Editor</h2>
+<h3 id="konzept-den-aufgezeichneten-code-verstehen">Konzept: Den
+aufgezeichneten Code verstehen</h3>
+<p>Der VBA-Editor (<code>Alt+F11</code>) zeigt den generierten Code.
+Auch ohne Programmierkenntnisse können Sie einfache Änderungen
+vornehmen.</p>
+<table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>Funktion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Projekt-Explorer</td>
+<td>Alle geöffneten Arbeitsmappen und Module</td>
+</tr>
+<tr>
+<td>Code-Fenster</td>
+<td>Der VBA-Code</td>
+</tr>
+<tr>
+<td>Eigenschaften-Fenster</td>
+<td>Blatt- und Steuerelement-Eigenschaften</td>
+</tr>
+<tr>
+<td>Direktbereich (<code>Strg+G</code>)</td>
+<td>Code live testen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Übung 8.3 VBA-Editor erkunden</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 8 3 VBA_Editor</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Öffnen Sie den VBA-Editor mit <code>Alt+F11</code>.</li>
+<li>Finden Sie Ihr aufgezeichnetes Makro im Projekt-Explorer.</li>
+<li>Ändern Sie eine Farbe im Code (z.B.
+<code>.Color = RGB(0, 0, 255)</code> für Blau).</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt-7">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Makros absolut und relativ
+aufzeichnen</label></li>
+<li><label><input type="checkbox" />Makros über Schaltflächen,
+Tastenkombinationen und den Makro-Dialog ausführen</label></li>
+<li><label><input type="checkbox" />Den VBA-Editor (Alt+F11) öffnen und
+aufgezeichneten Code lesen und verstehen</label></li>
+<li><label><input type="checkbox" />Einfache Code-Änderungen (z.B.
+Farben) im VBA-Editor vornehmen</label></li>
+</ul>
+<h2 id="modul-9-vba-programmierung-grundlagen">Modul 9:
+VBA-Programmierung (Grundlagen)</h2>
+<p><strong>Lernziel:</strong> Grundlegende VBA-Konzepte verstehen,
+einfache Prozeduren schreiben und Excel-Ereignisse nutzen.</p>
+<h3 id="was-wissen-sie-bereits-8">Was wissen Sie bereits?</h3>
+<ul>
+<li>Sie haben in Modul 8 Makros aufgezeichnet — möchten Sie verstehen,
+was der Code bedeutet?</li>
+<li>Können Sie sich vorstellen, dass ein Makro automatisch reagiert,
+wenn Sie eine Zelle ändern?</li>
+<li>Wünschen Sie sich eigene Excel-Funktionen, die es standardmäßig
+nicht gibt?</li>
+</ul>
+<p>Vom Aufzeichnen zum Programmieren — der natürliche nächste
+Schritt.</p>
+<h2 id="variablen-und-datentypen">9.1. Variablen und Datentypen</h2>
+<h3 id="konzept-werte-speichern-und-verarbeiten">Konzept: Werte
+speichern und verarbeiten</h3>
+<table>
+<thead>
+<tr>
+<th>Datentyp</th>
+<th>Verwendung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integer</td>
+<td>Ganze Zahlen</td>
+<td><code>Dim anzahl As Integer</code></td>
+</tr>
+<tr>
+<td>Double</td>
+<td>Kommazahlen</td>
+<td><code>Dim preis As Double</code></td>
+</tr>
+<tr>
+<td>String</td>
+<td>Text</td>
+<td><code>Dim name As String</code></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>Wahr/Falsch</td>
+<td><code>Dim gefunden As Boolean</code></td>
+</tr>
+<tr>
+<td>Range</td>
+<td>Zellbereich</td>
+<td><code>Dim zelle As Range</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="vba"><code>Dim umsatz As Double
+umsatz = Range(&quot;B2&quot;).Value * Range(&quot;C2&quot;).Value</code></pre>
+<p><strong>Übung 9.1 Variablen und einfache Berechnung</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 9 1 VBA_Variablen</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Schreiben Sie ein Makro, das zwei Werte aus Zellen liest und das
+Produkt in eine dritte Zelle schreibt.</li>
+<li>Erweitern Sie das Makro: Geben Sie das Ergebnis mit
+<code>MsgBox</code> aus.</li>
+<li>Testen Sie mit verschiedenen Eingabewerten.</li>
+</ol>
+</blockquote>
+<h2 id="kontrollstrukturen-bedingungen-und-schleifen">9.2.
+Kontrollstrukturen: Bedingungen und Schleifen</h2>
+<h3 id="konzept-code-nur-unter-bestimmten-umständen-ausführen">Konzept:
+Code nur unter bestimmten Umständen ausführen</h3>
+<p><strong>If-Then-Else:</strong></p>
+<pre class="vba"><code>If Range(&quot;B2&quot;).Value &gt; 1000 Then
+    Range(&quot;C2&quot;).Value = &quot;Großauftrag&quot;
+Else
+    Range(&quot;C2&quot;).Value = &quot;Standard&quot;
+End If</code></pre>
+<p><strong>For-Schleife:</strong></p>
+<pre class="vba"><code>For i = 1 To 10
+    Range(&quot;A&quot; &amp; i).Value = i
+Next i</code></pre>
+<p><strong>Übung 9.2 Bedingungen und Schleifen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 9 2
+VBA_Kontrollstrukturen</strong> ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Schreiben Sie ein Makro mit einer For-Schleife, das die Zahlen 110
+in A1A10 schreibt.</li>
+<li>Erweitern Sie das Makro um eine If-Bedingung: Zahlen &gt; 5 werden
+fett formatiert.</li>
+<li>Schreiben Sie eine For-Each-Schleife, die alle Zellen mit Wert &gt;
+1000 gelb markiert.</li>
+</ol>
+</blockquote>
+<h2 id="excel-ereignisse">9.3. Excel-Ereignisse</h2>
+<h3 id="konzept-code-der-automatisch-reagiert">Konzept: Code, der
+automatisch reagiert</h3>
+<p>Ereignisse führen VBA-Code automatisch aus, wenn etwas Bestimmtes
+passiert.</p>
+<table>
+<thead>
+<tr>
+<th>Ereignis</th>
+<th>Wann ausgelöst</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Worksheet_Change</code></td>
+<td>Wenn eine Zelle geändert wird</td>
+</tr>
+<tr>
+<td><code>Workbook_Open</code></td>
+<td>Wenn die Arbeitsmappe geöffnet wird</td>
+</tr>
+<tr>
+<td><code>Worksheet_SelectionChange</code></td>
+<td>Wenn eine andere Zelle ausgewählt wird</td>
+</tr>
+</tbody>
+</table>
+<pre class="vba"><code>Private Sub Worksheet_Change(ByVal Target As Range)
+    If Target.Column = 2 And Target.Value &gt; 10000 Then
+        MsgBox &quot;Hoher Betrag: &quot; &amp; Target.Value
+    End If
+End Sub</code></pre>
+<p><strong>Übung 9.3 Ereignisse programmieren</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 9 3 VBA_Ereignisse</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie ein Worksheet_Change-Ereignis, das eine Meldung
+ausgibt, wenn in Spalte B ein Wert &gt; 10.000 eingetragen wird.</li>
+<li>Erstellen Sie ein Workbook_Open-Ereignis, das beim Öffnen das
+heutige Datum in Zelle A1 schreibt.</li>
+</ol>
+</blockquote>
+<h2 id="benutzerdefinierte-funktionen-udf">9.4. Benutzerdefinierte
+Funktionen (UDF)</h2>
+<h3 id="konzept-eigene-excel-funktionen-in-vba-schreiben">Konzept:
+Eigene Excel-Funktionen in VBA schreiben</h3>
+<pre class="vba"><code>Function MwSt(Betrag As Double) As Double
+    MwSt = Betrag * 0.19
+End Function</code></pre>
+<p>Danach können Sie in Excel <code>=MwSt(100)</code> schreiben
+Ergebnis: 19.</p>
+<p><strong>Übung 9.4 UDF erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 9 4 VBA_UDF</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Schreiben Sie eine UDF <code>Bonus(Umsatz)</code>, die 5% Bonus ab
+10.000 , sonst 0% berechnet.</li>
+<li>Verwenden Sie Ihre UDF in einer Formel:
+<code>=Bonus(B2)</code>.</li>
+<li>Erstellen Sie eine UDF <code>Kategorie(Alter)</code> mit If/ElseIf
+für die Altersgruppen &lt;30, 3050, &gt;50.</li>
+</ol>
+</blockquote>
+<h2 id="best-practices-für-makros">9.5. Best Practices für Makros</h2>
+<h3 id="konzept-code-der-morgen-noch-verständlich-ist">Konzept: Code,
+der morgen noch verständlich ist</h3>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr>
+<th>Praxis</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sprechende Namen</strong></td>
+<td><code>Sub MonatsberichtFormatieren()</code> statt
+<code>Sub Makro1()</code></td>
+</tr>
+<tr>
+<td><strong>Kommentare</strong></td>
+<td><code>' Berechnung der MwSt (19%)</code> vor wichtigen Zeilen</td>
+</tr>
+<tr>
+<td><strong>Fehlerbehandlung</strong></td>
+<td><code>On Error GoTo Fehler</code> mit aussagekräftigen
+Meldungen</td>
+</tr>
+<tr>
+<td><strong>Option Explicit</strong></td>
+<td>Am Anfang jedes Moduls: Erzwingt Variablendeklaration</td>
+</tr>
+<tr>
+<td><strong>Konsistente Einrückung</strong></td>
+<td><code>Tab</code> für jede Verschachtelungsebene</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipp:</strong> <code>Option Explicit</code> am Anfang des
+VBA-Moduls schützt vor Tippfehlern in Variablennamen — die häufigste
+Fehlerquelle bei Makros.</p>
+<h3 id="das-können-sie-jetzt-8">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Variablen mit korrekten Datentypen
+(Integer, Double, String, Range) deklarieren</label></li>
+<li><label><input type="checkbox" />If-Then-Else-Bedingungen und
+For-Schleifen in VBA schreiben</label></li>
+<li><label><input type="checkbox" />Worksheet_Change- und
+Workbook_Open-Ereignisse für automatische Reaktionen
+programmieren</label></li>
+<li><label><input type="checkbox" />Benutzerdefinierte Funktionen (UDF)
+schreiben und in Excel-Formeln verwenden</label></li>
+<li><label><input type="checkbox" />Best Practices (Option Explicit,
+sprechende Namen, Kommentare, Fehlerbehandlung) anwenden</label></li>
+</ul>
+<h2 id="modul-10-zusammenarbeit-vorlagen-und-produktivität">Modul 10:
+Zusammenarbeit, Vorlagen und Produktivität</h2>
+<p><strong>Lernziel:</strong> Arbeitsmappen für die Zusammenarbeit
+optimieren, professionelle Vorlagen erstellen und
+Produktivitätstechniken beherrschen.</p>
+<h3 id="was-wissen-sie-bereits-9">Was wissen Sie bereits?</h3>
+<ul>
+<li>Geben Sie Excel-Dateien regelmäßig an Kollegen oder Kunden
+weiter?</li>
+<li>Wie stellen Sie sicher, dass der Empfänger die Datei wie vorgesehen
+nutzt?</li>
+<li>Welche Tastenkombinationen nutzen Sie täglich — und welche könnten
+Sie noch lernen?</li>
+</ul>
+<p>Professionalität zeigt sich nicht nur in Formeln, sondern auch in der
+Weitergabe und Effizienz.</p>
+<h2 id="professionelle-vorlagen">10.1. Professionelle Vorlagen</h2>
+<h3 id="konzept-einmal-erstellen-immer-wiederverwenden">Konzept: Einmal
+erstellen, immer wiederverwenden</h3>
+<p>Eine Excel-Vorlage (<code>.xltx</code>) enthält Layout, Formeln und
+Formatierung aber keine spezifischen Daten. Beim Öffnen wird eine neue
+Arbeitsmappe basierend auf der Vorlage erstellt.</p>
+<p><strong>Vorlage erstellen:</strong> Datei Speichern unter Dateityp:
+Excel-Vorlage (<code>.xltx</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Vorlagenelement</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Geschützte Formelzellen</td>
+<td>MwSt-Berechnung gesperrt</td>
+</tr>
+<tr>
+<td>Benannte Bereiche</td>
+<td><code>Umsatz_2026</code>, <code>Kosten_2026</code></td>
+</tr>
+<tr>
+<td>Dropdown-Listen</td>
+<td>Abteilungen, Produktkategorien</td>
+</tr>
+<tr>
+<td>Bedingte Formatierung</td>
+<td>Budget-Überschreitung rot</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Übung 10.1 Vorlage erstellen</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 10 1 Vorlagen</strong> ist
+bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Erstellen Sie eine Rechnungsvorlage mit: kopfformatiertem
+Firmenlogo-Bereich, automatischer Rechnungsnummer, MwSt-Berechnung und
+geschützten Formelzellen.</li>
+<li>Speichern Sie als <code>.xltx</code>.</li>
+<li>Öffnen Sie die Vorlage und prüfen Sie, ob eine neue Arbeitsmappe
+entsteht.</li>
+</ol>
+</blockquote>
+<h2 id="zusammenarbeit-und-freigabe">10.2. Zusammenarbeit und
+Freigabe</h2>
+<h3 id="konzept-gemeinsam-an-einer-datei-arbeiten">Konzept: Gemeinsam an
+einer Datei arbeiten</h3>
+<table>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr>
+<th>Funktion</th>
+<th>Verwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kommentare</td>
+<td>Rückfragen direkt in Zellen (Überprüfen Neuer Kommentar)</td>
+</tr>
+<tr>
+<td>Änderungen nachverfolgen</td>
+<td>Wer hat was wann geändert? (nur ältere Excel-Versionen)</td>
+</tr>
+<tr>
+<td>Arbeitsmappe freigeben</td>
+<td>Gleichzeitige Bearbeitung (Excel 365: automatisch bei
+OneDrive/SharePoint)</td>
+</tr>
+<tr>
+<td>Blattschutz mit Berechtigungen</td>
+<td>Nur bestimmte Benutzer dürfen bestimmte Bereiche bearbeiten</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exportformate:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Wann verwenden?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.xlsx</code></td>
+<td>Empfänger soll weiterarbeiten</td>
+</tr>
+<tr>
+<td><code>.pdf</code></td>
+<td>Endgültige Version, plattformunabhängig</td>
+</tr>
+<tr>
+<td><code>.xlsb</code></td>
+<td>Große Dateien (binär, schneller)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Übung 10.2 Für Zusammenarbeit vorbereiten</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 10 2 Zusammenarbeit</strong>
+ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Fügen Sie einen Kommentar zu einer Zelle ein (Rechtsklick Neuer
+Kommentar).</li>
+<li>Exportieren Sie das Blatt als PDF mit Seitenumbrüchen.</li>
+<li>Konfigurieren Sie den Blattschutz so, dass nur die Eingabezellen
+bearbeitbar sind für externe Mitarbeiter.</li>
+</ol>
+</blockquote>
+<h2 id="add-ins-und-power-query-ausblick">10.3. Add-Ins und Power Query
+(Ausblick)</h2>
+<h3 id="konzept-excel-über-die-grenzen-hinaus-erweitern">Konzept: Excel
+über die Grenzen hinaus erweitern</h3>
+<p><strong>Add-Ins</strong> (Datei → Optionen → Add-Ins) erweitern Excel
+um Spezialfunktionen: - <strong>Solver</strong>: Optimierung (wird in
+Modul 6 behandelt) - <strong>Analyse-Funktionen</strong>: Erweiterte
+statistische Funktionen - <strong>Power Pivot</strong>: Datenmodell für
+große Datenmengen</p>
+<p><strong>Power Query</strong> (Daten → Abrufen und Transformieren) ist
+das moderne ETL-Werkzeug in Excel. Es importiert, bereinigt und
+transformiert Daten aus beliebigen Quellen: - CSV, TXT, Excel-Dateien -
+SQL-Datenbanken, Webseiten, APIs - Ganze Ordner mit gleich
+strukturierten Dateien</p>
+<p>Alle Transformationsschritte werden aufgezeichnet und sind
+wiederholbar — ähnlich wie ein Makro, aber für Datenquellen.</p>
+<p><strong>Tipp:</strong> Power Query ist der Nachfolger des alten
+Textimport-Assistenten und sollte für alle Datenimport-Aufgaben
+verwendet werden.</p>
+<h2 id="erweiterte-tastenkombinationen">10.4. Erweiterte
+Tastenkombinationen</h2>
+<h3 id="konzept-tastatur-statt-maus-professionelle-effizienz">Konzept:
+Tastatur statt Maus professionelle Effizienz</h3>
+<table>
+<thead>
+<tr>
+<th>Kürzel</th>
+<th>Aktion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Strg+1</code></td>
+<td>Zellen formatieren (Universal-Dialog)</td>
+</tr>
+<tr>
+<td><code>Strg+F3</code></td>
+<td>Namens-Manager</td>
+</tr>
+<tr>
+<td><code>Alt+F11</code></td>
+<td>VBA-Editor</td>
+</tr>
+<tr>
+<td><code>Strg+Umschalt+L</code></td>
+<td>Autofilter an/aus</td>
+</tr>
+<tr>
+<td><code>Strg+Umschalt+Enter</code></td>
+<td>Matrixformel abschließen</td>
+</tr>
+<tr>
+<td><code>F4</code></td>
+<td>Letzte Aktion wiederholen / Bezugstyp wechseln</td>
+</tr>
+<tr>
+<td><code>Strg+[</code></td>
+<td>Vorgängerzellen anzeigen</td>
+</tr>
+<tr>
+<td><code>Strg+]</code></td>
+<td>Nachfolgerzellen anzeigen</td>
+</tr>
+<tr>
+<td><code>Alt+=</code></td>
+<td>AutoSumme</td>
+</tr>
+<tr>
+<td><code>F9</code></td>
+<td>Alle Formeln neu berechnen (bei manueller Berechnung)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Übung 10.4 Tastenkombinationen üben</strong></p>
+<p>Die folgende Übungstabelle <strong>Modul 10 4
+Tastenkombinationen</strong> ist bereits geladen.</p>
+<blockquote>
+<ol type="1">
+<li>Verwenden Sie ausschließlich Tastenkombinationen, um eine Tabelle zu
+formatieren, eine Summe zu bilden und einen Filter zu setzen.</li>
+<li>Nutzen Sie <code>Strg+[</code> und <code>Strg+]</code> zur
+Formelanalyse.</li>
+<li>Wechseln Sie mit F4 zwischen Bezugstypen beim Bearbeiten einer
+Formel.</li>
+</ol>
+</blockquote>
+<h3 id="das-können-sie-jetzt-9">Das können Sie jetzt</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Professionelle Excel-Vorlagen
+(.xltx) mit geschützten Formelzellen und Dropdown-Listen
+erstellen</label></li>
+<li><label><input type="checkbox" />Arbeitsmappen für die Zusammenarbeit
+vorbereiten (Kommentare, PDF-Export, Blattschutz)</label></li>
+<li><label><input type="checkbox" />Die Möglichkeiten von Power Query
+für Datenimport und -transformation verstehen</label></li>
+<li><label><input type="checkbox" />Die wichtigsten erweiterten
+Tastenkombinationen (Strg+[, F9, Alt+=) beherrschen</label></li>
+</ul>
+<hr />
+<p><em>Lehrplan erstellt nach den Grundsätzen der Andragogik (Knowles,
+1980) und dem europäischen Rahmen für digitale Kompetenzen DigComp 2.2
+(Vuorikari et al., 2022).</em></p>
+</body>
+</html>

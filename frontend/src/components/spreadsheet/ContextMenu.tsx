@@ -45,7 +45,44 @@ export default function ContextMenu({
       }
     };
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const items = menuRef.current?.querySelectorAll<HTMLElement>('.context-menu-item:not(.disabled)');
+        if (!items || items.length === 0) return;
+        const current = document.activeElement as HTMLElement;
+        let index = Array.from(items).indexOf(current);
+        if (index === -1) {
+          (items[0] as HTMLElement).focus();
+        } else {
+          index = e.key === 'ArrowDown'
+            ? (index + 1) % items.length
+            : (index - 1 + items.length) % items.length;
+          (items[index] as HTMLElement).focus();
+        }
+      }
+      // Bug #10.1 fix: open submenus with ArrowRight/Enter (keyboard a11y)
+      if (e.key === 'ArrowRight' || e.key === 'Enter') {
+        const current = document.activeElement as HTMLElement;
+        const hasSubmenu = current?.classList.contains('has-submenu') || current?.querySelector('.context-submenu');
+        if (hasSubmenu) {
+          e.preventDefault();
+          current.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+          const firstSubItem = current.querySelector('.context-submenu .context-menu-item') as HTMLElement;
+          firstSubItem?.focus();
+        }
+      }
+      // Bug #10.1 fix: close submenus with ArrowLeft
+      if (e.key === 'ArrowLeft') {
+        const current = document.activeElement as HTMLElement;
+        const parentSubmenu = current?.closest('.context-submenu');
+        if (parentSubmenu) {
+          e.preventDefault();
+          const parentItem = parentSubmenu.closest('.context-menu-item') as HTMLElement;
+          parentItem?.focus();
+          parentItem?.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        }
+      }
     };
     // Delay to prevent the right-click event itself from closing
     setTimeout(() => {
@@ -78,12 +115,10 @@ export default function ContextMenu({
     // Section 2: Insert / Delete
     [
       { label: 'Einfügen', submenu: [
-        { label: 'Zellen...', action: 'insertCells' },
         { label: 'Zeile', action: 'insertRow' },
         { label: 'Spalte', action: 'insertColumn' },
       ]},
       { label: 'Löschen', submenu: [
-        { label: 'Zellen...', action: 'deleteCells' },
         { label: 'Zeile', action: 'deleteRow' },
         { label: 'Spalte', action: 'deleteColumn' },
       ]},
@@ -99,7 +134,12 @@ export default function ContextMenu({
       { label: 'Sortieren Z → A', action: 'sortDesc' },
       { label: 'Filtern nach Zellwert', action: 'filterByValue' },
     ],
-    // Section 5: Format
+    // Section 5: Hide/Unhide (Bug #8: added row hide/unhide for Excel parity)
+    [
+      { label: 'Zeile ausblenden', action: 'hideRow' },
+      { label: 'Zeile einblenden', action: 'unhideRow' },
+    ],
+    // Section 6: Format
     [
       { label: 'Zellen formatieren...', action: 'formatCells', shortcut: 'Strg+1' },
       { label: 'Zellen verbinden', action: 'mergeCells' },
@@ -131,7 +171,9 @@ export default function ContextMenu({
 
   // Adjust position to keep menu within viewport
   const adjustedX = Math.min(x, window.innerWidth - 220);
-  const adjustedY = Math.min(y, window.innerHeight - 400);
+  // Bug #4.3 fix: use dynamic height from menu ref instead of hardcoded 400px
+  const menuHeight = menuRef.current?.offsetHeight || 400;
+  const adjustedY = Math.min(y, window.innerHeight - Math.max(menuHeight, 120));
 
   const isRightEdge = x > window.innerWidth - 250;
 
@@ -163,6 +205,16 @@ function ContextMenuItem({ item, onAction, onClose }: {
 }) {
   const [showSub, setShowSub] = useState(false);
   const closeTimer = useRef<number | null>(null);
+
+  // Bug #16.2 fix: cleanup timeout on unmount to prevent setState on dead component
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) {
+        window.clearTimeout(closeTimer.current);
+        closeTimer.current = null;
+      }
+    };
+  }, []);
 
   const handleMouseEnter = () => {
     if (closeTimer.current) { window.clearTimeout(closeTimer.current); closeTimer.current = null; }
