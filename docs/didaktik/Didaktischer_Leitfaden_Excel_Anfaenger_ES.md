@@ -83,8 +83,6 @@ La plataforma Excel-lenz actúa como **recurso de refuerzo entre sesiones**, no 
 
 El núcleo del aprendizaje reside en la **práctica presencial con Microsoft Excel real**, donde el docente guía al alumno en tiempo real, resuelve dudas inmediatas y adapta la explicación a las necesidades específicas detectadas durante la sesión.
 
----
-
 ## 2. Objetivos del Curso
 
 Al finalizar el curso, el alumno habrá desarrollado las siguientes capacidades:
@@ -99,8 +97,6 @@ Al finalizar el curso, el alumno habrá desarrollado las siguientes capacidades:
 | OBJ-06 | Validar, ordenar, filtrar y depurar conjuntos de datos aplicando criterios de calidad |
 | OBJ-07 | Diseñar gráficos adecuados al tipo de información y construir tablas dinámicas para el análisis exploratorio |
 | OBJ-08 | Aplicar herramientas de análisis de hipótesis, funciones financieras básicas y buenas prácticas de protección de datos |
-
----
 
 ## 3. Competencias Desarrolladas
 
@@ -123,7 +119,7 @@ La construcción de fórmulas en Excel desarrolla habilidades transferibles de p
 - **Descomposición**: División de un problema complejo en pasos lógicos secuenciales
 - **Reconocimiento de patrones**: Identificación de regularidades en conjuntos de datos
 - **Abstracción**: Representación de relaciones mediante referencias celulares y funciones parametrizadas
-- **Depuración sistemática**: Diagnóstico y corrección de errores (#¡DIV/0!, #¿NOMBRE?, #¡REF!, #¡VALOR!, #¡NULO!)
+- **Depuración sistemática**: Diagnóstico y corrección de errores (`#¡DIV/0!`, `#¿NOMBRE?`, `#¡REF!`, `#¡VALOR!`, `#¡NULO!`)
 
 ### 3.3. Competencias profesionales transversales
 
@@ -133,8 +129,6 @@ La construcción de fórmulas en Excel desarrolla habilidades transferibles de p
 | Orientación a resultados | Práctica con casos reales: presupuestos, informes de ventas, análisis de rentabilidad |
 | Autonomía en el aprendizaje | Práctica autónoma entre sesiones con feedback inmediato en la plataforma web |
 | Atención al detalle | Precisión en la sintaxis de fórmulas, referencias y formatos numéricos |
-
----
 
 ## 4. Contenidos y Estructura
 
@@ -173,8 +167,6 @@ Cada sesión integra tres dimensiones de contenido:
 | 6 | Sesión 6 | Búsquedas, texto y gráficos | Práctico |
 | 7 | Sesión 7 | Tablas dinámicas y análisis de hipótesis | Teórico-práctico |
 | 8 | Sesión 8 | Impresión, protección y macros (introducción) | Teórico-práctico |
-
----
 
 ## 5. Metodología Didáctica
 
@@ -218,8 +210,6 @@ La estructura responde al modelo de **instrucción directa con práctica inmedia
 - **Proyector o segunda pantalla** que permita al alumno visualizar las demostraciones mientras trabaja en su propio equipo
 - **Microsoft Excel** en su versión de escritorio (2019 o Microsoft 365), no la versión web
 
----
-
 ## 6. Materiales y Recursos Didácticos
 
 ### 6.1. Recursos principales
@@ -244,8 +234,6 @@ La plataforma web actúa como recurso de apoyo para la práctica entre sesiones:
 - Archivos Excel de práctica preparados por el docente para cada sesión
 - Guía de referencia rápida de funciones y atajos de teclado
 
----
-
 ## 7. Seguimiento del Progreso
 
 Al tratarse de formación individual en un contexto no reglado, no se aplica un sistema de evaluación calificadora. Se utiliza un modelo de **seguimiento continuo del progreso** basado en la observación y el diálogo:
@@ -265,13 +253,11 @@ Al tratarse de formación individual en un contexto no reglado, no se aplica un 
 - **Diferida**: Revisión de los ejercicios realizados en la plataforma entre sesiones
 - **Certificado de aprovechamiento**: Al finalizar el curso, se emite un documento acreditativo basado en la asistencia y la participación activa
 
-\newpage
 
 ## 8. Desarrollo de las Sesiones
 
 A continuación se presenta el desarrollo pormenorizado de cada una de las ocho sesiones que componen el curso.
 
-\newpage
 
 ### Sesión 1: Primeros pasos en Excel — Entorno, navegación y entrada de datos
 
@@ -307,7 +293,6 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Consolidación | 15 min | El alumno crea, desde cero, un pequeño registro de gastos mensuales aplicando todos los procedimientos trabajados |
 | Cierre | 5 min | Recapitulación de lo aprendido. Se recomiendan los ejercicios 1 a 5 de los Módulos 1 y 2 de la plataforma Excel-lenz para practicar durante la semana |
 
-\newpage
 
 ### Sesión 2: Formato profesional de hojas de cálculo
 
@@ -343,7 +328,6 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Consolidación | 15 min | El alumno recibe una tabla de datos sin formato y debe reproducir un modelo profesional presentado en pantalla |
 | Cierre | 5 min | Síntesis de formatos trabajados. Ejercicios recomendados en plataforma: Módulo 3 |
 
-\newpage
 
 ### Sesión 3: Fundamentos de cálculo — Fórmulas, funciones y referencias
 
@@ -354,7 +338,7 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 #### Objetivos de la sesión
 
 - Construir fórmulas aritméticas con operadores matemáticos (+, -, *, /, ^)
-- Comprender y aplicar correctamente las referencias relativas (A1), absolutas ($A$1) y mixtas ($A1, A$1)
+- Comprender y aplicar correctamente las referencias relativas (`A1`), absolutas (`$A$1`) y mixtas (`$A1`, `A$1`)
 - Utilizar las funciones estadísticas fundamentales: SUMA, PROMEDIO, MIN, MAX, CONTAR, CONTARA
 - Implementar la función SI (IF) para la toma de decisiones lógicas elementales
 - Identificar, interpretar y corregir los errores de fórmula más frecuentes
@@ -367,7 +351,7 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Tipos de referencias y su comportamiento al copiar | Alternar entre tipos de referencia con la tecla F4 | Rigor en la verificación de resultados |
 | Funciones como bloques de cálculo predefinidos | Insertar funciones desde la biblioteca o escribiéndolas directamente | Confianza progresiva en la automatización |
 | Lógica condicional básica | Construir condiciones con operadores de comparación | Curiosidad por explorar variantes |
-| Tipología de errores: #¡DIV/0!, #¿NOMBRE?, #¡VALOR!, #¡REF! | Diagnosticar la causa de un error y corregirlo | Perseverancia frente a la dificultad |
+| Tipología de errores: `#¡DIV/0!`, `#¿NOMBRE?`, `#¡VALOR!`, `#¡REF!` | Diagnosticar la causa de un error y corregirlo | Perseverancia frente a la dificultad |
 
 #### Desarrollo de la sesión
 
@@ -379,7 +363,6 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Consolidación | 15 min | Ejercicio de verificación: se proporciona una hoja con errores premeditados para que el alumno los detecte y corrija |
 | Cierre | 5 min | Recapitulación. Práctica recomendada en plataforma: Módulo 4 (10 ejercicios progresivos) |
 
-\newpage
 
 ### Sesión 4: Control de calidad del dato — Validación, limpieza e importación
 
@@ -413,7 +396,6 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Consolidación | 15 min | Ejercicio integrador: desde un archivo CSV proporcionado, el alumno importa, valida, limpia y deja los datos preparados para su análisis |
 | Cierre | 5 min | Recapitulación. Práctica recomendada en plataforma: Módulo 5 |
 
-\newpage
 
 ### Sesión 5: Organización y análisis de datos — Tablas, filtros y funciones condicionales
 
@@ -449,7 +431,6 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Consolidación | 15 min | Preguntas de análisis: "¿qué producto vendió más en el norte en marzo?", "¿cuántas ventas superaron los 1000€ en el segundo trimestre?" |
 | Cierre | 5 min | Recapitulación. Práctica recomendada en plataforma: Módulo 6 y Módulo 7 (ejercicios 1-5) |
 
-\newpage
 
 ### Sesión 6: Búsquedas, tratamiento de textos y visualización de datos
 
@@ -486,7 +467,6 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Consolidación | 15 min | El alumno recibe una tabla de pedidos y debe crear un informe visual que integre al menos dos tipos de gráfico |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulos 7 y 8 |
 
-\newpage
 
 ### Sesión 7: Análisis exploratorio — Tablas dinámicas y herramientas de hipótesis
 
@@ -522,7 +502,6 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Consolidación | 15 min | Ejercicio integrador con una base de datos de facturación |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulos 9 y 10 |
 
-\newpage
 
 ### Sesión 8: Profesionalización del trabajo — Impresión, protección y productividad
 
@@ -559,7 +538,6 @@ A continuación se presenta el desarrollo pormenorizado de cada una de las ocho 
 | Consolidación | 15 min | Repaso general del curso: el alumno identifica los aprendizajes más valiosos y las áreas que desea seguir desarrollando |
 | Cierre | 5 min | Entrega del certificado de aprovechamiento. Orientación sobre recursos para continuar el aprendizaje (curso avanzado, comunidad Excel-lenz, canales recomendados) |
 
----
 
 ## 9. Seguimiento del Curso
 
@@ -588,7 +566,6 @@ Al concluir el curso, el docente elaborará un breve informe con:
 2. Observaciones sobre la adecuación de los contenidos al perfil del alumno
 3. Propuestas de mejora para futuras ediciones del curso
 
----
 
 ## Anexo: Correspondencia con ejercicios de la plataforma Excel-lenz
 
@@ -596,16 +573,33 @@ La plataforma Excel-lenz ofrece **44 ejercicios interactivos** de nivel principi
 
 | Sesión | Módulo en plataforma | Ejercicios | Tipo |
 |--------|---------------------|------------|------|
-| 1 | M1: Einführung in Excel + M2: Dateneingabe | 9 ejercicios | Quiz + Spreadsheet |
-| 2 | M3: Format und Stil | 5 ejercicios | Spreadsheet |
-| 3 | M4: Formeln und Funktionen | 10 ejercicios | Spreadsheet |
-| 4 | M5: Datenbereinigung | 8 ejercicios | Spreadsheet + Quiz |
-| 5 | M6: Tabellen & Filter | 6 ejercicios | Spreadsheet |
-| 6 | M7: Erweiterte Funktionen | 6 ejercicios | Spreadsheet |
+| 1 | M1: Introducción a Excel + M2: Entrada de datos | 9 ejercicios | Quiz + Spreadsheet |
+| 2 | M3: Formato y estilo | 5 ejercicios | Spreadsheet |
+| 3 | M4: Fórmulas y funciones | 10 ejercicios | Spreadsheet |
+| 4 | M5: Limpieza de datos | 8 ejercicios | Spreadsheet + Quiz |
+| 5 | M6: Tablas y filtros | 6 ejercicios | Spreadsheet |
+| 6 | M7: Funciones avanzadas | 6 ejercicios | Spreadsheet |
 | 7-8 | M8-M13 | En desarrollo | — |
 
-*Nota: Los ejercicios de los módulos 8 a 13 se encuentran en fase de desarrollo en la plataforma. Entre tanto, el docente proporcionará ejercicios equivalentes en formato Excel.*
+*Nota: Los ejercicios de los módulos 8 a 13 se encuentran en fase de desarrollo en la plataforma. Mientras tanto, el docente proporcionará ejercicios equivalentes en formato Excel.*
+
+
 
 ---
+
+## Referencias
+
+Knowles, M. S. (1980). *The Modern Practice of Adult Education: From Pedagogy to Andragogy* (Revised ed.). Cambridge Adult Education.
+
+Mezirow, J. (1991). *Transformative Dimensions of Adult Learning*. Jossey-Bass.
+
+Mishra, P. & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. *Teachers College Record*, 108(6), 1017–1054.
+
+Siemens, G. (2005). Connectivism: A Learning Theory for the Digital Age. *International Journal of Instructional Technology and Distance Learning*, 2(1), 3–10.
+
+Vuorikari, R., Kluzer, S. & Punie, Y. (2022). *DigComp 2.2: The Digital Competence Framework for Citizens*. Publications Office of the European Union. doi:10.2760/115376
+
+---
+
 
 *Guía didáctica elaborada conforme a los principios de la andragogía (Knowles, 1980) y el marco europeo de competencias digitales DigComp 2.2 (Vuorikari et al., 2022).*

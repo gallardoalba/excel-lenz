@@ -73,7 +73,6 @@ La plataforma Excel-lenz actúa como **recurso de refuerzo entre sesiones**:
 
 El aprendizaje significativo se produce en la **práctica presencial con Excel real**, donde el docente modela técnicas avanzadas, depura fórmulas complejas en tiempo real y adapta el ritmo a la curva de aprendizaje individual.
 
----
 
 ## 2. Objetivos del Curso
 
@@ -90,7 +89,6 @@ Al finalizar el curso, el alumno habrá desarrollado las siguientes capacidades 
 | OBJ-07 | Crear gráficos combinados, dashboards ejecutivos con KPIs y aplicar técnicas de visualización profesional |
 | OBJ-08 | Grabar, editar y ejecutar macros para automatizar tareas repetitivas, comprendiendo los fundamentos de VBA |
 
----
 
 ## 3. Competencias Desarrolladas
 
@@ -120,7 +118,6 @@ El curso profundiza en el **Marco DigComp 2.2** (Vuorikari et al., 2022) en sus 
 | Comunicación ejecutiva | Creación de dashboards profesionales para presentación a dirección |
 | Pensamiento crítico | Auditoría de fórmulas, validación de modelos, detección de errores |
 
----
 
 ## 4. Contenidos y Estructura
 
@@ -152,7 +149,6 @@ El curso condensa los diez módulos del programa avanzado en ocho sesiones:
 | 7 | Sesión 7 | Automatización con macros (introducción) | Teórico-práctico |
 | 8 | Sesión 8 | VBA aplicado, colaboración y productividad | Teórico-práctico |
 
----
 
 ## 5. Metodología Didáctica
 
@@ -174,7 +170,6 @@ El curso condensa los diez módulos del programa avanzado en ocho sesiones:
 4. **Práctica deliberada**: Ejercicios diseñados para superar los puntos débiles específicos detectados
 5. **Automatización progresiva**: De la comprensión manual a la automatización con macros
 
----
 
 ## 6. Materiales y Recursos Didácticos
 
@@ -193,7 +188,6 @@ El curso condensa los diez módulos del programa avanzado en ocho sesiones:
 | Sistema de pistas progresivas | Cuatro niveles desde orientación general hasta solución completa |
 | Panel de progreso | Visualización del avance individual |
 
----
 
 ## 7. Seguimiento del Progreso
 
@@ -204,11 +198,9 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 - **Feedback inmediato**: Corrección en el momento, con explicación detallada de la causa del error
 - **Certificado de aprovechamiento**: Emitido al finalizar el curso, basado en la asistencia y participación activa
 
-\newpage
 
 ## 8. Desarrollo de las Sesiones
 
-\newpage
 
 ### Sesión 1: Formatos avanzados, formato condicional y validación de datos
 
@@ -242,7 +234,6 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 | Consolidación | 15 min | Ejercicio autónomo: diseñar un formato de factura con formatos personalizados y validación |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulo 1 |
 
-\newpage
 
 ### Sesión 2: Funciones avanzadas y fórmulas complejas
 
@@ -278,7 +269,6 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 | Consolidación | 15 min | Ejercicio integrador con datos financieros reales |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulo 2 |
 
-\newpage
 
 ### Sesión 3: Referencias 3D, bases de datos y filtros avanzados
 
@@ -313,7 +303,6 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 | Consolidación | 15 min | Ejercicio autónomo con base de datos de empleados: ordenamiento multinivel, subtotales por departamento, filtro avanzado con criterios calculados |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulos 3 y 4 |
 
-\newpage
 
 ### Sesión 4: Tablas dinámicas avanzadas
 
@@ -349,7 +338,6 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 | Consolidación | 15 min | Ejercicio: construir un informe ejecutivo con tabla dinámica, slicers y gráfico dinámico |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulo 5 |
 
-\newpage
 
 ### Sesión 5: Análisis de datos, escenarios y Solver
 
@@ -385,7 +373,6 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 | Consolidación | 15 min | Ejercicio de diagnóstico de errores en un modelo preconstruido |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulo 6 |
 
-\newpage
 
 ### Sesión 6: Gráficos avanzados y dashboards
 
@@ -420,7 +407,6 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 | Consolidación | 15 min | Revisión crítica del dashboard: ¿comunica eficazmente? ¿Qué mejorar? |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulo 7 |
 
-\newpage
 
 ### Sesión 7: Automatización con macros (introducción)
 
@@ -455,7 +441,6 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 | Consolidación | 15 min | Ejercicio: grabar una macro que automatice una tarea real del alumno |
 | Cierre | 5 min | Síntesis. Práctica en plataforma: Módulo 8 |
 
-\newpage
 
 ### Sesión 8: VBA aplicado, colaboración y cierre del curso
 
@@ -490,7 +475,6 @@ Al tratarse de formación individual no reglada, se emplea un modelo de **seguim
 | Consolidación | 15 min | Repaso general del curso: el alumno identifica las herramientas de mayor impacto en su trabajo y las áreas que desea profundizar |
 | Cierre | 10 min | Entrega del certificado. Plan de desarrollo: recursos recomendados, curso de VBA avanzado, comunidad Excel-lenz |
 
----
 
 ## 9. Seguimiento del Curso
 
@@ -519,7 +503,6 @@ Al concluir el curso, el docente elaborará un informe con:
 2. Adecuación de los contenidos al perfil profesional del alumno
 3. Propuestas de mejora para futuras ediciones
 
----
 
 ## Anexo: Correspondencia con ejercicios de la plataforma Excel-lenz
 
@@ -527,17 +510,34 @@ La plataforma Excel-lenz dispone de **25 ejercicios de nivel avanzado**. Se reco
 
 | Sesión | Módulo en plataforma | Ejercicios | Tipo |
 |--------|---------------------|------------|------|
-| 1 | M1: Erweiterte Formatierung | 3 | Spreadsheet + Quiz |
-| 2 | M2: Erweiterte Funktionen | 6 | Spreadsheet |
-| 3 | M3: Bezüge + M4: Datenbanken | 5 | Spreadsheet |
-| 4 | M5: Pivot-Tabellen | 1 (quiz) | Quiz |
-| 5 | M6: Datenanalyse | 4 | Quiz |
-| 6 | M7: Diagramme | — | En desarrollo |
-| 7 | M8: Makros | 2 | Quiz |
-| 8 | M9: VBA + M10: Kollaboration | 4 | Quiz |
+| 1 | M1: Formatos avanzados | 3 | Spreadsheet + Quiz |
+| 2 | M2: Funciones avanzadas | 6 | Spreadsheet |
+| 3 | M3: Referencias + M4: Bases de datos | 5 | Spreadsheet |
+| 4 | M5: Tablas dinámicas | 1 (quiz) | Quiz |
+| 5 | M6: Análisis de datos | 4 | Quiz |
+| 6 | M7: Gráficos | — | En desarrollo |
+| 7 | M8: Macros | 2 | Quiz |
+| 8 | M9: VBA + M10: Colaboración | 4 | Quiz |
 
-*Nota: Los ejercicios de los módulos 5 a 10 se encuentran en desarrollo. El docente proporcionará ejercicios equivalentes en formato Excel mientras tanto.*
+*Nota: Los ejercicios del módulo 7 (Gráficos) se encuentran en fase de desarrollo. Mientras tanto, el docente proporcionará ejercicios equivalentes en formato Excel.*
+
+
 
 ---
+
+## Referencias
+
+Knowles, M. S. (1980). *The Modern Practice of Adult Education: From Pedagogy to Andragogy* (Revised ed.). Cambridge Adult Education.
+
+Mezirow, J. (1991). *Transformative Dimensions of Adult Learning*. Jossey-Bass.
+
+Mishra, P. & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. *Teachers College Record*, 108(6), 1017–1054.
+
+Siemens, G. (2005). Connectivism: A Learning Theory for the Digital Age. *International Journal of Instructional Technology and Distance Learning*, 2(1), 3–10.
+
+Vuorikari, R., Kluzer, S. & Punie, Y. (2022). *DigComp 2.2: The Digital Competence Framework for Citizens*. Publications Office of the European Union. doi:10.2760/115376
+
+---
+
 
 *Guía didáctica elaborada conforme a los principios de la andragogía (Knowles, 1980) y el marco europeo de competencias digitales DigComp 2.2 (Vuorikari et al., 2022).*

@@ -1,9 +1,9 @@
 ---
-pdftitle: "Lehrplan: Excel für Anfänger"
+pdftitle: "Plan de Estudios: Excel para Principiantes"
 author: "Cristóbal Gallardo"
 date: "August 2026"
 location: "Freiburg im Breisgau"
-lang: de
+lang: es
 colorlinks: true
 linkcolor: blue
 urlcolor: blue
@@ -14,11 +14,11 @@ geometry: margin=2.5cm
 
 \thispagestyle{empty}
 \begin{center}
-{\Huge\bfseries\sffamily\color{excelblue}Lehrplan\par}
+{\Huge\bfseries\sffamily\color{excelblue}Plan de Estudios\par}
 \vspace{0.3em}
-{\Large\sffamily Excel für Anfänger\par}
+{\Large\sffamily Excel para Principiantes\par}
 \vspace{1.5em}
-{\large\sffamily Vollständiger Lehrplan mit Theorie und praktischen Übungen\par}
+{\large\sffamily Vollständiger Plan de Estudios mit Theorie und praktischen Übungen\par}
 \vspace{2.5em}
 {\normalsize\sffamily\color{excelgray}
 \textbf{Autor:} Cristóbal Gallardo\par
@@ -29,41 +29,41 @@ geometry: margin=2.5cm
 \vspace{0.2em}
 \textbf{Dauer:} 12 Stunden (8 Sitzungen $\times$ 90 Minuten)\par
 \vspace{0.2em}
-\textbf{Niveau:} Anfänger (keine Vorkenntnisse erforderlich)\par
+\textbf{Nivel:} Principiante (sin conocimientos previos)\par
 }
 \end{center}
 \vfill
 
 \tableofcontents
 
-## Einleitung
+## Introducción
 
-Dieser Lehrplan bietet eine vollständige Einführung in Microsoft Excel für Erwachsene
+Dieser Plan de Estudios bietet eine vollständige Einführung in Microsoft Excel für Erwachsene
 ohne Vorkenntnisse. Er kombiniert verständliche Theorie mit praktischen Übungen und
 wurde speziell für den Einzel-Präsenzunterricht konzipiert.
 
-## Für wen ist dieser Lehrplan?
+## Für wen ist dieser Plan de Estudios?
 
-Dieser Lehrplan richtet sich an **Erwachsene ohne Vorkenntnisse** in Excel.
+Dieser Plan de Estudios richtet sich an **Erwachsene ohne Vorkenntnisse** in Excel.
 
-## Wie ist der Lehrplan aufgebaut?
+## Wie ist der Plan de Estudios aufgebaut?
 
-1. **Lernziel** — Was Sie nach diesem Modul können werden
-2. **Theorie** — Verständliche Erklärungen für Anfänger
-3. **Übungen** — Praktische Aufgaben mit Excel-Dateien
+1. **Lernziel** — Lo que podrá hacer después de este módulo
+2. **Theorie** — Explicaciones comprensibles para principiantes
+3. **Ejercicioen** — Tareas prácticas con archivos de Excel
 
-## Was Sie vorher wissen sollten
+## Lo que debe saber previamente
 
-- Grundlegende Bedienung eines Computers
-- Keine Excel-Vorkenntnisse erforderlich
-- Microsoft Excel 2019 oder Microsoft 365 installiert
+- Manejo básico de un ordenador
+- No se requieren conocimientos previos de Excel
+- Microsoft Excel 2019 o Microsoft 365 instalado
 
 
-## Modul 1: Einführung in Excel und die Arbeitsumgebung
+## Módulo 1: Introducción a Excel y el entorno de trabajo
 
-**Lernziel:** Vertrautwerden mit der Excel-Oberfläche, den Grundkonzepten und der Dateiverwaltung.
+**Objetivo de aprendizaje:** Vertrautwerden mit der Excel-Oberfläche, den Grundkonzepten und der Dateiverwaltung.
 
-## 1.1. Was ist Excel und wozu dient es?
+## 1.1. ¿Qué es Excel y para qué sirve?
 
 ### Konzept: Die Tabellenkalkulation
 
@@ -84,12 +84,12 @@ Excel ist eine **Tabellenkalkulation**. Jedes Kästchen heißt **Zelle** und hat
 - **Vertrieb:** Kundenlisten, Analysen
 - **Privat:** Haushaltsbudget, Planung
 
-**Übung 1.1 — Erste Schritte**
+**Ejercicio 1.1 — Erste Schritte**
 
-Öffnen Sie Excel, erstellen Sie eine neue Arbeitsmappe. Identifizieren Sie Registerkarten,
-Namensfeld, Bearbeitungsleiste und Statusleiste. Speichern Sie als `Meine_Erste_Mappe.xlsx`.
+Abra Excel, cree un nuevo libro de trabajo. Identifizieren Sie Registerkarten,
+Namensfeld, Bearbeitungsleiste und Statusleiste. Guarde como `Meine_Erste_Mappe.xlsx`.
 
-## 1.2. Die Benutzeroberfläche
+## 1.2. La interfaz de usuario
 
 ### Konzept: Das Menüband (Ribbon)
 
@@ -101,13 +101,13 @@ Namensfeld, Bearbeitungsleiste und Statusleiste. Speichern Sie als `Meine_Erste_
 | **Formeln** | Funktionsbibliothek |
 | **Daten** | Sortieren, Filtern |
 
-**Tipp:** Passen Sie die Schnellzugriff-Leiste mit häufig genutzten Befehlen an.
+**Consejo:** Passen Sie die Schnellzugriff-Leiste mit häufig genutzten Befehlen an.
 
-**Übung 1.2 — Die Oberfläche erkunden**
+**Ejercicio 1.2 — Die Oberfläche erkunden**
 
 Fügen Sie „Neu", „Öffnen" und „Schnelldruck" zur Schnellzugriff-Leiste hinzu.
 
-## 1.3. Grundlegende Navigation
+## 1.3. Navegación básica
 
 ### Konzept: Bewegung in der Tabelle
 
@@ -118,13 +118,13 @@ Fügen Sie „Neu", „Öffnen" und „Schnelldruck" zur Schnellzugriff-Leiste h
 | Strg+Pos1 | Zur Zelle A1 |
 | Strg+Ende | Zur letzten Zelle |
 
-**Tipp:** `Strg+Leertaste` = ganze Spalte, `Umschalt+Leertaste` = ganze Zeile.
+**Consejo:** `Strg+Leertaste` = ganze Spalte, `Umschalt+Leertaste` = ganze Zeile.
 
-**Übung 1.3 — Navigation üben**
+**Ejercicio 1.3 — Navigation üben**
 
 Erstellen Sie drei Blätter: Januar, Februar, März. Üben Sie Strg+Pos1, Strg+Ende.
 
-## 1.4. Dateiverwaltung
+## 1.4. Gestión de archivos
 
 ### Konzept: Dateiformate
 
@@ -135,21 +135,21 @@ Erstellen Sie drei Blätter: Januar, Februar, März. Üben Sie Strg+Pos1, Strg+E
 | PDF | `.pdf` | Weitergabe |
 | CSV | `.csv` | Datenaustausch |
 
-**Wichtig:** In allen Tastenkombinationen dieses Lehrplans steht `Umschalt` für die Umschalt-Taste (Shift), die auf manchen Tastaturen auch als `Shift` beschriftet ist.
+**Importante:** In allen Tastenkombinationen dieses Plan de Estudioss steht `Umschalt` für die Umschalt-Taste (Shift), die auf manchen Tastaturen auch als `Shift` beschriftet ist.
 
-**Wichtig:** Regelmäßig speichern mit `Strg+S`!
+**Importante:** Regelmäßig speichern mit `Strg+S`!
 
-**Übung 1.4 — Dateien verwalten**
+**Ejercicio 1.4 — Dateien verwalten**
 
-Speichern Sie als `Inventar_2026.xlsx`, exportieren Sie als PDF.
+Guarde como `Inventar_2026.xlsx`, exportieren Sie als PDF.
 
 
 
-## Modul 2: Dateneingabe und -bearbeitung
+## Módulo 2: Entrada y edición de datos
 
-**Lernziel:** Daten verschiedener Typen effizient eingeben, bearbeiten und mit AutoAusfüllen organisieren.
+**Objetivo de aprendizaje:** Daten verschiedener Typen effizient eingeben, bearbeiten und mit AutoAusfüllen organisieren.
 
-## 2.1. Datentypen in Excel
+## 2.1. Tipos de datos en Excel
 
 ###  Konzept: Warum Excel Datentypen unterscheidet
 
@@ -169,12 +169,12 @@ stehen rechtsbündig.
 | **Prozent** | Rechtsbündig | `19%`, `0,05` | Prozentuale Berechnungen |
 | **Währung** | Rechtsbündig | `29,99 €`, `45,00 €` | Finanzielle Berechnungen |
 
- **Tipp:** Wenn Excel ein Datum nicht erkennt (z.B. `2026.03.15`), versuchen Sie das
+ **Consejo:** Wenn Excel ein Datum nicht erkennt (z.B. `2026.03.15`), versuchen Sie das
 Format `TT.MM.JJJJ`. Excel orientiert sich an den Ländereinstellungen Ihres Systems.
 
-**Übung 2.1 — Datentypen erkennen**
+**Ejercicio 2.1 — Datentypen erkennen**
 
-Die folgende Übungstabelle **Modul 2 1 Datentypen** ist bereits geladen. Geben Sie in verschiedene Zellen ein:
+La siguiente tabla de ejercicios **Modul 2 1 Datentypen** ya está cargada. Geben Sie in verschiedene Zellen ein:
 
 - Ihren Namen (Text)
 
@@ -187,7 +187,7 @@ Die folgende Übungstabelle **Modul 2 1 Datentypen** ist bereits geladen. Geben 
 Beobachten Sie die automatische Ausrichtung. Ändern Sie dann das Zahlenformat
 einer Zelle über `Start → Zahl → Format auswählen`.
 
-## 2.2. Zellen bearbeiten
+## 2.2. Editar celdas
 
 ###  Konzept: Inhalte ändern ohne neu tippen
 
@@ -205,12 +205,12 @@ Ihre Sicherheitsnetze — Sie können bis zu 100 Schritte zurückgehen.
 | Taste `F2` | F2 | Bearbeitung ohne Maus |
 | Bearbeitungsleiste | — | Lange Formeln oder Texte überschauen |
 
- **Wichtig:** Wenn Sie eine Zelle auswählen und einfach losschreiben, wird der gesamte
+ **Importante:** Wenn Sie eine Zelle auswählen und einfach losschreiben, wird der gesamte
 Inhalt ersetzt — nicht ergänzt! Zum Ändern immer zuerst `F2` drücken oder doppelklicken.
 
-**Übung 2.2 — Zellen bearbeiten**
+**Ejercicio 2.2 — Zellen bearbeiten**
 
-Die folgende Übungstabelle **Modul 2 2 Bearbeiten** ist bereits geladen. Die Tabelle enthält absichtlich
+La siguiente tabla de ejercicios **Modul 2 2 Bearbeiten** ya está cargada. Die Tabelle enthält absichtlich
 Rechtschreibfehler. Korrigieren Sie jede fehlerhafte Zelle auf drei Arten:
 
 1. Mit Doppelklick in die Zelle
@@ -219,7 +219,7 @@ Rechtschreibfehler. Korrigieren Sie jede fehlerhafte Zelle auf drei Arten:
 
 Machen Sie eine Korrektur mit `Strg+Z` rückgängig, dann mit `Strg+Y` wiederherstellen.
 
-## 2.3. AutoAusfüllen und Reihen
+## 2.3. Autocompletar y series
 
 ###  Konzept: Muster erkennen und automatisch fortsetzen
 
@@ -235,13 +235,13 @@ Excel erkennt folgende eingebaute Reihen:
 - Quartale (Q1, Q2...)
 - Zahlenfolgen (1, 2, 3... oder 2, 4, 6...)
 
- **Tipp:** Wenn Sie zwei Werte markieren (z.B. `1` und `3`) und dann ziehen, erkennt
+ **Consejo:** Wenn Sie zwei Werte markieren (z.B. `1` und `3`) und dann ziehen, erkennt
 Excel das Schrittmuster und setzt es fort: 1, 3, 5, 7, 9... Das funktioniert auch mit
 Datumsangaben!
 
-**Übung 2.3 — AutoAusfüllen verwenden**
+**Ejercicio 2.3 — AutoAusfüllen verwenden**
 
-Die folgende Übungstabelle **Modul 2 3 AutoAusfuellen** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 2 3 AutoAusfuellen** ya está cargada.
 
 1. Schreiben Sie `Januar` in Zelle A1 und ziehen Sie am Ausfüllkästchen bis A12.
 2. Schreiben Sie `1` in B1, `3` in B2, markieren Sie beide und ziehen Sie bis B10.
@@ -249,7 +249,7 @@ Die folgende Übungstabelle **Modul 2 3 AutoAusfuellen** ist bereits geladen.
 
    Datumsreihe für 30 Tage.
 
-## 2.4. Kopieren, Ausschneiden und Einfügen
+## 2.4. Copiar, cortar y pegar
 
 ###  Konzept: Die Inhalte-einfügen-Optionen
 
@@ -268,13 +268,13 @@ oder sogar die Tabelle transponieren (Zeilen und Spalten vertauschen).
 | Formatierung | `R` | Nur das Aussehen, nicht den Inhalt |
 | Transponieren | (Haken setzen) | Zeilen  Spalten vertauschen |
 
- **Tipp:** Wenn Sie Formelergebnisse kopieren möchten, ohne dass sich die Bezüge
+ **Consejo:** Wenn Sie Formelergebnisse kopieren möchten, ohne dass sich die Bezüge
 verschieben, nutzen Sie „Inhalte einfügen → Werte". Das ist besonders nützlich, wenn
 Sie Berechnungen in eine andere Tabelle übertragen.
 
-**Übung 2.4 — Kopieren und Einfügen**
+**Ejercicio 2.4 — Kopieren und Einfügen**
 
-Die folgende Übungstabelle **Modul 2 4 Kopieren** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 2 4 Kopieren** ya está cargada.
 
 1. Kopieren Sie die Tabelle `A1:D10` und fügen Sie sie ab `F1` ein.
 2. Kopieren Sie dieselbe Tabelle und fügen Sie sie mit „Transponieren" ab `F15` ein.
@@ -284,12 +284,12 @@ Die folgende Übungstabelle **Modul 2 4 Kopieren** ist bereits geladen.
 
 
 
-## Modul 3: Format und Zellstil
+## Módulo 3: Formato y estilo de celdas
 
-**Lernziel:** Tabellen professionell formatieren, Zahlen korrekt darstellen und bedingte
+**Objetivo de aprendizaje:** Tabellen professionell formatieren, Zahlen korrekt darstellen und bedingte
 Formatierung einsetzen.
 
-## 3.1. Grundlegende Formatierung
+## 3.1. Formato básico
 
 ###  Konzept: Warum Formatierung über Ästhetik hinausgeht
 
@@ -314,20 +314,20 @@ Grundprinzipien professioneller Formatierung sind:
 | Verbinden und zentrieren | — | Mehrere Zellen zu einer kombinieren |
 | Zeilenumbruch | — | Langer Text in einer Zelle umbrechen |
 
- **Tipp:** Das Dialogfeld „Zellen formatieren" (`Strg+1`) ist die Kommandozentrale
+ **Consejo:** Das Dialogfeld „Zellen formatieren" (`Strg+1`) ist die Kommandozentrale
 für alle Formatierungsoptionen. Hier finden Sie alles an einem Ort — von Rahmen über
 Ausrichtung bis zu Schriftart.
 
-**Übung 3.1 — Grundformatierung anwenden**
+**Ejercicio 3.1 — Grundformatierung anwenden**
 
-Die folgende Übungstabelle **Modul 3 1 Grundformatierung** ist bereits geladen. Formatieren Sie die Tabelle so:
+La siguiente tabla de ejercicios **Modul 3 1 Grundformatierung** ya está cargada. Formatieren Sie die Tabelle so:
 
 1. Überschriftenzeile: fett, dunkelblauer Hintergrund, weiße Schrift
 2. Datenzellen: dünne graue Rahmen, wechselnde Zeilenfarbe (weiß/hellgrau)
 3. Titel: über die gesamte Tabellenbreite verbinden und zentrieren
 4. Lange Textzellen: Zeilenumbruch aktivieren
 
-## 3.2. Zahlenformate
+## 3.2. Formatos numéricos
 
 ###  Konzept: Die Bedeutung der korrekten Zahlenformatierung
 
@@ -347,19 +347,19 @@ Präsentation, der gespeicherte Wert bleibt für Berechnungen erhalten.
 | Datum | `45300` | `15.03.2026` | Kalenderdaten |
 | Benutzerdefiniert | — | `KG 42` | Eigene Formate wie `"KG "0` |
 
- **Wichtig:** Prozentwerte sind in Excel Dezimalzahlen: `19%` wird als `0,19`
+ **Importante:** Prozentwerte sind in Excel Dezimalzahlen: `19%` wird als `0,19`
 gespeichert. Wenn Sie `19` eingeben und dann % formatieren, zeigt Excel `1900%` an!
 
-**Übung 3.2 — Zahlen formatieren**
+**Ejercicio 3.2 — Zahlen formatieren**
 
-Die folgende Übungstabelle **Modul 3 2 Zahlenformat** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 3 2 Zahlenformat** ya está cargada.
 
 1. Formatieren Sie Spalte B als „Währung" mit €-Symbol und 2 Dezimalstellen.
 2. Formatieren Sie Spalte C als „Prozent" mit 1 Dezimalstelle.
 3. Formatieren Sie Spalte D als „Zahl" mit Tausendertrennzeichen.
 4. Experimentieren Sie mit der Schaltfläche „Dezimalstelle hinzufügen/entfernen".
 
-## 3.3. Zeilen und Spalten anpassen
+## 3.3. Ajustar filas y columnas
 
 ###  Konzept: Struktur in die Tabelle bringen
 
@@ -378,20 +378,20 @@ manuell per Drag & Drop oder automatisch per Doppelklick anpassen.
 | Zeilen/Spalten ausblenden | Rechtsklick → Ausblenden | Temporär nicht benötigte Daten verstecken |
 | Einfügen/Löschen | Rechtsklick → Zellen einfügen/löschen | Nachträglich Platz schaffen |
 
- **Tipp:** Mit `Strg+Leertaste` markieren Sie die gesamte Spalte, mit
+ **Consejo:** Mit `Strg+Leertaste` markieren Sie die gesamte Spalte, mit
 `Umschalt+Leertaste` die gesamte Zeile. Dann können Sie mit Rechtsklick schnell
 einfügen, löschen oder ausblenden.
 
-**Übung 3.3 — Layout anpassen**
+**Ejercicio 3.3 — Layout anpassen**
 
-Die folgende Übungstabelle **Modul 3 3 Layout** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 3 3 Layout** ya está cargada.
 
 1. Passen Sie alle Spalten mit Doppelklick automatisch an den Inhalt an.
 2. Blenden Sie Spalte C („Interne Notiz") aus und wieder ein.
 3. Fügen Sie zwischen Zeile 3 und 4 eine neue leere Zeile ein.
 4. Ändern Sie die Höhe von Zeile 1 (Titelzeile) manuell auf 30.
 
-## 3.4. Bedingte Formatierung
+## 3.4. Formato condicional
 
 ###  Konzept: Werte automatisch hervorheben
 
@@ -410,13 +410,13 @@ dass Sie erneut formatieren müssen.
 | Farbskalen | Verlauf von rot über gelb zu grün | Temperaturdiagramm-Effekt |
 | Symbolsätze | Ampeln, Pfeile, Häkchen | Status sofort erkennen |
 
- **Tipp:** Beginnen Sie mit einer einfachen Regel wie „Größer als" und erkunden Sie
+ **Consejo:** Beginnen Sie mit einer einfachen Regel wie „Größer als" und erkunden Sie
 dann die Datenbalken. Diese Mini-Balkendiagramme in den Zellen sind eine der
 eindrucksvollsten Funktionen für Anfänger!
 
-**Übung 3.4 — Bedingte Formatierung anwenden**
+**Ejercicio 3.4 — Bedingte Formatierung anwenden**
 
-Die folgende Übungstabelle **Modul 3 4 Bedingte Formatierung** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 3 4 Bedingte Formatierung** ya está cargada.
 
 1. Markieren Sie die Umsatzzahlen und wenden Sie „Datenbalken" an (Start → Bedingte
 
@@ -427,9 +427,9 @@ Die folgende Übungstabelle **Modul 3 4 Bedingte Formatierung** ist bereits gela
 
 
 
-## Modul 4: Formeln und Grundfunktionen
+## Módulo 4: Fórmulas y funciones básicas
 
-**Lernziel:** Berechnungen mit Formeln durchführen, Zellbezüge verstehen und grundlegende
+**Objetivo de aprendizaje:** Berechnungen mit Formeln durchführen, Zellbezüge verstehen und grundlegende
 Funktionen wie SUMME und WENN einsetzen.
 
 ## 4.1. Grundlagen der Formeln
@@ -452,12 +452,12 @@ Die mathematischen Operatoren folgen der aus der Schule bekannten Regel
 | `^` | Potenz | `=2^10` | `1024` |
 | `()` | Klammern | `=(2+3)*4` | `20` (nicht 14!) |
 
- **Wichtig:** Ohne Klammern gilt Punkt vor Strich: `=2+3*4` ergibt `14`, denn
+ **Importante:** Ohne Klammern gilt Punkt vor Strich: `=2+3*4` ergibt `14`, denn
 `3*4=12` wird zuerst berechnet. Mit Klammern: `=(2+3)*4` ergibt `20`.
 
-**Übung 4.1 — Erste Formeln schreiben**
+**Ejercicio 4.1 — Erste Formeln schreiben**
 
-Die folgende Übungstabelle **Modul 4 1 Erste Formeln** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 4 1 Erste Formeln** ya está cargada.
 
 1. Berechnen Sie in Zelle D2 die Summe von B2 und C2 mit `=B2+C2`.
 2. Berechnen Sie in D3 das Produkt: `=B3*C3`.
@@ -477,7 +477,7 @@ Die folgende Übungstabelle **Modul 4 1 Erste Formeln** ist bereits geladen.
 | `#NV` | Nicht verfügbar | SVERWEIS findet den Suchbegriff nicht |
 | `#NULL!` | Falscher Bereichsoperator | Leerzeichen statt Doppelpunkt im Bereich |
 
-**Tipp:** Wenn ein Fehler auftritt, klicken Sie auf das kleine
+**Consejo:** Wenn ein Fehler auftritt, klicken Sie auf das kleine
 Ausrufezeichen-Symbol neben der Zelle. Excel schlägt mögliche Korrekturen vor.
 
 ## 4.2. Zellbezüge: Relativ, Absolut und Gemischt
@@ -501,12 +501,12 @@ Zelle `B1`, der für alle Berechnungen gleich ist. Dafür setzen Sie Dollarzeich
 | Gemischt (Spalte fix) | `$A1` | Spalte A bleibt, Zeile verschiebt | $ vor dem Buchstaben |
 | Gemischt (Zeile fix) | `A$1` | Zeile 1 bleibt, Spalte verschiebt | $ vor der Zahl |
 
- **Tipp:** Die Taste `F4` schaltet beim Bearbeiten einer Formel zwischen den vier
+ **Consejo:** Die Taste `F4` schaltet beim Bearbeiten einer Formel zwischen den vier
 Bezugstypen durch: `A1` → `$A$1` → `A$1` → `$A1` → `A1`. Ein unverzichtbarer Shortcut!
 
-**Übung 4.2 — Zellbezüge verstehen**
+**Ejercicio 4.2 — Zellbezüge verstehen**
 
-Die folgende Übungstabelle **Modul 4 2 Zellbezuege** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 4 2 Zellbezuege** ya está cargada.
 
 1. Berechnen Sie in C2 den Bruttopreis mit `=B2*(1+$F$1)`, wobei F1 den MwSt-Satz
 
@@ -537,13 +537,13 @@ auch Wochen später wissen Sie noch, was berechnet wird.
 **Den Namens-Manager** finden Sie unter `Formeln → Namens-Manager`.
 Dort können Sie alle definierten Namen sehen, bearbeiten und löschen.
 
-**Tipp:** Namen gelten für die gesamte Arbeitsmappe, nicht nur für ein
+**Consejo:** Namen gelten für die gesamte Arbeitsmappe, nicht nur für ein
 Tabellenblatt. Wenn Sie `=SUMME(Umsatz)` schreiben, müssen Sie nicht wissen,
 in welchem Blatt die Umsatzdaten stehen.
 
-**Übung 4.3 — Namen definieren**
+**Ejercicio 4.3 — Namen definieren**
 
-> Die folgende Übungstabelle **Modul 4 3 Namen** ist bereits geladen.
+> La siguiente tabla de ejercicios **Modul 4 3 Namen** ya está cargada.
 >
 > 1. Definieren Sie für die Zelle mit dem MwSt-Satz den Namen `MwSt`.
 > 2. Ersetzen Sie in der Bruttopreis-Formel `$F$1` durch `MwSt`.
@@ -568,12 +568,12 @@ von Klammern mit den Argumenten. Die fünf wichtigsten statistischen Funktionen 
 | `ANZAHL()` | `COUNT()` | Wie viele Zahlen? | `=ANZAHL(E2:E50)` |
 | `ANZAHL2()` | `COUNTA()` | Wie viele nicht-leere Zellen? | `=ANZAHL2(A2:A50)` |
 
- **Tipp:** Die AutoSumme-Schaltfläche (`Alt+=`) auf der Registerkarte „Start" fügt
+ **Consejo:** Die AutoSumme-Schaltfläche (`Alt+=`) auf der Registerkarte „Start" fügt
 automatisch `=SUMME()` für den markierten Bereich ein. Sie erkennt sogar Ihre Datenbereiche!
 
-**Übung 4.3 — Statistische Funktionen anwenden**
+**Ejercicio 4.3 — Statistische Funktionen anwenden**
 
-Die folgende Übungstabelle **Modul 4 3 Statistik** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 4 3 Statistik** ya está cargada.
 
 1. Berechnen Sie mit `SUMME` die Gesamtsumme der Verkäufe.
 2. Ermitteln Sie den `MITTELWERT`, die kleinste (`MIN`) und größte (`MAX`) Bestellung.
@@ -603,13 +603,13 @@ Automatisierung.
 | `=` | Gleich | `E5="Ja"` |
 | `<>` | Ungleich | `F6<>0` |
 
- **Tipp:** In einer WENN-Funktion kann der „Sonst"-Teil selbst wieder eine
+ **Consejo:** In einer WENN-Funktion kann der „Sonst"-Teil selbst wieder eine
 WENN-Funktion sein — das nennt man „verschachtelte WENN". Ab Excel 2019 gibt es
 dafür die einfachere `WENNS()`-Funktion.
 
-**Übung 4.4 — Die WENN-Funktion einsetzen**
+**Ejercicio 4.4 — Die WENN-Funktion einsetzen**
 
-Die folgende Übungstabelle **Modul 4 4 WENN** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 4 4 WENN** ya está cargada.
 
 1. Schreiben Sie in D2: `=WENN(C2>1000; "Großauftrag"; "Standard")` und kopieren
 
@@ -621,9 +621,9 @@ Die folgende Übungstabelle **Modul 4 4 WENN** ist bereits geladen.
 
 
 
-## Modul 5: Datenbereinigung und Validierung
+## Módulo 5: Limpieza de datos y validación
 
-**Lernziel:** Datenqualität durch Validierung sichern und importierte Daten professionell
+**Objetivo de aprendizaje:** Datenqualität durch Validierung sichern und importierte Daten professionell
 bereinigen.
 
 ## 5.1. Datenvalidierung
@@ -647,13 +647,13 @@ welche Werte erlaubt sind — und blockiert alles andere.
 | Textlänge | maximal 50 Zeichen | Zu lange Eingaben |
 | Benutzerdefiniert | `=UND(A1>0; A1<1000)` | Alles außerhalb der Formel-Logik |
 
- **Tipp:** Nutzen Sie die „Eingabemeldung" und „Fehlermeldung" in den
+ **Consejo:** Nutzen Sie die „Eingabemeldung" und „Fehlermeldung" in den
 Validierungseinstellungen. Die Eingabemeldung erscheint als freundlicher Hinweis beim
 Anklicken der Zelle, die Fehlermeldung als Stoppschild bei falscher Eingabe.
 
-**Übung 5.1 — Datenvalidierung einrichten**
+**Ejercicio 5.1 — Datenvalidierung einrichten**
 
-Die folgende Übungstabelle **Modul 5 1 Validierung** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 5 1 Validierung** ya está cargada.
 
 1. Erstellen Sie eine Dropdown-Liste in Spalte B („Abteilung") mit den Optionen:
 
@@ -677,13 +677,13 @@ um solches Datenchaos zu bändigen:
 | **Text in Spalten** | Eine Textspalte anhand Trennzeichen aufteilen | „Müller, Berlin" → Spalte A, Spalte B |
 | **Blitzschnelles Ausfüllen** (Flash Fill) | Muster erkennen und automatisch fortsetzen | Aus „Max Müller" → Vorname + Nachname extrahieren |
 
- **Tipp:** Blitzschnelles Ausfüllen (`Strg+E`) ist Magie für Anfänger: Tippen Sie
+ **Consejo:** Blitzschnelles Ausfüllen (`Strg+E`) ist Magie für Anfänger: Tippen Sie
 in die Nachbarzelle das gewünschte Muster (z.B. nur den Vornamen), drücken Sie
 `Strg+E` — und Excel erledigt den Rest!
 
-**Übung 5.2 — Daten bereinigen**
+**Ejercicio 5.2 — Daten bereinigen**
 
-Die folgende Übungstabelle **Modul 5 2 Bereinigen** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 5 2 Bereinigen** ya está cargada.
 
 1. Entfernen Sie alle doppelten Einträge mit „Daten → Duplikate entfernen".
 2. Trennen Sie die Spalte „Name, Vorname" mit „Text in Spalten" in zwei Spalten.
@@ -700,12 +700,12 @@ sind, möchten Sie oft eine Zusammenfassung auf einem Blatt sehen — einen Jahr
 Die **Konsolidierung** vereint Daten aus mehreren Bereichen nach Kategorien und wendet
 eine Funktion (meist SUMME) darauf an.
 
- **Tipp:** Bevor Sie konsolidieren, stellen Sie sicher, dass alle Quellbereiche
+ **Consejo:** Bevor Sie konsolidieren, stellen Sie sicher, dass alle Quellbereiche
 dieselbe Struktur haben — gleiche Kategorienamen in derselben Reihenfolge.
 
-**Übung 5.3 — Daten konsolidieren**
+**Ejercicio 5.3 — Daten konsolidieren**
 
-Die folgende Übungstabelle **Modul 5 3 Konsolidierung** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 5 3 Konsolidierung** ya está cargada.
 
 1. Nutzen Sie „Daten → Konsolidieren", um die drei Monatsblätter zu einem
 
@@ -729,12 +729,12 @@ Datumsformat und Kodierung festlegen können.
 | `.txt` (Text mit Trennzeichen) | Altsysteme, Logdateien | Flexibles Trennzeichen |
 | Aus dem Web | Webseiten mit Tabellen | Daten bleiben aktuell (aktualisierbar) |
 
- **Wichtig:** Achten Sie beim CSV-Import auf das richtige Trennzeichen (Komma oder
+ **Importante:** Achten Sie beim CSV-Import auf das richtige Trennzeichen (Komma oder
 Semikolon — je nach Ländereinstellung) und die korrekte Kodierung (UTF-8 für Umlaute).
 
-**Übung 5.4 — Daten importieren**
+**Ejercicio 5.4 — Daten importieren**
 
-Die folgende Übungstabelle **Modul 5_4 Import** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 5_4 Import** ya está cargada.
 
 1. Importieren Sie eine bereitgestellte `.csv`-Datei über „Daten → Aus Text/CSV".
 2. Prüfen Sie die Vorschau und passen Sie Trennzeichen und Kodierung an.
@@ -742,9 +742,9 @@ Die folgende Übungstabelle **Modul 5_4 Import** ist bereits geladen.
 
 
 
-## Modul 6: Tabellen und Filter
+## Módulo 6: Tablas y filtros
 
-**Lernziel:** Daten sortieren, filtern und in Excel-Tabellen professionell organisieren.
+**Objetivo de aprendizaje:** Daten sortieren, filtern und in Excel-Tabellen professionell organisieren.
 
 ## 6.1. Suchen und Ersetzen
 
@@ -760,13 +760,13 @@ erledigt das in Sekunden.
 | **Ersetzen** | `Strg+H` | Begriff finden und durch anderen ersetzen |
 | **Weitersuchen** | `Shift+F4` | Nächsten Treffer ohne Dialog finden |
 
-**Tipp:** Im Ersetzen-Dialog können Sie über „Optionen" die Suche
+**Consejo:** Im Ersetzen-Dialog können Sie über „Optionen" die Suche
 einschränken: nur im aktuellen Blatt, nur ganze Zellen, oder mit
 Berücksichtigung der Groß-/Kleinschreibung.
 
-**Übung 6.1 — Suchen und Ersetzen**
+**Ejercicio 6.1 — Suchen und Ersetzen**
 
-> Die folgende Übungstabelle **Modul 6 1 Suchen Ersetzen** ist bereits geladen.
+> La siguiente tabla de ejercicios **Modul 6 1 Suchen Ersetzen** ya está cargada.
 >
 > 1. Suchen Sie mit `Strg+F` alle Vorkommen von „München".
 > 2. Ersetzen Sie mit `Strg+H` alle „München" durch „München (Zentrale)".
@@ -788,13 +788,13 @@ sie beim Scrollen sichtbar bleiben.
 | **Erste Spalte fixieren** | Ansicht → Fenster einfrieren → Erste Spalte fixieren | Spalte A bleibt immer sichtbar |
 | **Beliebigen Bereich fixieren** | Zelle unter/rechts des zu fixierenden Bereichs markieren → Fenster einfrieren | Zeilen + Spalten fixiert |
 
-**Tipp:** Bei Tabellen mit Kopfzeile UND linker Beschriftungsspalte:
+**Consejo:** Bei Tabellen mit Kopfzeile UND linker Beschriftungsspalte:
 Markieren Sie die Zelle B2 und wählen Sie „Fenster einfrieren".
 So bleiben sowohl Zeile 1 als auch Spalte A fixiert.
 
-**Übung 6.2 — Fenster einfrieren**
+**Ejercicio 6.2 — Fenster einfrieren**
 
-> Die folgende Übungstabelle **Modul 6 2 Fenster fixieren** ist bereits geladen.
+> La siguiente tabla de ejercicios **Modul 6 2 Fenster fixieren** ya está cargada.
 >
 > 1. Fixieren Sie die oberste Zeile und scrollen Sie nach unten.
 > 2. Heben Sie die Fixierung auf (Ansicht → Fenster einfrieren → Fixierung aufheben).
@@ -819,13 +819,13 @@ innerhalb jeder Region nach Umsatz — und das mit einem Klick.
 | Mehrstufig | 1. Region, 2. Umsatz | Gruppierte Vergleichsanalyse |
 | Nach Farbe | Zellen mit roter Formatierung oben | Ausreißer priorisieren |
 
- **Tipp:** Markieren Sie **eine** Zelle innerhalb Ihrer Datentabelle — Excel erkennt
+ **Consejo:** Markieren Sie **eine** Zelle innerhalb Ihrer Datentabelle — Excel erkennt
 automatisch den gesamten zusammenhängenden Bereich zum Sortieren. Sie müssen nicht alles
 manuell auswählen!
 
-**Übung 6.1 — Sortieren üben**
+**Ejercicio 6.1 — Sortieren üben**
 
-Die folgende Übungstabelle **Modul 6 1 Sortieren** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 6 1 Sortieren** ya está cargada.
 
 1. Sortieren Sie die Kundentabelle alphabetisch nach Nachname (A→Z).
 2. Sortieren Sie nach Bestellwert absteigend (höchster zuerst).
@@ -849,13 +849,13 @@ sondern nur temporär unsichtbar.
 | Datumsfilter | Heute, diese Woche, dieses Quartal... |
 | Nach Farbe | Alle Zellen mit gelber Füllung |
 
- **Tipp:** Das Filtersymbol (Trichter) in der Spaltenüberschrift zeigt an, dass
+ **Consejo:** Das Filtersymbol (Trichter) in der Spaltenüberschrift zeigt an, dass
 ein Filter aktiv ist. Mehrere Filter gleichzeitig sind möglich — und grundlegend
 für die Arbeit mit großen Datenmengen.
 
-**Übung 6.2 — Filtern anwenden**
+**Ejercicio 6.2 — Filtern anwenden**
 
-Die folgende Übungstabelle **Modul 6 2 Filtern** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 6 2 Filtern** ya está cargada.
 
 1. Aktivieren Sie den Autofilter (`Strg+Umschalt+L`).
 2. Filtern Sie nur Bestellungen aus „Berlin".
@@ -878,12 +878,12 @@ Ein normaler Zellbereich (`A1:D100`) ist eine lose Sammlung von Zellen. Eine **E
 | Bezüge | `=B2*C2` | `=[@Preis]*[@Menge]` (strukturierte Verweise) |
 | Diagramme/Pivots | Manuell anpassen bei neuen Daten | Erweitern sich automatisch |
 
- **Tipp:** Strukturierte Verweise wie `=[@Umsatz]` statt `=D2` machen Formeln
+ **Consejo:** Strukturierte Verweise wie `=[@Umsatz]` statt `=D2` machen Formeln
 lesbarer und robuster. Sie sehen sofort, was berechnet wird — auch Wochen später.
 
-**Übung 6.3 — Excel-Tabellen verwenden**
+**Ejercicio 6.3 — Excel-Tabellen verwenden**
 
-Die folgende Übungstabelle **Modul 6 3 Tabellen** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 6 3 Tabellen** ya está cargada.
 
 1. Wandeln Sie den Datenbereich mit `Strg+T` in eine Excel-Tabelle um.
 2. Wählen Sie ein Tabellenformat mit wechselnden Zeilenfarben.
@@ -899,12 +899,12 @@ Produkt. Die **Teilergebnis**-Funktion fügt automatisch Summen-, Mittelwert- od
 Anzahl-Zeilen nach jedem Gruppenwechsel ein — und erstellt eine Gliederung, mit der
 Sie zwischen Detail- und Übersichtsansicht umschalten können.
 
- **Tipp:** Bevor Sie Teilergebnisse einsetzen, **müssen** die Daten nach dem
+ **Consejo:** Bevor Sie Teilergebnisse einsetzen, **müssen** die Daten nach dem
 Gruppierungsmerkmal sortiert sein — sonst erhalten Sie sinnlose Zwischensummen.
 
-**Übung 6.4 — Teilergebnisse berechnen**
+**Ejercicio 6.4 — Teilergebnisse berechnen**
 
-Die folgende Übungstabelle **Modul 6 4 Teilergebnisse** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 6 4 Teilergebnisse** ya está cargada.
 
 1. Sortieren Sie die Tabelle zuerst nach „Region".
 2. Fügen Sie über „Daten → Teilergebnis" automatische Summen für jede Region ein.
@@ -914,9 +914,9 @@ Die folgende Übungstabelle **Modul 6 4 Teilergebnisse** ist bereits geladen.
 
 
 
-## Modul 7: Erweiterte Funktionen
+## Módulo 7: Funciones avanzadas
 
-**Lernziel:** Bedingte Berechnungen, Suchfunktionen und Textverarbeitung beherrschen.
+**Objetivo de aprendizaje:** Bedingte Berechnungen, Suchfunktionen und Textverarbeitung beherrschen.
 
 ## 7.1. Bedingte mathematische Funktionen
 
@@ -937,13 +937,13 @@ Semikolon als Trennzeichen.
 | `ZÄHLENWENNS()` | Bereich1, Kriterium1, Bereich2, Kriterium2... | `=ZÄHLENWENNS(A:A;"Nord";C:C;">1000")` |
 | `MITTELWERTWENN()` | Bereich, Kriterium, [Mittelwert-Bereich] | `=MITTELWERTWENN(A:A;"Süd";C:C)` |
 
- **Tipp:** `SUMMEWENN` für EINE Bedingung, `SUMMEWENNS` für MEHRERE Bedingungen.
+ **Consejo:** `SUMMEWENN` für EINE Bedingung, `SUMMEWENNS` für MEHRERE Bedingungen.
 Beachten Sie die unterschiedliche Reihenfolge der Argumente — bei `WENNS` steht der
 Summenbereich zuerst!
 
-**Übung 7.1 — Bedingte Summen und Zählungen**
+**Ejercicio 7.1 — Bedingte Summen und Zählungen**
 
-Die folgende Übungstabelle **Modul 7 1 Bedingte Summen** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 7 1 Bedingte Summen** ya está cargada.
 
 1. Berechnen Sie mit `SUMMEWENN` den Gesamtumsatz für die Region „Nord".
 2. Berechnen Sie mit `SUMMEWENNS` den Umsatz für „Nord" UND Produkt „Laptop".
@@ -968,18 +968,18 @@ Das „S" steht für „senkrecht" — es wird von oben nach unten gesucht.
 | Spaltenindex | Welche Spalte soll zurückgegeben werden? | `2` (für Spalte B) |
 | Bereich_Verweis | Exakte (0) oder ungefähre (1) Übereinstimmung? | `0` = exakt |
 
- **Wichtig:** SVERWEIS sucht **immer in der ersten Spalte** der Suchmatrix — nie
+ **Importante:** SVERWEIS sucht **immer in der ersten Spalte** der Suchmatrix — nie
 in der Mitte oder am Ende. Wenn Ihr Suchbegriff rechts steht, brauchen Sie
 INDEX+VERGLEICH oder XVERWEIS.
 
-**Wichtig:** Bei `Bereich_Verweis=1` (ungefähre Übereinstimmung) **muss** die
+**Importante:** Bei `Bereich_Verweis=1` (ungefähre Übereinstimmung) **muss** die
 Suchspalte **aufsteigend sortiert** sein — sonst liefert SVERWEIS falsche
 Ergebnisse. Bei `Bereich_Verweis=0` (exakte Übereinstimmung) ist keine
 Sortierung erforderlich.
 
-**Übung 7.2 — SVERWEIS anwenden**
+**Ejercicio 7.2 — SVERWEIS anwenden**
 
-Die folgende Übungstabelle **Modul 7 2 SVERWEIS** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 7 2 SVERWEIS** ya está cargada.
 
 1. Nutzen Sie SVERWEIS, um zu einer Produkt-ID den passenden Produktnamen aus
 
@@ -1005,13 +1005,13 @@ können sie in jede Richtung suchen — nicht nur von links nach rechts wie SVER
 Kombiniert: =INDEX(Ergebnisspalte; VERGLEICH(Suchbegriff; Suchspalte; 0))
 ```
 
- **Tipp:** INDEX+VERGLEICH sucht in jede Richtung (auch rechts→links), ist
+ **Consejo:** INDEX+VERGLEICH sucht in jede Richtung (auch rechts→links), ist
 schneller bei großen Tabellen und bricht nicht, wenn Spalten eingefügt werden.
 Für Excel 365-Nutzer ist XVERWEIS (`XLOOKUP`) die einfachste Alternative.
 
-**Übung 7.3 — INDEX und VERGLEICH kombinieren**
+**Ejercicio 7.3 — INDEX und VERGLEICH kombinieren**
 
-Die folgende Übungstabelle **Modul 7 3 INDEX VERGLEICH** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 7 3 INDEX VERGLEICH** ya está cargada.
 
 1. Finden Sie mit INDEX+VERGLEICH den Preis eines Produkts, wobei die
 
@@ -1041,12 +1041,12 @@ kommen und „Herr Dr. Max Müller, MBA" zu „Müller, Max" werden soll.
 | `KLEIN(Text)` | Alles in Kleinbuchstaben | `=KLEIN("EXCEL")` | `excel` |
 | `VERKETTEN()` / `&` | Texte verbinden | `=A2&" "&B2` | `Max Müller` |
 
- **Tipp:** Mit `HEUTE()` erhalten Sie immer das aktuelle Datum — ideal für
+ **Consejo:** Mit `HEUTE()` erhalten Sie immer das aktuelle Datum — ideal für
 Altersberechnungen oder Fristenüberwachung: `=JAHR(HEUTE())-JAHR(Geburtsdatum)`.
 
-**Übung 7.4 — Text- und Datumsfunktionen anwenden**
+**Ejercicio 7.4 — Text- und Datumsfunktionen anwenden**
 
-Die folgende Übungstabelle **Modul 7 4 Text Datum** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 7 4 Text Datum** ya está cargada.
 
 1. Extrahieren Sie aus einer Spalte „Nachname, Vorname" den Nachnamen mit
 
@@ -1057,9 +1057,9 @@ Die folgende Übungstabelle **Modul 7 4 Text Datum** ist bereits geladen.
 
 
 
-## Modul 8: Diagramme und Visualisierung
+## Módulo 8: Gráficos y visualización
 
-**Lernziel:** Den richtigen Diagrammtyp wählen, professionelle Diagramme erstellen und
+**Objetivo de aprendizaje:** Den richtigen Diagrammtyp wählen, professionelle Diagramme erstellen und
 formatieren.
 
 ## 8.1. Welches Diagramm für welche Daten?
@@ -1080,12 +1080,12 @@ ein Liniendiagramm für Produktnamen ebenso. Hier ist Ihr Auswahlleitfaden:
 | Beziehung zweier Variablen | **Punktdiagramm (XY)** | Werbeausgaben vs. Umsatz |
 | Häufigkeitsverteilung | **Histogramm** | Altersverteilung der Kunden |
 
- **Wichtig:** Ein Kreisdiagramm sollte nie mehr als 5-7 Segmente haben — sonst wird
+ **Importante:** Ein Kreisdiagramm sollte nie mehr als 5-7 Segmente haben — sonst wird
 es unleserlich. Fassen Sie kleine Anteile zu „Sonstige" zusammen.
 
-**Übung 8.1 — Ihr erstes Diagramm**
+**Ejercicio 8.1 — Ihr erstes Diagramm**
 
-Die folgende Übungstabelle **Modul 8 1 Erste Diagramme** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 8 1 Erste Diagramme** ya está cargada.
 
 1. Markieren Sie die Umsatztabelle (Produkte + Werte) und erstellen Sie ein
 
@@ -1114,13 +1114,13 @@ ohne zu verwirren.
 | Datenbeschriftungen | Konkrete Zahlen direkt am Punkt | Bei Präsentationen hilfreich |
 | Gitternetzlinien | Orientierung auf der Y-Achse | Dezente Farbe, nicht zu viele |
 
- **Tipp:** Mit dem Plus-Symbol (+) rechts neben einem markierten Diagramm können
+ **Consejo:** Mit dem Plus-Symbol (+) rechts neben einem markierten Diagramm können
 Sie alle Diagrammelemente mit einem Klick ein- und ausblenden. Das ist der schnellste
 Weg zur Anpassung.
 
-**Übung 8.2 — Diagramm formatieren**
+**Ejercicio 8.2 — Diagramm formatieren**
 
-Die folgende Übungstabelle **Modul 8 2 Diagrammformat** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 8 2 Diagrammformat** ya está cargada.
 
 1. Fügen Sie einen aussagekräftigen Diagrammtitel hinzu („Quartalsumsatz 2026").
 2. Beschriften Sie die Achsen („Quartal" und „Umsatz in €").
@@ -1137,12 +1137,12 @@ Diagramm zeigen — aber die Wertebereiche sind extrem unterschiedlich. Ein
 Säulen für den Umsatz auf der linken Achse, eine Linie für die Wachstumsrate auf
 der rechten.
 
- **Tipp:** Ein Verbunddiagramm eignet sich hervorragend für Soll-Ist-Vergleiche,
+ **Consejo:** Ein Verbunddiagramm eignet sich hervorragend für Soll-Ist-Vergleiche,
 Budget vs. tatsächliche Ausgaben oder Umsatz vs. Gewinnmarge.
 
-**Übung 8.3 — Verbunddiagramm erstellen**
+**Ejercicio 8.3 — Verbunddiagramm erstellen**
 
-Die folgende Übungstabelle **Modul 8 3 Verbunddiagramm** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 8 3 Verbunddiagramm** ya está cargada.
 
 1. Erstellen Sie ein Kombi-Diagramm: Umsatz als Säulen, Wachstumsrate als Linie.
 2. Fügen Sie eine Sekundärachse für die Wachstumsrate ein.
@@ -1166,9 +1166,9 @@ Tabellenblättern wechseln muss.
 | Vergleichsdiagramm | Kategorien vergleichen | Säulendiagramm nach Region |
 | Anteilsdiagramm | Zusammensetzung zeigen | Kreisdiagramm nach Produktgruppe |
 
-**Übung 8.4 — Einfaches Dashboard erstellen**
+**Ejercicio 8.4 — Einfaches Dashboard erstellen**
 
-Die folgende Übungstabelle **Modul 8 4 Dashboard** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 8 4 Dashboard** ya está cargada.
 
 1. Erstellen Sie auf einem neuen Blatt drei Diagramme aus den Quelldaten:
 
@@ -1180,9 +1180,9 @@ Die folgende Übungstabelle **Modul 8 4 Dashboard** ist bereits geladen.
 
 
 
-## Modul 9: Pivot-Tabellen
+## Módulo 9: Tablas dinámicas
 
-**Lernziel:** Große Datenmengen mit Pivot-Tabellen gruppieren, zusammenfassen und
+**Objetivo de aprendizaje:** Große Datenmengen mit Pivot-Tabellen gruppieren, zusammenfassen und
 
 **Hinweis zur Excel-lenz-Plattform:** Die Erstellung von Pivot-Tabellen ist
 im Web-Simulator nicht verfügbar. Die folgenden Übungen erfordern Microsoft
@@ -1213,13 +1213,13 @@ vier Bereiche und Excel erledigt den Rest — keine Formeln, keine manuelle Sort
 | **Werte** | Was soll berechnet werden? | Summe Umsatz, Anzahl Bestellungen |
 | **Filter** | Welche Daten sollen ausgeschlossen werden? | Nur Jahr 2026, nur Region Nord |
 
- **Tipp:** Sie können jederzeit Felder zwischen den Bereichen verschieben — die
+ **Consejo:** Sie können jederzeit Felder zwischen den Bereichen verschieben — die
 Tabelle aktualisiert sich sofort. Experimentieren Sie! Es gibt kein „Falsch" beim
 Erkunden von Daten mit Pivot-Tabellen.
 
-**Übung 9.1 — Erste Pivot-Tabelle**
+**Ejercicio 9.1 — Erste Pivot-Tabelle**
 
-Die folgende Übungstabelle **Modul 9 1 Pivot** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 9 1 Pivot** ya está cargada.
 
 1. Markieren Sie eine Zelle in der Datentabelle und wählen Sie
 
@@ -1247,9 +1247,9 @@ Das macht die Pivot-Tabelle zu einem flexiblen Analysewerkzeug.
 | % des Gesamtergebnisses | Welchen Anteil hat dieser Wert? |
 | Differenz zum Vormonat | Wie hat sich der Wert verändert? |
 
-**Übung 9.2 — Pivot-Tabelle anpassen**
+**Ejercicio 9.2 — Pivot-Tabelle anpassen**
 
-Die folgende Übungstabelle **Modul 9 2 Pivot Anpassung** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 9 2 Pivot Anpassung** ya está cargada.
 
 1. Ändern Sie die Zusammenfassung von „Summe" auf „Mittelwert".
 2. Gruppieren Sie die Datumsangaben nach Monaten und Quartalen
@@ -1267,13 +1267,13 @@ viel eleganter als herkömmliche Dropdown-Filter. Ein Klick auf „Nord" im Slic
 und alle verbundenen Pivot-Tabellen und Diagramme zeigen nur die Daten dieser Region.
 Das macht Slicer zum perfekten Werkzeug für Dashboards und Präsentationen.
 
- **Tipp:** Ein Slicer kann mit mehreren Pivot-Tabellen gleichzeitig verbunden
+ **Consejo:** Ein Slicer kann mit mehreren Pivot-Tabellen gleichzeitig verbunden
 werden (Rechtsklick → Berichtsverbindungen). So steuern Sie ein ganzes Dashboard
 mit einem Klick.
 
-**Übung 9.3 — Slicer einsetzen**
+**Ejercicio 9.3 — Slicer einsetzen**
 
-Die folgende Übungstabelle **Modul 9 3 Slicer** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 9 3 Slicer** ya está cargada.
 
 1. Fügen Sie einen Slicer für das Feld „Region" ein
 
@@ -1292,9 +1292,9 @@ Wenn Sie die Pivot-Tabelle verändern (andere Gruppierung, anderer Filter), pass
 sich das Diagramm automatisch an. Das ist die perfekte Kombination aus Analyse
 (Pivot) und Präsentation (Chart).
 
-**Übung 9.4 — PivotChart erstellen**
+**Ejercicio 9.4 — PivotChart erstellen**
 
-Die folgende Übungstabelle **Modul 9 4 PivotChart** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 9 4 PivotChart** ya está cargada.
 
 1. Erstellen Sie aus Ihrer Pivot-Tabelle ein PivotChart
 
@@ -1306,9 +1306,9 @@ Die folgende Übungstabelle **Modul 9 4 PivotChart** ist bereits geladen.
 
 
 
-## Modul 10: Analyse und Finanzfunktionen
+## Módulo 10: Análisis y funciones financieras
 
-**Lernziel:** Was-wäre-wenn-Analysen durchführen und grundlegende Finanzfunktionen
+**Objetivo de aprendizaje:** Was-wäre-wenn-Analysen durchführen und grundlegende Finanzfunktionen
 einsetzen.
 
 ## 10.1. Zielwertsuche (Goal Seek)
@@ -1320,13 +1320,13 @@ Umsatz). Die **Zielwertsuche** macht das Gegenteil: Sie sagen „Ich will 100.00
 Umsatz erreichen", und Excel findet den notwendigen Preis oder die Menge. Das ist
 besonders nützlich für Planung und Budgetierung.
 
- **Tipp:** Die Zielwertsuche finden Sie unter „Daten → Was-wäre-wenn-Analyse →
+ **Consejo:** Die Zielwertsuche finden Sie unter „Daten → Was-wäre-wenn-Analyse →
 Zielwertsuche". Sie benötigen drei Angaben: Zielzelle (mit Formel), Zielwert und
 veränderbare Zelle.
 
-**Übung 10.1 — Zielwertsuche anwenden**
+**Ejercicio 10.1 — Zielwertsuche anwenden**
 
-Die folgende Übungstabelle **Modul 10 1 Zielwertsuche** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 10 1 Zielwertsuche** ya está cargada.
 
 1. Sie möchten einen Gesamtumsatz von 100.000 € erreichen. Nutzen Sie die
 
@@ -1352,12 +1352,12 @@ Finanzmathematik mit speziellen Funktionen ab — Sie müssen nur die Parameter 
 | `NBW()` (Kapitalwert) | Heutiger Wert zukünftiger Zahlungen | `=NBW(Zins; Zahlung1; Zahlung2...)` |
 | `IKV()` (Interner Zinsfuß) | Rendite einer Investition | `=IKV(Wertebereich)` |
 
- **Tipp:** Bei RMZ und ZW sind Zahlungen, die Sie leisten (Kreditrate, Sparrate),
+ **Consejo:** Bei RMZ und ZW sind Zahlungen, die Sie leisten (Kreditrate, Sparrate),
 als negative Zahlen anzugeben. Der Kreditbetrag ist positiv aus Sicht der Bank.
 
-**Übung 10.2 — Finanzfunktionen anwenden**
+**Ejercicio 10.2 — Finanzfunktionen anwenden**
 
-Die folgende Übungstabelle **Modul 10 2 Finanzfunktionen** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 10 2 Finanzfunktionen** ya está cargada.
 
 1. Berechnen Sie mit `RMZ()` die monatliche Rate für einen Kredit über 250.000 €
 
@@ -1371,9 +1371,9 @@ Die folgende Übungstabelle **Modul 10 2 Finanzfunktionen** ist bereits geladen.
 
 
 
-## Modul 11: Druck und Zusammenarbeit
+## Módulo 11: Impresión y colaboración
 
-**Lernziel:** Tabellen professionell für den Druck aufbereiten und mit anderen
+**Objetivo de aprendizaje:** Tabellen professionell für den Druck aufbereiten und mit anderen
 
 **Hinweis zur Excel-lenz-Plattform:** Die Druckfunktionen sind im
 Web-Simulator nicht verfügbar. Die folgenden Übungen erfordern Microsoft
@@ -1399,13 +1399,13 @@ Ränder sein sollen und ob Hoch- oder Querformat besser ist.
 | Seitenränder | Normal / Schmal / Benutzerdefiniert | Bei vielen Spalten: „Schmal" |
 | Papierformat | A4, Letter... | Mittel-/Nordeuropa: A4 |
 
- **Tipp:** Rufen Sie vor jedem Druck die **Seitenumbruchvorschau** auf
+ **Consejo:** Rufen Sie vor jedem Druck die **Seitenumbruchvorschau** auf
 (Ansicht → Seitenumbruchvorschau). Sie sehen sofort, wo die Seitenumbrüche
 liegen und können sie per Drag & Drop verschieben.
 
-**Übung 11.1 — Seitenlayout einrichten**
+**Ejercicio 11.1 — Seitenlayout einrichten**
 
-Die folgende Übungstabelle **Modul 11 1 Drucklayout** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 11 1 Drucklayout** ya está cargada.
 
 1. Ändern Sie die Ausrichtung auf Querformat.
 2. Skalieren Sie die Tabelle so, dass alle Spalten auf eine Seite passen.
@@ -1421,9 +1421,9 @@ die nicht gedruckt werden sollen. Mit dem **Druckbereich** legen Sie exakt fest,
 welcher Teil des Blattes gedruckt wird — der Rest wird ignoriert. Mit manuellen
 **Seitenumbrüchen** steuern Sie, wo eine neue Seite beginnt.
 
-**Übung 11.2 — Druckbereich festlegen**
+**Ejercicio 11.2 — Druckbereich festlegen**
 
-Die folgende Übungstabelle **Modul 11 2 Druckbereich** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 11 2 Druckbereich** ya está cargada.
 
 1. Definieren Sie einen Druckbereich, der nur die Haupttabelle (ohne Hilfsspalten)
 
@@ -1440,13 +1440,13 @@ enthalten Seitennummern, Datum, Dateinamen oder Firmenlogos — Informationen, d
 Leser Orientierung geben. Einmal eingerichtet, erscheinen sie automatisch auf jeder
 Seite.
 
- **Tipp:** Nutzen Sie die vordefinierten Elemente (Seitenzahl, Anzahl der Seiten,
+ **Consejo:** Nutzen Sie die vordefinierten Elemente (Seitenzahl, Anzahl der Seiten,
 aktuelles Datum, Dateipfad) über die Schaltflächen im Kopf-/Fußzeilen-Dialog.
 Das spart Tipparbeit und bleibt automatisch aktuell.
 
-**Übung 11.3 — Kopf- und Fußzeilen erstellen**
+**Ejercicio 11.3 — Kopf- und Fußzeilen erstellen**
 
-Die folgende Übungstabelle **Modul 11 3 Kopfzeilen** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 11 3 Kopfzeilen** ya está cargada.
 
 1. Fügen Sie eine Kopfzeile mit dem Firmennamen (links) und dem Datum (rechts) ein.
 2. Fügen Sie eine Fußzeile mit „Seite X von Y" (mittig) ein.
@@ -1469,9 +1469,9 @@ die Daten zu verändern.
 | `.pdf` | Endgültige Version, nicht bearbeitbar |
 | `.csv` | Rohdaten für andere Programme |
 
-**Übung 11.4 — Für die Weitergabe vorbereiten**
+**Ejercicio 11.4 — Für die Weitergabe vorbereiten**
 
-Die folgende Übungstabelle **Modul 11 4 Zusammenarbeit** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 11 4 Zusammenarbeit** ya está cargada.
 
 1. Exportieren Sie die Tabelle als PDF.
 2. Fügen Sie einen Kommentar in eine Zelle ein (Überprüfen → Neuer Kommentar).
@@ -1479,9 +1479,9 @@ Die folgende Übungstabelle **Modul 11 4 Zusammenarbeit** ist bereits geladen.
 
 
 
-## Modul 12: Schutz und Sicherheit
+## Módulo 12: Protección y seguridad
 
-**Lernziel:** Arbeitsmappen und Zellen schützen sowie die Produktivität durch
+**Objetivo de aprendizaje:** Arbeitsmappen und Zellen schützen sowie die Produktivität durch
 Tastenkombinationen steigern.
 
 ## 12.1. Zellen und Blätter schützen
@@ -1502,13 +1502,13 @@ sind und welche gesperrt. Optional mit Passwort — für vertrauliche Daten.
 | Arbeitsmappenschutz | Struktur (Blätter löschen/einfügen) | Verhindert Umstrukturierung |
 | Passwort zum Öffnen | Gesamte Datei | Vertrauliche Daten |
 
- **Wichtig:** Alle Zellen sind standardmäßig gesperrt — aber die Sperre wirkt
+ **Importante:** Alle Zellen sind standardmäßig gesperrt — aber die Sperre wirkt
 erst, wenn Sie den Blattschutz aktivieren! Entsperren Sie zuerst die Zellen, die
 bearbeitbar bleiben sollen (Strg+1 → Schutz → Gesperrt abwählen).
 
-**Übung 12.1 — Schutz einrichten**
+**Ejercicio 12.1 — Schutz einrichten**
 
-Die folgende Übungstabelle **Modul 12 1 Schutz** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 12 1 Schutz** ya está cargada.
 
 1. Entsperren Sie die Eingabezellen (B2:B10), lassen Sie die Formelzellen gesperrt.
 2. Aktivieren Sie den Blattschutz und testen Sie: Eingabezellen sind bearbeitbar,
@@ -1542,9 +1542,9 @@ präziser — denn Muscle Memory ist fehlerresistenter als Mausklicks.
 | `Alt+=` | AutoSumme | Schnelle Summierung |
 | `Strg+T` | Als Tabelle formatieren | T wie Tabelle |
 
-**Übung 12.2 — Tastenkombinationen üben**
+**Ejercicio 12.2 — Tastenkombinationen üben**
 
-Die folgende Übungstabelle **Modul 12_2 Tastenkombinationen** ist bereits geladen. Bearbeiten Sie sie
+La siguiente tabla de ejercicios **Modul 12_2 Tastenkombinationen** ya está cargada. Bearbeiten Sie sie
 ausschließlich mit Tastenkombinationen:
 
 1. `Strg+Umschalt+L` für Filter, dann mit Pfeiltasten navigieren.
@@ -1570,9 +1570,9 @@ es weiterverschenken.
 - Kopf- und Fußzeilen
 - Externe Verknüpfungen zu anderen Dateien
 
-**Übung 12.3 — Dokument inspizieren**
+**Ejercicio 12.3 — Dokument inspizieren**
 
-Die folgende Übungstabelle **Modul 12 3 Inspektion** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 12 3 Inspektion** ya está cargada.
 
 1. Führen Sie die Dokumentinspektion durch (Datei → Informationen → Auf Probleme
 
@@ -1582,9 +1582,9 @@ Die folgende Übungstabelle **Modul 12 3 Inspektion** ist bereits geladen.
 
 
 
-## Modul 13: Automatisierung mit Makros
+## Módulo 13: Automatización con macros
 
-**Lernziel:** Das Konzept der Makros verstehen und einfache Automatisierungen aufzeichnen.
+**Objetivo de aprendizaje:** Das Konzept der Makros verstehen und einfache Automatisierungen aufzeichnen.
 
 **Hinweis zur Excel-lenz-Plattform:** Makros und VBA sind im Web-Simulator
 nicht verfügbar. Die folgenden Übungen erfordern Microsoft Excel (Desktop-Version
@@ -1605,13 +1605,13 @@ Makros werden in der Programmiersprache **VBA** (Visual Basic for Applications)
 gespeichert. Die gute Nachricht: Zum Aufzeichnen müssen Sie kein VBA können —
 Excel schreibt den Code automatisch.
 
- **Wichtig:** Makros funktionieren nur in `.xlsm`-Dateien (Excel-Arbeitsmappe
+ **Importante:** Makros funktionieren nur in `.xlsm`-Dateien (Excel-Arbeitsmappe
 mit Makros), nicht in normalen `.xlsx`-Dateien. Speichern Sie Makro-Arbeitsmappen
 immer im `.xlsm`-Format.
 
-**Übung 13.1 — Entwicklertools aktivieren**
+**Ejercicio 13.1 — Entwicklertools aktivieren**
 
-Die folgende Übungstabelle **Modul 13 1 Entwicklertools** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 13 1 Entwicklertools** ya está cargada.
 
 1. Aktivieren Sie die Registerkarte „Entwicklertools"
 
@@ -1635,12 +1635,12 @@ bei der Aufzeichnung:
 - **Absolute Aufzeichnung**: Das Makro arbeitet immer in denselben Zellen (z.B. A1)
 - **Relative Aufzeichnung**: Das Makro arbeitet relativ zur aktuellen Position
 
- **Tipp:** Für formatierende Makros, die Sie auf verschiedene Tabellen anwenden
+ **Consejo:** Für formatierende Makros, die Sie auf verschiedene Tabellen anwenden
 wollen, nutzen Sie **relative Bezüge** bei der Aufzeichnung.
 
-**Übung 13.2 — Makro aufzeichnen**
+**Ejercicio 13.2 — Makro aufzeichnen**
 
-Die folgende Übungstabelle **Modul 13 2 Makro Aufzeichnen** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 13 2 Makro Aufzeichnen** ya está cargada.
 
 1. Zeichnen Sie ein Makro auf, das die Überschriftenzeile fett formatiert,
 
@@ -1667,9 +1667,9 @@ eine hervorragende Lernquelle.
 | Eigenschaften-Fenster | Eigenschaften von Blättern und Steuerelementen |
 | Direktbereich | Befehle direkt testen (Strg+G zum Anzeigen) |
 
-**Übung 13.3 — VBA-Editor erkunden**
+**Ejercicio 13.3 — VBA-Editor erkunden**
 
-Die folgende Übungstabelle **Modul 13 3 VBA Editor** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 13 3 VBA Editor** ya está cargada.
 
 1. Öffnen Sie den VBA-Editor mit `Alt+F11`.
 2. Finden Sie im Projekt-Explorer das aufgezeichnete Makro aus der
@@ -1693,13 +1693,13 @@ treffen. Echte Automatisierung beginnt mit einfachen Programmierkonzepten:
 | **Schleife** | Code mehrmals wiederholen | `For i = 1 To 10... Next i` |
 | **Sub** | Ein benanntes Makro (Unterprogramm) | `Sub MeinMakro()... End Sub` |
 
- **Tipp:** Auch wenn Sie nicht vorhaben, VBA-Programmierer zu werden — das
+ **Consejo:** Auch wenn Sie nicht vorhaben, VBA-Programmierer zu werden — das
 Verständnis dieser Grundbegriffe hilft Ihnen, aufgezeichnete Makros zu lesen,
 anzupassen und Fehler zu beheben.
 
-**Übung 13.4 — Einfaches VBA programmieren**
+**Ejercicio 13.4 — Einfaches VBA programmieren**
 
-Die folgende Übungstabelle **Modul 13 4 VBA Programmieren** ist bereits geladen.
+La siguiente tabla de ejercicios **Modul 13 4 VBA Programmieren** ya está cargada.
 
 1. Schreiben Sie im VBA-Editor (`Alt+F11`) ein Makro, das mit einer `For`-Schleife
 

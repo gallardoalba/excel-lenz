@@ -83,8 +83,6 @@ Die Plattform Excel-lenz dient als **Vertiefungsressource zwischen den Sitzungen
 
 Der Kern des Lernens liegt in der **Präsenzpraxis mit echtem Microsoft Excel**, bei der der Lehrende den Lernenden in Echtzeit begleitet, sofortige Fragen klärt und die Erklärung an die während der Sitzung festgestellten spezifischen Bedürfnisse anpasst.
 
----
-
 ## 2. Kursziele
 
 Am Ende des Kurses hat der Lernende folgende Fähigkeiten entwickelt:
@@ -99,8 +97,6 @@ Am Ende des Kurses hat der Lernende folgende Fähigkeiten entwickelt:
 | ZIEL-06 | Validierung, Sortierung, Filterung und Bereinigung von Datensätzen nach Qualitätskriterien |
 | ZIEL-07 | Entwurf datentypgerechter Diagramme und Erstellung von Pivot-Tabellen für die explorative Analyse |
 | ZIEL-08 | Anwendung von Was-wäre-wenn-Analysen, grundlegenden Finanzfunktionen und bewährten Datenschutzpraktiken |
-
----
 
 ## 3. Entwickelte Kompetenzen
 
@@ -123,7 +119,7 @@ Die Erstellung von Formeln in Excel entwickelt übertragbare Fähigkeiten des al
 - **Zerlegung**: Aufteilung eines komplexen Problems in sequenzielle logische Schritte
 - **Mustererkennung**: Identifizierung von Regelmäßigkeiten in Datensätzen
 - **Abstraktion**: Darstellung von Beziehungen durch Zellbezüge und parametrisierte Funktionen
-- **Systematische Fehlerbehebung**: Diagnose und Korrektur von Fehlern (#DIV/0!, #NAME?, #BEZUG!, #WERT!, #NULL!)
+- **Systematische Fehlerbehebung**: Diagnose und Korrektur von Fehlern (`#DIV/0!`, `#NAME?`, `#BEZUG!`, `#WERT!`, `#NULL!`)
 
 ### 3.3. Übergreifende berufliche Kompetenzen
 
@@ -133,8 +129,6 @@ Die Erstellung von Formeln in Excel entwickelt übertragbare Fähigkeiten des al
 | Ergebnisorientierung | Praxis mit realen Fällen: Budgets, Umsatzberichte, Rentabilitätsanalysen |
 | Lernautonomie | Selbstständige Übung zwischen den Sitzungen mit sofortigem Feedback auf der Webplattform |
 | Liebe zum Detail | Präzision in Formelsyntax, Bezügen und Zahlenformaten |
-
----
 
 ## 4. Inhalte und Struktur
 
@@ -173,8 +167,6 @@ Jede Sitzung integriert drei Inhaltsdimensionen:
 | 6 | Sitzung 6 | Suchfunktionen, Text und Diagramme | Praxis |
 | 7 | Sitzung 7 | Pivot-Tabellen und Was-wäre-wenn-Analyse | Theorie-Praxis |
 | 8 | Sitzung 8 | Druck, Schutz und Makros (Einführung) | Theorie-Praxis |
-
----
 
 ## 5. Didaktische Methodik
 
@@ -218,8 +210,6 @@ Die Struktur folgt dem Modell der **direkten Instruktion mit sofortiger Praxis**
 - **Beamer oder zweiter Bildschirm**, der es dem Lernenden ermöglicht, die Demonstrationen zu sehen, während er an seinem eigenen Gerät arbeitet
 - **Microsoft Excel** in der Desktop-Version (2019 oder Microsoft 365), nicht in der Web-Version
 
----
-
 ## 6. Materialien und didaktische Ressourcen
 
 ### 6.1. Hauptressourcen
@@ -244,8 +234,6 @@ Die Webplattform dient als Unterstützungsressource für die Übung zwischen den
 - Vom Lehrenden für jede Sitzung vorbereitete Excel-Übungsdateien
 - Kurzreferenz für Funktionen und Tastenkombinationen
 
----
-
 ## 7. Fortschrittsverfolgung
 
 Da es sich um eine individuelle Weiterbildung im nicht-formalen Kontext handelt, wird kein benotendes Bewertungssystem angewendet. Es wird ein Modell der **kontinuierlichen Fortschrittsverfolgung** verwendet, das auf Beobachtung und Dialog basiert:
@@ -265,13 +253,10 @@ Da es sich um eine individuelle Weiterbildung im nicht-formalen Kontext handelt,
 - **Zeitversetzt**: Durchsicht der auf der Plattform zwischen den Sitzungen bearbeiteten Übungen
 - **Teilnahmebescheinigung**: Am Ende des Kurses wird ein Nachweisdokument auf Basis der Anwesenheit und aktiven Teilnahme ausgestellt
 
-\newpage
 
 ## 8. Ablauf der Sitzungen
 
 Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dargestellt.
-
-\newpage
 
 ### Sitzung 1: Erste Schritte in Excel — Umgebung, Navigation und Dateneingabe
 
@@ -307,7 +292,6 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Festigung | 15 Min. | Der Lernende erstellt von Grund auf eine kleine monatliche Ausgabenübersicht und wendet alle behandelten Verfahren an |
 | Abschluss | 5 Min. | Zusammenfassung des Gelernten. Die Übungen 1 bis 5 der Module 1 und 2 der Plattform Excel-lenz werden für die Woche empfohlen |
 
-\newpage
 
 ### Sitzung 2: Professionelles Format von Tabellenkalkulationen
 
@@ -343,7 +327,6 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Festigung | 15 Min. | Der Lernende erhält eine unformatierte Datentabelle und muss ein auf dem Bildschirm gezeigtes professionelles Muster nachbilden |
 | Abschluss | 5 Min. | Zusammenfassung der behandelten Formate. Empfohlene Übungen auf der Plattform: Modul 3 |
 
-\newpage
 
 ### Sitzung 3: Grundlagen der Berechnung — Formeln, Funktionen und Bezüge
 
@@ -354,7 +337,7 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 #### Ziele der Sitzung
 
 - Arithmetische Formeln mit mathematischen Operatoren (+, -, *, /, ^) erstellen
-- Relative (A1), absolute ($A$1) und gemischte Bezüge ($A1, A$1) verstehen und korrekt anwenden
+- Relative (`A1`), absolute (`$A$1`) und gemischte Bezüge (`$A1`, `A$1`) verstehen und korrekt anwenden
 - Die grundlegenden statistischen Funktionen verwenden: SUMME, MITTELWERT, MIN, MAX, ANZAHL, ANZAHL2
 - Die WENN-Funktion für elementare logische Entscheidungen implementieren
 - Die häufigsten Formelfehler erkennen, interpretieren und beheben
@@ -364,10 +347,10 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Konzeptuell | Prozedural | Einstellungsbezogen |
 |-------------|------------|---------------------|
 | Syntax einer Formel: das =-Zeichen als obligatorischer Beginn | Arithmetische Formeln schrittweise schreiben | Angewandtes logisch-mathematisches Denken |
-| Arten von Bezügen und ihr Verhalten beim Kopieren | Zwischen Bezugstypen mit der F4-Taste wechseln | Sorgfalt bei der Ergebnisüberprüfung |
+| Arten von Bezügen und ihr Verhalten beim Kopieren | Zwischen Bezugstypen mit der `F4`-Taste wechseln | Sorgfalt bei der Ergebnisüberprüfung |
 | Funktionen als vordefinierte Berechnungsbausteine | Funktionen aus der Bibliothek einfügen oder direkt eintippen | Schrittweises Vertrauen in die Automatisierung |
 | Grundlegende Bedingungslogik | Bedingungen mit Vergleichsoperatoren erstellen | Neugier, Varianten zu erkunden |
-| Fehlertypologie: #DIV/0!, #NAME?, #WERT!, #BEZUG! | Die Ursache eines Fehlers diagnostizieren und beheben | Durchhaltevermögen bei Schwierigkeiten |
+| Fehlertypologie: `#DIV/0!`, `#NAME?`, `#WERT!`, `#BEZUG!` | Die Ursache eines Fehlers diagnostizieren und beheben | Durchhaltevermögen bei Schwierigkeiten |
 
 #### Ablauf der Sitzung
 
@@ -379,7 +362,6 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Festigung | 15 Min. | Überprüfungsübung: Ein Blatt mit vorsätzlichen Fehlern wird bereitgestellt, die der Lernende erkennen und beheben muss |
 | Abschluss | 5 Min. | Zusammenfassung. Empfohlene Übung auf der Plattform: Modul 4 (10 progressive Übungen) |
 
-\newpage
 
 ### Sitzung 4: Datenqualitätskontrolle — Validierung, Bereinigung und Import
 
@@ -413,7 +395,6 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Festigung | 15 Min. | Integrationsübung: Aus einer bereitgestellten CSV-Datei importiert, validiert, bereinigt und bereitet der Lernende die Daten für die Analyse vor |
 | Abschluss | 5 Min. | Zusammenfassung. Empfohlene Übung auf der Plattform: Modul 5 |
 
-\newpage
 
 ### Sitzung 5: Organisation und Analyse von Daten — Tabellen, Filter und Bedingungsfunktionen
 
@@ -449,7 +430,6 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Festigung | 15 Min. | Analysefragen: „Welches Produkt verkaufte sich im Norden im März am besten?", „Wie viele Verkäufe überstiegen 1.000 € im zweiten Quartal?" |
 | Abschluss | 5 Min. | Zusammenfassung. Empfohlene Übung auf der Plattform: Modul 6 und Modul 7 (Übungen 1-5) |
 
-\newpage
 
 ### Sitzung 6: Suchfunktionen, Textverarbeitung und Datenvisualisierung
 
@@ -486,7 +466,6 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Festigung | 15 Min. | Der Lernende erhält eine Bestelltabelle und muss einen visuellen Bericht erstellen, der mindestens zwei Diagrammtypen integriert |
 | Abschluss | 5 Min. | Zusammenfassung. Übung auf der Plattform: Module 7 und 8 |
 
-\newpage
 
 ### Sitzung 7: Explorative Analyse — Pivot-Tabellen und Was-wäre-wenn-Werkzeuge
 
@@ -522,7 +501,6 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Festigung | 15 Min. | Integrationsübung mit einer Rechnungsdatenbank |
 | Abschluss | 5 Min. | Zusammenfassung. Übung auf der Plattform: Module 9 und 10 |
 
-\newpage
 
 ### Sitzung 8: Professionalisierung der Arbeit — Druck, Schutz und Produktivität
 
@@ -559,8 +537,6 @@ Nachfolgend wird der detaillierte Ablauf jeder der acht Sitzungen des Kurses dar
 | Festigung | 15 Min. | Allgemeine Wiederholung des Kurses: Der Lernende identifiziert die wertvollsten Lernerfahrungen und die Bereiche, die er weiterentwickeln möchte |
 | Abschluss | 5 Min. | Übergabe der Teilnahmebescheinigung. Orientierung über Ressourcen zur Fortsetzung des Lernens (Fortgeschrittenenkurs, Excel-lenz-Community, empfohlene Kanäle) |
 
----
-
 ## 9. Kursbegleitung
 
 ### 9.1. Begleitindikatoren
@@ -588,8 +564,6 @@ Am Ende des Kurses erstellt der Lehrende einen kurzen Bericht mit:
 2. Beobachtungen zur Angemessenheit der Inhalte für das Profil des Lernenden
 3. Verbesserungsvorschläge für zukünftige Kursdurchführungen
 
----
-
 ## Anhang: Zuordnung zu den Übungen der Excel-lenz-Plattform
 
 Die Excel-lenz-Plattform bietet **44 interaktive Übungen** auf Anfängerniveau. Ihre Verwendung als ergänzende Praxis zwischen den Sitzungen wird gemäß folgender Verteilung empfohlen:
@@ -605,7 +579,5 @@ Die Excel-lenz-Plattform bietet **44 interaktive Übungen** auf Anfängerniveau.
 | 7-8 | M8-M13 | In Entwicklung | — |
 
 *Hinweis: Die Übungen der Module 8 bis 13 befinden sich auf der Plattform in der Entwicklungsphase. In der Zwischenzeit stellt der Lehrende gleichwertige Übungen im Excel-Format zur Verfügung.*
-
----
 
 *Didaktischer Leitfaden, erstellt gemäß den Prinzipien der Andragogik (Knowles, 1980) und dem europäischen Rahmen für digitale Kompetenzen DigComp 2.2 (Vuorikari et al., 2022).*

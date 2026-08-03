@@ -1,18 +1,26 @@
 % Professional LaTeX preamble for Excel-lenz didactic guides
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{helvet}
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{parskip}
+\usepackage{needspace}
 \usepackage{microtype}
 \usepackage{tabularx}
 \usepackage{fancyhdr}
 
+% Prevent orphan headings and widows
+\raggedbottom
+\clubpenalty=10000
+\widowpenalty=10000
+
 % Color palette
 \definecolor{excelblue}{RGB}{21,101,192}
 \definecolor{excelgray}{RGB}{100,100,100}
+\definecolor{tablerow}{RGB}{245,247,250}
 
 % Section formatting with colored rule
 \titleformat{\section}
@@ -55,8 +63,6 @@
 \setlist{leftmargin=*,itemsep=4pt,parsep=4pt,topsep=6pt}
 
 % Generous paragraph spacing
-\setlength{\parskip}{8pt plus 4pt minus 2pt}
-
 % Code block spacing — add space around verbatim
 \usepackage{etoolbox}
 \BeforeBeginEnvironment{verbatim}{\vspace{8pt}}
@@ -64,7 +70,7 @@
 \BeforeBeginEnvironment{Shaded}{\vspace{8pt}}
 \AfterEndEnvironment{Shaded}{\vspace{8pt}}
 
-% Table spacing
+% Table spacing — alternating row colors handled by template
 \AtBeginEnvironment{tabular}{\vspace{4pt}}
 \AfterEndEnvironment{tabular}{\vspace{4pt}}
 
@@ -73,7 +79,7 @@
 \AfterEndEnvironment{quote}{\vspace{6pt}}
 
 % Paragraph spacing
-\setlength{\parskip}{4pt plus 2pt minus 1pt}
+\setlength{\parskip}{8pt plus 4pt minus 2pt}
 
 % Page headers and footers
 \pagestyle{fancy}
@@ -88,8 +94,15 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 % Table of contents customization
-\setcounter{tocdepth}{2}
-\renewcommand{\contentsname}{Índice}
+% Contents name is set by pandoc via the 'lang' YAML metadata field
+\setcounter{tocdepth}{3}
+
+% Improved TOC spacing and indentation for better readability
+\makeatletter
+\renewcommand{\l@section}      {\@dottedtocline{1}{1.5em}{2.3em}}
+\renewcommand{\l@subsection}   {\@dottedtocline{2}{4.0em}{3.2em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{7.5em}{4.1em}}
+\makeatother
 
 % Info box command for highlighted content
 \newcommand{\infobox}[1]{%

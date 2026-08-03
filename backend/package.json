@@ -19,6 +19,7 @@
     "express": "^4.21.1",
     "express-rate-limit": "^8.6.1",
     "helmet": "^8.3.0",
+    "hyperformula": "^3.3.0",
     "ioredis": "^5.11.1",
     "jsonwebtoken": "^9.0.2",
     "node-cache": "^5.1.2",

@@ -73,7 +73,6 @@ Die Plattform Excel-lenz dient als **Vertiefungsressource zwischen den Sitzungen
 
 Das bedeutungsvolle Lernen findet in der **Präsenzpraxis mit dem echten Excel** statt, wo der Dozent fortgeschrittene Techniken vorführt, komplexe Formeln in Echtzeit debuggt und das Tempo an die individuelle Lernkurve anpasst.
 
----
 
 ## 2. Kursziele
 
@@ -90,7 +89,6 @@ Am Ende des Kurses hat der Teilnehmer folgende fortgeschrittene Fähigkeiten ent
 | OBJ-07 | Kombinierte Diagramme, Executive Dashboards mit KPIs erstellen und professionelle Visualisierungstechniken anwenden |
 | OBJ-08 | Makros aufzeichnen, bearbeiten und ausführen, um wiederkehrende Aufgaben zu automatisieren, und die Grundlagen von VBA verstehen |
 
----
 
 ## 3. Entwickelte Kompetenzen
 
@@ -120,7 +118,6 @@ Der Kurs vertieft den **DigComp 2.2-Rahmen** (Vuorikari et al., 2022) auf mittle
 | Executive Communication | Erstellung professioneller Dashboards für die Präsentation vor der Geschäftsleitung |
 | Kritisches Denken | Formelüberwachung, Modellvalidierung, Fehlererkennung |
 
----
 
 ## 4. Inhalte und Struktur
 
@@ -152,7 +149,6 @@ Der Kurs verdichtet die zehn Module des Fortgeschrittenenprogramms auf acht Sitz
 | 7 | Sitzung 7 | Automatisierung mit Makros (Einführung) | Theorie-Praxis |
 | 8 | Sitzung 8 | Angewandtes VBA, Zusammenarbeit und Produktivität | Theorie-Praxis |
 
----
 
 ## 5. Didaktische Methodik
 
@@ -174,7 +170,6 @@ Der Kurs verdichtet die zehn Module des Fortgeschrittenenprogramms auf acht Sitz
 4. **Gezieltes Üben**: Übungen, die darauf ausgelegt sind, die festgestellten spezifischen Schwachstellen zu überwinden
 5. **Fortschreitende Automatisierung**: Vom manuellen Verständnis zur Automatisierung mit Makros
 
----
 
 ## 6. Materialien und didaktische Ressourcen
 
@@ -193,7 +188,6 @@ Der Kurs verdichtet die zehn Module des Fortgeschrittenenprogramms auf acht Sitz
 | Progressives Hinweissystem | Vier Stufen von allgemeiner Orientierung bis zur vollständigen Lösung |
 | Fortschrittsübersicht | Visualisierung des individuellen Fortschritts |
 
----
 
 ## 7. Fortschrittsverfolgung
 
@@ -204,11 +198,8 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 - **Sofortiges Feedback**: Korrektur im Moment mit ausführlicher Erklärung der Fehlerursache
 - **Teilnahmebescheinigung**: Wird am Ende des Kurses auf Basis von Anwesenheit und aktiver Teilnahme ausgestellt
 
-\newpage
 
 ## 8. Ausgestaltung der Sitzungen
-
-\newpage
 
 ### Sitzung 1: Erweiterte Formate, bedingte Formatierung und Datenüberprüfung
 
@@ -225,7 +216,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 #### Inhalte
 
-| Konzepte | Verfahren | Haltungen |
+| Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Formatcodes: positiv;negativ;null;text | Benutzerdefinierte Formate mit Text, Farben und Bedingungen erstellen | Sorgfalt bei der professionellen Darstellung von Daten |
 | Bedingte Formatierung mit Formeln | Komplexe Regeln entwerfen (=$F5="TX", =UND(B4>HEUTE();...)) | Aufmerksamkeit für die Logik der Bedingungen |
@@ -242,7 +233,6 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Festigung | 15 Min | Eigenständige Übung: Entwurf eines Rechnungsformats mit benutzerdefinierten Formaten und Überprüfung |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 1 |
 
-\newpage
 
 ### Sitzung 2: Erweiterte Funktionen und komplexe Formeln
 
@@ -260,7 +250,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 #### Inhalte
 
-| Konzepte | Verfahren | Haltungen |
+| Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Mehrdimensionale Suche und dynamische Bezüge | Zweidimensionales INDEX+VERGLEICH und BEREICH.VERSCHIEBEN mit SUMME erstellen | Wertschätzung der Flexibilität gegenüber SVERWEIS |
 | Verschachtelung logischer Funktionen | WENN, UND, ODER und WENNFEHLER in realen Kontexten verketten | Geduld bei syntaktischer Komplexität |
@@ -278,7 +268,6 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Festigung | 15 Min | Integrationsübung mit echten Finanzdaten |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 2 |
 
-\newpage
 
 ### Sitzung 3: 3D-Bezüge, Datenbanken und Spezialfilter
 
@@ -296,7 +285,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 #### Inhalte
 
-| Konzepte | Verfahren | Haltungen |
+| Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Definierte Namen als Best Practice | Namen aus dem Namensfeld und dem Namens-Manager erstellen | Wertschätzung für Klarheit und Wartbarkeit |
 | 3D-Bezüge zur Konsolidierung | =SUMME(Tabelle1:Tabelle5!B2) erstellen | Wertschätzung der Effizienz bei der Konsolidierung |
@@ -313,7 +302,6 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Festigung | 15 Min | Eigenständige Übung mit Mitarbeiterdatenbank: mehrstufige Sortierung, Teilergebnisse nach Abteilung, Spezialfilter mit berechneten Kriterien |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Module 3 und 4 |
 
-\newpage
 
 ### Sitzung 4: Erweiterte Pivot-Tabellen
 
@@ -331,7 +319,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 #### Inhalte
 
-| Konzepte | Verfahren | Haltungen |
+| Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Mehrdimensionale Datenstruktur | Felder in Zeilen, Spalten, Werten und Filtern konfigurieren | Freude an der interaktiven Erkundung von Daten |
 | Zeitliche und numerische Gruppierung | Daten gruppieren und benutzerdefinierte Bereiche erstellen | Wertschätzung der Synthese gegenüber dem Detail |
@@ -349,7 +337,6 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Festigung | 15 Min | Übung: Erstellung eines Executive-Berichts mit Pivot-Tabelle, Slicers und Pivot-Chart |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 5 |
 
-\newpage
 
 ### Sitzung 5: Datenanalyse, Szenarien und Solver
 
@@ -367,7 +354,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 #### Inhalte
 
-| Konzepte | Verfahren | Haltungen |
+| Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Sparklines als kompakte Visualisierung | Linien-, Spalten- und Gewinn/Verlust-Sparklines einfügen | Wertschätzung der kontextbezogenen Visualisierung |
 | Lineare Regression und Kurvenanpassung | Trendlinien hinzufügen und R² analysieren | Neugier auf prädiktive Modellierung |
@@ -385,7 +372,6 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Festigung | 15 Min | Übung zur Fehlerdiagnose in einem vorgefertigten Modell |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 6 |
 
-\newpage
 
 ### Sitzung 6: Erweiterte Diagramme und Dashboards
 
@@ -403,7 +389,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 #### Inhalte
 
-| Konzepte | Verfahren | Haltungen |
+| Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Grammatik der Datenvisualisierung | Den zur Botschaft passenden Diagrammtyp auswählen | Kritisches Bewusstsein für visuelle Kommunikation |
 | Kombinierte Diagramme und Sekundärachsen | Diagramme mit zwei verschiedenen Skalen erstellen | Aufmerksamkeit für darstellerische Klarheit |
@@ -420,7 +406,6 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Festigung | 15 Min | Kritische Überprüfung des Dashboards: Kommuniziert es effektiv? Was könnte verbessert werden? |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 7 |
 
-\newpage
 
 ### Sitzung 7: Automatisierung mit Makros (Einführung)
 
@@ -438,7 +423,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 #### Inhalte
 
-| Konzepte | Verfahren | Haltungen |
+| Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Konzept von Makro und VBA | Registerkarte Entwicklertools aktivieren und Sicherheit konfigurieren | Bewusstsein für Sicherheitsrisiken |
 | Aufzeichnung mit absoluten vs. relativen Bezügen | Ein Makro aufzeichnen, das einen Bericht formatiert | Wertschätzung der Zeitersparnis |
@@ -455,7 +440,6 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Festigung | 15 Min | Übung: Ein Makro aufzeichnen, das eine reale Aufgabe des Teilnehmers automatisiert |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 8 |
 
-\newpage
 
 ### Sitzung 8: Angewandtes VBA, Zusammenarbeit und Kursabschluss
 
@@ -473,7 +457,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 #### Inhalte
 
-| Konzepte | Verfahren | Haltungen |
+| Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Variablen, Typen und Kontrollstrukturen in VBA | Eine For Each-Schleife und eine If/Then-Bedingung schreiben | Neugier auf Programmierung |
 | Excel-Ereignisse | Ein Worksheet_Change-Ereignis zur automatischen Validierung erstellen | Interesse an reaktiver Automatisierung |
@@ -490,7 +474,6 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Festigung | 15 Min | Allgemeine Kursrückschau: Der Teilnehmer identifiziert die Werkzeuge mit der größten Auswirkung auf seine Arbeit und die Bereiche, die er vertiefen möchte |
 | Abschluss | 10 Min | Übergabe der Bescheinigung. Entwicklungsplan: empfohlene Ressourcen, erweiterter VBA-Kurs, Excel-lenz-Community |
 
----
 
 ## 9. Kursverfolgung
 
@@ -519,7 +502,6 @@ Am Ende des Kurses erstellt der Dozent einen Bericht mit:
 2. Angemessenheit der Inhalte für das berufliche Profil des Teilnehmers
 3. Verbesserungsvorschläge für zukünftige Durchführungen
 
----
 
 ## Anhang: Zuordnung zu den Übungen der Excel-lenz-Plattform
 
@@ -536,8 +518,25 @@ Die Excel-lenz-Plattform verfügt über **25 Übungen auf fortgeschrittenem Nive
 | 7 | M8: Makros | 2 | Quiz |
 | 8 | M9: VBA + M10: Kollaboration | 4 | Quiz |
 
-*Hinweis: Die Übungen der Module 5 bis 10 befinden sich in der Entwicklung. Der Dozent stellt bis dahin gleichwertige Übungen im Excel-Format zur Verfügung.*
+*Hinweis: Die Übungen des Moduls 7 (Diagramme) befinden sich in der Entwicklung. Der Dozent stellt bis dahin gleichwertige Übungen im Excel-Format zur Verfügung.*
+
+
 
 ---
+
+## Literaturverzeichnis
+
+Knowles, M. S. (1980). *The Modern Practice of Adult Education: From Pedagogy to Andragogy* (Revised ed.). Cambridge Adult Education.
+
+Mezirow, J. (1991). *Transformative Dimensions of Adult Learning*. Jossey-Bass.
+
+Mishra, P. & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. *Teachers College Record*, 108(6), 1017–1054.
+
+Siemens, G. (2005). Connectivism: A Learning Theory for the Digital Age. *International Journal of Instructional Technology and Distance Learning*, 2(1), 3–10.
+
+Vuorikari, R., Kluzer, S. & Punie, Y. (2022). *DigComp 2.2: The Digital Competence Framework for Citizens*. Publications Office of the European Union. doi:10.2760/115376
+
+---
+
 
 *Didaktischer Leitfaden, erstellt nach den Grundsätzen der Andragogik (Knowles, 1980) und dem europäischen Rahmen für digitale Kompetenzen DigComp 2.2 (Vuorikari et al., 2022).*

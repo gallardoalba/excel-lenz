@@ -3,6 +3,7 @@ import { getDb } from '../db/database';
 import { authMiddleware, optionalAuth, AuthPayload } from '../middleware/auth';
 import { sm2Update } from '../utils/spacedRepetition';
 import { awardXP } from './gamification';
+import { goalSeek } from '../utils/goalSeek';
 import crypto from 'node:crypto';
 
 const router = Router();
@@ -309,3 +310,53 @@ router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) 
 });
 
 export default router;
+
+// ── Goal Seek endpoint ─────────────────────────────────────
+// POST /api/exercises/goal-seek
+// Body: { data, formulaRow, formulaCol, inputRow, inputCol, targetValue }
+router.post('/goal-seek', authMiddleware, async (req: Request, res: Response) => {
+  const { data, formulaRow, formulaCol, inputRow, inputCol, targetValue } = req.body;
+
+  if (!Array.isArray(data)) {
+    res.status(400).json({ error: 'data must be a 2D array' });
+    return;
+  }
+
+  try {
+    // Create a lightweight HyperFormula instance for this calculation
+    const { HyperFormula } = await import('hyperformula');
+    // @ts-ignore - i18n path not in TS declarations
+    const deDE = require('hyperformula/i18n/languages/deDE').default;
+    try { HyperFormula.registerLanguage('deDE', deDE); } catch { /* already registered */ }
+    const hf = HyperFormula.buildEmpty({
+      licenseKey: 'gpl-v3',
+      language: 'deDE',
+      functionArgSeparator: ';',
+      decimalSeparator: ',',
+    });
+    hf.addSheet('Sheet1');
+    // Set cell contents via API (buildFromArray doesn't handle formulas with DE locale)
+    for (let r = 0; r < data.length; r++) {
+      for (let c = 0; c < (data[r]?.length || 0); c++) {
+        const val = data[r][c];
+        if (val !== null && val !== undefined && val !== '') {
+          hf.setCellContents({ sheet: 0, col: c, row: r }, [[val]]);
+        }
+      }
+    }
+
+    const result = goalSeek({
+      data,
+      hf,
+      formulaRow: Number(formulaRow),
+      formulaCol: Number(formulaCol),
+      inputRow: Number(inputRow),
+      inputCol: Number(inputCol),
+      targetValue: Number(targetValue),
+    });
+
+    res.json(result);
+  } catch (err: any) {
+    res.status(422).json({ error: err.message || 'Goal Seek failed' });
+  }
+});
