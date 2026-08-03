@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 // Mock fetch globally
 const mockFetch = vi.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch as any;
 
 // Mock localStorage
 const localStorageMock = (() => {
@@ -18,7 +18,7 @@ const localStorageMock = (() => {
     clear: vi.fn(() => { store = {}; }),
   };
 })();
-Object.defineProperty(global, 'localStorage', { value: localStorageMock });
+Object.defineProperty(globalThis, 'localStorage', { value: localStorageMock });
 
 function wrapper({ children }: { children: ReactNode }) {
   return (
