@@ -6,8 +6,6 @@
   <img src="docs/img/logo.jpg" alt="Excel-lenz Logo" width="100%">
 </p>
 
-> Interaktives Excel-Lernportal — Praxisorientiertes Training mit direktem Feedback und adaptiven Lernpfaden.
-
 ---
 
 ## Über das Projekt
