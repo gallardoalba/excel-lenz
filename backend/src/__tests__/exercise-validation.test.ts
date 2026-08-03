@@ -84,10 +84,19 @@ describe('Exercise Data Integrity & Scoring', () => {
       expect(td).toBeDefined();
 
       if (td.type === 'quiz') {
-        // Quiz exercises: validate question structure (score via answers, not grid)
-        expect(Array.isArray(td.questions)).toBe(true);
-        expect(td.questions.length).toBeGreaterThan(0);
-        // Pure quiz exercises have no embedded grid / taskCols
+        // Quiz exercises: two subtypes —
+        //   a) question-based (has `questions` array for multiple-choice)
+        //   b) grid-based (has `data` + `taskCols`, like a spreadsheet quiz)
+        if (Array.isArray(td.questions)) {
+          expect(td.questions.length).toBeGreaterThan(0);
+        }
+        // Grid-based quizzes without questions are valid — they use data+taskCols
+        if (!Array.isArray(td.data) && !Array.isArray(td.questions)) {
+          // Neither grid nor questions — invalid quiz
+          expect(false).toBe(true);
+          continue;
+        }
+        // Pure question-based quizzes have no grid / taskCols
         if (!Array.isArray(td.data)) continue;
       }
 

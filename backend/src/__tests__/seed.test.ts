@@ -85,16 +85,21 @@ describe('Seed Validation', () => {
 
       const isQuiz = solution.type === 'quiz' || template.type === 'quiz';
       if (isQuiz) {
-        // Quiz exercises: answer key + questions instead of a spreadsheet grid
-        expect(Array.isArray(solution.answers)).toBe(true);
-        expect(solution.answers.length).toBeGreaterThan(0);
-        expect(Array.isArray(template.questions)).toBe(true);
-        expect(template.questions.length).toBeGreaterThan(0);
-        // Some quiz exercises also embed a reference grid; when present it must be valid
+        // Quiz exercises come in two subtypes:
+        //   a) question-based: has `questions` + `answers` arrays
+        //   b) grid-based: has `data` + `taskCols` (spreadsheet-style quiz)
+        if (Array.isArray(solution.answers)) {
+          expect(solution.answers.length).toBeGreaterThan(0);
+        }
+        if (Array.isArray(template.questions)) {
+          expect(template.questions.length).toBeGreaterThan(0);
+        }
+        // Grid-based quizzes have data/taskCols — validate the grid below
         if (template.data !== undefined) {
           expect(Array.isArray(template.data)).toBe(true);
         }
-        continue;
+        // Pure question-based quizzes (no grid) are fully validated above
+        if (Array.isArray(template.questions) && !Array.isArray(template.data)) continue;
       }
 
       // Spreadsheet exercises: template grid + solution grid
