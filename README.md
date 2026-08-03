@@ -6,8 +6,6 @@
   <img src="docs/img/logo.jpg" alt="Excel-lenz Logo" width="100%">
 </p>
 
----
-
 ## Über das Projekt
 
 Excel-lenz ist eine browserbasierte Lernplattform, die Excel-Übungen in einer realistischen Tabellenkalkulationsumgebung bereitstellt. Statt passiver Video-Tutorials oder statischer PDFs arbeitet der Lernende direkt in einem vollständigen Excel-Simulator — mit Ribbon-Interface, Formel-Engine und automatischer Korrektur.
