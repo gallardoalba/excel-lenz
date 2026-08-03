@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import crypto from 'node:crypto';
+import bcrypt from 'bcryptjs';
 import { getDb } from '../db/database';
 import { authMiddleware, AuthPayload } from '../middleware/auth';
 
@@ -108,8 +109,16 @@ router.delete('/exercises/:id', (req: Request, res: Response) => {
 
 // ── STUDENT OVERVIEW ────────────────────────────────────────
 
-// Get all students with progress
-router.get('/students', (_req: Request, res: Response) => {
+// Get all students with progress (paginated)
+router.get('/students', (req: Request, res: Response) => {
+  const page = Math.max(1, parseInt(req.query.page as string) || 1);
+  const limit = Math.min(100, Math.max(1, parseInt(req.query.limit as string) || 20));
+  const offset = (page - 1) * limit;
+
+  const total = (getDb().prepare(
+    'SELECT COUNT(*) as count FROM users WHERE role = ?'
+  ).get('student') as { count: number }).count;
+
   const students = getDb().prepare(`
     SELECT u.id, u.name, u.email, u.created_at,
            COUNT(p.id) as exercises_attempted,
@@ -120,8 +129,10 @@ router.get('/students', (_req: Request, res: Response) => {
     WHERE u.role = 'student'
     GROUP BY u.id
     ORDER BY u.name
-  `).all();
-  res.json(students);
+    LIMIT ? OFFSET ?
+  `).all(limit, offset);
+
+  res.json({ data: students, page, limit, total, totalPages: Math.ceil(total / limit) });
 });
 
 // Get single student detail with all exercise results
@@ -145,7 +156,7 @@ router.get('/students/:id', (req: Request, res: Response) => {
 });
 
 // ── CREATE STUDENT ─────────────────────────────────────────
-router.post('/students', (req: Request, res: Response) => {
+router.post('/students', async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     res.status(400).json({ error: 'Name, Email und Passwort sind erforderlich' });
@@ -157,8 +168,7 @@ router.post('/students', (req: Request, res: Response) => {
     res.status(409).json({ error: 'Ein Benutzer mit dieser Email existiert bereits' });
     return;
   }
-  const bcrypt = require('bcryptjs');
-  const hash = bcrypt.hashSync(password, 10);
+  const hash = await bcrypt.hash(password, 10);
   const id = crypto.randomUUID();
   db.prepare(
     'INSERT INTO users (id, email, password_hash, name, role) VALUES (?, ?, ?, ?, ?)'
@@ -179,9 +189,15 @@ router.delete('/students/:id', (req: Request, res: Response) => {
 
 // ── ANALYTICS ───────────────────────────────────────────────
 
-// Get aggregated analytics across all students
-router.get('/analytics', (_req: Request, res: Response) => {
+// Get aggregated analytics across all students (paginated)
+router.get('/analytics', (req: Request, res: Response) => {
+  const page = Math.max(1, parseInt(req.query.page as string) || 1);
+  const limit = Math.min(100, Math.max(1, parseInt(req.query.limit as string) || 50));
+  const offset = (page - 1) * limit;
+
   const db = getDb();
+  const total = (db.prepare('SELECT COUNT(*) as count FROM exercises').get() as { count: number }).count;
+
   const stats = db.prepare(`
     SELECT e.id, e.title, c.title as course_title,
            COUNT(p.id) as attempts,
@@ -192,8 +208,10 @@ router.get('/analytics', (_req: Request, res: Response) => {
     LEFT JOIN progress p ON p.exercise_id = e.id
     GROUP BY e.id
     ORDER BY c.title, e.order_index
-  `).all();
-  res.json(stats);
+    LIMIT ? OFFSET ?
+  `).all(limit, offset);
+
+  res.json({ data: stats, page, limit, total, totalPages: Math.ceil(total / limit) });
 });
 
 export default router;

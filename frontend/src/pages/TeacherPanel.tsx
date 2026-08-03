@@ -44,7 +44,7 @@ export default function TeacherPanel() {
   const loadData = async () => {
     setLoading(true);
     const [s, c] = await Promise.all([
-      apiFetch('/teacher/students').catch(() => []),
+      apiFetch('/teacher/students').then((r: any) => r?.data || []).catch(() => []),
       apiFetch('/courses').catch(() => []),
     ]);
     setStudents(s); setCourses(c); setLoading(false);
@@ -53,14 +53,15 @@ export default function TeacherPanel() {
   const loadAnalytics = async () => {
     setAnalyticsLoading(true);
     try {
-      const data = await apiFetch('/teacher/analytics').catch(() => []);
-      const s = await apiFetch('/teacher/students').catch(() => []);
-      const exerciseStats = (data || []).map((ex: any) => ({
+      const aResp = await apiFetch('/teacher/analytics').catch(() => ({ data: [] }));
+      const sResp = await apiFetch('/teacher/students').catch(() => ({ data: [], total: 0 }));
+      const data = aResp?.data || [];
+      const exerciseStats = data.map((ex: any) => ({
         title: ex.title, course: ex.course_title,
         avgScore: ex.avg_score || 0,
         failRate: ex.fail_rate || 0,
       }));
-      setAnalytics({ exerciseStats, totalStudents: s.length });
+      setAnalytics({ exerciseStats, totalStudents: sResp?.total || sResp?.data?.length || 0 });
     } catch { /* ignore */ }
     setAnalyticsLoading(false);
   };
