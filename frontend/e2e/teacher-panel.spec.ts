@@ -6,11 +6,13 @@
  */
 import { test, expect } from '@playwright/test';
 
+const TEACHER_PASSWORD = process.env.SEED_PASSWORD || 'devpassword';
+
 test.describe('Teacher Panel', () => {
   test.beforeEach(async ({ page }) => {
-    // Login as seeded teacher via API (avoids form login issues)
+    // Login as seeded teacher via API
     const loginRes = await page.request.post('http://localhost:3001/api/auth/login', {
-      data: { email: 'dozent@excel-lenz.edu', password: 'devpassword' },
+      data: { email: 'dozent@excel-lenz.edu', password: TEACHER_PASSWORD },
     });
     const { token } = await loginRes.json();
 
