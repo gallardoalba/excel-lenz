@@ -255,6 +255,14 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--text); }
 .section-alt2 { background: var(--bg-alt2); }
 .section-inner { max-width: var(--content-max); margin: 0 auto; }
 
+/* Legal pages — Impressum, Datenschutz, AGB */
+.legal-content h1 { margin-bottom: 8px; }
+.legal-content .legal-date { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 40px; }
+.legal-content h2 { font-size: 1.25rem; font-weight: 600; margin-top: 36px; margin-bottom: 12px; letter-spacing: 0; color: var(--text); }
+.legal-content p, .legal-content li { font-size: 1rem; line-height: 1.75; color: var(--text-secondary); }
+.legal-content ul { padding-left: 20px; margin: 8px 0 16px; }
+.legal-content li { margin-bottom: 6px; }
+
 /* ============================================================
    NAVBAR — Floating glass (Apple-style)
    ============================================================ */
@@ -1003,6 +1011,15 @@ body.dark .btn-white:hover { background: var(--bg-alt); color: var(--text); }
   margin-bottom: 20px;
   letter-spacing: -0.03em;
   line-height: 1.15;
+  font-family: var(--font-display);
+}
+.hero h1.hero-brand {
+  animation: fadeInUpBrand 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes fadeInUpBrand {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   font-family: var(--font-display);
 }
 .hero h1 .highlight {

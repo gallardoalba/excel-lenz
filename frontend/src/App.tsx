@@ -34,6 +34,9 @@ const DidacticGuide = lazy(() => import('./pages/DidacticGuide'));
 const DidacticGuideList = lazy(() => import('./pages/DidacticGuideList'));
 const LehrplanList = lazy(() => import('./pages/LehrplanList'));
 const LehrplanPage = lazy(() => import('./pages/LehrplanPage'));
+const Impressum = lazy(() => import('./pages/Impressum'));
+const Datenschutz = lazy(() => import('./pages/Datenschutz'));
+const AGB = lazy(() => import('./pages/AGB'));
 
 export default function App() {
   const { user, loading, logout } = useAuth();
@@ -41,6 +44,16 @@ export default function App() {
   const { goal: dailyGoal, setGoal: setDailyGoal } = useDailyGoal();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [lastExercise, setLastExercise] = useState<{ id: string; title: string } | null>(null);
+  const [courseLinks, setCourseLinks] = useState<{ id: string; title: string }[]>([]);
+
+  // Load course links for footer
+  useEffect(() => {
+    apiFetch('/courses')
+      .then((courses: { id: string; title: string }[]) => {
+        if (courses?.length) setCourseLinks(courses.slice(0, 3));
+      })
+      .catch(() => {});
+  }, []);
 
   // Load daily goal from localStorage on user change
   useEffect(() => {
@@ -214,6 +227,9 @@ export default function App() {
           <Route path="/didaktik" element={<DidacticGuideList />} />
           <Route path="/lehrplan" element={<LehrplanList />} />
           <Route path="/lehrplan/:type" element={<LehrplanPage />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/agb" element={<AGB />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </div>
@@ -230,9 +246,11 @@ export default function App() {
           <div>
             <h4>Kurse</h4>
             <ul>
-              <li><Link to="/courses">Excel-Grundlagen</Link></li>
-              <li><Link to="/courses">Fortgeschrittene Techniken</Link></li>
-              <li><Link to="/courses">Individuelle Lernpfade</Link></li>
+              {courseLinks.length > 0 ? courseLinks.map(c => (
+                <li key={c.id}><Link to={`/courses/${c.id}`}>{c.title}</Link></li>
+              )) : (
+                <li><Link to="/courses">Excel-Grundlagen</Link></li>
+              )}
             </ul>
           </div>
           <div>
