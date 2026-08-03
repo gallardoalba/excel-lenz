@@ -8,12 +8,12 @@
     {
       "icon": "User",
       "title": "Individuelles Lernen statt Massenabfertigung",
-      "description": "Ihr eigenes Tempo, Ihre Schwerpunkte – kein Einheitskurs."
+      "description": "Ihr eigenes Tempo, Ihre Schwerpunkte: kein Einheitskurs."
     },
     {
       "icon": "Clock",
       "title": "Flexibler Start und freie Zeiteinteilung",
-      "description": "Einstieg jederzeit möglich – lernen Sie, wann und wo Sie wollen."
+      "description": "Einstieg jederzeit möglich. Lernen Sie, wann und wo Sie wollen."
     },
     {
       "icon": "Award",
@@ -28,7 +28,7 @@
     {
       "icon": "RefreshCw",
       "title": "Sofortiges Feedback",
-      "description": "Automatische Korrektur in Echtzeit – Sie sehen sofort, was Sie verbessern können."
+      "description": "Automatische Korrektur in Echtzeit: Sie sehen sofort, was Sie verbessern können."
     }
   ],
   "testimonials": [
@@ -63,16 +63,16 @@
     {
       "icon": "TrendingUp",
       "title": "Fortgeschrittene Techniken",
-      "description": "Pivot-Tabellen, SVERWEIS, Makros: Meistern Sie die Werkzeuge, die im Berufsalltag wirklich zählen – mit praxisnahen Simulationen.",
+      "description": "Pivot-Tabellen, SVERWEIS, Makros: Meistern Sie die Werkzeuge, die im Berufsalltag wirklich zählen, mit praxisnahen Simulationen.",
       "link": "/courses",
       "linkText": "Techniken entdecken"
     },
     {
       "icon": "GraduationCap",
-      "title": "Individuelle Lernpfade",
-      "description": "Jeder lernt anders. Unsere Plattform passt sich Ihrem Fortschritt an und empfiehlt die nächsten Schritte – für effizientes Lernen ohne Umwege.",
-      "link": "/register",
-      "linkText": "Jetzt starten"
+      "title": "Didaktische Leitfäden",
+      "description": "Jeder Kurs folgt einem geprüften didaktischen Konzept mit klar definierten Lernzielen für strukturiertes und nachhaltiges Lernen.",
+      "link": "/didaktik",
+      "linkText": "Leitfäden entdecken"
     }
   ]
 }

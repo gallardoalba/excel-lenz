@@ -28,10 +28,9 @@ export default function DidacticGuideList() {
       <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: 8, letterSpacing: '-0.03em' }}>
         Didaktische Leitfäden
       </h1>
-      <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', marginBottom: 40, maxWidth: 600 }}>
+      <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', marginBottom: 40, maxWidth: 720 }}>
         Vollständige Unterrichtsplanungen für Excel-Präsenzkurse. Jeder Leitfaden enthält
-        Lernziele, Methodik, Sitzungsabläufe und Kompetenzrahmen — konzipiert von Cristóbal Gallardo
-        für den Einzelunterricht in Freiburg im Breisgau.
+        Lernziele, Methodik, Sitzungsabläufe und Kompetenzrahmen.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
