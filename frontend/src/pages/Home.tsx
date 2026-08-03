@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Play, BookOpen, BarChart3, TrendingUp, GraduationCap, User, Clock, Award, Star, RefreshCw, Trophy, ChevronDown } from 'lucide-react';
+import { Play, BookOpen, BarChart3, TrendingUp, GraduationCap, User, Clock, Award, Star, RefreshCw, Trophy, ChevronDown, Code2 } from 'lucide-react';
 import { useAuth, apiFetch } from '../context/AuthContext';
 import { useTour, HOME_TOUR } from '../components/tour/OnboardingTour';
 import homeContent from '../data/home-content.json';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
+  Code2: <Code2 size={24} />,
+  BookOpen: <BookOpen size={24} />,
   Trophy: <Trophy size={24} />,
   User: <User size={24} />,
   Clock: <Clock size={24} />,
@@ -75,10 +77,6 @@ export default function Home() {
               </Link>
             </div>
           )}
-        </div>
-        {/* Scroll indicator */}
-        <div style={{ position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)', opacity: 0.5, animation: 'fadeInUp 1s 1s both' }}>
-          <ChevronDown size={32} style={{ color: 'var(--text-muted)', animation: 'scrollBounce 2.5s ease-in-out infinite' }} />
         </div>
       </section>
 

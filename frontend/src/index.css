@@ -1118,6 +1118,17 @@ body.dark .btn-white:hover { background: var(--bg-alt); color: var(--text); }
   box-shadow: var(--shadow);
 }
 
+/* Align buttons at bottom in card grids */
+.card-grid-3 .card {
+  display: flex;
+  flex-direction: column;
+}
+.card-grid-3 .card .btn {
+  margin-top: 16px;
+  align-self: flex-start;
+}
+}
+
 /* Floating variant */
 .card-floating {
   box-shadow: var(--shadow-lg);
