@@ -36,7 +36,11 @@ describe('Exercise Routes', () => {
         Array.isArray(td.data) && td.data.length > 0 &&
         Array.isArray(td.taskCols) && td.taskCols.length > 0
       ) {
-        return { id: ex.id, template: td, solution: exRes.body.solution_data || null };
+        // Students don't get solution_data from the API — fetch it from DB directly
+        const { getDb } = await import('../db/database');
+        const raw = getDb().prepare('SELECT solution_data FROM exercises WHERE id = ?').get(ex.id) as any;
+        const solution = raw?.solution_data ? JSON.parse(raw.solution_data) : null;
+        return { id: ex.id, template: td, solution };
       }
     }
     throw new Error('No spreadsheet exercise found in course');
@@ -257,5 +261,36 @@ describe('Exercise Routes', () => {
       .set('Authorization', `Bearer ${token}`);
 
     expect(res.status).toBe(404);
+  });
+
+  // ── Goal Seek (DoS protection) ──────────────────────────────
+
+  it('POST /api/exercises/goal-seek rejects oversized data', async () => {
+    // Create a 101-row array (exceeds MAX_ROWS=100)
+    const bigData = Array.from({ length: 101 }, () => ['']);
+
+    const res = await supertest(app)
+      .post('/api/exercises/goal-seek')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        data: bigData,
+        formulaRow: 0,
+        formulaCol: 0,
+        inputRow: 0,
+        inputCol: 0,
+        targetValue: 100,
+      });
+
+    expect(res.status).toBe(400);
+    expect(res.body.error).toContain('Daten zu groß');
+  });
+
+  it('POST /api/exercises/goal-seek rejects non-array data', async () => {
+    const res = await supertest(app)
+      .post('/api/exercises/goal-seek')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ data: 'not-an-array' });
+
+    expect(res.status).toBe(400);
   });
 });

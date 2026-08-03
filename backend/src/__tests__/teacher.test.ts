@@ -181,19 +181,34 @@ describe('Teacher Routes', () => {
 
   // ── STUDENT OVERVIEW ────────────────────────────────────────
 
-  it('GET /api/teacher/students returns student list', async () => {
+  it('GET /api/teacher/students returns paginated student list', async () => {
     const res = await supertest(app)
       .get('/api/teacher/students')
       .set('Authorization', `Bearer ${teacherToken}`);
 
     expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
-    expect(res.body.length).toBeGreaterThanOrEqual(1);
-    const student = res.body.find((s: any) => s.name === 'Test Student');
+    expect(res.body).toHaveProperty('data');
+    expect(res.body).toHaveProperty('page', 1);
+    expect(res.body).toHaveProperty('limit', 20);
+    expect(res.body).toHaveProperty('total');
+    expect(res.body).toHaveProperty('totalPages');
+    expect(Array.isArray(res.body.data)).toBe(true);
+    expect(res.body.data.length).toBeGreaterThanOrEqual(1);
+    const student = res.body.data.find((s: any) => s.name === 'Test Student');
     expect(student).toBeDefined();
     expect(student).toHaveProperty('exercises_attempted');
     expect(student).toHaveProperty('avg_score');
     expect(student).toHaveProperty('exercises_completed');
+  });
+
+  it('GET /api/teacher/students?page=1&limit=2 respects pagination', async () => {
+    const res = await supertest(app)
+      .get('/api/teacher/students?page=1&limit=2')
+      .set('Authorization', `Bearer ${teacherToken}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body.limit).toBe(2);
+    expect(res.body.data.length).toBeLessThanOrEqual(2);
   });
 
   it('GET /api/teacher/students/:id returns student detail', async () => {
@@ -201,7 +216,7 @@ describe('Teacher Routes', () => {
       .get('/api/teacher/students')
       .set('Authorization', `Bearer ${teacherToken}`);
 
-    const studentId = studentsRes.body.find((s: any) => s.name === 'Test Student').id;
+    const studentId = studentsRes.body.data.find((s: any) => s.name === 'Test Student').id;
 
     const res = await supertest(app)
       .get(`/api/teacher/students/${studentId}`)
@@ -223,17 +238,21 @@ describe('Teacher Routes', () => {
 
   // ── ANALYTICS ───────────────────────────────────────────────
 
-  it('GET /api/teacher/analytics returns exercise stats', async () => {
+  it('GET /api/teacher/analytics returns paginated exercise stats', async () => {
     const res = await supertest(app)
       .get('/api/teacher/analytics')
       .set('Authorization', `Bearer ${teacherToken}`);
 
     expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
-    if (res.body.length > 0) {
-      expect(res.body[0]).toHaveProperty('title');
-      expect(res.body[0]).toHaveProperty('course_title');
-      expect(res.body[0]).toHaveProperty('avg_score');
+    expect(res.body).toHaveProperty('data');
+    expect(res.body).toHaveProperty('page', 1);
+    expect(res.body).toHaveProperty('total');
+    expect(res.body).toHaveProperty('totalPages');
+    expect(Array.isArray(res.body.data)).toBe(true);
+    if (res.body.data.length > 0) {
+      expect(res.body.data[0]).toHaveProperty('title');
+      expect(res.body.data[0]).toHaveProperty('course_title');
+      expect(res.body.data[0]).toHaveProperty('avg_score');
     }
   });
 
@@ -243,7 +262,7 @@ describe('Teacher Routes', () => {
       .set('Authorization', `Bearer ${teacherToken}`);
 
     // All exercises should appear, even those with 0 attempts
-    expect(res.body.length).toBeGreaterThan(0);
+    expect(res.body.data.length).toBeGreaterThan(0);
   });
 
   it('GET /api/teacher/students/:id shows progress after exercise submission', async () => {
@@ -266,12 +285,61 @@ describe('Teacher Routes', () => {
     const studentsRes = await supertest(app)
       .get('/api/teacher/students')
       .set('Authorization', `Bearer ${teacherToken}`);
-    const student = studentsRes.body.find((s: any) => s.name === 'Test Student');
+    const student = studentsRes.body.data.find((s: any) => s.name === 'Test Student');
 
     const res = await supertest(app)
       .get(`/api/teacher/students/${student.id}`)
       .set('Authorization', `Bearer ${teacherToken}`);
 
     expect(res.body.progress.length).toBeGreaterThanOrEqual(1);
+  });
+
+  // ── CREATE STUDENT (async bcrypt) ───────────────────────────
+
+  it('POST /api/teacher/students creates student with async bcrypt', async () => {
+    const res = await supertest(app)
+      .post('/api/teacher/students')
+      .set('Authorization', `Bearer ${teacherToken}`)
+      .send({ name: 'Async Student', email: 'async@ex.com', password: 'secure123' });
+
+    expect(res.status).toBe(201);
+    expect(res.body).toHaveProperty('id');
+    expect(res.body).toHaveProperty('name', 'Async Student');
+    expect(res.body).toHaveProperty('email', 'async@ex.com');
+  });
+
+  it('POST /api/teacher/students with duplicate email returns 409', async () => {
+    // Create first
+    await supertest(app)
+      .post('/api/teacher/students')
+      .set('Authorization', `Bearer ${teacherToken}`)
+      .send({ name: 'Dup', email: 'dup@ex.com', password: 'secure123' });
+
+    const res = await supertest(app)
+      .post('/api/teacher/students')
+      .set('Authorization', `Bearer ${teacherToken}`)
+      .send({ name: 'Dup2', email: 'dup@ex.com', password: 'secure456' });
+
+    expect(res.status).toBe(409);
+  });
+
+  // ── PAGINATION EDGE CASES ───────────────────────────────────
+
+  it('GET /api/teacher/students clamps limit to max 100', async () => {
+    const res = await supertest(app)
+      .get('/api/teacher/students?limit=999')
+      .set('Authorization', `Bearer ${teacherToken}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body.limit).toBe(100);
+  });
+
+  it('GET /api/teacher/students with page=0 defaults to page=1', async () => {
+    const res = await supertest(app)
+      .get('/api/teacher/students?page=0')
+      .set('Authorization', `Bearer ${teacherToken}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body.page).toBe(1);
   });
 });

@@ -306,6 +306,24 @@ router.get('/user/last-exercise', authMiddleware, (req: Request, res: Response) 
   res.json(review || null);
 });
 
+// ── User Progress List ──────────────────────────────────────
+// GET /api/exercises/user/progress — all progress entries for current user
+router.get('/user/progress', authMiddleware, (req: Request, res: Response) => {
+  const db = getDb();
+  const { userId } = req.user as AuthPayload;
+
+  const progress = db.prepare(`
+    SELECT p.*, e.title as exercise_title, c.title as course_title
+    FROM progress p
+    JOIN exercises e ON e.id = p.exercise_id
+    JOIN courses c ON c.id = e.course_id
+    WHERE p.user_id = ?
+    ORDER BY p.completed_at DESC
+  `).all(userId);
+
+  res.json(progress);
+});
+
 export default router;
 
 // ── Goal Seek endpoint ─────────────────────────────────────

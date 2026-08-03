@@ -257,4 +257,75 @@ describe('Auth Routes', () => {
 
     expect(res.status).toBe(400);
   });
+
+  it('POST /api/auth/verify-email actually sets email_verified on user', async () => {
+    const request = (await import('supertest')).default;
+    // Register a new user
+    const regRes = await request(app)
+      .post('/api/auth/register')
+      .send({ email: 'verify-me@ex.com', password: 'test1234', name: 'Verify Me' });
+
+    expect(regRes.status).toBe(201);
+
+    // Extract the verification token from the database
+    const { getDb } = await import('../db/database');
+    const db = getDb();
+    const tokenRow = db.prepare(
+      'SELECT token FROM email_verification_tokens WHERE user_id = ?'
+    ).get(regRes.body.user.id) as { token: string } | undefined;
+
+    expect(tokenRow).toBeDefined();
+
+    // Verify email
+    const res = await request(app)
+      .post('/api/auth/verify-email')
+      .send({ token: tokenRow!.token });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('verified', true);
+
+    // Confirm email_verified is now 1 in DB
+    const user = db.prepare(
+      'SELECT email_verified FROM users WHERE id = ?'
+    ).get(regRes.body.user.id) as { email_verified: number };
+    expect(user.email_verified).toBe(1);
+  });
+
+  // ── Timing Attack Resistance ────────────────────────────────
+
+  it('POST /api/auth/login with non-existent email still returns 401 (timing-safe)', async () => {
+    const request = (await import('supertest')).default;
+    const res = await request(app)
+      .post('/api/auth/login')
+      .send({ email: 'does-not-exist@nowhere.com', password: 'somepassword' });
+
+    expect(res.status).toBe(401);
+    expect(res.body).toHaveProperty('error', 'Ungültige Anmeldedaten.');
+  });
+
+  it('POST /api/auth/login with valid email + wrong password returns 401', async () => {
+    const request = (await import('supertest')).default;
+    // Register first
+    await request(app)
+      .post('/api/auth/register')
+      .send({ email: 'timing-test@ex.com', password: 'correctpw1', name: 'Timing' });
+
+    const res = await request(app)
+      .post('/api/auth/login')
+      .send({ email: 'timing-test@ex.com', password: 'wrongpassword' });
+
+    expect(res.status).toBe(401);
+    expect(res.body).toHaveProperty('error', 'Ungültige Anmeldedaten.');
+  });
+
+  // ── Password Reset uses Zod validation ──────────────────────
+
+  it('POST /api/auth/reset-password with password missing letters returns 400 (Zod)', async () => {
+    const request = (await import('supertest')).default;
+    const res = await request(app)
+      .post('/api/auth/reset-password')
+      .send({ token: 'some-token', password: '12345678' });
+
+    expect(res.status).toBe(400);
+  });
 });
