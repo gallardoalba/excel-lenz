@@ -1874,6 +1874,18 @@ export default function SpreadsheetHandsontable({
         }
         internalChangeDepth.current++;
         onChange(nd);
+        // Bug fix: force HyperFormula recalculation when new values contain formulas.
+        // Without this, programmatic setDataAtCell with formula strings may not trigger
+        // HF evaluation through the Handsontable pipeline.
+        const hasFormula = changes.some(([, , , newVal]: any[]) =>
+          typeof newVal === 'string' && newVal.startsWith('=')
+        );
+        if (hasFormula) {
+          const hf = hfRef.current;
+          if (hf) {
+            try { hf.rebuildAndRecalculate(); } catch { /* ignore */ }
+          }
+        }
         // Defer reset to protect against async React re-render cycle
         setTimeout(() => {
           if (internalChangeDepth.current > 0) internalChangeDepth.current--;
@@ -2732,6 +2744,7 @@ export default function SpreadsheetHandsontable({
       {!readOnly && (
         <FormulaBar
           activeCell={activeCell}
+          selectedRange={selectedRange}
           cellValue={formulaBarValue}
           onChange={(v) => { setFormulaBarValue(v); isFormulaEditingRef.current = true; }}
           onConfirm={() => { handleFormulaConfirm(); isFormulaEditingRef.current = false; }}

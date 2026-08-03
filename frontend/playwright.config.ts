@@ -13,8 +13,8 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 4 : 1,
   reporter: [
-    ['html', { outputFolder: 'playwright-report' }],
     ['list'],
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
   ],
 
   timeout: 60000,
@@ -34,6 +34,19 @@ export default defineConfig({
     },
   ],
 
-  // Servers are started separately via `npm run dev` from root
-  // webServer: ... (commented out — use existing servers)
+  // Start both backend and frontend automatically
+  webServer: [
+    {
+      command: 'cd ../backend && JWT_SECRET=dev-secret DB_PATH=:memory: SEED_PASSWORD=devpassword npx tsx src/server.ts',
+      port: 3001,
+      timeout: 15000,
+      reuseExistingServer: true,
+    },
+    {
+      command: 'npx vite --port 5173 --strictPort',
+      port: 5173,
+      timeout: 15000,
+      reuseExistingServer: true,
+    },
+  ],
 });

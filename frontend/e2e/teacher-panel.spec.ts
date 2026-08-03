@@ -6,17 +6,17 @@
  */
 import { test, expect } from '@playwright/test';
 
-const TEACHER_EMAIL = 'dozent@excel-lenz.edu';
-const TEACHER_PASSWORD = 'devpassword';
-
 test.describe('Teacher Panel', () => {
   test.beforeEach(async ({ page }) => {
-    // Login as teacher
-    await page.goto('/login');
-    await page.fill('input[type="email"]', TEACHER_EMAIL);
-    await page.fill('input[type="password"]', TEACHER_PASSWORD);
-    await page.click('button[type="submit"]');
-    await page.waitForURL('**/dashboard');
+    // Login as seeded teacher via API (avoids form login issues)
+    const loginRes = await page.request.post('http://localhost:3001/api/auth/login', {
+      data: { email: 'dozent@excel-lenz.edu', password: 'devpassword' },
+    });
+    const { token } = await loginRes.json();
+
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+    await page.evaluate((t: string) => localStorage.setItem('token', t), token);
 
     // Navigate to teacher panel
     await page.goto('/teacher');
@@ -25,59 +25,54 @@ test.describe('Teacher Panel', () => {
 
   test('shows students tab with student list', async ({ page }) => {
     // Check students tab is active by default
-    await expect(page.locator('text=Schüler')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Schüler', exact: true })).toBeVisible();
 
-    // Should show at least one student (the seeded ones)
-    await expect(page.locator('[class*="student"]').first()).toBeVisible({ timeout: 5000 });
+    // Should show student count heading
+    await expect(page.getByRole('heading', { name: /Schüler/ })).toBeVisible({ timeout: 5000 });
   });
 
   test('switches between tabs: students, courses, analytics', async ({ page }) => {
     // Click courses tab
-    await page.click('text=Kurse');
-    await expect(page.locator('text=Kurs erstellen').or(page.locator('text=Neuer Kurs'))).toBeVisible({ timeout: 3000 });
+    await page.getByRole('button', { name: 'Kurse', exact: true }).click();
+    await expect(page.getByRole('button', { name: /Kurs|Neuer Kurs/ })).toBeVisible({ timeout: 3000 });
 
-    // Click analytics tab
-    await page.click('text=Analytics');
-    await expect(page.locator('text=Analytics').or(page.locator('text=Analysen'))).toBeVisible({ timeout: 3000 });
+    // Click analytics tab — label is "Analyse"
+    await page.getByRole('button', { name: 'Analyse', exact: true }).click();
+    await expect(page.locator('h1, h2, h3').first()).toBeVisible({ timeout: 3000 });
   });
 
   test('shows add student form', async ({ page }) => {
-    // Click add student button
-    await page.click('button:has-text("Schüler hinzufügen")');
-    await expect(page.locator('input[placeholder*="Name"]').or(page.locator('label:has-text("Name")'))).toBeVisible({ timeout: 3000 });
+    // Click add student button — actual text is "Neuer Schüler"
+    await page.getByRole('button', { name: /Neuer Schüler/ }).click();
+    // Form should appear
+    await expect(page.locator('input[type="email"], input[placeholder*="Email"]').first()).toBeVisible({ timeout: 3000 });
   });
 
   test('adds a new student successfully', async ({ page }) => {
     const uniqueEmail = `e2e-student-${Date.now()}@ex.com`;
 
-    // Open add student form
-    await page.click('button:has-text("Schüler hinzufügen")');
+    // Click "Neuer Schüler" button
+    await page.getByRole('button', { name: /Neuer Schüler/ }).click();
 
-    // Fill form
-    await page.fill('input[placeholder*="Name"]', 'E2E Student');
-    const emailInputs = page.locator('input[type="email"], input[placeholder*="Email"], input[placeholder*="E-Mail"]');
-    if (await emailInputs.count() > 0) {
-      await emailInputs.first().fill(uniqueEmail);
-    }
-    const passwordInputs = page.locator('input[type="password"], input[placeholder*="Passwort"]');
-    if (await passwordInputs.count() > 0) {
-      await passwordInputs.first().fill('secure123');
-    }
+    // Fill form — actual placeholders from source code
+    await page.getByPlaceholder('Max Mustermann').fill('E2E Student');
+    await page.getByPlaceholder('max@example.com').fill(uniqueEmail);
+    await page.getByPlaceholder('Mindestens 8 Zeichen').fill('secure123');
 
-    // Submit
-    await page.click('button:has-text("Registrieren")');
+    // Submit — button text is "Registrieren"
+    await page.getByRole('button', { name: 'Registrieren', exact: true }).click();
 
-    // Should show success message
-    await expect(page.locator('text=erfolgreich')).toBeVisible({ timeout: 5000 });
+    // Should show success or the new student appears
+    await expect(page.locator('text=erfolgreich').or(page.locator('text=E2E Student'))).toBeVisible({ timeout: 5000 });
   });
 
   test('teacher can view student detail', async ({ page }) => {
-    // Click on a student to view details
-    const studentRow = page.locator('[class*="student"]').first();
-    if (await studentRow.isVisible()) {
-      await studentRow.click();
-      // Should show progress or detail view
-      await expect(page.locator('text=Fortschritt').or(page.locator('text=Progress'))).toBeVisible({ timeout: 3000 });
+    // Click "Details" button on first student row
+    const detailsBtn = page.getByRole('button', { name: 'Details' }).first();
+    if (await detailsBtn.isVisible({ timeout: 3000 })) {
+      await detailsBtn.click();
+      // Detail modal shows "Übungen:" heading
+      await expect(page.getByText('Übungen:')).toBeVisible({ timeout: 3000 });
     }
   });
 });

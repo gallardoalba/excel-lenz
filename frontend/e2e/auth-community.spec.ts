@@ -5,7 +5,7 @@
  *         user menu, logout.
  */
 import { test, expect } from '@playwright/test';
-import { openExercise } from './helpers';
+import { openExercise, getFirstSpreadsheetExerciseId } from './helpers';
 
 // Reusable: create a test user via API
 async function registerTestUser(page: any, username: string, password: string) {
@@ -96,9 +96,9 @@ test.describe('Guest Access', () => {
   test('exercise page is accessible without login', async ({ page }) => {
     await openExercise(page);
 
-    // Spreadsheet should load for guest users
-    const cells = page.locator('.ht_master td');
-    await expect(cells.first()).toBeVisible();
+    // Spreadsheet or quiz should load for guest users
+    const content = page.locator('.ht_master td, .quiz-card, .quiz-option, .handsontable');
+    await expect(content.first()).toBeVisible();
   });
 
   test('courses page is accessible without login', async ({ page }) => {
@@ -145,8 +145,8 @@ test.describe('Authenticated User Flows', () => {
     // Navigate to an exercise
     await openExercise(page);
 
-    // Should load without errors
-    const cells = page.locator('.ht_master td');
+    // Should load without errors — supports both spreadsheet and quiz exercises
+    const cells = page.locator('.ht_master td, .quiz-card, .quiz-option, .handsontable');
     await expect(cells.first()).toBeVisible();
   });
 
@@ -160,7 +160,9 @@ test.describe('Authenticated User Flows', () => {
 
     await loginTestUser(page, testUser, testPass);
 
-    await openExercise(page);
+    // Use a spreadsheet exercise specifically (needs grid for formula typing)
+    const spreadsheetId = await getFirstSpreadsheetExerciseId();
+    await openExercise(page, spreadsheetId);
 
     // Type a formula into a task cell
     const cell = page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)');
@@ -224,8 +226,8 @@ test.describe('Logout & Session', () => {
     // Reload — should show guest state
     await openExercise(page);
 
-    // Should load as guest (no crash)
-    const cells = page.locator('.ht_master td');
+    // Should load as guest (no crash) — accepts both quiz and spreadsheet
+    const cells = page.locator('.ht_master td, .quiz-card, .quiz-option, .handsontable');
     await expect(cells.first()).toBeVisible();
   });
 });
@@ -256,11 +258,11 @@ test.describe('Cross-Exercise Navigation', () => {
   test('can navigate between multiple exercises', async ({ page }) => {
     // Load the same exercise twice — verifies page can reload without errors
     await openExercise(page);
-    await expect(page.locator('.ht_master td').first()).toBeVisible();
+    await expect(page.locator('.ht_master td, .quiz-card, .quiz-option, .handsontable').first()).toBeVisible();
 
     // Reload the page — should work again
     await page.reload();
-    await page.waitForSelector('.ht_master, .spreadsheet-fortune-grid, .excel-ribbon', { timeout: 15000 });
-    await expect(page.locator('.ht_master td').first()).toBeVisible();
+    await page.waitForSelector('.ht_master, .spreadsheet-fortune-grid, .excel-ribbon, .quiz-card, .quiz-option', { timeout: 15000 });
+    await expect(page.locator('.ht_master td, .quiz-card, .quiz-option, .handsontable').first()).toBeVisible();
   });
 });

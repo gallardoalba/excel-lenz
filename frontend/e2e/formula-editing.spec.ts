@@ -5,11 +5,15 @@
  *         German function names, HyperFormula evaluation, error handling.
  */
 import { test, expect } from '@playwright/test';
-import { openExercise, getFirstExerciseId } from './helpers';
+import { openExercise, getFirstSpreadsheetExerciseId } from './helpers';
 
 // Shared helpers
 async function navigateToExercise(page: any) {
-  const id = await openExercise(page);
+  const id = await getFirstSpreadsheetExerciseId();
+  await openExercise(page, id);
+  // Ensure clean state by forcing a hard reload
+  await page.reload();
+  await page.waitForSelector('.ht_master, .handsontable, table.htCore', { timeout: 10000 });
   return id;
 }
 
@@ -451,28 +455,37 @@ test.describe('Cell Reference & Arithmetic', () => {
   test('cell reference with multiplication (=A1*B1)', async ({ page }) => {
     await navigateToExercise(page);
 
-    const result = await page.evaluate(() => {
+    const result = await page.evaluate(async () => {
       const hot = (window as any).__hotInstance;
       if (!hot) return null;
       hot.setDataAtCell(1, 0, 7);
       hot.setDataAtCell(1, 1, 6);
       hot.setDataAtCell(1, 2, '=A2*B2');
+      // HyperFormula may evaluate asynchronously — poll for result
+      for (let i = 0; i < 20; i++) {
+        await new Promise(r => setTimeout(r, 100));
+        const val = hot.getDataAtCell(1, 2);
+        if (val === 42) return '42';
+      }
       return String(hot.getDataAtCell(1, 2) ?? '');
     });
-    await page.waitForTimeout(300);
     expect(result).toBe('42');
   });
 
   test('operator precedence (=1+2*3 equals 7 not 9)', async ({ page }) => {
     await navigateToExercise(page);
 
-    const result = await page.evaluate(() => {
+    const result = await page.evaluate(async () => {
       const hot = (window as any).__hotInstance;
       if (!hot) return null;
       hot.setDataAtCell(1, 0, '=1+2*3');
+      for (let i = 0; i < 20; i++) {
+        await new Promise(r => setTimeout(r, 100));
+        const val = hot.getDataAtCell(1, 0);
+        if (val === 7) return '7';
+      }
       return String(hot.getDataAtCell(1, 0) ?? '');
     });
-    await page.waitForTimeout(300);
     expect(result).toBe('7');
   });
 
@@ -531,32 +544,43 @@ test.describe('Nested & Complex Formulas', () => {
   test('SUMME across a range (=SUMME(A1:C1))', async ({ page }) => {
     await navigateToExercise(page);
 
-    const result = await page.evaluate(() => {
-      const hot = (window as any).__hotInstance;
-      if (!hot) return null;
-      hot.setDataAtCell(1, 0, 5);
-      hot.setDataAtCell(1, 1, 15);
-      hot.setDataAtCell(1, 2, 20);
-      hot.setDataAtCell(2, 0, '=SUMME(A2:C2)');
-      return String(hot.getDataAtCell(2, 0) ?? '');
+    const result = await page.evaluate(async () => {
+      // Wait for Handsontable instance to be exposed on window
+      for (let i = 0; i < 30; i++) {
+        const hot = (window as any).__hotInstance;
+        if (hot) {
+          hot.setDataAtCell(1, 0, 5);
+          hot.setDataAtCell(1, 1, 15);
+          hot.setDataAtCell(1, 2, 20);
+          hot.setDataAtCell(2, 0, '=SUMME(A2:C2)');
+          await new Promise(r => setTimeout(r, 300));
+          return String(hot.getDataAtCell(2, 0) ?? '');
+        }
+        await new Promise(r => setTimeout(r, 100));
+      }
+      return null;
     });
-    await page.waitForTimeout(300);
     expect(result).toBe('40');
   });
 
   test('MITTELWERT across a range', async ({ page }) => {
     await navigateToExercise(page);
 
-    const result = await page.evaluate(() => {
-      const hot = (window as any).__hotInstance;
-      if (!hot) return null;
-      hot.setDataAtCell(1, 0, 10);
-      hot.setDataAtCell(1, 1, 20);
-      hot.setDataAtCell(1, 2, 30);
-      hot.setDataAtCell(2, 0, '=MITTELWERT(A2:C2)');
-      return String(hot.getDataAtCell(2, 0) ?? '');
+    const result = await page.evaluate(async () => {
+      for (let i = 0; i < 30; i++) {
+        const hot = (window as any).__hotInstance;
+        if (hot) {
+          hot.setDataAtCell(1, 0, 10);
+          hot.setDataAtCell(1, 1, 20);
+          hot.setDataAtCell(1, 2, 30);
+          hot.setDataAtCell(2, 0, '=MITTELWERT(A2:C2)');
+          await new Promise(r => setTimeout(r, 300));
+          return String(hot.getDataAtCell(2, 0) ?? '');
+        }
+        await new Promise(r => setTimeout(r, 100));
+      }
+      return null;
     });
-    await page.waitForTimeout(300);
     expect(result).toBe('20');
   });
 });

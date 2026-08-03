@@ -5,7 +5,9 @@ import { useState, useEffect, useRef, useCallback, type KeyboardEvent } from 're
 import {
   EXCEL_FUNCTIONS_DE,
   positionToRef,
+  rangeToRef,
   type CellPosition,
+  type CellRange,
 } from './types';
 
 interface FormulaBarProps {
@@ -17,6 +19,7 @@ interface FormulaBarProps {
   onNavigate?: (direction: 'enter' | 'tab' | 'shiftEnter' | 'shiftTab') => void;
   onNavigateToRef?: (ref: string) => void;
   activeCell: CellPosition | null;
+  selectedRange?: CellRange | null;
   onStartEditing?: () => void;
 }
 
@@ -41,6 +44,7 @@ export default function FormulaBar(props: FormulaBarProps) {
     onNavigate,
     onNavigateToRef,
     activeCell,
+    selectedRange,
     onStartEditing,
   } = props;
 
@@ -87,8 +91,12 @@ export default function FormulaBar(props: FormulaBarProps) {
   }, [isFormulaMode]);
 
   // ── Name Box ──
-
-  const nameBoxValue = activeCell ? positionToRef(activeCell) : '';
+  // Show active cell ref. If a range is selected, show the range reference.
+  const nameBoxValue = selectedRange && (
+    selectedRange.startRow !== selectedRange.endRow || selectedRange.startCol !== selectedRange.endCol
+  )
+    ? rangeToRef(selectedRange)
+    : activeCell ? positionToRef(activeCell) : '';
   const [nameBoxVal, setNameBoxVal] = useState(nameBoxValue);
 
   // Sync name box when active cell changes externally

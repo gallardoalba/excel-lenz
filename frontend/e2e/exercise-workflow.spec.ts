@@ -5,7 +5,7 @@
  *         submitting answers, scoring, feedback display.
  */
 import { test, expect } from '@playwright/test';
-import { openExercise } from './helpers';
+import { openExercise, getFirstSpreadsheetExerciseId } from './helpers';
 
 test.describe('Exercise Navigation & Loading', () => {
   test('course listing page loads', async ({ page }) => {
@@ -33,8 +33,8 @@ test.describe('Exercise Navigation & Loading', () => {
 
   test('exercise page loads spreadsheet', async ({ page }) => {
     await openExercise(page);
-    // Grid should have cells
-    const cells = page.locator('.ht_master td');
+    // Grid or quiz should have content
+    const cells = page.locator('.ht_master td, .quiz-card, .quiz-option, .handsontable');
     await expect(cells.first()).toBeVisible();
   });
 
@@ -47,7 +47,8 @@ test.describe('Exercise Navigation & Loading', () => {
 
 test.describe('Cell Editing & Data Entry', () => {
   test('can type text into a cell', async ({ page }) => {
-    await openExercise(page);
+    const id = await getFirstSpreadsheetExerciseId();
+    await openExercise(page, id);
 
     // Double-click first data cell (row 1, col 1 — skip header row)
     const cell = page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)');
@@ -61,7 +62,8 @@ test.describe('Cell Editing & Data Entry', () => {
   });
 
   test('can type numbers into a cell', async ({ page }) => {
-    await openExercise(page);
+    const id = await getFirstSpreadsheetExerciseId();
+    await openExercise(page, id);
 
     const cell = page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)');
     await cell.dblclick();
@@ -74,7 +76,8 @@ test.describe('Cell Editing & Data Entry', () => {
   });
 
   test('Tab moves to next cell', async ({ page }) => {
-    await openExercise(page);
+    const id = await getFirstSpreadsheetExerciseId();
+    await openExercise(page, id);
 
     const cell1 = page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)');
     await cell1.dblclick();

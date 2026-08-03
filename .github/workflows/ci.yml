@@ -1,4 +1,4 @@
-name: CI — Excel-lenz
+name: CI
 
 on:
   push:

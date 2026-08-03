@@ -5,11 +5,17 @@
  *         sort, insert/delete rows, zoom, undo/redo.
  */
 import { test, expect } from '@playwright/test';
-import { openExercise } from './helpers';
+import { openExercise, getFirstSpreadsheetExerciseId } from './helpers';
+
+// Helper to navigate to a spreadsheet exercise (ribbon + grid needed)
+async function navToSpreadsheet(page: any) {
+  const id = await getFirstSpreadsheetExerciseId();
+  await openExercise(page, id);
+}
 
 test.describe('Ribbon Visibility & Structure', () => {
   test('ribbon is visible on exercise page', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     // Ribbon should exist
     const ribbon = page.locator('[data-ribbon], .excel-ribbon, [class*="ribbon"]').first();
@@ -17,7 +23,7 @@ test.describe('Ribbon Visibility & Structure', () => {
   });
 
   test('ribbon has Start tab visible by default', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     // Look for the "Start" tab or its contents
     const startTab = page.locator(
@@ -30,7 +36,7 @@ test.describe('Ribbon Visibility & Structure', () => {
 
 test.describe('Cell Formatting', () => {
   test('bold button exists', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     const boldBtn = page.locator(
       '[aria-label*="Fett"], [aria-label*="Bold"], [title*="Fett"], [title*="Bold"], button:has-text("B")'
@@ -43,7 +49,7 @@ test.describe('Cell Formatting', () => {
   });
 
   test('selecting cell and applying format does not crash', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     // Click a cell to select it
     const cell = page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)');
@@ -60,7 +66,7 @@ test.describe('Cell Formatting', () => {
 
 test.describe('Undo/Redo', () => {
   test('undo button exists in ribbon', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     const undoBtn = page.locator(
       '[aria-label*="Rückgängig"], [aria-label*="Undo"], [title*="Undo"], [title*="Rückgängig"]'
@@ -71,7 +77,7 @@ test.describe('Undo/Redo', () => {
   });
 
   test('typing then undoing reverts the change', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     const cell = page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)');
     const originalContent = await cell.textContent();
@@ -94,7 +100,7 @@ test.describe('Undo/Redo', () => {
 
 test.describe('Row & Column Operations', () => {
   test('insert row button or right-click menu exists', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     // Right-click on a row header — try ht_clone_left first (where HT renders row headers)
     const rowHeader = page.locator('.ht_clone_left tbody tr:nth-child(2) th').first();
@@ -110,7 +116,7 @@ test.describe('Row & Column Operations', () => {
 
 test.describe('Zoom Controls', () => {
   test('zoom controls exist', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     // Zoom is usually in status bar or ribbon
     const zoomIndicator = page.locator(
@@ -124,7 +130,7 @@ test.describe('Zoom Controls', () => {
 
 test.describe('Formula Ribbon Tab', () => {
   test('formulas tab shows function autocomplete', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     // Type = in a cell to trigger autocomplete
     const cell = page.locator('.ht_master tbody tr:nth-child(2) td:nth-child(2)');
@@ -137,7 +143,7 @@ test.describe('Formula Ribbon Tab', () => {
   });
 
   test('clicking function in ribbon inserts it', async ({ page }) => {
-    await openExercise(page);
+    await navToSpreadsheet(page);
 
     // Look for a function button in the Formulas tab
     const sumBtn = page.locator(
