@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Play, BookOpen, BarChart3, TrendingUp, GraduationCap, User, Clock, Award, Star, RefreshCw } from 'lucide-react';
+import { Play, BookOpen, BarChart3, TrendingUp, GraduationCap, User, Clock, Award, Star, RefreshCw, Trophy, ChevronDown, Code2 } from 'lucide-react';
 import { useAuth, apiFetch } from '../context/AuthContext';
 import { useTour, HOME_TOUR } from '../components/tour/OnboardingTour';
 import homeContent from '../data/home-content.json';
 
 const ICON_MAP: Record<string, React.ReactNode> = {
+  Code2: <Code2 size={24} />,
+  BookOpen: <BookOpen size={24} />,
+  Trophy: <Trophy size={24} />,
   User: <User size={24} />,
   Clock: <Clock size={24} />,
   Award: <Award size={24} />,
@@ -21,31 +24,30 @@ export default function Home() {
   const { startTour } = useTour();
   const [lastExercise, setLastExercise] = useState<{ id: string; title: string; course_title: string } | null>(null);
   const [guestCourseId, setGuestCourseId] = useState<string | null>(null);
+  const [courses, setCourses] = useState<{ id: string }[]>([]);
 
   useEffect(() => {
     if (user) {
       apiFetch('/exercises/user/last-exercise').then(setLastExercise).catch(() => {});
     }
-    // Fetch first course ID dynamically for "Als Gast testen" button
-    apiFetch('/courses').then((courses: { id: string }[]) => {
-      if (courses?.length) setGuestCourseId(courses[0].id);
+    apiFetch('/courses').then((list: { id: string }[]) => {
+      if (list?.length) {
+        setGuestCourseId(list[0].id);
+        setCourses(list);
+      }
     }).catch(() => {});
   }, [user]);
 
   return (
     <>
       {/* HERO */}
-      <section className="hero" style={{ padding: '120px 24px 80px' }}>
+      <section className="hero" style={{ padding: '140px 24px 100px', minHeight: '75vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
         <div className="hero-inner" style={{ maxWidth: '900px' }}>
-          <span className="hero-badge">
-            Interaktives Lerninstitut für Excel
-          </span>
-          <h1 style={{ marginTop: '24px' }}>
-            Excel lernen, das wirklich{' '}
-            <span style={{ color: 'var(--accent)' }}>passt.</span>
+          <h1 className="hero-brand" style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: 'var(--primary)', fontFamily: 'var(--font-display)' }}>
+            Excel-lenz
           </h1>
-          <p style={{ fontSize: '1.3rem', maxWidth: '680px', margin: '24px auto 0', color: 'var(--text-secondary)' }}>
-            Unsere interaktiven Excel-Übungen passen sich Ihrem Niveau, Ihrem Tempo und Ihren Zielen an.
+          <p style={{ fontSize: '1.4rem', maxWidth: '780px', margin: '16px auto 0', color: 'var(--text-secondary)' }}>
+            Excel lernen, das wirklich passt — interaktive Übungen und verständliche Theorie, abgestimmt auf Ihr Niveau und Ihre Ziele.
           </p>
           <div className="hero-actions" style={{ marginTop: '40px' }}>
             <Link to="/courses" className="btn btn-primary btn-lg">
@@ -84,20 +86,24 @@ export default function Home() {
           <div className="text-center mb-4">
             <h2>Unsere Lernlösungen</h2>
             <p className="text-muted mt-2 max-w-560">
-              Passgenaue Excel-Kurse für jeden Bedarf – vom Einsteiger bis zum Profi.
+              Passgenaue Excel-Kurse für jeden Bedarf, vom Einsteiger bis zum Profi.
             </p>
           </div>
           <div className="card-grid-3">
-            {homeContent.services.map((svc, i) => (
+            {homeContent.services.map((svc, i) => {
+              let link = svc.link;
+              if (i < 2 && courses[i]) link = `/courses/${courses[i].id}`;
+              return (
               <div className="card" key={i}>
                 <div className="card-icon">{ICON_MAP[svc.icon]}</div>
                 <h3>{svc.title}</h3>
                 <p>{svc.description}</p>
-                <Link to={svc.link} className="btn btn-primary btn-sm mt-3">
+                <Link to={link} className="btn btn-primary btn-sm mt-3">
                   {svc.linkText}
                 </Link>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -127,6 +133,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* DIDAKTISCHES KONZEPT */}
+      <section className="section section-alt">
+        <div className="section-inner">
+          <div className="text-center mb-4">
+            <h2>Systematisch und strukturiert lernen</h2>
+            <p className="text-muted mt-2 max-w-560">
+              Ein strukturierter Lehrplan, der Sie Schritt für Schritt durch alle Excel-Funktionen führt.
+            </p>
+          </div>
+          <div className="card-grid-3">
+            <div className="card">
+              <h3>Strukturierter Lehrplan</h3>
+              <p>4 Kurse, 154 Übungen: systematisch vom Anfänger zum Excel-Experten. Jede Übung vermittelt eine klar definierte Kompetenz.</p>
+              <Link to="/courses" className="btn btn-primary btn-sm mt-3">Lehrplan ansehen</Link>
+            </div>
+            <div className="card">
+              <h3>Didaktische Methodik</h3>
+              <p>Interaktive Spreadsheet-Übungen mit Sofort-Feedback statt passiver Videos. Learning-by-doing mit realen Excel-Funktionen.</p>
+              <Link to="/courses" className="btn btn-primary btn-sm mt-3">Kurse entdecken</Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* BOTTOM CTA */}
       <section className="cta-section">

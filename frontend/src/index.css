@@ -10,7 +10,7 @@
   --bg-alt2: #E5E5EA;
   --surface: #FFFFFF;
   --border: #D2D2D7;
-  --border-light: #E8E8ED;
+  --border-light: #DCDCE2;
 
   /* ── Text (high contrast for readability) ── */
   --text: #1D1D1F;
@@ -114,7 +114,7 @@ body.dark {
   --bg-alt2: #141414;
   --surface: #1C1C1E;
   --border: #2C2C2E;
-  --border-light: #222226;
+  --border-light: #2E2E32;
   --text: #F5F5F7;
   --text-secondary: #C5C5CA;
   --text-muted: #8E8E93;
@@ -254,6 +254,14 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--text); }
 .section-alt { background: var(--bg-alt); }
 .section-alt2 { background: var(--bg-alt2); }
 .section-inner { max-width: var(--content-max); margin: 0 auto; }
+
+/* Legal pages — Impressum, Datenschutz, AGB */
+.legal-content h1 { margin-bottom: 8px; }
+.legal-content .legal-date { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 40px; }
+.legal-content h2 { font-size: 1.25rem; font-weight: 600; margin-top: 36px; margin-bottom: 12px; letter-spacing: 0; color: var(--text); }
+.legal-content p, .legal-content li { font-size: 1rem; line-height: 1.75; color: var(--text-secondary); }
+.legal-content ul { padding-left: 20px; margin: 8px 0 16px; }
+.legal-content li { margin-bottom: 6px; }
 
 /* ============================================================
    NAVBAR — Floating glass (Apple-style)
@@ -1005,6 +1013,19 @@ body.dark .btn-white:hover { background: var(--bg-alt); color: var(--text); }
   line-height: 1.15;
   font-family: var(--font-display);
 }
+.hero h1.hero-brand {
+  animation: fadeInUpBrand 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes fadeInUpBrand {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 0.9; }
+}
+  font-family: var(--font-display);
+}
 .hero h1 .highlight {
   color: var(--primary);
 }
@@ -1095,6 +1116,17 @@ body.dark .btn-white:hover { background: var(--bg-alt); color: var(--text); }
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
+}
+
+/* Align buttons at bottom in card grids */
+.card-grid-3 .card {
+  display: flex;
+  flex-direction: column;
+}
+.card-grid-3 .card .btn {
+  margin-top: 16px;
+  align-self: flex-start;
+}
 }
 
 /* Floating variant */
