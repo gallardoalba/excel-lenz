@@ -80,7 +80,7 @@ export default function Login() {
 
       <p style={{ textAlign: 'center', marginTop: 20, color: 'var(--text-secondary)' }}>
         <Link to="/forgot-password" style={{ display: 'block', marginBottom: 8 }}>Passwort vergessen?</Link>
-        Noch kein Konto? <Link to="/register">Hier registrieren</Link>
+        {/* Noch kein Konto? <Link to="/register">Hier registrieren</Link> */}
       </p>
     </div>
   );

@@ -180,7 +180,7 @@ export default function Developer() {
       <section className="cta-section">
         <h2>Möchten Sie Excel-lenz ausprobieren?</h2>
         <p>Starten Sie noch heute mit unseren offenen Übungen.</p>
-        <Link to="/register" className="btn btn-white btn-lg">
+        <Link to="/courses" className="btn btn-white btn-lg">
           Jetzt starten
         </Link>
       </section>
