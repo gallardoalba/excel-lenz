@@ -59,13 +59,9 @@ export default function Home() {
               <Link to={`/exercises/${guestExerciseId}`} className="btn btn-outline btn-lg">
                 Als Gast testen
               </Link>
-            ) : guestCourseId ? (
-              <Link to={`/courses/${guestCourseId}`} className="btn btn-outline btn-lg">
-                Als Gast testen
-              </Link>
             ) : (
               <Link to="/courses" className="btn btn-outline btn-lg">
-                Kurse entdecken
+                Als Gast testen
               </Link>
             )}
           </div>

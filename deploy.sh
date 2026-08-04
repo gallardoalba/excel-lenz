@@ -27,12 +27,12 @@ step() { STEP=$((STEP + 1)); echo -e "\n${BOLD}── Paso ${STEP}: $1${NC}"; }
 
 ok() {
   OK=$((OK + 1))
-  echo -e "   ${GREEN}✓${NC} $1"
+  echo -e "    ${GREEN}OK${NC}  $1"
 }
 
 fail() {
   FAIL=$((FAIL + 1))
-  echo -e "   ${RED}✗${NC} $1" >&2
+  echo -e "    ${RED}FAIL${NC} $1" >&2
 }
 
 # ── Step 1: Git Pull ────────────────────────────────────────
@@ -100,14 +100,14 @@ fi
 # ── Cleanup ─────────────────────────────────────────────────
 echo ""
 if docker image prune -f 2>/dev/null | grep -q "deleted"; then
-  echo -e "   ${YELLOW}🧹 Imágenes antiguas eliminadas${NC}"
+  echo -e "   ${YELLOW}Imagenes antiguas eliminadas${NC}"
 fi
 
 # ── Summary ─────────────────────────────────────────────────
 ELAPSED=$(($(date +%s) - START_TIME))
 echo ""
 echo -e "${BOLD}══════════════════════════════════════════════${NC}"
-echo -e "   ${GREEN}✓ Deploy finalizado${NC} en ${YELLOW}${ELAPSED}s${NC}"
+echo -e "   ${GREEN}Deploy finalizado${NC} en ${YELLOW}${ELAPSED}s${NC}"
 echo -e "   Pasos: ${GREEN}${OK} OK${NC} / ${RED}${FAIL} errores${NC}"
-echo -e "   🌐  ${CYAN}https://excel-lenz.com${NC}"
+echo -e "   ${CYAN}https://excel-lenz.com${NC}"
 echo -e "${BOLD}══════════════════════════════════════════════${NC}"

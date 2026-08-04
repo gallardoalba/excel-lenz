@@ -294,7 +294,7 @@ describe('Exercise Data Integrity & Scoring', () => {
       const uniqueOrders = new Set(orders);
       if (uniqueOrders.size !== orders.length) {
         // Log duplicates for reference — not a critical failure for tests
-        console.log(`   ⚠ ${course.title}: ${orders.length} exercises, ${uniqueOrders.size} unique order_index values`);
+        console.log(`   [warn] ${course.title}: ${orders.length} exercises, ${uniqueOrders.size} unique order_index values`);
       }
       for (const o of orders) {
         expect(o).toBeGreaterThanOrEqual(0);
