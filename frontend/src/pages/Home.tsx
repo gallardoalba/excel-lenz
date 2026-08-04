@@ -47,7 +47,7 @@ export default function Home() {
     <>
       <Seo title="Excel-lenz — Interaktives Excel-Lerninstitut" description="Lernen Sie Excel mit praktischen Ubungen und einem integrierten Excel-Simulator. Fur Anfanger bis Fortgeschrittene." />
       {/* HERO */}
-      <section className="hero" style={{ padding: '140px 24px 100px', minHeight: '75vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
+      <section className="hero" style={{ padding: '0 24px', height: '100vh', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
         <div className="hero-inner" style={{ maxWidth: '900px' }}>
           <h1 className="hero-brand" style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, fontFamily: 'var(--font-display)' }}>
             Excel-lenz
