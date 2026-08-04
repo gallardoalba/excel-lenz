@@ -24,12 +24,25 @@ router.get('/', optionalAuth, (req: Request, res: Response) => {
      END, c.created_at ASC`
   ).all() as any[];
 
-  // Compute modules_count from exercises
+  // Compute modules_count + first spreadsheet/simulator exercise per course
   for (const course of courses) {
     const modCount = db.prepare(
       'SELECT COUNT(DISTINCT json_extract(template_data, ?)) as cnt FROM exercises WHERE course_id = ?'
     ).get('$._moduleId', course.id) as any;
     course.modules_count = modCount?.cnt || 0;
+
+    // First exercise with an Excel simulator (has a data grid + taskCols and is
+    // not a quiz). Used e.g. by the "Als Gast testen" button on the landing page.
+    const firstSim = db.prepare(`
+      SELECT id FROM exercises
+      WHERE course_id = ?
+        AND json_extract(template_data, '$.type') IS NOT 'quiz'
+        AND json_extract(template_data, '$.data') IS NOT NULL
+        AND json_extract(template_data, '$.taskCols') IS NOT NULL
+      ORDER BY order_index ASC
+      LIMIT 1
+    `).get(course.id) as { id: string } | undefined;
+    course.first_exercise_id = firstSim?.id ?? null;
   }
 
   // If user is logged in, add progress with a single query

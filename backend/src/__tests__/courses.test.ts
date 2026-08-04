@@ -40,6 +40,21 @@ describe('Course Routes', () => {
     }
   });
 
+  it('GET /api/courses returns a first_exercise_id pointing to a simulator exercise', async () => {
+    const res = await supertest(app).get('/api/courses');
+    expect(res.status).toBe(200);
+    const course = res.body[0]; // Beginner course
+    expect(course).toHaveProperty('first_exercise_id');
+    expect(typeof course.first_exercise_id).toBe('string');
+
+    // The referenced exercise must exist and be a spreadsheet/simulator (not a quiz)
+    const ex = await supertest(app).get(`/api/exercises/${course.first_exercise_id}`);
+    expect(ex.status).toBe(200);
+    expect(ex.body.template_data.type).not.toBe('quiz');
+    expect(Array.isArray(ex.body.template_data.data)).toBe(true);
+    expect(Array.isArray(ex.body.template_data.taskCols)).toBe(true);
+  });
+
   it('GET /api/courses/:id returns course with exercises', async () => {
     const coursesRes = await supertest(app).get('/api/courses');
     const courseId = coursesRes.body[0].id;
