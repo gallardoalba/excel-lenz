@@ -64,7 +64,7 @@ export function seed(): void {
   if (existingCourse3) {
     db.prepare('DELETE FROM exercises WHERE course_id = ?').run(existingCourse3.id);
     db.prepare('DELETE FROM courses WHERE id = ?').run(existingCourse3.id);
-    console.log('🔄 Gelöschte alte Kurs 3 Daten für Re-Seed');
+    console.log('[seed] Deleted old course 3 data for re-seed');
   }
 
   // Determine which courses need seeding
@@ -72,7 +72,7 @@ export function seed(): void {
   const existingSet = new Set(existingTitles.map(r => r.title));
   const coursesToSeed = ALL_COURSES.filter(c => !existingSet.has(c.title));
   if (coursesToSeed.length === 0 && exCount.count > 0) {
-    console.log('✅ Alle Kurse bereits vorhanden — kein Seed nötig');
+    console.log('[seed] All courses already present — no seed needed');
     return;
   }
 
@@ -133,7 +133,7 @@ export function seed(): void {
     total += data.exercises.length;
   }
 
-  console.log(`✅ Database seeded (${coursesToSeed.length} Kurse, ${total} Übungen)`);
+  console.log(`[seed] Database seeded (${coursesToSeed.length} courses, ${total} exercises)`);
   console.log(`   Teacher: dozent@excel-lenz.edu / ${process.env.SEED_PASSWORD || 'devpassword'}`);
   console.log(`   Student: student@excel-lenz.edu / ${process.env.SEED_PASSWORD || 'devpassword'}`);
 
