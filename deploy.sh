@@ -3,20 +3,111 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-echo "⬇️  Pulling latest changes..."
-git pull
+# ── Colors ──────────────────────────────────────────────────
+BOLD='\033[1m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
 
-echo ""
-echo "📦 Building frontend..."
+# ── Banner ──────────────────────────────────────────────────
+echo -e "${CYAN}${BOLD}"
+echo "  ╔══════════════════════════════════════════╗"
+echo "  ║           Excel-lenz  ·  Deploy          ║"
+echo "  ╚══════════════════════════════════════════╝"
+echo -e "${NC}"
+
+START_TIME=$(date +%s)
+STEP=0
+OK=0
+FAIL=0
+
+step() { STEP=$((STEP + 1)); echo -e "\n${BOLD}── Paso ${STEP}: $1${NC}"; }
+
+ok() {
+  OK=$((OK + 1))
+  echo -e "   ${GREEN}✓${NC} $1"
+}
+
+fail() {
+  FAIL=$((FAIL + 1))
+  echo -e "   ${RED}✗${NC} $1" >&2
+}
+
+# ── Step 1: Git Pull ────────────────────────────────────────
+step "Actualizar código fuente"
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+COMMIT_BEFORE=$(git rev-parse --short HEAD)
+
+echo -e "   Rama  : ${YELLOW}${BRANCH}${NC}"
+echo -e "   Commit: ${YELLOW}${COMMIT_BEFORE}${NC}"
+
+if git pull --ff-only 2>/dev/null; then
+  COMMIT_AFTER=$(git rev-parse --short HEAD)
+  if [ "$COMMIT_BEFORE" != "$COMMIT_AFTER" ]; then
+    ok "Pull exitoso  (${COMMIT_BEFORE} → ${COMMIT_AFTER})"
+  else
+    ok "Ya actualizado (${COMMIT_AFTER})"
+  fi
+else
+  ok "Pull omitido  (repositorio ya sincronizado)"
+fi
+
+# ── Step 2: Frontend Build ──────────────────────────────────
+step "Construir frontend"
+
 cd frontend
-npm ci --silent
-npm run build
+
+if npm ci --silent; then
+  ok "Dependencias instaladas"
+else
+  fail "Error en npm ci"
+  exit 1
+fi
+
+if npm run build 2>&1 | tail -3; then
+  ok "Build completado"
+else
+  fail "Error en el build"
+  exit 1
+fi
+
 cd ..
 
-echo ""
-echo "🐳 Rebuilding & restarting Docker containers..."
-docker compose up -d --build
+# ── Step 3: Docker Compose ──────────────────────────────────
+step "Desplegar contenedores Docker"
 
+if docker compose up --detach --build 2>&1; then
+  ok "Contenedores iniciados"
+else
+  fail "Error al iniciar contenedores"
+  exit 1
+fi
+
+# ── Step 4: Health Check ────────────────────────────────────
+step "Verificar estado"
+
+sleep 3
+
+if docker compose ps --format "table {{.Name}}\t{{.Status}}" 2>/dev/null; then
+  ok "Estado de servicios"
+else
+  fail "No se pudo obtener estado"
+fi
+
+# ── Cleanup ─────────────────────────────────────────────────
 echo ""
-echo "✅ Deploy complete!"
-docker compose ps
+if docker image prune -f 2>/dev/null | grep -q "deleted"; then
+  echo -e "   ${YELLOW}🧹 Imágenes antiguas eliminadas${NC}"
+fi
+
+# ── Summary ─────────────────────────────────────────────────
+ELAPSED=$(($(date +%s) - START_TIME))
+echo ""
+echo -e "${BOLD}══════════════════════════════════════════════${NC}"
+echo -e "   ${GREEN}✓ Deploy finalizado${NC} en ${YELLOW}${ELAPSED}s${NC}"
+echo -e "   Pasos: ${GREEN}${OK} OK${NC} / ${RED}${FAIL} errores${NC}"
+echo -e "   🌐  ${CYAN}https://excel-lenz.com${NC}"
+echo -e "${BOLD}══════════════════════════════════════════════${NC}"

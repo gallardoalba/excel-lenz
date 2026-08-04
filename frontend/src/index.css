@@ -1034,8 +1034,6 @@ body.dark .hero h1.hero-brand {
   0%, 100% { transform: translateY(0); opacity: 0.5; }
   50% { transform: translateY(8px); opacity: 0.9; }
 }
-  font-family: var(--font-display);
-}
 .hero h1 .highlight {
   color: var(--primary);
 }
