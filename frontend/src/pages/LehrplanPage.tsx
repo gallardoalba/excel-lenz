@@ -3,9 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { BookOpen, ChevronDown, X } from 'lucide-react';
 import { ExcelSpinner } from '../components/animations/Celebrations';
 
-const LEHRPLAN_META: Record<string, { title: string }> = {
-  anfaenger: { title: 'Lehrplan: Excel für Anfänger' },
-  fortgeschrittene: { title: 'Lehrplan: Excel für Fortgeschrittene' },
+const LEHRPLAN_META: Record<string, { title: string; pdf: string; zip: string }> = {
+  anfaenger: { title: 'Lehrplan: Excel für Anfänger', pdf: 'Lehrplan_Excel_Anfaenger.pdf', zip: 'Excel-lenz_Anfaenger_Materialien.zip' },
+  fortgeschrittene: { title: 'Lehrplan: Excel für Fortgeschrittene', pdf: 'Lehrplan_Excel_Fortgeschrittene.pdf', zip: 'Excel-lenz_Fortgeschrittene_Materialien.zip' },
 };
 
 interface ModuleSection {
@@ -71,7 +71,7 @@ export default function LehrplanPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const moduleRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
-  const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan' };
+  const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan', pdf: '', zip: '' };
 
   const collapseModule = useCallback((modId: string) => {
     setExpanded(null);
@@ -123,22 +123,26 @@ export default function LehrplanPage() {
             </h1>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            {meta.pdf && (
             <a
-              href="/downloads/Lehrplan_Excel_Anfaenger.pdf"
+              href={`/downloads/${meta.pdf}`}
               download
               className="btn btn-primary btn-sm"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
             >
               📄 Lehrplan (PDF)
             </a>
+            )}
+            {meta.zip && (
             <a
-              href="/downloads/Excel-lenz_Kursmaterialien.zip"
+              href={`/downloads/${meta.zip}`}
               download
               className="btn btn-accent btn-sm"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
             >
               📦 Alle Materialien (ZIP)
             </a>
+            )}
           </div>
         </div>
       </div>

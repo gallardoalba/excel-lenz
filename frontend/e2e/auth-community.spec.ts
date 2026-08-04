@@ -43,14 +43,14 @@ test.describe('Login Page', () => {
     await expect(loginForm.first()).toBeVisible({ timeout: 5000 });
   });
 
-  test('login page has register link', async ({ page }) => {
+  test('login page has no register link (registration disabled)', async ({ page }) => {
     await page.goto('/login');
     await page.waitForLoadState('domcontentloaded');
 
     const registerLink = page.locator(
       'a:has-text("Registrieren"), a:has-text("Register"), a:has-text("Konto")'
     ).first();
-    await expect(registerLink).toBeVisible({ timeout: 5000 });
+    await expect(registerLink).not.toBeVisible({ timeout: 5000 });
   });
 
   test('can type credentials into login form', async ({ page }) => {
