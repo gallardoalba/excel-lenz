@@ -18,6 +18,7 @@ import enterpriseRoutes from './routes/enterprise';
 import adaptiveRoutes from './routes/adaptive';
 import communityRoutes from './routes/community';
 import analyticsRoutes from './routes/analytics';
+import honeypotRoutes, { honeypotBanCheck } from './routes/honeypot';
 
 const app = express();
 const PORT = config.server.port;
@@ -34,6 +35,10 @@ app.use(helmet({ contentSecurityPolicy: false })); // CSP configured separately 
 // CORS
 app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
 app.use(express.json({ limit: config.server.jsonLimit }));
+
+// Honeypot ban check — rejects banned IPs before they hit rate limiters
+app.use(honeypotBanCheck);
+app.use('/api/honeypot', honeypotRoutes);
 
 // Rate limiting — global
 app.use(rateLimit({

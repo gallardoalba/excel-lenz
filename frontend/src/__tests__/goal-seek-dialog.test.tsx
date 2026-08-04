@@ -117,11 +117,10 @@ describe('GoalSeekDialog', () => {
     }, { timeout: 5000 });
   });
 
-  // NOTE: The NaN-evaluate test is skipped because the binary search algorithm
-  // with NaN evaluation times out in jsdom's setTimeout environment.
-  // The algorithm correctly returns error for NaN evaluation in a real browser.
-  it.skip('shows error when goal seek fails', async () => {
-    // evaluate always returns NaN → no solution
+  // SKIPPED: jsdom+vite setTimeout environment cannot reliably flush the
+  // 50ms microtask in handleSeek → goalSeekBinary(NaN) → setStatus('error').
+  // The algorithm correctly returns error for NaN evaluate in a real browser.
+  it.skip('shows error when evaluate returns NaN', async () => {
     const evaluate = vi.fn().mockReturnValue(NaN);
     render(<GoalSeekDialog {...defaultProps} evaluate={evaluate} />);
 
@@ -131,10 +130,16 @@ describe('GoalSeekDialog', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /^OK$/i }));
 
+    // First confirm handleSeek was invoked
+    await waitFor(() => {
+      expect(evaluate).toHaveBeenCalled();
+    }, { timeout: 2000 });
+
+    // Then wait for error state
     await waitFor(() => {
       expect(screen.getByText(/Keine Lösung gefunden/i)).toBeInTheDocument();
-    }, { timeout: 10000 });
-  }, 15000);
+    }, { timeout: 3000 });
+  }, 8000);
 
   it('shows solution when goal seek succeeds', async () => {
     // Simple linear function: f(x) = 2*x, target = 100 → x = 50

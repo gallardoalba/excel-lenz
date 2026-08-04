@@ -30,8 +30,6 @@ export default function Home() {
 
   useEffect(() => { document.title = 'Excel-lenz — Interaktives Excel-Lerninstitut'; }, []);
 
-  useEffect(() => { document.title = 'Excel-lenz — Interaktives Excel-Lerninstitut'; }, []);
-
   useEffect(() => {
     if (user) {
       apiFetch('/exercises/user/last-exercise').then(setLastExercise).catch(() => {});

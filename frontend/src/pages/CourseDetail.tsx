@@ -230,6 +230,7 @@ export default function CourseDetail() {
 
   return (
     <div className="course-detail-page">
+      <Seo title="Kursdetails" description="Detaillierte Kursubersicht mit Modulen und Excel-Ubungen." />
       {/* ── HERO V2 ── */}
       <section className="course-hero-v2" style={{ background: 'var(--bg-alt)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="course-hero-inner">
@@ -364,7 +365,6 @@ export default function CourseDetail() {
           {/* ── LEHRPLAN ── */}
           {!activeSection && lehrplanUrl && (
             <>
-      <Seo title="Kursdetails" description="Detaillierte Kursubersicht mit Modulen und praktischen Excel-Ubungen." />
               <h2 className="course-section-title">
                 <BookOpen size={22} style={{marginRight:8, verticalAlign:'middle'}} />
                 Lehrplan
