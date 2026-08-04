@@ -133,7 +133,7 @@ Erstellen Sie drei Blätter: Januar, Februar, März. Üben Sie Strg+Pos1, Strg+E
 | Format | Endung | Verwendung |
 |--------|--------|------------|
 | Standard | `.xlsx` | Seit Excel 2007 |
-| Mit Makros | `.xlsm` | Für VBA |
+| Mit Makros | `.xlsm` | Für Makros (VBA) |
 | PDF | `.pdf` | Weitergabe |
 | CSV | `.csv` | Datenaustausch |
 
@@ -158,7 +158,7 @@ Speichern Sie als `Inventar_2026.xlsx`, exportieren Sie als PDF.
 \newpage
 ## Modul 2: Dateneingabe und -bearbeitung
 
-**Lernziel:** Daten verschiedener Typen effizient eingeben, bearbeiten und mit AutoAusfüllen organisieren.
+**Lernziel:** Daten verschiedener Typen effizient eingeben, bearbeiten und mit Ausfüllkästchen organisieren.
 
 ### Was wissen Sie bereits?
 
@@ -186,7 +186,7 @@ stehen rechtsbündig.
 | **Zahl** (Wert) | Rechtsbündig | `42`, `19,99`, `-150` | Rechnen, Summieren, Durchschnitt |
 | **Datum** | Rechtsbündig | `15.03.2026` | Tage berechnen, Alter ermitteln |
 | **Uhrzeit** | Rechtsbündig | `14:30`, `09:15:00` | Zeitdifferenzen, Stundenabrechnung |
-| **Prozent** | Rechtsbündig | `19%`, `0,05` | Prozentuale Berechnungen |
+| **Prozent** | Rechtsbündig | `19%` (entspricht 0,19) | Prozentuale Berechnungen |
 | **Währung** | Rechtsbündig | `29,99 €`, `45,00 €` | Finanzielle Berechnungen |
 
  **Tipp:** Wenn Excel ein Datum nicht erkennt (z.B. `2026.03.15`), versuchen Sie das
@@ -239,7 +239,7 @@ Rechtschreibfehler. Korrigieren Sie jede fehlerhafte Zelle auf drei Arten:
 
 Machen Sie eine Korrektur mit `Strg+Z` rückgängig, dann mit `Strg+Y` wiederherstellen.
 
-## 2.3. AutoAusfüllen und Reihen
+## 2.3. Ausfüllkästchen und Reihen
 
 ###  Konzept: Muster erkennen und automatisch fortsetzen
 
@@ -259,7 +259,7 @@ Excel erkennt folgende eingebaute Reihen:
 Excel das Schrittmuster und setzt es fort: 1, 3, 5, 7, 9... Das funktioniert auch mit
 Datumsangaben!
 
-**Übung 2.3 — AutoAusfüllen verwenden**
+**Übung 2.3 — Ausfüllkästchen verwenden**
 
 Die folgende Übungstabelle **Modul 2 3 AutoAusfuellen** ist bereits geladen.
 
@@ -286,7 +286,7 @@ oder sogar die Tabelle transponieren (Zeilen und Spalten vertauschen).
 | Werte | `W` | Nur das sichtbare Ergebnis, keine Formel |
 | Formeln | `F` | Nur die Formel, ohne Formatierung |
 | Formatierung | `R` | Nur das Aussehen, nicht den Inhalt |
-| Transponieren | (Haken setzen) | Zeilen  Spalten vertauschen |
+| Transponieren | `T` | Zeilen  Spalten vertauschen |
 
  **Tipp:** Wenn Sie Formelergebnisse kopieren möchten, ohne dass sich die Bezüge
 verschieben, nutzen Sie „Inhalte einfügen → Werte". Das ist besonders nützlich, wenn
@@ -306,7 +306,7 @@ Die folgende Übungstabelle **Modul 2 4 Kopieren** ist bereits geladen.
 
 ### Das können Sie jetzt
 
-- [ ] Die fünf Datentypen (Text, Zahl, Datum, Uhrzeit, Währung) unterscheiden
+- [ ] Die sechs Datentypen (Text, Zahl, Datum, Uhrzeit, Prozent, Währung) unterscheiden
 - [ ] Zellen auf drei Arten bearbeiten (Doppelklick, F2, Bearbeitungsleiste)
 - [ ] Das Ausfüllkästchen für Reihen (Wochentage, Monate, Zahlenfolgen) nutzen
 - [ ] Inhalte mit „Werte einfügen" und „Transponieren" gezielt kopieren
@@ -343,9 +343,9 @@ Grundprinzipien professioneller Formatierung sind:
 
 | Werkzeug | Tastenkürzel | Wirkung |
 |----------|-------------|---------|
-| Fett | `Strg+Umschalt+F` (Schriftart-Dialog) | Text hervorheben (Überschriften) |
-| Kursiv | `Strg+Umschalt+K` (Schriftart-Dialog) | Hervorhebung im Fließtext |
-| Unterstrichen | `Strg+Umschalt+U` (Schriftart-Dialog) | Besonders wichtige Werte |
+| Fett | `Strg+F` | Text hervorheben (Überschriften) |
+| Kursiv | `Strg+K` | Hervorhebung im Fließtext |
+| Unterstrichen | `Strg+U` | Besonders wichtige Werte |
 | Rahmen | — | Zellen visuell voneinander trennen |
 | Füllfarbe | — | Hintergrundfarbe für Zellen |
 | Schriftfarbe | — | Textfarbe ändern |
@@ -382,7 +382,7 @@ Präsentation, der gespeicherte Wert bleibt für Berechnungen erhalten.
 | Zahl | `1500,5` | `1.500,50` | Tausendertrennzeichen, Dezimalstellen |
 | Währung | `1500,5` | `1.500,50 €` | Finanzielle Beträge |
 | Prozent | `0,19` | `19%` | Anteile, Steuersätze |
-| Datum | `45300` | `15.03.2026` | Kalenderdaten |
+| Datum | `45732` | `15.03.2026` | Kalenderdaten |
 | Benutzerdefiniert | — | `KG 42` | Eigene Formate wie `"KG "0` |
 
  **Wichtig:** Prozentwerte sind in Excel Dezimalzahlen: `19%` wird als `0,19`
@@ -537,7 +537,7 @@ Die folgende Übungstabelle **Modul 4 1 Erste Formeln** ist bereits geladen.
 | `#BEZUG!` | Ungültiger Bezug | Formel verweist auf gelöschte Zelle |
 | `#NAME?` | Name nicht erkannt | Tippfehler im Funktionsnamen (z.B. `SUME` statt `SUMME`) |
 | `#NV` | Nicht verfügbar | SVERWEIS findet den Suchbegriff nicht |
-| `#NULL!` | Falscher Bereichsoperator | Leerzeichen statt Doppelpunkt im Bereich |
+| `#NV` | Falscher Bereichsoperator | Leerzeichen statt Doppelpunkt im Bereich |
 
 **Tipp:** Wenn ein Fehler auftritt, klicken Sie auf das kleine
 Ausrufezeichen-Symbol neben der Zelle. Excel schlägt mögliche Korrekturen vor.
@@ -600,8 +600,8 @@ auch Wochen später wissen Sie noch, was berechnet wird.
 
 **Regeln für Namen:**
 - Keine Leerzeichen (verwenden Sie `_` oder Großbuchstaben: `MwSt_Satz`)
+- Keine Sonderzeichen (außer Unterstrich `_`) und keine Zelladressen als Namen (z.B. nicht `A1`)
 - Muss mit Buchstaben oder Unterstrich beginnen
-- Keine Zelladressen als Namen (z.B. nicht `A1`)
 - Groß-/Kleinschreibung wird ignoriert
 
 **Den Namens-Manager** finden Sie unter `Formeln → Namens-Manager`.
@@ -618,7 +618,8 @@ Die folgende Übungstabelle **Modul 4 3 Namen** ist bereits geladen.
 1. Definieren Sie für die Zelle mit dem MwSt-Satz den Namen `MwSt`.
 2. Ersetzen Sie in der Bruttopreis-Formel `$F$1` durch `MwSt`.
 3. Definieren Sie für die gesamte Preistabelle den Namen `Preisliste`.
-4. Verwenden Sie den Namen in einer Formel: `=SVERWEIS(A2;Preisliste;2;0)`.
+4. Verwenden Sie den Namen in einer einfachen Formel, z.B. `=SUMME(Preisliste)`
+   oder `=MITTELWERT(Preisliste)`.
 
 ## 4.4. Statistische Grundfunktionen
 
@@ -675,7 +676,8 @@ Automatisierung.
 
  **Tipp:** In einer WENN-Funktion kann der „Sonst"-Teil selbst wieder eine
 WENN-Funktion sein — das nennt man „verschachtelte WENN". Ab Excel 2019 gibt es
-dafür die einfachere `WENNS()`-Funktion.
+dafür die einfachere `WENNS()`-Funktion. Sie können Bedingungen auch mit `UND()`
+(alle müssen wahr sein) oder `ODER()` (mindestens eine muss wahr sein) kombinieren.
 
 
 ### Typische Fehler
@@ -783,6 +785,8 @@ Die folgende Übungstabelle **Modul 5 2 Bereinigen** ist bereits geladen.
 
 1. Entfernen Sie alle doppelten Einträge mit „Daten → Duplikate entfernen".
 2. Trennen Sie die Spalte „Name, Vorname" mit „Text in Spalten" in zwei Spalten.
+   Achten Sie darauf, das führende Leerzeichen nach dem Komma zu entfernen
+   (z.B. mit der Funktion `GLÄTTEN()` oder im Text-in-Spalten-Assistent).
 3. Testen Sie das Blitzschnelle Ausfüllen: Extrahieren Sie die Initialen aus
 
    einer Namensliste.
@@ -885,8 +889,8 @@ Die folgende Übungstabelle **Modul 6 1 Suchen Ersetzen** ist bereits geladen.
 
 1. Suchen Sie mit `Strg+F` alle Vorkommen von „München".
 2. Ersetzen Sie mit `Strg+H` alle „München" durch „München (Zentrale)".
-3. Suchen Sie mit Option „Ganze Zellinhalte" nach „500" und beobachten
-   Sie den Unterschied zur Suche ohne diese Option.
+3. Suchen Sie mit der Option „Gesamten Zellinhalt vergleichen" nach „500" und
+   beobachten Sie den Unterschied zur Suche ohne diese Option.
 
 ## 6.2. Fenster einfrieren
 
@@ -1034,7 +1038,7 @@ Die folgende Übungstabelle **Modul 6 6 Teilergebnisse** ist bereits geladen.
 - [ ] „Suchen und Ersetzen" für schnelle Korrekturen nutzen (Strg+F)
 - [ ] Überschriften mit „Fenster einfrieren" fixieren
 - [ ] Einfach und mehrstufig sortieren (nach Name, Wert, Farbe)
-- [ ] Mit Autofilter (Strg+Shift+L) Daten nach Kriterien filtern
+- [ ] Mit Autofilter (Strg+Umschalt+L) Daten nach Kriterien filtern
 - [ ] Einen Bereich mit Strg+T in eine intelligente Excel-Tabelle umwandeln
 - [ ] Strukturierte Verweise wie [@Preis] statt Zelladressen verwenden
 - [ ] Automatische Teilergebnisse mit Gruppierung und Gliederung einfügen
@@ -1131,14 +1135,14 @@ Die folgende Übungstabelle **Modul 7 2 SVERWEIS** ist bereits geladen.
    ungefährer Übereinstimmung.
 3. Testen Sie, was passiert, wenn der Suchbegriff nicht existiert (#NV-Fehler).
 
-###  Konzept: WVERWEIS — die horizontale Variante
+###  Konzept: XVERWEIS — die horizontale Variante
 
-WVERWEIS (waagerechter Verweis) funktioniert genau wie SVERWEIS, aber statt von oben nach
+XVERWEIS (waagerechter Verweis) funktioniert genau wie SVERWEIS, aber statt von oben nach
 unten sucht er von **links nach rechts** in der **ersten Zeile** einer Tabelle.
 Nützlich, wenn Ihre Daten horizontal angeordnet sind — z.B. Monatsnamen in Zeile 1
 und Umsatzzahlen darunter.
 
-**Syntax:** `=WVERWEIS(Suchkriterium; Suchmatrix; Zeilenindex; Bereich_Verweis)`
+**Syntax:** `=XVERWEIS(Suchkriterium; Suchmatrix; Zeilenindex; Bereich_Verweis)`
 
 | Argument | Bedeutung | Beispiel |
 |----------|-----------|----------|
@@ -1147,7 +1151,7 @@ und Umsatzzahlen darunter.
 | Zeilenindex | Welche Zeile soll zurückgegeben werden? | `2` (für Zeile 2) |
 | Bereich_Verweis | Exakte (0) oder ungefähre (1) Übereinstimmung? | `0` = exakt |
 
-**Tipp:** In der Praxis wird WVERWEIS seltener verwendet als SVERWEIS, da
+**Tipp:** In der Praxis wird XVERWEIS seltener verwendet als SVERWEIS, da
 Tabellen meist vertikal (mit Überschriften in Spalten) organisiert sind.
 Für horizontale Daten ist es jedoch die richtige Wahl.
 
@@ -1202,9 +1206,13 @@ kommen und „Herr Dr. Max Müller, MBA" zu „Müller, Max" werden soll.
 | `GROSS(Text)` | Alles in Großbuchstaben | `=GROSS("excel")` | `EXCEL` |
 | `KLEIN(Text)` | Alles in Kleinbuchstaben | `=KLEIN("EXCEL")` | `excel` |
 | `VERKETTEN()` / `&` | Texte verbinden | `=A2&" "&B2` | `Max Müller` |
+| `FINDEN(Suchtext; Text)` | Position eines Zeichens finden | `=FINDEN(","; "Müller, Max")` | `7` |
 
  **Tipp:** Mit `HEUTE()` erhalten Sie immer das aktuelle Datum — ideal für
-Altersberechnungen oder Fristenüberwachung: `=JAHR(HEUTE())-JAHR(Geburtsdatum)`.
+Altersberechnungen oder Fristenüberwachung. Mit der Funktion
+`DATEDIF(Geburtsdatum; HEUTE(); "Y")` berechnen Sie das genaue Alter einer Person
+in Jahren, da sie berücksichtigt, ob der Geburtstag in diesem Jahr bereits
+stattgefunden hat.
 
 **Übung 7.4 — Text- und Datumsfunktionen anwenden**
 
@@ -1224,7 +1232,7 @@ Die folgende Übungstabelle **Modul 7 4 Text Datum** ist bereits geladen.
 - [ ] SUMMEWENN und SUMMEWENNS für bedingte Summen anwenden
 - [ ] ZÄHLENWENN und ZÄHLENWENNS für bedingte Zählungen einsetzen
 - [ ] SVERWEIS für exakte und ungefähre Suche nutzen
-- [ ] WVERWEIS für horizontale Daten anwenden
+- [ ] XVERWEIS für horizontale Daten anwenden
 - [ ] INDEX+VERGLEICH für flexible Suche in jede Richtung kombinieren
 - [ ] Text mit LINKS, RECHTS, TEIL, GLÄTTEN und & bearbeiten
 - [ ] Alter und Fristen mit HEUTE() und Datumsfunktionen berechnen
@@ -1373,13 +1381,12 @@ Die folgende Übungstabelle **Modul 8 4 Dashboard** ist bereits geladen.
 ## Modul 9: Pivot-Tabellen
 
 **Lernziel:** Große Datenmengen mit Pivot-Tabellen gruppieren, zusammenfassen und
+analysieren.
 
 **Hinweis zur Excel-lenz-Plattform:** Die Erstellung von Pivot-Tabellen ist
 im Web-Simulator nicht verfügbar. Die folgenden Übungen erfordern Microsoft
 Excel. Auf der Plattform stehen Quiz-Fragen zu Pivot-Tabellen-Konzepten zur
 Verfügung.
-
-analysieren.
 
 ### Was wissen Sie bereits?
 
@@ -1571,9 +1578,12 @@ Finanzmathematik mit speziellen Funktionen ab — Sie müssen nur die Parameter 
 | Funktion | Was sie berechnet | Beispiel |
 |----------|------------------|----------|
 | `RMZ()` (Rate) | Monatliche Rate eines Kredits | `=RMZ(Zins/12; Monate; -Kreditbetrag)` |
-| `ZW()` (Zukunftswert) | Endkapital einer Sparanlage | `=ZW(Zins; Jahre; -Rate; -Startkapital)` |
+| `ZW()` (Zukunftswert) | Endkapital einer Sparanlage | `=ZW(Zins/12; Jahre*12; -Rate; -Startkapital)` |
 | `NBW()` (Kapitalwert) | Heutiger Wert zukünftiger Zahlungen | `=NBW(Zins; Zahlung1; Zahlung2...)` |
 | `IKV()` (Interner Zinsfuß) | Rendite einer Investition | `=IKV(Wertebereich)` |
+
+ **Wichtig:** Bei monatlichen Einzahlungen muss der Jahreszins durch 12 geteilt
+und die Jahre mit 12 multipliziert werden.
 
  **Tipp:** Bei RMZ und ZW sind Zahlungen, die Sie leisten (Kreditrate, Sparrate),
 als negative Zahlen anzugeben. Der Kreditbetrag ist positiv aus Sicht der Bank.
@@ -1588,6 +1598,8 @@ Die folgende Übungstabelle **Modul 10 2 Finanzfunktionen** ist bereits geladen.
 2. Berechnen Sie mit `ZW()` das Endkapital nach 20 Jahren, wenn Sie monatlich
 
    200 € bei 3% Zins ansparen.
+   Hinweis: Passen Sie Zins und Laufzeit auf Monate an:
+   `=ZW(3%/12; 20*12; -200)`.
 3. Vergleichen Sie zwei Investitionen mit `NBW()` und entscheiden Sie, welche
 
    vorteilhafter ist.
@@ -1611,11 +1623,11 @@ können einzelne Zellen der Tabelle nicht bearbeiten oder löschen.
 
 Die folgende Übungstabelle **Modul 10 3 Datentabelle** ist bereits geladen.
 
-> 1. Erstellen Sie eine eindimensionale Datentabelle: RMZ-Rate für Zinssätze
->    von 2% bis 8% (in 0,5%-Schritten) bei 250.000 € und 30 Jahren.
-> 2. Erstellen Sie eine zweidimensionale Datentabelle: RMZ-Rate für Zinssätze
->    (3%–7%) × Laufzeiten (10–30 Jahre).
-> 3. Interpretieren Sie: Bei welchem Zinssatz übersteigt die Rate 1.500 €?
+1. Erstellen Sie eine eindimensionale Datentabelle: RMZ-Rate für Zinssätze
+   von 2% bis 8% (in 0,5%-Schritten) bei 250.000 € und 30 Jahren.
+2. Erstellen Sie eine zweidimensionale Datentabelle: RMZ-Rate für Zinssätze
+   (3%–7%) × Laufzeiten (10–30 Jahre).
+3. Interpretieren Sie: Bei welchem Zinssatz übersteigt die Rate 1.500 €?
 
 ## 10.4. Integrierte Finanzanalyse
 
@@ -1628,14 +1640,14 @@ kombiniert, um fundierte finanzielle Entscheidungen zu treffen.
 
 Die folgende Übungstabelle **Modul 10 4 Finanzanalyse** ist bereits geladen.
 
-> Ein Unternehmen plant eine Investition von 500.000 € mit erwarteten jährlichen
-> Rückflüssen von 80.000 € über 10 Jahre.
->
-> 1. Berechnen Sie den Kapitalwert (NBW) bei 6% Zinssatz. Ist die Investition
->    vorteilhaft?
-> 2. Nutzen Sie die Zielwertsuche: Welcher Zinssatz ergibt NBW = 0 (IKV)?
-> 3. Erstellen Sie eine Datentabelle: NBW für Zinssätze 2%–12%.
-> 4. Ab welchem Zinssatz wird die Investition unvorteilhaft (NBW < 0)?
+Ein Unternehmen plant eine Investition von 500.000 € mit erwarteten jährlichen
+Rückflüssen von 80.000 € über 10 Jahre.
+
+1. Berechnen Sie den Kapitalwert (NBW) bei 6% Zinssatz. Ist die Investition
+   vorteilhaft?
+2. Nutzen Sie die Zielwertsuche: Welcher Zinssatz ergibt NBW = 0 (IKV)?
+3. Erstellen Sie eine Datentabelle: NBW für Zinssätze 2%–12%.
+4. Ab welchem Zinssatz wird die Investition unvorteilhaft (NBW < 0)?
 
 
 
@@ -1652,12 +1664,11 @@ Die folgende Übungstabelle **Modul 10 4 Finanzanalyse** ist bereits geladen.
 ## Modul 11: Druck und Zusammenarbeit
 
 **Lernziel:** Tabellen professionell für den Druck aufbereiten und mit anderen
+zusammenarbeiten.
 
 **Hinweis zur Excel-lenz-Plattform:** Die Druckfunktionen sind im
 Web-Simulator nicht verfügbar. Die folgenden Übungen erfordern Microsoft
 Excel. Auf der Plattform stehen Quiz-Fragen zu Druckkonzepten zur Verfügung.
-
-zusammenarbeiten.
 
 ### Was wissen Sie bereits?
 
@@ -1736,9 +1747,8 @@ Die folgende Übungstabelle **Modul 11 3 Kopfzeilen** ist bereits geladen.
 
 1. Fügen Sie eine Kopfzeile mit dem Firmennamen (links) und dem Datum (rechts) ein.
 2. Fügen Sie eine Fußzeile mit „Seite X von Y" (mittig) ein.
-3. Aktivieren Sie „Wiederholungszeilen oben", damit die Tabellenüberschrift auf
-
-   jeder gedruckten Seite erscheint.
+3. Aktivieren Sie über „Seitenlayout → Drucktitel" die Wiederholungszeilen,
+   damit die Tabellenüberschrift auf jeder gedruckten Seite erscheint.
 
 ## 11.4. Zusammenarbeit und Export
 
@@ -1813,7 +1823,9 @@ bearbeitbar bleiben sollen (Strg+1 → Schutz → Gesperrt abwählen).
 
 Die folgende Übungstabelle **Modul 12 1 Schutz** ist bereits geladen.
 
-1. Entsperren Sie die Eingabezellen (B2:B10), lassen Sie die Formelzellen gesperrt.
+1. Markieren Sie die Eingabezellen (B2:B10) und entfernen Sie den Haken bei
+   „Gesperrt" (`Strg+1` → Schutz → Gesperrt abwählen). Lassen Sie die
+   Formelzellen gesperrt.
 2. Aktivieren Sie den Blattschutz und testen Sie: Eingabezellen sind bearbeitbar,
 
    andere Zellen nicht.
@@ -1933,7 +1945,6 @@ immer im `.xlsm`-Format.
 Die folgende Übungstabelle **Modul 13 1 Entwicklertools** ist bereits geladen.
 
 1. Aktivieren Sie die Registerkarte „Entwicklertools"
-
    (Datei → Optionen → Menüband anpassen → Entwicklertools).
 2. Speichern Sie die Datei als `.xlsm` (Excel-Arbeitsmappe mit Makros).
 3. Erkunden Sie die neue Registerkarte und identifizieren Sie die

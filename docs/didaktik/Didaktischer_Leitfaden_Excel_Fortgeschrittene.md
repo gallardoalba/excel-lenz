@@ -1,4 +1,8 @@
 ---
+header-includes:
+  - \usepackage{xcolor}
+  - \definecolor{excelblue}{HTML}{1565C0}
+  - \definecolor{excelgray}{HTML}{4D4D4D}
 pdftitle: "Didaktischer Leitfaden: Excel für Fortgeschrittene — für professionelle Anwender"
 author: "Cristóbal Gallardo"
 date: "August 2026"
@@ -58,10 +62,10 @@ Das didaktische Design basiert auf denselben andragogischen Prinzipien wie der E
 | Andragogisches Prinzip | Umsetzung im Fortgeschrittenenkurs |
 |------------------------|-----------------------------------|
 | **Lernbedürfnis** | Jede Sitzung ist mit einem realen beruflichen Problem verknüpft: Wie reduziere ich diese monatliche Aufgabe von 2 Stunden auf 2 Minuten? |
-| **Selbstverständnis des Erwachsenen** | Der Teilnehmer bringt seine Excel-Erfahrung ein; der Dozent diagnostiziert spezifische Lücken und baut auf der vorhandenen Basis auf |
-| **Vorerfahrung** | Ausgangspunkt sind die realen Arbeitsabläufe des Teilnehmers, wobei Ineffizienzen identifiziert und fortgeschrittene Lösungen vorgeschlagen werden |
-| **Lernorientierung** | Fokus auf die Lösung komplexer Probleme: Finanzmodelle, Automatisierung, Executive Dashboards |
-| **Intrinsische Motivation** | Der Teilnehmer erlebt einen unmittelbaren qualitativen Sprung in seiner beruflichen Produktivität |
+| **Selbstverständnis des Erwachsenen** | Die teilnehmende Person bringt seine Excel-Erfahrung ein; die Lehrkraft diagnostiziert spezifische Lücken und baut auf der vorhandenen Basis auf |
+| **Vorerfahrung** | Ausgangspunkt sind die realen Arbeitsabläufe der teilnehmenden Person, wobei Ineffizienzen identifiziert und fortgeschrittene Lösungen vorgeschlagen werden |
+| **Lernorientierung** | Fokus auf die Lösung komplexer Probleme: Finanzmodelle, Automatisierung, Management-Dashboards |
+| **Intrinsische Motivation** | Die teilnehmende Person erlebt einen unmittelbaren qualitativen Sprung in ihrer beruflichen Produktivität |
 
 ### 1.3. Rolle der ergänzenden Webplattform
 
@@ -71,22 +75,22 @@ Die Plattform Excel-lenz dient als **Vertiefungsressource zwischen den Sitzungen
 - **Selbstständiges Üben**: Übungen mit automatischer Zelle-für-Zelle-Korrektur zur Festigung komplexer Verfahren
 - **Progressives Scaffolding**: Vierstufiges Hinweissystem zur Lösung von Übungen ohne Abhängigkeit vom Dozenten
 
-Das bedeutungsvolle Lernen findet in der **Präsenzpraxis mit dem echten Excel** statt, wo der Dozent fortgeschrittene Techniken vorführt, komplexe Formeln in Echtzeit debuggt und das Tempo an die individuelle Lernkurve anpasst.
+Das bedeutungsvolle Lernen findet in der **Präsenzpraxis mit dem echten Excel** statt, wo die Lehrkraft fortgeschrittene Techniken vorführt, komplexe Formeln in Echtzeit debuggt und das Tempo an die individuelle Lernkurve anpasst.
 
 
 ## 2. Kursziele
 
-Am Ende des Kurses hat der Teilnehmer folgende fortgeschrittene Fähigkeiten entwickelt:
+Am Ende des Kurses hat die teilnehmende Person folgende fortgeschrittene Fähigkeiten entwickelt:
 
 | Code | Operationales Ziel |
 |------|-------------------|
 | OBJ-01 | Komplexe benutzerdefinierte Formate entwerfen, formelbasierte bedingte Formatierung anwenden und Datenüberprüfung mit erweiterten Kriterien konfigurieren |
-| OBJ-02 | Mehrdimensionale Suchfunktionen beherrschen (INDEX+VERGLEICH, BEREICH.VERSCHIEBEN), mehrere Bedingungsfunktionen (SUMMEWENNS), Finanzfunktionen (NBW, IKV, RMZ) und Matrixformeln |
+| OBJ-02 | Mehrdimensionale Suchfunktionen beherrschen (XVERWEIS, INDEX+VERGLEICH), dynamische Bereichsbezüge (BEREICH.VERSCHIEBEN), Bedingungsfunktionen (SUMMEWENNS), Finanzfunktionen (NBW, IKV, RMZ, ZW) und dynamische Matrixformeln (Dynamic Arrays) |
 | OBJ-03 | Definierte Namen, 3D-Bezüge, Verknüpfungen zwischen Arbeitsmappen und erweiterte Datenkonsolidierung verwalten |
 | OBJ-04 | Spezialfilter mit komplexen Kriterien, Datenbankfunktionen (DBSUMME, DBAUSZUG) und mehrstufige Teilergebnisse anwenden |
 | OBJ-05 | Erweiterte Pivot-Tabellen mit Gruppierungen, Datenschnitten, berechneten Feldern und interaktiven Pivot-Charts erstellen |
 | OBJ-06 | Was-wäre-wenn-Analyse-Werkzeuge nutzen (Zielwertsuche, Szenarien, Datentabellen, Solver) und Formelüberwachungswerkzeuge anwenden |
-| OBJ-07 | Kombinierte Diagramme, Executive Dashboards mit KPIs erstellen und professionelle Visualisierungstechniken anwenden |
+| OBJ-07 | Kombinierte Diagramme, Management-Dashboards mit KPIs erstellen und professionelle Visualisierungstechniken anwenden |
 | OBJ-08 | Makros aufzeichnen, bearbeiten und ausführen, um wiederkehrende Aufgaben zu automatisieren, und die Grundlagen von VBA verstehen |
 
 
@@ -100,7 +104,7 @@ Der Kurs vertieft den **DigComp 2.2-Rahmen** (Vuorikari et al., 2022) auf mittle
 |---------------------|-------------------|
 | Informationen und Datenkompetenz | Spezialfilter, Datenbankfunktionen, Extraktion eindeutiger Datensätze, Konsolidierung aus mehreren Quellen |
 | Erstellung digitaler Inhalte | Professionelle Dashboards, kombinierte Diagramme, benutzerdefinierte Formate, Vorlagen |
-| Sicherheit | Erweiterter Blatt- und Arbeitsmappenschutz, Ausblenden von Formeln, Makrosicherheit |
+| Sicherheit | Erweiterter Blatt- und Arbeitsmappenschutz, Ausblenden von Formeln, Makrosicherheit, DSGVO-konformer Umgang mit sensiblen Daten, Metadatenbereinigung |
 | Problemlösung | Modellierung mit Solver, Was-wäre-wenn-Analyse, Automatisierung komplexer Aufgaben mit Makros |
 
 ### 3.2. Computational Thinking und Modellierung
@@ -115,7 +119,7 @@ Der Kurs vertieft den **DigComp 2.2-Rahmen** (Vuorikari et al., 2022) auf mittle
 |-----------|-------------------|
 | Datengestützte Entscheidungsfindung | Szenarioanalyse, Sensitivitätstabellen, Zielwertsuche |
 | Effizienz und Produktivität | Automatisierung mit Makros, erweiterte Tastenkombinationen, Best Practices der Modellierung |
-| Executive Communication | Erstellung professioneller Dashboards für die Präsentation vor der Geschäftsleitung |
+| Management-Kommunikation | Erstellung professioneller Dashboards für die Präsentation vor der Geschäftsleitung |
 | Kritisches Denken | Formelüberwachung, Modellvalidierung, Fehlererkennung |
 
 
@@ -138,7 +142,7 @@ Der Kurs verdichtet die zehn Module des Fortgeschrittenenprogramms auf acht Sitz
 
 ### 4.2. Zeitplan
 
-| Woche | Sitzung | Hauptinhalt | Schwerpunkt |
+| Termin | Sitzung | Hauptinhalt | Schwerpunkt |
 |-------|---------|-------------|-------------|
 | 1 | Sitzung 1 | Erweiterte Formate, bedingte Formatierung, Überprüfung und Schutz | Theorie-Praxis |
 | 2 | Sitzung 2 | Erweiterte Funktionen und komplexe Formeln | Theorie-Praxis |
@@ -156,17 +160,17 @@ Der Kurs verdichtet die zehn Module des Fortgeschrittenenprogramms auf acht Sitz
 
 | Phase | Dauer | Aktivität |
 |-------|-------|-----------|
-| Rückblick | 5-10 Min | Klärung von Fragen aus der vorherigen Sitzung und Besprechung der selbstständigen Übung |
-| Demonstration | 15-20 Min | Vorführung fortgeschrittener Techniken: Der Dozent erstellt live und spricht dabei seinen Denkprozess aus. Der Teilnehmer reproduziert gleichzeitig auf seinem Gerät |
-| Geführte Übung | 40-50 Min | Übungen mit zunehmender Komplexität. Der Dozent beobachtet, diagnostiziert Fehler und gibt unmittelbares Feedback |
-| Festigung | 10-15 Min | Integrationsübung, die mehrere Techniken kombiniert. Der Teilnehmer arbeitet eigenständig; der Dozent greift nur ein, wenn es unbedingt nötig ist |
+| Rückblick | 5 Min | Klärung von Fragen aus der vorherigen Sitzung und Besprechung der selbstständigen Übung |
+| Demonstration | 20 Min | Vorführung fortgeschrittener Techniken: Die Lehrkraft erstellt live und spricht dabei seinen Denkprozess aus. Die teilnehmende Person reproduziert gleichzeitig auf ihrem Gerät |
+| Geführte Übung | 45 Min | Übungen mit zunehmender Komplexität. Die Lehrkraft beobachtet, diagnostiziert Fehler und gibt unmittelbares Feedback |
+| Festigung | 15 Min | Integrationsübung, die mehrere Techniken kombiniert. Die teilnehmende Person arbeitet eigenständig; die Lehrkraft greift nur ein, wenn es unbedingt nötig ist |
 | Abschluss | 5 Min | Zusammenfassung des Gelernten, Vorschau auf die nächste Sitzung und Empfehlung von Übungen auf der Plattform |
 
 ### 5.2. Methodische Grundsätze
 
-1. **Eingangsdiagnose**: Jede Sitzung beginnt mit einer informellen Bewertung des tatsächlichen Niveaus des Teilnehmers im jeweiligen Thema
+1. **Eingangsdiagnose**: Jede Sitzung beginnt mit einer informellen Bewertung des tatsächlichen Niveaus der teilnehmenden Person im jeweiligen Thema
 2. **Problembasiertes Lernen**: Die Übungen bilden authentische berufliche Situationen nach
-3. **Expertenmodellierung**: Der Dozent macht seinen Denkprozess beim Erstellen komplexer Formeln und Modelle sichtbar
+3. **Kognitive Modellierung**: Die Lehrkraft macht seinen Denkprozess beim Erstellen komplexer Formeln und Modelle sichtbar
 4. **Gezieltes Üben**: Übungen, die darauf ausgelegt sind, die festgestellten spezifischen Schwachstellen zu überwinden
 5. **Fortschreitende Automatisierung**: Vom manuellen Verständnis zur Automatisierung mit Makros
 
@@ -175,7 +179,7 @@ Der Kurs verdichtet die zehn Module des Fortgeschrittenenprogramms auf acht Sitz
 
 ### 6.1. Hauptressourcen
 
-- **Microsoft Excel** (Desktop-Version 2019 oder Microsoft 365)
+- **Microsoft Excel** (Microsoft 365 (oder Excel 2024/LTSC))
 - **Beamer oder zweiter Bildschirm** zur gleichzeitigen Anzeige
 - **Excel-Übungsdateien** mit für jede Sitzung vorbereiteten Datensätzen
 
@@ -183,7 +187,7 @@ Der Kurs verdichtet die zehn Module des Fortgeschrittenenprogramms auf acht Sitz
 
 | Funktionalität | Beschreibung |
 |----------------|--------------|
-| 25 interaktive Fortgeschrittenen-Übungen | Excel-Simulator mit nach Modulen geordneten Übungen auf fortgeschrittenem Niveau |
+| 25 interaktive Fortgeschrittenen-Übungen (ergänzend zu den 39 Präsenzübungen) | Excel-Simulator mit nach Modulen geordneten Übungen auf fortgeschrittenem Niveau |
 | Automatische Korrektur | Sofortiges Zelle-für-Zelle-Feedback |
 | Progressives Hinweissystem | Vier Stufen von allgemeiner Orientierung bis zur vollständigen Lösung |
 | Fortschrittsübersicht | Visualisierung des individuellen Fortschritts |
@@ -193,7 +197,7 @@ Der Kurs verdichtet die zehn Module des Fortgeschrittenenprogramms auf acht Sitz
 
 Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell der **kontinuierlichen qualitativen Verfolgung** eingesetzt:
 
-- **Direkte Beobachtung**: Der Dozent bewertet die Flüssigkeit, Genauigkeit und Selbstständigkeit des Teilnehmers in jeder Sitzung
+- **Direkte Beobachtung**: Die Lehrkraft bewertet die Flüssigkeit, Genauigkeit und Selbstständigkeit der teilnehmenden Person in jeder Sitzung
 - **Üben zwischen den Sitzungen**: Die Webplattform zeichnet die abgeschlossenen Übungen auf
 - **Sofortiges Feedback**: Korrektur im Moment mit ausführlicher Erklärung der Fehlerursache
 - **Teilnahmebescheinigung**: Wird am Ende des Kurses auf Basis von Anwesenheit und aktiver Teilnahme ausgestellt
@@ -227,9 +231,9 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 | Phase | Zeit | Aktivität |
 |-------|------|-----------|
-| Rückblick | 5 Min | Gespräch: Welche Art von Berichten erstellt der Teilnehmer? Welche Formatierungs- oder Überprüfungsprobleme sind aufgetreten? |
+| Rückblick | 5 Min | Gespräch: Welche Art von Berichten erstellt die teilnehmende Person? Welche Formatierungs- oder Überprüfungsprobleme sind aufgetreten? |
 | Demonstration | 20 Min | Erstellung eines benutzerdefinierten Zahlenformats mit 4 Abschnitten. Anwendung formelbasierter bedingter Formatierung zur Hervorhebung ganzer Zeilen. Konfiguration der Überprüfung mit Liste und numerischer Einschränkung |
-| Geführte Übung | 45 Min | Der Teilnehmer erstellt ein Mitarbeiterregister mit: Datenüberprüfung (Abteilungsliste, Altersspanne), bedingter Formatierung zur Hervorhebung von Ausreißern und Schutz von Formelzellen |
+| Geführte Übung | 45 Min | Die teilnehmende Person erstellt ein Mitarbeiterregister mit: Datenüberprüfung (Abteilungsliste, Altersspanne), bedingter Formatierung zur Hervorhebung von Ausreißern und Schutz von Formelzellen |
 | Festigung | 15 Min | Eigenständige Übung: Entwurf eines Rechnungsformats mit benutzerdefinierten Formaten und Überprüfung |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 1 |
 
@@ -246,7 +250,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 - Verschachtelte logische Funktionen mit WENN, UND, ODER und WENNFEHLER implementieren
 - SUMMEWENNS und ZÄHLENWENNS mit mehreren Kriterien anwenden
 - Wichtige Finanzfunktionen nutzen: NBW, IKV, RMZ, ZW
-- Matrixformeln mit Strg+Umschalt+Eingabe erstellen
+- Matrixformeln (Dynamic Arrays in M365) erstellen
 
 #### Inhalte
 
@@ -256,7 +260,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Verschachtelung logischer Funktionen | WENN, UND, ODER und WENNFEHLER in realen Kontexten verketten | Geduld bei syntaktischer Komplexität |
 | Mehrfache Bedingungsberechnung | SUMMEWENNS mit 3+ Kriterien entwerfen | Sorgfalt bei der Spezifikation von Bedingungen |
 | Zeitwert des Geldes | NBW, IKV, RMZ für Finanzentscheidungen berechnen | Interesse an beruflicher Anwendung |
-| Matrixformeln | Matrixformeln mit Strg+Umschalt+Eingabe erstellen und debuggen | Neugier auf fortgeschrittene Techniken |
+| Matrixformeln | Matrixformeln (Dynamic Arrays in M365) erstellen und debuggen | Neugier auf fortgeschrittene Techniken |
 
 #### Sitzungsablauf
 
@@ -288,7 +292,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Konzeptuell | Prozedural | Einstellungsbezogen |
 |----------|-----------|-----------|
 | Definierte Namen als Best Practice | Namen aus dem Namensfeld und dem Namens-Manager erstellen | Wertschätzung für Klarheit und Wartbarkeit |
-| 3D-Bezüge zur Konsolidierung | =SUMME(Tabelle1:Tabelle5!B2) erstellen | Wertschätzung der Effizienz bei der Konsolidierung |
+| 3D-Bezüge zur Konsolidierung | =SUMME('Tabelle1:Tabelle5'!B2) erstellen | Wertschätzung der Effizienz bei der Konsolidierung |
 | Spezialfilterkriterien | Kriterienbereiche mit UND (gleiche Zeile) und ODER (verschiedene Zeilen) entwerfen | Sorgfalt bei der Spezifikation von Bedingungen |
 | Datenbankfunktionen | DBSUMME, DBMITTELWERT, DBAUSZUG erstellen | Neugier auf spezialisierte Werkzeuge |
 
@@ -298,7 +302,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 |-------|------|-----------|
 | Rückblick | 5 Min | Kurze Wiederholung absoluter und relativer Bezüge |
 | Demonstration | 20 Min | Erstellung einer Arbeitsmappe mit Quartalsdaten auf getrennten Blättern, Definition von Namen für Schlüsselbereiche und jährliche Konsolidierung mittels 3D-Bezügen. Vorführung des Spezialfilters mit mehreren Kriterien |
-| Geführte Übung | 45 Min | Der Teilnehmer erstellt eine Abteilungsbudget-Arbeitsmappe mit 3D-Konsolidierung, wendet Spezialfilter zur Extraktion bestimmter Datensätze an und nutzt DBSUMME für bedingte Abfragen |
+| Geführte Übung | 45 Min | Die teilnehmende Person erstellt eine Abteilungsbudget-Arbeitsmappe mit 3D-Konsolidierung, wendet Spezialfilter zur Extraktion bestimmter Datensätze an und nutzt DBSUMME für bedingte Abfragen |
 | Festigung | 15 Min | Eigenständige Übung mit Mitarbeiterdatenbank: mehrstufige Sortierung, Teilergebnisse nach Abteilung, Spezialfilter mit berechneten Kriterien |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Module 3 und 4 |
 
@@ -323,7 +327,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 |----------|-----------|-----------|
 | Mehrdimensionale Datenstruktur | Felder in Zeilen, Spalten, Werten und Filtern konfigurieren | Freude an der interaktiven Erkundung von Daten |
 | Zeitliche und numerische Gruppierung | Daten gruppieren und benutzerdefinierte Bereiche erstellen | Wertschätzung der Synthese gegenüber dem Detail |
-| Datenschnitte als Benutzeroberfläche | Slicers einfügen und mit mehreren Tabellen verbinden | Interesse am Design interaktiver Werkzeuge |
+| Datenschnitte als Benutzeroberfläche | Datenschnitte einfügen und mit mehreren Tabellen verbinden | Interesse am Design interaktiver Werkzeuge |
 | Benutzerdefinierte Berechnungen in Pivot-Tabellen | Berechnete Felder erstellen und Zusammenfassungsfunktionen ändern | Neugier, die Standardfunktionen zu erweitern |
 | Professionelles Design und Präsentation | Tabellenformate anwenden und Werte als % der Gesamtsumme anzeigen | Sorgfalt für effektive visuelle Kommunikation |
 
@@ -331,10 +335,10 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 | Phase | Zeit | Aktivität |
 |-------|------|-----------|
-| Rückblick | 5 Min | Hat der Teilnehmer Pivot-Tabellen verwendet? Auf welche Einschränkungen ist er gestoßen? |
-| Demonstration | 20 Min | Ausgehend von einer Rechnungsdatenbank erstellt der Dozent eine Pivot-Tabelle, gruppiert nach Quartalen, fügt ein berechnetes Feld für Rentabilität hinzu, fügt einen Regions-Slicer ein und erstellt ein Pivot-Chart |
-| Geführte Übung | 45 Min | Der Teilnehmer erstellt Umsatzberichte nach Region und Produkt mit zeitlicher Gruppierung, % der Gesamtsumme, Rankings und mit mehreren Tabellen verbundenen Datenschnitten |
-| Festigung | 15 Min | Übung: Erstellung eines Executive-Berichts mit Pivot-Tabelle, Slicers und Pivot-Chart |
+| Rückblick | 5 Min | Hat die teilnehmende Person Pivot-Tabellen verwendet? Auf welche Einschränkungen ist er gestoßen? |
+| Demonstration | 20 Min | Ausgehend von einer Rechnungsdatenbank erstellt die Lehrkraft eine Pivot-Tabelle, gruppiert nach Quartalen, fügt ein berechnetes Feld für Rentabilität hinzu, fügt einen Regions-Datenschnitt ein und erstellt ein Pivot-Chart |
+| Geführte Übung | 45 Min | Die teilnehmende Person erstellt Umsatzberichte nach Region und Produkt mit zeitlicher Gruppierung, % der Gesamtsumme, Rankings und mit mehreren Tabellen verbundenen Datenschnitten |
+| Festigung | 15 Min | Übung: Erstellung eines Management-Berichts mit Pivot-Tabelle, Datenschnitten und Pivot-Chart |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 5 |
 
 
@@ -366,9 +370,9 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 | Phase | Zeit | Aktivität |
 |-------|------|-----------|
-| Rückblick | 5 Min | Gespräch über datengestützte Entscheidungen, die der Teilnehmer regelmäßig trifft |
+| Rückblick | 5 Min | Gespräch über datengestützte Entscheidungen, die die teilnehmende Person regelmäßig trifft |
 | Demonstration | 20 Min | Erstellung eines Rentabilitätsmodells: Sparklines für Trends, Trendlinie mit R², Zielwertsuche für Break-Even-Point, Solver zur Gewinnmaximierung mit Nebenbedingungen |
-| Geführte Übung | 45 Min | Der Teilnehmer erstellt ein vollständiges Analysemodell: Datentabelle mit zwei Variablen, drei Szenarien (optimistisch, Basis, pessimistisch), Solver zur Optimierung und Formelüberwachung zur Validierung |
+| Geführte Übung | 45 Min | Die teilnehmende Person erstellt ein vollständiges Analysemodell: Datentabelle mit zwei Variablen, drei Szenarien (optimistisch, Basis, pessimistisch), Solver zur Optimierung und Formelüberwachung zur Validierung |
 | Festigung | 15 Min | Übung zur Fehlerdiagnose in einem vorgefertigten Modell |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 6 |
 
@@ -384,7 +388,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 - Den optimalen Diagrammtyp für jede Datenart und Botschaft auswählen
 - Kombinierte Diagramme (Säule + Linie) mit Sekundärachse erstellen
 - Erweiterte Anpassung: Achsen, Beschriftungen, Fehlerindikatoren, Trendlinien
-- Executive Dashboards mit Integration von Tabellen, Diagrammen, Sparklines und Datenschnitten entwerfen
+- Management-Dashboards mit Integration von Tabellen, Diagrammen, Sparklines und Datenschnitten entwerfen
 - Diagramme und Dashboards für Präsentationen exportieren
 
 #### Inhalte
@@ -400,9 +404,9 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 | Phase | Zeit | Aktivität |
 |-------|------|-----------|
-| Rückblick | 5 Min | Durchsicht der vom Teilnehmer in seiner Arbeit erstellten Diagramme |
-| Demonstration | 20 Min | Erstellung eines Vertriebs-Dashboards: kombiniertes Diagramm mit monatlichen Umsätzen und Marge, Sparklines pro Produkt, Trendlinie mit Prognose, Pivot-Tabelle mit Slicer |
-| Geführte Übung | 45 Min | Der Teilnehmer entwirft sein eigenes Dashboard aus einem Rechnungsdatensatz und wendet alle bearbeiteten Visualisierungstechniken an |
+| Rückblick | 5 Min | Durchsicht der vom Teilnehmer in ihrer Arbeit erstellten Diagramme |
+| Demonstration | 20 Min | Erstellung eines Vertriebs-Dashboards: kombiniertes Diagramm mit monatlichen Umsätzen und Marge, Sparklines pro Produkt, Trendlinie mit Prognose, Pivot-Tabelle mit Datenschnitt |
+| Geführte Übung | 45 Min | Die teilnehmende Person entwirft ihr eigenes Dashboard aus einem Rechnungsdatensatz und wendet alle bearbeiteten Visualisierungstechniken an |
 | Festigung | 15 Min | Kritische Überprüfung des Dashboards: Kommuniziert es effektiv? Was könnte verbessert werden? |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 7 |
 
@@ -434,10 +438,10 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 | Phase | Zeit | Aktivität |
 |-------|------|-----------|
-| Rückblick | 5 Min | Welche wiederkehrenden Aufgaben führt der Teilnehmer wöchentlich in Excel aus? |
+| Rückblick | 5 Min | Welche wiederkehrenden Aufgaben führt die teilnehmende Person wöchentlich in Excel aus? |
 | Demonstration | 20 Min | Live-Aufzeichnung eines Makros, das einen Bericht formatiert: Fettdruck in Überschriften, Rahmen, Spaltenanpassung und Summenformeln. Zuweisung zu einer Schaltfläche und grundlegende Code-Änderung |
-| Geführte Übung | 45 Min | Der Teilnehmer zeichnet drei Makros auf: (1) Berichtsformatierung, (2) Anwendung von Filtern und Sortierung, (3) Einfügen eines Übersichtsblatts. Weist sie Schaltflächen zu und übt ihre Bearbeitung in VBA |
-| Festigung | 15 Min | Übung: Ein Makro aufzeichnen, das eine reale Aufgabe des Teilnehmers automatisiert |
+| Geführte Übung | 45 Min | Die teilnehmende Person zeichnet drei Makros auf: (1) Berichtsformatierung, (2) Anwendung von Filtern und Sortierung, (3) Einfügen eines Übersichtsblatts. Weist sie Schaltflächen zu und übt ihre Bearbeitung in VBA |
+| Festigung | 15 Min | Übung: Ein Makro aufzeichnen, das eine reale Aufgabe der teilnehmenden Person automatisiert |
 | Abschluss | 5 Min | Zusammenfassung. Übung auf der Plattform: Modul 8 |
 
 
@@ -451,7 +455,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 
 - Die Grundlagen der VBA-Programmierung verstehen: Variablen, Typen, Kontrollstrukturen
 - Blatt- und Arbeitsmappenereignisse kennen (Worksheet_Change, Workbook_Open)
-- Das Konzept benutzerdefinierter Funktionen (UDF) einführen
+- Einen Ausblick auf benutzerdefinierte Funktionen (UDF) geben
 - Vorlagen, erweiterten Schutz und Zusammenarbeit konfigurieren
 - Den Ausbildungsweg festigen und einen Plan für die zukünftige Entwicklung entwerfen
 
@@ -461,7 +465,7 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 |----------|-----------|-----------|
 | Variablen, Typen und Kontrollstrukturen in VBA | Eine For Each-Schleife und eine If/Then-Bedingung schreiben | Neugier auf Programmierung |
 | Excel-Ereignisse | Ein Worksheet_Change-Ereignis zur automatischen Validierung erstellen | Interesse an reaktiver Automatisierung |
-| Benutzerdefinierte Funktionen | Eine einfache UDF erstellen und in einem Blatt verwenden | Wertschätzung der Erweiterbarkeit von Excel |
+| Benutzerdefinierte Funktionen | Das Konzept einer UDF verstehen und ein Beispiel nachvollziehen | Wertschätzung der Erweiterbarkeit von Excel |
 | Vorlagen und Zusammenarbeit | Eine .xltx-Vorlage erstellen und Schutz konfigurieren | Verantwortung bei gemeinsamer Arbeit |
 
 #### Sitzungsablauf
@@ -469,9 +473,9 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Phase | Zeit | Aktivität |
 |-------|------|-----------|
 | Rückblick | 5 Min | Überprüfung der in der vorherigen Sitzung aufgezeichneten Makros |
-| Demonstration | 20 Min | Geführtes Schreiben einer For Each-Schleife zur Verarbeitung eines Bereichs, Erstellung einer einfachen UDF, Konfiguration eines Worksheet_Change-Ereignisses |
-| Geführte Übung | 40 Min | Der Teilnehmer schreibt VBA-Code, um Daten zu durchlaufen und bedingt zu formatieren, erstellt eine UDF zur Berechnung einer benutzerdefinierten Kennzahl und verwendet sie in einem Blatt |
-| Festigung | 15 Min | Allgemeine Kursrückschau: Der Teilnehmer identifiziert die Werkzeuge mit der größten Auswirkung auf seine Arbeit und die Bereiche, die er vertiefen möchte |
+| Demonstration | 20 Min | Geführtes Schreiben einer For Each-Schleife zur Verarbeitung eines Bereichs, Demonstration einer UDF als Ausblick, Konfiguration eines Worksheet_Change-Ereignisses |
+| Geführte Übung | 40 Min | Die teilnehmende Person schreibt VBA-Code, um Daten zu durchlaufen und bedingt zu formatieren, und konfiguriert ein einfaches Ereignis |
+| Festigung | 15 Min | Integrationsprojekt: Die teilnehmende Person automatisiert einen eigenen wiederkehrenden Bericht aus ihrem Arbeitsalltag mit den erlernten Techniken. Anschließend Kursrückschau mit Identifikation der wirkungsvollsten Werkzeuge und Vertiefungsbereiche |
 | Abschluss | 10 Min | Übergabe der Bescheinigung. Entwicklungsplan: empfohlene Ressourcen, erweiterter VBA-Kurs, Excel-lenz-Community |
 
 
@@ -484,22 +488,22 @@ Da es sich um eine nicht regulierte Einzelfortbildung handelt, wird ein Modell d
 | Komplexität der beherrschten Techniken | Direkte Beobachtung | In jeder Sitzung |
 | Selbstständigkeit bei der Problemlösung | Geführte Übung | In jeder Sitzung |
 | Durchgeführte selbstständige Übungen | Plattform Excel-lenz | Wöchentlich |
-| Anwendung im beruflichen Kontext | Gespräch mit dem Teilnehmer | In jeder Sitzung |
+| Anwendung im beruflichen Kontext | Gespräch mit der teilnehmenden Person | In jeder Sitzung |
 
 ### 9.2. Anpassung des Programms
 
-Der Dozent passt Tempo und Inhalte an nach:
+Die Lehrkraft passt Tempo und Inhalte an nach:
 
-- Dem tatsächlichen Ausgangsniveau des Teilnehmers in jedem Inhaltsblock
+- Dem tatsächlichen Ausgangsniveau der teilnehmenden Person in jedem Inhaltsblock
 - Den spezifischen Anforderungen seines beruflichen Umfelds
 - Der Geschwindigkeit, mit der fortgeschrittene Konzepte aufgenommen werden
 
 ### 9.3. Abschlussbericht
 
-Am Ende des Kurses erstellt der Dozent einen Bericht mit:
+Am Ende des Kurses erstellt die Lehrkraft einen Bericht mit:
 
 1. Grad der Zielerreichung
-2. Angemessenheit der Inhalte für das berufliche Profil des Teilnehmers
+2. Angemessenheit der Inhalte für das berufliche Profil der teilnehmenden Person
 3. Verbesserungsvorschläge für zukünftige Durchführungen
 
 
@@ -507,7 +511,7 @@ Am Ende des Kurses erstellt der Dozent einen Bericht mit:
 
 Der Lehrplan **Excel für Fortgeschrittene** umfasst 10 Module mit insgesamt **39 Übungen**,
 die in 8 Sitzungen à 90 Minuten unterrichtet werden. Alle Übungen liegen als
-Excel-Dateien (`.xlsx`) im Ordner `exercises/fortgeschrittene/` vor.
+Excel-Dateien (`.xlsx`) werden digital zum Kurs zur Verfügung gestellt.
 
 | Sitzung | Module | Übungen | Übungsdateien |
 |---------|--------|:-------:|---------------|
@@ -520,8 +524,7 @@ Excel-Dateien (`.xlsx`) im Ordner `exercises/fortgeschrittene/` vor.
 | 7 | M8 | 3 | `M8_1` bis `M8_3` |
 | 8 | M9 + M10 | 7 | `M9_1`–`M9_4`, `M10_1`–`M10_4` |
 
-**Hinweis:** Power Pivot (M5.5), VBA Best Practices (M9.5) und Add-Ins/Power Query
-(M10.3) sind als Ausblick konzipiert und haben keine eigenständigen Übungsdateien.
+**Hinweis:** Power Pivot (M5.5) und VBA Best Practices (M9.5) sind als Ausblick konzipiert und haben keine eigenständigen Übungsdateien.
 
 ---
 
@@ -534,6 +537,8 @@ Mezirow, J. (1991). *Transformative Dimensions of Adult Learning*. Jossey-Bass.
 
 Mishra, P. & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge:
 A Framework for Teacher Knowledge. *Teachers College Record*, 108(6), 1017–1054.
+
+Ferrari, A. & Russo, M. (2021). *Definitive Guide to DAX: Business Intelligence for Microsoft Power BI, SQL Server Analysis Services, and Excel* (2nd ed.). Microsoft Press.
 
 Siemens, G. (2005). Connectivism: A Learning Theory for the Digital Age.
 *International Journal of Instructional Technology and Distance Learning*, 2(1), 3–10.

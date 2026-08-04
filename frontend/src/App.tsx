@@ -132,7 +132,7 @@ export default function App() {
           )}
 
           {/* Continue last exercise */}
-          {lastExercise && (
+          {lastExercise && user?.role !== 'teacher' && (
             <Link
               to={`/exercises/${lastExercise.id}`}
               className="navbar-continue-btn"

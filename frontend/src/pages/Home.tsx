@@ -71,7 +71,7 @@ export default function Home() {
           </div>
 
           {/* Continue where you left off */}
-          {lastExercise && (
+          {lastExercise && user?.role !== 'teacher' && (
             <div style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
               <Link to={`/exercises/${lastExercise.id}`} className="continue-learning-card" style={{ boxShadow: 'var(--shadow-sm)', border: 'none' }}>
                 <span className="continue-icon"><Play size={20} /></span>

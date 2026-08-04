@@ -30,6 +30,36 @@ const MODULE_DESCRIPTIONS: Record<string, string> = {
   'modul-13-automatisierung-mit-makros': 'Makrorekorder, VBA-Editor, erste Programmierung.',
 };
 
+// Clean display titles for each module (shown in collapsed panel header)
+const MODULE_TITLES: Record<string, string> = {
+  'modul-1-einführung-in-excel-und-die-arbeitsumgebung': 'Modul 1: Einführung in Excel und die Arbeitsumgebung',
+  'modul-2-dateneingabe-und--bearbeitung': 'Modul 2: Dateneingabe und -bearbeitung',
+  'modul-3-format-und-zellstil': 'Modul 3: Format und Zellstil',
+  'modul-4-formeln-und-grundfunktionen': 'Modul 4: Formeln und Grundfunktionen',
+  'modul-5-datenbereinigung-und-validierung': 'Modul 5: Datenbereinigung und Validierung',
+  'modul-6-tabellen-und-filter': 'Modul 6: Tabellen und Filter',
+  'modul-7-erweiterte-funktionen': 'Modul 7: Erweiterte Funktionen',
+  'modul-8-diagramme-und-visualisierung': 'Modul 8: Diagramme und Visualisierung',
+  'modul-9-pivot-tabellen': 'Modul 9: Pivot-Tabellen',
+  'modul-10-analyse-und-finanzfunktionen': 'Modul 10: Analyse und Finanzfunktionen',
+  'modul-11-druck-und-zusammenarbeit': 'Modul 11: Druck und Zusammenarbeit',
+  'modul-12-schutz-und-sicherheit': 'Modul 12: Schutz und Sicherheit',
+  'modul-13-automatisierung-mit-makros': 'Modul 13: Automatisierung mit Makros',
+};
+
+const MODULE_TITLES_ADVANCED: Record<string, string> = {
+  'modul-1-erweiterte-formate-bedingte-formatierung-und-datenüberprüfung': 'Modul 1: Erweiterte Formate, bedingte Formatierung und Datenüberprüfung',
+  'modul-2-erweiterte-funktionen-und-komplexe-formeln': 'Modul 2: Erweiterte Funktionen und komplexe Formeln',
+  'modul-3-referenzen-3d-namen-und-externe-verknüpfungen': 'Modul 3: Referenzen 3D, Namen und externe Verknüpfungen',
+  'modul-4-datenbanken-in-excel-spezialfilter-und-datenbankfunktionen': 'Modul 4: Datenbanken in Excel – Spezialfilter und Datenbankfunktionen',
+  'modul-5-erweiterte-pivot-tabellen': 'Modul 5: Erweiterte Pivot-Tabellen',
+  'modul-6-datenanalyse-szenarien-und-solver': 'Modul 6: Datenanalyse, Szenarien und Solver',
+  'modul-7-erweiterte-diagramme-und-dashboards': 'Modul 7: Erweiterte Diagramme und Dashboards',
+  'modul-8-automatisierung-mit-makros': 'Modul 8: Automatisierung mit Makros',
+  'modul-9-vba-programmierung-grundlagen': 'Modul 9: VBA-Programmierung (Grundlagen)',
+  'modul-10-zusammenarbeit-vorlagen-und-produktivität': 'Modul 10: Zusammenarbeit, Vorlagen und Produktivität',
+};
+
 const MODULE_DESCRIPTIONS_ADVANCED: Record<string, string> = {
   'modul-1-erweiterte-formate-bedingte-formatierung-und-datenüberprüfung': 'Benutzerdefinierte Formate, komplexe bedingte Formatierung, Datenvalidierung.',
   'modul-2-erweiterte-funktionen-und-komplexe-formeln': 'Matrixformeln, XVERWEIS, LAMBDA, LET, dynamische Arrays.',
@@ -45,14 +75,14 @@ const MODULE_DESCRIPTIONS_ADVANCED: Record<string, string> = {
 
 function parseModules(html: string): ModuleSection[] {
   const sections: ModuleSection[] = [];
-  // Find all <h2> tags with id starting with "modul-"
-  const h2Regex = /<h2\s+id="(modul-[^"]*)"[^>]*>([\s\S]*?)<\/h2>/g;
-  const matches = [...html.matchAll(h2Regex)];
+  // Find all <h1> or <h2> tags with id starting with "modul-"
+  const hRegex = /<h([12])\s+id="(modul-[^"]*)"[^>]*>([\s\S]*?)<\/h[12]>/g;
+  const matches = [...html.matchAll(hRegex)];
 
   for (let i = 0; i < matches.length; i++) {
-    const id = matches[i][1];
-    const titleText = matches[i][2].replace(/<[^>]+>/g, '').trim();
-    // Get content: from this h2's end to the next h2's start (or end of html)
+    const id = matches[i][2];
+    const titleText = matches[i][3].replace(/<[^>]+>/g, '').trim();
+    // Get content: from this heading end to the next heading start (or end of html)
     const startIdx = matches[i].index! + matches[i][0].length;
     const endIdx = i + 1 < matches.length
       ? matches[i + 1].index!
@@ -72,6 +102,9 @@ export default function LehrplanPage() {
   const moduleRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan', pdf: '', zip: '' };
+  const isAdvanced = type === 'fortgeschrittene';
+  const descriptions = isAdvanced ? MODULE_DESCRIPTIONS_ADVANCED : MODULE_DESCRIPTIONS;
+  const titles = isAdvanced ? MODULE_TITLES_ADVANCED : MODULE_TITLES;
 
   useEffect(() => { document.title = `${meta.title} — Excel-lenz`; }, [meta.title]);
 
@@ -124,7 +157,7 @@ export default function LehrplanPage() {
               {meta.title}
             </h1>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             {meta.pdf && (
             <a
               href={`/downloads/${meta.pdf}`}
@@ -142,7 +175,7 @@ export default function LehrplanPage() {
               className="btn btn-accent btn-sm"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
             >
-              📦 Alle Materialien (ZIP)
+              📦 Übungen (ZIP)
             </a>
             )}
           </div>
@@ -176,10 +209,10 @@ export default function LehrplanPage() {
                     className={`module-toggle-btn${isOpen ? ' open' : ''}`}
                   >
                     <div>
-                      <span style={{ display: 'block' }}>{mod.title}</span>
-                      {!isOpen && MODULE_DESCRIPTIONS[mod.id] && (
+                      <span style={{ display: 'block' }}>{titles[mod.id] || mod.title}</span>
+                      {!isOpen && descriptions[mod.id] && (
                         <span style={{ display: 'block', fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 400, marginTop: 2 }}>
-                          {MODULE_DESCRIPTIONS[mod.id]}
+                          {descriptions[mod.id]}
                         </span>
                       )}
                     </div>
