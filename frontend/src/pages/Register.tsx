@@ -1,9 +1,10 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus, AlertTriangle, CheckCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function Register() {
+  useEffect(() => { document.title = 'Registrieren — Excel-lenz'; }, []);
   const { register } = useAuth();
   const navigate = useNavigate();
   const [name, setName] = useState('');

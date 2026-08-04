@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
 
 /** Generic server error page shown for unhandled errors */
 export default function ServerError() {
+  useEffect(() => { document.title = 'Serverfehler — Excel-lenz'; }, []);
   return (
     <div style={{ textAlign: 'center', padding: '80px 24px' }}>
       <AlertTriangle size={64} style={{ color: 'var(--warning)', marginBottom: 24 }} />

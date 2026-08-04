@@ -27,6 +27,8 @@ interface ProgressItem {
 export default function StudentPanel() {
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => { document.title = 'Mein Bereich — Excel-lenz'; }, []);
   const [courses, setCourses] = useState<Course[]>([]);
   const [gami, setGami] = useState<Gamification | null>(null);
   const [reviews, setReviews] = useState<ReviewCard[]>([]);

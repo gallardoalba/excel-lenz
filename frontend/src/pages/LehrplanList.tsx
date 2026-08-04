@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { BookOpen, ArrowRight } from 'lucide-react';
 
 const LEHRPLAENE = [
@@ -29,6 +30,7 @@ const LEHRPLAENE = [
 ];
 
 export default function LehrplanList() {
+  useEffect(() => { document.title = 'Lehrplane — Excel-lenz'; }, []);
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '56px 32px 80px' }}>
       <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: 8, letterSpacing: '-0.03em' }}>

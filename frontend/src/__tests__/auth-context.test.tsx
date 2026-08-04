@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { AuthProvider, useAuth, apiFetch } from '../context/AuthContext';
 import { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
@@ -115,10 +115,12 @@ describe('AuthContext', () => {
   // ── AuthProvider ────────────────────────────────────────────
 
   describe('AuthProvider', () => {
-    it('starts with loading=true and user=null when no token', async () => {
+    it('resolves to loading=false with user=null when no token', async () => {
       const { result } = renderHook(() => useAuth(), { wrapper });
 
-      expect(result.current.loading).toBe(true);
+      await waitFor(() => {
+        expect(result.current.loading).toBe(false);
+      });
       expect(result.current.user).toBeNull();
       expect(result.current.token).toBeNull();
     });

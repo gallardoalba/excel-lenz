@@ -1,9 +1,10 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Lock, ArrowLeft, CheckCircle, AlertTriangle } from 'lucide-react';
 import { apiFetch } from '../context/AuthContext';
 
 export default function ResetPassword() {
+  useEffect(() => { document.title = 'Passwort zurucksetzen — Excel-lenz'; }, []);
   const { token } = useParams<{ token: string }>();
   const navigate = useNavigate();
   const [password, setPassword] = useState('');

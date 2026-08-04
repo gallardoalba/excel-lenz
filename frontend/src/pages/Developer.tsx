@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Developer() {
+  useEffect(() => { document.title = 'Entwickler — Excel-lenz'; }, []);
   return (
     <>
       <section className="section" style={{ paddingTop: '80px' }}>

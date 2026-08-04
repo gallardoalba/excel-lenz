@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { FileText, ArrowRight } from 'lucide-react';
 
 const GUIDES = [
@@ -23,6 +24,7 @@ const GUIDES = [
 ];
 
 export default function DidacticGuideList() {
+  useEffect(() => { document.title = 'Didaktische Leitfaden — Excel-lenz'; }, []);
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '56px 32px 80px' }}>
       <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: 8, letterSpacing: '-0.03em' }}>

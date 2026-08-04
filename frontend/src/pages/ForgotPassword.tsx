@@ -1,9 +1,10 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, ArrowLeft, CheckCircle } from 'lucide-react';
 import { apiFetch } from '../context/AuthContext';
 
 export default function ForgotPassword() {
+  useEffect(() => { document.title = 'Passwort vergessen — Excel-lenz'; }, []);
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');

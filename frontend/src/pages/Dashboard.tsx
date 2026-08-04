@@ -56,6 +56,8 @@ interface SkillInfo {
 export default function Dashboard() {
   const { user } = useAuth();
   const [progress, setProgress] = useState<ProgressItem[]>([]);
+
+  useEffect(() => { document.title = 'Dashboard — Excel-lenz'; }, []);
   const [gami, setGami] = useState<Gamification | null>(null);
   const [reviews, setReviews] = useState<ReviewCard[]>([]);
   const [skills, setSkills] = useState<SkillInfo[]>([]);

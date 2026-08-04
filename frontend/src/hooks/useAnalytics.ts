@@ -40,11 +40,20 @@ const flushQueue = () => {
   });
 };
 
-// Flush every 30 seconds (was 5s — reduced frequency to avoid triggering React re-renders)
-// TEMPORARILY DISABLED for debugging infinite loop
-// setInterval(flushQueue, 30000);
-// Flush on page unload
-// window.addEventListener('beforeunload', flushQueue);
+// ── Lazy flush initialization (only when first event is tracked) ──
+
+let flushInitialized = false;
+
+const initFlush = () => {
+  if (flushInitialized) return;
+  flushInitialized = true;
+
+  // Flush every 30 seconds
+  setInterval(flushQueue, 30000);
+
+  // Flush on page unload
+  window.addEventListener('beforeunload', flushQueue);
+};
 
 // ── Public API ──────────────────────────────────────────────
 
@@ -56,6 +65,8 @@ export function trackEvent(
     metadata?: Record<string, unknown>;
   }
 ) {
+  initFlush(); // Lazy start flush on first event
+
   eventQueue.push({
     event_type,
     resource_type: options?.resource_type,

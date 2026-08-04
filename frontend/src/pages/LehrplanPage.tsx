@@ -73,6 +73,8 @@ export default function LehrplanPage() {
 
   const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan', pdf: '', zip: '' };
 
+  useEffect(() => { document.title = `${meta.title} — Excel-lenz`; }, [meta.title]);
+
   const collapseModule = useCallback((modId: string) => {
     setExpanded(null);
     // Scroll back to the module header smoothly

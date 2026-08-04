@@ -9,6 +9,8 @@ export default function VerifyEmail() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [errorMsg, setErrorMsg] = useState('');
 
+  useEffect(() => { document.title = 'E-Mail bestatigen — Excel-lenz'; }, []);
+
   useEffect(() => {
     if (!token) {
       setStatus('error');
