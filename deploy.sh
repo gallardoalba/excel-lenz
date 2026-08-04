@@ -44,7 +44,7 @@ COMMIT_BEFORE=$(git rev-parse --short HEAD)
 echo -e "   Rama  : ${YELLOW}${BRANCH}${NC}"
 echo -e "   Commit: ${YELLOW}${COMMIT_BEFORE}${NC}"
 
-if git pull --ff-only 2>/dev/null; then
+if GIT_OUTPUT=$(git pull --ff-only 2>&1); then
   COMMIT_AFTER=$(git rev-parse --short HEAD)
   if [ "$COMMIT_BEFORE" != "$COMMIT_AFTER" ]; then
     ok "Pull exitoso  (${COMMIT_BEFORE} → ${COMMIT_AFTER})"
@@ -52,7 +52,9 @@ if git pull --ff-only 2>/dev/null; then
     ok "Ya actualizado (${COMMIT_AFTER})"
   fi
 else
-  ok "Pull omitido  (repositorio ya sincronizado)"
+  echo "$GIT_OUTPUT" | tail -5
+  fail "Error en git pull"
+  exit 1
 fi
 
 # ── Step 2: Frontend Build ──────────────────────────────────
@@ -105,7 +107,14 @@ fi
 # ── Step 4: Health Check ────────────────────────────────────
 step "Verificar estado"
 
-sleep 3
+# Wait up to 30s for both services to be healthy
+for i in $(seq 1 15); do
+  UNHEALTHY=$(docker compose ps --format json 2>/dev/null | grep -v '"Health":"healthy"' | wc -l)
+  if [ "$UNHEALTHY" -eq 0 ]; then
+    break
+  fi
+  sleep 2
+done
 
 if docker compose ps --format "table {{.Name}}\t{{.Status}}" 2>/dev/null; then
   ok "Estado de servicios"

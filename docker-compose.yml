@@ -33,11 +33,15 @@ services:
       - ./frontend/dist:/app/public:ro
       - /etc/letsencrypt/live/excel-lenz.com/fullchain.pem:/etc/nginx/certs/fullchain.pem:ro
       - /etc/letsencrypt/live/excel-lenz.com/privkey.pem:/etc/nginx/certs/privkey.pem:ro
+      - nginx_logs:/var/log/nginx
     ports:
       - '80:80'
       - '443:443'
     depends_on:
-      - api
+      api:
+        condition: service_healthy
+        condition: service_healthy
 
 volumes:
   appdata:
+  nginx_logs:
