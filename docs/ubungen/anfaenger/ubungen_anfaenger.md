@@ -17,7 +17,6 @@ Namensfeld, Bearbeitungsleiste und Statusleiste. Speichern Sie als `Meine_Erste_
 
 ### Lösung
 
-**Lösung:**
 1. **Excel öffnen:** Doppelklick auf das Excel-Symbol oder Startmenü → Excel.
 2. **Neue Arbeitsmappe:** `Datei → Neu → Leere Arbeitsmappe` oder `Strg+N`.
 3. **Oberfläche identifizieren:**
@@ -40,7 +39,6 @@ Fügen Sie „Neu", „Öffnen" und „Schnelldruck" zur Schnellzugriff-Leiste h
 
 ### Lösung
 
-**Lösung:**
 1. Klicken Sie auf den kleinen Pfeil (▾) rechts in der **Schnellzugriff-Leiste** (ganz oben links).
 2. Wählen Sie `Weitere Befehle…`.
 3. Im Dropdown `Befehle auswählen` → `Datei` oder `Alle Befehle`.
@@ -63,7 +61,6 @@ Erstellen Sie drei Blätter: Januar, Februar, März. Üben Sie Strg+Pos1, Strg+E
 
 ### Lösung
 
-**Lösung:**
 1. **Drei neue Blätter erstellen:** Klicken Sie auf das `+`-Symbol unten links (neben den Blattreitern), dreimal. Benennen Sie die Blätter per Doppelklick um: `Januar`, `Februar`, `März`.
 2. **Navigation üben:**
    - Schreiben Sie zuerst in einige Zellen Werte (z.B. in B5 und D10), damit das Blatt nicht leer ist.
@@ -85,7 +82,6 @@ Speichern Sie als `Inventar_2026.xlsx`, exportieren Sie als PDF.
 
 ### Lösung
 
-**Lösung:**
 1. **Als .xlsx speichern:** `Datei → Speichern unter → Durchsuchen`. Dateiname: `Inventar_2026.xlsx`. `Speichern`.
 2. **Als PDF exportieren:** `Datei → Exportieren → PDF/XPS-Dokument erstellen`. Ordner wählen, Dateiname `Inventar_2026.pdf`. `Veröffentlichen`.
    - **Ergebnis:** Es existieren nun zwei Dateien im Zielordner: die bearbeitbare `.xlsx` und die schreibgeschützte `.pdf` zur Weitergabe.
@@ -115,7 +111,6 @@ einer Zelle über `Start → Zahl → Format auswählen`.
 
 ### Lösung
 
-**Lösung:**
 1. **Name eingeben (Text):** Zelle anklicken, z.B. A1. `Max Mustermann` tippen → `Enter`.
    - Beobachtung: Der Text steht **linksbündig**. Excel erkennt Buchstaben automatisch als Text.
 2. **Zahl eingeben:** Zelle A2 anklicken, `1500` tippen → `Enter`.
@@ -146,7 +141,6 @@ Machen Sie eine Korrektur mit `Strg+Z` rückgängig, dann mit `Strg+Y` wiederher
 
 ### Lösung
 
-**Lösung:**
 1. **Doppelklick in die Zelle:** Auf fehlerhafte Zelle doppelklicken → der Cursor erscheint im Zellinhalt. Fehler korrigieren → `Enter`.
 2. **Taste F2:** Fehlerhafte Zelle auswählen → `F2` drücken → Bearbeitungsmodus aktiv → korrigieren → `Enter`.
 3. **Über Bearbeitungsleiste:** Fehlerhafte Zelle anklicken → in der Bearbeitungsleiste (oberhalb des Gitters) den Text korrigieren → `Enter`.
@@ -171,7 +165,6 @@ Die folgende Übungstabelle **Modul 2 3 AutoAusfuellen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Monatsreihe:** `Januar` in A1 schreiben. Zelle A1 markieren → das kleine Quadrat rechts unten (Ausfüllkästchen) anklicken und bei gedrückter Maustaste bis A12 ziehen.
    - Ergebnis: A1:A12 zeigt `Januar, Februar, März … Dezember`.
 2. **Zahlenfolge (Schritt 2):** `1` in B1, `3` in B2. Beide Zellen (B1:B2) markieren → Ausfüllkästchen bis B10 ziehen.
@@ -197,7 +190,6 @@ Die folgende Übungstabelle **Modul 2 4 Kopieren** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Tabelle kopieren:** Bereich `A1:D10` markieren → `Strg+C`. Zelle `F1` anklicken → `Strg+V`.
    - Ergebnis: Die Tabelle erscheint ein zweites Mal ab Spalte F.
 2. **Transponieren:** `A1:D10` markieren → `Strg+C`. Zelle `F15` anklicken → `Strg+Alt+V` → `T` für Transponieren → `Enter`. (Alternativ per Maus: Rechtsklick → `Inhalte einfügen…` → `Transponieren` → `OK`.)
@@ -224,7 +216,6 @@ Die folgende Übungstabelle **Modul 3 1 Grundformatierung** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Überschriftenzeile formatieren:** Zeile 1 markieren → `Start → Fett (Strg+F)` → `Füllfarbe → Dunkelblau` → `Schriftfarbe → Weiß`.
 2. **Datenzellen formatieren:** Datenbereich markieren und in eine Tabelle umwandeln: `Start → Als Tabelle formatieren (Strg+T)` → Design mit wechselnden Zeilenfarben wählen. Rahmen anpassen: `Tabellenentwurf → Rahmen → Alle Rahmen`.
 3. **Titel verbinden und zentrieren:** Den Bereich des Titels (z.B. A1:F1) markieren → `Start → Verbinden und zentrieren`. Der Titel steht nun mittig über allen Spalten.
@@ -248,7 +239,6 @@ Die folgende Übungstabelle **Modul 3 2 Zahlenformat** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Währungsformat:** Spalte B markieren → `Start → Zahl → Dropdown → Währung` oder `Strg+1 → Zahlen → Währung`. Symbol: €, Dezimalstellen: 2.
 2. **Prozentformat:** Spalte C markieren → `Start → Zahl → Prozent`. Dezimalstellen über `Dezimalstelle hinzufügen/entfernen` auf 1 einstellen. Hinweis: Der Wert 0,19 wird als 19,0% angezeigt.
 3. **Zahlenformat:** Spalte D markieren → `Strg+1 → Zahlen → Zahl`. Tausendertrennzeichen aktivieren (Häkchen setzen).
@@ -272,7 +262,6 @@ Die folgende Übungstabelle **Modul 3 3 Layout** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Spalten automatisch anpassen:** Auf die Trennlinie zwischen den Spaltenköpfen (z.B. zwischen A und B) doppelklicken. Alternativ: Alle Spalten markieren → `Start → Format → Spaltenbreite automatisch anpassen`.
 2. **Spalte C ausblenden:** Spaltenkopf C anklicken (ganze Spalte markieren) → Rechtsklick → `Ausblenden`. Zum Einblenden: Spalten B und D markieren → Rechtsklick → `Einblenden`.
 3. **Leere Zeile einfügen:** Zeilenkopf 4 anklicken → Rechtsklick → `Zellen einfügen`. Es entsteht eine neue leere Zeile 4, die alten Daten rutschen nach unten.
@@ -298,7 +287,6 @@ Die folgende Übungstabelle **Modul 3 4 Bedingte Formatierung** ist bereits gela
 
 ### Lösung
 
-**Lösung:**
 1. **Datenbalken:** Umsatzzahlen markieren (z.B. B2:B20). `Start → Bedingte Formatierung → Datenbalken → Einfarbige Füllung (blau)`. Es erscheinen farbige Balken innerhalb der Zellen proportional zum Wert.
 2. **Werte über 10.000 € hervorheben:** Gleichen Bereich markieren → `Start → Bedingte Formatierung → Regeln zum Hervorheben → Größer als…`. `10000` eingeben, Format `Rote Füllung` wählen → `OK`.
 3. **Farbskala auf Rabattspalte:** Rabattspalte (z.B. D2:D20) markieren → `Bedingte Formatierung → Farbskalen → Rot-Weiß-Grün` wählen. Nun: Grün = hohe Werte (gut), Rot = niedrige Werte.
@@ -340,7 +328,6 @@ Ausrufezeichen-Symbol neben der Zelle. Excel schlägt mögliche Korrekturen vor.
 
 ### Lösung
 
-**Lösung:**
 1. **Summe:** In Zelle D2 eingeben: `=B2+C2` → `Enter`. Ergebnis: Wert aus B2 + Wert aus C2.
 2. **Produkt:** In Zelle D3: `=B3*C3` → `Enter`. Ergebnis: Multiplikation.
 3. **Durchschnitt:** In Zelle D4: `=(B4+C4)/2` → `Enter`. Die Klammern sind wichtig: erst Addition, dann Division.
@@ -366,7 +353,6 @@ Die folgende Übungstabelle **Modul 4 2 Zellbezuege** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Bruttopreis mit absolutem Bezug:**
    - Zelle F1 enthält `19%` (0,19).
    - In C2: `=B2*(1+$F$1)` → `Enter`. Ergebnis: Nettopreis × 1,19.
@@ -397,7 +383,6 @@ Die folgende Übungstabelle **Modul 4 3 Namen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Namen definieren:** Zelle mit MwSt-Satz (z.B. F1) markieren → In das **Namensfeld** (links neben Bearbeitungsleiste) klicken → `MwSt` eingeben → `Enter`.
    - **Hinweis:** Namen dürfen keine Leerzeichen enthalten, nicht mit einer Zahl beginnen und keine Sonderzeichen (außer `_`) nutzen.
 2. **Namen in Formel einsetzen:** In der Bruttopreis-Formel `$F$1` durch `MwSt` ersetzen: Aus `=B2*(1+$F$1)` wird `=B2*(1+MwSt)`.
@@ -425,7 +410,6 @@ Die folgende Übungstabelle **Modul 4 4 Statistik** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **SUMME:** `=SUMME(C2:C50)` (oder den passenden Bereich wählen) → zeigt die Gesamtsumme aller Verkäufe.
 2. **Statistische Kennzahlen:**
    - `=MITTELWERT(C2:C50)` → Durchschnittlicher Bestellwert.
@@ -456,7 +440,6 @@ Die folgende Übungstabelle **Modul 4 5 WENN** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **WENN für Kategorisierung:** In D2: `=WENN(C2>1000; "Großauftrag"; "Standard")` → Formel mit Ausfüllkästchen nach unten kopieren.
    - Zeilen mit C > 1000 zeigen "Großauftrag", alle anderen "Standard".
 2. **WENN mit Berechnung:** In E2: `=WENN(C2>5000; C2*0,1; 0)` → kopieren.
@@ -486,7 +469,6 @@ Die folgende Übungstabelle **Modul 5 1 Validierung** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Dropdown-Liste erstellen:**
    - Spalte B (Abteilung) markieren (z.B. B2:B50).
    - `Daten → Datenüberprüfung (Datentools-Gruppe)`.
@@ -522,7 +504,6 @@ Die folgende Übungstabelle **Modul 5 2 Bereinigen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Duplikate entfernen:** Gesamte Tabelle markieren → `Daten → Duplikate entfernen` (Datentools). Spalten auswählen, die auf Duplikate geprüft werden sollen → `OK`.
 2. **Text in Spalten:** Spalte "Name, Vorname" markieren → `Daten → Text in Spalten`. `Getrennt` → `Weiter`. Trennzeichen: `Komma` → `Weiter`. Ziel: B1 → `Fertig stellen`. Die Vornamen stehen nun in Spalte B (z.B. " Max" mit führendem Leerzeichen). In C1: `=GLÄTTEN(B1)`, nach unten kopieren. Spalte C kopieren → auf B1 klicken → `Strg+Alt+V` → `W` (Werte). Hilfsspalte C löschen.
 3. **Blitzschnelles Ausfüllen (Strg+E):** In die Nachbarzelle die gewünschten Initialen manuell eintippen (z.B. aus "Max Müller" → "MM"). `Strg+E` drücken → Excel füllt den Rest automatisch.
@@ -547,7 +528,6 @@ Die folgende Übungstabelle **Modul 5 3 Konsolidierung** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Daten konsolidieren:**
    - Neues Blatt `Jahresüberblick` erstellen. Zelle A1 anklicken.
    - `Daten → Konsolidieren` (Datentools).
@@ -575,7 +555,6 @@ Die folgende Übungstabelle **Modul 5 4 Import** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **CSV importieren:** `Daten → Aus Text/CSV` (in aktuellen Versionen: `Daten → Daten abrufen → Aus Text/CSV`). Die bereitgestellte `.csv`-Datei auswählen → `Importieren`.
 2. **Vorschau prüfen:**
    - Trennzeichen: Meistens `Semikolon` oder `Komma` (im Dropdown anpassen, bis die Daten korrekt in Spalten erscheinen).
@@ -605,7 +584,6 @@ Die folgende Übungstabelle **Modul 6 1 Suchen Ersetzen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Suchen:** `Strg+F` → Suchfeld: `München` → `Alle suchen` oder `Weitersuchen`. Excel markiert nacheinander jede Zelle mit "München".
 2. **Ersetzen:** `Strg+H` → Suchfeld: `München`, Ersetzen durch: `München (Zentrale)` → `Alle ersetzen`. Alle Vorkommen werden auf einmal aktualisiert.
 3. **Gesamten Zellinhalt vergleichen:**
@@ -632,7 +610,6 @@ Die folgende Übungstabelle **Modul 6 2 Fenster fixieren** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Oberste Zeile fixieren:** `Ansicht → Fenster einfrieren → Oberste Zeile fixieren`. Nach unten scrollen → Zeile 1 bleibt sichtbar.
 2. **Fixierung aufheben:** `Ansicht → Fenster einfrieren → Fixierung aufheben`.
 3. **Zeile 1 UND Spalte A fixieren:** Zelle `B2` anklicken (die Zelle UNTER und RECHTS des zu fixierenden Bereichs). `Ansicht → Fenster einfrieren → Fenster einfrieren`. Jetzt bleiben Zeile 1 und Spalte A beim Scrollen sichtbar.
@@ -657,7 +634,6 @@ Die folgende Übungstabelle **Modul 6 3 Sortieren** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Alphabetisch sortieren (A→Z):** In die Spalte "Nachname" klicken → `Daten → Sortieren (A→Z)`. Die gesamte Tabelle wird nach Nachnamen alphabetisch sortiert.
 2. **Absteigend sortieren (Z→A):** In die Spalte "Bestellwert" klicken → `Daten → Sortieren (Z→A)`. Höchster Wert zuerst.
 3. **Mehrstufige Sortierung:**
@@ -684,7 +660,6 @@ Die folgende Übungstabelle **Modul 6 4 Filtern** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Autofilter aktivieren:** In die Tabelle klicken → `Strg+Umschalt+L` oder `Daten → Filtern`. Pfeilsymbole erscheinen in der Kopfzeile.
 2. **Nach Berlin filtern:** Pfeil in Spalte "Stadt" → Suchfeld: `Berlin` → Häkchen nur bei Berlin → `OK`.
    - Nur Berlin-Bestellungen sind sichtbar; andere Zeilen sind ausgeblendet (nicht gelöscht).
@@ -709,7 +684,6 @@ Die folgende Übungstabelle **Modul 6 5 Tabellen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **In Excel-Tabelle umwandeln:** In den Datenbereich klicken → `Strg+T` oder `Start → Als Tabelle formatieren`. Bereich bestätigen → `OK`.
 2. **Tabellenformat wählen:** In der Registerkarte `Tabellenentwurf` ein Format mit wechselnden Zeilenfarben wählen.
 3. **Neue Zeile hinzufügen:** In die erste leere Zeile unter der Tabelle einen Wert eingeben → Excel erweitert die Tabelle automatisch. Formatierung und Formeln werden übernommen.
@@ -736,7 +710,6 @@ Die folgende Übungstabelle **Modul 6 6 Teilergebnisse** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Nach Region sortieren:** In die Spalte "Region" klicken → `Daten → Sortieren (A→Z)`. (Vorraussetzung für Teilergebnisse!)
 2. **Teilergebnisse einfügen:**
    - `Daten → Teilergebnis` (Gliederung-Gruppe).
@@ -769,7 +742,6 @@ Die folgende Übungstabelle **Modul 7 1 Bedingte Summen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **SUMMEWENN:** `=SUMMEWENN(A2:A100; "Nord"; C2:C100)`
    - A2:A100 = Regionsspalte, "Nord" = Kriterium, C2:C100 = Summenspalte (Umsatz).
 2. **SUMMEWENNS:** `=SUMMEWENNS(C2:C100; A2:A100; "Nord"; B2:B100; "Laptop")`
@@ -819,7 +791,6 @@ Für horizontale Daten ist es jedoch die richtige Wahl.
 
 ### Lösung
 
-**Lösung:**
 1. **SVERWEIS exakt:** `=SVERWEIS(E2; Preisliste!A:C; 2; 0)`
    - Sucht den Wert aus E2 (Produkt-ID) in der ersten Spalte von Preisliste!A:C. Gibt den Wert aus Spalte 2 (Produktname) zurück. `0` = exakte Übereinstimmung.
 2. **SVERWEIS ungefähr für Noten:**
@@ -846,7 +817,6 @@ Die folgende Übungstabelle **Modul 7 3 INDEX VERGLEICH** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **INDEX+VERGLEICH (rechts→links):** `=INDEX(A:A; VERGLEICH(E2; C:C; 0))`
    - VERGLEICH findet die Zeilennummer der Produkt-ID in Spalte C. INDEX holt den Preis aus Spalte A (links davon!). SVERWEIS kann das nicht, weil die Suchspalte rechts steht.
 2. **Bidirektionale Suche:** `=INDEX(B2:M10; VERGLEICH(Produkt; A2:A10; 0); VERGLEICH(Monat; B1:M1; 0))`
@@ -873,7 +843,6 @@ Die folgende Übungstabelle **Modul 7 4 Text Datum** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Nachname extrahieren:** Wenn in A2 "Müller, Max" steht:
    - `=LINKS(A2; FINDEN(","; A2)-1)` → `FINDEN` findet das Komma an Position 7. Wir ziehen 1 ab (`-1`), um das Komma selbst nicht mitzunehmen. `LINKS` nimmt die ersten 6 Zeichen → "Müller".
 2. **GLÄTTEN:** Bei Text in B2 mit überflüssigen Leerzeichen: `=GLÄTTEN(B2)` → entfernt führende, nachfolgende und doppelte Leerzeichen.
@@ -904,7 +873,6 @@ Die folgende Übungstabelle **Modul 8 1 Erste Diagramme** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Säulendiagramm:** Umsatztabelle (Produktnamen + Umsatzwerte) markieren → `Einfügen → Säulendiagramm → Gruppierte Säulen`.
 2. **Kreisdiagramm:** Gleiche Daten markieren → `Einfügen → Kreisdiagramm → Kreis`. Vergleich: Das Kreisdiagramm zeigt Anteile am Ganzen (gut bei max. 5–7 Kategorien); das Säulendiagramm eignet sich besser für exakte Vergleiche der absoluten Werte.
 3. **Liniendiagramm:** Monatliche Umsatzzahlen (z.B. Monate in Zeile 1, Werte in Zeile 2) markieren → `Einfügen → Linie → Linie`. Ideal für zeitliche Entwicklungen.
@@ -927,7 +895,6 @@ Die folgende Übungstabelle **Modul 8 2 Diagrammformat** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Diagrammtitel:** Diagramm anklicken → `Diagrammtitel` (über das `+`-Symbol rechts am Diagramm) → In das Textfeld "Quartalsumsatz 2026" eingeben.
 2. **Achsentitel:** `+`-Symbol → `Achsentitel` aktivieren. Horizontal: "Quartal", Vertikal: "Umsatz in €".
 3. **Datenbeschriftungen:** `+`-Symbol → `Datenbeschriftungen` aktivieren. Die konkreten Werte erscheinen an den Säulen.
@@ -950,7 +917,6 @@ Die folgende Übungstabelle **Modul 8 3 Verbunddiagramm** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Kombi-Diagramm:** Beide Datenreihen (Umsatz + Wachstumsrate) markieren → `Einfügen → Kombi-Diagramm → Benutzerdefiniertes Kombi-Diagramm`.
 2. **Sekundärachse:** Im Dialog für die Wachstumsrate `Sekundärachse` aktivieren. Diagrammtyp: Umsatz = `Gruppierte Säulen`, Wachstumsrate = `Linie`.
 3. **Achsen formatieren:** Rechte Achse (Wachstumsrate) anklicken → `Achse formatieren` → Zahl: `Prozent`. Linke Achse: Zahl: `Währung` oder `Zahl` mit €.
@@ -976,7 +942,6 @@ Die folgende Übungstabelle **Modul 8 4 Dashboard** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Drei Diagramme auf neuem Blatt:**
    - Neues Blatt einfügen (`+`-Symbol).
    - Säulendiagramm: Daten nach Region markieren → `Einfügen → Säulendiagramm`. Auf dem neuen Blatt positionieren.
@@ -1006,7 +971,6 @@ Die folgende Übungstabelle **Modul 9 1 Pivot** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **PivotTable erstellen:** In die Datentabelle klicken → `Einfügen → PivotTable`. Bereich wird automatisch erkannt → `OK` (neues Blatt).
 2. **Felder zuweisen:** In der PivotTable-Feldliste:
    - `Region` in das Feld `Zeilen` ziehen.
@@ -1033,7 +997,6 @@ Die folgende Übungstabelle **Modul 9 2 Pivot Anpassung** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Zusammenfassung ändern:** Im Wertebereich auf `Summe von Umsatz` klicken → `Wertfeldeinstellungen` → Funktion: `Mittelwert` → `OK`.
 2. **Datum gruppieren:** (In Microsoft 365 gruppiert Excel Datumsangaben oft automatisch in Jahre/Quartale/Monate.) Auf ein Datum in der Pivot-Tabelle rechtsklicken → `Gruppieren`. `Monate` und `Quartale` auswählen → `OK`.
 3. **% des Gesamtergebnisses:** Wertfeld anklicken → `Werte anzeigen als` → `% des Gesamtergebnisses`.
@@ -1060,7 +1023,6 @@ Die folgende Übungstabelle **Modul 9 3 Slicer** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Slicer einfügen:** Pivot-Tabelle anklicken → `PivotTable-Analyse → Slicer einfügen` → `Region` auswählen → `OK`. Ein Slicer mit allen Regionen erscheint.
 2. **Mit Slicer filtern:** Auf eine Region im Slicer klicken (z.B. "Nord") → die Pivot-Tabelle zeigt nur noch Daten dieser Region.
 3. **Zweiter Slicer:** `Slicer einfügen` → `Produktkategorie` auswählen. Beide Slicer sind aktiv: Klicken Sie z.B. "Nord" und "Laptops" — nur noch diese Kombination wird angezeigt.
@@ -1086,7 +1048,6 @@ Die folgende Übungstabelle **Modul 9 4 PivotChart** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **PivotChart erstellen:** Pivot-Tabelle anklicken → `PivotTable-Analyse → PivotChart`. Wählen Sie z.B. `Gruppierte Säulen` → `OK`.
 2. **Diagrammtyp wählen:** Diagramm anklicken → `Entwurf → Diagrammtyp ändern` → z.B. `Gestapelte Säulen`.
 3. **Interaktivität testen:** Einen Filter oder Slicer in der Pivot-Tabelle ändern → das PivotChart passt sich automatisch an.
@@ -1113,7 +1074,6 @@ Die folgende Übungstabelle **Modul 10 1 Zielwertsuche** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Zielwertsuche für Stückpreis:**
    - Formel für Gesamtumsatz: z.B. `=B2*B3` (Stückpreis × Menge).
    - `Daten → Was-wäre-wenn-Analyse → Zielwertsuche`.
@@ -1151,7 +1111,6 @@ Die folgende Übungstabelle **Modul 10 2 Finanzfunktionen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Kreditrate (RMZ):** `=RMZ(4,5%/12; 30*12; -250000)`.
    - Zins: 4,5% / 12 = 0,375% pro Monat.
    - Perioden: 30 × 12 = 360 Monate.
@@ -1186,7 +1145,6 @@ Die folgende Übungstabelle **Modul 10 3 Datentabelle** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Eindimensionale Datentabelle:**
    - Formel für RMZ in Zelle B1: `=RMZ(B2/12; 30*12; -250000)`.
    - Zinssätze in A2:A14: 2,0%, 2,5%, 3,0% … 8,0%.
@@ -1223,7 +1181,6 @@ Rückflüssen von 80.000 € über 10 Jahre.
 
 ### Lösung
 
-**Lösung:**
 1. **NBW bei 6%:** `=NBW(6%; B2:B11) - 500000` (Rückflüsse 80.000 in B2:B11, Investition 500.000 abziehen).
    - Ergebnis: ca. 88.800 € > 0 → Investition ist vorteilhaft.
 2. **Zielwertsuche für NBW=0 (IKV):**
@@ -1252,7 +1209,6 @@ Die folgende Übungstabelle **Modul 11 1 Drucklayout** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Querformat:** `Seitenlayout → Ausrichtung → Querformat`.
 2. **Skalierung:** `Seitenlayout → Skalierung` → Breite: `1 Seite`, Höhe: `Automatisch`. Oder: `Datei → Drucken → Skalierung: Alle Spalten auf einer Seite`.
 3. **Schmale Seitenränder:** `Seitenlayout → Seitenränder → Schmal`.
@@ -1277,7 +1233,6 @@ Die folgende Übungstabelle **Modul 11 2 Druckbereich** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Druckbereich definieren:** Haupttabelle (ohne Hilfsspalten) markieren → `Seitenlayout → Druckbereich → Druckbereich festlegen`. Nur dieser Bereich wird gedruckt.
 2. **Manueller Seitenumbruch:** Zeile 31 anklicken → `Seitenlayout → Umbrüche → Seitenumbruch einfügen`. Alles ab Zeile 31 kommt auf die nächste Seite.
 3. **Seitenumbruchvorschau:** `Ansicht → Seitenumbruchvorschau`. Blaue gestrichelte Linien zeigen automatische Umbrüche; durchgezogene Linien manuelle Umbrüche. Per Drag verschiebbar.
@@ -1300,7 +1255,6 @@ Die folgende Übungstabelle **Modul 11 3 Kopfzeilen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Kopfzeile:** `Einfügen → Kopf- und Fußzeile` oder `Seitenlayout → Drucktitel → Kopfzeile/Fußzeile`.
    - Linker Bereich: Firmennamen eingeben (z.B. `Excel-lenz GmbH`).
    - Rechter Bereich: `Datum`-Schaltfläche klicken (fügt `&[Datum]` automatisch ein).
@@ -1325,7 +1279,6 @@ Die folgende Übungstabelle **Modul 11 4 Zusammenarbeit** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Als PDF exportieren:** `Datei → Exportieren → PDF/XPS-Dokument erstellen` → Speicherort wählen → `Veröffentlichen`. Oder: `Datei → Speichern unter → PDF` als Dateityp.
 2. **Kommentar einfügen:** Zelle anklicken → `Überprüfen → Neuer Kommentar` (moderner Thread-Kommentar in M365) oder `Überprüfen → Notiz` (klassischer Kommentar). Text eingeben → außerhalb klicken. Ein roter Indikator erscheint an der Zelle.
 3. **Beide Formate speichern:** `Datei → Speichern unter → .xlsx` (Excel-Arbeitsmappe). Dann erneut: `Datei → Speichern unter → .pdf` (PDF).
@@ -1355,7 +1308,6 @@ Die folgende Übungstabelle **Modul 12 1 Schutz** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Eingabezellen entsperren:**
    - Zellen B2:B10 markieren → `Strg+1 → Schutz → Gesperrt`-Häkchen **entfernen** → `OK`.
    - Alle anderen Zellen (Formeln, Überschriften) bleiben standardmäßig gesperrt.
@@ -1381,7 +1333,6 @@ ausschließlich mit Tastenkombinationen:
 
 ### Lösung
 
-**Lösung:**
 1. **Strg+Umschalt+L (Filter):** In die Tabelle klicken → `Strg+Umschalt+L` → Filterpfeile erscheinen. Mit `↓` und `↑` in der Filterliste navigieren, mit `Leertaste` Häkchen setzen/löschen.
 2. **F4 (Wiederholen):** Beliebig formatieren (z.B. Zelle fett). Nächste Zelle auswählen → `F4` drücken → gleiche Formatierung wird wiederholt.
 3. **Strg+1 (Zellen formatieren):** Zelle markieren → `Strg+1` → Dialog mit allen Formatierungsoptionen öffnet sich.
@@ -1406,7 +1357,6 @@ Die folgende Übungstabelle **Modul 12 3 Inspektion** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Dokumentinspektion starten:** `Datei → Informationen → Auf Probleme überprüfen → Dokument prüfen`.
 2. **Prüfen und entfernen:** Der Inspektor listet Kategorien auf: Dokumenteigenschaften, Kommentare, ausgeblendete Zeilen/Spalten, Kopf-/Fußzeilen. Klicken Sie `Alle entfernen` bei jeder Kategorie mit Funden.
 3. **Bereinigt speichern:** `Datei → Speichern unter` → z.B. `Bereinigt_Version.xlsx`.
@@ -1433,7 +1383,6 @@ Die folgende Übungstabelle **Modul 13 1 Entwicklertools** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Entwicklertools aktivieren:**
    - `Datei → Optionen → Menüband anpassen`.
    - Rechte Liste: Häkchen bei `Entwicklertools` setzen → `OK`.
@@ -1464,7 +1413,6 @@ Die folgende Übungstabelle **Modul 13 2 Makro Aufzeichnen** ist bereits geladen
 
 ### Lösung
 
-**Lösung:**
 1. **Makro aufzeichnen:**
    - `Entwicklertools → Makro aufzeichnen`. Name: `FormatBericht`, Tastenkombination: `Strg+Umschalt+F` → `OK`.
    - Führen Sie die Aktionen aus: Überschriftenzeile markieren → `Strg+F` (Fett) → `Füllfarbe → Grau` → Gesamten Datenbereich markieren → `Rahmen → Alle Rahmen`.
@@ -1494,7 +1442,6 @@ Die folgende Übungstabelle **Modul 13 3 VBA Editor** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **VBA-Editor öffnen:** `Alt+F11` oder `Entwicklertools → Visual Basic`.
 2. **Makro finden:** Im Projekt-Explorer (links, wenn nicht sichtbar: `Ansicht → Projekt-Explorer`) → `Module → Modul1` doppelklicken. Das Makro `FormatBericht` wird im Code-Fenster angezeigt.
 3. **Code analysieren:**
@@ -1524,7 +1471,6 @@ Die folgende Übungstabelle **Modul 13 4 VBA Programmieren** ist bereits geladen
 
 ### Lösung
 
-**Lösung:**
 1. **For-Schleife (Zahlen 1–10):**
    ```vba
    Sub ZahlenSchreiben()

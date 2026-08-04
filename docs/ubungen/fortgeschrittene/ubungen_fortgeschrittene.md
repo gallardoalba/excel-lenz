@@ -20,7 +20,6 @@ Die folgende Übungstabelle **Modul 1 1 Zahlenformate** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Dreiteiliges Zahlenformat:**
    - `Strg+1 → Zahlen → Benutzerdefiniert`.
    - Format: `#.##0,00 ;[Rot]-#.##0,00 ;"-"`
@@ -45,7 +44,6 @@ Die folgende Übungstabelle **Modul 1 2 Bedingte_Formatierung** ist bereits gela
 
 ### Lösung
 
-**Lösung:**
 1. **Ganze Zeile bei Betrag > 10.000 hervorheben:**
    - Bereich A2:D100 markieren (A2 = aktive Zelle).
    - `Start → Bedingte Formatierung → Neue Regel → Formel zur Ermittlung…`.
@@ -74,7 +72,6 @@ Die folgende Übungstabelle **Modul 1 3 Validierung** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Dropdown-Liste aus benanntem Bereich:**
    - Zuerst Bereichsnamen definieren: `Abteilungen` = Zellen mit IT, Vertrieb, HR, Finanzen, Marketing.
    - Spalte markieren → `Daten → Datenüberprüfung`.
@@ -101,7 +98,6 @@ Die folgende Übungstabelle **Modul 1 4 Schutz** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Eingabezellen entsperren:** B2:B10 markieren → `Strg+1 → Schutz → Gesperrt`-Häkchen entfernen. Formelzellen (Spalte D) bleiben gesperrt (Standard).
 2. **Blattschutz aktivieren:** `Überprüfen → Blatt schützen`. Kein Passwort → `OK`.
 3. **Formeln ausblenden:** Spalte D markieren → `Strg+1 → Schutz → Ausgeblendet`-Häkchen setzen. Blattschutz erneut aktivieren. Formeln sind nun in der Bearbeitungsleiste unsichtbar.
@@ -125,7 +121,6 @@ Die folgende Übungstabelle **Modul 2 1 INDEX_VERGLEICH** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **INDEX+VERGLEICH (rechts→links):**
    - Angenommen: Preis in Spalte A, Produktname in Spalte C, Suchbegriff in E2.
    - `=INDEX(A:A; VERGLEICH(E2; C:C; 0))`
@@ -151,7 +146,6 @@ Die folgende Übungstabelle **Modul 2 2 BEREICH_VERSCHIEBEN** ist bereits gelade
 
 ### Lösung
 
-**Lösung:**
 1. **Dynamische Summe mit ANZAHL2:**
    - Daten in Spalte B ab B2 (B1 = Überschrift).
    - `=SUMME(BEREICH.VERSCHIEBEN(B1;1;0;ANZAHL2(B:B)-1;1))`
@@ -180,7 +174,6 @@ Die folgende Übungstabelle **Modul 2 3 Logik** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Verschachteltes WENN für Provision:**
    - `=WENN(C2<10000; C2*5%; WENN(C2<=50000; C2*8%; C2*12%))`
    - < 10k → 5%; 10k–50k → 8%; > 50k → 12%.
@@ -209,7 +202,6 @@ Die folgende Übungstabelle **Modul 2 4 Finanzfunktionen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Monatliche Kreditrate (RMZ):** `=RMZ(4,5%/12; 30*12; -250000)`
    - Zins: 4,5%/12 = 0,375%/Monat. Perioden: 360. Barwert: -250.000. Ergebnis: ≈ 1.266,71 €.
 2. **Kapitalwert (NBW):**
@@ -235,7 +227,6 @@ Die folgende Übungstabelle **Modul 2 5 Matrixformeln** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Matrixformel (klassisch CSE):**
    - `{=SUMME(WENN(C2:C20>1000; C2:C20; 0))}`
    - Eingabe mit `Strg+Umschalt+Enter` (CSE). In Excel 365 ohne CSE möglich (dynamische Arrays).
@@ -263,7 +254,6 @@ Die folgende Übungstabelle **Modul 2 6 Datum_Zeit** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Alter mit DATEDIF:** `=DATEDIF(B2; HEUTE(); "Y")`
    - Exaktes Alter in ganzen Jahren, berücksichtigt ob Geburtstag schon war.
 2. **MONATSENDE:** `=MONATSENDE(HEUTE(); 0)` → letzter Tag des aktuellen Monats.
@@ -289,7 +279,6 @@ Die folgende Übungstabelle **Modul 3 1 Namen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Konstanten-Namen:** `Strg+F3 → Neu`. Name: `MwSt_Satz`, Bezieht sich auf: `=0,19`. Ebenso: `Einkommensteuer = 0,25`, `Sozialabgaben = 0,15`.
 2. **Dynamischen Namen:** `AlleDaten = BEREICH.VERSCHIEBEN(Tabelle1!$A$1;0;0;ANZAHL2(Tabelle1!$A:$A);5)`.
 3. **In Gehaltsabrechnung verwenden:** `=B2*(1-Einkommensteuer-Sozialabgaben)` → Nettogehalt.
@@ -310,7 +299,6 @@ Die folgende Übungstabelle **Modul 3 2 3D_Bezuege** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Jahresübersicht mit 3D-Bezug:** `=SUMME(Januar:Dezember!B2)` → summiert B2 aus allen Blättern zwischen Januar und Dezember.
 2. **Neues Blatt einfügen und prüfen:** Blatt zwischen Januar und Februar einfügen → 3D-Bezug schließt es automatisch ein (weil zwischen den Grenzblättern). Blatt VOR Januar oder NACH Dezember bleibt ausgeschlossen.
    - **Lernziel:** 3D-Bezüge für blattübergreifende Berechnungen und deren automatische Erweiterung.
@@ -331,7 +319,6 @@ Die folgende Übungstabelle **Modul 3 3 Verknuepfungen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Externe Verknüpfung:** `=` tippen, zur Quelldatei wechseln, Zelle anklicken → `Enter`. Syntax: `=[Budgetdaten.xlsx]Q1!B5`.
 2. **Verknüpfung aktualisieren:** Quelldatei ändern → `Daten → Verknüpfungen bearbeiten → Werte aktualisieren`.
 3. **Verknüpfung lösen:** `Daten → Verknüpfungen bearbeiten → Verknüpfung lösen`. Werte bleiben als statische Zahlen erhalten.
@@ -354,7 +341,6 @@ Die folgende Übungstabelle **Modul 3 4 Konsolidierung** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Daten konsolidieren (nach Position):** Neues Blatt → `Daten → Konsolidieren`. Funktion: `Summe`. Verweis: Q1, Q2, Q3 nacheinander hinzufügen → `OK`.
 2. **Nach Kategorie:** Häkchen bei `Oberste Zeile` und `Linke Spalte`. Produkte können in unterschiedlicher Reihenfolge stehen.
 3. **Verknüpfung aktivieren:** Häkchen bei `Verknüpfung mit den Quelldaten` → Änderungen in Q1 werden automatisch übernommen.
@@ -378,7 +364,6 @@ Die folgende Übungstabelle **Modul 4 1 Spezialfilter** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **UND-Bedingung (Nord & >10.000):** Kriterienbereich E1:F2: E1=`Region`, F1=`Umsatz`, E2=`Nord`, F2=`>10000`. `Daten → Erweitert` → Kriterienbereich: E1:F2.
 2. **ODER mit UND (Nord/Süd je >10.000):** Kriterien E1:F3: Zeile 2 = `Nord | >10000`, Zeile 3 = `Süd | >10000`. Bedingung `>10000` muss in JEDER Zeile wiederholt werden.
 3. **Eindeutige Datensätze:** Im Erweitert-Dialog: `An eine andere Stelle kopieren` + `Nur eindeutige Datensätze` → Duplikate werden eliminiert.
@@ -398,7 +383,6 @@ Die folgende Übungstabelle **Modul 4 2 Datenbankfunktionen** ist bereits gelade
 
 ### Lösung
 
-**Lösung:**
 1. **DBSUMME:** `=DBSUMME(A1:D100; "Umsatz"; F1:G2)` → Gesamtumsatz Region "West".
 2. **DBMITTELWERT:** `=DBMITTELWERT(A1:D100; "Alter"; F1:G2)` → Durchschnittsalter "Berlin".
 3. **DBAUSZUG:** `=DBAUSZUG(A1:D100; "Name"; F1:G2)` → Kunde mit ID 1042.
@@ -420,7 +404,6 @@ Die folgende Übungstabelle **Modul 4 3 Teilergebnisse** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Sortieren:** `Daten → Sortieren`. 1. Ebene: `Region`, 2. Ebene: `Produkt` → OK.
 2. **Teilergebnisse (1. Ebene):** `Daten → Teilergebnis`. Gruppieren: `Region`, Funktion: `Summe`, Werte: `Umsatz`.
 3. **Zweite Ebene:** Erneut `Teilergebnis`, Gruppieren: `Produkt`, Funktion: `Anzahl`. **Wichtig:** Häkchen bei `Aktuelle Teilergebnisse ersetzen` entfernen!
@@ -442,7 +425,6 @@ Die folgende Übungstabelle **Modul 4 4 Tabellen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **In Excel-Tabelle:** `Strg+T` → `OK`.
 2. **Strukturierter Verweis:** `=[@Menge]*[@Preis]` in neuer Spalte. Formel wird automatisch auf alle Zeilen übertragen.
 3. **Ergebniszeile:** `Tabellenentwurf → Ergebniszeile` aktivieren → Dropdown für SUMME, MITTELWERT etc.
@@ -468,7 +450,6 @@ Die folgende Übungstabelle **Modul 5 1 Pivot** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Pivot-Tabelle mit Kreuztabelle:** `Einfügen → PivotTable`. Zeilen: `Region`, `Produkt`. Spalten: `Quartal`. Werte: `Umsatz`. Falls nur Datum: Rechtsklick → `Gruppieren → Quartale`.
 2. **Zusammenfassung ändern:** Wertebereich → `Wertfeldeinstellungen → Mittelwert`.
 3. **% des Gesamtergebnisses:** Rechtsklick auf Wert → `Werte anzeigen als → % des Gesamtergebnisses`.
@@ -489,7 +470,6 @@ Die folgende Übungstabelle **Modul 5 2 Pivot_Anpassung** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Datum gruppieren:** Datumsfeld rechtsklicken → `Gruppieren → Monate, Quartale`.
 2. **Berechnetes Feld Bonus:** `PivotTable-Analyse → Berechnetes Feld`. Name: `Bonus`, Formel: `=Umsatz * 0,05`.
 3. **Berechnetes Feld Marge:** Name: `Marge`, Formel: `=(Umsatz - Kosten) / Umsatz`. Formatieren als Prozent.
@@ -511,7 +491,6 @@ Die folgende Übungstabelle **Modul 5 3 Slicer** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Slicer einfügen:** `PivotTable-Analyse → Slicer einfügen → Region, Produktkategorie`.
 2. **Zweite Pivot-Tabelle verbinden:** Zweite Pivot-Tabelle erstellen. Slicer anklicken → `Berichtsverbindungen` → beide Tabellen anhaken.
 3. **Zeitachse:** `PivotTable-Analyse → Zeitachse einfügen → Bestelldatum`. Per Schieberegler Zeiträume filtern.
@@ -532,7 +511,6 @@ Die folgende Übungstabelle **Modul 5 4 PivotChart** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **PivotChart:** Pivot-Tabelle anklicken → `PivotTable-Analyse → PivotChart → Gruppierte Säulen`.
 2. **Slicer testen:** Slicer für Region hinzufügen → auf Region klicken → Tabelle und Diagramm filtern sich automatisch.
 3. **Diagrammtyp ändern:** `Entwurf → Diagrammtyp ändern → Gestapelte Säulen`. Zeigt Zusammensetzung der Regionen pro Quartal.
@@ -557,7 +535,6 @@ Die folgende Übungstabelle **Modul 6 1 Zielwertsuche** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Zielwertsuche:** Formel in B4: `=B2*B3` (Stückpreis × Menge). `Daten → Zielwertsuche`: Zielzelle=B4, Zielwert=100000, Veränderbare=B2 → `OK`.
 2. **Zweidimensionale Datentabelle:**
    - Formel in A1: `=RMZ($B$1/12; $C$1*12; -250000)`.
@@ -582,7 +559,6 @@ Die folgende Übungstabelle **Modul 6 2 Szenarien** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Drei Szenarien:** Voraussetzung: Wachstumsrate in B1. `Daten → Szenario-Manager → Hinzufügen`. Optimistisch: B1=0,10, Neutral: 0,05, Pessimistisch: -0,02.
 2. **Zusammenfassungsbericht:** `Szenario-Manager → Zusammenfassung`. Ergebniszellen auswählen → neues Blatt mit Szenarien-Tabelle.
 3. **Szenarien wechseln:** `Szenario-Manager → Szenario wählen → Anzeigen`. Alle abhängigen Formeln werden sofort neu berechnet.
@@ -606,7 +582,6 @@ Die folgende Übungstabelle **Modul 6 3 Solver** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Solver konfigurieren:**
    - `Daten → Solver`. Ziel: Gewinn-Zelle, Max. Variablen: Produktionsmengen.
    - Nebenbedingungen: `>= 0`, `Gesamtkosten <= 50000`, `<= Kapazitäten`.
@@ -629,7 +604,6 @@ Die folgende Übungstabelle **Modul 6 4 Sparklines** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Sparklines:** Zielzellen markieren → `Einfügen → Sparklines → Linie`. Datenbereich: monatliche Umsätze pro Zeile.
 2. **Trendlinie mit R²:** Diagramm anklicken → `+ → Trendlinie → Linear`. `Trendlinie formatieren → R² im Diagramm anzeigen`.
 3. **R²=0,87 interpretieren:** 87% der Varianz werden durch das lineare Modell erklärt → starker Zusammenhang. Nahe 1,0 = sehr stark, nahe 0 = schwach.
@@ -652,7 +626,6 @@ Die folgende Übungstabelle **Modul 7 1 Verbunddiagramm** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Kombinationsdiagramm:** Umsatz + Wachstumsrate markieren → `Einfügen → Kombi-Diagramm`. Umsatz = Säulen, Wachstumsrate = Linie mit Sekundärachse.
 2. **Achsen formatieren:** Links = Währung (€), Rechts = Prozent. `Achse formatieren → Zahl`.
 3. **Fehlerindikatoren:** `+ → Fehlerindikatoren → Standardabweichung`. Visuelle Darstellung der Variabilität.
@@ -672,7 +645,6 @@ Die folgende Übungstabelle **Modul 7 2 Wasserfall** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Wasserfalldiagramm:** GuV-Daten markieren → `Einfügen → Wasserfall`. Excel erkennt automatisch Anfangs-/Endwerte und Zu-/Abnahmen.
 2. **Farben:** Erhöhungen = Grün, Verminderungen = Rot, Gesamtwert = Blau (jeweils doppelt anklicken für Einzelauswahl).
 3. **Datenbeschriftungen:** `+ → Datenbeschriftungen`. Werte direkt an den Säulen.
@@ -697,7 +669,6 @@ Die folgende Übungstabelle **Modul 7 3 Dashboard** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Dashboard-Elemente auf neuem Blatt:**
    - Liniendiagramm: 12-Monats-Umsatz mit Markern.
    - Säulendiagramm: Umsatz nach Region.
@@ -724,7 +695,6 @@ Die folgende Übungstabelle **Modul 8 1 Makro_Aufzeichnen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Entwicklertools & .xlsm:** `Datei → Optionen → Menüband anpassen → Entwicklertools`. Speichern als `*.xlsm`.
 2. **Makro aufzeichnen:** `Entwicklertools → Makro aufzeichnen`. Überschrift fett + zentriert, Kopfzeile blau/weiß, Rahmen → Aufzeichnung beenden.
 3. **Auf anderem Blatt ausführen:** Leeres Blatt → `Entwicklertools → Makros → Ausführen`. Alle Formatierungsschritte wiederholt.
@@ -745,7 +715,6 @@ Die folgende Übungstabelle **Modul 8 2 Makro_Zuweisen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Schaltfläche zuweisen:** `Entwicklertools → Einfügen → Schaltfläche`. Aufziehen → Makro auswählen → Text bearbeiten.
 2. **Tastenkombination:** `Entwicklertools → Makros → Optionen`. Tastenkombination: `Strg+Umschalt+F`.
 3. **Beide testen:** `Strg+Umschalt+F` oder Schaltfläche klicken → Makro läuft.
@@ -765,7 +734,6 @@ Die folgende Übungstabelle **Modul 8 3 VBA_Editor** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **VBA-Editor:** `Alt+F11` oder `Entwicklertools → Visual Basic`.
 2. **Makro finden:** Projekt-Explorer → `Module → Modul1` doppelklicken. Makro-Code erscheint.
 3. **Farbe im Code ändern:** `.Interior.Color = RGB(0, 0, 255)` zu `.Interior.Color = RGB(0, 100, 0)` (Dunkelgrün) ändern. `Strg+S` speichern, `Alt+F11` zurück, Makro ausführen.
@@ -788,7 +756,6 @@ Die folgende Übungstabelle **Modul 9 1 VBA_Variablen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Produkt aus zwei Zellen:**
    ```vba
    Sub ProduktBerechnen()
@@ -826,7 +793,6 @@ Die folgende Übungstabelle **Modul 9 2 VBA_Kontrollstrukturen** ist bereits gel
 
 ### Lösung
 
-**Lösung:**
 1. **For-Schleife (1–10):**
    ```vba
    Sub ZahlenSchreiben()
@@ -876,7 +842,6 @@ Die folgende Übungstabelle **Modul 9 3 VBA_Ereignisse** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Worksheet_Change mit Validierung (in das Tabellenblatt-Modul):**
    ```vba
    Private Sub Worksheet_Change(ByVal Target As Range)
@@ -913,7 +878,6 @@ Die folgende Übungstabelle **Modul 9 4 VBA_UDF** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **UDF Bonus (in ein Modul):**
    ```vba
    Function Bonus(Umsatz As Double) As Double
@@ -950,7 +914,6 @@ Die folgende Übungstabelle **Modul 10 1 Vorlagen** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Rechnungsvorlage:**
    - Logo-Bereich: A1:C3 verbinden, Platzhalter-Text.
    - Rechnungsnummer: `="RE-" & TEXT(HEUTE();"JJJJMMTT") & "-" & TEXT(ZEILE();"000")`.
@@ -974,7 +937,6 @@ Die folgende Übungstabelle **Modul 10 2 Zusammenarbeit** ist bereits geladen.
 
 ### Lösung
 
-**Lösung:**
 1. **Kommentar:** Rechtsklick → `Neuer Kommentar` → Text eingeben.
 2. **PDF mit Seitenumbrüchen:** `Ansicht → Seitenumbruchvorschau`, Umbrüche setzen. `Datei → Exportieren → PDF`.
 3. **Blattschutz für Externe:** Eingabezellen entsperren → `Blatt schützen`. Haken bei `Gesperrte Zellen auswählen` entfernen → nur Eingabe erlaubt.
@@ -996,7 +958,6 @@ Die folgende Übungstabelle **Modul 10 4 Tastenkombinationen** ist bereits gelad
 
 ### Lösung
 
-**Lösung:**
 1. **Nur mit Tastatur:** `Strg+A` (Alles) → `Strg+T` (Tabelle) → `Alt+=` (Summe) → `Strg+Umschalt+L` (Filter).
 2. **Formel-Vorgänger/Nachfolger:**
    - `Strg+{` (Strg+AltGr+7) → Vorgängerzellen markieren.
