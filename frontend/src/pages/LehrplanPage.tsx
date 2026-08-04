@@ -3,9 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { BookOpen, ChevronDown, X } from 'lucide-react';
 import { ExcelSpinner } from '../components/animations/Celebrations';
 
-const LEHRPLAN_META: Record<string, { title: string }> = {
-  anfaenger: { title: 'Lehrplan: Excel für Anfänger' },
-  fortgeschrittene: { title: 'Lehrplan: Excel für Fortgeschrittene' },
+const LEHRPLAN_META: Record<string, { title: string; pdf: string }> = {
+  anfaenger: { title: 'Lehrplan: Excel für Anfänger', pdf: 'Lehrplan_Excel_Anfaenger.pdf' },
+  fortgeschrittene: { title: 'Lehrplan: Excel für Fortgeschrittene', pdf: 'Lehrplan_Excel_Fortgeschrittene.pdf' },
 };
 
 interface ModuleSection {
@@ -71,7 +71,7 @@ export default function LehrplanPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const moduleRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
-  const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan' };
+  const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan', pdf: '' };
 
   const collapseModule = useCallback((modId: string) => {
     setExpanded(null);
@@ -123,14 +123,16 @@ export default function LehrplanPage() {
             </h1>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            {meta.pdf && (
             <a
-              href="/downloads/Lehrplan_Excel_Anfaenger.pdf"
+              href={`/downloads/${meta.pdf}`}
               download
               className="btn btn-primary btn-sm"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
             >
               📄 Lehrplan (PDF)
             </a>
+            )}
             <a
               href="/downloads/Excel-lenz_Kursmaterialien.zip"
               download
