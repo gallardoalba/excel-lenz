@@ -14,6 +14,8 @@ interface CurrentSub {
 export default function Pricing() {
   const { user } = useAuth();
   const [tiers, setTiers] = useState<Record<string, TierInfo>>({});
+
+  useEffect(() => { document.title = 'Preise — Excel-lenz'; }, []);
   const [current, setCurrent] = useState<CurrentSub | null>(null);
   const [loading, setLoading] = useState(true);
   const [subscribing, setSubscribing] = useState('');

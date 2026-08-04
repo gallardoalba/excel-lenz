@@ -15,6 +15,8 @@ interface Course {
 export default function TeacherPanel() {
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => { document.title = 'Dozentenbereich — Excel-lenz'; }, []);
   const [tab, setTab] = useState<'students' | 'courses' | 'analytics'>('students');
   const [students, setStudents] = useState<Student[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);

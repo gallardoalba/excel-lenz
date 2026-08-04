@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BookOpen } from 'lucide-react';
 import { apiFetch, useAuth } from '../context/AuthContext';
 import { ExcelSpinner } from '../components/animations/Celebrations';
+import Seo from '../components/Seo';
 import { COURSE_ICONS, COURSE_THEME, DIFFICULTY_LABELS, translateCourse } from '../data/course-config';
 
 interface Course {
@@ -17,6 +18,8 @@ export default function Courses() {
   const { user } = useAuth();
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
+
+  
 
   useEffect(() => {
     apiFetch('/courses')

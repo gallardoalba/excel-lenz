@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { FileQuestion } from 'lucide-react';
 
 export default function NotFound() {
+  useEffect(() => { document.title = 'Seite nicht gefunden — Excel-lenz'; }, []);
   return (
     <div style={{ textAlign: 'center', padding: '80px 24px' }}>
       <FileQuestion size={64} style={{ color: 'var(--text-muted)', marginBottom: 24 }} />

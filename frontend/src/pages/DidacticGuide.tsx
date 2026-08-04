@@ -22,6 +22,8 @@ export default function DidacticGuide() {
 
   const meta = GUIDE_META[type || ''] || { title: 'Didaktischer Leitfaden', pdf: '#' };
 
+  useEffect(() => { document.title = `${meta.title} — Excel-lenz`; }, [meta.title]);
+
   useEffect(() => {
     setLoading(true);
     setError(null);

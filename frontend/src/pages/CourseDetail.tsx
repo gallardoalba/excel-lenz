@@ -4,6 +4,7 @@ import { CheckCircle, Lock, Clock, BookOpen, ChevronRight, Play, Target, BookMar
 import { apiFetch, useAuth } from '../context/AuthContext';
 import FunctionMap from '../components/visualizations/FunctionMap';
 import { ExcelSpinner } from '../components/animations/Celebrations';
+import Seo from '../components/Seo';
 import { COURSE_ICONS, COURSE_THEME, DIFFICULTY_LABELS, translateCourse } from '../data/course-config';
 import { usePageView } from '../hooks/useAnalytics';
 
@@ -122,6 +123,9 @@ export default function CourseDetail() {
   const { user } = useAuth();
   const navigate = useNavigate();
   usePageView(`course/${id}`);
+
+  
+
   const [course, setCourse] = useState<CourseDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [masteryMap, setMasteryMap] = useState<Record<string, boolean>>({});
@@ -226,6 +230,7 @@ export default function CourseDetail() {
 
   return (
     <div className="course-detail-page">
+      <Seo title="Kursdetails" description="Detaillierte Kursubersicht mit Modulen und Excel-Ubungen." />
       {/* ── HERO V2 ── */}
       <section className="course-hero-v2" style={{ background: 'var(--bg-alt)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="course-hero-inner">

@@ -65,6 +65,9 @@ interface ExerciseData {
 export default function Exercise() {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
+
+  
+
   const [exercise, setExercise] = useState<ExerciseData | null>(null);
   const [loading, setLoading] = useState(true);
   const [score, setScore] = useState<number | null>(null);
