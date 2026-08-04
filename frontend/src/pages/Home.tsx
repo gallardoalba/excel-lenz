@@ -24,15 +24,17 @@ export default function Home() {
   const { startTour } = useTour();
   const [lastExercise, setLastExercise] = useState<{ id: string; title: string; course_title: string } | null>(null);
   const [guestCourseId, setGuestCourseId] = useState<string | null>(null);
+  const [guestExerciseId, setGuestExerciseId] = useState<string | null>(null);
   const [courses, setCourses] = useState<{ id: string }[]>([]);
 
   useEffect(() => {
     if (user) {
       apiFetch('/exercises/user/last-exercise').then(setLastExercise).catch(() => {});
     }
-    apiFetch('/courses').then((list: { id: string }[]) => {
+    apiFetch('/courses').then((list: { id: string; first_exercise_id?: string | null }[]) => {
       if (list?.length) {
         setGuestCourseId(list[0].id);
+        setGuestExerciseId(list[0].first_exercise_id || null);
         setCourses(list);
       }
     }).catch(() => {});
@@ -43,7 +45,7 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" style={{ padding: '140px 24px 100px', minHeight: '75vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
         <div className="hero-inner" style={{ maxWidth: '900px' }}>
-          <h1 className="hero-brand" style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: 'var(--primary)', fontFamily: 'var(--font-display)' }}>
+          <h1 className="hero-brand" style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, fontFamily: 'var(--font-display)' }}>
             Excel-lenz
           </h1>
           <p style={{ fontSize: '1.4rem', maxWidth: '780px', margin: '16px auto 0', color: 'var(--text-secondary)' }}>
@@ -53,7 +55,11 @@ export default function Home() {
             <Link to="/courses" className="btn btn-primary btn-lg">
               Kurse entdecken
             </Link>
-            {guestCourseId ? (
+            {guestExerciseId ? (
+              <Link to={`/exercises/${guestExerciseId}`} className="btn btn-outline btn-lg">
+                Als Gast testen
+              </Link>
+            ) : guestCourseId ? (
               <Link to={`/courses/${guestCourseId}`} className="btn btn-outline btn-lg">
                 Als Gast testen
               </Link>

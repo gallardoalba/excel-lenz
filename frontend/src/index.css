@@ -1015,6 +1015,16 @@ body.dark .btn-white:hover { background: var(--bg-alt); color: var(--text); }
 }
 .hero h1.hero-brand {
   animation: fadeInUpBrand 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  background: linear-gradient(135deg, #1D1D1F 0%, #8B6914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+body.dark .hero h1.hero-brand {
+  background: linear-gradient(135deg, #F5F5F7 0%, #C5A065 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 @keyframes fadeInUpBrand {
   from { opacity: 0; transform: translateY(14px); }
@@ -1038,6 +1048,18 @@ body.dark .btn-white:hover { background: var(--bg-alt); color: var(--text); }
   line-height: 1.7;
 }
 .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+.hero-actions .btn {
+  transition: all 0.25s ease;
+}
+.hero-actions .btn:hover {
+  transform: scale(1.03);
+}
+.hero-actions .btn:active {
+  transform: scale(0.97);
+}
+.hero-actions .btn-outline {
+  border-width: 2.5px;
+}
 
 /* Continue learning card (Home hero) */
 .continue-learning { margin-top: 24px; }
