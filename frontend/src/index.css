@@ -4353,7 +4353,10 @@ body.focus-mode .main-content { padding-top: 0; }
   transition: background 0.15s;
 }
 .module-card-header:hover {
-  background: var(--bg-alt);
+  background: rgba(0,0,0,0.015);
+}
+body.dark .module-card-header:hover {
+  background: rgba(255,255,255,0.03);
 }
 .module-card-num {
   font-family: var(--font-display);
@@ -5637,11 +5640,17 @@ body.dark .student-hero {
   transition: background 0.2s ease, color 0.2s ease;
 }
 .lehrplan-module-panel .module-toggle-btn:hover {
-  background: var(--bg-alt);
+  background: rgba(0,0,0,0.015);
+}
+body.dark .lehrplan-module-panel .module-toggle-btn:hover {
+  background: rgba(255,255,255,0.03);
 }
 .lehrplan-module-panel .module-toggle-btn.open {
-  background: var(--bg-alt);
+  background: rgba(0,0,0,0.025);
   color: var(--primary);
+}
+body.dark .lehrplan-module-panel .module-toggle-btn.open {
+  background: rgba(255,255,255,0.04);
 }
 .lehrplan-module-panel .module-chevron {
   transition: transform 0.3s ease;

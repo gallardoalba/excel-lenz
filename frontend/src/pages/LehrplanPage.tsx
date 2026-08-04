@@ -3,9 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { BookOpen, ChevronDown, X } from 'lucide-react';
 import { ExcelSpinner } from '../components/animations/Celebrations';
 
-const LEHRPLAN_META: Record<string, { title: string; pdf: string; zip: string }> = {
-  anfaenger: { title: 'Lehrplan: Excel für Anfänger', pdf: 'Lehrplan_Excel_Anfaenger.pdf', zip: 'Excel-lenz_Anfaenger_Materialien.zip' },
-  fortgeschrittene: { title: 'Lehrplan: Excel für Fortgeschrittene', pdf: 'Lehrplan_Excel_Fortgeschrittene.pdf', zip: 'Excel-lenz_Fortgeschrittene_Materialien.zip' },
+const LEHRPLAN_META: Record<string, { title: string; pdf: string; zip: string; uebungenPdf: string }> = {
+  anfaenger: { title: 'Lehrplan: Excel für Anfänger', pdf: 'Lehrplan_Excel_Anfaenger.pdf', zip: 'Excel-lenz_Anfaenger_Materialien.zip', uebungenPdf: 'Ubungen_Excel_Anfaenger.pdf' },
+  fortgeschrittene: { title: 'Lehrplan: Excel für Fortgeschrittene', pdf: 'Lehrplan_Excel_Fortgeschrittene.pdf', zip: 'Excel-lenz_Fortgeschrittene_Materialien.zip', uebungenPdf: 'Ubungen_Excel_Fortgeschrittene.pdf' },
 };
 
 interface ModuleSection {
@@ -71,7 +71,7 @@ export default function LehrplanPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const moduleRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
-  const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan', pdf: '', zip: '' };
+  const meta = LEHRPLAN_META[type || ''] || { title: 'Lehrplan', pdf: '', zip: '', uebungenPdf: '' };
 
   useEffect(() => { document.title = `${meta.title} — Excel-lenz`; }, [meta.title]);
 
@@ -124,7 +124,7 @@ export default function LehrplanPage() {
               {meta.title}
             </h1>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             {meta.pdf && (
             <a
               href={`/downloads/${meta.pdf}`}
@@ -133,6 +133,16 @@ export default function LehrplanPage() {
               style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
             >
               📄 Lehrplan (PDF)
+            </a>
+            )}
+            {meta.uebungenPdf && (
+            <a
+              href={`/downloads/${meta.uebungenPdf}`}
+              download
+              className="btn btn-accent btn-sm"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
+            >
+              📝 Übungen + Lösungen (PDF)
             </a>
             )}
             {meta.zip && (

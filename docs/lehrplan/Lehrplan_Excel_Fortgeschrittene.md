@@ -1,6 +1,6 @@
 ---
 pdftitle: "Lehrplan: Excel für Fortgeschrittene"
-author: "Cristbal Gallardo"
+author: "Cristóbal Gallardo"
 date: "August 2026"
 location: "Freiburg im Breisgau"
 lang: de
@@ -23,7 +23,7 @@ geometry: margin=2.5cm
 {\large\sffamily Vollständiger Lehrplan mit Theorie und praktischen Übungen\par}
 \vspace{2.5em}
 {\normalsize\sffamily\color{excelgray}
-\textbf{Autor:} Cristbal Gallardo\par
+\textbf{Autor:} Cristóbal Gallardo\par
 \vspace{0.2em}
 \textbf{Datum:} August 2026\par
 \vspace{0.2em}
@@ -134,7 +134,7 @@ Die folgende Übungstabelle **Modul 1 1 Zahlenformate** ist bereits geladen.
 > 1. Erstellen Sie ein Format, das positive Zahlen in Schwarz (`#.##0,00 `),
 >    negative in Rot (`[Rot]-#.##0,00 `) und Null als `-` anzeigt.
 > 2. Erstellen Sie ein Format, das Zahlen unter 1000 normal und über 1000
->    in Tausend anzeigt: `[<1000]#.##0;[>999]#.##0." T"`.
+>    in Tausend anzeigt: `[<1000]#.##0;#.##0" T"`.
 
 ## 1.3. Bedingte Formatierung mit Formeln
 ### Konzept: Regeln, die mitdenken
@@ -145,7 +145,7 @@ Formatierung passt sich in Echtzeit an.
 
 | Anwendungsfall | Formel | Effekt |
 |---------------|--------|--------|
-| Ganze Zeile hervorheben | `=$F5="TX"` | Zeile wird markiert, wenn Spalte F "TX" enthält |
+| Ganze Zeile hervorheben | `=$F1="TX"` | Zeile wird markiert, wenn Spalte F "TX" enthält |
 | Fällige Daten warnen | `=UND(B4>HEUTE();B4<=HEUTE()+30)` | Daten in den nächsten 30 Tagen |
 | Abweichungen erkennen | `=$B4<>$C4` | Unterschiede zwischen Spalten B und C |
 | Doppelte Werte | `=ZÄHLENWENN($A:$A;$A1)>1` | Duplikate in Spalte A |
@@ -161,7 +161,7 @@ Die folgende Übungstabelle **Modul 1 2 Bedingte_Formatierung** ist bereits gela
 > 1. Heben Sie alle Zeilen hervor, deren Betrag > 10.000  ist (Formel: `=$C2>10000`).
 > 2. Markieren Sie Zeilen, deren Status "Offen" ist, mit gelbem Hintergrund.
 > 3. Erstellen Sie eine Regel, die das Fälligkeitsdatum rot markiert, wenn es
->    weniger als 7 Tage in der Zukunft liegt: `=UND($D2>HEUTE();$D2<=HEUTE()+7)`.
+>    weniger als 7 Tage in der Zukunft liegt: `=UND($D2>HEUTE();$D2<HEUTE()+7)`.
 
 ## 1.4. Erweiterte Datenüberprüfung
 ### Konzept: Datenqualität schon bei der Eingabe sichern
@@ -195,9 +195,9 @@ Die folgende Übungstabelle **Modul 1 3 Validierung** ist bereits geladen.
 
 > 1. Erstellen Sie eine Dropdown-Liste für Abteilungen aus dem benannten Bereich
 >    `Abteilungen` (IT, Vertrieb, HR, Finanzen, Marketing).
-> 2. Begrenzen Sie das Gehalt auf 30.000120.000 mit benutzerdefinierter Formel.
-> 3. Fügen Sie eine Eingabemeldung Bitte Abteilung aus Liste wählen" hinzu.
-> 4. Erstellen Sie eine Stopp-Fehlermeldung Ungültiges Gehalt (30.000120.000)".
+> 2. Begrenzen Sie das Gehalt auf 30.000 - 120.000 mit benutzerdefinierter Formel.
+> 3. Fügen Sie eine Eingabemeldung „Bitte Abteilung aus Liste wählen" hinzu.
+> 4. Erstellen Sie eine Stopp-Fehlermeldung „Ungültiges Gehalt (30.000 - 120.000)".
 
 ## 1.5. Gezielter Schutz
 ### Konzept: Nur das schützen, was geschützt werden muss
@@ -263,13 +263,13 @@ Einschränkung auf und ist zudem robuster bei Tabellenänderungen.
 | Vergleichstyp | Bedeutung |
 |--------------|-----------|
 | `0` | Exakte Übereinstimmung (unsortiert) |
-| `1` | Größter Wert &lt;= Suchkriterium (aufsteigend sortiert) |
-| `-1` | Kleinster Wert &gt;= Suchkriterium (absteigend sortiert) |
+| `1` | Größter Wert <= Suchkriterium (aufsteigend sortiert) |
+| `-1` | Kleinster Wert >= Suchkriterium (absteigend sortiert) |
 
 **Tipp:** INDEX+VERGLEICH ist auch schneller als SVERWEIS bei großen Tabellen
 **Tipp:** In Excel 365/2021 ersetzt `XVERWEIS` (XLOOKUP) sowohl SVERWEIS als
 auch INDEX+VERGLEICH mit einer einfacheren Syntax:
-`=XVERWEIS(Suchwert; Suchspalte; Rückgabespalte; [Wenn_nicht_gefunden]; [Vergleichsmodus])`.
+`=XVERWEIS(Suchkriterium; Suchmatrix; Rückgabematrix; [Wenn_nicht_gefunden]; [Vergleichsmodus]; [Suchmodus])`.
 XVERWEIS sucht in beide Richtungen und benötigt keinen Spaltenindex mehr.
 und bricht nicht, wenn Spalten eingefügt werden.
 
@@ -306,7 +306,7 @@ und Breite.
 | Anwendung | Formel |
 |-----------|--------|
 | Dynamische Summe | `=SUMME(BEREICH.VERSCHIEBEN(B1;0;0;ANZAHL2(B:B);1))` |
-| Letzte 3 Monate | `=MITTELWERT(BEREICH.VERSCHIEBEN(B1;ANZAHL(B:B)-3;0;3))` |
+| Letzte 3 Monate | `=MITTELWERT(BEREICH.VERSCHIEBEN(B1;ANZAHL2(B:B)-3;0;3))` |
 | Rollierender Durchschnitt | In Kombination mit ZÄHLENWENN für gleitende Fenster |
 
 **Wichtig:** BEREICH.VERSCHIEBEN ist eine **flüchtige Funktion**  sie wird
@@ -330,7 +330,7 @@ Statt tiefer WENN-Schachtelungen bietet Excel mehrere Alternativen:
 
 | Funktion | Syntax | Anwendung |
 |----------|--------|-----------|
-| WENNS (Excel 2019+) | `=WENNS(B2>=90;"A";B2>=80;"B";B2>=70;"C";WAHR;"F")` | Mehrere Bedingungen ohne Schachtelung |
+| WENNS (Excel 2019/M365) | `=WENNS(B2>=90;"A";B2>=80;"B";B2>=70;"C";WAHR;"F")` | Mehrere Bedingungen ohne Schachtelung |
 | WENNFEHLER | `=WENNFEHLER(SVERWEIS(A2;Liste;2;0);"Nicht gefunden")` | #NV und andere Fehler abfangen |
 | WAHL | `=WAHL(B2;"Klein";"Mittel";"Groß")` | Wert aus Liste basierend auf Index |
 
@@ -343,11 +343,11 @@ Die folgende Übungstabelle **Modul 2 3 Logik** ist bereits geladen.
 
 > 1. Erstellen Sie eine Provisionsberechnung mit verschachteltem WENN:
 >    - Umsatz < 10.000: 5%
->    - Umsatz 10.00050.000: 8%
+>    - Umsatz 10.000 - 50.000: 8%
 >    - Umsatz > 50.000: 12%
 > 2. Verwenden Sie WENNFEHLER für eine SVERWEIS-Formel, die bei fehlendem
 >    Suchbegriff "Nicht im Katalog" anzeigt.
-> 3. Optional: Schreiben Sie die Provisionsformel mit WENNS (Excel 2019+) um.
+> 3. Optional: Schreiben Sie die Provisionsformel mit WENNS (Excel 2019/M365) um.
 
 ## 2.4. Finanzfunktionen für die Praxis
 
@@ -356,9 +356,17 @@ Die folgende Übungstabelle **Modul 2 3 Logik** ist bereits geladen.
 | Funktion | Was sie berechnet | Beispiel |
 |----------|------------------|----------|
 | RMZ (PMT) | Regelmäßige Zahlung (Rate) | `=RMZ(4,5%/12; 30*12; -250000)` |
-| NBW (NPV) | Kapitalwert einer Investition | `=NBW(8%; B2:B6)+B1` |
-| IKV (IRR) | Interner Zinsfuß (Rendite) | `=IKV(B1:B6)` |
+| NBW (NPV) | Kapitalwert einer Investition | `=NBW(8%; B2:B7)+B1` |
+| IKV (IRR) | Interner Zinsfuß (Rendite) | `=IKV(B1:B7)` |
+
+ **Achtung:** Die Anfangsinvestition (Zeitpunkt 0) darf NICHT im Bereich
+der NBW-Funktion stehen, da sie nicht abgezinst wird. Sie wird außerhalb
+addiert: `=NBW(Zins; Rückflüsse) + Investition`.
 | ZW (FV) | Zukunftswert einer Anlage | `=ZW(3%/12; 20*12; -200; -10000)` |
+
+ **Tipp:** Die vier Argumente von ZW sind: `=ZW(Zins; ZZR; RMZ; [BW])`.
+BW (Barwert) ist optional — geben Sie ein negatives Startkapital an,
+wenn Sie bereits Ersparnisse haben.
 
 **Wichtig:** Bei RMZ und ZW sind Zahlungen, die Sie leisten, als **negative**
 Zahlen anzugeben. Der Zinssatz muss zur Periode passen: Jahreszins durch 12
@@ -379,7 +387,7 @@ Die folgende Übungstabelle **Modul 2 4 Finanzfunktionen** ist bereits geladen.
 > 2. Berechnen Sie den Kapitalwert (NBW) einer Investition: Anfangsinvestition
 >    100.000 , jährliche Rückflüsse 25.000  über 6 Jahre, Zinssatz 8%.
 > 3. Berechnen Sie mit ZW das Endkapital einer monatlichen Sparrate von 200 
->    über 20 Jahre bei 3% Jahreszins.
+>    über 20 Jahre bei 3% Jahreszins (Startkapital: 0 ).
 
 ## 2.5. Matrixformeln
 
@@ -441,7 +449,7 @@ in allen Excel-Versionen verfügbar.
 Die folgende Übungstabelle **Modul 2 6 Datum_Zeit** ist bereits geladen.
 
 > 1. Berechnen Sie das Alter von Personen aus dem Geburtsdatum mit
->    `=BRTEILJAHRE(B2;HEUTE())`.
+>    `=DATEDIF(B2;HEUTE();"Y")`.
 > 2. Ermitteln Sie mit `MONATSENDE` den letzten Tag des aktuellen Monats.
 > 3. Berechnen Sie das Fälligkeitsdatum 30 Arbeitstage nach Bestelldatum mit
 >    `ARBEITSTAG`.
@@ -484,7 +492,7 @@ Namen machen Formeln lesbar und wartbar. Statt `=B2*$F$1` schreiben Sie
 | Formelname | `MwSt = 0,19` | Konstante in Berechnungen |
 | Dynamischer Name | `Daten = BEREICH.VERSCHIEBEN(Tabelle1!$A$1;0;0;ANZAHL2(Tabelle1!$A:$A);5)` | Wächst automatisch |
 
-**Den Namens-Manager** (`Strg+F3`) zeigt alle definierten Namen mit deren
+**Der Namens-Manager** (`Strg+F3`) zeigt alle definierten Namen mit deren
 Gültigkeitsbereich (Arbeitsmappe oder einzelnes Blatt).
 
 **Übung 3.1  Namen definieren und verwalten**
@@ -508,10 +516,10 @@ Tabellenblätter hinweg.
 
 | Funktion | 3D-fähig? | Beispiel |
 |----------|:---------:|----------|
-| SUMME |  | `=SUMME(Q1:Q4!B5)` |
-| MITTELWERT |  | `=MITTELWERT(2019:2026!C10)` |
-| MAX / MIN |  | `=MAX(Region1:Region5!D20)` |
-| SVERWEIS |  | Nicht in 3D-Bezügen möglich |
+| SUMME | Ja | `=SUMME(Q1:Q4!B5)` |
+| MITTELWERT | Ja | `=MITTELWERT(2019:2026!C10)` |
+| MAX / MIN | Ja | `=MAX(Region1:Region5!D20)` |
+| SVERWEIS | Nein | Nicht in 3D-Bezügen möglich |
 
 **Wichtig:** Alle Blätter müssen dieselbe Struktur haben (gleiche Daten an
 gleichen Positionen). Blätter, die zwischen dem ersten und letzten Blatt
@@ -601,6 +609,10 @@ Die folgende Übungstabelle **Modul 3 4 Konsolidierung** ist bereits geladen.
 **Lernziel:** Spezialfilter mit komplexen Kriterien anwenden, Datenbankfunktionen
 (DBSUMME, DBMITTELWERT) einsetzen und mehrstufige Teilergebnisse berechnen.
 
+> **Modernisierungshinweis:** In Microsoft 365 bieten die dynamischen
+> Matrixfunktionen `FILTER()` und `SORTIEREN()` eine modernere Alternative zum
+> Spezialfilter. Dieser wird hier aus Gründen der Abwärtskompatibilität behandelt.
+
 ### Was wissen Sie bereits?
 
 - Wie filtern Sie derzeit Daten mit mehreren Bedingungen?
@@ -632,12 +644,18 @@ Kriterienbereich.
 (Auswahl in anderen Bereich kopieren") und mit Nur eindeutige Datensätze"
 Duplikate eliminieren.
 
+**Tipp für Microsoft 365:** Die Funktion `=FILTER(A:D; (B:B="Nord")*(D:D>10000))`
+erreicht dasselbe wie der Spezialfilter — direkt in einer Formel und dynamisch
+aktualisierbar. `=EINDEUTIG(Bereich)` extrahiert eindeutige Werte ohne Dialog.
+
 **Übung 4.1  Spezialfilter anwenden**
 
 Die folgende Übungstabelle **Modul 4 1 Spezialfilter** ist bereits geladen.
 
 > 1. Erstellen Sie einen Kriterienbereich für: Region "Nord" UND Umsatz > 10.000.
 > 2. Erweitern Sie: Region "Nord" ODER Region "Süd" (jeweils Umsatz > 10.000).
+>    **Achtung:** Bei ODER mit UND-Bedingung muss die Bedingung >10.000 in
+>    JEDER Zeile des Kriterienbereichs wiederholt werden.
 > 3. Extrahieren Sie eindeutige Datensätze in einen neuen Bereich.
 
 ## 4.2. Datenbankfunktionen
@@ -652,7 +670,16 @@ Kriterienbereich  ideal für komplexe, mehrstufige Bedingungen.
 | DBSUMME | SUMME mit Kriterien | `=DBSUMME(Datenbank; "Umsatz"; Kriterien)` |
 | DBMITTELWERT | MITTELWERT mit Kriterien | `=DBMITTELWERT(Datenbank; "Alter"; Kriterien)` |
 | DBANZAHL | ANZAHL mit Kriterien | `=DBANZAHL(Datenbank; "ID"; Kriterien)` |
+| DBANZAHL2 | ANZAHL2 mit Kriterien | `=DBANZAHL2(Datenbank; "Name"; Kriterien)` |
 | DBAUSZUG | Einzelwert extrahieren | `=DBAUSZUG(Datenbank; "Name"; Kriterien)` |
+
+ **Achtung:** `DBAUSZUG` liefert `#ZAHL!` bei mehreren Treffern und `#WERT!` bei
+keinem Treffer. `DBANZAHL` zählt nur Zahlen — für Text verwenden Sie `DBANZAHL2`.
+
+> **Hinweis:** In der modernen Praxis werden Datenbankfunktionen zunehmend durch
+> `SUMMEWENNS()`, `ZÄHLENWENNS()` und `FILTER()` ersetzt, die flexibler und
+> einfacher zu warten sind. Die DB-Funktionen bleiben für die Arbeit mit
+> Legacy-Arbeitsmappen relevant.
 
 **Vorteil gegenüber SUMMEWENNS:** Kriterien können in einem Bereich verwaltet
 und schnell geändert werden, ohne Formeln anzufassen.
@@ -687,6 +714,7 @@ Die folgende Übungstabelle **Modul 4 3 Teilergebnisse** ist bereits geladen.
 > 1. Sortieren Sie die Tabelle nach Region, dann nach Produkt.
 > 2. Fügen Sie Teilergebnisse für die Summe des Umsatzes pro Region ein.
 > 3. Fügen Sie eine zweite Teilergebnis-Ebene für die Anzahl pro Produkt ein.
+>    **Wichtig:** Entfernen Sie das Häkchen bei „Aktuelle Teilergebnisse ersetzen".
 
 
 ## 4.4. Excel-Tabellen und strukturierte Verweise
@@ -707,7 +735,7 @@ eine intelligente Datenstruktur mit eigenen Regeln und Verweisen.
 **Strukturierte Verweise** verwenden Tabellen- und Spaltennamen statt Zelladressen:
 ```
 =SUMME(Tabelle1[Umsatz])
-=SVERWEIS(A2;Preisliste;2;0)
+=[@Preis]*[@Menge]
 =[@Umsatz]-[@Kosten]
 ```
 
@@ -727,8 +755,8 @@ Die folgende Übungstabelle **Modul 4 4 Tabellen** ist bereits geladen.
 
 ### Das können Sie jetzt
 
-- [ ] Spezialfilter mit mehrstufigen UND/ODER-Kriterienbereichen anwenden
-- [ ] Datenbankfunktionen (DBSUMME, DBMITTELWERT, DBANZAHL, DBAUSZUG) für flexible Auswertungen einsetzen
+- [ ] Spezialfilter mit mehrstufigen UND/ODER-Kriterienbereichen anwenden (alternativ: `FILTER()`-Funktion in M365)
+- [ ] Datenbankfunktionen (DBSUMME, DBMITTELWERT, DBANZAHL, DBAUSZUG) für flexible Auswertungen einsetzen (modern: `SUMMEWENNS()`/`FILTER()`)
 - [ ] Mehrstufige Teilergebnisse mit Gruppierung und Gliederung erstellen
 - [ ] Excel-Tabellen mit strukturierten Verweisen ([@Spaltenname]) professionell nutzen
 
@@ -769,6 +797,8 @@ Die folgende Übungstabelle **Modul 5 1 Pivot** ist bereits geladen.
 
 > 1. Erstellen Sie eine Pivot-Tabelle: Region & Produkt als Zeilen,
 >    Quartal als Spalten, Summe Umsatz als Werte.
+>    **Hinweis:** Falls Ihre Daten nur eine Datumsspalte haben, gruppieren
+>    Sie das Datumsfeld nach Quartalen (siehe Übung 5.2).
 > 2. Ändern Sie die Zusammenfassung auf Mittelwert.
 > 3. Zeigen Sie die Werte als % des Gesamtergebnisses an.
 
@@ -793,7 +823,7 @@ Umsätze  nicht zeilenweise.
 ### Typische Fehler
 
 - **Berechnete Felder arbeiten mit aggregierten Werten**, nicht mit Rohdaten. `Gewinn/Umsatz` teilt die Summe der Gewinne durch die Summe der Umsätze — nicht zeilenweise.
-- **Gruppierung nur bei Datumsfeldern möglich:** Zahlenfelder können nicht gruppiert werden, nur Datumsangaben.
+- **Gruppierung:** Zahlenfelder können ebenfalls gruppiert werden (z.B. in Rängen von 10), allerdings ist die Datumsgruppierung der häufigste Anwendungsfall.
 
 **Übung 5.2  Gruppieren und berechnete Felder**
 
@@ -808,20 +838,20 @@ Die folgende Übungstabelle **Modul 5 2 Pivot_Anpassung** ist bereits geladen.
 
 ### Konzept: Visuelle Filter für Dashboards
 
-Datenschnitte (Slicer) sind interaktive Schaltflächen zur Filterung von
+Datenschnitte (Datenschnitt) sind interaktive Schaltflächen zur Filterung von
 Pivot-Tabellen. Zeitachsen filtern speziell nach Datumsbereichen.
 
-**Tipp:** Ein Slicer kann mit **mehreren Pivot-Tabellen** verbunden werden
+**Tipp:** Ein Datenschnitt kann mit **mehreren Pivot-Tabellen** verbunden werden
 (Rechtsklick  Berichtsverbindungen). Ein Klick filtert alle verbundenen
 Tabellen gleichzeitig.
 
-**Übung 5.3  Slicer einsetzen**
+**Übung 5.3  Datenschnitte einsetzen**
 
-Die folgende Übungstabelle **Modul 5 3 Slicer** ist bereits geladen.
+Die folgende Übungstabelle **Modul 5 3 Datenschnitt** ist bereits geladen.
 
-> 1. Fügen Sie Slicer für Region und Produktkategorie ein.
+> 1. Fügen Sie Datenschnitt für Region und Produktkategorie ein.
 > 2. Erstellen Sie eine zweite Pivot-Tabelle (Anzahl pro Region) und verbinden
->    Sie beide Tabellen mit denselben Slicern.
+>    Sie beide Tabellen mit denselben Datenschnittn.
 > 3. Fügen Sie eine Zeitachse für das Bestelldatum hinzu.
 
 ## 5.4. Pivot-Charts
@@ -829,7 +859,7 @@ Die folgende Übungstabelle **Modul 5 3 Slicer** ist bereits geladen.
 ### Konzept: Diagramme, die mit der Pivot-Tabelle leben
 
 Ein Pivot-Chart ist ein Diagramm, das direkt mit einer Pivot-Tabelle verbunden
-ist. Änderungen an Feldern, Filtern oder Slicern werden sofort im Diagramm
+ist. Änderungen an Feldern, Filtern oder Datenschnittn werden sofort im Diagramm
 reflektiert.
 
 **Übung 5.4  Pivot-Chart erstellen**
@@ -837,7 +867,7 @@ reflektiert.
 Die folgende Übungstabelle **Modul 5 4 PivotChart** ist bereits geladen.
 
 > 1. Erstellen Sie aus Ihrer Pivot-Tabelle ein Pivot-Chart (Säulendiagramm).
-> 2. Fügen Sie einen zweiten Slicer hinzu und beobachten Sie, wie sich das
+> 2. Fügen Sie einen zweiten Datenschnitt hinzu und beobachten Sie, wie sich das
 >    Diagramm automatisch anpasst.
 > 3. Ändern Sie den Diagrammtyp zu einem gestapelten Säulendiagramm.
 
@@ -853,8 +883,8 @@ Power Pivot ist ein Add-In für Excel, das das Datenmodell erweitert:
 
 **Aktivierung:** Datei → Optionen → Add-Ins → Verwalten: COM-Add-Ins → Power Pivot.
 
-**Wichtig:** Power Pivot ist nur in Excel für Windows verfügbar (nicht in Excel
-für Mac oder Excel Online). Für diesen Kurs ist es ein Ausblick — die
+**Wichtig:** Power Pivot ist in Excel für Windows und Excel für Mac (ab Version 16.29)
+verfügbar, nicht jedoch in Excel Online. Für diesen Kurs ist es ein Ausblick — die
 grundlegenden Pivot-Kenntnisse aus 5.1–5.4 sind die Basis.
 
 
@@ -862,7 +892,7 @@ grundlegenden Pivot-Kenntnisse aus 5.1–5.4 sind die Basis.
 
 - [ ] Komplexe Pivot-Tabellen mit mehreren Feldern in Zeilen, Spalten und Werten erstellen
 - [ ] Datumsgruppierungen und berechnete Felder (z.B. Marge) in Pivot-Tabellen anwenden
-- [ ] Slicer und Zeitachsen für interaktive Dashboards einsetzen und mit mehreren Pivot-Tabellen verknüpfen
+- [ ] Datenschnitte und Zeitachsen für interaktive Dashboards einsetzen und mit mehreren Pivot-Tabellen verknüpfen
 - [ ] Pivot-Charts erstellen, die sich automatisch mit der Pivot-Tabelle aktualisieren
 - [ ] Die Möglichkeiten von Power Pivot und DAX für große Datenmodelle verstehen
 
@@ -903,7 +933,9 @@ Die folgende Übungstabelle **Modul 6 1 Zielwertsuche** ist bereits geladen.
 > 1. Nutzen Sie die Zielwertsuche: Welcher Stückpreis ist nötig, um 100.000 
 >    Gesamtumsatz zu erreichen?
 > 2. Erstellen Sie eine Datentabelle, die die monatliche Rate für verschiedene
->    Zinssätze (3%8%) und Laufzeiten (1030 Jahre) zeigt.
+>    Zinssätze (3% - 8%) und Laufzeiten (10 - 30 Jahre) zeigt.
+>    **Tipp:** Zeilen- und Spalteneingabezelle müssen absolut referenziert
+>    sein ($B$1 und $B$2).
 
 ## 6.2. Szenario-Manager
 
@@ -917,6 +949,11 @@ Szenarien.
 1. Daten  Was-wäre-wenn-Analyse  Szenario-Manager
 2. Szenario hinzufügen: Name, veränderbare Zellen, Werte
 3. Zwischen Szenarien wechseln oder einen Zusammenfassungsbericht erstellen
+
+> **Praxistipp:** In professionellen Modellen wird der Szenario-Manager selten
+> eingesetzt, da Szenarien darin versteckt und schwer auditierbar sind. Eine
+> transparentere Alternative ist ein explizites Szenario-Dropdown (per
+> Datenüberprüfung) kombiniert mit `XVERWEIS` oder `WENN`-Formeln.
 
 **Übung 6.2  Szenarien erstellen**
 
@@ -956,9 +993,11 @@ hinausgeht. Er findet optimale Werte unter **mehreren Nebenbedingungen**.
 Die folgende Übungstabelle **Modul 6 3 Solver** ist bereits geladen.
 
 > 1. Maximieren Sie den Gewinn unter folgenden Nebenbedingungen:
->    - Produktionsmenge &gt;= 0 (keine negativen Mengen)
->    - Gesamtkosten &lt;= Budget (50.000 )
+>    - Produktionsmenge >= 0 (keine negativen Mengen)
+>    - Gesamtkosten <= Budget (50.000 )
 >    - Max. Produktionskapazität pro Produkt beachten
+>    **Tipp:** Aktivieren Sie „Nicht negative Variablen" und wählen Sie bei
+>    linearen Modellen die Methode „Simplex-LP".
 > 2. Ändern Sie die Nebenbedingungen und vergleichen Sie die Ergebnisse.
 
 ## 6.4. Sparklines und Trendlinien
@@ -984,7 +1023,7 @@ Die folgende Übungstabelle **Modul 6 4 Sparklines** ist bereits geladen.
 > 1. Fügen Sie Liniensparklines für die monatlichen Umsatzzahlen ein.
 > 2. Fügen Sie eine lineare Trendlinie zum Umsatzdiagramm hinzu und lassen
 >    Sie R anzeigen.
-> 3. Interpretieren Sie R = 0,87: Ist das ein starker Zusammenhang?
+> 3. Interpretieren Sie R² = 0,87: Ist das ein starker Zusammenhang?
 
 
 ### Das können Sie jetzt
@@ -999,7 +1038,7 @@ Die folgende Übungstabelle **Modul 6 4 Sparklines** ist bereits geladen.
 ## Modul 7: Erweiterte Diagramme und Dashboards
 
 **Lernziel:** Kombinierte Diagramme mit Sekundärachse, Wasserfalldiagramme und
-professionelle Executive Dashboards erstellen.
+professionelle Management-Dashboards erstellen.
 
 ### Was wissen Sie bereits?
 
@@ -1015,19 +1054,19 @@ Visualisierung auf professionellem Niveau — Charts, die Entscheider überzeuge
 
 | Diagrammtyp | Einsatz | Beispiel |
 |------------|---------|----------|
-| Kombidiagramm (Säule + Linie) | Zwei verschiedene Skalen | Umsatz () + Wachstumsrate (%) |
+| Kombinationsdiagramm (Säule + Linie) | Zwei verschiedene Skalen | Umsatz (€) + Wachstumsrate (%) |
 | Wasserfall | Kumulierte Effekte | Gewinn- und Verlustrechnung |
 | Histogramm | Häufigkeitsverteilung | Altersverteilung der Kunden |
 | Kastendiagramm | Statistische Verteilung | Quartile, Ausreißer |
 
-**Tipp:** Ein Kombidiagramm mit Sekundärachse eignet sich hervorragend für
+**Tipp:** Ein Kombinationsdiagramm mit Sekundärachse eignet sich hervorragend für
 Soll-Ist-Vergleiche: Säulen für Ist-Werte, Linie für Soll-Werte.
 
 **Übung 7.1  Verbunddiagramm erstellen**
 
 Die folgende Übungstabelle **Modul 7 1 Verbunddiagramm** ist bereits geladen.
 
-> 1. Erstellen Sie ein Kombidiagramm: Umsatz als Säulen, Wachstumsrate als Linie
+> 1. Erstellen Sie ein Kombinationsdiagramm: Umsatz als Säulen, Wachstumsrate als Linie
 >    mit Sekundärachse.
 > 2. Formatieren Sie die linke Achse in , die rechte Achse in %.
 > 3. Fügen Sie Fehlerindikatoren hinzu (Standardabweichung).
@@ -1055,9 +1094,9 @@ Ein Dashboard vereint mehrere Diagramme, Sparklines und Kennzahlen auf einem
 übersichtlichen Blatt. Die Gestaltungsprinzipien:
 
 1. **Oben links = wichtigste Info**: Der Blick beginnt dort
-2. **Maximal 46 Elemente**: Weniger ist mehr
+2. **Maximal 4-6 Elemente**: Weniger ist mehr
 3. **Konsistente Farben**: Gleiche Bedeutung = gleiche Farbe
-4. **Slicer für Interaktivität**: Ein Klick filtert alle Diagramme
+4. **Datenschnitt für Interaktivität**: Ein Klick filtert alle Diagramme
 
 **Übung 7.3  Dashboard erstellen**
 
@@ -1067,7 +1106,7 @@ Die folgende Übungstabelle **Modul 7 3 Dashboard** ist bereits geladen.
 >    - Ein Liniendiagramm (Umsatzverlauf 12 Monate)
 >    - Ein Säulendiagramm (Umsatz nach Region)
 >    - Sparklines pro Produktkategorie
->    - Slicer für Region und Jahr
+>    - Datenschnitt für Region und Jahr
 > 2. Ordnen Sie die Elemente übersichtlich an (Raster verwenden).
 > 3. Blenden Sie Gitternetzlinien und Überschriften aus für ein
 >    professionelles Erscheinungsbild.
@@ -1075,9 +1114,9 @@ Die folgende Übungstabelle **Modul 7 3 Dashboard** ist bereits geladen.
 
 ### Das können Sie jetzt
 
-- [ ] Kombidiagramme mit Sekundärachse für unterschiedliche Skalen erstellen
+- [ ] Kombinationsdiagramme mit Sekundärachse für unterschiedliche Skalen erstellen
 - [ ] Wasserfalldiagramme für kumulierte Effekte (z.B. Gewinn- und Verlustrechnung) aufbauen
-- [ ] Ein professionelles Dashboard mit mehreren Diagrammen, Slicern und Sparklines designen
+- [ ] Ein professionelles Dashboard mit mehreren Diagrammen, Datenschnittn und Sparklines designen
 - [ ] Dashboard-Design-Prinzipien anwenden (max. 4-6 Elemente, konsistente Farben, Raster)
 
 \newpage
@@ -1187,7 +1226,7 @@ Vom Aufzeichnen zum Programmieren — der natürliche nächste Schritt.
 
 | Datentyp | Verwendung | Beispiel |
 |----------|-----------|----------|
-| Integer | Ganze Zahlen | `Dim anzahl As Integer` |
+| Long | Ganze Zahlen (empfohlen) | `Dim anzahl As Long` |
 | Double | Kommazahlen | `Dim preis As Double` |
 | String | Text | `Dim name As String` |
 | Boolean | Wahr/Falsch | `Dim gefunden As Boolean` |
@@ -1196,6 +1235,7 @@ Vom Aufzeichnen zum Programmieren — der natürliche nächste Schritt.
 ```vba
 Dim umsatz As Double
 umsatz = Range("B2").Value * Range("C2").Value
+Range("D2").Value = umsatz ' Ergebnis in Zelle D2 schreiben
 ```
 
 **Übung 9.1  Variablen und einfache Berechnung**
@@ -1227,12 +1267,20 @@ For i = 1 To 10
 Next i
 ```
 
+**For-Each-Schleife** (für Zellbereiche):
+```vba
+Dim zelle As Range
+For Each zelle In Range("A1:A10")
+    If zelle.Value > 1000 Then zelle.Interior.Color = vbYellow
+Next zelle
+```
+
 **Übung 9.2  Bedingungen und Schleifen**
 
 Die folgende Übungstabelle **Modul 9 2 VBA_Kontrollstrukturen** ist bereits geladen.
 
-> 1. Schreiben Sie ein Makro mit einer For-Schleife, das die Zahlen 110 in A1A10
->    schreibt.
+> 1. Schreiben Sie ein Makro mit einer For-Schleife, das die Zahlen 1 - 10 in
+>    A1:A10 schreibt.
 > 2. Erweitern Sie das Makro um eine If-Bedingung: Zahlen > 5 werden fett
 >    formatiert.
 > 3. Schreiben Sie eine For-Each-Schleife, die alle Zellen mit Wert > 1000
@@ -1252,8 +1300,11 @@ Ereignisse führen VBA-Code automatisch aus, wenn etwas Bestimmtes passiert.
 
 ```vba
 Private Sub Worksheet_Change(ByVal Target As Range)
-    If Target.Column = 2 And Target.Value > 10000 Then
-        MsgBox "Hoher Betrag: " & Target.Value
+    If Target.Cells.Count > 1 Then Exit Sub ' Mehrere Zellen ignorieren
+    If Target.Column = 2 And IsNumeric(Target.Value) Then
+        If Target.Value > 10000 Then
+            MsgBox "Hoher Betrag: " & Target.Value
+        End If
     End If
 End Sub
 ```
@@ -1266,6 +1317,8 @@ Die folgende Übungstabelle **Modul 9 3 VBA_Ereignisse** ist bereits geladen.
 >    wenn in Spalte B ein Wert > 10.000 eingetragen wird.
 > 2. Erstellen Sie ein Workbook_Open-Ereignis, das beim Öffnen das heutige
 >    Datum in Zelle A1 schreibt.
+>    **Achtung:** Dieser Code muss im Objekt „DieseArbeitsmappe"
+>    (nicht in einem Modul) eingefügt werden.
 
 ## 9.4. Benutzerdefinierte Funktionen (UDF)
 
@@ -1283,11 +1336,11 @@ Danach können Sie in Excel `=MwSt(100)` schreiben  Ergebnis: 19.
 
 Die folgende Übungstabelle **Modul 9 4 VBA_UDF** ist bereits geladen.
 
-> 1. Schreiben Sie eine UDF `Bonus(Umsatz)`, die 5% Bonus ab 10.000 ,
->    sonst 0% berechnet.
+> 1. Schreiben Sie eine UDF `Bonus(Umsatz As Double) As Double`, die 5% Bonus ab
+>    10.000 , sonst 0% berechnet.
 > 2. Verwenden Sie Ihre UDF in einer Formel: `=Bonus(B2)`.
-> 3. Erstellen Sie eine UDF `Kategorie(Alter)` mit If/ElseIf für die
->    Altersgruppen <30, 3050, >50.
+> 3. Erstellen Sie eine UDF `Kategorie(Alter As Double) As String` mit If/ElseIf
+>    für die Altersgruppen <30, 30-50, >50.
 
 
 ## 9.5. Best Practices für Makros
@@ -1307,7 +1360,7 @@ Variablennamen — die häufigste Fehlerquelle bei Makros.
 
 ### Das können Sie jetzt
 
-- [ ] Variablen mit korrekten Datentypen (Integer, Double, String, Range) deklarieren
+- [ ] Variablen mit korrekten Datentypen (Long, Double, String, Range) deklarieren
 - [ ] If-Then-Else-Bedingungen und For-Schleifen in VBA schreiben
 - [ ] Worksheet_Change- und Workbook_Open-Ereignisse für automatische Reaktionen programmieren
 - [ ] Benutzerdefinierte Funktionen (UDF) schreiben und in Excel-Formeln verwenden
@@ -1360,7 +1413,7 @@ Die folgende Übungstabelle **Modul 10 1 Vorlagen** ist bereits geladen.
 | Funktion | Verwendung |
 |----------|-----------|
 | Kommentare | Rückfragen direkt in Zellen (Überprüfen  Neuer Kommentar) |
-| Änderungen nachverfolgen | Wer hat was wann geändert? (nur ältere Excel-Versionen) |
+| Änderungen anzeigen | Wer hat was wann geändert? (Excel 365: bei OneDrive/SharePoint) |
 | Arbeitsmappe freigeben | Gleichzeitige Bearbeitung (Excel 365: automatisch bei OneDrive/SharePoint) |
 | Blattschutz mit Berechtigungen | Nur bestimmte Benutzer dürfen bestimmte Bereiche bearbeiten |
 
@@ -1390,7 +1443,7 @@ Die folgende Übungstabelle **Modul 10 2 Zusammenarbeit** ist bereits geladen.
 - **Analyse-Funktionen**: Erweiterte statistische Funktionen
 - **Power Pivot**: Datenmodell für große Datenmengen
 
-**Power Query** (Daten → Abrufen und Transformieren) ist das moderne ETL-Werkzeug
+**Power Query** (Daten → Daten abrufen) ist das moderne ETL-Werkzeug
 in Excel. Es importiert, bereinigt und transformiert Daten aus beliebigen Quellen:
 - CSV, TXT, Excel-Dateien
 - SQL-Datenbanken, Webseiten, APIs
@@ -1425,7 +1478,8 @@ Die folgende Übungstabelle **Modul 10 4 Tastenkombinationen** ist bereits gelad
 
 > 1. Verwenden Sie ausschließlich Tastenkombinationen, um eine Tabelle zu
 >    formatieren, eine Summe zu bilden und einen Filter zu setzen.
-> 2. Nutzen Sie `Strg+[` und `Strg+]` zur Formelanalyse.
+> 2. Nutzen Sie `Strg+{` und `Strg+}` zur Formelanalyse (Vorgänger/Nachfolger
+>    anzeigen — auf deutschen Tastaturen: Strg+AltGr+7 bzw. Strg+AltGr+0).
 > 3. Wechseln Sie mit F4 zwischen Bezugstypen beim Bearbeiten einer Formel.
 
 ### Das können Sie jetzt
