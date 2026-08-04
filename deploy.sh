@@ -60,16 +60,26 @@ step "Construir frontend"
 
 cd frontend
 
-if npm ci --silent; then
+NPM_OUTPUT=$(npm ci 2>&1) && NPM_OK=true || NPM_OK=false
+echo "$NPM_OUTPUT" | grep -iE "error|warn|added|up to date|audited" || true
+if $NPM_OK; then
   ok "Dependencias instaladas"
 else
+  echo "$NPM_OUTPUT" | tail -10
   fail "Error en npm ci"
   exit 1
 fi
 
-if npm run build 2>&1 | tail -3; then
+# Capture build output, show warnings/errors, and fail on actual errors
+BUILD_OUTPUT=$(npm run build 2>&1) && BUILD_OK=true || BUILD_OK=false
+
+# Always show warnings (like chunk size)
+echo "$BUILD_OUTPUT" | grep -E "WARNING|Warning|warning|error|Error|✓ built|✗" || true
+
+if $BUILD_OK; then
   ok "Build completado"
 else
+  echo "$BUILD_OUTPUT" | tail -20
   fail "Error en el build"
   exit 1
 fi
@@ -79,9 +89,15 @@ cd ..
 # ── Step 3: Docker Compose ──────────────────────────────────
 step "Desplegar contenedores Docker"
 
-if docker compose up --detach --build 2>&1; then
+DOCKER_OUTPUT=$(docker compose up --detach --build 2>&1) && DOCKER_OK=true || DOCKER_OK=false
+
+# Show only warnings/errors from Docker build
+echo "$DOCKER_OUTPUT" | grep -iE "warn|error|fail|done|started|created" || true
+
+if $DOCKER_OK; then
   ok "Contenedores iniciados"
 else
+  echo "$DOCKER_OUTPUT" | tail -20
   fail "Error al iniciar contenedores"
   exit 1
 fi
