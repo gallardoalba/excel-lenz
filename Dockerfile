@@ -25,6 +25,9 @@ RUN npm prune --omit=dev
 FROM node:25-alpine
 WORKDIR /app
 
+# sqlite CLI for analytics/debugging
+RUN apk add --no-cache sqlite
+
 RUN addgroup -g 1001 -S excel-lenz && \
     adduser -S excel-lenz -u 1001 -G excel-lenz
 

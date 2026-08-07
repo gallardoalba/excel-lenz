@@ -7,9 +7,20 @@
 set -euo pipefail
 
 BOLD='\033[1m'; GREEN='\033[0;32m'; CYAN='\033[0;36m'; YELLOW='\033[0;33m'; RED='\033[0;31m'; NC='\033[0m'
-DOCKER="docker compose"; $DOCKER version &>/dev/null || DOCKER="docker-compose"
-LOG_CMD="$DOCKER exec -T nginx cat /var/log/nginx/access.log"
-DB_CMD="$DOCKER exec -T api sqlite3 /app/data/excel-lenz.db"
+# Detect Docker: works from any directory on the server
+if docker ps &>/dev/null 2>&1; then
+  DOCKER="docker"
+else
+  echo -e "${RED}Error: Docker not accessible. Check permissions (try: sudo docker ps).${NC}"
+  exit 1
+fi
+# Quick check: are the containers running?
+if ! docker ps --format '{{.Names}}' 2>/dev/null | grep -q 'excel-lenz'; then
+  echo -e "${RED}Error: Excel-lenz containers not running. Start with: docker compose up -d${NC}"
+  exit 1
+fi
+LOG_CMD="docker exec excel-lenz-nginx cat /var/log/nginx/access.log"
+DB_CMD="docker exec excel-lenz-api sqlite3 /app/data/excel-lenz.db"
 MODE="${1:-}"
 
 banner() { echo -e "${CYAN}${BOLD}\n  ╔══════════════════════════════════════╗\n  ║   Excel-lenz · Analytics Report      ║\n  ╚══════════════════════════════════════╝\n${NC}  ${YELLOW}$(date '+%Y-%m-%d %H:%M')${NC}\n"; }
@@ -94,7 +105,7 @@ bots() {
 }
 
 full() { banner; today; week; users; top_pages; referrers; bots; echo -e "\n${GREEN}${BOLD}══════════════════════════════════════════════${NC}\n  Reporte: $(date)\n${GREEN}${BOLD}══════════════════════════════════════════════${NC}\n"; }
-live() { $DOCKER logs -f nginx 2>/dev/null; }
+live() { docker logs -f excel-lenz-nginx 2>/dev/null; }
 
 case "$MODE" in
   --today|"")   banner; today ;;
