@@ -5,7 +5,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 import os
 
-OUT_DIR = os.path.join(os.path.dirname(__file__), "../exercises/fortgeschrittene")
+OUT_DIR = os.path.join(os.path.dirname(__file__), "../ubungen/fortgeschrittene/xlsx_files")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 HEADER_FILL = PatternFill('solid', fgColor='1F4E79')
@@ -195,7 +195,8 @@ def mod3_2():
         s['A1'], s['B1'] = 'Monat', 'Umsatz'
         s['A2'], s['B2'] = name, vals
     ws = wb['Übung']
-    ws['A1'] = 'Jahresübersicht'
+    ws['A2'] = 'Jahresübersicht'
+    ws['A2'].font = Font(bold=True, size=12)
     write_instructions(ws, ['1. Auf Blatt "Jahresübersicht": =SUMME(Jan:Mär!B2).',
         '2. Fügen Sie ein neues Blatt zwischen Jan und Feb ein — wird es automatisch summiert?',
         '3. Testen Sie MITTELWERT und MAX mit 3D-Bezügen.'])
@@ -458,7 +459,7 @@ def mod10_2():
     save(wb, 'M10_2_Zusammenarbeit')
 
 def mod10_3():
-    wb, ws = create_workbook('Übung 10.3 — Tastenkombinationen')
+    wb, ws = create_workbook('Übung 10.4 — Tastenkombinationen')
     headers = ['Monat', 'Umsatz', 'Kosten']
     data = [['Jan', 5000, 3200], ['Feb', 6200, 3800], ['Mär', 5800, 3500]]
     write_table(ws, headers, data, 7)

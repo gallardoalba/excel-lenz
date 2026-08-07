@@ -4,7 +4,7 @@
 
 ---
 
-## ## Modul 1: Erweiterte Formate, bedingte Formatierung und Datenüberprüfung
+## Modul 1: Erweiterte Formate, bedingte Formatierung und Datenüberprüfung
 
 ## Übung 1.1: Benutzerdefinierte Formate
 
@@ -30,6 +30,7 @@ Die folgende Übungstabelle **Modul 1 1 Zahlenformate** ist bereits geladen.
    - **Lernziel:** Benutzerdefinierte Formate mit Bedingungen und Text-Suffix erstellen.
 
 ---
+
 ## Übung 1.2: Formelbasierte bedingte Formatierung
 
 
@@ -57,6 +58,7 @@ Die folgende Übungstabelle **Modul 1 2 Bedingte_Formatierung** ist bereits gela
    - **Lernziel:** Formelbasierte bedingte Formatierung mit UND und korrekten absoluten/relativen Bezügen.
 
 ---
+
 ## Übung 1.3: Datenüberprüfung einrichten
 
 
@@ -84,6 +86,7 @@ Die folgende Übungstabelle **Modul 1 3 Validierung** ist bereits geladen.
    - **Lernziel:** Fortgeschrittene Datenüberprüfung mit benannten Bereichen und benutzerdefinierten Formeln.
 
 ---
+
 ## Übung 1.4: Schutz einrichten
 
 
@@ -105,7 +108,7 @@ Die folgende Übungstabelle **Modul 1 4 Schutz** ist bereits geladen.
    - **Lernziel:** Mehrstufiger Schutz mit entsperrten Eingaben, gesperrten Formeln und ausgeblendeten Formeln.
 
 ---
-## ## Modul 2: Erweiterte Funktionen und komplexe Formeln
+## Modul 2: Erweiterte Funktionen und komplexe Formeln
 
 ## Übung 2.1: INDEX + VERGLEICH anwenden
 
@@ -132,6 +135,7 @@ Die folgende Übungstabelle **Modul 2 1 INDEX_VERGLEICH** ist bereits geladen.
    - **Lernziel:** INDEX+VERGLEICH als flexible Alternative zu SVERWEIS.
 
 ---
+
 ## Übung 2.2: Dynamische Bezüge
 
 
@@ -153,10 +157,12 @@ Die folgende Übungstabelle **Modul 2 2 BEREICH_VERSCHIEBEN** ist bereits gelade
 2. **Durchschnitt der letzten 6 Monate:**
    - `=MITTELWERT(BEREICH.VERSCHIEBEN(B1;ANZAHL2(B:B)-6;0;6;1))`
    - Springt zu den letzten 6 Einträgen, nimmt 6 Zeilen.
+   - **Voraussetzung:** Mindestens 7 Zeilen (1 Überschrift + 6 Datenzeilen). Bei weniger Zeilen verschiebt BEREICH.VERSCHIEBEN den Bereich ins Negative → #BEZUG!-Fehler.
    - **Achtung:** BEREICH.VERSCHIEBEN ist flüchtig (volatile) — Performance bei vielen Formeln beachten.
    - **Lernziel:** Dynamische Bereiche, die automatisch mit Daten wachsen.
 
 ---
+
 ## Übung 2.3: Verschachtelte Funktionen
 
 
@@ -186,6 +192,7 @@ Die folgende Übungstabelle **Modul 2 3 Logik** ist bereits geladen.
    - **Lernziel:** Komplexe Logik mit verschachtelten Funktionen und Fehlerbehandlung.
 
 ---
+
 ## Übung 2.4: Finanzfunktionen anwenden
 
 
@@ -213,6 +220,7 @@ Die folgende Übungstabelle **Modul 2 4 Finanzfunktionen** ist bereits geladen.
    - **Lernziel:** RMZ, NBW und ZW sicher für finanzielle Szenarien einsetzen.
 
 ---
+
 ## Übung 2.5: Matrixformeln
 
 
@@ -237,6 +245,7 @@ Die folgende Übungstabelle **Modul 2 5 Matrixformeln** ist bereits geladen.
    - **Lernziel:** Klassische CSE-Matrixformeln und moderne dynamische Arrays.
 
 ---
+
 ## Übung 2.6: Datums- und Zeitfunktionen
 
 
@@ -262,7 +271,7 @@ Die folgende Übungstabelle **Modul 2 6 Datum_Zeit** ist bereits geladen.
    - **Lernziel:** Datumsfunktionen für praxisrelevante Berechnungen (Alter, Fristen, Arbeitstage).
 
 ---
-## ## Modul 3: Referenzen 3D, Namen und externe Verknüpfungen
+## Modul 3: Referenzen 3D, Namen und externe Verknüpfungen
 
 ## Übung 3.1: Namen definieren und verwalten
 
@@ -285,6 +294,7 @@ Die folgende Übungstabelle **Modul 3 1 Namen** ist bereits geladen.
    - **Lernziel:** Namen für Konstanten und dynamische Bereiche professionell einsetzen.
 
 ---
+
 ## Übung 3.2: 3D-Bezüge erstellen
 
 
@@ -304,6 +314,7 @@ Die folgende Übungstabelle **Modul 3 2 3D_Bezuege** ist bereits geladen.
    - **Lernziel:** 3D-Bezüge für blattübergreifende Berechnungen und deren automatische Erweiterung.
 
 ---
+
 ## Übung 3.3: Externe Verknüpfungen
 
 
@@ -325,6 +336,7 @@ Die folgende Übungstabelle **Modul 3 3 Verknuepfungen** ist bereits geladen.
    - **Lernziel:** Externe Verknüpfungen erstellen, aktualisieren und bei Bedarf lösen.
 
 ---
+
 ## Übung 3.4: Daten konsolidieren
 
 
@@ -347,7 +359,7 @@ Die folgende Übungstabelle **Modul 3 4 Konsolidierung** ist bereits geladen.
    - **Lernziel:** Datenkonsolidierung nach Position und Kategorie mit automatischer Aktualisierung.
 
 ---
-## ## Modul 4: Datenbanken in Excel  Spezialfilter und Datenbankfunktionen
+## Modul 4: Datenbanken in Excel — Spezialfilter und Datenbankfunktionen
 
 ## Übung 4.1: Spezialfilter anwenden
 
@@ -370,6 +382,7 @@ Die folgende Übungstabelle **Modul 4 1 Spezialfilter** ist bereits geladen.
    - **Lernziel:** Komplexe Filterlogik mit UND/ODER im Spezialfilter.
 
 ---
+
 ## Übung 4.2: Datenbankfunktionen
 
 
@@ -383,13 +396,15 @@ Die folgende Übungstabelle **Modul 4 2 Datenbankfunktionen** ist bereits gelade
 
 ### Lösung
 
-1. **DBSUMME:** `=DBSUMME(A1:D100; "Umsatz"; F1:G2)` → Gesamtumsatz Region "West".
-2. **DBMITTELWERT:** `=DBMITTELWERT(A1:D100; "Alter"; F1:G2)` → Durchschnittsalter "Berlin".
-3. **DBAUSZUG:** `=DBAUSZUG(A1:D100; "Name"; F1:G2)` → Kunde mit ID 1042.
-   - **Achtung:** `#ZAHL!` bei mehreren Treffern, `#WERT!` bei keinem. Für Zählung: `DBANZAHL2`.
-   - **Lernziel:** Datenbankfunktionen als flexible Alternative zu SUMMEWENNS.
+1. **Kriterienbereich vorbereiten (für alle DB-Funktionen):** In F1:G2 eine kleine Hilfstabelle anlegen: F1=`Region`, G1=`Umsatz`, F2=`West`, G2 bleibt leer (oder das jeweilige Kriterium eintragen). Die Überschriften (F1:G1) müssen exakt mit den Spaltenüberschriften der Datenbank (A1:D1) übereinstimmen.
+2. **DBSUMME:** `=DBSUMME(A1:D100; "Umsatz"; F1:G2)` → Gesamtumsatz Region "West".
+3. **DBMITTELWERT:** `=DBMITTELWERT(A1:D100; "Alter"; F1:G2)` → Durchschnittsalter "Berlin". (Kriterienbereich entsprechend anpassen: F2=`Berlin`.)
+4. **DBAUSZUG:** `=DBAUSZUG(A1:D100; "Name"; F1:G2)` → Kunde mit ID 1042. (Kriterienbereich: F1=`ID`, F2=`1042`.)
+   - **Achtung:** `#ZAHL!` bei mehreren Treffern, `#WERT!` bei keinem Treffer. Für reine Zählung: `DBANZAHL2`.
+   - **Lernziel:** Datenbankfunktionen als flexible Alternative zu SUMMEWENNS — mit eigenem Kriterienbereich.
 
 ---
+
 ## Übung 4.3: Teilergebnisse berechnen
 
 
@@ -410,6 +425,7 @@ Die folgende Übungstabelle **Modul 4 3 Teilergebnisse** ist bereits geladen.
    - **Lernziel:** Mehrstufige Teilergebnisse mit korrekter Behandlung bestehender Gliederungen.
 
 ---
+
 ## Übung 4.4: Excel-Tabellen verwenden
 
 
@@ -432,7 +448,7 @@ Die folgende Übungstabelle **Modul 4 4 Tabellen** ist bereits geladen.
    - **Lernziel:** Excel-Tabellen als intelligente Datenstruktur mit automatischen Erweiterungen.
 
 ---
-## ## Modul 5: Erweiterte Pivot-Tabellen
+## Modul 5: Erweiterte Pivot-Tabellen
 
 ## Übung 5.1: Pivot-Tabelle erstellen
 
@@ -456,6 +472,7 @@ Die folgende Übungstabelle **Modul 5 1 Pivot** ist bereits geladen.
    - **Lernziel:** Komplexe Pivot-Tabelle mit Zeilen-, Spalten- und Wertefeld.
 
 ---
+
 ## Übung 5.2: Gruppieren und berechnete Felder
 
 
@@ -477,6 +494,7 @@ Die folgende Übungstabelle **Modul 5 2 Pivot_Anpassung** ist bereits geladen.
    - **Lernziel:** Datumsgruppierung und berechnete Felder in Pivot-Tabellen.
 
 ---
+
 ## Übung 5.3: Slicer einsetzen
 
 
@@ -497,6 +515,7 @@ Die folgende Übungstabelle **Modul 5 3 Slicer** ist bereits geladen.
    - **Lernziel:** Slicer und Zeitachsen mit mehreren Pivot-Tabellen synchronisieren.
 
 ---
+
 ## Übung 5.4: Pivot-Chart erstellen
 
 
@@ -517,7 +536,7 @@ Die folgende Übungstabelle **Modul 5 4 PivotChart** ist bereits geladen.
    - **Lernziel:** PivotCharts als interaktive Visualisierung mit Slicer-Steuerung.
 
 ---
-## ## Modul 6: Datenanalyse, Szenarien und Solver
+## Modul 6: Datenanalyse, Szenarien und Solver
 
 ## Übung 6.1: Zielwertsuche und Datentabellen
 
@@ -529,7 +548,7 @@ Die folgende Übungstabelle **Modul 6 1 Zielwertsuche** ist bereits geladen.
 2. Erstellen Sie eine Datentabelle, die die monatliche Rate für verschiedene
    Zinssätze (3% - 8%) und Laufzeiten (10 - 30 Jahre) zeigt.
    **Tipp:** Zeilen- und Spalteneingabezelle müssen absolut referenziert
-   sein ($B$1 und $B$2).
+   sein ($B$1 für den Zinssatz, $C$1 für die Laufzeit).
 
 ---
 
@@ -539,11 +558,12 @@ Die folgende Übungstabelle **Modul 6 1 Zielwertsuche** ist bereits geladen.
 2. **Zweidimensionale Datentabelle:**
    - Formel in A1: `=RMZ($B$1/12; $C$1*12; -250000)`.
    - Zinssätze in A2:A14 (3%–8%), Laufzeiten in B1:K1 (10–30).
-   - Bereich A1:K14 markieren → `Datentabelle`. Zeile: B1, Spalte: C1 → `OK`.
-   - **Tipp:** Eingabezellen MÜSSEN absolut referenziert sein.
+   - Bereich A1:K14 markieren → `Datentabelle`. Zeilen-Eingabezelle: C1 (Laufzeit), Spalten-Eingabezelle: B1 (Zinssatz) → `OK`.
+   - **Tipp:** Eingabezellen MÜSSEN absolut referenziert sein. Zeilen-Eingabezelle = Zelle für die Werte in der Zeile (Laufzeiten). Spalten-Eingabezelle = Zelle für die Werte in der Spalte (Zinssätze).
    - **Lernziel:** Zielwertsuche und zweidimensionale Datentabellen.
 
 ---
+
 ## Übung 6.2: Szenarien erstellen
 
 
@@ -565,6 +585,7 @@ Die folgende Übungstabelle **Modul 6 2 Szenarien** ist bereits geladen.
    - **Lernziel:** Szenario-Manager für Best-Case/Worst-Case-Analysen.
 
 ---
+
 ## Übung 6.3: Solver einsetzen
 
 
@@ -590,6 +611,7 @@ Die folgende Übungstabelle **Modul 6 3 Solver** ist bereits geladen.
    - **Lernziel:** Solver für lineare Optimierung mit korrekter Methodenauswahl.
 
 ---
+
 ## Übung 6.4: Sparklines und Trendlinien
 
 
@@ -597,7 +619,7 @@ Die folgende Übungstabelle **Modul 6 4 Sparklines** ist bereits geladen.
 
 1. Fügen Sie Liniensparklines für die monatlichen Umsatzzahlen ein.
 2. Fügen Sie eine lineare Trendlinie zum Umsatzdiagramm hinzu und lassen
-   Sie R anzeigen.
+   Sie das Bestimmtheitsmaß R² anzeigen.
 3. Interpretieren Sie R² = 0,87: Ist das ein starker Zusammenhang?
 
 ---
@@ -610,7 +632,7 @@ Die folgende Übungstabelle **Modul 6 4 Sparklines** ist bereits geladen.
    - **Lernziel:** Sparklines und Trendlinien mit statistischer Interpretation.
 
 ---
-## ## Modul 7: Erweiterte Diagramme und Dashboards
+## Modul 7: Erweiterte Diagramme und Dashboards
 
 ## Übung 7.1: Verbunddiagramm erstellen
 
@@ -632,6 +654,7 @@ Die folgende Übungstabelle **Modul 7 1 Verbunddiagramm** ist bereits geladen.
    - **Lernziel:** Kombinationsdiagramm mit zwei Skalen und statistischen Fehlerindikatoren.
 
 ---
+
 ## Übung 7.2: Wasserfalldiagramm
 
 
@@ -651,6 +674,7 @@ Die folgende Übungstabelle **Modul 7 2 Wasserfall** ist bereits geladen.
    - **Lernziel:** Wasserfalldiagramm für Gewinn- und Verlustrechnung professionell formatieren.
 
 ---
+
 ## Übung 7.3: Dashboard erstellen
 
 
@@ -679,7 +703,7 @@ Die folgende Übungstabelle **Modul 7 3 Dashboard** ist bereits geladen.
    - **Lernziel:** Vollständiges Dashboard mit Diagrammen, Sparklines und Slicern.
 
 ---
-## ## Modul 8: Automatisierung mit Makros
+## Modul 8: Automatisierung mit Makros
 
 ## Übung 8.1: Entwicklertools aktivieren und Makro aufzeichnen
 
@@ -701,6 +725,7 @@ Die folgende Übungstabelle **Modul 8 1 Makro_Aufzeichnen** ist bereits geladen.
    - **Lernziel:** Makro-Aufzeichnung und Wiederverwendung auf verschiedenen Blättern.
 
 ---
+
 ## Übung 8.2: Makro zuweisen
 
 
@@ -721,6 +746,7 @@ Die folgende Übungstabelle **Modul 8 2 Makro_Zuweisen** ist bereits geladen.
    - **Lernziel:** Mehrere Wege zur Makro-Ausführung (Schaltfläche + Tastenkombination).
 
 ---
+
 ## Übung 8.3: VBA-Editor erkunden
 
 
@@ -740,7 +766,7 @@ Die folgende Übungstabelle **Modul 8 3 VBA_Editor** ist bereits geladen.
    - **Lernziel:** VBA-Editor zur Code-Inspektion und -Anpassung nutzen.
 
 ---
-## ## Modul 9: VBA-Programmierung (Grundlagen)
+## Modul 9: VBA-Programmierung (Grundlagen)
 
 ## Übung 9.1: Variablen und einfache Berechnung
 
@@ -758,14 +784,18 @@ Die folgende Übungstabelle **Modul 9 1 VBA_Variablen** ist bereits geladen.
 
 1. **Produkt aus zwei Zellen:**
    ```vba
+   Option Explicit
+
    Sub ProduktBerechnen()
-       Dim wert1 As Double, ergebnis As Double
-       wert1 = Range("B2").Value * Range("C2").Value
-       Range("D2").Value = wert1
+       Dim ergebnis As Double
+       ergebnis = Range("B2").Value * Range("C2").Value
+       Range("D2").Value = ergebnis
    End Sub
    ```
 2. **Mit MsgBox:**
    ```vba
+   Option Explicit
+
    Sub ProduktMitMeldung()
        Dim erg As Double
        erg = Range("B2").Value * Range("C2").Value
@@ -777,6 +807,7 @@ Die folgende Übungstabelle **Modul 9 1 VBA_Variablen** ist bereits geladen.
    - **Lernziel:** Variablen deklarieren, Zellen lesen/schreiben, Ergebnisse ausgeben.
 
 ---
+
 ## Übung 9.2: Bedingungen und Schleifen
 
 
@@ -795,6 +826,8 @@ Die folgende Übungstabelle **Modul 9 2 VBA_Kontrollstrukturen** ist bereits gel
 
 1. **For-Schleife (1–10):**
    ```vba
+   Option Explicit
+
    Sub ZahlenSchreiben()
        Dim i As Long
        For i = 1 To 10
@@ -804,6 +837,8 @@ Die folgende Übungstabelle **Modul 9 2 VBA_Kontrollstrukturen** ist bereits gel
    ```
 2. **Mit If:**
    ```vba
+   Option Explicit
+
    Sub ZahlenMitFett()
        Dim i As Long
        For i = 1 To 10
@@ -814,6 +849,8 @@ Die folgende Übungstabelle **Modul 9 2 VBA_Kontrollstrukturen** ist bereits gel
    ```
 3. **For-Each:**
    ```vba
+   Option Explicit
+
    Sub ZellenFaerben()
        Dim zelle As Range
        For Each zelle In Range("A1:A100")
@@ -826,6 +863,7 @@ Die folgende Übungstabelle **Modul 9 2 VBA_Kontrollstrukturen** ist bereits gel
    - **Lernziel:** For, For-Each und If in VBA kombinieren.
 
 ---
+
 ## Übung 9.3: Ereignisse programmieren
 
 
@@ -844,6 +882,8 @@ Die folgende Übungstabelle **Modul 9 3 VBA_Ereignisse** ist bereits geladen.
 
 1. **Worksheet_Change mit Validierung (in das Tabellenblatt-Modul):**
    ```vba
+   Option Explicit
+
    Private Sub Worksheet_Change(ByVal Target As Range)
        If Target.Cells.Count > 1 Then Exit Sub
        If Target.Column = 2 And IsNumeric(Target.Value) Then
@@ -855,6 +895,8 @@ Die folgende Übungstabelle **Modul 9 3 VBA_Ereignisse** ist bereits geladen.
    ```
 2. **Workbook_Open (in DieseArbeitsmappe):**
    ```vba
+   Option Explicit
+
    Private Sub Workbook_Open()
        Range("A1").Value = Date
    End Sub
@@ -863,6 +905,7 @@ Die folgende Übungstabelle **Modul 9 3 VBA_Ereignisse** ist bereits geladen.
    - **Lernziel:** Ereignisprogrammierung mit Worksheet_Change und Workbook_Open.
 
 ---
+
 ## Übung 9.4: UDF erstellen
 
 
@@ -880,17 +923,28 @@ Die folgende Übungstabelle **Modul 9 4 VBA_UDF** ist bereits geladen.
 
 1. **UDF Bonus (in ein Modul):**
    ```vba
+   Option Explicit
+
    Function Bonus(Umsatz As Double) As Double
-       If Umsatz >= 10000 Then Bonus = Umsatz * 0.05 Else Bonus = 0
+       If Umsatz >= 10000 Then
+           Bonus = Umsatz * 0.05
+       Else
+           Bonus = 0
+       End If
    End Function
    ```
    In Excel: `=Bonus(B2)`.
 2. **UDF Kategorie:**
    ```vba
+   Option Explicit
+
    Function Kategorie(Alter As Double) As String
-       If Alter < 30 Then Kategorie = "Junior"
-       ElseIf Alter <= 50 Then Kategorie = "Mid-Career"
-       Else: Kategorie = "Senior"
+       If Alter < 30 Then
+           Kategorie = "Junior"
+       ElseIf Alter <= 50 Then
+           Kategorie = "Mid-Career"
+       Else
+           Kategorie = "Senior"
        End If
    End Function
    ```
@@ -898,7 +952,7 @@ Die folgende Übungstabelle **Modul 9 4 VBA_UDF** ist bereits geladen.
    - **Lernziel:** Eigene Excel-Funktionen mit korrekten Datentypen programmieren.
 
 ---
-## ## Modul 10: Zusammenarbeit, Vorlagen und Produktivität
+## Modul 10: Zusammenarbeit, Vorlagen und Produktivität
 
 ## Übung 10.1: Vorlage erstellen
 
@@ -917,12 +971,14 @@ Die folgende Übungstabelle **Modul 10 1 Vorlagen** ist bereits geladen.
 1. **Rechnungsvorlage:**
    - Logo-Bereich: A1:C3 verbinden, Platzhalter-Text.
    - Rechnungsnummer: `="RE-" & TEXT(HEUTE();"JJJJMMTT") & "-" & TEXT(ZEILE();"000")`.
+     - **Hinweis:** `ZEILE()` gibt die aktuelle Zeilennummer zurück — ändert sich, wenn Zeilen oberhalb eingefügt werden. Für produktive Vorlagen stattdessen einen fortlaufenden Zähler in einer festen Zelle verwenden.
    - MwSt: `=Zwischensumme*0,19`. Formelzellen schützen, Eingabezellen entsperren.
 2. **Als .xltx speichern:** `Datei → Speichern unter → Excel-Vorlage (*.xltx)`.
 3. **Testen:** Vorlage per Doppelklick öffnen → neue, unbenannte Arbeitsmappe entsteht. Original bleibt unverändert.
    - **Lernziel:** Professionelle Vorlagen mit geschützten Bereichen und automatischen Feldern.
 
 ---
+
 ## Übung 10.2: Für Zusammenarbeit vorbereiten
 
 
@@ -939,10 +995,11 @@ Die folgende Übungstabelle **Modul 10 2 Zusammenarbeit** ist bereits geladen.
 
 1. **Kommentar:** Rechtsklick → `Neuer Kommentar` → Text eingeben.
 2. **PDF mit Seitenumbrüchen:** `Ansicht → Seitenumbruchvorschau`, Umbrüche setzen. `Datei → Exportieren → PDF`.
-3. **Blattschutz für Externe:** Eingabezellen entsperren → `Blatt schützen`. Haken bei `Gesperrte Zellen auswählen` entfernen → nur Eingabe erlaubt.
+3. **Blattschutz für Externe:** Eingabezellen entsperren (`Strg+1 → Schutz → Gesperrt`-Häkchen entfernen). `Überprüfen → Blatt schützen`. Im Dialog die Haken bei `Gesperrte Zellen auswählen` entfernen (damit Benutzer nicht einmal die geschützten Zellen anklicken können). Nur die entsperrten Eingabezellen bleiben bedienbar.
    - **Lernziel:** Professionelle Weitergabe mit Kommentaren, PDF-Export und differenziertem Blattschutz.
 
 ---
+
 ## Übung 10.4: Tastenkombinationen üben
 
 
@@ -950,8 +1007,8 @@ Die folgende Übungstabelle **Modul 10 4 Tastenkombinationen** ist bereits gelad
 
 1. Verwenden Sie ausschließlich Tastenkombinationen, um eine Tabelle zu
    formatieren, eine Summe zu bilden und einen Filter zu setzen.
-2. Nutzen Sie `Strg+{` und `Strg+}` zur Formelanalyse (Vorgänger/Nachfolger
-   anzeigen — auf deutschen Tastaturen: Strg+AltGr+7 bzw. Strg+AltGr+0).
+2. Nutzen Sie `Strg+[` und `Strg+]` zur Formelanalyse (Vorgänger/Nachfolger
+   anzeigen — auf deutschen Tastaturen: Strg+AltGr+8 bzw. Strg+AltGr+9).
 3. Wechseln Sie mit F4 zwischen Bezugstypen beim Bearbeiten einer Formel.
 
 ---
@@ -960,8 +1017,8 @@ Die folgende Übungstabelle **Modul 10 4 Tastenkombinationen** ist bereits gelad
 
 1. **Nur mit Tastatur:** `Strg+A` (Alles) → `Strg+T` (Tabelle) → `Alt+=` (Summe) → `Strg+Umschalt+L` (Filter).
 2. **Formel-Vorgänger/Nachfolger:**
-   - `Strg+{` (Strg+AltGr+7) → Vorgängerzellen markieren.
-   - `Strg+}` (Strg+AltGr+0) → Nachfolgerzellen markieren.
+   - `Strg+[` (Strg+AltGr+8) → Vorgängerzellen markieren.
+   - `Strg+]` (Strg+AltGr+9) → Nachfolgerzellen markieren.
    - Alternative: `Formeln → Spur zum Vorgänger/Nachfolger`.
 3. **F4 für Bezugstypen:** In Formel Zellbezug anklicken → `F4` → wechselt: A1 → $A$1 → A$1 → $A1 → A1.
    - **Lernziel:** Produktivität mit fortgeschrittenen Tastenkombinationen und QWERTZ-Anpassungen.

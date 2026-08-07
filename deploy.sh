@@ -44,7 +44,7 @@ COMMIT_BEFORE=$(git rev-parse --short HEAD)
 echo -e "   Rama  : ${YELLOW}${BRANCH}${NC}"
 echo -e "   Commit: ${YELLOW}${COMMIT_BEFORE}${NC}"
 
-if git pull --ff-only 2>/dev/null; then
+if GIT_OUTPUT=$(git pull --ff-only 2>&1); then
   COMMIT_AFTER=$(git rev-parse --short HEAD)
   if [ "$COMMIT_BEFORE" != "$COMMIT_AFTER" ]; then
     ok "Pull exitoso  (${COMMIT_BEFORE} → ${COMMIT_AFTER})"
@@ -52,7 +52,9 @@ if git pull --ff-only 2>/dev/null; then
     ok "Ya actualizado (${COMMIT_AFTER})"
   fi
 else
-  ok "Pull omitido  (repositorio ya sincronizado)"
+  echo "$GIT_OUTPUT" | tail -5
+  fail "Error en git pull"
+  exit 1
 fi
 
 # ── Step 2: Frontend Build ──────────────────────────────────
@@ -60,16 +62,26 @@ step "Construir frontend"
 
 cd frontend
 
-if npm ci --silent; then
+NPM_OUTPUT=$(npm ci 2>&1) && NPM_OK=true || NPM_OK=false
+echo "$NPM_OUTPUT" | grep -iE "error|warn|added|up to date|audited" || true
+if $NPM_OK; then
   ok "Dependencias instaladas"
 else
+  echo "$NPM_OUTPUT" | tail -10
   fail "Error en npm ci"
   exit 1
 fi
 
-if npm run build 2>&1 | tail -3; then
+# Capture build output, show warnings/errors, and fail on actual errors
+BUILD_OUTPUT=$(npm run build 2>&1) && BUILD_OK=true || BUILD_OK=false
+
+# Always show warnings (like chunk size)
+echo "$BUILD_OUTPUT" | grep -E "WARNING|Warning|warning|error|Error|✓ built|✗" || true
+
+if $BUILD_OK; then
   ok "Build completado"
 else
+  echo "$BUILD_OUTPUT" | tail -20
   fail "Error en el build"
   exit 1
 fi
@@ -79,9 +91,15 @@ cd ..
 # ── Step 3: Docker Compose ──────────────────────────────────
 step "Desplegar contenedores Docker"
 
-if docker compose up --detach --build 2>&1; then
+DOCKER_OUTPUT=$(docker compose up --detach --build 2>&1) && DOCKER_OK=true || DOCKER_OK=false
+
+# Show only warnings/errors from Docker build
+echo "$DOCKER_OUTPUT" | grep -iE "warn|error|fail|done|started|created" || true
+
+if $DOCKER_OK; then
   ok "Contenedores iniciados"
 else
+  echo "$DOCKER_OUTPUT" | tail -20
   fail "Error al iniciar contenedores"
   exit 1
 fi
@@ -89,7 +107,14 @@ fi
 # ── Step 4: Health Check ────────────────────────────────────
 step "Verificar estado"
 
-sleep 3
+# Wait up to 30s for both services to be healthy
+for i in $(seq 1 15); do
+  UNHEALTHY=$(docker compose ps --format json 2>/dev/null | grep -v '"Health":"healthy"' | wc -l)
+  if [ "$UNHEALTHY" -eq 0 ]; then
+    break
+  fi
+  sleep 2
+done
 
 if docker compose ps --format "table {{.Name}}\t{{.Status}}" 2>/dev/null; then
   ok "Estado de servicios"

@@ -34,66 +34,66 @@ export default function Courses() {
 
   return (
     <div>
-      {/* ── HERO HEADER ── */}
+      {/* ── HERO + GRID (centered together) ── */}
       <section className="courses-hero">
-        <h1>
-          <BookOpen size={28} style={{marginRight:10, verticalAlign:'middle'}} />
-          Verfügbare Kurse
-        </h1>
-        <p className="courses-hero-desc">
-          Entdecken Sie unsere interaktiven Kurse mit praktischen Excel-Übungen
-        </p>
-        <p className="courses-hero-meta">
-          {visibleCourses.length} Kurse · {visibleCourses.reduce((s, c) => s + c.exercise_count, 0)} Übungen
-        </p>
-      </section>
+        <div className="courses-hero-inner">
+          <h1>
+            <BookOpen size={28} style={{marginRight:10, verticalAlign:'middle'}} />
+            Verfügbare Kurse
+          </h1>
+          <p className="courses-hero-desc">
+            Entdecken Sie unsere interaktiven Kurse mit praktischen Excel-Übungen
+          </p>
+          <p className="courses-hero-meta">
+            {visibleCourses.length} Kurse · {visibleCourses.reduce((s, c) => s + c.exercise_count, 0)} Übungen
+          </p>
 
-      {/* ── COURSE GRID ── */}
-      <div className="courses-grid-container">
-        {visibleCourses.length === 0 ? (
-          <div className="card text-center p-4 mt-4">
-            <p className="text-secondary">Noch keine Kurse verfügbar. Schauen Sie bald wieder vorbei!</p>
-          </div>
-        ) : (
-          <div className="course-grid">
-            {visibleCourses.map((course) => {
-              const theme = COURSE_THEME[course.title] || { accent: '#666', bg: '#f5f5f5' };
-              const tc = translateCourse(course);
-              const isOpen = course.title === 'Excel-Grundlagen';
+          {/* ── COURSE GRID ── */}
+          {visibleCourses.length === 0 ? (
+            <div className="card text-center p-4 mt-4">
+              <p className="text-secondary">Noch keine Kurse verfügbar. Schauen Sie bald wieder vorbei!</p>
+            </div>
+          ) : (
+            <div className="course-grid">
+              {visibleCourses.map((course) => {
+                const theme = COURSE_THEME[course.title] || { accent: '#666', bg: '#f5f5f5' };
+                const tc = translateCourse(course);
+                const isOpen = course.title === 'Excel-Grundlagen';
 
-              return (
-                <Link to={`/courses/${course.id}`} key={course.id} className="course-card">
-                  <article>
-                    <div className="course-card-header">
-                      <span className="course-card-icon">
-                        {COURSE_ICONS[course.title] || <BookOpen size={24} />}
-                      </span>
-                      <div className="course-card-badges">
-                        <span className="badge" style={{ background: theme.bg, color: theme.accent }}>
-                          {DIFFICULTY_LABELS[course.difficulty] || course.difficulty}
+                return (
+                  <Link to={`/courses/${course.id}`} key={course.id} className="course-card">
+                    <article>
+                      <div className="course-card-header">
+                        <span className="course-card-icon">
+                          {COURSE_ICONS[course.title] || <BookOpen size={24} />}
                         </span>
-                        {isOpen && (
-                          <span className="badge badge-success">Geöffnet</span>
-                        )}
+                        <div className="course-card-badges">
+                          <span className="badge" style={{ background: theme.bg, color: theme.accent }}>
+                            {DIFFICULTY_LABELS[course.difficulty] || course.difficulty}
+                          </span>
+                          {isOpen && (
+                            <span className="badge badge-success">Geöffnet</span>
+                          )}
+                        </div>
                       </div>
-                    </div>
 
-                    <h3>{tc.title}</h3>
-                    <p className="course-card-desc">{tc.description}</p>
+                      <h3>{tc.title}</h3>
+                      <p className="course-card-desc">{tc.description}</p>
 
-                    <div className="course-card-footer">
-                      <span className="course-card-count">
-                        <BookOpen size={13} /> {course.exercise_count} Übungen
-                      </span>
-                      <span className="course-card-cta">Starten →</span>
-                    </div>
-                  </article>
-                </Link>
-              );
-            })}
-          </div>
-        )}
-      </div>
+                      <div className="course-card-footer">
+                        <span className="course-card-count">
+                          <BookOpen size={13} /> {course.exercise_count} Übungen
+                        </span>
+                        <span className="course-card-cta">Starten →</span>
+                      </div>
+                    </article>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 }

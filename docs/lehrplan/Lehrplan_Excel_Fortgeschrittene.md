@@ -266,11 +266,12 @@ Einschränkung auf und ist zudem robuster bei Tabellenänderungen.
 | `1` | Größter Wert <= Suchkriterium (aufsteigend sortiert) |
 | `-1` | Kleinster Wert >= Suchkriterium (absteigend sortiert) |
 
-**Tipp:** INDEX+VERGLEICH ist auch schneller als SVERWEIS bei großen Tabellen
+**Tipp:** INDEX+VERGLEICH ist auch schneller als SVERWEIS bei großen Tabellen.
+
 **Tipp:** In Excel 365/2021 ersetzt `XVERWEIS` (XLOOKUP) sowohl SVERWEIS als
 auch INDEX+VERGLEICH mit einer einfacheren Syntax:
 `=XVERWEIS(Suchkriterium; Suchmatrix; Rückgabematrix; [Wenn_nicht_gefunden]; [Vergleichsmodus]; [Suchmodus])`.
-XVERWEIS sucht in beide Richtungen und benötigt keinen Spaltenindex mehr.
+XVERWEIS sucht in beide Richtungen, benötigt keinen Spaltenindex mehr
 und bricht nicht, wenn Spalten eingefügt werden.
 
 
@@ -358,11 +359,11 @@ Die folgende Übungstabelle **Modul 2 3 Logik** ist bereits geladen.
 | RMZ (PMT) | Regelmäßige Zahlung (Rate) | `=RMZ(4,5%/12; 30*12; -250000)` |
 | NBW (NPV) | Kapitalwert einer Investition | `=NBW(8%; B2:B7)+B1` |
 | IKV (IRR) | Interner Zinsfuß (Rendite) | `=IKV(B1:B7)` |
+| ZW (FV) | Zukunftswert einer Anlage | `=ZW(3%/12; 20*12; -200; -10000)` |
 
  **Achtung:** Die Anfangsinvestition (Zeitpunkt 0) darf NICHT im Bereich
 der NBW-Funktion stehen, da sie nicht abgezinst wird. Sie wird außerhalb
 addiert: `=NBW(Zins; Rückflüsse) + Investition`.
-| ZW (FV) | Zukunftswert einer Anlage | `=ZW(3%/12; 20*12; -200; -10000)` |
 
  **Tipp:** Die vier Argumente von ZW sind: `=ZW(Zins; ZZR; RMZ; [BW])`.
 BW (Barwert) ist optional — geben Sie ein negatives Startkapital an,
@@ -845,13 +846,13 @@ Pivot-Tabellen. Zeitachsen filtern speziell nach Datumsbereichen.
 (Rechtsklick  Berichtsverbindungen). Ein Klick filtert alle verbundenen
 Tabellen gleichzeitig.
 
-**Übung 5.3  Datenschnitte einsetzen**
+**Übung 5.3  Slicer einsetzen**
 
-Die folgende Übungstabelle **Modul 5 3 Datenschnitt** ist bereits geladen.
+Die folgende Übungstabelle **Modul 5 3 Slicer** ist bereits geladen.
 
-> 1. Fügen Sie Datenschnitt für Region und Produktkategorie ein.
+> 1. Fügen Sie Datenschnitte für Region und Produktkategorie ein.
 > 2. Erstellen Sie eine zweite Pivot-Tabelle (Anzahl pro Region) und verbinden
->    Sie beide Tabellen mit denselben Datenschnittn.
+>    Sie beide Tabellen mit denselben Datenschnitten.
 > 3. Fügen Sie eine Zeitachse für das Bestelldatum hinzu.
 
 ## 5.4. Pivot-Charts
@@ -859,7 +860,7 @@ Die folgende Übungstabelle **Modul 5 3 Datenschnitt** ist bereits geladen.
 ### Konzept: Diagramme, die mit der Pivot-Tabelle leben
 
 Ein Pivot-Chart ist ein Diagramm, das direkt mit einer Pivot-Tabelle verbunden
-ist. Änderungen an Feldern, Filtern oder Datenschnittn werden sofort im Diagramm
+ist. Änderungen an Feldern, Filtern oder Datenschnitten werden sofort im Diagramm
 reflektiert.
 
 **Übung 5.4  Pivot-Chart erstellen**
@@ -1022,7 +1023,7 @@ Die folgende Übungstabelle **Modul 6 4 Sparklines** ist bereits geladen.
 
 > 1. Fügen Sie Liniensparklines für die monatlichen Umsatzzahlen ein.
 > 2. Fügen Sie eine lineare Trendlinie zum Umsatzdiagramm hinzu und lassen
->    Sie R anzeigen.
+>    Sie das Bestimmtheitsmaß R² anzeigen.
 > 3. Interpretieren Sie R² = 0,87: Ist das ein starker Zusammenhang?
 
 
@@ -1116,7 +1117,7 @@ Die folgende Übungstabelle **Modul 7 3 Dashboard** ist bereits geladen.
 
 - [ ] Kombinationsdiagramme mit Sekundärachse für unterschiedliche Skalen erstellen
 - [ ] Wasserfalldiagramme für kumulierte Effekte (z.B. Gewinn- und Verlustrechnung) aufbauen
-- [ ] Ein professionelles Dashboard mit mehreren Diagrammen, Datenschnittn und Sparklines designen
+- [ ] Ein professionelles Dashboard mit mehreren Diagrammen, Datenschnitten und Sparklines designen
 - [ ] Dashboard-Design-Prinzipien anwenden (max. 4-6 Elemente, konsistente Farben, Raster)
 
 \newpage
@@ -1478,8 +1479,8 @@ Die folgende Übungstabelle **Modul 10 4 Tastenkombinationen** ist bereits gelad
 
 > 1. Verwenden Sie ausschließlich Tastenkombinationen, um eine Tabelle zu
 >    formatieren, eine Summe zu bilden und einen Filter zu setzen.
-> 2. Nutzen Sie `Strg+{` und `Strg+}` zur Formelanalyse (Vorgänger/Nachfolger
->    anzeigen — auf deutschen Tastaturen: Strg+AltGr+7 bzw. Strg+AltGr+0).
+> 2. Nutzen Sie `Strg+[` und `Strg+]` zur Formelanalyse (Vorgänger/Nachfolger
+>    anzeigen — auf deutschen Tastaturen: Strg+AltGr+8 bzw. Strg+AltGr+9).
 > 3. Wechseln Sie mit F4 zwischen Bezugstypen beim Bearbeiten einer Formel.
 
 ### Das können Sie jetzt

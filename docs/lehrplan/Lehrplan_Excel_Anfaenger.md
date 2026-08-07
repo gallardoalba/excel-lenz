@@ -259,7 +259,7 @@ Excel erkennt folgende eingebaute Reihen:
 Excel das Schrittmuster und setzt es fort: 1, 3, 5, 7, 9... Das funktioniert auch mit
 Datumsangaben!
 
-**Übung 2.3 — Ausfüllkästchen verwenden**
+**Übung 2.3 — AutoAusfüllen verwenden**
 
 Die folgende Übungstabelle **Modul 2 3 AutoAusfuellen** ist bereits geladen.
 

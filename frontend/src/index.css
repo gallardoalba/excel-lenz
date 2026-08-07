@@ -3522,9 +3522,9 @@ body.dark .hero-stat { background: var(--surface); }
 body.dark .course-hero-back { background: rgba(0,0,0,0.4) !important; }
 
 /* Dark mode: Course cards — lighter bg so they stand out from #000 page */
-body.dark .course-card article { background: #1C1C1E; border-color: #333; }
-body.dark .course-card:hover article { background: #252528; }
-body.dark .courses-hero { background: linear-gradient(180deg, #1C1C1E 0%, #000 100%); }
+body.dark .course-card article { background: #1C1C1E; border-color: #2C2C2E; box-shadow: none; }
+body.dark .course-card:hover article { background: #222226; border-color: #3A3A3C; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+body.dark .courses-hero { background: #000; }
 body.dark .courses-hero h1 { color: var(--text); }
 body.dark .courses-grid-container { background: transparent; }
 body.dark .module-card { background: var(--surface); }
@@ -3898,11 +3898,10 @@ body.dark .excel-dialog { background: #161B22; border-color: #21262D; }
 .course-card:hover { text-decoration: none; color: inherit; }
 .course-card article {
   will-change: transform;
-  background: var(--bg-alt);
+  background: #FAFAFD;
   border-radius: var(--radius-lg);
-  border: none;
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   padding: 40px 32px 0;
   overflow: hidden;
   height: 100%;
@@ -3913,9 +3912,8 @@ body.dark .excel-dialog { background: #161B22; border-color: #21262D; }
 }
 .course-card:hover article {
   transform: scale(1.01);
-  box-shadow: var(--shadow);
-  border-left-color: var(--border);
-  border-right-color: var(--border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border-color: var(--border);
 }
 
 .course-card-header {
@@ -4113,10 +4111,23 @@ body.focus-mode .main-content { padding-top: 0; }
    ============================================================ */
 
 .courses-hero {
-  background: linear-gradient(180deg, var(--primary-lighter) 0%, var(--bg) 100%);
-  padding: 64px 48px 48px;
+  background: var(--bg);
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 48px 64px;
   text-align: center;
-  border-bottom: 1px solid var(--border-light);
+  box-sizing: border-box;
+}
+.courses-hero-inner {
+  max-width: var(--content-max);
+  width: 100%;
+}
+.courses-hero .course-grid {
+  margin-top: 48px;
+  text-align: left;
 }
 .courses-hero h1 {
   font-size: clamp(2rem, 5vw, 2.6rem);
