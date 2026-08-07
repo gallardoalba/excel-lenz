@@ -226,7 +226,6 @@ export default function CourseDetail() {
   const pct = course.user_progress?.total ? Math.round(course.user_progress.completed / course.user_progress.total * 100) : 0;
   const sections = buildSections(course);
   const activeSection = selectedSection ? sections.find(s => s.id === selectedSection) : null;
-  const isOpen = true; // All courses accessible
 
   return (
     <div className="course-detail-page">
@@ -264,7 +263,6 @@ export default function CourseDetail() {
                 <span className="badge" style={{ background: theme.bg, color: theme.accent, fontWeight: 600 }}>
                   {DIFFICULTY_LABELS[course.difficulty] || course.difficulty}
                 </span>
-                {isOpen && <span className="badge badge-success">Geöffnet</span>}
               </div>
               <h1 className="hero-dashboard-title">{courseTitle}</h1>
               <p className="hero-dashboard-desc">{courseDesc}</p>
@@ -598,10 +596,7 @@ export default function CourseDetail() {
                   <span className="sidebar-info-label">Module</span>
                   <span className="sidebar-info-value">{stats.uniqueModules || sections.length}</span>
                 </div>
-                <div className="sidebar-info-item">
-                  <span className="sidebar-info-label">Zugang</span>
-                  <span className="sidebar-info-value">{isOpen ? 'Offen' : 'Geschlossen'}</span>
-                </div>
+
               </div>
             </div>
           </aside>

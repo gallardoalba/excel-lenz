@@ -58,7 +58,6 @@ export default function Courses() {
               {visibleCourses.map((course) => {
                 const theme = COURSE_THEME[course.title] || { accent: '#666', bg: '#f5f5f5' };
                 const tc = translateCourse(course);
-                const isOpen = course.title === 'Excel-Grundlagen';
 
                 return (
                   <Link to={`/courses/${course.id}`} key={course.id} className="course-card">
@@ -71,9 +70,6 @@ export default function Courses() {
                           <span className="badge" style={{ background: theme.bg, color: theme.accent }}>
                             {DIFFICULTY_LABELS[course.difficulty] || course.difficulty}
                           </span>
-                          {isOpen && (
-                            <span className="badge badge-success">Geöffnet</span>
-                          )}
                         </div>
                       </div>
 
