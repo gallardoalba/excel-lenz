@@ -21,6 +21,12 @@ services:
       - appdata:/app/data
     expose:
       - '3001'  # Only accessible within Docker network via nginx
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:3001/api/health']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   # ── Nginx Reverse Proxy ────────────────────────────────
   nginx:
@@ -39,7 +45,6 @@ services:
       - '443:443'
     depends_on:
       api:
-        condition: service_healthy
         condition: service_healthy
 
 volumes:
