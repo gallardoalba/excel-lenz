@@ -5,7 +5,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 import os
 
-OUT_DIR = os.path.join(os.path.dirname(__file__), "../exercises/anfaenger")
+OUT_DIR = os.path.join(os.path.dirname(__file__), "../ubungen/anfaenger/xlsx_files")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 HEADER_FILL = PatternFill('solid', fgColor='1F4E79')
@@ -343,7 +343,7 @@ def mod4_3_namen():
 
 
 def mod4_3():
-    wb, ws = create_workbook('Übung 4.3 — Statistische Funktionen')
+    wb, ws = create_workbook('Übung 4.4 — Statistische Funktionen')
     headers = ['Produkt', 'Verkäufe']
     data = [
         ['Produkt A', 120],
@@ -367,7 +367,7 @@ def mod4_3():
 
 
 def mod4_4():
-    wb, ws = create_workbook('Übung 4.4 — WENN-Funktion')
+    wb, ws = create_workbook('Übung 4.5 — WENN-Funktion')
     headers = ['Name', 'Punkte', 'Bestanden?']
     data = [
         ['Anna', 85, None],
@@ -534,7 +534,7 @@ def mod6_2_fenster():
 
 
 def mod6_1():
-    wb, ws = create_workbook('Übung 6.1 — Daten sortieren')
+    wb, ws = create_workbook('Übung 6.3 — Daten sortieren')
     headers = ['Name', 'Abteilung', 'Eintrittsdatum', 'Gehalt']
     data = [
         ['Anna', 'Vertrieb', '15.03.2020', 45000],
@@ -553,7 +553,7 @@ def mod6_1():
 
 
 def mod6_2():
-    wb, ws = create_workbook('Übung 6.2 — Daten filtern')
+    wb, ws = create_workbook('Übung 6.4 — Daten filtern')
     headers = ['Name', 'Abteilung', 'Eintrittsdatum', 'Gehalt']
     data = [
         ['Anna', 'Vertrieb', '15.03.2020', 45000],
@@ -574,7 +574,7 @@ def mod6_2():
 
 
 def mod6_3():
-    wb, ws = create_workbook('Übung 6.3 — Excel-Tabellen')
+    wb, ws = create_workbook('Übung 6.5 — Excel-Tabellen')
     headers = ['Name', 'Abteilung', 'Eintrittsdatum', 'Gehalt']
     data = [
         ['Anna', 'Vertrieb', '15.03.2020', 45000],
@@ -594,7 +594,7 @@ def mod6_3():
 
 
 def mod6_4():
-    wb, ws = create_workbook('Übung 6.4 — Teilergebnisse')
+    wb, ws = create_workbook('Übung 6.6 — Teilergebnisse')
     headers = ['Name', 'Abteilung', 'Gehalt']
     data = [
         ['Anna', 'Vertrieb', 45000],
@@ -643,9 +643,9 @@ def mod7_1():
 def mod7_2():
     wb, ws = create_workbook('Übung 7.2 — SVERWEIS')
 
-    # Preistabelle
-    ws['A1'] = 'Preistabelle'
-    ws['A1'].font = Font(bold=True, size=12)
+    # Preistabelle (zweite Überschrift unter dem Titel)
+    ws['A2'] = 'Preistabelle'
+    ws['A2'].font = Font(bold=True, size=12)
     price_headers = ['Produktcode', 'Produktname', 'Preis']
     price_data = [
         ['P001', 'Tastatur', 29.99],
@@ -716,7 +716,7 @@ def mod7_4():
 # ============================================================
 
 def mod8_1():
-    wb, ws = create_workbook('Übung 8.1 — Erste Diagramme')
+    wb, ws = create_workbook('Übung 8.1 — Ihr erstes Diagramm')
     headers = ['Monat', 'Umsatz']
     data = [
         ['Jan', 12000],
@@ -779,7 +779,7 @@ def mod8_3():
 
 
 def mod8_4():
-    wb, ws = create_workbook('Übung 8.4 — Mini-Dashboard')
+    wb, ws = create_workbook('Übung 8.4 — Dashboard erstellen')
     headers = ['Produkt', 'Umsatz', 'Ziel', 'Zielerreichung %']
     data = [
         ['Produkt A', 15000, 18000, None],
@@ -865,7 +865,7 @@ def mod9_2():
 
 
 def mod9_3():
-    wb, ws = create_workbook('Übung 9.3 — Datenschnitte')
+    wb, ws = create_workbook('Übung 9.3 — Slicer einsetzen')
     headers = ['Datum', 'Verkäufer', 'Region', 'Produkt', 'Kategorie', 'Umsatz', 'Menge']
     data = [
         ['01.01.2026', 'Anna', 'Nord', 'A', 'Hardware', 500, 2],
@@ -886,7 +886,7 @@ def mod9_3():
 
 
 def mod9_4():
-    wb, ws = create_workbook('Übung 9.4 — Interaktiver Bericht')
+    wb, ws = create_workbook('Übung 9.4 — PivotChart erstellen')
     headers = ['Datum', 'Verkäufer', 'Region', 'Produkt', 'Kategorie', 'Umsatz', 'Menge']
     data = [
         ['01.01.2026', 'Anna', 'Nord', 'A', 'Hardware', 500, 2],
@@ -969,7 +969,7 @@ def mod10_2():
         ws.cell(row=13 + i, column=1, value=i)
         ws.cell(row=13 + i, column=2, value=v)
     ws['A20'] = 'Kapitalwert (NBW):'
-    ws['B20'] = '=NBW(8%;B13:B17)-50000'
+    ws['B20'] = '=NBW(8%;B14:B18)-50000'
     ws['B20'].font = Font(name='Consolas', color='1F4E79', bold=True)
 
     save(wb, 'M10_2_Finanzfunktionen')
@@ -1008,7 +1008,7 @@ def mod10_4():
 
 
 def mod11_1():
-    wb, ws = create_workbook('Übung 11.1 — Drucklayout')
+    wb, ws = create_workbook('Übung 11.1 — Seitenlayout einrichten')
     headers = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug']
     data = [[12000, 15000, 11000, 18000, 16000, 20000, 14000, 17000]]
     write_table(ws, headers, data, 7)
@@ -1055,7 +1055,7 @@ def mod11_3():
 
 
 def mod11_4():
-    wb, ws = create_workbook('Übung 11.4 — Zusammenarbeit')
+    wb, ws = create_workbook('Übung 11.4 — Weitergabe vorbereiten')
     headers = ['Aufgabe', 'Verantwortlich', 'Status', 'Fällig']
     data = [
         ['Bericht erstellen', 'Anna', 'In Arbeit', '15.04.2026'],

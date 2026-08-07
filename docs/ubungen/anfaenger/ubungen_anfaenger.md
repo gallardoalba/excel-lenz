@@ -32,14 +32,14 @@ Namensfeld, Bearbeitungsleiste und Statusleiste. Speichern Sie als `Meine_Erste_
 ## Übung 1.2: Die Oberfläche erkunden
 
 
-Fügen Sie „Neu", „Öffnen" und „Schnelldruck" zur Schnellzugriff-Leiste hinzu.
+Fügen Sie „Neu", „Öffnen" und „Schnelldruck" zur Schnellzugriffsleiste hinzu.
 
 
 ---
 
 ### Lösung
 
-1. Klicken Sie auf den kleinen Pfeil (▾) rechts in der **Schnellzugriff-Leiste** (ganz oben links).
+1. Klicken Sie auf den kleinen Pfeil (▾) rechts in der **Schnellzugriffsleiste** (ganz oben links).
 2. Wählen Sie `Weitere Befehle…`.
 3. Im Dropdown `Befehle auswählen` → `Datei` oder `Alle Befehle`.
 4. Fügen Sie nacheinander hinzu:
@@ -47,7 +47,7 @@ Fügen Sie „Neu", „Öffnen" und „Schnelldruck" zur Schnellzugriff-Leiste h
    - **„Öffnen"** → `Hinzufügen >`
    - **„Schnelldruck"** → `Hinzufügen >`
 5. Klicken Sie `OK`.
-   - **Ergebnis:** Die drei Symbole erscheinen nun dauerhaft in der Schnellzugriff-Leiste, unabhängig von der aktiven Registerkarte.
+   - **Ergebnis:** Die drei Symbole erscheinen nun dauerhaft in der Schnellzugriffsleiste, unabhängig von der aktiven Registerkarte.
 
 ---
 
@@ -93,7 +93,7 @@ Speichern Sie als `Inventar_2026.xlsx`, exportieren Sie als PDF.
 ## Übung 2.1: Datentypen erkennen
 
 
-Die folgende Übungstabelle **Modul 2 1 Datentypen** ist bereits geladen. Geben Sie in verschiedene Zellen ein:
+Die folgende Übungstabelle **Modul 2 1 Datentypen** ist bereits geladen. Die Tabelle enthält leere Zellen für Ihre Eingaben. Geben Sie in verschiedene Zellen ein:
 
 - Ihren Namen (Text)
 
@@ -216,7 +216,7 @@ Die folgende Übungstabelle **Modul 3 1 Grundformatierung** ist bereits geladen.
 
 ### Lösung
 
-1. **Überschriftenzeile formatieren:** Zeile 1 markieren → `Start → Fett (Strg+F)` → `Füllfarbe → Dunkelblau` → `Schriftfarbe → Weiß`.
+1. **Überschriftenzeile formatieren:** Zeile 1 markieren → `Start → Fett (Strg+Umschalt+F)` → `Füllfarbe → Dunkelblau` → `Schriftfarbe → Weiß`.
 2. **Datenzellen formatieren:** Datenbereich markieren und in eine Tabelle umwandeln: `Start → Als Tabelle formatieren (Strg+T)` → Design mit wechselnden Zeilenfarben wählen. Rahmen anpassen: `Tabellenentwurf → Rahmen → Alle Rahmen`.
 3. **Titel verbinden und zentrieren:** Den Bereich des Titels (z.B. A1:F1) markieren → `Start → Verbinden und zentrieren`. Der Titel steht nun mittig über allen Spalten.
 4. **Zeilenumbruch:** Lange Textzellen markieren → `Start → Zeilenumbruch`. Der Text fließt innerhalb der Zelle in mehreren Zeilen.
@@ -710,7 +710,7 @@ Die folgende Übungstabelle **Modul 6 6 Teilergebnisse** ist bereits geladen.
 
 ### Lösung
 
-1. **Nach Region sortieren:** In die Spalte "Region" klicken → `Daten → Sortieren (A→Z)`. (Vorraussetzung für Teilergebnisse!)
+1. **Nach Region sortieren:** In die Spalte "Region" klicken → `Daten → Sortieren (A→Z)`. (Voraussetzung für Teilergebnisse!)
 2. **Teilergebnisse einfügen:**
    - `Daten → Teilergebnis` (Gliederung-Gruppe).
    - Gruppieren nach: `Region`.
@@ -797,6 +797,7 @@ Für horizontale Daten ist es jedoch die richtige Wahl.
    - Hilfstabelle: 0=ungenügend, 50=mangelhaft, 60=ausreichend, 70=befriedigend, 80=gut, 90=sehr gut.
    - `=SVERWEIS(Punktzahl; Notentabelle!A:B; 2; 1)` → `1` = ungefähre Übereinstimmung (Suchspalte muss aufsteigend sortiert sein).
 3. **#NV-Fehler testen:** Eine Produkt-ID eingeben, die nicht existiert → `#NV` erscheint. Lösung: `=WENNFEHLER(SVERWEIS(…); "Nicht gefunden")`.
+   - **Tipp:** Wickeln Sie SVERWEIS grundsätzlich in `WENNFEHLER()` ein, um #NV-Fehler abzufangen und durch eine verständliche Meldung zu ersetzen: `=WENNFEHLER(SVERWEIS(E2; Preisliste!A:C; 2; 0); "Nicht gefunden")`.
    - **Ergebnis:** Sie beherrschen SVERWEIS für exakte und ungefähre Suche sowie Fehlerbehandlung.
 
 ---
@@ -1149,7 +1150,8 @@ Die folgende Übungstabelle **Modul 10 3 Datentabelle** ist bereits geladen.
    - Formel für RMZ in Zelle B1: `=RMZ(B2/12; 30*12; -250000)`.
    - Zinssätze in A2:A14: 2,0%, 2,5%, 3,0% … 8,0%.
    - Bereich A1:B14 markieren → `Daten → Was-wäre-wenn-Analyse → Datentabelle`.
-   - Da die Zinssätze in **Spalte A untereinander** stehen, nutzen wir das Feld `Spalten-Eingabezelle`. Dort auf die Zelle klicken, die in der Formel den Zinssatz enthält (B2) → `OK`. Excel setzt nun für jede Zeile den entsprechenden Zinssatz aus Spalte A ein.
+   - Da die Zinssätze in **Spalte A untereinander** stehen, nutzen wir das Feld `Spalten-Eingabezelle` (Werte in einer Spalte → Spalten-Eingabezelle). Dort auf die Zelle klicken, die in der Formel den Zinssatz enthält (B2) → `OK`. Excel setzt nun für jede Zeile den entsprechenden Zinssatz aus Spalte A ein.
+   - **Merkhilfe:** Werte in einer **Spalte** → `Spalten-Eingabezelle`. Werte in einer **Zeile** → `Zeilen-Eingabezelle`.
 2. **Zweidimensionale Datentabelle:**
    - RMZ-Formel in A1: `=RMZ(Zinssatz/12; Jahre*12; -250000)`.
    - Zinssätze in A2:A10 (3%–7%).
@@ -1415,7 +1417,7 @@ Die folgende Übungstabelle **Modul 13 2 Makro Aufzeichnen** ist bereits geladen
 
 1. **Makro aufzeichnen:**
    - `Entwicklertools → Makro aufzeichnen`. Name: `FormatBericht`, Tastenkombination: `Strg+Umschalt+F` → `OK`.
-   - Führen Sie die Aktionen aus: Überschriftenzeile markieren → `Strg+F` (Fett) → `Füllfarbe → Grau` → Gesamten Datenbereich markieren → `Rahmen → Alle Rahmen`.
+   - Führen Sie die Aktionen aus: Überschriftenzeile markieren → `Strg+Umschalt+F` (Fett) → `Füllfarbe → Grau` → Gesamten Datenbereich markieren → `Rahmen → Alle Rahmen`.
    - `Entwicklertools → Aufzeichnung beenden`.
 2. **Makro speichern:** Das Makro wird automatisch in der .xlsm-Datei gespeichert.
 3. **Makro auf anderem Blatt ausführen:** Anderes Blatt wählen → `Entwicklertools → Makros → FormatBericht → Ausführen`. Die gespeicherten Formatierungsschritte werden wiederholt.
@@ -1473,6 +1475,8 @@ Die folgende Übungstabelle **Modul 13 4 VBA Programmieren** ist bereits geladen
 
 1. **For-Schleife (Zahlen 1–10):**
    ```vba
+   Option Explicit
+
    Sub ZahlenSchreiben()
        Dim i As Long
        For i = 1 To 10
@@ -1481,8 +1485,11 @@ Die folgende Übungstabelle **Modul 13 4 VBA Programmieren** ist bereits geladen
    End Sub
    ```
    `Alt+F11` → `Einfügen → Modul` → Code einfügen → `F5` zum Ausführen. A1:A10 zeigen 1–10.
+   - **Tipp:** `Option Explicit` am Modulanfang erzwingt die Deklaration aller Variablen — das verhindert Tippfehler und ist eine bewährte VBA-Praxis.
 2. **Erweitert mit If-Bedingung:**
    ```vba
+   Option Explicit
+
    Sub ZahlenMitFett()
        Dim i As Long
        For i = 1 To 10
